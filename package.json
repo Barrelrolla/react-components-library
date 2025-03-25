@@ -1,9 +1,12 @@
 {
-  "name": "react-components-library",
+  "name": "@barrelrolla/react-components-library",
   "version": "0.0.1",
   "description": "Personal react components library",
   "license": "ISC",
-  "author": "",
+  "author": "Julian Teofilov",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/barrelrolla"
+  },
   "type": "commonjs",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
