@@ -3,5 +3,5 @@ export interface ButtonProps {
 }
 
 export default function Button({ label }: ButtonProps) {
-  return <button>{label}</button>;
+  return <button className="border px-4 py-2">{label}</button>;
 }

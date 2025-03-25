@@ -1,6 +1,6 @@
 {
   "name": "@barrelrolla/react-components-library",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Personal react components library",
   "license": "ISC",
   "author": "Julian Teofilov",
@@ -15,6 +15,7 @@
     "rollup": "rollup -c --bundleConfigAsCjs"
   },
   "peerDependencies": {
+    "motion": "^12.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -24,10 +25,14 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
     "@types/react": "^19.0.12",
+    "motion": "^12.5.0",
     "react": "^19.0.0",
     "rollup": "^4.37.0",
     "rollup-plugin-dts": "^6.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss": "^4.0.15",
     "tslib": "^2.8.1",
     "typescript": "^5.8.2"
   }
