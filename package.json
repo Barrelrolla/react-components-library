@@ -1,6 +1,6 @@
 {
   "name": "@barrelrolla/react-components-library",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Personal react components library",
   "license": "ISC",
   "author": "Julian Teofilov",
@@ -10,7 +10,7 @@
   "type": "commonjs",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types.d.ts",
   "scripts": {
     "rollup": "rollup -c --bundleConfigAsCjs"
   },
