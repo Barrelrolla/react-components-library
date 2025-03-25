@@ -29,7 +29,14 @@ export default [
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
       terser(),
-      postcss({ config: { plugins: { tailwindcss: {} } } }),
+      postcss({
+        config: {
+          plugins: {
+            tailwindcss: {},
+            autoprefixer: {},
+          },
+        },
+      }),
     ],
     external: ["react", "react-dom"],
   },
