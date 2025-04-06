@@ -4,12 +4,17 @@ A collection of react components for personal use.
 
 ## Button
 
+<img src='./images/Button/button.png' height=50px />
+
 A simple button: [Button](lib/components/Button/Button.MD)
 
 ## Button Group
 
-Group buttons together: [ButtonGroup](lib/components/Button/ButtonGroup.MD)
+<img src='./images/Button/buttonGroup.png' height=50px />
+
+Group buttons together: [Button Group](lib/components/Button/ButtonGroup.MD)
 
 ## Dark Mode Toggle
 
-A toggle for switching between light, dark and system preferred theme: [DarkModeToggle](lib/components/DarkModeToggle/DarkModeToggle.MD)
+WIP  
+A toggle for switching between light, dark and system preferred theme: [Dark Mode Toggle](lib/components/DarkModeToggle/DarkModeToggle.MD)

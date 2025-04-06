@@ -8,12 +8,12 @@ import { colors } from "@/util/colors";
 export interface ButtonGroupProps extends ComponentProps<"div"> {
   variant?: ButtonVariant;
   radius?: ButtonRadius;
-  clearButtonHover: ClearButtonHover;
+  clearButtonHover?: ClearButtonHover;
   primaryColor?: ColorType;
   secondaryColor?: ColorType;
-  contrasting: boolean;
+  contrasting?: boolean;
   separator?: boolean;
-  vertical: boolean;
+  vertical?: boolean;
 }
 
 export function ButtonGroup({
@@ -24,7 +24,7 @@ export function ButtonGroup({
   secondaryColor = "white",
   contrasting = true,
   separator = true,
-  vertical,
+  vertical = false,
   className,
   children,
 }: ButtonGroupProps) {
