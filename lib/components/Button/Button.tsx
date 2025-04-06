@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import { getButtonStyles } from "./buttonStyles";
-import { ColorType, SizeType } from "../../types";
+import { ColorType, PolymorphicProps, SizeType } from "../../types";
 import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
 import {
   ComponentPropsWithoutRef,
@@ -13,7 +13,6 @@ import { Spinner } from "@/icons/icons";
 
 const defaultType = "button" as const;
 type ButtonProps<E extends ElementType> = {
-  as?: E;
   variant?: ButtonVariant;
   radius?: ButtonRadius;
   clearButtonHover?: ClearButtonHover;
@@ -29,7 +28,8 @@ type ButtonProps<E extends ElementType> = {
   loadingPosition?: "front" | "end";
   icon?: SVGProps<SVGSVGElement>;
   endIcon?: SVGProps<SVGSVGElement>;
-} & ComponentPropsWithoutRef<E>;
+} & ComponentPropsWithoutRef<E> &
+  PolymorphicProps<E>;
 
 export function Button<E extends ElementType = typeof defaultType>({
   as,
@@ -54,6 +54,7 @@ export function Button<E extends ElementType = typeof defaultType>({
 }: ButtonProps<E>) {
   const context = useContext(ButtonGroupContext);
   const isIcon = (icon !== undefined || endIcon !== undefined) && !children;
+  const isDisabled = disabled || loading;
 
   const classes = twMerge(
     getButtonStyles(
@@ -67,7 +68,7 @@ export function Button<E extends ElementType = typeof defaultType>({
       size,
       context ? context.contrasting : contrasting,
       isIcon,
-      !disableDisabledStyle && (disabled || loading),
+      !disableDisabledStyle && isDisabled,
       context ? false : disableHoverHighlight,
       context ? true : disableScale,
     ),
@@ -75,8 +76,8 @@ export function Button<E extends ElementType = typeof defaultType>({
   );
   const Element = as || defaultType;
   return (
-    <span className={twMerge("group", disabled && "cursor-not-allowed")}>
-      <Element className={classes} disabled={disabled || loading} {...rest}>
+    <span className={twMerge("group", isDisabled && "cursor-not-allowed")}>
+      <Element className={classes} disabled={isDisabled} {...rest}>
         {(!loading || loadingPosition !== "front") && icon}
         {loading && loadingPosition === "front" && <Spinner size={size} />}
         {children}

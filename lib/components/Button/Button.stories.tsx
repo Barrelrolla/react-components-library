@@ -3,7 +3,7 @@ import { Button } from "./Button";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect } from "@storybook/test";
 import { within } from "@testing-library/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button/Button",
@@ -277,11 +277,14 @@ export const Custom: Story = {
     function ToggleLoading() {
       setLoading((prevState) => !prevState);
     }
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
     return (
       <div className="bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap items-center gap-1">
           <Button
-            loading
+            ref={buttonRef}
+            loading={loading}
             icon={<ComputerIcon />}
             endIcon={<ComputerIcon />}
           ></Button>

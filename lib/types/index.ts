@@ -1,19 +1,15 @@
-import React from "react";
-import { ElementType, ReactNode } from "react";
+import { Ref } from "react";
+import { ElementType } from "react";
+
+type ElementTypeMap<T extends ElementType> =
+  T extends keyof HTMLElementTagNameMap
+    ? HTMLElementTagNameMap[T]
+    : HTMLElement;
 
 export type PolymorphicProps<T extends ElementType> = {
   as?: T;
-  children?: ReactNode | string;
+  ref?: Ref<ElementTypeMap<T>>;
 };
-
-export function PolymorphicElement<T extends ElementType = "div">({
-  as,
-  children,
-  ...rest
-}: PolymorphicProps<T>) {
-  const Component = as || "div";
-  return React.createElement(Component, { children, ...rest });
-}
 
 export type ColorType = "white" | "black" | "primary" | "secondary" | "accent";
 export type ColorShadesType =
