@@ -1,10 +1,15 @@
 {
-  "name": "react-components-library",
-  "private": true,
+  "name": "@barrelrolla/react-components-library",
   "version": "0.0.1",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
+  "description": "Personal react components library",
+  "license": "MIT",
+  "author": "Julian Teofilov",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/barrelrolla"
+  },
   "files": [
     "dist"
   ],
