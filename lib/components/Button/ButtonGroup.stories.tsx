@@ -4,6 +4,7 @@ import { ButtonGroup } from "./ButtonGroup";
 import { ComputerIcon } from "@/icons";
 
 const meta: Meta<typeof ButtonGroup> = {
+  title: "Components/ButtonGroup",
   component: ButtonGroup,
 };
 

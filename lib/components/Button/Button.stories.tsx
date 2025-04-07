@@ -1,12 +1,11 @@
 import { useRef, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { expect } from "@storybook/test";
-import { within } from "@testing-library/react";
+import { expect, within } from "@storybook/test";
 import { Button } from "./Button";
 import { ComputerIcon, MoonIcon } from "@/icons";
 
 const meta: Meta<typeof Button> = {
-  title: "Components/Button/Button",
+  title: "Components/Button",
   component: Button,
 };
 

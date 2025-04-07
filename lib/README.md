@@ -14,6 +14,10 @@ A simple button: [Button](components/Button/Button.md)
 
 Group buttons together: [Button Group](components/Button/ButtonGroup.md)
 
+## Navbar
+
+[Navbar](components/Navbar/Navbar.md)
+
 ## Dark Mode Toggle
 
 WIP  
