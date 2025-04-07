@@ -2,19 +2,32 @@
 
 A collection of react components for personal use.
 
-## Button
+## How to use
 
-<img src='./images/Button/button.png' height=50px />
+Install using
 
-A simple button: [Button](lib/components/Button/Button.md)
+```
+npm install @barrelrolla/react-components-library
+```
 
-## Button Group
+In your `.css` file add
 
-<img src='./images/Button/buttonGroup.png' height=50px />
+```css
+@import "../node_modules/@barrelrolla/react-components-library/dist/react-components-library.css";
+@import "tailwindcss";
 
-Group buttons together: [Button Group](lib/components/Button/ButtonGroup.md)
+@custom-variant dark (&:where(.dark, .dark *));
+```
 
-## Dark Mode Toggle
+You can customize the main colors by using:
 
-WIP  
-A toggle for switching between light, dark and system preferred theme: [Dark Mode Toggle](lib/components/DarkModeToggle/DarkModeToggle.md)
+```css
+@theme {
+  --color-primary-600: #4c5c5a;
+  --color-secondary-600: #7e7262;
+}
+```
+
+The library uses most shades from 50 to 900 so it's advisable to add all. The colors you can use are `primary`, `secondary` and `accent`.
+
+For info about the components, check the [Components](https://github.com/Barrelrolla/react-components-library/tree/main/lib/README.md) section.
