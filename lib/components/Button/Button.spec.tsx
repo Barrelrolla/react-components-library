@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { render } from "@testing-library/react";
 import { Button } from "./Button";
 
@@ -19,5 +20,23 @@ describe("Button test", () => {
     );
     const a = container.querySelector("a");
     expect(a).toBeTruthy();
+  });
+  it("can be clicked", () => {
+    const clickHandler = vi.fn();
+    const { getByText } = render(<Button onClick={clickHandler}>test</Button>);
+    const button = getByText("test");
+    button.click();
+    expect(clickHandler).toHaveBeenCalledTimes(1);
+  });
+  it("can be clicked", () => {
+    const clickHandler = vi.fn();
+    const { getByText } = render(
+      <Button disabled onClick={clickHandler}>
+        test
+      </Button>,
+    );
+    const button = getByText("test");
+    button.click();
+    expect(clickHandler).toHaveBeenCalledTimes(0);
   });
 });

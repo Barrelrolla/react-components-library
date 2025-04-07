@@ -1,8 +1,8 @@
 import { Children, ComponentProps } from "react";
+import { twMerge } from "tailwind-merge";
 import { ButtonGroupContext } from "./ButtonGroupContext";
 import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
 import { ColorType } from "@/types";
-import { twMerge } from "tailwind-merge";
 import { colors } from "@/util/colors";
 
 export interface ButtonGroupProps extends ComponentProps<"div"> {

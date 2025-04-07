@@ -1,9 +1,9 @@
-import { ComputerIcon, MoonIcon } from "@/icons/icons";
-import { Button } from "./Button";
+import { useRef, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect } from "@storybook/test";
 import { within } from "@testing-library/react";
-import { useRef, useState } from "react";
+import { Button } from "./Button";
+import { ComputerIcon, MoonIcon } from "@/icons";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button/Button",
@@ -17,10 +17,275 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByText("Button");
-    await expect(button).toBeTruthy();
+    await expect(button, "renders").toBeTruthy();
+    await expect(
+      button.classList.contains("bg-stone-950"),
+      "has black bg",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:bg-stone-50"),
+      "has white bg on dark mode",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("hover:bg-stone-900"),
+      "is highlighted on hover ",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:hover:bg-stone-200"),
+      "is highlighted on hover in dark mode",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("focus-visible:outline-2"),
+      "has outline when focused by keyboard",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("hover:outline-2"),
+      "has no outline when hovered by pointer",
+    ).toBeFalsy();
+    await expect(
+      button.classList.contains("outline-stone-900"),
+      "outline is same color as highlighted button",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:outline-stone-200"),
+      "outline is same color as highlighted button in dark mode ",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("active:bg-stone-800"),
+      "has active color",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:active:bg-stone-300"),
+      "has active color in dark mode",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("active:outline-stone-800"),
+      "outline has active color",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:active:outline-stone-300"),
+      "outline has active color in dark mode",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("text-stone-50"),
+      "text is white",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:text-stone-950"),
+      "text is black in dark mode",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("cursor-pointer"),
+      "cursor is pointer",
+    ).toBeTruthy();
   },
   args: {
     children: "Button",
+  },
+  argTypes: {
+    clearButtonHover: {
+      if: { arg: "variant", eq: "clear" },
+    },
+    icon: {
+      if: { arg: "false", exists: true },
+    },
+    endIcon: {
+      if: { arg: "false", exists: true },
+    },
+    ref: {
+      if: { arg: "false", exists: true },
+    },
+    as: {
+      control: { type: "text" },
+    },
+  },
+};
+
+export const Outline: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByText("Button");
+    await expect(button, "renders").toBeTruthy();
+    await expect(
+      button.classList.contains("bg-transparent"),
+      "has transparent bg",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("hover:bg-stone-950"),
+      "is highlighted on hover",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:hover:bg-stone-50"),
+      "is highlighted on hover in dark mode",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("focus-visible:outline-2"),
+      "has outline when focused by keyboard",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("hover:outline-2"),
+      "has no outline when hovered by pointer",
+    ).toBeFalsy();
+    await expect(
+      button.classList.contains("outline-stone-950"),
+      "outline is same color as highlighted button",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:outline-stone-50"),
+      "outline is same color as highlighted button in dark mode ",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("active:bg-stone-900"),
+      "has active color",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:active:bg-stone-200"),
+      "has active color in dark mode",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("active:outline-stone-900"),
+      "outline has active color",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:active:outline-stone-200"),
+      "outline has active color in dark mode",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("text-stone-950"),
+      "text is white",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:text-stone-50"),
+      "text is black in dark mode",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("hover:text-stone-50"),
+      "text is black on hover",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:hover:text-stone-950"),
+      "text is white on hover in dark mode",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("cursor-pointer"),
+      "cursor is pointer",
+    ).toBeTruthy();
+  },
+  args: {
+    children: "Button",
+    variant: "outline",
+  },
+  argTypes: {
+    clearButtonHover: {
+      if: { arg: "variant", eq: "clear" },
+    },
+    icon: {
+      if: { arg: "false", exists: true },
+    },
+    endIcon: {
+      if: { arg: "false", exists: true },
+    },
+    ref: {
+      if: { arg: "false", exists: true },
+    },
+    as: {
+      control: { type: "text" },
+    },
+  },
+};
+
+export const Clear: Story = {
+  render: () => {
+    return (
+      <div className="flex flex-wrap gap-2 bg-white p-2 dark:bg-black">
+        <Button variant="clear" clearButtonHover="none">
+          Button
+        </Button>
+        <Button variant="clear" clearButtonHover="outline">
+          Button
+        </Button>
+        <Button variant="clear" clearButtonHover="fill">
+          Button
+        </Button>
+        <Button variant="clear" clearButtonHover="contrasting">
+          Button
+        </Button>
+      </div>
+    );
+  },
+};
+
+export const Disabled: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByText("Button");
+    const wrapper = button.parentElement;
+    await expect(wrapper, "has a wrapper").toBeTruthy();
+    await expect(
+      wrapper?.classList.contains("cursor-not-allowed"),
+      "shows not allowed cursor on hover",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("opacity-50"),
+      "has 50% opacity",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("saturate-50"),
+      "has 50% saturation",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("pointer-events-none"),
+      "has no pointer events",
+    ).toBeTruthy();
+  },
+  args: {
+    children: "Button",
+    disabled: true,
+  },
+};
+
+export const Loading: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByText("Button");
+    const wrapper = button.parentElement;
+    await expect(
+      wrapper?.classList.contains("cursor-not-allowed"),
+      "shows not allowed cursor on hover",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("opacity-50"),
+      "has 50% opacity",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("saturate-50"),
+      "has 50% saturation",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("pointer-events-none"),
+      "has no pointer events",
+    ).toBeTruthy();
+  },
+  args: {
+    children: "Button",
+    loading: true,
+  },
+  argTypes: {
+    clearButtonHover: {
+      if: { arg: "variant", eq: "clear" },
+    },
+    icon: {
+      if: { arg: "false", exists: true },
+    },
+    endIcon: {
+      if: { arg: "false", exists: true },
+    },
+    ref: {
+      if: { arg: "false", exists: true },
+    },
+    as: {
+      control: { type: "text" },
+    },
   },
 };
 
@@ -52,6 +317,14 @@ export const Basic: Story = {
 };
 
 export const Icon: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getAllByRole("button")[0];
+    await expect(
+      button.classList.contains("p-2"),
+      "icon buttons should have the same padding all around",
+    ).toBeTruthy();
+  },
   render: () => {
     return (
       <div className="flex flex-col gap-12 bg-white p-20 dark:bg-black">
@@ -285,6 +558,7 @@ export const Custom: Story = {
           <Button
             ref={buttonRef}
             loading={loading}
+            loadingPosition="end"
             icon={<ComputerIcon />}
             endIcon={<ComputerIcon />}
           ></Button>
@@ -302,12 +576,14 @@ export const Custom: Story = {
             loading={loading}
             disableScale
             size="xl"
-            className="flex min-w-52 gap-2 bg-red-700 text-yellow-100 hover:bg-red-600 dark:bg-orange-300"
+            className="flex min-w-52 gap-2 bg-red-700 text-yellow-100 hover:bg-red-600 active:bg-red-500 dark:bg-orange-300"
           >
             <span>Moon</span>
           </Button>
           <Button
             variant="clear"
+            disableHoverHighlight
+            disableScale
             className="hover:text-primary-400 p-0 hover:outline-none"
           >
             clear
@@ -317,9 +593,6 @@ export const Custom: Story = {
           </Button>
         </div>
         <Button
-          // whileHover={{ scale: 1.2 }}
-          // whileTap={{ scale: 0.8 }}
-          disableScale
           size="xl"
           className="flex gap-2 bg-red-700 text-yellow-100 hover:bg-red-600 dark:bg-orange-300"
         >
@@ -335,11 +608,4 @@ export const Custom: Story = {
       </div>
     );
   },
-  // args: {
-  //   children: "Custom",
-  //   whileHover: { scale: 1.2 },
-  //   whileTap: { scale: 0.9 },
-  //   contrasting: false,
-  //   className: "bg-red-700 hover:bg-red-600 text-yellow-100",
-  // },
 };

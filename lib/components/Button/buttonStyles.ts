@@ -1,8 +1,8 @@
 import { twMerge } from "tailwind-merge";
+import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
 import { ColorType, SizeType } from "@/types";
 import { colors } from "@/util/colors";
 import { ButtonSizes } from "@/util/sizes";
-import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
 
 interface ButtonColors {
   bgColor: string;
