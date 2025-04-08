@@ -5,19 +5,21 @@ import { Button } from "../Button";
 import { NavbarContext } from "./NavbarContext";
 
 const defaultType = "a";
-type NavbarLogoProps<E extends ElementType> = {} & ComponentPropsWithoutRef<E> &
-  PolymorphicProps<E>;
-export function NavbarLogo<E extends ElementType = typeof defaultType>({
+type NavbarBrandProps<E extends ElementType> =
+  {} & ComponentPropsWithoutRef<E> & PolymorphicProps<E>;
+export function NavbarBrand<E extends ElementType = typeof defaultType>({
   as,
   children,
   className,
   ...rest
-}: NavbarLogoProps<E>) {
+}: NavbarBrandProps<E>) {
   const context = useContext(NavbarContext);
   const classes = twMerge("px-2 py-0 text-2xl font-bold", className);
 
   if (!context) {
-    throw new Error("Please use the Navbar Logo only inside a Navbar.");
+    throw new Error(
+      "Please use the Navbar Brand component only inside a Navbar.",
+    );
   }
   return (
     <Button

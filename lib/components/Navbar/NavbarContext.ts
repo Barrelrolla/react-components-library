@@ -6,7 +6,7 @@ type NavbarContextType =
       primaryColor: ColorType;
       secondaryColor: ColorType;
       expandSize: SizeType;
-      stickToTop: boolean;
+      fixed: boolean;
       rounded: boolean;
       border: boolean;
       shadow: boolean;

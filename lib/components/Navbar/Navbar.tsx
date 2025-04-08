@@ -9,7 +9,7 @@ interface NavbarProps extends ComponentProps<"nav"> {
   secondaryColor?: ColorType;
   shadow?: boolean;
   border?: boolean;
-  stickToTop?: boolean;
+  fixed?: boolean;
   rounded?: boolean;
 }
 export function Navbar({
@@ -17,22 +17,25 @@ export function Navbar({
   secondaryColor = "black",
   border = true,
   shadow = true,
-  stickToTop = true,
+  fixed = true,
   rounded = true,
   children,
   className,
 }: NavbarProps) {
-  const classes = twMerge(
-    "flex items-center justify-between px-4 py-2",
+  const navClasses = twMerge(
+    "w-full p-2 transition-all",
     `bg-${ColorMap[primaryColor].lightShade}`,
     `dark:bg-${ColorMap[secondaryColor].darkShade}`,
     `text-${ColorMap[secondaryColor].darkShade}`,
     `dark:text-${ColorMap[primaryColor].lightShade}`,
+    fixed && "fixed top-0 left-0 z-40",
     border && "border-b-2",
     rounded && "rounded-b-lg",
     shadow && "shadow-md shadow-stone-700",
-    stickToTop && "absolute top-0 left-0 z-40 w-full",
     className,
+  );
+  const containerClasses = twMerge(
+    "flex flex-wrap items-center justify-between transition-all",
   );
   const ref = useRef<HTMLElement>(null);
   return (
@@ -41,7 +44,7 @@ export function Navbar({
         primaryColor,
         secondaryColor,
         rounded,
-        stickToTop,
+        fixed,
         border,
         shadow,
         expandSize: "sm",
@@ -49,8 +52,8 @@ export function Navbar({
         navbarRef: ref,
       }}
     >
-      <nav ref={ref} className={classes}>
-        {children}
+      <nav ref={ref} className={navClasses}>
+        <div className={containerClasses}>{children}</div>
       </nav>
     </NavbarContext.Provider>
   );

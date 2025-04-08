@@ -14,7 +14,7 @@ export function HamburgerButton({
   ...rest
 }: HamburgerButtonProps) {
   const hamburgerButtonClasses = twMerge(
-    "relative block h-4.5 w-6 p-4 transition-all",
+    "relative h-4.5 w-6 p-4 transition-all",
     isOpen && "open",
     isOpen && "rotate-90",
   );

@@ -1,3 +1,3 @@
 export { Navbar } from "./Navbar";
-export { NavbarLogo } from "./NavbarLogo";
-export { NavbarLinkGroup } from "./NavbarLinkGroup";
+export { NavbarBrand } from "./NavbarBrand";
+export { NavbarCollapse as NavbarLinkGroup } from "./NavbarCollapse";
