@@ -1,21 +1,17 @@
 import { twMerge } from "tailwind-merge";
 import { Button } from "../Button";
-import { ColorType } from "@/types";
-import { colors } from "@/util/colors";
+import { ButtonProps } from "../Button/Button";
+import { ColorMap } from "@/util/colors";
 
-interface HamburgerButtonProps {
-  primaryColor?: ColorType;
-  secondaryColor?: ColorType;
+interface HamburgerButtonProps extends ButtonProps<"button"> {
   isOpen: boolean;
-  className?: string;
-  onClick: () => void;
 }
 export function HamburgerButton({
   primaryColor = "black",
   secondaryColor = "white",
   className,
   isOpen,
-  onClick,
+  ...rest
 }: HamburgerButtonProps) {
   const hamburgerButtonClasses = twMerge(
     "relative block h-4.5 w-6 p-4 transition-all",
@@ -23,10 +19,10 @@ export function HamburgerButton({
     isOpen && "rotate-90",
   );
   const lineClasses = twMerge(
-    colors[primaryColor].darkShade.regular.bgColor,
-    colors[primaryColor].darkHighlightedShade.groupActive.bgColor,
-    colors[secondaryColor].lightShade.dark.bgColor,
-    colors[secondaryColor].lightHighlightedShade.darkGroupActive.bgColor,
+    `bg-${ColorMap[primaryColor].darkShade}`,
+    `group-active:bg-${ColorMap[primaryColor].darkHighlightedShade}`,
+    `dark:bg-${ColorMap[secondaryColor].lightShade}`,
+    `dark:group-active:bg-${ColorMap[secondaryColor].lightHighlightedShade}`,
     "absolute top-1.75 left-1 h-0.5 w-6 rotate-0 transition-all duration-300",
   );
   return (
@@ -36,9 +32,8 @@ export function HamburgerButton({
       clearButtonHover="outline"
       primaryColor={primaryColor}
       secondaryColor={secondaryColor}
-      disableScale
-      onClick={onClick}
       className={twMerge("px-1 py-0 hover:outline-2", className)}
+      {...rest}
     >
       <div className={hamburgerButtonClasses}>
         <span

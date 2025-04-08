@@ -3,9 +3,9 @@ import { twMerge } from "tailwind-merge";
 import { ButtonGroupContext } from "./ButtonGroupContext";
 import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
 import { ColorType } from "@/types";
-import { colors } from "@/util/colors";
+import { ColorMap } from "@/util/colors";
 
-export interface ButtonGroupProps extends ComponentProps<"div"> {
+interface ButtonGroupProps extends ComponentProps<"div"> {
   variant?: ButtonVariant;
   radius?: ButtonRadius;
   clearButtonHover?: ClearButtonHover;
@@ -29,12 +29,12 @@ export function ButtonGroup({
   children,
 }: ButtonGroupProps) {
   const dividerClasses = twMerge(
-    colors[primaryColor].darkShade.regular.bgColor,
-    contrasting && colors[secondaryColor].lightShade.dark.bgColor,
-    variant === "solid" && colors[secondaryColor].lightShade.regular.bgColor,
+    `bg-${ColorMap[primaryColor].darkShade}`,
+    contrasting && `dark:bg-${ColorMap[secondaryColor].lightShade}`,
+    variant === "solid" && `bg-${ColorMap[secondaryColor].lightShade}`,
     variant === "solid" &&
       contrasting &&
-      colors[primaryColor].darkShade.dark.bgColor,
+      `dark:bg-${ColorMap[primaryColor].darkShade}`,
     !vertical && "w-0.25",
     vertical && "h-0.25",
     "z-1",

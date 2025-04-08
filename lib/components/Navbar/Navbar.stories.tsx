@@ -22,11 +22,16 @@ export const Default: Story = {
     primaryColor: "primary",
     secondaryColor: "primary",
     children: [
-      <NavbarLogo href="/">Test</NavbarLogo>,
+      <NavbarLogo href="/">
+        <div className="flex flex-col">
+          <span>Test</span>
+          <span>test</span>
+        </div>
+      </NavbarLogo>,
       <NavbarLinkGroup>
         <li>link 1</li>
         <li>link 2</li>
-        <li>link 3</li>
+        <li>linkeogijewogiewjg</li>
         <li>link 4</li>
       </NavbarLinkGroup>,
     ],

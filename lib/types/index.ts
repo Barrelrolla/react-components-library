@@ -1,4 +1,4 @@
-import { Ref } from "react";
+import { RefObject } from "react";
 import { ElementType } from "react";
 
 type ElementTypeMap<T extends ElementType> =
@@ -8,7 +8,7 @@ type ElementTypeMap<T extends ElementType> =
 
 export type PolymorphicProps<T extends ElementType> = {
   as?: T;
-  ref?: Ref<ElementTypeMap<T>>;
+  ref?: RefObject<ElementTypeMap<T> | null>;
 };
 
 export type ColorType = "white" | "black" | "primary" | "secondary" | "accent";

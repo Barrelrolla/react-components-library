@@ -22,8 +22,8 @@ export function NavbarLogo<E extends ElementType = typeof defaultType>({
   return (
     <Button
       as={as || defaultType}
-      primaryColor={context.primaryColor}
-      secondaryColor={context.secondaryColor}
+      primaryColor={context.secondaryColor}
+      secondaryColor={context.primaryColor}
       variant="clear"
       clearButtonHover="none"
       disableScale

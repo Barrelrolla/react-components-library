@@ -21,6 +21,12 @@ export default defineConfig({
           "react-dom": "ReactDOM",
           tailwindcss: "tailwindcss",
         },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.names[0].endsWith(".css")) {
+            return "index.css"; // This renames the CSS file
+          }
+          return assetInfo.names[0] || "[name].[ext]";
+        },
       },
     },
     sourcemap: true,

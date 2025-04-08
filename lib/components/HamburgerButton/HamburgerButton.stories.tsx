@@ -11,11 +11,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => {
+  render: (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const clickHandler = () => {
       setIsOpen((prevState) => !prevState);
     };
-    return <HamburgerButton isOpen={isOpen} onClick={clickHandler} />;
+    return (
+      <HamburgerButton {...props} isOpen={isOpen} onClick={clickHandler} />
+    );
   },
 };

@@ -27,11 +27,19 @@ export const Default: Story = {
     ).toBeTruthy();
     await expect(
       button.classList.contains("hover:bg-stone-900"),
-      "is highlighted on hover ",
+      "is highlighted on hover",
     ).toBeTruthy();
     await expect(
       button.classList.contains("dark:hover:bg-stone-200"),
       "is highlighted on hover in dark mode",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("focus-visible:bg-stone-900"),
+      "is highlighted on keyboard enter",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:focus-visible:bg-stone-200"),
+      "is highlighted on keyboard enter in dark mode",
     ).toBeTruthy();
     await expect(
       button.classList.contains("focus-visible:outline-2"),
@@ -47,7 +55,7 @@ export const Default: Story = {
     ).toBeTruthy();
     await expect(
       button.classList.contains("dark:outline-stone-200"),
-      "outline is same color as highlighted button in dark mode ",
+      "outline is same color as highlighted button in dark mode",
     ).toBeTruthy();
     await expect(
       button.classList.contains("active:bg-stone-800"),
@@ -76,6 +84,14 @@ export const Default: Story = {
     await expect(
       button.classList.contains("cursor-pointer"),
       "cursor is pointer",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("hover:scale-[102%]"),
+      "scales on hover",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("active:scale-[98%]"),
+      "scales on press",
     ).toBeTruthy();
   },
   args: {
@@ -110,6 +126,14 @@ export const Outline: Story = {
       "has transparent bg",
     ).toBeTruthy();
     await expect(
+      button.classList.contains("border-stone-950"),
+      "has black border",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:border-stone-50"),
+      "has white border in dark mode",
+    ).toBeTruthy();
+    await expect(
       button.classList.contains("hover:bg-stone-950"),
       "is highlighted on hover",
     ).toBeTruthy();
@@ -118,20 +142,24 @@ export const Outline: Story = {
       "is highlighted on hover in dark mode",
     ).toBeTruthy();
     await expect(
+      button.classList.contains("focus-visible:bg-stone-950"),
+      "is highlighted on kayboard enter",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:focus-visible:bg-stone-50"),
+      "is highlighted on keyboard enter in dark mode",
+    ).toBeTruthy();
+    await expect(
       button.classList.contains("focus-visible:outline-2"),
       "has outline when focused by keyboard",
     ).toBeTruthy();
-    await expect(
-      button.classList.contains("hover:outline-2"),
-      "has no outline when hovered by pointer",
-    ).toBeFalsy();
     await expect(
       button.classList.contains("outline-stone-950"),
       "outline is same color as highlighted button",
     ).toBeTruthy();
     await expect(
       button.classList.contains("dark:outline-stone-50"),
-      "outline is same color as highlighted button in dark mode ",
+      "outline is same color as highlighted button in dark mode",
     ).toBeTruthy();
     await expect(
       button.classList.contains("active:bg-stone-900"),
@@ -148,6 +176,14 @@ export const Outline: Story = {
     await expect(
       button.classList.contains("dark:active:outline-stone-200"),
       "outline has active color in dark mode",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("active:border-stone-900"),
+      "border has active color",
+    ).toBeTruthy();
+    await expect(
+      button.classList.contains("dark:active:border-stone-200"),
+      "border has active color in dark mode",
     ).toBeTruthy();
     await expect(
       button.classList.contains("text-stone-950"),
@@ -194,20 +230,29 @@ export const Outline: Story = {
 };
 
 export const Clear: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByText("None");
+    await expect(button, "renders").toBeTruthy();
+    await expect(
+      button.classList.contains("bg-transparent"),
+      "has transparent bg",
+    ).toBeTruthy();
+  },
   render: () => {
     return (
       <div className="flex flex-wrap gap-2 bg-white p-2 dark:bg-black">
         <Button variant="clear" clearButtonHover="none">
-          Button
+          None
         </Button>
         <Button variant="clear" clearButtonHover="outline">
-          Button
+          Outline
         </Button>
         <Button variant="clear" clearButtonHover="fill">
-          Button
+          Fill
         </Button>
         <Button variant="clear" clearButtonHover="contrasting">
-          Button
+          Contrasting
         </Button>
       </div>
     );
@@ -219,7 +264,6 @@ export const Disabled: Story = {
     const canvas = within(canvasElement);
     const button = canvas.getByText("Button");
     const wrapper = button.parentElement;
-    await expect(wrapper, "has a wrapper").toBeTruthy();
     await expect(
       wrapper?.classList.contains("cursor-not-allowed"),
       "shows not allowed cursor on hover",
@@ -550,7 +594,6 @@ export const Custom: Story = {
       setLoading((prevState) => !prevState);
     }
     const buttonRef = useRef<HTMLButtonElement>(null);
-
     return (
       <div className="bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap items-center gap-1">

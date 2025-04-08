@@ -12,7 +12,7 @@ import { ColorType, PolymorphicProps, SizeType } from "@/types";
 import { Spinner } from "@/icons";
 
 const defaultType = "button" as const;
-type ButtonProps<E extends ElementType> = {
+export type ButtonProps<E extends ElementType> = {
   variant?: ButtonVariant;
   radius?: ButtonRadius;
   clearButtonHover?: ClearButtonHover;
