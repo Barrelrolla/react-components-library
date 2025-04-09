@@ -158,8 +158,6 @@ function getDefaultButtonColors(
 ): ButtonColors {
   const primaryColor = ColorMap[_primaryColor];
   const secondaryColor = ColorMap[_secondaryColor];
-  console.log(primaryColor);
-  console.log(secondaryColor);
   const bgColor = twMerge(
     `bg-${primaryColor.darkShade}`,
     contrasting && `dark:bg-${secondaryColor.lightShade}`,

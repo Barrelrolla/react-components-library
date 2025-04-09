@@ -10,7 +10,8 @@ type NavbarContextType =
       rounded: boolean;
       border: boolean;
       shadow: boolean;
-      open: boolean;
+      isOpen: boolean;
+      setIsOpen: (isOpen: boolean) => void;
       navbarRef: RefObject<HTMLElement | null>;
     }
   | undefined;

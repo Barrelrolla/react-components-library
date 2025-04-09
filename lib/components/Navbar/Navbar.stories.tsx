@@ -3,6 +3,7 @@ import { within, expect } from "@storybook/test";
 import { Navbar } from "./Navbar";
 import { NavbarBrand } from "./NavbarBrand";
 import { NavbarCollapse } from "./NavbarCollapse";
+import { NavbarToggle } from "./NavbarToggle";
 
 const meta: Meta<typeof Navbar> = {
   title: "Components/Navbar",
@@ -22,16 +23,23 @@ export const Default: Story = {
     return (
       <div className="h-screen">
         <Navbar fixed={true} primaryColor="accent" secondaryColor="accent">
-          <NavbarBrand href="/">
-            <div className="flex flex-col">
-              <span>Test</span>
-            </div>
-          </NavbarBrand>
+          <div className="flex flex-row">
+            <NavbarToggle />
+            <NavbarBrand href="#">Test</NavbarBrand>
+          </div>
           <NavbarCollapse>
-            <li>link 1</li>
-            <li>link 2</li>
-            <li>linkeogijewogiewjg</li>
-            <li>link 4</li>
+            <li>
+              <a href="#">link 1</a>
+            </li>
+            <li>
+              <a href="#">link 2</a>
+            </li>
+            <li>
+              <a href="#">linkeogijewogiewjg</a>
+            </li>
+            <li>
+              <a href="#">link 4</a>
+            </li>
           </NavbarCollapse>
         </Navbar>
         <span className="mt-20 flex justify-center text-2xl">test</span>

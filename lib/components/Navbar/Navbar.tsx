@@ -1,4 +1,4 @@
-import { ComponentProps, useRef } from "react";
+import { ComponentProps, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { ColorType } from "@/types";
 import { NavbarContext } from "./NavbarContext";
@@ -22,8 +22,9 @@ export function Navbar({
   children,
   className,
 }: NavbarProps) {
+  const [isOpen, setIsOpen] = useState(false);
   const navClasses = twMerge(
-    "w-full p-2 transition-all",
+    "w-full p-2",
     `bg-${ColorMap[primaryColor].lightShade}`,
     `dark:bg-${ColorMap[secondaryColor].darkShade}`,
     `text-${ColorMap[secondaryColor].darkShade}`,
@@ -48,7 +49,8 @@ export function Navbar({
         border,
         shadow,
         expandSize: "sm",
-        open: false,
+        isOpen,
+        setIsOpen,
         navbarRef: ref,
       }}
     >

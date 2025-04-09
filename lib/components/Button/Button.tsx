@@ -10,6 +10,7 @@ import { getButtonStyles } from "./buttonStyles";
 import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
 import { ColorType, PolymorphicProps, SizeType } from "@/types";
 import { Spinner } from "@/icons";
+import { motion, MotionProps } from "motion/react";
 
 const defaultType = "button" as const;
 export type ButtonProps<E extends ElementType> = {
@@ -29,7 +30,8 @@ export type ButtonProps<E extends ElementType> = {
   icon?: SVGProps<SVGSVGElement>;
   endIcon?: SVGProps<SVGSVGElement>;
 } & ComponentPropsWithoutRef<E> &
-  PolymorphicProps<E>;
+  PolymorphicProps<E> &
+  MotionProps;
 
 export function Button<E extends ElementType = typeof defaultType>({
   as,
@@ -74,7 +76,7 @@ export function Button<E extends ElementType = typeof defaultType>({
     ),
     className,
   );
-  const Element = as || defaultType;
+  const Element = motion.create(as || defaultType);
   return (
     <span className={twMerge("group", isDisabled && "cursor-not-allowed")}>
       <Element className={classes} disabled={isDisabled} {...rest}>
