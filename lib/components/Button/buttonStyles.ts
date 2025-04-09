@@ -69,7 +69,6 @@ export function getButtonStyles(
     ),
     !disableScale &&
       "hover:scale-[102%] focus-visible:scale-[102%] active:scale-[98%]",
-    (!disableScale || !disableHoverHighlight) && "transition duration-150",
     disabled ? "pointer-events-none" : "cursor-pointer",
   );
 }

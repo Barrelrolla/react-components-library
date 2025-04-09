@@ -3,6 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
 import { Button } from "./Button";
 import { ComputerIcon, MoonIcon } from "@/icons";
+import { motion } from "motion/react";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -594,6 +595,7 @@ export const Custom: Story = {
       setLoading((prevState) => !prevState);
     }
     const buttonRef = useRef<HTMLButtonElement>(null);
+    const MotionButton = motion.create(Button<"button">);
     return (
       <div className="bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap items-center gap-1">
@@ -647,6 +649,9 @@ export const Custom: Story = {
         >
           new button
         </Button>
+        <MotionButton disableAnimation whileHover={{ scale: 1.2 }}>
+          glg
+        </MotionButton>
       </div>
     );
   },
