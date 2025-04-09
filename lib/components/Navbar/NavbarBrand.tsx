@@ -1,12 +1,11 @@
 import { PolymorphicProps } from "@/types";
-import { ComponentPropsWithoutRef, ElementType, useContext } from "react";
+import { ElementType, useContext } from "react";
 import { twMerge } from "tailwind-merge";
 import { Button } from "../Button";
 import { NavbarContext } from "./NavbarContext";
 
 const defaultType = "a";
-type NavbarBrandProps<E extends ElementType> =
-  {} & ComponentPropsWithoutRef<E> & PolymorphicProps<E>;
+type NavbarBrandProps<E extends ElementType> = {} & PolymorphicProps<E>;
 export function NavbarBrand<E extends ElementType = typeof defaultType>({
   as,
   children,

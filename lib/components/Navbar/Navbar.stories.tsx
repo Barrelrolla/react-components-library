@@ -19,31 +19,26 @@ export const Default: Story = {
     const navbar = canvas.getByText("Test");
     await expect(navbar, "renders").toBeTruthy();
   },
-  render: () => {
-    return (
-      <div className="h-screen">
-        <Navbar fixed={true} primaryColor="accent" secondaryColor="accent">
-          <div className="flex flex-row">
-            <NavbarToggle />
-            <NavbarBrand href="#">Test</NavbarBrand>
-          </div>
-          <NavbarCollapse>
-            <li>
-              <a href="#">link 1</a>
-            </li>
-            <li>
-              <a href="#">link 2</a>
-            </li>
-            <li>
-              <a href="#">linkeogijewogiewjg</a>
-            </li>
-            <li>
-              <a href="#">link 4</a>
-            </li>
-          </NavbarCollapse>
-        </Navbar>
-        <span className="mt-20 flex justify-center text-2xl">test</span>
-      </div>
-    );
+  args: {
+    children: [
+      <div key={"logo"} className="flex flex-row">
+        <NavbarToggle />
+        <NavbarBrand href="#">Test</NavbarBrand>
+      </div>,
+      <NavbarCollapse key={"menu"}>
+        <li>
+          <a href="#">link 1</a>
+        </li>
+        <li>
+          <a href="#">link 2</a>
+        </li>
+        <li>
+          <a href="#">linkeogijewogiewjg</a>
+        </li>
+        <li>
+          <a href="#">link 4</a>
+        </li>
+      </NavbarCollapse>,
+    ],
   },
 };

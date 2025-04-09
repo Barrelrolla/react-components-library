@@ -1,9 +1,4 @@
-import {
-  ComponentPropsWithoutRef,
-  ElementType,
-  SVGProps,
-  useContext,
-} from "react";
+import { ElementType, SVGProps, useContext } from "react";
 import { twMerge } from "tailwind-merge";
 import { ButtonGroupContext } from "./ButtonGroupContext";
 import { getButtonStyles } from "./buttonStyles";
@@ -29,8 +24,7 @@ export type ButtonProps<E extends ElementType> = {
   loadingPosition?: "front" | "end";
   icon?: SVGProps<SVGSVGElement>;
   endIcon?: SVGProps<SVGSVGElement>;
-} & ComponentPropsWithoutRef<E> &
-  PolymorphicProps<E>;
+} & PolymorphicProps<E>;
 
 export function Button<E extends ElementType = typeof defaultType>({
   as,

@@ -15,13 +15,12 @@ export function NavbarToggle() {
     setIsOpen(!isOpen);
   }
   return (
-    <div className="flex space-x-3 sm:hidden sm:space-x-0">
-      <HamburgerButton
-        primaryColor={secondaryColor}
-        secondaryColor={primaryColor}
-        isOpen={isOpen}
-        onClick={clickHandler}
-      />
-    </div>
+    <HamburgerButton
+      className="sm:hidden"
+      primaryColor={secondaryColor}
+      secondaryColor={primaryColor}
+      isOpen={isOpen}
+      onClick={clickHandler}
+    />
   );
 }

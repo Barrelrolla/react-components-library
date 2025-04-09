@@ -1,4 +1,4 @@
-import { createContext, RefObject } from "react";
+import { createContext } from "react";
 import { ColorType, SizeType } from "@/types";
 
 type NavbarContextType =
@@ -12,7 +12,6 @@ type NavbarContextType =
       shadow: boolean;
       isOpen: boolean;
       setIsOpen: (isOpen: boolean) => void;
-      navbarRef: RefObject<HTMLElement | null>;
     }
   | undefined;
 
