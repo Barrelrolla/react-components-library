@@ -9,10 +9,11 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
   as,
   children,
   className,
+  ...rest
 }: NavbarLinkProps<E>) {
   return (
     <ul>
-      <Anchor as={as || defaultType} className={className}>
+      <Anchor as={as || defaultType} className={className} {...rest}>
         {children}
       </Anchor>
     </ul>
