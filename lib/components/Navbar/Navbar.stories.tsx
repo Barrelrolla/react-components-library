@@ -4,6 +4,7 @@ import { Navbar } from "./Navbar";
 import { NavbarBrand } from "./NavbarBrand";
 import { NavbarCollapse } from "./NavbarCollapse";
 import { NavbarToggle } from "./NavbarToggle";
+import { NavbarLink } from "./NavbarLink";
 
 const meta: Meta<typeof Navbar> = {
   title: "Components/Navbar",
@@ -21,23 +22,18 @@ export const Default: Story = {
   },
   args: {
     children: [
-      <div key={"logo"} className="flex flex-row">
-        <NavbarToggle />
-        <NavbarBrand href="#">Test</NavbarBrand>
-      </div>,
+      <NavbarToggle key={"toggle"} />,
+      <NavbarBrand key={"brand"} href="#">
+        Test
+      </NavbarBrand>,
+      <div key={"space"} role="presentation"></div>,
       <NavbarCollapse key={"menu"}>
-        <li>
-          <a href="#">link 1</a>
-        </li>
-        <li>
-          <a href="#">link 2</a>
-        </li>
-        <li>
-          <a href="#">linkeogijewogiewjg</a>
-        </li>
-        <li>
-          <a href="#">link 4</a>
-        </li>
+        <NavbarLink href="/">Link 1</NavbarLink>
+        <NavbarLink href="/">Link 2</NavbarLink>
+        <NavbarLink href="/">Link 3</NavbarLink>
+        <NavbarLink href="/">Link 4</NavbarLink>
+        <NavbarLink href="/">Link 5</NavbarLink>
+        <NavbarLink href="/">Link 6</NavbarLink>
       </NavbarCollapse>,
     ],
   },

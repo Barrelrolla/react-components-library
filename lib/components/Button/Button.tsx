@@ -24,6 +24,7 @@ export type ButtonProps<E extends ElementType> = {
   loadingPosition?: "front" | "end";
   icon?: SVGProps<SVGSVGElement>;
   endIcon?: SVGProps<SVGSVGElement>;
+  wrapperClasses?: string;
 } & PolymorphicProps<E>;
 
 export function Button<E extends ElementType = typeof defaultType>({
@@ -45,6 +46,7 @@ export function Button<E extends ElementType = typeof defaultType>({
   icon,
   endIcon,
   className,
+  wrapperClasses,
   children,
   ...rest
 }: ButtonProps<E>) {
@@ -73,7 +75,13 @@ export function Button<E extends ElementType = typeof defaultType>({
   );
   const Element = as || defaultType;
   return (
-    <span className={twMerge("group", isDisabled && "cursor-not-allowed")}>
+    <span
+      className={twMerge(
+        "group",
+        isDisabled && "cursor-not-allowed",
+        wrapperClasses,
+      )}
+    >
       <Element className={classes} disabled={isDisabled} {...rest}>
         {(!loading || loadingPosition !== "front") && icon}
         {loading && loadingPosition === "front" && <Spinner />}

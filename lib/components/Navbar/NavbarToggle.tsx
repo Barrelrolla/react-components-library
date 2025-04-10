@@ -25,7 +25,7 @@ export function NavbarToggle() {
   );
   return (
     <HamburgerButton
-      className={classes}
+      wrapperClasses={classes}
       primaryColor={secondaryColor}
       secondaryColor={primaryColor}
       isOpen={isOpen}

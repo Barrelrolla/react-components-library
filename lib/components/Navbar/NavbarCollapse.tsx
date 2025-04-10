@@ -30,7 +30,7 @@ export function NavbarCollapse({ children }: NavbarCollapseProps) {
         className={twMerge(
           position === "top" && "mt-4",
           position === "bottom" && "mb-4",
-          "flex flex-col gap-4",
+          "flex flex-col gap-4 p-2 sm:p-0",
           collapseAt === "sm" && "sm:mt-0 sm:mb-0 sm:flex-row sm:gap-6",
           collapseAt === "md" && "md:mt-0 md:mb-0 md:flex-row md:gap-6",
           collapseAt === "lg" && "lg:mt-0 lg:mb-0 lg:flex-row lg:gap-6",

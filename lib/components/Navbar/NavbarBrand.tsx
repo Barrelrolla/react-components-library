@@ -1,8 +1,8 @@
 import { PolymorphicProps } from "@/types";
 import { ElementType, useContext } from "react";
 import { twMerge } from "tailwind-merge";
-import { Button } from "../Button";
 import { NavbarContext } from "./NavbarContext";
+import { Anchor } from "../Anchor";
 
 const defaultType = "a";
 type NavbarBrandProps<E extends ElementType> = {} & PolymorphicProps<E>;
@@ -21,17 +21,13 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
     );
   }
   return (
-    <Button
+    <Anchor
       as={as || defaultType}
-      primaryColor={context.secondaryColor}
-      secondaryColor={context.primaryColor}
-      variant="clear"
-      clearButtonHover="none"
-      disableScale
+      disableUnderline
       className={classes}
       {...rest}
     >
       {children}
-    </Button>
+    </Anchor>
   );
 }

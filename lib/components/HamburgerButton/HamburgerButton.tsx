@@ -5,11 +5,13 @@ import { ColorMap } from "@/util/colors";
 
 interface HamburgerButtonProps extends ButtonProps<"button"> {
   isOpen: boolean;
+  wrapperClasses?: string;
 }
 export function HamburgerButton({
   primaryColor = "black",
   secondaryColor = "white",
   className,
+  wrapperClasses,
   isOpen,
   ...rest
 }: HamburgerButtonProps) {
@@ -32,6 +34,7 @@ export function HamburgerButton({
       primaryColor={primaryColor}
       secondaryColor={secondaryColor}
       className={twMerge("px-1 py-0 hover:outline-2", className)}
+      wrapperClasses={wrapperClasses}
       {...rest}
     >
       <div className={hamburgerButtonClasses}>
