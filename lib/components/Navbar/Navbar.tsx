@@ -29,7 +29,7 @@ export function Navbar({
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const navClasses = twMerge(
-    "flex w-full flex-wrap items-center justify-between p-2",
+    "flex w-full flex-wrap items-center justify-between px-4 py-2",
     `bg-${ColorMap[primaryColor].lightShade}`,
     `dark:bg-${ColorMap[secondaryColor].darkShade}`,
     `text-${ColorMap[secondaryColor].darkShade}`,

@@ -13,7 +13,7 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
   ...rest
 }: NavbarBrandProps<E>) {
   const context = useContext(NavbarContext);
-  const classes = twMerge("px-2 py-0 text-2xl font-bold", className);
+  const classes = twMerge("text-2xl font-bold", className);
 
   if (!context) {
     throw new Error(
