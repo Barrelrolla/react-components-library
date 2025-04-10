@@ -22,6 +22,8 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
   }
   return (
     <Anchor
+      primaryColor={context.secondaryColor}
+      secondaryColor={context.primaryColor}
       as={as || defaultType}
       disableUnderline
       className={classes}
