@@ -1,15 +1,14 @@
 import { createContext } from "react";
-import { ColorType, SizeType } from "@/types";
+import { ColorType } from "@/types";
+import { ResponsiveSizes } from "@/util/sizes";
 
 type NavbarContextType =
   | {
       primaryColor: ColorType;
       secondaryColor: ColorType;
-      expandSize: SizeType;
-      fixed: boolean;
+      collapseAt: ResponsiveSizes;
+      position: "top" | "bottom";
       rounded: boolean;
-      border: boolean;
-      shadow: boolean;
       isOpen: boolean;
       setIsOpen: (isOpen: boolean) => void;
     }
