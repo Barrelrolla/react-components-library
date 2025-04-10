@@ -7,17 +7,9 @@ type Size = {
 export type ResponsiveSizes = "sm" | "md" | "lg" | "xl";
 
 export const ButtonSizes: Size = {
-  xs: "px-3 py-1 text-xs",
-  sm: "px-4.5 py-1.5 text-sm",
-  md: "px-6 py-2 text-base",
-  lg: "px-9 py-3 text-lg",
-  xl: "px-12 py-4 text-xl",
-};
-
-export const IconSizes: Size = {
-  xs: "size-4",
-  sm: "size-5",
-  md: "size-6",
-  lg: "size-6.5",
-  xl: "size-7",
+  xs: "px-3 py-1 text-sm",
+  sm: "px-4.5 py-1.5 text-base",
+  md: "px-6 py-2 text-lg",
+  lg: "px-9 py-3 text-xl",
+  xl: "px-12 py-4 text-2xl",
 };

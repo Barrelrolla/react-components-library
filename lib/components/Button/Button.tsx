@@ -76,10 +76,10 @@ export function Button<E extends ElementType = typeof defaultType>({
     <span className={twMerge("group", isDisabled && "cursor-not-allowed")}>
       <Element className={classes} disabled={isDisabled} {...rest}>
         {(!loading || loadingPosition !== "front") && icon}
-        {loading && loadingPosition === "front" && <Spinner size={size} />}
+        {loading && loadingPosition === "front" && <Spinner />}
         {children}
         {(!loading || loadingPosition !== "end") && endIcon}
-        {loading && loadingPosition === "end" && <Spinner size={size} />}
+        {loading && loadingPosition === "end" && <Spinner />}
       </Element>
     </span>
   );

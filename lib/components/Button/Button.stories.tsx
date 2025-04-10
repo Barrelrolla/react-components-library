@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
 import { Button } from "./Button";
-import { ComputerIcon, MoonIcon } from "@/icons";
+import { ComputerIcon, MoonIcon, SunIcon } from "@/icons";
 import { motion } from "motion/react";
 
 const meta: Meta<typeof Button> = {
@@ -373,15 +373,15 @@ export const Icon: Story = {
     return (
       <div className="flex flex-col gap-12 bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap justify-evenly gap-2">
-          <Button icon={<ComputerIcon />} />
-          <Button icon={<ComputerIcon />} radius="pill" variant="outline" />
+          <Button icon={<SunIcon />} />
+          <Button icon={<MoonIcon />} radius="pill" variant="outline" />
           <Button icon={<ComputerIcon />} radius="rect" variant="clear" />
         </div>
         <div className="flex flex-wrap justify-evenly gap-2">
-          <Button disabled icon={<ComputerIcon />} />
+          <Button disabled icon={<SunIcon />} />
           <Button
             disabled
-            icon={<ComputerIcon />}
+            icon={<MoonIcon />}
             radius="pill"
             variant="outline"
           />
@@ -508,7 +508,7 @@ export const Sizes: Story = {
       <div className="flex flex-col gap-2 bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap items-end justify-center gap-2">
           <Button
-            icon={<ComputerIcon size="xs" />}
+            icon={<ComputerIcon />}
             size="xs"
             primaryColor="primary"
             secondaryColor="secondary"
@@ -516,7 +516,7 @@ export const Sizes: Story = {
             Button
           </Button>
           <Button
-            icon={<ComputerIcon size="sm" />}
+            icon={<ComputerIcon />}
             size="sm"
             primaryColor="primary"
             secondaryColor="secondary"
@@ -524,15 +524,15 @@ export const Sizes: Story = {
             Button
           </Button>
           <Button size="md" primaryColor="primary" secondaryColor="secondary">
-            <ComputerIcon size="md" />
+            <ComputerIcon />
             Button
           </Button>
           <Button size="lg" primaryColor="primary" secondaryColor="secondary">
-            <ComputerIcon size="lg" />
+            <ComputerIcon />
             Button
           </Button>
           <Button size="xl" primaryColor="primary" secondaryColor="secondary">
-            <ComputerIcon size="xl" />
+            <ComputerIcon />
             Button
           </Button>
         </div>
@@ -543,7 +543,7 @@ export const Sizes: Story = {
             primaryColor="primary"
             secondaryColor="secondary"
           >
-            <ComputerIcon size="xs" />
+            <ComputerIcon />
             Button
           </Button>
           <Button
@@ -552,7 +552,7 @@ export const Sizes: Story = {
             primaryColor="primary"
             secondaryColor="secondary"
           >
-            <ComputerIcon size="sm" />
+            <ComputerIcon />
             Button
           </Button>
           <Button
@@ -561,7 +561,7 @@ export const Sizes: Story = {
             primaryColor="primary"
             secondaryColor="secondary"
           >
-            <ComputerIcon size="md" />
+            <ComputerIcon />
             Button
           </Button>
           <Button
@@ -570,7 +570,7 @@ export const Sizes: Story = {
             primaryColor="primary"
             secondaryColor="secondary"
           >
-            <ComputerIcon size="lg" />
+            <ComputerIcon />
             Button
           </Button>
           <Button
@@ -579,7 +579,7 @@ export const Sizes: Story = {
             primaryColor="primary"
             secondaryColor="secondary"
           >
-            <ComputerIcon size="xl" />
+            <ComputerIcon />
             Button
           </Button>
         </div>
@@ -612,15 +612,15 @@ export const Custom: Story = {
             onClick={ToggleLoading}
             className="flex gap-2 bg-red-700 text-yellow-100 hover:bg-red-600 dark:bg-orange-300"
           >
-            <MoonIcon size={"xs"} />
+            <MoonIcon />
             <span>Moon</span>
           </Button>
           <Button
-            icon={<MoonIcon size="xl" />}
+            icon={<ComputerIcon />}
             loading={loading}
             disableScale
             size="xl"
-            className="flex min-w-52 gap-2 bg-red-700 text-yellow-100 hover:bg-red-600 active:bg-red-500 dark:bg-orange-300"
+            className="flex min-w-52 gap-2 bg-red-700 text-5xl text-yellow-100 hover:bg-red-600 active:bg-red-500 dark:bg-orange-300"
           >
             <span>Moon</span>
           </Button>
