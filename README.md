@@ -13,25 +13,24 @@ npm install @barrelrolla/react-components-library
 In your `.css` file add
 
 ```css
-@import "tailwindcss";
+@layer theme, base, components, utilities;
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
 @import "../node_modules/@barrelrolla/react-components-library/dist/index.css";
+@import "tailwindcss/theme.css" layer(theme);
 
 @custom-variant dark (&:where(.dark, .dark *));
 ```
 
-You can customize the main colors by using:
+We're splitting the tailwind layers, because the preflight overrides some of our classes and we have to import our styles after tailwind, and importing the theme after our styles allows for easy overriding of the colors like this:
 
 ```css
 @theme {
   --color-primary-600: #4c5c5a;
   --color-secondary-200: #dad6cf;
 }
-:root {
-  --color-primary-600: #4c5c5a;
-  --color-secondary-200: #dad6cf;
-}
 ```
 
-First one is necessary for tailwind intellisense, the second one overrides the colors. The library uses most shades 100, 200, 300, 600, 700 and 800 shades so it's advisable to add all. The colors you can use are `primary`, `secondary` and `accent`.
+The library uses shades between 50 and 950 so it's advisable to add all. The colors you can override are `primary`, `secondary` and `accent`.
 
 For info about the components, check the [Components](https://github.com/Barrelrolla/react-components-library/tree/main/lib/README.md) section.
