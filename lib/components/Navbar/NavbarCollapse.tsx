@@ -74,7 +74,6 @@ export function NavbarCollapse({
         })}
       </ul>
       <ul
-        aria-hidden
         className={twMerge(
           position === "top" && "mt-4",
           position === "bottom" && "mb-4",
