@@ -24,9 +24,10 @@ export function Anchor<E extends ElementType = typeof defaultType>({
   ...rest
 }: AnchorProps<E>) {
   const classes = twMerge(
-    "rounded text-inherit outline-inherit",
+    "rounded text-inherit outline-offset-4 outline-inherit",
+    "focus-visible:outline-2",
     !disableUnderline &&
-      "underline underline-offset-3 outline-offset-4 transition-[text-underline-offset] hover:underline-offset-2 focus-visible:outline-2",
+      "underline underline-offset-3 transition-[text-underline-offset] hover:underline-offset-2 focus-visible:outline-2",
     !disableUnderline && selected && "underline-offset-1",
     primaryColor &&
       `text-${ColorMap[primaryColor].darkShade} hover:text-${ColorMap[primaryColor].darkHighlightedShade} focus-visible:text-${ColorMap[primaryColor].darkHighlightedShade} active:text-${ColorMap[primaryColor].darkActiveShade}`,

@@ -14,6 +14,7 @@ interface NavbarProps extends ComponentProps<"nav"> {
   collapseAt?: ResponsiveSizes;
   fixed?: boolean;
   position?: "top" | "bottom";
+  backdropClasses?: string;
 }
 export function Navbar({
   primaryColor = "white",
@@ -26,6 +27,7 @@ export function Navbar({
   position = "top",
   children,
   className,
+  backdropClasses,
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const navClasses = twMerge(
@@ -46,6 +48,26 @@ export function Navbar({
     !disableShadow && position === "bottom" && "shadow-[0px_-4px_8px_-1px]",
     className,
   );
+  const backdropClassesToApply = twMerge(
+    "fixed top-0 left-0 z-30 h-screen w-screen",
+    collapseAt === "sm" && "sm:hidden",
+    collapseAt === "md" && "md:hidden",
+    collapseAt === "lg" && "lg:hidden",
+    collapseAt === "xl" && "xl:hidden",
+    !isOpen && "hidden",
+    isOpen && "block",
+    backdropClasses,
+  );
+
+  function outsideClickHandler() {
+    setIsOpen(false);
+  }
+  document.addEventListener("keyup", (event) => {
+    if (event.code === "Escape") {
+      setIsOpen(false);
+    }
+  });
+
   return (
     <NavbarContext.Provider
       value={{
@@ -58,7 +80,13 @@ export function Navbar({
         setIsOpen,
       }}
     >
-      <nav className={navClasses}>{children}</nav>
+      <>
+        <nav className={navClasses}>{children}</nav>
+        <div
+          className={backdropClassesToApply}
+          onClick={outsideClickHandler}
+        ></div>
+      </>
     </NavbarContext.Provider>
   );
 }

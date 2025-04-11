@@ -21,19 +21,22 @@ export const Default: Story = {
     await expect(navbar, "renders").toBeTruthy();
   },
   args: {
+    collapseAt: "sm",
     children: [
       <NavbarToggle key={"toggle"} />,
       <NavbarBrand key={"brand"} href="#">
         Test
       </NavbarBrand>,
-      <div key={"space"} role="presentation"></div>,
-      <NavbarCollapse key={"menu"}>
-        <NavbarLink href="/">Link 1</NavbarLink>
-        <NavbarLink href="/">Link 2</NavbarLink>
-        <NavbarLink href="/">Link 3</NavbarLink>
-        <NavbarLink href="/">Link 4</NavbarLink>
-        <NavbarLink href="/">Link 5</NavbarLink>
-        <NavbarLink href="/">Link 6</NavbarLink>
+      <div key={"space"} role="presentation" className="w-10"></div>,
+      <NavbarCollapse key={"menu"} disableHoverBG disableUnderlineOnMobile>
+        <NavbarLink href="#">Link 1</NavbarLink>
+        <NavbarLink href="#">Link 2</NavbarLink>
+        <NavbarLink href="#" selected>
+          Link 3
+        </NavbarLink>
+        <NavbarLink href="#">Link 4</NavbarLink>
+        <NavbarLink href="#">Link 5</NavbarLink>
+        <NavbarLink href="#">Link 6</NavbarLink>
       </NavbarCollapse>,
     ],
   },
