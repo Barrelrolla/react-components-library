@@ -21,9 +21,7 @@ export function HamburgerButton({
   );
   const lineClasses = twMerge(
     `bg-${ColorMap[primaryColor].darkShade}`,
-    `group-active:bg-${ColorMap[primaryColor].darkHighlightedShade}`,
     `dark:bg-${ColorMap[secondaryColor].lightShade}`,
-    `dark:group-active:bg-${ColorMap[secondaryColor].lightHighlightedShade}`,
     "absolute top-1.75 left-1 h-0.5 w-6 rotate-0 transition-all duration-300",
   );
   return (

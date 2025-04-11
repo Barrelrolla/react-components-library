@@ -5,6 +5,7 @@ type ColorMapEntry = {
     [key in ColorShadesType]: string;
   };
 };
+// when updating the colors, also update the safelist in index.css
 export const ColorMap: ColorMapEntry = {
   white: {
     lightShade: "stone-50",

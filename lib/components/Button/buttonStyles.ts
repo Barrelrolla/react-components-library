@@ -204,22 +204,18 @@ function getOutlineButtonColors(
 ): ButtonColors {
   const primaryColor = ColorMap[_primaryColor];
   const secondaryColor = ColorMap[_secondaryColor];
-  const bgColor = twMerge(
-    "bg-transparent",
-    `border-${primaryColor.darkShade}`,
-    contrasting && `dark:border-${secondaryColor.lightShade}`,
-  );
+  const bgColor = twMerge("bg-transparent");
   const bgHoverColor = twMerge(
+    "hover:border-transparent",
     `hover:bg-${primaryColor.darkShade}`,
     `focus-visible:bg-${primaryColor.darkShade}`,
     contrasting && `dark:hover:bg-${secondaryColor.lightShade}`,
     contrasting && `dark:focus-visible:bg-${secondaryColor.lightShade}`,
   );
   const bgActiveColor = twMerge(
+    "active:border-transparent",
     `active:bg-${primaryColor.darkHighlightedShade}`,
-    `active:border-${primaryColor.darkHighlightedShade}`,
     contrasting && `dark:active:bg-${secondaryColor.lightHighlightedShade}`,
-    contrasting && `dark:active:border-${secondaryColor.lightHighlightedShade}`,
   );
   const textColor = twMerge(
     `text-${primaryColor.darkShade}`,
