@@ -74,6 +74,8 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
     "flex justify-start p-2",
     !disableHoverBG && colors,
     !disableSelectedHighlight && selectedColors,
+    (!disableHoverBG || !disableSelectedHighlight) &&
+      "transition-colors duration-300",
     collapseAt === "sm" && "sm:px-2 sm:py-0",
     collapseAt === "md" && "md:px-2 md:py-0",
     collapseAt === "lg" && "lg:px-2 lg:py-0",

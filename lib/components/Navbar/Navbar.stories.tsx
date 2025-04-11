@@ -5,8 +5,12 @@ import { NavbarBrand } from "./NavbarBrand";
 import { NavbarCollapse } from "./NavbarCollapse";
 import { NavbarToggle } from "./NavbarToggle";
 import { NavbarLink } from "./NavbarLink";
+import { ComponentProps } from "react";
 
-const meta: Meta<typeof Navbar> = {
+type Props = ComponentProps<typeof Navbar> & {
+  selected: number | undefined;
+};
+const meta: Meta<Props> = {
   title: "Components/Navbar",
   component: Navbar,
 };
@@ -20,24 +24,65 @@ export const Default: Story = {
     const navbar = canvas.getByText("Test");
     await expect(navbar, "renders").toBeTruthy();
   },
+  render: ({ selected, primaryColor, secondaryColor }) => {
+    const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
+    return (
+      <Navbar primaryColor={primaryColor} secondaryColor={secondaryColor}>
+        <NavbarToggle key={"toggle"} />
+        <NavbarBrand key={"brand"} href="#">
+          Test
+        </NavbarBrand>
+        <div key={"space"} role="presentation" className="w-10"></div>
+        <NavbarCollapse key={"menu"} disableHoverBG disableUnderlineOnMobile>
+          {links.map((link, index) => (
+            <NavbarLink href="#" key={link} selected={selected === index}>
+              {link}
+            </NavbarLink>
+          ))}
+        </NavbarCollapse>
+      </Navbar>
+    );
+  },
   args: {
-    collapseAt: "sm",
-    children: [
-      <NavbarToggle key={"toggle"} />,
-      <NavbarBrand key={"brand"} href="#">
-        Test
-      </NavbarBrand>,
-      <div key={"space"} role="presentation" className="w-10"></div>,
-      <NavbarCollapse key={"menu"} disableHoverBG disableUnderlineOnMobile>
-        <NavbarLink href="#">Link 1</NavbarLink>
-        <NavbarLink href="#">Link 2</NavbarLink>
-        <NavbarLink href="#" selected>
-          Link 3
-        </NavbarLink>
-        <NavbarLink href="#">Link 4</NavbarLink>
-        <NavbarLink href="#">Link 5</NavbarLink>
-        <NavbarLink href="#">Link 6</NavbarLink>
-      </NavbarCollapse>,
-    ],
+    selected: undefined,
+  },
+  argTypes: {
+    primaryColor: {
+      control: {
+        type: "select",
+      },
+    },
+    secondaryColor: {
+      control: {
+        type: "select",
+      },
+    },
+    selected: {
+      control: {
+        type: "inline-radio",
+        min: 0,
+        max: 6,
+        labels: {
+          0: "1",
+          1: "2",
+          2: "3",
+          3: "4",
+          4: "5",
+          5: "6",
+          6: "none",
+        },
+      },
+      options: [0, 1, 2, 3, 4, 5, 6],
+    },
+    collapseAt: {
+      control: {
+        type: "inline-radio",
+      },
+    },
+    position: {
+      control: {
+        type: "inline-radio",
+      },
+    },
   },
 };
