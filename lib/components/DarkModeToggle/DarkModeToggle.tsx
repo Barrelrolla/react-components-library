@@ -1,15 +1,16 @@
 import React, { ComponentProps, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { twMerge } from "tailwind-merge";
 import {
   MoonIcon,
   SunIcon,
   ComputerIcon,
   SVGIconProps,
 } from "../../icons/icons";
-import { AnimatePresence, motion } from "motion/react";
-import { twMerge } from "tailwind-merge";
 
 export function DarkModeToggle() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "system");
+
   useEffect(() => {
     window
       .matchMedia("(prefers-color-scheme: dark)")
@@ -17,6 +18,7 @@ export function DarkModeToggle() {
         setTheme(event.matches ? "dark" : "light");
       });
   }, []);
+
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -33,16 +35,19 @@ export function DarkModeToggle() {
       }
     }
   }, [theme]);
+
   function handleThemeChange(theme: string) {
     setTheme(theme);
   }
+
   const themes = [
     { name: "light", icon: SunIcon },
     { name: "dark", icon: MoonIcon },
     { name: "system", icon: ComputerIcon },
   ];
+
   return (
-    <div className="border-primary-600 dark:border-secondary-200 flex justify-evenly gap-2 rounded-lg border p-1">
+    <div className="border-primary-dark dark:border-secondary-light flex justify-evenly gap-2 rounded-lg border p-1">
       {themes.map((item) => {
         let active = false;
         if (item.name === theme) {
@@ -63,11 +68,12 @@ export function DarkModeToggle() {
   );
 }
 
-interface ThemeButtonProps extends ComponentProps<"button"> {
+type ThemeButtonProps = {
   name: string;
   isActive: boolean;
   icon: React.ElementType<SVGIconProps>;
-}
+} & ComponentProps<"button">;
+
 function ThemeButton(props: ThemeButtonProps) {
   return (
     <div className="relative">
@@ -78,8 +84,8 @@ function ThemeButton(props: ThemeButtonProps) {
       >
         <props.icon
           className={twMerge(
-            "text-primary-600 dark:text-secondary-200 relative z-10 size-6 transition-colors duration-200",
-            props.isActive && "text-secondary-200 dark:text-primary-600",
+            "text-primary-dark dark:text-secondary-light duration-light relative z-10 size-6 transition-colors",
+            props.isActive && "text-secondary-light dark:text-primary-dark",
           )}
         />
       </button>
@@ -89,7 +95,7 @@ function ThemeButton(props: ThemeButtonProps) {
             layoutId="themeButtonBG"
             transition={{ type: "spring", duration: 0.5 }}
             className={twMerge(
-              "bg-primary-600 dark:bg-secondary-200 absolute top-0.5 left-0.5 size-7 rounded",
+              "bg-primary-dark dark:bg-secondary-light absolute top-0.5 left-0.5 size-7 rounded",
             )}
           ></motion.div>
         )}

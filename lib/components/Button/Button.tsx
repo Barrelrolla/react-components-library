@@ -1,8 +1,8 @@
 import { ElementType, SVGProps, useContext } from "react";
 import { twMerge } from "tailwind-merge";
 import { ButtonGroupContext } from "./ButtonGroupContext";
-import { getButtonStyles } from "./buttonStyles";
 import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
+import { getButtonStyles } from "./buttonStyles";
 import { ColorType, PolymorphicProps, SizeType } from "@/types";
 import { Spinner } from "@/icons";
 
@@ -73,7 +73,9 @@ export function Button<E extends ElementType = typeof defaultType>({
     !disableAnimation && "transition",
     className,
   );
+
   const Element = as || defaultType;
+
   return (
     <span
       className={twMerge(

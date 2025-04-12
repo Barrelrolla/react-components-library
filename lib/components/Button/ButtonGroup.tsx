@@ -5,7 +5,7 @@ import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
 import { ColorType } from "@/types";
 import { ColorMap } from "@/util/colors";
 
-interface ButtonGroupProps extends ComponentProps<"div"> {
+export type ButtonGroupProps = {
   variant?: ButtonVariant;
   radius?: ButtonRadius;
   clearButtonHover?: ClearButtonHover;
@@ -14,7 +14,7 @@ interface ButtonGroupProps extends ComponentProps<"div"> {
   contrasting?: boolean;
   separator?: boolean;
   vertical?: boolean;
-}
+} & ComponentProps<"div">;
 
 export function ButtonGroup({
   variant = "outline",
@@ -29,16 +29,17 @@ export function ButtonGroup({
   children,
 }: ButtonGroupProps) {
   const dividerClasses = twMerge(
-    `bg-${ColorMap[primaryColor].darkShade}`,
-    contrasting && `dark:bg-${ColorMap[secondaryColor].lightShade}`,
-    variant === "solid" && `bg-${ColorMap[secondaryColor].lightShade}`,
+    `bg-${ColorMap[primaryColor].dark}`,
+    contrasting && `dark:bg-${ColorMap[secondaryColor].light}`,
+    variant === "solid" && `bg-${ColorMap[secondaryColor].light}`,
     variant === "solid" &&
       contrasting &&
-      `dark:bg-${ColorMap[primaryColor].darkShade}`,
+      `dark:bg-${ColorMap[primaryColor].dark}`,
     !vertical && "w-0.25",
     vertical && "h-0.25",
     "z-1",
   );
+
   return (
     <ButtonGroupContext.Provider
       value={{

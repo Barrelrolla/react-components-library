@@ -1,5 +1,6 @@
-import { DarkModeToggle } from "./DarkModeToggle";
 import { Meta, StoryObj } from "@storybook/react";
+import { DarkModeToggle } from "./DarkModeToggle";
+
 const meta: Meta<typeof DarkModeToggle> = {
   component: DarkModeToggle,
 };

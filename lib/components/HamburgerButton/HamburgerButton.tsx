@@ -1,12 +1,12 @@
 import { twMerge } from "tailwind-merge";
-import { Button } from "../Button";
-import { ButtonProps } from "../Button/Button";
+import { Button, ButtonProps } from "../Button";
 import { ColorMap } from "@/util/colors";
 
-interface HamburgerButtonProps extends ButtonProps<"button"> {
+export type HamburgerButtonProps = {
   isOpen: boolean;
   wrapperClasses?: string;
-}
+} & ButtonProps<"button">;
+
 export function HamburgerButton({
   primaryColor = "black",
   secondaryColor = "white",
@@ -20,10 +20,11 @@ export function HamburgerButton({
     isOpen && "rotate-90",
   );
   const lineClasses = twMerge(
-    `bg-${ColorMap[primaryColor].darkShade}`,
-    `dark:bg-${ColorMap[secondaryColor].lightShade}`,
+    `bg-${ColorMap[primaryColor].dark}`,
+    `dark:bg-${ColorMap[secondaryColor].light}`,
     "absolute top-1.75 left-1 h-0.5 w-6 rotate-0 transition-all duration-300",
   );
+
   return (
     <Button
       aria-label="toggle navigation"

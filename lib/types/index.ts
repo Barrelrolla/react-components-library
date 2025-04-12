@@ -13,10 +13,10 @@ export type PolymorphicProps<T extends ElementType> = {
 
 export type ColorType = "white" | "black" | "primary" | "secondary" | "accent";
 export type ColorShadesType =
-  | "lightShade"
-  | "lightHighlightedShade"
-  | "lightActiveShade"
-  | "darkShade"
-  | "darkHighlightedShade"
-  | "darkActiveShade";
+  | "light"
+  | "lightHighlight"
+  | "lightActive"
+  | "dark"
+  | "darkHighlight"
+  | "darkActive";
 export type SizeType = "xs" | "sm" | "md" | "lg" | "xl";

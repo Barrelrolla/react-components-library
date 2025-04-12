@@ -114,6 +114,7 @@ function getButtonBaseStyles(
         );
     }
   }
+
   return twMerge(
     "flex items-center justify-center gap-2 outline-offset-1 select-none focus-visible:outline-2",
     variant === "outline" && "border",
@@ -158,32 +159,32 @@ function getDefaultButtonColors(
   const primaryColor = ColorMap[_primaryColor];
   const secondaryColor = ColorMap[_secondaryColor];
   const bgColor = twMerge(
-    `bg-${primaryColor.darkShade}`,
-    contrasting && `dark:bg-${secondaryColor.lightShade}`,
+    `bg-${primaryColor.dark}`,
+    contrasting && `dark:bg-${secondaryColor.light}`,
   );
   const bgHoverColor = twMerge(
-    `hover:bg-${primaryColor.darkHighlightedShade}`,
-    `focus-visible:bg-${primaryColor.darkHighlightedShade}`,
-    contrasting && `dark:hover:bg-${secondaryColor.lightHighlightedShade}`,
-    contrasting &&
-      `dark:focus-visible:bg-${secondaryColor.lightHighlightedShade}`,
+    `hover:bg-${primaryColor.darkHighlight}`,
+    `focus-visible:bg-${primaryColor.darkHighlight}`,
+    contrasting && `dark:hover:bg-${secondaryColor.lightHighlight}`,
+    contrasting && `dark:focus-visible:bg-${secondaryColor.lightHighlight}`,
   );
   const bgActiveColor = twMerge(
-    `active:bg-${primaryColor.darkActiveShade}`,
-    contrasting && `dark:active:bg-${secondaryColor.lightActiveShade}`,
+    `active:bg-${primaryColor.darkActive}`,
+    contrasting && `dark:active:bg-${secondaryColor.lightActive}`,
   );
   const textColor = twMerge(
-    `text-${secondaryColor.lightShade}`,
-    contrasting && `dark:text-${primaryColor.darkShade}`,
+    `text-${secondaryColor.light}`,
+    contrasting && `dark:text-${primaryColor.dark}`,
   );
   const outlineColor = twMerge(
-    `outline-${primaryColor.darkHighlightedShade}`,
-    contrasting && `dark:outline-${secondaryColor.lightHighlightedShade}`,
+    `outline-${primaryColor.darkHighlight}`,
+    contrasting && `dark:outline-${secondaryColor.lightHighlight}`,
   );
   const outlineActiveColor = twMerge(
-    `active:outline-${primaryColor.darkActiveShade}`,
-    contrasting && `dark:active:outline-${secondaryColor.lightActiveShade}`,
+    `active:outline-${primaryColor.darkActive}`,
+    contrasting && `dark:active:outline-${secondaryColor.lightActive}`,
   );
+
   return {
     bgColor,
     bgHoverColor,
@@ -207,37 +208,37 @@ function getOutlineButtonColors(
   const bgColor = twMerge("bg-transparent");
   const bgHoverColor = twMerge(
     "hover:border-transparent",
-    `hover:bg-${primaryColor.darkShade}`,
-    `focus-visible:bg-${primaryColor.darkShade}`,
-    contrasting && `dark:hover:bg-${secondaryColor.lightShade}`,
-    contrasting && `dark:focus-visible:bg-${secondaryColor.lightShade}`,
+    `hover:bg-${primaryColor.dark}`,
+    `focus-visible:bg-${primaryColor.dark}`,
+    contrasting && `dark:hover:bg-${secondaryColor.light}`,
+    contrasting && `dark:focus-visible:bg-${secondaryColor.light}`,
   );
   const bgActiveColor = twMerge(
     "active:border-transparent",
-    `active:bg-${primaryColor.darkHighlightedShade}`,
-    contrasting && `dark:active:bg-${secondaryColor.lightHighlightedShade}`,
+    `active:bg-${primaryColor.darkHighlight}`,
+    contrasting && `dark:active:bg-${secondaryColor.lightHighlight}`,
   );
   const textColor = twMerge(
-    `text-${primaryColor.darkShade}`,
-    contrasting && `dark:text-${secondaryColor.lightShade}`,
+    `text-${primaryColor.dark}`,
+    contrasting && `dark:text-${secondaryColor.light}`,
   );
   const textHoverColor = twMerge(
-    `hover:text-${secondaryColor.lightShade}`,
-    `focus-visible:text-${secondaryColor.lightShade}`,
-    `dark:hover:text-${primaryColor.darkShade}`,
-    `dark:focus-visible:text-${primaryColor.darkShade}`,
+    `hover:text-${secondaryColor.light}`,
+    `focus-visible:text-${secondaryColor.light}`,
+    `dark:hover:text-${primaryColor.dark}`,
+    `dark:focus-visible:text-${primaryColor.dark}`,
   );
   const textActiveColor = twMerge(
-    `active:text-${secondaryColor.lightShade}`,
-    `dark:active:text-${primaryColor.darkShade}`,
+    `active:text-${secondaryColor.light}`,
+    `dark:active:text-${primaryColor.dark}`,
   );
   const outlineColor = twMerge(
-    `outline-${primaryColor.darkShade}`,
-    `dark:outline-${secondaryColor.lightShade}`,
+    `outline-${primaryColor.dark}`,
+    `dark:outline-${secondaryColor.light}`,
   );
   const outlineActiveColor = twMerge(
-    `active:outline-${primaryColor.darkHighlightedShade}`,
-    `dark:active:outline-${secondaryColor.lightHighlightedShade}`,
+    `active:outline-${primaryColor.darkHighlight}`,
+    `dark:active:outline-${secondaryColor.lightHighlight}`,
   );
 
   return {
@@ -263,80 +264,74 @@ function getClearStyles(
   const secondaryColor = ColorMap[_secondaryColor];
   const bgColor = "bg-transparent";
   const bgHoverColor = twMerge(
-    clearButtonHover === "fill" && `hover:bg-${primaryColor.darkShade}`,
+    clearButtonHover === "fill" && `hover:bg-${primaryColor.dark}`,
     contrasting &&
       clearButtonHover === "fill" &&
-      `dark:hover:bg-${secondaryColor.lightShade}`,
+      `dark:hover:bg-${secondaryColor.light}`,
   );
   const bgActiveColor = twMerge(
-    clearButtonHover === "fill" &&
-      `active:bg-${primaryColor.darkHighlightedShade}`,
+    clearButtonHover === "fill" && `active:bg-${primaryColor.darkHighlight}`,
     clearButtonHover === "fill" &&
       contrasting &&
-      `dark:active:bg-${secondaryColor.lightHighlightedShade}`,
+      `dark:active:bg-${secondaryColor.lightHighlight}`,
   );
   const textColor = twMerge(
-    `text-${primaryColor.darkShade}`,
-    contrasting && `dark:text-${secondaryColor.lightShade}`,
+    `text-${primaryColor.dark}`,
+    contrasting && `dark:text-${secondaryColor.light}`,
   );
   const textHoverColor = twMerge(
     clearButtonHover === "none" &&
-      `hover:text-${primaryColor.darkHighlightedShade} focus-visible:text-${primaryColor.darkHighlightedShade}`,
+      `hover:text-${primaryColor.darkHighlight} focus-visible:text-${primaryColor.darkHighlight}`,
     clearButtonHover === "none" &&
       contrasting &&
-      `dark:hover:text-${secondaryColor.lightHighlightedShade} dark:focus-visible:text-${secondaryColor.lightHighlightedShade}`,
+      `dark:hover:text-${secondaryColor.lightHighlight} dark:focus-visible:text-${secondaryColor.lightHighlight}`,
     (clearButtonHover === "fill" || clearButtonHover === "contrasting") &&
-      `hover:text-${secondaryColor.lightShade} focus-visible:text-${secondaryColor.lightShade}`,
+      `hover:text-${secondaryColor.light} focus-visible:text-${secondaryColor.light}`,
     (clearButtonHover === "fill" || clearButtonHover === "contrasting") &&
       contrasting &&
-      `dark:hover:text-${primaryColor.darkShade} dark:focus-visible:text-${primaryColor.darkShade}`,
+      `dark:hover:text-${primaryColor.dark} dark:focus-visible:text-${primaryColor.dark}`,
   );
   const textActiveColor = twMerge(
-    clearButtonHover === "none" &&
-      `active:text-${primaryColor.darkActiveShade}`,
-    contrasting && `dark:active:text-${secondaryColor.lightActiveShade}`,
+    clearButtonHover === "none" && `active:text-${primaryColor.darkActive}`,
+    contrasting && `dark:active:text-${secondaryColor.lightActive}`,
     clearButtonHover === "outline" &&
-      `active:text-${primaryColor.darkHighlightedShade}`,
+      `active:text-${primaryColor.darkHighlight}`,
     clearButtonHover === "outline" &&
       contrasting &&
-      `dark:active:text-${secondaryColor.lightHighlightedShade}`,
+      `dark:active:text-${secondaryColor.lightHighlight}`,
     (clearButtonHover === "fill" || clearButtonHover === "contrasting") &&
-      `active:text-${secondaryColor.lightShade}`,
+      `active:text-${secondaryColor.light}`,
     (clearButtonHover === "fill" || clearButtonHover === "contrasting") &&
       contrasting &&
-      `dark:active:text-${primaryColor.darkShade}`,
+      `dark:active:text-${primaryColor.dark}`,
   );
   const outlineHoverColor = twMerge(
     clearButtonHover === "outline" && "hover:outline-1",
-    `outline-${primaryColor.darkShade}`,
-    contrasting && `dark:outline-${secondaryColor.lightShade}`,
-    clearButtonHover === "none" &&
-      `outline-${primaryColor.darkHighlightedShade}`,
+    `outline-${primaryColor.dark}`,
+    contrasting && `dark:outline-${secondaryColor.light}`,
+    clearButtonHover === "none" && `outline-${primaryColor.darkHighlight}`,
     clearButtonHover === "none" &&
       contrasting &&
       contrasting &&
-      `dark:outline-${secondaryColor.lightHighlightedShade}`,
-    clearButtonHover === "contrasting" &&
-      `outline-${secondaryColor.lightShade}`,
+      `dark:outline-${secondaryColor.lightHighlight}`,
+    clearButtonHover === "contrasting" && `outline-${secondaryColor.light}`,
     clearButtonHover === "contrasting" &&
       contrasting &&
-      `dark:outline-${primaryColor.darkShade}`,
+      `dark:outline-${primaryColor.dark}`,
   );
   const outlineActiveColor = twMerge(
     clearButtonHover === "outline" && "hover:outline-1",
-    `active:outline-${primaryColor.darkHighlightedShade}`,
-    contrasting &&
-      `dark:active:outline-${secondaryColor.lightHighlightedShade}`,
-    clearButtonHover === "none" &&
-      `active:outline-${primaryColor.darkActiveShade}`,
+    `active:outline-${primaryColor.darkHighlight}`,
+    contrasting && `dark:active:outline-${secondaryColor.lightHighlight}`,
+    clearButtonHover === "none" && `active:outline-${primaryColor.darkActive}`,
     clearButtonHover === "none" &&
       contrasting &&
-      `dark:active:outline-${secondaryColor.lightActiveShade}`,
+      `dark:active:outline-${secondaryColor.lightActive}`,
     clearButtonHover === "contrasting" &&
-      `active:outline-${secondaryColor.lightHighlightedShade}`,
+      `active:outline-${secondaryColor.lightHighlight}`,
     clearButtonHover === "contrasting" &&
       contrasting &&
-      `dark:active:outline-${primaryColor.darkHighlightedShade}`,
+      `dark:active:outline-${primaryColor.darkHighlight}`,
   );
 
   return {

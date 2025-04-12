@@ -10,6 +10,7 @@ import { ComponentProps } from "react";
 type Props = ComponentProps<typeof Navbar> & {
   selected: number | undefined;
 };
+
 const meta: Meta<Props> = {
   title: "Components/Navbar",
   component: Navbar,
@@ -28,14 +29,12 @@ export const Default: Story = {
     const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
     return (
       <Navbar primaryColor={primaryColor} secondaryColor={secondaryColor}>
-        <NavbarToggle key={"toggle"} />
-        <NavbarBrand key={"brand"} href="#">
-          Test
-        </NavbarBrand>
-        <div key={"space"} role="presentation" className="w-10"></div>
-        <NavbarCollapse key={"menu"} disableHoverBG disableUnderlineOnMobile>
+        <NavbarToggle />
+        <NavbarBrand href="#">Test</NavbarBrand>
+        <div role="presentation" className="w-10"></div>
+        <NavbarCollapse disableHoverBG disableUnderlineOnMobile>
           {links.map((link, index) => (
-            <NavbarLink href="#" key={link} selected={selected === index}>
+            <NavbarLink href="#" selected={selected === index}>
               {link}
             </NavbarLink>
           ))}

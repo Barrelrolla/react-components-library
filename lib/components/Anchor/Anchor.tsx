@@ -1,42 +1,56 @@
-import { ColorType, PolymorphicProps } from "@/types";
-import { ColorMap } from "@/util/colors";
 import { ElementType } from "react";
 import { twMerge } from "tailwind-merge";
+import { ColorType, PolymorphicProps } from "@/types";
+import { ColorMap } from "@/util/colors";
 
 const defaultType = "a";
-type AnchorProps<E extends ElementType> = {
+export type AnchorProps<E extends ElementType> = {
   primaryColor?: ColorType;
   secondaryColor?: ColorType;
   contrasting?: boolean;
+  underlined?: boolean;
+  hoverUnderline?: boolean;
+  selectedUnderline?: boolean;
+  highlights?: boolean;
+  transitions?: boolean;
   selected?: boolean;
-  disableUnderline?: boolean;
 } & PolymorphicProps<E>;
 
 export function Anchor<E extends ElementType = typeof defaultType>({
   as,
-  primaryColor,
-  secondaryColor,
+  primaryColor = "primary",
+  secondaryColor = "primary",
   contrasting = true,
-  disableUnderline,
-  selected,
+  underlined = true,
+  hoverUnderline = true,
+  selectedUnderline = true,
+  highlights = true,
+  transitions = true,
+  selected = false,
   className,
   children,
   ...rest
 }: AnchorProps<E>) {
-  const classes = twMerge(
-    "rounded text-inherit outline-offset-4 outline-inherit",
-    "focus-visible:outline-2",
-    !disableUnderline &&
-      "underline underline-offset-3 transition-[text-underline-offset] hover:underline-offset-2 focus-visible:outline-2",
-    !disableUnderline && selected && "underline-offset-1",
-    primaryColor &&
-      `text-${ColorMap[primaryColor].darkShade} hover:text-${ColorMap[primaryColor].darkHighlightedShade} focus-visible:text-${ColorMap[primaryColor].darkHighlightedShade} active:text-${ColorMap[primaryColor].darkActiveShade}`,
+  let classes = twMerge(
+    "rounded underline-offset-3 outline-offset-4 hover:underline-offset-2 focus-visible:outline-2",
+    `text-${ColorMap[primaryColor].dark} outline-${ColorMap[primaryColor].darkHighlight}`,
     contrasting &&
-      secondaryColor &&
-      `dark:text-${ColorMap[secondaryColor].lightShade} dark:hover:text-${ColorMap[secondaryColor].lightHighlightedShade} dark:focus-visible:text-${ColorMap[secondaryColor].lightHighlightedShade} dark:active:text-${ColorMap[secondaryColor].lightActiveShade}`,
+      `dark:text-${ColorMap[secondaryColor].light} dark:outline-${ColorMap[secondaryColor].lightHighlight}`,
+    highlights &&
+      `hover:text-${ColorMap[primaryColor].darkHighlight} focus-visible:text-${ColorMap[primaryColor].darkHighlight} active:text-${ColorMap[primaryColor].darkActive}`,
+    highlights &&
+      contrasting &&
+      `dark:hover:text-${ColorMap[secondaryColor].lightHighlight} dark:focus-visible:text-${ColorMap[secondaryColor].lightHighlight} dark:active:text-${ColorMap[secondaryColor].lightActive}`,
+    underlined && "underline",
+    selected && "underline-offset-1",
+    selectedUnderline && selected && "underline",
+    !underlined && hoverUnderline && "hover:underline",
+    transitions && "transition-basic",
     className,
   );
+
   const Element = as || defaultType;
+
   return (
     <Element className={classes} {...rest}>
       {children}

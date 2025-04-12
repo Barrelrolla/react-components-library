@@ -1,5 +1,5 @@
-import { vi } from "vitest";
 import { render } from "@testing-library/react";
+import { vi } from "vitest";
 import { Button } from "./Button";
 
 describe("Button test", () => {

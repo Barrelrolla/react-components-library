@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
 import { ColorType } from "@/types";
 
-type ButtonGroupContextType =
+export type ButtonGroupContextType =
   | {
       variant: ButtonVariant;
       radius: ButtonRadius;

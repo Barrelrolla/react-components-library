@@ -5,7 +5,8 @@ import { NavbarContext } from "./NavbarContext";
 import { PolymorphicProps } from "@/types";
 
 const defaultType = "a";
-type NavbarBrandProps<E extends ElementType> = {} & PolymorphicProps<E>;
+export type NavbarBrandProps<E extends ElementType> = {} & PolymorphicProps<E>;
+
 export function NavbarBrand<E extends ElementType = typeof defaultType>({
   as,
   children,
@@ -14,8 +15,6 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
   ...rest
 }: NavbarBrandProps<E>) {
   const context = useContext(NavbarContext);
-  const classes = twMerge("text-2xl font-bold", className);
-
   if (!context) {
     throw new Error(
       "Please use the Navbar Brand component only inside a Navbar.",
@@ -27,12 +26,13 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
     onClick?.(event);
   }
 
+  const classes = twMerge("text-2xl font-bold", className);
+
   return (
     <Anchor
       primaryColor={context.secondaryColor}
       secondaryColor={context.primaryColor}
       as={as || defaultType}
-      disableUnderline
       className={classes}
       onClick={clickHandler}
       {...rest}

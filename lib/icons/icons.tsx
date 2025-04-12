@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 // https://phosphoricons.com/
 
-export interface SVGIconProps extends SVGProps<SVGSVGElement> {}
+export type SVGIconProps = {} & SVGProps<SVGSVGElement>;
 
 export function SunIcon({
   strokeWidth = 16,

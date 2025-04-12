@@ -5,17 +5,18 @@ import {
   isValidElement,
   useContext,
 } from "react";
-import { NavbarContext } from "./NavbarContext";
 import { twMerge } from "tailwind-merge";
+import { NavbarContext } from "./NavbarContext";
 
-interface NavbarCollapseProps extends ComponentProps<"ul"> {
+export type NavbarCollapseProps = {
   disableUnderline?: boolean;
   disableUnderlineOnMobile?: boolean;
   disableHoverBG?: boolean;
   disableHoverBGonMobile?: boolean;
   disableSelectedHighlight?: boolean;
   disableSelectedHighlightOnMobile?: boolean;
-}
+} & ComponentProps<"ul">;
+
 export function NavbarCollapse({
   disableUnderline = false,
   disableUnderlineOnMobile = false,
@@ -31,6 +32,7 @@ export function NavbarCollapse({
       "Please use the Navbar Link Group component only inside a navbar",
     );
   }
+
   const { isOpen, position, collapseAt } = context;
 
   return (

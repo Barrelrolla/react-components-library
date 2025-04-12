@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { HamburgerButton } from "./HamburgerButton";
-import { useState } from "react";
 
 const meta: Meta<typeof HamburgerButton> = {
   title: "Components/HamburgerButton",

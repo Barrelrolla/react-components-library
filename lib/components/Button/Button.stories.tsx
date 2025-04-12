@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
+import { motion } from "motion/react";
 import { Button } from "./Button";
 import { ComputerIcon, MoonIcon, SunIcon } from "@/icons";
-import { motion } from "motion/react";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",

@@ -30,45 +30,43 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
     );
   }
 
-  const { primaryColor, secondaryColor, collapseAt, setIsOpen } = context;
   function clickHandler(event: MouseEvent<HTMLAnchorElement>) {
     setIsOpen(false);
     onClick?.(event);
   }
 
+  const { primaryColor, secondaryColor, collapseAt, setIsOpen } = context;
+
   const colors = twMerge(
-    `hover:bg-${ColorMap[primaryColor].lightHighlightedShade}`,
-    `active:bg-${ColorMap[primaryColor].lightActiveShade}`,
-    `dark:hover:bg-${ColorMap[secondaryColor].darkHighlightedShade}`,
-    `dark:active:bg-${ColorMap[secondaryColor].darkActiveShade}`,
+    `hover:bg-${ColorMap[primaryColor].lightHighlight}`,
+    `active:bg-${ColorMap[primaryColor].lightActive}`,
+    `dark:hover:bg-${ColorMap[secondaryColor].darkHighlight}`,
+    `dark:active:bg-${ColorMap[secondaryColor].darkActive}`,
   );
   const selectedColors = twMerge(
     !selected && "outline-offset-0",
-    selected && `bg-${ColorMap[secondaryColor].darkShade}`,
-    selected && `dark:bg-${ColorMap[primaryColor].lightShade}`,
-    selected && `hover:bg-${ColorMap[secondaryColor].darkHighlightedShade}`,
-    selected && `dark:hover:bg-${ColorMap[primaryColor].lightHighlightedShade}`,
+    selected && `bg-${ColorMap[secondaryColor].dark}`,
+    selected && `dark:bg-${ColorMap[primaryColor].light}`,
+    selected && `hover:bg-${ColorMap[secondaryColor].darkHighlight}`,
+    selected && `dark:hover:bg-${ColorMap[primaryColor].lightHighlight}`,
+    selected && `focus-visible:bg-${ColorMap[secondaryColor].darkHighlight}`,
     selected &&
-      `focus-visible:bg-${ColorMap[secondaryColor].darkHighlightedShade}`,
+      `dark:focus-visible:bg-${ColorMap[primaryColor].lightHighlight}`,
+    selected && `active:bg-${ColorMap[secondaryColor].darkActive}`,
+    selected && `dark:active:bg-${ColorMap[primaryColor].lightActive}`,
+    selected && `text-${ColorMap[primaryColor].light}`,
+    selected && `dark:text-${ColorMap[secondaryColor].dark}`,
+    selected && `hover:text-${ColorMap[primaryColor].lightHighlight}`,
+    selected && `dark:hover:text-${ColorMap[secondaryColor].darkHighlight}`,
+    selected && `active:text-${ColorMap[primaryColor].lightActive}`,
+    selected && `dark:active:text-${ColorMap[secondaryColor].darkActive}`,
+    selected && `focus-visible:text-${ColorMap[primaryColor].lightHighlight}`,
     selected &&
-      `dark:focus-visible:bg-${ColorMap[primaryColor].lightHighlightedShade}`,
-    selected && `active:bg-${ColorMap[secondaryColor].darkActiveShade}`,
-    selected && `dark:active:bg-${ColorMap[primaryColor].lightActiveShade}`,
-    selected && `text-${ColorMap[primaryColor].lightShade}`,
-    selected && `dark:text-${ColorMap[secondaryColor].darkShade}`,
-    selected && `hover:text-${ColorMap[primaryColor].lightHighlightedShade}`,
+      `dark:focus-visible:text-${ColorMap[secondaryColor].darkHighlight}`,
     selected &&
-      `dark:hover:text-${ColorMap[secondaryColor].darkHighlightedShade}`,
-    selected && `active:text-${ColorMap[primaryColor].lightActiveShade}`,
-    selected && `dark:active:text-${ColorMap[secondaryColor].darkActiveShade}`,
+      `focus-visible:outline-${ColorMap[secondaryColor].darkHighlight}`,
     selected &&
-      `focus-visible:text-${ColorMap[primaryColor].lightHighlightedShade}`,
-    selected &&
-      `dark:focus-visible:text-${ColorMap[secondaryColor].darkHighlightedShade}`,
-    selected &&
-      `focus-visible:outline-${ColorMap[secondaryColor].darkHighlightedShade}`,
-    selected &&
-      `dark:focus-visible:outline-${ColorMap[primaryColor].lightHighlightedShade}`,
+      `dark:focus-visible:outline-${ColorMap[primaryColor].lightHighlight}`,
   );
   const classes = twMerge(
     "flex justify-start p-2",
@@ -82,6 +80,7 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
     collapseAt === "xl" && "xl:px-2 xl:py-0",
     className,
   );
+
   return (
     <li>
       <Anchor

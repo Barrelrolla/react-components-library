@@ -10,12 +10,13 @@ export function NavbarToggle() {
       "Please use the Navbar toggle Component only inside a Navbar",
     );
   }
-  const { primaryColor, secondaryColor, collapseAt, isOpen, setIsOpen } =
-    context;
 
   function clickHandler() {
     setIsOpen(!isOpen);
   }
+
+  const { primaryColor, secondaryColor, collapseAt, isOpen, setIsOpen } =
+    context;
 
   const classes = twMerge(
     collapseAt === "sm" && "sm:hidden",
@@ -23,6 +24,7 @@ export function NavbarToggle() {
     collapseAt === "lg" && "lg:hidden",
     collapseAt === "xl" && "xl:hidden",
   );
+
   return (
     <HamburgerButton
       wrapperClasses={classes}

@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { ColorType } from "@/types";
 import { ResponsiveSizes } from "@/util/sizes";
 
-type NavbarContextType =
+export type NavbarContextType =
   | {
       primaryColor: ColorType;
       secondaryColor: ColorType;

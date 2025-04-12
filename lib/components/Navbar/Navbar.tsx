@@ -1,11 +1,11 @@
-import { ComponentProps, useState } from "react";
+import { ComponentProps, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { ColorType } from "@/types";
 import { NavbarContext } from "./NavbarContext";
-import { ColorMap } from "@/util/colors";
+import { ColorType } from "@/types";
 import { ResponsiveSizes } from "@/util/sizes";
+import { ColorMap } from "@/util/colors";
 
-interface NavbarProps extends ComponentProps<"nav"> {
+export type NavbarProps = {
   primaryColor?: ColorType;
   secondaryColor?: ColorType;
   disableShadow?: boolean;
@@ -15,7 +15,8 @@ interface NavbarProps extends ComponentProps<"nav"> {
   fixed?: boolean;
   position?: "top" | "bottom";
   backdropClasses?: string;
-}
+} & ComponentProps<"nav">;
+
 export function Navbar({
   primaryColor = "white",
   secondaryColor = "black",
@@ -32,10 +33,7 @@ export function Navbar({
   const [isOpen, setIsOpen] = useState(false);
   const navClasses = twMerge(
     "flex w-full flex-wrap items-center justify-between px-4 py-2",
-    `bg-${ColorMap[primaryColor].lightShade}`,
-    `dark:bg-${ColorMap[secondaryColor].darkShade}`,
-    `text-${ColorMap[secondaryColor].darkShade}`,
-    `dark:text-${ColorMap[primaryColor].lightShade}`,
+    `bg-${ColorMap[primaryColor].light} dark:bg-${ColorMap[secondaryColor].dark} text-${ColorMap[secondaryColor].dark} dark:text-${ColorMap[primaryColor].light}`,
     fixed && "fixed left-0 z-40",
     position === "top" && "top-0",
     position === "bottom" && "bottom-0",
@@ -62,11 +60,17 @@ export function Navbar({
   function outsideClickHandler() {
     setIsOpen(false);
   }
-  document.addEventListener("keyup", (event) => {
+
+  function keyupHandler(event: KeyboardEvent) {
     if (event.code === "Escape") {
       setIsOpen(false);
     }
-  });
+  }
+
+  useEffect(() => {
+    document.addEventListener("keyup", keyupHandler);
+    return document.removeEventListener("keyup", keyupHandler);
+  }, []);
 
   return (
     <NavbarContext.Provider
