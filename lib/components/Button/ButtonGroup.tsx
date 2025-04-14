@@ -1,9 +1,9 @@
 import { Children, ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
-import { ButtonGroupContext } from "./ButtonGroupContext";
+import { ButtonGroupContextProvider } from "./ButtonGroupContext";
 import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
-import { ColorType } from "@/types";
-import { ColorMap } from "@/util/colors";
+import { useDividerStyles } from "./useDividerStyles";
+import { ColorType, SizeType } from "@/types";
 
 export type ButtonGroupProps = {
   variant?: ButtonVariant;
@@ -11,61 +11,64 @@ export type ButtonGroupProps = {
   clearButtonHover?: ClearButtonHover;
   primaryColor?: ColorType;
   secondaryColor?: ColorType;
+  size?: SizeType;
   contrasting?: boolean;
   separator?: boolean;
   vertical?: boolean;
+  dividerClasses?: string;
 } & ComponentProps<"div">;
 
 export function ButtonGroup({
   variant = "outline",
   radius = "default",
   clearButtonHover = "none",
-  primaryColor = "black",
-  secondaryColor = "white",
+  primaryColor,
+  secondaryColor,
+  size = "md",
   contrasting = true,
   separator = true,
   vertical = false,
   className,
+  dividerClasses,
   children,
 }: ButtonGroupProps) {
-  const dividerClasses = twMerge(
-    `bg-${ColorMap[primaryColor].dark}`,
-    contrasting && `dark:bg-${ColorMap[secondaryColor].light}`,
-    variant === "solid" && `bg-${ColorMap[secondaryColor].light}`,
-    variant === "solid" &&
-      contrasting &&
-      `dark:bg-${ColorMap[primaryColor].dark}`,
-    !vertical && "w-0.25",
-    vertical && "h-0.25",
-    "z-1",
+  const groupClasses = twMerge(
+    "flex",
+    !vertical && "-space-x-0.25",
+    vertical && "flex-col -space-y-0.25",
+    className,
+  );
+  const dividerStyles = twMerge(
+    useDividerStyles(
+      contrasting,
+      variant,
+      vertical,
+      primaryColor,
+      secondaryColor,
+    ),
+    dividerClasses,
   );
 
   return (
-    <ButtonGroupContext.Provider
+    <ButtonGroupContextProvider
       value={{
         variant,
         radius,
         clearButtonHover,
         primaryColor,
         secondaryColor,
+        size,
         contrasting,
         vertical,
       }}
     >
       <div className="flex">
-        <div
-          className={twMerge(
-            "flex",
-            !vertical && "-space-x-0.25",
-            vertical && "flex-col -space-y-0.25",
-            className,
-          )}
-        >
+        <div className={groupClasses}>
           {Children.map(children, (child, index) => {
             return (
               <>
                 {separator && index !== 0 && (
-                  <div className={dividerClasses}></div>
+                  <div className={dividerStyles}></div>
                 )}
                 {child}
               </>
@@ -73,6 +76,6 @@ export function ButtonGroup({
           })}
         </div>
       </div>
-    </ButtonGroupContext.Provider>
+    </ButtonGroupContextProvider>
   );
 }

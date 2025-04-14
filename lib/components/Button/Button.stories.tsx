@@ -607,7 +607,7 @@ export const Custom: Story = {
             endIcon={<ComputerIcon />}
           ></Button>
           <Button
-            disableScale
+            scaling={false}
             size="xs"
             onClick={ToggleLoading}
             className="flex gap-2 bg-red-700 text-yellow-100 hover:bg-red-600 dark:bg-orange-300"
@@ -618,7 +618,7 @@ export const Custom: Story = {
           <Button
             icon={<ComputerIcon />}
             loading={loading}
-            disableScale
+            scaling={false}
             size="xl"
             className="flex min-w-52 gap-2 bg-red-700 text-5xl text-yellow-100 hover:bg-red-600 active:bg-red-500 dark:bg-orange-300"
           >
@@ -626,8 +626,8 @@ export const Custom: Story = {
           </Button>
           <Button
             variant="clear"
-            disableHoverHighlight
-            disableScale
+            highlights={false}
+            scaling={false}
             className="hover:text-primary-400 p-0 hover:outline-none"
           >
             clear
@@ -649,7 +649,7 @@ export const Custom: Story = {
         >
           new button
         </Button>
-        <MotionButton disableAnimation whileHover={{ scale: 1.2 }}>
+        <MotionButton transitions={false} whileHover={{ scale: 1.2 }}>
           glg
         </MotionButton>
       </div>

@@ -1,16 +1,14 @@
 import { ComponentProps, useEffect, useState } from "react";
-import { twMerge } from "tailwind-merge";
-import { NavbarContext } from "./NavbarContext";
-import { ColorType } from "@/types";
-import { ResponsiveSizes } from "@/util/sizes";
-import { ColorMap } from "@/util/colors";
+import { NavbarContextProvider } from "./NavbarContext";
+import { useNavbarStyles } from "./useNavbarStyles";
+import { ColorType, ResponsiveSizes } from "@/types";
 
 export type NavbarProps = {
   primaryColor?: ColorType;
   secondaryColor?: ColorType;
-  disableShadow?: boolean;
-  disableBorder?: boolean;
-  disableRadius?: boolean;
+  hasShadow?: boolean;
+  hasBorder?: boolean;
+  isRounded?: boolean;
   collapseAt?: ResponsiveSizes;
   fixed?: boolean;
   position?: "top" | "bottom";
@@ -18,11 +16,11 @@ export type NavbarProps = {
 } & ComponentProps<"nav">;
 
 export function Navbar({
-  primaryColor = "white",
-  secondaryColor = "black",
-  disableBorder = false,
-  disableShadow = false,
-  disableRadius = false,
+  primaryColor,
+  secondaryColor,
+  hasBorder = true,
+  hasShadow = true,
+  isRounded = true,
   collapseAt = "sm",
   fixed = true,
   position = "top",
@@ -31,29 +29,23 @@ export function Navbar({
   backdropClasses,
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const navClasses = twMerge(
-    "flex w-full flex-wrap items-center justify-between px-4 py-2",
-    `bg-${ColorMap[primaryColor].light} dark:bg-${ColorMap[secondaryColor].dark} text-${ColorMap[secondaryColor].dark} dark:text-${ColorMap[primaryColor].light}`,
-    fixed && "fixed left-0 z-40",
-    position === "top" && "top-0",
-    position === "bottom" && "bottom-0",
-    !disableBorder && position === "top" && "border-b-2",
-    !disableBorder && position === "bottom" && "border-t-2",
-    !disableRadius && position === "top" && "rounded-b-lg",
-    !disableRadius && position === "bottom" && "rounded-t-lg",
-    !disableShadow && "shadow-stone-600 dark:shadow-stone-800",
-    !disableShadow && position === "top" && "shadow-[0px_4px_8px_-1px]",
-    !disableShadow && position === "bottom" && "shadow-[0px_-4px_8px_-1px]",
+
+  const {
+    navbarStyles,
+    backdropStyles,
+    resolvedPrimaryColor,
+    resolvedSecondaryColor,
+  } = useNavbarStyles(
+    fixed,
+    position,
+    hasBorder,
+    hasShadow,
+    isRounded,
+    isOpen,
+    collapseAt,
+    primaryColor,
+    secondaryColor,
     className,
-  );
-  const backdropClassesToApply = twMerge(
-    "fixed top-0 left-0 z-30 h-screen w-screen",
-    collapseAt === "sm" && "sm:hidden",
-    collapseAt === "md" && "md:hidden",
-    collapseAt === "lg" && "lg:hidden",
-    collapseAt === "xl" && "xl:hidden",
-    !isOpen && "hidden",
-    isOpen && "block",
     backdropClasses,
   );
 
@@ -67,30 +59,36 @@ export function Navbar({
     }
   }
 
+  function scrollHandler() {
+    setIsOpen(false);
+  }
+
   useEffect(() => {
     document.addEventListener("keyup", keyupHandler);
-    return document.removeEventListener("keyup", keyupHandler);
+    window.addEventListener("scroll", scrollHandler);
+
+    return () => {
+      document.removeEventListener("keyup", keyupHandler);
+      window.removeEventListener("scroll", scrollHandler);
+    };
   }, []);
 
   return (
-    <NavbarContext.Provider
+    <NavbarContextProvider
       value={{
-        primaryColor,
-        secondaryColor,
+        primaryColor: resolvedPrimaryColor,
+        secondaryColor: resolvedSecondaryColor,
         position,
-        rounded: !disableRadius,
+        rounded: isRounded,
         collapseAt: collapseAt,
         isOpen,
         setIsOpen,
       }}
     >
       <>
-        <nav className={navClasses}>{children}</nav>
-        <div
-          className={backdropClassesToApply}
-          onClick={outsideClickHandler}
-        ></div>
+        <nav className={navbarStyles}>{children}</nav>
+        <div className={backdropStyles} onClick={outsideClickHandler}></div>
       </>
-    </NavbarContext.Provider>
+    </NavbarContextProvider>
   );
 }

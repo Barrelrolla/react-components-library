@@ -4,8 +4,6 @@ type Size = {
   [key in SizeType]: string;
 };
 
-export type ResponsiveSizes = "sm" | "md" | "lg" | "xl";
-
 export const ButtonSizes: Size = {
   xs: "px-3 py-1 text-sm",
   sm: "px-4.5 py-1.5 text-base",

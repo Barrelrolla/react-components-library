@@ -12,6 +12,7 @@ export type PolymorphicProps<T extends ElementType> = {
 } & ComponentPropsWithoutRef<T>;
 
 export type ColorType = "white" | "black" | "primary" | "secondary" | "accent";
+
 export type ColorShadesType =
   | "light"
   | "lightHighlight"
@@ -19,4 +20,7 @@ export type ColorShadesType =
   | "dark"
   | "darkHighlight"
   | "darkActive";
+
 export type SizeType = "xs" | "sm" | "md" | "lg" | "xl";
+
+export type ResponsiveSizes = "sm" | "md" | "lg" | "xl";

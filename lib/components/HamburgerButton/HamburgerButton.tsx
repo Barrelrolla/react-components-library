@@ -1,62 +1,39 @@
-import { twMerge } from "tailwind-merge";
 import { Button, ButtonProps } from "../Button";
-import { ColorMap } from "@/util/colors";
+import { useHamburgerStyles } from "./useHamburgerStyles";
 
 export type HamburgerButtonProps = {
   isOpen: boolean;
-  wrapperClasses?: string;
 } & ButtonProps<"button">;
 
 export function HamburgerButton({
-  primaryColor = "black",
-  secondaryColor = "white",
+  primaryColor,
+  secondaryColor,
+  contrasting = true,
+  isOpen = false,
   className,
-  wrapperClasses,
-  isOpen,
   ...rest
 }: HamburgerButtonProps) {
-  const hamburgerButtonClasses = twMerge(
-    "relative h-4.5 w-6 p-4 transition-all",
-    isOpen && "rotate-90",
+  const { button, container, topLine, midLine, botLine } = useHamburgerStyles(
+    contrasting,
+    isOpen,
+    primaryColor,
+    secondaryColor,
+    className,
   );
-  const lineClasses = twMerge(
-    `bg-${ColorMap[primaryColor].dark}`,
-    `dark:bg-${ColorMap[secondaryColor].light}`,
-    "absolute top-1.75 left-1 h-0.5 w-6 rotate-0 transition-all duration-300",
-  );
-
   return (
     <Button
-      aria-label="toggle navigation"
+      aria-label="navigation toggle"
       variant="clear"
       clearButtonHover="outline"
       primaryColor={primaryColor}
       secondaryColor={secondaryColor}
-      className={twMerge("px-1 py-0 hover:outline-2", className)}
-      wrapperClasses={wrapperClasses}
+      className={button}
       {...rest}
     >
-      <div className={hamburgerButtonClasses}>
-        <span
-          className={twMerge(
-            lineClasses,
-            isOpen && "origin-top-right -translate-x-1 -rotate-45",
-          )}
-        ></span>
-        <span
-          className={twMerge(
-            lineClasses,
-            "translate-y-2",
-            isOpen && "opacity-0",
-          )}
-        ></span>
-        <span
-          className={twMerge(
-            lineClasses,
-            "translate-y-4",
-            isOpen && "origin-bottom-right -translate-x-1 rotate-45",
-          )}
-        ></span>
+      <div className={container}>
+        <span className={topLine}></span>
+        <span className={midLine}></span>
+        <span className={botLine}></span>
       </div>
     </Button>
   );

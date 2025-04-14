@@ -1,11 +1,13 @@
+import { ComponentProps } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { within, expect } from "@storybook/test";
 import { Navbar } from "./Navbar";
 import { NavbarBrand } from "./NavbarBrand";
 import { NavbarCollapse } from "./NavbarCollapse";
-import { NavbarToggle } from "./NavbarToggle";
 import { NavbarLink } from "./NavbarLink";
-import { ComponentProps } from "react";
+import { NavbarToggle } from "./NavbarToggle";
+import { Button } from "../Button";
+import { ComputerIcon } from "@/icons";
 
 type Props = ComponentProps<typeof Navbar> & {
   selected: number | undefined;
@@ -28,18 +30,30 @@ export const Default: Story = {
   render: ({ selected, primaryColor, secondaryColor }) => {
     const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
     return (
-      <Navbar primaryColor={primaryColor} secondaryColor={secondaryColor}>
-        <NavbarToggle />
-        <NavbarBrand href="#">Test</NavbarBrand>
-        <div role="presentation" className="w-10"></div>
-        <NavbarCollapse disableHoverBG disableUnderlineOnMobile>
-          {links.map((link, index) => (
-            <NavbarLink href="#" selected={selected === index}>
-              {link}
-            </NavbarLink>
-          ))}
-        </NavbarCollapse>
-      </Navbar>
+      <div className="h-[200vh]">
+        <Navbar primaryColor={primaryColor} secondaryColor={secondaryColor}>
+          <NavbarToggle />
+          <NavbarBrand href="#">
+            <ComputerIcon /> Test
+          </NavbarBrand>
+          <div role="presentation" className="w-10 sm:hidden"></div>
+          <NavbarCollapse>
+            {links.map((link, index) => (
+              <NavbarLink
+                key={link}
+                href="#"
+                selected={selected === index}
+                underlined={false}
+              >
+                {link}
+              </NavbarLink>
+            ))}
+            <Button size="sm" scaling={false}>
+              test
+            </Button>
+          </NavbarCollapse>
+        </Navbar>
+      </div>
     );
   },
   args: {

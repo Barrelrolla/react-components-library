@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import { HamburgerButton } from "../HamburgerButton";
-import { NavbarContext } from "./NavbarContext";
 import { twMerge } from "tailwind-merge";
+import { HamburgerButton } from "../HamburgerButton";
+import { useNavbarContext } from "./NavbarContext";
 
 export function NavbarToggle() {
-  const context = useContext(NavbarContext);
+  const context = useNavbarContext();
   if (!context) {
     throw new Error(
       "Please use the Navbar toggle Component only inside a Navbar",
@@ -28,8 +27,8 @@ export function NavbarToggle() {
   return (
     <HamburgerButton
       wrapperClasses={classes}
-      primaryColor={secondaryColor}
-      secondaryColor={primaryColor}
+      primaryColor={primaryColor}
+      secondaryColor={secondaryColor}
       isOpen={isOpen}
       onClick={clickHandler}
     />

@@ -1,6 +1,8 @@
 export { Anchor } from "./Anchor";
 export type { AnchorProps } from "./Anchor";
-export { Button, ButtonGroup, ButtonGroupContext } from "./Button";
+export { Body } from "./Body";
+export type { BodyProps } from "./Body";
+export { Button, ButtonGroup, ButtonGroupContextProvider } from "./Button";
 export type {
   ButtonProps,
   ButtonGroupProps,
@@ -13,7 +15,7 @@ export {
   Navbar,
   NavbarBrand,
   NavbarCollapse,
-  NavbarContext,
+  NavbarContextProvider,
   NavbarToggle,
   NavbarLink,
 } from "./Navbar";

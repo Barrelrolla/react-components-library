@@ -1,18 +1,23 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
-import { ColorType } from "@/types";
+import { ColorType, SizeType } from "@/types";
 
 export type ButtonGroupContextType =
   | {
       variant: ButtonVariant;
       radius: ButtonRadius;
       clearButtonHover: ClearButtonHover;
-      primaryColor: ColorType;
-      secondaryColor: ColorType;
+      primaryColor?: ColorType;
+      secondaryColor?: ColorType;
+      size: SizeType;
       contrasting: boolean;
       vertical: boolean;
     }
   | undefined;
 
-export const ButtonGroupContext =
-  createContext<ButtonGroupContextType>(undefined);
+const ButtonGroupContext = createContext<ButtonGroupContextType>(undefined);
+export const ButtonGroupContextProvider = ButtonGroupContext.Provider;
+
+export function useButtonGroupContext() {
+  return useContext(ButtonGroupContext);
+}

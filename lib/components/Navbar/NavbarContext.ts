@@ -1,6 +1,5 @@
-import { createContext } from "react";
-import { ColorType } from "@/types";
-import { ResponsiveSizes } from "@/util/sizes";
+import { createContext, useContext } from "react";
+import { ColorType, ResponsiveSizes } from "@/types";
 
 export type NavbarContextType =
   | {
@@ -14,4 +13,9 @@ export type NavbarContextType =
     }
   | undefined;
 
-export const NavbarContext = createContext<NavbarContextType>(undefined);
+const NavbarContext = createContext<NavbarContextType>(undefined);
+export const NavbarContextProvider = NavbarContext.Provider;
+
+export function useNavbarContext() {
+  return useContext(NavbarContext);
+}

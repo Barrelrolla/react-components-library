@@ -1,10 +1,9 @@
-import { ElementType, SVGProps, useContext } from "react";
+import { ElementType, SVGProps } from "react";
 import { twMerge } from "tailwind-merge";
-import { ButtonGroupContext } from "./ButtonGroupContext";
 import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
-import { getButtonStyles } from "./buttonStyles";
-import { ColorType, PolymorphicProps, SizeType } from "@/types";
+import { useButtonStyles } from "./useButtonStyles";
 import { Spinner } from "@/icons";
+import { ColorType, PolymorphicProps, SizeType } from "@/types";
 
 const defaultType = "button" as const;
 export type ButtonProps<E extends ElementType> = {
@@ -15,10 +14,10 @@ export type ButtonProps<E extends ElementType> = {
   primaryColor?: ColorType;
   secondaryColor?: ColorType;
   disabled?: boolean;
-  disableHoverHighlight?: boolean;
-  disableScale?: boolean;
-  disableAnimation?: boolean;
-  disableDisabledStyle?: boolean;
+  highlights?: boolean;
+  scaling?: boolean;
+  transitions?: boolean;
+  disabledStyles?: boolean;
   contrasting?: boolean;
   loading?: boolean;
   loadingPosition?: "front" | "end";
@@ -33,13 +32,13 @@ export function Button<E extends ElementType = typeof defaultType>({
   radius = "default",
   clearButtonHover = "outline",
   size = "md",
-  primaryColor = "black",
-  secondaryColor = "white",
+  primaryColor,
+  secondaryColor,
   disabled = false,
-  disableHoverHighlight = false,
-  disableScale = false,
-  disableAnimation = false,
-  disableDisabledStyle = false,
+  highlights = true,
+  scaling = true,
+  transitions = true,
+  disabledStyles = true,
   contrasting = true,
   loading = false,
   loadingPosition = "front",
@@ -50,40 +49,35 @@ export function Button<E extends ElementType = typeof defaultType>({
   children,
   ...rest
 }: ButtonProps<E>) {
-  const context = useContext(ButtonGroupContext);
   const isIcon = (icon !== undefined || endIcon !== undefined) && !children;
   const isDisabled = disabled || loading;
-
   const classes = twMerge(
-    getButtonStyles(
-      context?.variant || variant,
-      context?.radius || radius,
-      context?.clearButtonHover || clearButtonHover,
-      context !== undefined,
-      context?.vertical || false,
-      context?.primaryColor || primaryColor,
-      context?.secondaryColor || secondaryColor,
+    useButtonStyles(
+      variant,
+      radius,
+      clearButtonHover,
       size,
-      context ? context.contrasting : contrasting,
+      contrasting,
       isIcon,
-      !disableDisabledStyle && isDisabled,
-      context ? false : disableHoverHighlight,
-      context ? true : disableScale,
+      disabled,
+      highlights,
+      scaling,
+      transitions,
+      primaryColor,
+      secondaryColor,
     ),
-    !disableAnimation && "transition",
     className,
+  );
+  const wrapperStyles = twMerge(
+    "group",
+    isDisabled && "cursor-not-allowed",
+    wrapperClasses,
   );
 
   const Element = as || defaultType;
 
   return (
-    <span
-      className={twMerge(
-        "group",
-        isDisabled && "cursor-not-allowed",
-        wrapperClasses,
-      )}
-    >
+    <span className={wrapperStyles}>
       <Element className={classes} disabled={isDisabled} {...rest}>
         {(!loading || loadingPosition !== "front") && icon}
         {loading && loadingPosition === "front" && <Spinner />}
