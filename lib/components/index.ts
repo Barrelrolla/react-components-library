@@ -9,6 +9,8 @@ export type {
   ButtonGroupContextType,
 } from "./Button";
 export { DarkModeToggle } from "./DarkModeToggle";
+export { Divider } from "./Divider";
+export type { DividerProps } from "./Divider";
 export { HamburgerButton } from "./HamburgerButton";
 export type { HamburgerButtonProps } from "./HamburgerButton";
 export {

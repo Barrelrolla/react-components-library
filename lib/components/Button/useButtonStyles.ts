@@ -75,10 +75,11 @@ export function useButtonStyles(
       icon,
     ),
     (!theme || theme.scalingButtons) &&
+      (!group || group.scaling) &&
       scaling &&
       "hover:scale-[102%] focus-visible:scale-[102%] active:scale-[98%]",
     disabled ? "pointer-events-none" : "cursor-pointer",
-    theme?.transitions && hasTransitions && "transition",
+    (!theme || theme?.transitions) && hasTransitions && "transition",
   );
 }
 

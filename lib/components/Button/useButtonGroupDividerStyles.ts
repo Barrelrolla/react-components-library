@@ -1,21 +1,22 @@
 import { twMerge } from "tailwind-merge";
+import { useButtonGroupContext } from "./ButtonGroupContext";
 import { ButtonVariant } from "./buttonTypes";
-import { useTheme } from "@/contexts";
 import { ColorType } from "@/types";
 import { ColorMap } from "@/util";
 
-export function useDividerStyles(
+export function useButtonGroupDividerStyles(
   contrasting: boolean,
   variant: ButtonVariant,
   vertical: boolean,
   primaryColor?: ColorType,
   secondaryColor?: ColorType,
+  dividerClasses?: string,
 ) {
-  const theme = useTheme();
+  const group = useButtonGroupContext();
 
-  const primary = ColorMap[primaryColor || theme?.primaryColor || "black"];
+  const primary = ColorMap[primaryColor || group?.primaryColor || "black"];
   const secondary =
-    ColorMap[secondaryColor || theme?.secondaryColor || "white"];
+    ColorMap[secondaryColor || group?.secondaryColor || "white"];
 
   return twMerge(
     `bg-${primary.dark}`,
@@ -25,5 +26,6 @@ export function useDividerStyles(
     !vertical && "w-0.25",
     vertical && "h-0.25",
     "z-1",
+    dividerClasses,
   );
 }

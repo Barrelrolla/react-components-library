@@ -2,7 +2,8 @@ import { Children, ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 import { ButtonGroupContextProvider } from "./ButtonGroupContext";
 import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
-import { useDividerStyles } from "./useDividerStyles";
+import { useButtonGroupDividerStyles } from "./useButtonGroupDividerStyles";
+import { Divider } from "../Divider";
 import { ColorType, SizeType } from "@/types";
 
 export type ButtonGroupProps = {
@@ -15,6 +16,7 @@ export type ButtonGroupProps = {
   contrasting?: boolean;
   separator?: boolean;
   vertical?: boolean;
+  scaling?: boolean;
   dividerClasses?: string;
 } & ComponentProps<"div">;
 
@@ -28,6 +30,7 @@ export function ButtonGroup({
   contrasting = true,
   separator = true,
   vertical = false,
+  scaling = false,
   className,
   dividerClasses,
   children,
@@ -38,14 +41,12 @@ export function ButtonGroup({
     vertical && "flex-col -space-y-0.25",
     className,
   );
-  const dividerStyles = twMerge(
-    useDividerStyles(
-      contrasting,
-      variant,
-      vertical,
-      primaryColor,
-      secondaryColor,
-    ),
+  const dividerStyles = useButtonGroupDividerStyles(
+    contrasting,
+    variant,
+    vertical,
+    primaryColor,
+    secondaryColor,
     dividerClasses,
   );
 
@@ -60,6 +61,7 @@ export function ButtonGroup({
         size,
         contrasting,
         vertical,
+        scaling,
       }}
     >
       <div className="flex">
@@ -68,7 +70,7 @@ export function ButtonGroup({
             return (
               <>
                 {separator && index !== 0 && (
-                  <div className={dividerStyles}></div>
+                  <Divider className={dividerStyles} vertical={!vertical} />
                 )}
                 {child}
               </>
