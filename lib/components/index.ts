@@ -8,7 +8,7 @@ export type {
   ButtonGroupProps,
   ButtonGroupContextType,
 } from "./Button";
-export { DarkModeToggle } from "./DarkModeToggle";
+export { DarkModeToggle, DarkModeSelector } from "./DarkModeToggle";
 export { Divider } from "./Divider";
 export type { DividerProps } from "./Divider";
 export { HamburgerButton } from "./HamburgerButton";

@@ -11,3 +11,11 @@ export const ButtonSizes: Size = {
   lg: "px-9 py-3 text-xl",
   xl: "px-12 py-4 text-2xl",
 };
+
+export const IconButtonSizes: Size = {
+  xs: "p-1 text-md",
+  sm: "p-1.5 text-xl",
+  md: "p-2 text-2xl",
+  lg: "p-2.5 text-3xl",
+  xl: "p-3 text-4xl",
+};

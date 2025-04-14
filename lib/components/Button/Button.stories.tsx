@@ -536,6 +536,38 @@ export const Sizes: Story = {
             Button
           </Button>
         </div>
+        <div className="flex flex-wrap items-end justify-center gap-2">
+          <Button
+            icon={<ComputerIcon />}
+            size="xs"
+            primaryColor="primary"
+            secondaryColor="secondary"
+          ></Button>
+          <Button
+            icon={<ComputerIcon />}
+            size="sm"
+            primaryColor="primary"
+            secondaryColor="secondary"
+          ></Button>
+          <Button
+            icon={<ComputerIcon />}
+            size="md"
+            primaryColor="primary"
+            secondaryColor="secondary"
+          ></Button>
+          <Button
+            icon={<ComputerIcon />}
+            size="lg"
+            primaryColor="primary"
+            secondaryColor="secondary"
+          ></Button>
+          <Button
+            icon={<ComputerIcon />}
+            size="xl"
+            primaryColor="primary"
+            secondaryColor="secondary"
+          ></Button>
+        </div>
         <div className="flex flex-wrap items-start justify-center gap-2">
           <Button
             disabled

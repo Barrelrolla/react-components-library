@@ -3,7 +3,7 @@ import { useButtonGroupContext } from "./ButtonGroupContext";
 import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
 import { useTheme } from "@/contexts";
 import { ColorType, SizeType } from "@/types";
-import { ButtonSizes, ColorMap } from "@/util";
+import { ButtonSizes, ColorMap, IconButtonSizes } from "@/util";
 
 interface ButtonColors {
   bgColor: string;
@@ -27,9 +27,14 @@ export function useButtonStyles(
   disabled: boolean,
   highlights: boolean,
   scaling: boolean,
+  selected: boolean,
   transitions: boolean,
+  disabledStyles: boolean,
+  selectedStyles: boolean,
   primaryColor?: ColorType,
   secondaryColor?: ColorType,
+  classes?: string,
+  selectedClasses?: string,
 ) {
   const theme = useTheme();
   const group = useButtonGroupContext();
@@ -55,6 +60,8 @@ export function useButtonStyles(
     (!group || group.contrasting) && contrasting,
   );
   const hasTransitions = (!theme || theme.transitions) && transitions;
+  const hasScaling =
+    (!theme || theme.scalingButtons) && (!group || group.scaling) && scaling;
   return twMerge(
     bgColor,
     highlights && bgHoverColor,
@@ -73,13 +80,23 @@ export function useButtonStyles(
       disabled,
       group?.size || size,
       icon,
+      disabledStyles,
     ),
-    (!theme || theme.scalingButtons) &&
-      (!group || group.scaling) &&
-      scaling &&
+    hasScaling &&
       "hover:scale-[102%] focus-visible:scale-[102%] active:scale-[98%]",
+    hasTransitions && "transition",
     disabled ? "pointer-events-none" : "cursor-pointer",
-    (!theme || theme?.transitions) && hasTransitions && "transition",
+    classes,
+    selected &&
+      selectedStyles &&
+      getSelectedStyles(
+        primary,
+        secondary,
+        group?.variant || variant,
+        group?.clearButtonHover || clearButtonHover,
+        contrasting,
+      ),
+    selectedClasses,
   );
 }
 
@@ -91,6 +108,7 @@ function getBaseStyles(
   disabled: boolean,
   size: SizeType,
   icon: boolean,
+  disabledStyles: boolean,
 ) {
   function getRadius() {
     switch (radius) {
@@ -127,14 +145,13 @@ function getBaseStyles(
 
   return twMerge(
     "flex items-center justify-center gap-2 outline-offset-1 select-none focus-visible:outline-2",
+    inGroup && "outline-offset-2",
     variant === "outline" &&
+      !inGroup &&
       "border hover:border-transparent focus-visible:border-transparent",
     getRadius(),
-    disabled && "opacity-50 saturate-50",
-    icon && "p-2 text-2xl",
-    icon && !vertical && "group-first:pl-2.5 group-last:pr-2.5",
-    icon && vertical && "group-first:pt-2.5 group-last:pb-2.5",
-
+    disabled && disabledStyles && "opacity-50 saturate-50",
+    icon && IconButtonSizes[size],
     !icon && ButtonSizes[size],
   );
 }
@@ -158,7 +175,7 @@ function getButtonColors(
         contrasting,
       );
 
-    default:
+    default: // solid
       return getDefaultColors(primaryColor, secondaryColor, contrasting);
   }
 }
@@ -310,9 +327,13 @@ function getClearButtonColors(
     clearButtonHover === "outline" &&
       contrasting &&
       `dark:active:text-${secondary.lightHighlight}`,
-    (clearButtonHover === "fill" || clearButtonHover === "contrasting") &&
+    clearButtonHover === "fill" && `active:text-${secondary.light}`,
+    clearButtonHover === "fill" &&
+      contrasting &&
+      `dark:active:text-${primary.dark}`,
+    clearButtonHover === "contrasting" &&
       `active:text-${secondary.lightActive}`,
-    (clearButtonHover === "fill" || clearButtonHover === "contrasting") &&
+    clearButtonHover === "contrasting" &&
       contrasting &&
       `dark:active:text-${primary.darkActive}`,
   );
@@ -356,4 +377,46 @@ function getClearButtonColors(
     outlineHoverColor,
     outlineActiveColor,
   };
+}
+
+function getSelectedStyles(
+  primaryColor: ColorType,
+  secondaryColor: ColorType,
+  variant: ButtonVariant,
+  clearButtonHover: ClearButtonHover,
+  contrasting: boolean,
+) {
+  const primary = ColorMap[primaryColor];
+  const secondary = ColorMap[secondaryColor];
+  switch (variant) {
+    case "outline":
+      return twMerge(
+        `bg-${primary.dark} text-${secondary.light} dark:bg-${secondary.light} dark:text-${primary.dark}`,
+      );
+
+    case "clear":
+      return getClearActiveStyles();
+
+    default: // solid
+      return twMerge(
+        `bg-${primary.darkActive}`,
+        contrasting && `dark:bg-${secondary.lightActive}`,
+      );
+  }
+
+  function getClearActiveStyles() {
+    switch (clearButtonHover) {
+      case "fill":
+        return `bg-${primary.dark} text-${secondary.light} dark:bg-${secondary.light} dark:text-${primary.dark}`;
+
+      case "outline":
+        return `text-${primary.darkActive} dark:text-${secondary.lightActive} outline-${primary.darkActive} dark:outline-${secondary.lightActive}`;
+
+      case "contrasting":
+        return `text-${secondary.light} dark:text-${primary.dark}`;
+
+      default: // none
+        return `text-${primary.darkActive} dark:text-${secondary.lightActive}`;
+    }
+  }
 }

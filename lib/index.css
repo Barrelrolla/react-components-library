@@ -12,7 +12,7 @@
 }
 
 @theme {
-  --default-transition-duration: 200ms;
+  --default-transition-duration: 100ms;
 
   --color-white: var(--color-stone-50);
   --color-white-highlight: var(--color-stone-200);

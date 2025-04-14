@@ -1,21 +1,17 @@
 import { SVGProps } from "react";
-import { twMerge } from "tailwind-merge";
 
 // https://phosphoricons.com/
 
 export type SVGIconProps = {} & SVGProps<SVGSVGElement>;
 
-export function SunIcon({
-  strokeWidth = 16,
-  className,
-  ...rest
-}: SVGIconProps) {
+export function SunIcon({ strokeWidth = 16, ...rest }: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
       strokeWidth={strokeWidth}
-      className={twMerge("h-[1em] w-[1em]", className)}
+      height={"1em"}
+      width={"1em"}
       {...rest}
     >
       <path fill="none" d="M0 0h256v256H0z" />
@@ -46,17 +42,14 @@ export function SunIcon({
   );
 }
 
-export function MoonIcon({
-  strokeWidth = 16,
-  className,
-  ...rest
-}: SVGIconProps) {
+export function MoonIcon({ strokeWidth = 16, ...rest }: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
       strokeWidth={strokeWidth}
-      className={twMerge("h-[1em] w-[1em]", className)}
+      height={"1em"}
+      width={"1em"}
       {...rest}
     >
       <path fill="none" d="M0 0h256v256H0z" />
@@ -71,17 +64,14 @@ export function MoonIcon({
   );
 }
 
-export function ComputerIcon({
-  strokeWidth = 16,
-  className,
-  ...rest
-}: SVGIconProps) {
+export function ComputerIcon({ strokeWidth = 16, ...rest }: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
       strokeWidth={strokeWidth}
-      className={twMerge("h-[1em] w-[1em]", className)}
+      height={"1em"}
+      width={"1em"}
       {...rest}
     >
       <path fill="none" d="M0 0h256v256H0z" />
@@ -106,17 +96,14 @@ export function ComputerIcon({
   );
 }
 
-export function Spinner({
-  strokeWidth = 20,
-  className,
-  ...rest
-}: SVGIconProps) {
+export function Spinner({ strokeWidth = 20, ...rest }: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
       strokeWidth={strokeWidth}
-      className={twMerge("h-[1em] w-[1em] animate-spin", className)}
+      height={"1em"}
+      width={"1em"}
       {...rest}
     >
       <path fill="none" d="M0 0h256v256H0z" />

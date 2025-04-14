@@ -16,46 +16,6 @@ type Props = ComponentProps<typeof Navbar> & {
 const meta: Meta<Props> = {
   title: "Components/Navbar",
   component: Navbar,
-};
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const navbar = canvas.getByText("Test");
-    await expect(navbar, "renders").toBeTruthy();
-  },
-  render: ({ selected, primaryColor, secondaryColor }) => {
-    const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
-    return (
-      <div className="h-[200vh]">
-        <Navbar primaryColor={primaryColor} secondaryColor={secondaryColor}>
-          <NavbarToggle />
-          <NavbarBrand href="#">
-            <ComputerIcon /> Test
-          </NavbarBrand>
-          <div role="presentation" className="w-10 sm:hidden"></div>
-          <NavbarCollapse>
-            {links.map((link, index) => (
-              <NavbarLink
-                key={link}
-                href="#"
-                selected={selected === index}
-                underlined={false}
-              >
-                {link}
-              </NavbarLink>
-            ))}
-            <Button size="sm" scaling={false}>
-              test
-            </Button>
-          </NavbarCollapse>
-        </Navbar>
-      </div>
-    );
-  },
   args: {
     selected: undefined,
   },
@@ -97,5 +57,45 @@ export const Default: Story = {
         type: "inline-radio",
       },
     },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const navbar = canvas.getByText("Test");
+    await expect(navbar, "renders").toBeTruthy();
+  },
+  render: ({ selected, primaryColor, secondaryColor }) => {
+    const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
+    return (
+      <div className="h-[200vh]">
+        <Navbar primaryColor={primaryColor} secondaryColor={secondaryColor}>
+          <NavbarToggle />
+          <NavbarBrand href="#">
+            <ComputerIcon /> Test
+          </NavbarBrand>
+          <div role="presentation" className="w-10 sm:hidden"></div>
+          <NavbarCollapse>
+            {links.map((link, index) => (
+              <NavbarLink
+                key={link}
+                href="#"
+                selected={selected === index}
+                underlined={false}
+              >
+                {link}
+              </NavbarLink>
+            ))}
+            <Button size="sm" scaling={false}>
+              test
+            </Button>
+          </NavbarCollapse>
+        </Navbar>
+      </div>
+    );
   },
 };

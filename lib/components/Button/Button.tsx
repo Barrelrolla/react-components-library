@@ -13,17 +13,20 @@ export type ButtonProps<E extends ElementType> = {
   size?: SizeType;
   primaryColor?: ColorType;
   secondaryColor?: ColorType;
+  selected?: boolean;
   disabled?: boolean;
   highlights?: boolean;
   scaling?: boolean;
   transitions?: boolean;
   disabledStyles?: boolean;
+  selectedStyles?: boolean;
   contrasting?: boolean;
   loading?: boolean;
   loadingPosition?: "front" | "end";
   icon?: SVGProps<SVGSVGElement>;
   endIcon?: SVGProps<SVGSVGElement>;
   wrapperClasses?: string;
+  selectedClasses?: string;
 } & PolymorphicProps<E>;
 
 export function Button<E extends ElementType = typeof defaultType>({
@@ -35,10 +38,12 @@ export function Button<E extends ElementType = typeof defaultType>({
   primaryColor,
   secondaryColor,
   disabled = false,
+  selected = false,
   highlights = true,
   scaling = true,
   transitions = true,
   disabledStyles = true,
+  selectedStyles = true,
   contrasting = true,
   loading = false,
   loadingPosition = "front",
@@ -46,27 +51,30 @@ export function Button<E extends ElementType = typeof defaultType>({
   endIcon,
   className,
   wrapperClasses,
+  selectedClasses,
   children,
   ...rest
 }: ButtonProps<E>) {
   const isIcon = (icon !== undefined || endIcon !== undefined) && !children;
   const isDisabled = disabled || loading;
-  const classes = twMerge(
-    useButtonStyles(
-      variant,
-      radius,
-      clearButtonHover,
-      size,
-      contrasting,
-      isIcon,
-      disabled,
-      highlights,
-      scaling,
-      transitions,
-      primaryColor,
-      secondaryColor,
-    ),
+  const classes = useButtonStyles(
+    variant,
+    radius,
+    clearButtonHover,
+    size,
+    contrasting,
+    isIcon,
+    disabled,
+    highlights,
+    scaling,
+    selected,
+    transitions,
+    disabledStyles,
+    selectedStyles,
+    primaryColor,
+    secondaryColor,
     className,
+    selectedClasses,
   );
   const wrapperStyles = twMerge(
     "group",

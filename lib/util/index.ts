@@ -1,2 +1,2 @@
 export { ColorMap } from "./colors";
-export { ButtonSizes } from "./sizes";
+export { ButtonSizes, IconButtonSizes } from "./sizes";
