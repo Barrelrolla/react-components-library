@@ -27,31 +27,43 @@ export type DarkModeContextProps =
 const DarkModeContext = createContext<DarkModeContextProps>(undefined);
 
 export function DarkModeContextProvider({ children }: PropsWithChildren) {
-  const lsTheme = localStorage.getItem(lsThemeName);
-  const currentTheme: ThemeModeType =
-    lsTheme === "dark" ? "dark" : lsTheme === "light" ? "light" : "system";
+  let initialTheme: ThemeModeType = "system";
+  useEffect(() => {
+    const lsTheme = localStorage.getItem(lsThemeName);
+    initialTheme =
+      lsTheme === "dark" ? "dark" : lsTheme === "light" ? "light" : "system";
+  }, []);
 
-  const [isDark, setIsDark] = useState(currentTheme === darkTheme);
-  const [themeMode, setThemeMode] = useState<ThemeModeType>(currentTheme);
-
-  function setPreferredTheme(event: MediaQueryListEvent) {
-    if (themeMode === systemTheme) {
-      const { classList } = document.documentElement;
-      if (event.matches) {
-        classList.add(darkTheme);
-      } else {
-        classList.remove(darkTheme);
-      }
-    }
-  }
+  const [themeMode, setThemeMode] = useState<ThemeModeType>(initialTheme);
+  const [isDark, setIsDark] = useState(themeMode === darkTheme);
 
   useEffect(() => {
-    window.matchMedia(matchMedia).addEventListener("change", setPreferredTheme);
+    const setPreferredTheme = (event: MediaQueryListEvent) => {
+      setThemeMode((prevState) => {
+        if (prevState === systemTheme) {
+          const { classList } = document.documentElement;
+          if (event.matches) {
+            classList.add(darkTheme);
+            setIsDark(true);
+          } else {
+            classList.remove(darkTheme);
+            setIsDark(false);
+          }
+        }
+        return prevState;
+      });
+    };
 
-    return window
+    window
       .matchMedia(matchMedia)
-      .removeEventListener("change", setPreferredTheme);
-  }, []);
+      .addEventListener("change", setPreferredTheme, true);
+
+    return () => {
+      window
+        .matchMedia(matchMedia)
+        .removeEventListener("change", setPreferredTheme);
+    };
+  }, [themeMode]);
 
   useEffect(() => {
     const { classList } = document.documentElement;
@@ -91,11 +103,9 @@ export function DarkModeContextProvider({ children }: PropsWithChildren) {
 export function useDarkMode() {
   const context = useContext(DarkModeContext);
   if (!context) {
-    throw new Error(
-      "Please use the useDarkMode hook only inside DarkModeContext",
-    );
+    throw new Error("You need a DarkModeContext to use the useDarkMode hook!");
   }
 
-  const { isDark, themeMode, setThemeMode } = context;
-  return { isDark, themeMode, setThemeMode };
+  const { themeMode, isDark, setThemeMode } = context;
+  return { themeMode, isDark, setThemeMode };
 }
