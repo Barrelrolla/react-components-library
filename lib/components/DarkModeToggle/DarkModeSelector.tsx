@@ -1,28 +1,29 @@
-import { ComputerIcon, MoonIcon, SunIcon } from "@/icons";
 import { Button, ButtonGroup, ButtonGroupProps } from "../Button";
-import { useDarkMode } from "@/hooks";
+import { ComputerIcon, MoonIcon, SunIcon } from "@/icons";
+import { useDarkMode } from "@/contexts";
+
 export function DarkModeSelector({
   variant = "outline",
   size = "sm",
   divider = false,
   ...rest
 }: ButtonGroupProps) {
-  const { theme, setTheme } = useDarkMode();
+  const { themeMode, setThemeMode } = useDarkMode();
   return (
     <ButtonGroup variant={variant} size={size} divider={divider} {...rest}>
       <Button
-        selected={theme === "light"}
-        onClick={() => setTheme("light")}
+        selected={themeMode === "light"}
+        onClick={() => setThemeMode("light")}
         icon={<SunIcon />}
       ></Button>
       <Button
-        selected={theme === "dark"}
-        onClick={() => setTheme("dark")}
+        selected={themeMode === "dark"}
+        onClick={() => setThemeMode("dark")}
         icon={<MoonIcon />}
       ></Button>
       <Button
-        selected={theme === "system"}
-        onClick={() => setTheme("system")}
+        selected={themeMode === "system"}
+        onClick={() => setThemeMode("system")}
         icon={<ComputerIcon />}
       ></Button>
     </ButtonGroup>

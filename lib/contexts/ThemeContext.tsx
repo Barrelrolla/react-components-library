@@ -1,5 +1,6 @@
+import { createContext, PropsWithChildren, useContext } from "react";
+import { DarkModeContextProvider } from "./DarkModeContext";
 import { ColorType } from "@/types";
-import { createContext, useContext } from "react";
 
 export type ThemeContextType =
   | {
@@ -13,7 +14,16 @@ export type ThemeContextType =
   | undefined;
 
 const ThemeContext = createContext<ThemeContextType>(undefined);
-export const ThemeContextProvider = ThemeContext.Provider;
+export function ThemeContextProvider({
+  value,
+  children,
+}: { value: ThemeContextType } & PropsWithChildren) {
+  return (
+    <DarkModeContextProvider>
+      <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+    </DarkModeContextProvider>
+  );
+}
 
 export function useTheme() {
   return useContext(ThemeContext);

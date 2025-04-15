@@ -1,20 +1,12 @@
-import { useDarkMode } from "@/hooks";
-import { MoonIcon, SunIcon } from "../../icons/icons";
 import { Button } from "../Button";
+import { useDarkMode } from "@/contexts";
+import { MoonIcon, SunIcon } from "@/icons";
 
 export function DarkModeToggle() {
-  const { theme, setTheme } = useDarkMode();
-  let isDark = false;
-  if (theme === "dark") {
-    isDark = true;
-  } else if (theme === "system") {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      isDark = true;
-    }
-  }
+  const { isDark, setThemeMode } = useDarkMode();
   return (
     <Button
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      onClick={() => setThemeMode(isDark ? "light" : "dark")}
       icon={isDark ? <SunIcon /> : <MoonIcon />}
       size="sm"
     />
