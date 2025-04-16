@@ -6,11 +6,11 @@ import {
   useState,
 } from "react";
 
-const lsThemeName = "theme";
-const darkTheme = "dark";
-const lightTheme = "light";
-const systemTheme = "system";
-const matchMedia = "(prefers-color-scheme: dark)";
+export const lsThemeName = "theme";
+export const darkTheme = "dark";
+export const lightTheme = "light";
+export const systemTheme = "system";
+export const matchMedia = "(prefers-color-scheme: dark)";
 
 export type ThemeModeType =
   | typeof lightTheme
@@ -27,11 +27,15 @@ export type DarkModeContextProps =
 const DarkModeContext = createContext<DarkModeContextProps>(undefined);
 
 export function DarkModeContextProvider({ children }: PropsWithChildren) {
-  let initialTheme: ThemeModeType = "system";
+  let initialTheme: ThemeModeType = systemTheme;
   useEffect(() => {
     const lsTheme = localStorage.getItem(lsThemeName);
     initialTheme =
-      lsTheme === "dark" ? "dark" : lsTheme === "light" ? "light" : "system";
+      lsTheme === darkTheme
+        ? darkTheme
+        : lsTheme === lightTheme
+          ? lightTheme
+          : systemTheme;
   }, []);
 
   const [themeMode, setThemeMode] = useState<ThemeModeType>(initialTheme);
