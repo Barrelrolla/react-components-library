@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
-import { twMerge } from "tailwind-merge";
+import { cn } from "@/util";
 import { Anchor } from "./Anchor";
 
 const meta: Meta<typeof Anchor> = {
@@ -43,7 +43,7 @@ export const InText: Story = {
   render: ({ classes, ...props }) => {
     return (
       <p
-        className={twMerge(
+        className={cn(
           "bg-white p-2 text-black dark:bg-black dark:text-white",
           classes,
         )}

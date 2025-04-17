@@ -11,15 +11,17 @@ export type PolymorphicProps<T extends ElementType> = {
   ref?: RefObject<ElementTypeMap<T> | null>;
 } & ComponentPropsWithoutRef<T>;
 
-export type ColorType = "white" | "black" | "primary" | "secondary" | "accent";
-
-export type ColorShadesType =
+export type ColorType =
+  | "base"
   | "light"
-  | "lightHighlight"
-  | "lightActive"
   | "dark"
-  | "darkHighlight"
-  | "darkActive";
+  | "primary"
+  | "secondary"
+  | "accent"
+  | "info"
+  | "success"
+  | "warning"
+  | "error";
 
 export type SizeType = "xs" | "sm" | "md" | "lg" | "xl";
 

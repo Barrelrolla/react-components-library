@@ -1,9 +1,8 @@
 import { useRef, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
-import { motion } from "motion/react";
-import { Button } from "./Button";
 import { ComputerIcon, MoonIcon, SunIcon } from "@/icons";
+import { Button } from "./Button";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -402,45 +401,22 @@ export const Primary: Story = {
     return (
       <div className="flex flex-col gap-12 bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap justify-evenly gap-2">
-          <Button primaryColor="primary" contrasting={false}>
+          <Button color="accent">Button</Button>
+          <Button color="accent" radius="pill" variant="outline">
             Button
           </Button>
-          <Button
-            primaryColor="primary"
-            radius="pill"
-            contrasting={false}
-            variant="outline"
-          >
-            Button
-          </Button>
-          <Button
-            primaryColor="primary"
-            radius="rect"
-            contrasting={false}
-            variant="clear"
-          >
+          <Button color="accent" radius="rect" variant="clear">
             Button
           </Button>
         </div>
         <div className="flex flex-wrap justify-evenly gap-2">
-          <Button primaryColor="primary" contrasting={false} disabled>
+          <Button color="accent" disabled>
             Button
           </Button>
-          <Button
-            primaryColor="primary"
-            contrasting={false}
-            disabled
-            variant="outline"
-            radius="pill"
-          >
+          <Button color="accent" disabled variant="outline" radius="pill">
             Button
           </Button>
-          <Button
-            primaryColor="primary"
-            contrasting={false}
-            disabled
-            variant="clear"
-          >
+          <Button color="accent" disabled variant="clear">
             Button
           </Button>
         </div>
@@ -454,46 +430,22 @@ export const Mixed: Story = {
     return (
       <div className="flex flex-col gap-12 bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap justify-evenly gap-2">
-          <Button primaryColor="secondary" secondaryColor="accent">
+          <Button color="secondary">Button</Button>
+          <Button color="secondary" radius="pill" variant="outline">
             Button
           </Button>
-          <Button
-            primaryColor="secondary"
-            secondaryColor="accent"
-            radius="pill"
-            variant="outline"
-          >
-            Button
-          </Button>
-          <Button
-            primaryColor="secondary"
-            secondaryColor="accent"
-            radius="rect"
-            variant="clear"
-          >
+          <Button color="secondary" radius="rect" variant="clear">
             Button
           </Button>
         </div>
         <div className="flex flex-wrap justify-evenly gap-2">
-          <Button disabled primaryColor="secondary" secondaryColor="accent">
+          <Button disabled color="secondary">
             Button
           </Button>
-          <Button
-            disabled
-            primaryColor="secondary"
-            secondaryColor="accent"
-            radius="pill"
-            variant="outline"
-          >
+          <Button disabled color="secondary" radius="pill" variant="outline">
             Button
           </Button>
-          <Button
-            disabled
-            primaryColor="secondary"
-            secondaryColor="accent"
-            radius="rect"
-            variant="clear"
-          >
+          <Button disabled color="secondary" radius="rect" variant="clear">
             Button
           </Button>
         </div>
@@ -507,110 +459,50 @@ export const Sizes: Story = {
     return (
       <div className="flex flex-col gap-2 bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap items-end justify-center gap-2">
-          <Button
-            icon={<ComputerIcon />}
-            size="xs"
-            primaryColor="primary"
-            secondaryColor="secondary"
-          >
+          <Button icon={<ComputerIcon />} size="xs" color="primary">
             Button
           </Button>
-          <Button
-            icon={<ComputerIcon />}
-            size="sm"
-            primaryColor="primary"
-            secondaryColor="secondary"
-          >
+          <Button icon={<ComputerIcon />} size="sm" color="primary">
             Button
           </Button>
-          <Button size="md" primaryColor="primary" secondaryColor="secondary">
+          <Button size="md" color="primary">
             <ComputerIcon />
             Button
           </Button>
-          <Button size="lg" primaryColor="primary" secondaryColor="secondary">
+          <Button size="lg" color="primary">
             <ComputerIcon />
             Button
           </Button>
-          <Button size="xl" primaryColor="primary" secondaryColor="secondary">
+          <Button size="xl" color="primary">
             <ComputerIcon />
             Button
           </Button>
         </div>
         <div className="flex flex-wrap items-end justify-center gap-2">
-          <Button
-            icon={<ComputerIcon />}
-            size="xs"
-            primaryColor="primary"
-            secondaryColor="secondary"
-          ></Button>
-          <Button
-            icon={<ComputerIcon />}
-            size="sm"
-            primaryColor="primary"
-            secondaryColor="secondary"
-          ></Button>
-          <Button
-            icon={<ComputerIcon />}
-            size="md"
-            primaryColor="primary"
-            secondaryColor="secondary"
-          ></Button>
-          <Button
-            icon={<ComputerIcon />}
-            size="lg"
-            primaryColor="primary"
-            secondaryColor="secondary"
-          ></Button>
-          <Button
-            icon={<ComputerIcon />}
-            size="xl"
-            primaryColor="primary"
-            secondaryColor="secondary"
-          ></Button>
+          <Button icon={<ComputerIcon />} size="xs" color="primary"></Button>
+          <Button icon={<ComputerIcon />} size="sm" color="primary"></Button>
+          <Button icon={<ComputerIcon />} size="md" color="primary"></Button>
+          <Button icon={<ComputerIcon />} size="lg" color="primary"></Button>
+          <Button icon={<ComputerIcon />} size="xl" color="primary"></Button>
         </div>
         <div className="flex flex-wrap items-start justify-center gap-2">
-          <Button
-            disabled
-            size="xs"
-            primaryColor="primary"
-            secondaryColor="secondary"
-          >
+          <Button disabled size="xs" color="primary">
             <ComputerIcon />
             Button
           </Button>
-          <Button
-            disabled
-            size="sm"
-            primaryColor="primary"
-            secondaryColor="secondary"
-          >
+          <Button disabled size="sm" color="primary">
             <ComputerIcon />
             Button
           </Button>
-          <Button
-            disabled
-            size="md"
-            primaryColor="primary"
-            secondaryColor="secondary"
-          >
+          <Button disabled size="md" color="primary">
             <ComputerIcon />
             Button
           </Button>
-          <Button
-            disabled
-            size="lg"
-            primaryColor="primary"
-            secondaryColor="secondary"
-          >
+          <Button disabled size="lg" color="primary">
             <ComputerIcon />
             Button
           </Button>
-          <Button
-            disabled
-            size="xl"
-            primaryColor="primary"
-            secondaryColor="secondary"
-          >
+          <Button disabled size="xl" color="primary">
             <ComputerIcon />
             Button
           </Button>
@@ -627,7 +519,6 @@ export const Custom: Story = {
       setLoading((prevState) => !prevState);
     }
     const buttonRef = useRef<HTMLButtonElement>(null);
-    const MotionButton = motion.create(Button<"button">);
     return (
       <div className="bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap items-center gap-1">
@@ -675,15 +566,9 @@ export const Custom: Story = {
           <MoonIcon />
           <span>Moon</span>
         </Button>
-        <Button
-          className="bg-primary-600 mt-4 justify-self-end px-20 py-10 font-serif text-2xl font-bold text-emerald-400"
-          contrasting={false}
-        >
+        <Button className="bg-primary-600 mt-4 justify-self-end px-20 py-10 font-serif text-2xl font-bold text-emerald-400">
           new button
         </Button>
-        <MotionButton transitions={false} whileHover={{ scale: 1.2 }}>
-          glg
-        </MotionButton>
       </div>
     );
   },

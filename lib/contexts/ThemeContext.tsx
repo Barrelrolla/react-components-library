@@ -1,13 +1,8 @@
 import { createContext, PropsWithChildren, useContext } from "react";
 import { DarkModeContextProvider } from "./DarkModeContext";
-import { ColorType } from "@/types";
 
 export type ThemeContextType =
   | {
-      primaryColor: ColorType;
-      secondaryColor: ColorType;
-      linksPrimaryColor: ColorType;
-      linksSecondaryColor: ColorType;
       transitions: boolean;
       scalingButtons: boolean;
     }

@@ -1,13 +1,10 @@
-import { ElementType } from "react";
-import { twMerge } from "tailwind-merge";
-import { useAnchorStyles } from "./useAnchorStyles";
+import { CSSProperties, ElementType } from "react";
 import { ColorType, PolymorphicProps } from "@/types";
+import { useAnchorStyles } from "./useAnchorStyles";
 
 const defaultType = "a";
 export type AnchorProps<E extends ElementType> = {
-  primaryColor?: ColorType;
-  secondaryColor?: ColorType;
-  contrasting?: boolean;
+  color?: ColorType;
   underlined?: boolean;
   hoverUnderline?: boolean;
   hoverUnderlineOffset?: boolean;
@@ -17,40 +14,37 @@ export type AnchorProps<E extends ElementType> = {
 
 export function Anchor<E extends ElementType = typeof defaultType>({
   as,
-  primaryColor,
-  secondaryColor,
-  contrasting = true,
+  color,
   underlined = true,
   hoverUnderline = true,
   hoverUnderlineOffset = true,
-  selectedUnderline = true,
-  selectedUnderlineOffset = true,
   highlights = true,
   transitions = true,
-  selected = false,
-  selectedClasses,
   className,
   children,
   ...rest
 }: AnchorProps<E>) {
-  const classes = twMerge(
-    useAnchorStyles(
-      contrasting,
-      highlights,
-      underlined,
-      hoverUnderline,
-      hoverUnderlineOffset,
-      transitions,
-      primaryColor,
-      secondaryColor,
-    ),
+  const classes = useAnchorStyles(
+    highlights,
+    underlined,
+    hoverUnderlineOffset,
+    hoverUnderline,
+    transitions,
     className,
   );
 
   const Element = as || defaultType;
 
   return (
-    <Element className={classes} {...rest}>
+    <Element
+      style={
+        {
+          "--color": `var(--color-${color ?? "primary"}-content)`,
+        } as CSSProperties
+      }
+      className={classes}
+      {...rest}
+    >
       {children}
     </Element>
   );
