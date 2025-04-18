@@ -241,17 +241,17 @@ export const Clear: Story = {
   },
   render: () => {
     return (
-      <div className="flex flex-wrap gap-2 bg-white p-2 dark:bg-black">
-        <Button variant="clear" clearButtonHover="none">
+      <div className="bg-base flex flex-wrap gap-2 p-2">
+        <Button variant="ghost" ghostHover="none">
           None
         </Button>
-        <Button variant="clear" clearButtonHover="outline">
+        <Button variant="ghost" ghostHover="outline">
           Outline
         </Button>
-        <Button variant="clear" clearButtonHover="fill">
+        <Button variant="ghost" ghostHover="fill">
           Fill
         </Button>
-        <Button variant="clear" clearButtonHover="contrasting">
+        <Button variant="ghost" ghostHover="contrasting">
           Contrasting
         </Button>
       </div>
@@ -341,7 +341,7 @@ export const Basic: Story = {
           <Button radius="pill" variant="outline">
             Button
           </Button>
-          <Button radius="rect" variant="clear">
+          <Button radius="rect" variant="ghost">
             Button
           </Button>
         </div>
@@ -350,7 +350,7 @@ export const Basic: Story = {
           <Button disabled radius="pill" variant="outline">
             Button
           </Button>
-          <Button disabled radius="rect" variant="clear">
+          <Button disabled radius="rect" variant="ghost">
             Button
           </Button>
         </div>
@@ -372,23 +372,23 @@ export const Icon: Story = {
     return (
       <div className="flex flex-col gap-12 bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap justify-evenly gap-2">
-          <Button icon={<SunIcon />} />
-          <Button icon={<MoonIcon />} radius="pill" variant="outline" />
-          <Button icon={<ComputerIcon />} radius="rect" variant="clear" />
+          <Button startIcon={<SunIcon />} />
+          <Button startIcon={<MoonIcon />} radius="pill" variant="outline" />
+          <Button startIcon={<ComputerIcon />} radius="rect" variant="ghost" />
         </div>
         <div className="flex flex-wrap justify-evenly gap-2">
-          <Button disabled icon={<SunIcon />} />
+          <Button disabled startIcon={<SunIcon />} />
           <Button
             disabled
-            icon={<MoonIcon />}
+            startIcon={<MoonIcon />}
             radius="pill"
             variant="outline"
           />
           <Button
             disabled
-            icon={<ComputerIcon />}
+            startIcon={<ComputerIcon />}
             radius="rect"
-            variant="clear"
+            variant="ghost"
           />
         </div>
       </div>
@@ -405,7 +405,7 @@ export const Primary: Story = {
           <Button color="accent" radius="pill" variant="outline">
             Button
           </Button>
-          <Button color="accent" radius="rect" variant="clear">
+          <Button color="accent" radius="rect" variant="ghost">
             Button
           </Button>
         </div>
@@ -416,7 +416,7 @@ export const Primary: Story = {
           <Button color="accent" disabled variant="outline" radius="pill">
             Button
           </Button>
-          <Button color="accent" disabled variant="clear">
+          <Button color="accent" disabled variant="ghost">
             Button
           </Button>
         </div>
@@ -434,7 +434,7 @@ export const Mixed: Story = {
           <Button color="secondary" radius="pill" variant="outline">
             Button
           </Button>
-          <Button color="secondary" radius="rect" variant="clear">
+          <Button color="secondary" radius="rect" variant="ghost">
             Button
           </Button>
         </div>
@@ -445,7 +445,7 @@ export const Mixed: Story = {
           <Button disabled color="secondary" radius="pill" variant="outline">
             Button
           </Button>
-          <Button disabled color="secondary" radius="rect" variant="clear">
+          <Button disabled color="secondary" radius="rect" variant="ghost">
             Button
           </Button>
         </div>
@@ -459,10 +459,10 @@ export const Sizes: Story = {
     return (
       <div className="flex flex-col gap-2 bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap items-end justify-center gap-2">
-          <Button icon={<ComputerIcon />} size="xs" color="primary">
+          <Button startIcon={<ComputerIcon />} size="xs" color="primary">
             Button
           </Button>
-          <Button icon={<ComputerIcon />} size="sm" color="primary">
+          <Button startIcon={<ComputerIcon />} size="sm" color="primary">
             Button
           </Button>
           <Button size="md" color="primary">
@@ -479,11 +479,31 @@ export const Sizes: Story = {
           </Button>
         </div>
         <div className="flex flex-wrap items-end justify-center gap-2">
-          <Button icon={<ComputerIcon />} size="xs" color="primary"></Button>
-          <Button icon={<ComputerIcon />} size="sm" color="primary"></Button>
-          <Button icon={<ComputerIcon />} size="md" color="primary"></Button>
-          <Button icon={<ComputerIcon />} size="lg" color="primary"></Button>
-          <Button icon={<ComputerIcon />} size="xl" color="primary"></Button>
+          <Button
+            startIcon={<ComputerIcon />}
+            size="xs"
+            color="primary"
+          ></Button>
+          <Button
+            startIcon={<ComputerIcon />}
+            size="sm"
+            color="primary"
+          ></Button>
+          <Button
+            startIcon={<ComputerIcon />}
+            size="md"
+            color="primary"
+          ></Button>
+          <Button
+            startIcon={<ComputerIcon />}
+            size="lg"
+            color="primary"
+          ></Button>
+          <Button
+            startIcon={<ComputerIcon />}
+            size="xl"
+            color="primary"
+          ></Button>
         </div>
         <div className="flex flex-wrap items-start justify-center gap-2">
           <Button disabled size="xs" color="primary">
@@ -507,6 +527,13 @@ export const Sizes: Story = {
             Button
           </Button>
         </div>
+        <div className="flex flex-wrap items-start justify-center gap-2">
+          <Button className="btn-xl sm:btn-sm">responsive</Button>
+          <Button
+            className="icon-xl sm:icon-sm"
+            startIcon={<ComputerIcon />}
+          ></Button>
+        </div>
       </div>
     );
   },
@@ -526,7 +553,7 @@ export const Custom: Story = {
             ref={buttonRef}
             loading={loading}
             loadingPosition="end"
-            icon={<ComputerIcon />}
+            startIcon={<ComputerIcon />}
             endIcon={<ComputerIcon />}
           ></Button>
           <Button
@@ -539,7 +566,7 @@ export const Custom: Story = {
             <span>Moon</span>
           </Button>
           <Button
-            icon={<ComputerIcon />}
+            startIcon={<ComputerIcon />}
             loading={loading}
             scaling={false}
             size="xl"
@@ -548,8 +575,7 @@ export const Custom: Story = {
             <span>Moon</span>
           </Button>
           <Button
-            variant="clear"
-            highlights={false}
+            variant="ghost"
             scaling={false}
             className="hover:text-primary-400 p-0 hover:outline-none"
           >

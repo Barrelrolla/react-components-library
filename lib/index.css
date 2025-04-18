@@ -15,20 +15,20 @@
   --color-light-content: var(--color-stone-950);
   --color-dark: var(--color-stone-950);
   --color-dark-content: var(--color-stone-50);
-  --color-primary: var(--color-sky-600);
+  --color-primary: var(--color-sky-700);
   --color-primary-content: var(--color-emerald-200);
-  --color-secondary: var(--color-fuchsia-600);
+  --color-secondary: var(--color-fuchsia-700);
   --color-secondary-content: var(--color-sky-200);
-  --color-accent: var(--color-emerald-600);
+  --color-accent: var(--color-emerald-700);
   --color-accent-content: var(--color-fuchsia-200);
   --color-info: var(--color-cyan-700);
-  --color-info-content: var(--color-cyan-200);
+  --color-info-content: var(--color-cyan-100);
   --color-success: var(--color-lime-700);
-  --color-success-content: var(--color-lime-200);
+  --color-success-content: var(--color-lime-100);
   --color-warning: var(--color-amber-700);
-  --color-warning-content: var(--color-amber-200);
+  --color-warning-content: var(--color-amber-100);
   --color-error: var(--color-rose-700);
-  --color-error-content: var(--color-rose-200);
+  --color-error-content: var(--color-rose-100);
 }
 
 .dark {
@@ -39,50 +39,119 @@
   --color-dark: var(--color-stone-50);
   --color-dark-content: var(--color-stone-950);
   --color-primary: var(--color-emerald-200);
-  --color-primary-content: var(--color-sky-600);
+  --color-primary-content: var(--color-sky-700);
   --color-secondary: var(--color-sky-200);
-  --color-secondary-content: var(--color-fuchsia-600);
+  --color-secondary-content: var(--color-fuchsia-700);
   --color-accent: var(--color-fuchsia-200);
-  --color-accent-content: var(--color-emerald-600);
+  --color-accent-content: var(--color-emerald-700);
   --color-info: var(--color-cyan-200);
-  --color-info-content: var(--color-cyan-700);
+  --color-info-content: var(--color-cyan-900);
   --color-success: var(--color-lime-200);
-  --color-success-content: var(--color-lime-700);
+  --color-success-content: var(--color-lime-900);
   --color-warning: var(--color-amber-200);
-  --color-warning-content: var(--color-amber-700);
+  --color-warning-content: var(--color-amber-900);
   --color-error: var(--color-rose-200);
-  --color-error-content: var(--color-rose-700);
+  --color-error-content: var(--color-rose-900);
+}
 
-  @theme {
-    --default-transition-duration: 100ms;
-  }
+@theme {
+  --default-transition-duration: 100ms;
+}
 
-  @theme inline {
-    --color-base: var(--color-base);
-    --color-base-content: var(--color-base-content);
-    --color-light: var(--color-light);
-    --color-light-content: var(--color-light-content);
-    --color-dark: var(--color-dark);
-    --color-dark-content: var(--color-dark-content);
-    --color-primary: var(--color-primary);
-    --color-primary-content: var(--color-primary-content);
-    --color-secondary: var(--color-secondary);
-    --color-secondary-content: var(--color-secondary-content);
-    --color-accent: var(--color-accent);
-    --color-accent-content: var(--color-accent-content);
-    --color-info: var(--color-info);
-    --color-info-content: var(--color-info-content);
-    --color-success: var(--color-success);
-    --color-success-content: var(--color-success-content);
-    --color-warning: var(--color-warning);
-    --color-warning-content: var(--color-warning-content);
-    --color-error: var(--color-error);
-    --color-error-content: var(--color-error-content);
-  }
+@theme inline {
+  --color-base: var(--color-base);
+  --color-base-content: var(--color-base-content);
+  --color-light: var(--color-light);
+  --color-light-content: var(--color-light-content);
+  --color-dark: var(--color-dark);
+  --color-dark-content: var(--color-dark-content);
+  --color-primary: var(--color-primary);
+  --color-primary-content: var(--color-primary-content);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-content: var(--color-secondary-content);
+  --color-accent: var(--color-accent);
+  --color-accent-content: var(--color-accent-content);
+  --color-info: var(--color-info);
+  --color-info-content: var(--color-info-content);
+  --color-success: var(--color-success);
+  --color-success-content: var(--color-success-content);
+  --color-warning: var(--color-warning);
+  --color-warning-content: var(--color-warning-content);
+  --color-error: var(--color-error);
+  --color-error-content: var(--color-error-content);
 
-  @layer base {
-    body {
-      @apply bg-base text-base-content
-    }
+  --btn-xs: 0.15rem;
+  --btn-sm: 0.35rem;
+  --btn-md: 0.60rem;
+  --btn-lg: 0.85rem;
+  --btn-xl: 1.10rem;
+  --icon-xs: 1rem;
+  --icon-sm: 1.6rem;
+  --icon-md: 2.3rem;
+  --icon-lg: 3rem;
+  --icon-xl: 3.7rem;
+
+}
+
+
+@layer base {
+  body {
+    @apply bg-base text-base-content
   }
+}
+
+@utility bgHover {
+  background-color: color-mix(in oklab,
+      var(--bg-color),
+      var(--color-base-content) 8%);
+  outline-color: color-mix(in oklab,
+      var(--bg-color),
+      var(--color-base-content) 8%);
+}
+
+@utility bgActive {
+  background-color: color-mix(in oklab,
+      var(--bg-color),
+      var(--color-base-content) 16%);
+  outline-color: color-mix(in oklab,
+      var(--bg-color),
+      var(--color-base-content) 16%);
+}
+
+@utility fgHover {
+  color: color-mix(in oklab, var(--fg-color), var(--color-base-content) 15%);
+  outline-color: color-mix(in oklab,
+      var(--fg-color),
+      var(--color-base-content) 15%);
+}
+
+@utility fgActive {
+  color: color-mix(in oklab, var(--fg-color), var(--color-base-content) 30%);
+  outline-color: color-mix(in oklab,
+      var(--fg-color),
+      var(--color-base-content) 30%);
+}
+
+@utility ghostHover {
+  color: color-mix(in oklab, var(--bg-color), var(--color-base-content) 15%);
+  outline-color: color-mix(in oklab,
+      var(--bg-color),
+      var(--color-base-content) 15%);
+}
+
+@utility ghostActive {
+  color: color-mix(in oklab, var(--bg-color), var(--color-base-content) 30%);
+  outline-color: color-mix(in oklab,
+      var(--bg-color),
+      var(--color-base-content) 30%);
+}
+
+@utility btn-* {
+  padding-inline: calc(--value(--btn-*) * 3);
+  padding-block: --value(--btn-*);
+  font-size: calc(var(--text-xs) + calc(--value(--btn-*) / 2));
+}
+
+@utility icon-* {
+  font-size: --value(--icon-*);
 }

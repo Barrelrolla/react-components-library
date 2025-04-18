@@ -44,7 +44,7 @@ export const InText: Story = {
     return (
       <p
         className={cn(
-          "bg-white p-2 text-black dark:bg-black dark:text-white",
+          "bg-(--color-base) p-2 text-(--color-base-content)",
           classes,
         )}
       >

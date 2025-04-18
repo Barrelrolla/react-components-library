@@ -39,7 +39,7 @@ export function Anchor<E extends ElementType = typeof defaultType>({
     <Element
       style={
         {
-          "--color": `var(--color-${color ?? "primary"}-content)`,
+          "--fg-color": `var(--color-${color ?? "primary"})`,
         } as CSSProperties
       }
       className={classes}

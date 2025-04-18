@@ -12,10 +12,9 @@ export function useAnchorStyles(
   const theme = useTheme();
 
   return cn(
-    "text-(--color) outline-(--color)",
+    "text-(--fg-color) outline-(--fg-color)",
     highlights &&
-      `hover:text-(--color)/90 focus-visible:text-(--color)/90 active:text-(--color)/80`,
-    "rounded outline-offset-4 focus-visible:outline-2",
+      "hover:fgHover focus-visible:fgHover active:fgActive rounded outline-offset-4 focus-visible:outline-2",
     underlined && "underline",
     !hoverUnderlineOffset && "underline-offset-2",
     hoverUnderlineOffset && "underline-offset-3 hover:underline-offset-2",

@@ -1,4 +1,5 @@
 import { SVGProps } from "react";
+import { twMerge } from "tailwind-merge";
 
 // https://phosphoricons.com/
 
@@ -96,7 +97,11 @@ export function ComputerIcon({ strokeWidth = 16, ...rest }: SVGIconProps) {
   );
 }
 
-export function Spinner({ strokeWidth = 20, ...rest }: SVGIconProps) {
+export function Spinner({
+  strokeWidth = 20,
+  className,
+  ...rest
+}: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -104,6 +109,7 @@ export function Spinner({ strokeWidth = 20, ...rest }: SVGIconProps) {
       strokeWidth={strokeWidth}
       height={"1em"}
       width={"1em"}
+      className={twMerge("animate-spin", className)}
       {...rest}
     >
       <path fill="none" d="M0 0h256v256H0z" />
