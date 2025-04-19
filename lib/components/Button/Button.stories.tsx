@@ -527,10 +527,12 @@ export const Sizes: Story = {
             Button
           </Button>
         </div>
-        <div className="flex flex-wrap items-start justify-center gap-2">
-          <Button className="btn-xl sm:btn-sm">responsive</Button>
+        <div className="flex w-full items-start justify-center gap-2 bg-rose-300">
+          <Button className="btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
+            responsive
+          </Button>
           <Button
-            className="icon-xl sm:icon-sm"
+            className="icon-xs sm:icon-sm md:icon-md lg:icon-lg xl:icon-xl"
             startIcon={<ComputerIcon />}
           ></Button>
         </div>
@@ -547,7 +549,7 @@ export const Custom: Story = {
     }
     const buttonRef = useRef<HTMLButtonElement>(null);
     return (
-      <div className="bg-white p-20 dark:bg-black">
+      <div className="bg-main p-20">
         <div className="flex flex-wrap items-center gap-1">
           <Button
             ref={buttonRef}
@@ -572,7 +574,7 @@ export const Custom: Story = {
             size="xl"
             className="flex min-w-52 gap-2 bg-red-700 text-5xl text-yellow-100 hover:bg-red-600 active:bg-red-500 dark:bg-orange-300"
           >
-            <span>Moon</span>
+            <span>BIG</span>
           </Button>
           <Button
             variant="ghost"

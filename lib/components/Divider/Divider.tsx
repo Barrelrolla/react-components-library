@@ -1,30 +1,20 @@
 import { ColorType, ResponsiveSizes } from "@/types";
 import { useDividerClasses } from "./useDividerStyles";
 import { ComponentProps } from "react";
+import { cssColorProps } from "@/util/cssColorProps";
 
 export type DividerProps = {
-  primaryColor?: ColorType;
-  secondaryColor?: ColorType;
-  contrasting?: boolean;
+  color?: ColorType;
   responsiveAt?: ResponsiveSizes;
   vertical?: boolean;
 } & ComponentProps<"div">;
 
 export function Divider({
-  primaryColor,
-  secondaryColor,
+  color = "main",
   responsiveAt,
-  contrasting = true,
   vertical = false,
   className,
 }: DividerProps) {
-  const classes = useDividerClasses(
-    vertical,
-    contrasting,
-    primaryColor,
-    secondaryColor,
-    responsiveAt,
-    className,
-  );
-  return <div className={classes}></div>;
+  const classes = useDividerClasses(vertical, responsiveAt, className);
+  return <div style={cssColorProps(color)} className={classes}></div>;
 }

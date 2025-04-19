@@ -42,7 +42,7 @@ export function DarkModeContextProvider({ children }: PropsWithChildren) {
   const [isDark, setIsDark] = useState(themeMode === darkTheme);
 
   useEffect(() => {
-    const setPreferredTheme = (event: MediaQueryListEvent) => {
+    const onPrefersChange = (event: MediaQueryListEvent) => {
       setThemeMode((prevState) => {
         if (prevState === systemTheme) {
           const { classList } = document.documentElement;
@@ -60,12 +60,12 @@ export function DarkModeContextProvider({ children }: PropsWithChildren) {
 
     window
       .matchMedia(matchMedia)
-      .addEventListener("change", setPreferredTheme, true);
+      .addEventListener("change", onPrefersChange, true);
 
     return () => {
       window
         .matchMedia(matchMedia)
-        .removeEventListener("change", setPreferredTheme);
+        .removeEventListener("change", onPrefersChange);
     };
   }, [themeMode]);
 

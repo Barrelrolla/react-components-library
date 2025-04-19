@@ -16,16 +16,6 @@ const meta: Meta<Props> = {
     selection: {
       control: { type: "boolean" },
     },
-    primaryColor: {
-      control: {
-        type: "select",
-      },
-    },
-    secondaryColor: {
-      control: {
-        type: "select",
-      },
-    },
     children: {
       control: { disable: true },
     },
@@ -68,18 +58,29 @@ export const Clear: Story = {
       <Button>button</Button>,
       <Button>button</Button>,
     ],
-    variant: "clear",
+    variant: "ghost",
+    bordered: false,
   },
 };
 
 export const Icon: Story = {
   args: {
     radius: "pill",
-    vertical: true,
     children: [
-      <Button icon={<ComputerIcon />} />,
-      <Button icon={<ComputerIcon />} />,
-      <Button icon={<ComputerIcon />} />,
+      <Button startIcon={<ComputerIcon />} />,
+      <Button startIcon={<ComputerIcon />} />,
+      <Button startIcon={<ComputerIcon />} />,
+    ],
+  },
+};
+
+export const Fancy: Story = {
+  args: {
+    radius: "pill",
+    size: "md",
+    children: [
+      <Button className="">Button</Button>,
+      <Button startIcon={<ComputerIcon />} />,
     ],
   },
 };

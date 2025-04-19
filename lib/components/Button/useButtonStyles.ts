@@ -4,15 +4,8 @@ import { button, ButtonVariantProps } from "./buttonTypes";
 import { useTheme } from "@/contexts";
 
 export function useButtonStyles(
-  {
-    variant,
-    radius,
-    scaling,
-    transitions,
-    ghostHover,
-    size,
-    icon,
-  }: ButtonVariantProps,
+  { variant, radius, scaling, ghostHover, size, icon }: ButtonVariantProps,
+  transitions: boolean,
   className: string,
 ) {
   const theme = useTheme();
@@ -21,6 +14,8 @@ export function useButtonStyles(
     (!theme || theme.transitions) &&
     (!group || group.transitions) &&
     transitions;
+  const hasScaling =
+    (!theme || theme.scalingButtons) && (!group || group.scaling) && scaling;
   const resolvedGhostHover =
     group && group.variant === "ghost"
       ? group.ghostHover
@@ -32,12 +27,19 @@ export function useButtonStyles(
     button({
       variant: group?.variant || variant || "solid",
       radius: group !== undefined ? "rect" : radius || "default",
-      scaling: group?.scaling || scaling,
+      scaling: hasScaling,
       ghostHover: resolvedGhostHover,
-      transitions: resolvedTransitions,
       size: group?.size || size,
       icon,
     }),
+    resolvedTransitions && "transition",
+    group && "rounded-none border-none",
+    group &&
+      group.radius === "default" &&
+      "group-first:rounded-l group-last:rounded-r",
+    group &&
+      group.radius === "pill" &&
+      "group-first:rounded-l-full group-last:rounded-r-full",
     className,
   );
 }

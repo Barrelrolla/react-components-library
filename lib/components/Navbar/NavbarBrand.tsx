@@ -35,8 +35,7 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
 
   return (
     <Anchor
-      primaryColor={context.primaryColor}
-      secondaryColor={context.secondaryColor}
+      color={context.color}
       underlined={underlined}
       hoverUnderline={hoverUnderline}
       as={as || defaultType}

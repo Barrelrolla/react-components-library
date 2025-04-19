@@ -12,7 +12,7 @@ export type PolymorphicProps<T extends ElementType> = {
 } & ComponentPropsWithoutRef<T>;
 
 export type ColorType =
-  | "base"
+  | "main"
   | "light"
   | "dark"
   | "primary"

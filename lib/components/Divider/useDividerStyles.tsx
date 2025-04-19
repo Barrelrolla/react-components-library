@@ -1,24 +1,13 @@
 import { twMerge } from "tailwind-merge";
-import { useTheme } from "@/contexts";
-import { ColorType, ResponsiveSizes } from "@/types";
-import { ColorMap } from "@/util";
+import { ResponsiveSizes } from "@/types";
 
 export function useDividerClasses(
   vertical: boolean,
-  contrasting: boolean,
-  primaryColor?: ColorType,
-  secondaryColor?: ColorType,
   responsiveAt?: ResponsiveSizes,
   className?: string,
 ) {
-  const theme = useTheme();
-  const primary = ColorMap[primaryColor || theme?.primaryColor || "black"];
-  const secondary =
-    ColorMap[secondaryColor || theme?.secondaryColor || "white"];
-
   return twMerge(
-    `bg-${primary.dark}`,
-    contrasting && `dark:bg-${secondary.light}`,
+    "bg-(--bg-color)",
     !vertical && getHorizontalStyles(),
     vertical && getVerticalStyles(),
     className,

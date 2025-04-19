@@ -20,12 +20,7 @@ const meta: Meta<Props> = {
     selected: undefined,
   },
   argTypes: {
-    primaryColor: {
-      control: {
-        type: "select",
-      },
-    },
-    secondaryColor: {
+    color: {
       control: {
         type: "select",
       },
@@ -69,11 +64,11 @@ export const Default: Story = {
     const navbar = canvas.getByText("Test");
     await expect(navbar, "renders").toBeTruthy();
   },
-  render: ({ selected, primaryColor, secondaryColor }) => {
+  render: ({ selected, color }) => {
     const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
     return (
       <div className="h-[200vh]">
-        <Navbar primaryColor={primaryColor} secondaryColor={secondaryColor}>
+        <Navbar color={color}>
           <NavbarToggle />
           <NavbarBrand href="#">
             <ComputerIcon /> Test

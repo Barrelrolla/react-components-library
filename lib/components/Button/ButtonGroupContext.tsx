@@ -5,6 +5,7 @@ import { ButtonVariantProps } from "./buttonTypes";
 export type ButtonGroupContextType =
   | ({
       color?: ColorType;
+      transitions?: boolean;
     } & ButtonVariantProps)
   | undefined;
 

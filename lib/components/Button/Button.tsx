@@ -1,14 +1,16 @@
-import { CSSProperties, ElementType, SVGProps } from "react";
+import { ElementType, SVGProps } from "react";
 import { twMerge } from "tailwind-merge";
 import { ButtonVariantProps } from "./buttonTypes";
 import { useButtonStyles } from "./useButtonStyles";
 import { Spinner } from "@/icons";
 import { ColorType, PolymorphicProps } from "@/types";
 import { useButtonGroupContext } from "./ButtonGroupContext";
+import { cssColorProps } from "@/util/cssColorProps";
 
 const defaultType = "button" as const;
 export type ButtonProps<E extends ElementType> = {
   color?: ColorType;
+  transitions?: boolean;
   disabled?: boolean;
   selected?: boolean;
   loading?: boolean;
@@ -37,6 +39,7 @@ export function Button<E extends ElementType = typeof defaultType>({
   icon,
   className,
   wrapperClasses,
+  style,
   children,
   ...rest
 }: ButtonProps<E>) {
@@ -50,9 +53,9 @@ export function Button<E extends ElementType = typeof defaultType>({
       size,
       ghostHover,
       scaling,
-      transitions,
       icon: isIcon,
     },
+    transitions,
     className,
   );
 
@@ -69,12 +72,7 @@ export function Button<E extends ElementType = typeof defaultType>({
   return (
     <span className={wrapperStyles}>
       <Element
-        style={
-          {
-            "--bg-color": `var(--color-${resolvedColor})`,
-            "--fg-color": `var(--color-${resolvedColor}-content)`,
-          } as CSSProperties
-        }
+        style={style || cssColorProps(resolvedColor)}
         className={classes}
         disabled={isDisabled}
         {...rest}

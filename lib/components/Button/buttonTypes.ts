@@ -29,8 +29,7 @@ export const button = cva(
         xl: "",
       },
       scaling: { true: " hover:scale-[102%] active:scale-[98%]" },
-      transitions: { true: "transition" },
-      icon: { true: "p-1" },
+      icon: { true: "" },
     },
     compoundVariants: [
       { icon: false, size: "xs", class: "btn-xs" },

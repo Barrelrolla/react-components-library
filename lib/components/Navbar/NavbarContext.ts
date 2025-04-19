@@ -3,8 +3,7 @@ import { ColorType, ResponsiveSizes } from "@/types";
 
 export type NavbarContextType =
   | {
-      primaryColor: ColorType;
-      secondaryColor: ColorType;
+      color: ColorType;
       collapseAt: ResponsiveSizes;
       position: "top" | "bottom";
       rounded: boolean;

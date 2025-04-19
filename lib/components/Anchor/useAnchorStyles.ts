@@ -19,7 +19,7 @@ export function useAnchorStyles(
     !hoverUnderlineOffset && "underline-offset-2",
     hoverUnderlineOffset && "underline-offset-3 hover:underline-offset-2",
     !underlined && hoverUnderline && "hover:underline",
-    theme?.transitions && transitions && "transition-basic",
+    (!theme || theme.transitions) && transitions && "transition-basic",
     className,
   );
 }

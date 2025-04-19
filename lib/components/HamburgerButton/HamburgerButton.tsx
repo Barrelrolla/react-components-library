@@ -1,3 +1,4 @@
+import { cssColorProps } from "@/util/cssColorProps";
 import { Button, ButtonProps } from "../Button";
 import { useHamburgerStyles } from "./useHamburgerStyles";
 
@@ -6,28 +7,25 @@ export type HamburgerButtonProps = {
 } & ButtonProps<"button">;
 
 export function HamburgerButton({
-  primaryColor,
-  secondaryColor,
-  contrasting = true,
+  color = "main",
+  transitions = true,
   isOpen = false,
   className,
   ...rest
 }: HamburgerButtonProps) {
   const { button, container, topLine, midLine, botLine } = useHamburgerStyles(
-    contrasting,
     isOpen,
-    primaryColor,
-    secondaryColor,
+    transitions,
     className,
   );
   return (
     <Button
       aria-label="navigation toggle"
-      variant="clear"
-      clearButtonHover="outline"
-      primaryColor={primaryColor}
-      secondaryColor={secondaryColor}
+      variant="ghost"
+      ghostHover="outline"
+      color={color}
       className={button}
+      style={cssColorProps(color)}
       {...rest}
     >
       <div className={container}>

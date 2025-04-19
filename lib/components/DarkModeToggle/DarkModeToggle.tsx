@@ -8,7 +8,7 @@ export function DarkModeToggle() {
   return (
     <Button
       onClick={() => setThemeMode(isDark ? lightTheme : darkTheme)}
-      icon={isDark ? <SunIcon /> : <MoonIcon />}
+      startIcon={isDark ? <SunIcon /> : <MoonIcon />}
       size="sm"
     />
   );

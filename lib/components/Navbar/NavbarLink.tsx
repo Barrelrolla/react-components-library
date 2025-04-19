@@ -39,10 +39,8 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
     onClick?.(event);
   }
 
-  const { primaryColor, secondaryColor, collapseAt } = context;
+  const { collapseAt } = context;
   const classes = useNavbarLinkStyles(
-    primaryColor,
-    secondaryColor,
     selected,
     bgHighlight,
     selectedHighlight,
@@ -56,8 +54,7 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
   return (
     <li>
       <Anchor
-        primaryColor={primaryColor}
-        secondaryColor={secondaryColor}
+        color={context.color}
         as={as || defaultType}
         selected={selected}
         className={classes}

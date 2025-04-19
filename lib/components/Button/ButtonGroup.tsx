@@ -1,33 +1,28 @@
 import { Children, ComponentProps } from "react";
 import { ButtonGroupContextProvider } from "./ButtonGroupContext";
-import { ButtonRadius, ButtonVariant, ClearButtonHover } from "./buttonTypes";
+import { ButtonVariantProps } from "./buttonTypes";
 import { useButtonGroupStyles } from "./useButtonGroupStyles";
 import { Divider } from "../Divider";
-import { ColorType, SizeType } from "@/types";
+import { ColorType } from "@/types";
+import { cssColorProps } from "@/util/cssColorProps";
 
 export type ButtonGroupProps = {
-  variant?: ButtonVariant;
-  radius?: ButtonRadius;
-  clearButtonHover?: ClearButtonHover;
-  primaryColor?: ColorType;
-  secondaryColor?: ColorType;
-  size?: SizeType;
-  contrasting?: boolean;
+  color?: ColorType;
+  transitions?: boolean;
   divider?: boolean;
   bordered?: boolean;
   vertical?: boolean;
   scaling?: boolean;
   dividerClasses?: string;
-} & ComponentProps<"div">;
+} & ButtonVariantProps &
+  ComponentProps<"div">;
 
 export function ButtonGroup({
   variant = "outline",
   radius = "default",
-  clearButtonHover = "none",
-  primaryColor,
-  secondaryColor,
+  ghostHover = "none",
+  color = "primary",
   size = "md",
-  contrasting = true,
   divider = true,
   vertical = false,
   scaling = false,
@@ -37,14 +32,10 @@ export function ButtonGroup({
   children,
 }: ButtonGroupProps) {
   const { groupStyles, dividerStyles } = useButtonGroupStyles(
-    contrasting,
-    variant,
+    { variant, radius },
     vertical,
     bordered,
-    radius,
     divider,
-    primaryColor,
-    secondaryColor,
     className,
     dividerClasses,
   );
@@ -54,22 +45,23 @@ export function ButtonGroup({
       value={{
         variant,
         radius,
-        clearButtonHover,
-        primaryColor,
-        secondaryColor,
+        ghostHover,
+        color,
         size,
-        contrasting,
-        vertical,
         scaling,
       }}
     >
       <div className="flex">
-        <div className={groupStyles}>
+        <div className={groupStyles} style={cssColorProps(color)}>
           {Children.map(children, (child, index) => {
             return (
               <>
                 {divider && index !== 0 && (
-                  <Divider className={dividerStyles} vertical={!vertical} />
+                  <Divider
+                    color={color}
+                    className={dividerStyles}
+                    vertical={!vertical}
+                  />
                 )}
                 {child}
               </>

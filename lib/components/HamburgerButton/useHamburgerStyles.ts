@@ -1,7 +1,5 @@
 import { twMerge } from "tailwind-merge";
 import { useTheme } from "@/contexts";
-import { ColorType } from "@/types";
-import { ColorMap } from "@/util";
 
 interface HamburgerStyles {
   button: string;
@@ -12,29 +10,21 @@ interface HamburgerStyles {
 }
 
 export function useHamburgerStyles(
-  contrasting: boolean,
   isOpen: boolean,
-  primaryColor?: ColorType,
-  secondaryColor?: ColorType,
+  transitions: boolean,
   className?: string,
 ): HamburgerStyles {
   const theme = useTheme();
-  const transitions = theme === undefined || theme.transitions;
-  const primary = ColorMap[primaryColor || theme?.primaryColor || "black"];
-  const secondary =
-    ColorMap[secondaryColor || theme?.secondaryColor || "white"];
-
+  const hasTransitions = (!theme || theme.transitions) && transitions;
   const button = twMerge("px-1 py-0 hover:outline-2", className);
   const container = twMerge(
     "relative h-4.5 w-6 p-4",
-    // transitions && "transition-all duration-300",
+    // hasTransitions && "transition-all duration-300",
     // isOpen && "rotate-90",
   );
   const lineClasses = twMerge(
-    `bg-${primary.dark}`,
-    contrasting && `dark:bg-${secondary.light}`,
-    "absolute top-1.75 left-1 h-0.5 w-6 rotate-0",
-    transitions && "transition-all",
+    "absolute top-1.75 left-1 h-0.5 w-6 rotate-0 bg-(--fg-color)",
+    hasTransitions && "transition-all",
   );
   const topLine = twMerge(
     lineClasses,

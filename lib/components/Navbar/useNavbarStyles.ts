@@ -1,13 +1,10 @@
 import { twMerge } from "tailwind-merge";
 import { useTheme } from "@/contexts";
-import { ColorType, ResponsiveSizes } from "@/types";
-import { ColorMap } from "@/util";
+import { ResponsiveSizes } from "@/types";
 
 interface NavbarStyles {
   navbarStyles: string;
   backdropStyles: string;
-  resolvedPrimaryColor: ColorType;
-  resolvedSecondaryColor: ColorType;
 }
 
 export function useNavbarStyles(
@@ -18,21 +15,13 @@ export function useNavbarStyles(
   isRounded: boolean,
   isOpen: boolean,
   collapseAt: ResponsiveSizes,
-  primaryColor?: ColorType,
-  secondaryColor?: ColorType,
   className?: string,
   backdropClasses?: string,
 ): NavbarStyles {
-  const theme = useTheme();
-  const resolvedPrimaryColor = primaryColor || theme?.primaryColor || "black";
-  const resolvedSecondaryColor =
-    secondaryColor || theme?.secondaryColor || "white";
-  const primary = ColorMap[resolvedPrimaryColor];
-  const secondary = ColorMap[resolvedSecondaryColor];
   return {
     navbarStyles: twMerge(
       "flex w-full flex-wrap items-center justify-between px-4 py-2",
-      `bg-${secondary.light} text-${primary.dark} dark:bg-${primary.dark} dark:text-${secondary.light}`,
+      "bg-(--bg-color) text-(--fg-color)",
       fixed && "fixed left-0 z-40",
       position === "top" && "top-0",
       position === "bottom" && "bottom-0",
@@ -55,8 +44,6 @@ export function useNavbarStyles(
       isOpen && "block",
       backdropClasses,
     ),
-    resolvedPrimaryColor,
-    resolvedSecondaryColor,
   };
 }
 
@@ -110,8 +97,6 @@ export function useNavbarCollapseStyles(
 }
 
 export function useNavbarLinkStyles(
-  primaryColor: ColorType,
-  secondaryColor: ColorType,
   selected: boolean,
   bgHighlight: boolean,
   selectedHighlight: boolean,
@@ -124,21 +109,9 @@ export function useNavbarLinkStyles(
   const theme = useTheme();
   const transitions =
     (!theme || theme.transitions) && (bgHighlight || selectedHighlight);
-  const primary = ColorMap[primaryColor];
-  const secondary = ColorMap[secondaryColor];
-
-  const highLightedColors = bgHighlight
-    ? `hover:bg-${secondary.lightHighlight} active:bg-${secondary.lightActive} dark:hover:bg-${primary.darkHighlight} dark:active:bg-${primary.darkActive}`
-    : "";
-
-  const selectedColors = selected
-    ? `outline-offset-1 bg-${primary.dark} dark:bg-${secondary.light} hover:bg-${primary.darkHighlight} dark:hover:bg-${secondary.lightHighlight} focus-visible:bg-${primary.darkHighlight} dark:focus-visible:bg-${secondary.lightHighlight} active:bg-${primary.darkActive} dark:active:bg-${secondary.lightActive} text-${secondary.light} dark:text-${primary.dark} hover:text-${secondary.lightHighlight} dark:hover:text-${primary.darkHighlight} focus-visible:text-${secondary.lightHighlight} dark:focus-visible:text-${primary.darkHighlight} active:text-${secondary.lightActive} dark:active:text-${primary.darkActive} focus-visible:outline-${primary.darkHighlight} dark:focus-visible:outline-${secondary.lightHighlight}`
-    : "";
 
   return twMerge(
     "flex justify-start p-2 outline-offset-0",
-    highLightedColors,
-    selectedColors,
     transitions && "transition-colors",
     collapseAt === "sm" && "sm:px-2 sm:py-0",
     collapseAt === "md" && "md:px-2 md:py-0",

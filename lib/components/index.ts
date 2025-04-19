@@ -1,7 +1,5 @@
 export { Anchor } from "./Anchor";
 export type { AnchorProps } from "./Anchor";
-export { Body } from "./Body";
-export type { BodyProps } from "./Body";
 export { Button, ButtonGroup, ButtonGroupContextProvider } from "./Button";
 export type {
   ButtonProps,

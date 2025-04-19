@@ -9,8 +9,8 @@
 }
 
 :root {
-  --color-base: var(--color-stone-200);
-  --color-base-content: var(--color-stone-800);
+  --color-main: var(--color-stone-200);
+  --color-main-content: var(--color-stone-800);
   --color-light: var(--color-stone-50);
   --color-light-content: var(--color-stone-950);
   --color-dark: var(--color-stone-950);
@@ -32,8 +32,8 @@
 }
 
 .dark {
-  --color-base: var(--color-stone-800);
-  --color-base-content: var(--color-stone-200);
+  --color-main: var(--color-stone-800);
+  --color-main-content: var(--color-stone-200);
   --color-light: var(--color-stone-950);
   --color-light-content: var(--color-stone-50);
   --color-dark: var(--color-stone-50);
@@ -59,8 +59,8 @@
 }
 
 @theme inline {
-  --color-base: var(--color-base);
-  --color-base-content: var(--color-base-content);
+  --color-main: var(--color-main);
+  --color-main-content: var(--color-main-content);
   --color-light: var(--color-light);
   --color-light-content: var(--color-light-content);
   --color-dark: var(--color-dark);
@@ -80,70 +80,69 @@
   --color-error: var(--color-error);
   --color-error-content: var(--color-error-content);
 
-  --btn-xs: 0.15rem;
-  --btn-sm: 0.35rem;
-  --btn-md: 0.60rem;
-  --btn-lg: 0.85rem;
-  --btn-xl: 1.10rem;
-  --icon-xs: 1rem;
-  --icon-sm: 1.6rem;
-  --icon-md: 2.3rem;
-  --icon-lg: 3rem;
-  --icon-xl: 3.7rem;
-
+  --btn-xs: 0.1rem;
+  --btn-sm: 0.18rem;
+  --btn-md: 0.25rem;
+  --btn-lg: 0.375rem;
+  --btn-xl: 0.5rem;
+  --icon-xs: 0.265rem;
+  --icon-sm: 0.32rem;
+  --icon-md: 0.375rem;
+  --icon-lg: 0.47rem;
+  --icon-xl: 0.562rem;
 }
 
 
 @layer base {
   body {
-    @apply bg-base text-base-content
+    @apply bg-main text-main-content
   }
 }
 
 @utility bgHover {
   background-color: color-mix(in oklab,
       var(--bg-color),
-      var(--color-base-content) 8%);
+      var(--color-dark) 8%);
   outline-color: color-mix(in oklab,
       var(--bg-color),
-      var(--color-base-content) 8%);
+      var(--color-dark) 8%);
 }
 
 @utility bgActive {
   background-color: color-mix(in oklab,
       var(--bg-color),
-      var(--color-base-content) 16%);
+      var(--color-dark) 16%);
   outline-color: color-mix(in oklab,
       var(--bg-color),
-      var(--color-base-content) 16%);
+      var(--color-dark) 16%);
 }
 
 @utility fgHover {
-  color: color-mix(in oklab, var(--fg-color), var(--color-base-content) 15%);
+  color: color-mix(in oklab, var(--fg-color), var(--color-dark) 15%);
   outline-color: color-mix(in oklab,
       var(--fg-color),
-      var(--color-base-content) 15%);
+      var(--color-dark) 15%);
 }
 
 @utility fgActive {
-  color: color-mix(in oklab, var(--fg-color), var(--color-base-content) 30%);
+  color: color-mix(in oklab, var(--fg-color), var(--color-dark) 30%);
   outline-color: color-mix(in oklab,
       var(--fg-color),
-      var(--color-base-content) 30%);
+      var(--color-dark) 30%);
 }
 
 @utility ghostHover {
-  color: color-mix(in oklab, var(--bg-color), var(--color-base-content) 15%);
+  color: color-mix(in oklab, var(--bg-color), var(--color-dark) 15%);
   outline-color: color-mix(in oklab,
       var(--bg-color),
-      var(--color-base-content) 15%);
+      var(--color-dark) 15%);
 }
 
 @utility ghostActive {
-  color: color-mix(in oklab, var(--bg-color), var(--color-base-content) 30%);
+  color: color-mix(in oklab, var(--bg-color), var(--color-dark) 30%);
   outline-color: color-mix(in oklab,
       var(--bg-color),
-      var(--color-base-content) 30%);
+      var(--color-dark) 30%);
 }
 
 @utility btn-* {

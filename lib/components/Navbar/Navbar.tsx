@@ -2,10 +2,10 @@ import { ComponentProps, useEffect, useState } from "react";
 import { NavbarContextProvider } from "./NavbarContext";
 import { useNavbarStyles } from "./useNavbarStyles";
 import { ColorType, ResponsiveSizes } from "@/types";
+import { cssColorProps } from "@/util/cssColorProps";
 
 export type NavbarProps = {
-  primaryColor?: ColorType;
-  secondaryColor?: ColorType;
+  color?: ColorType;
   hasShadow?: boolean;
   hasBorder?: boolean;
   isRounded?: boolean;
@@ -16,8 +16,7 @@ export type NavbarProps = {
 } & ComponentProps<"nav">;
 
 export function Navbar({
-  primaryColor,
-  secondaryColor,
+  color = "main",
   hasBorder = true,
   hasShadow = true,
   isRounded = true,
@@ -30,12 +29,7 @@ export function Navbar({
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const {
-    navbarStyles,
-    backdropStyles,
-    resolvedPrimaryColor,
-    resolvedSecondaryColor,
-  } = useNavbarStyles(
+  const { navbarStyles, backdropStyles } = useNavbarStyles(
     fixed,
     position,
     hasBorder,
@@ -43,8 +37,6 @@ export function Navbar({
     isRounded,
     isOpen,
     collapseAt,
-    primaryColor,
-    secondaryColor,
     className,
     backdropClasses,
   );
@@ -76,8 +68,7 @@ export function Navbar({
   return (
     <NavbarContextProvider
       value={{
-        primaryColor: resolvedPrimaryColor,
-        secondaryColor: resolvedSecondaryColor,
+        color,
         position,
         rounded: isRounded,
         collapseAt: collapseAt,
@@ -86,7 +77,9 @@ export function Navbar({
       }}
     >
       <>
-        <nav className={navbarStyles}>{children}</nav>
+        <nav className={navbarStyles} style={cssColorProps(color)}>
+          {children}
+        </nav>
         <div className={backdropStyles} onClick={outsideClickHandler}></div>
       </>
     </NavbarContextProvider>

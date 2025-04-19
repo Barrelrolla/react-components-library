@@ -15,17 +15,17 @@ export function DarkModeSelector({
       <Button
         selected={themeMode === lightTheme}
         onClick={() => setThemeMode(lightTheme)}
-        icon={<SunIcon />}
+        startIcon={<SunIcon />}
       ></Button>
       <Button
         selected={themeMode === darkTheme}
         onClick={() => setThemeMode(darkTheme)}
-        icon={<MoonIcon />}
+        startIcon={<MoonIcon />}
       ></Button>
       <Button
         selected={themeMode === systemTheme}
         onClick={() => setThemeMode(systemTheme)}
-        icon={<ComputerIcon />}
+        startIcon={<ComputerIcon />}
       ></Button>
     </ButtonGroup>
   );

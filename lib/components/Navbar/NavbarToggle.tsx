@@ -14,8 +14,7 @@ export function NavbarToggle() {
     setIsOpen(!isOpen);
   }
 
-  const { primaryColor, secondaryColor, collapseAt, isOpen, setIsOpen } =
-    context;
+  const { color, collapseAt, isOpen, setIsOpen } = context;
 
   const classes = twMerge(
     collapseAt === "sm" && "sm:hidden",
@@ -27,8 +26,7 @@ export function NavbarToggle() {
   return (
     <HamburgerButton
       wrapperClasses={classes}
-      primaryColor={primaryColor}
-      secondaryColor={secondaryColor}
+      color={color}
       isOpen={isOpen}
       onClick={clickHandler}
     />
