@@ -42,8 +42,6 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
   const { collapseAt } = context;
   const classes = useNavbarLinkStyles(
     selected,
-    bgHighlight,
-    selectedHighlight,
     collapseAt,
     selectedUnderline,
     selectedUnderlineOffset,

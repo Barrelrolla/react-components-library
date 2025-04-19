@@ -98,21 +98,14 @@ export function useNavbarCollapseStyles(
 
 export function useNavbarLinkStyles(
   selected: boolean,
-  bgHighlight: boolean,
-  selectedHighlight: boolean,
   collapseAt: ResponsiveSizes,
   selectedUnderline: boolean,
   selectedUnderlineOffset: boolean,
   className?: string,
   selectedClasses?: string,
 ) {
-  const theme = useTheme();
-  const transitions =
-    (!theme || theme.transitions) && (bgHighlight || selectedHighlight);
-
   return twMerge(
     "flex justify-start p-2 outline-offset-0",
-    transitions && "transition-colors",
     collapseAt === "sm" && "sm:px-2 sm:py-0",
     collapseAt === "md" && "md:px-2 md:py-0",
     collapseAt === "lg" && "lg:px-2 lg:py-0",

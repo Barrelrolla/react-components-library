@@ -7,18 +7,18 @@ export const button = cva(
     variants: {
       variant: {
         solid:
-          "bg-(--bg-color) hover:bgHover focus-visible:bgHover active:bgActive text-(--fg-color)",
+          "bg-(--bg-color) hover:bg-hover focus-visible:bg-hover active:bg-active text-(--fg-color)",
         outline:
-          "border border-(--bg-color) text-(--bg-color) hover:border-transparent focus-visible:border-transparent hover:bg-(--bg-color) focus-visible:bg-(--bg-color) focus-visible:text-(--fg-color) hover:text-(--fg-color) active:bgHover active:text-(--fg-color)",
+          "inset-ring text-(--bg-color) hover:inset-ring-transparent focus-visible:inset-ring-transparent hover:bg-(--bg-color) focus-visible:bg-(--bg-color) focus-visible:text-(--fg-color) hover:text-(--fg-color) active:bg-hover active:text-(--fg-color) active:inset-ring-transparent",
         ghost: "text-(--bg-color)",
       },
       ghostHover: {
-        none: "hover:ghostHover focus-visible:ghostHover active:ghostActive",
-        fill: "hover:bg-(--bg-color) focus-visible:bg-(--bg-color) hover:text-(--fg-color) focus-visible:text-(--fg-color) active:bgHover active:text-(--fg-color)",
+        none: "hover:ghost-hover focus-visible:ghost-hover active:ghost-active",
+        fill: "hover:bg-(--bg-color) focus-visible:bg-(--bg-color) hover:text-(--fg-color) focus-visible:text-(--fg-color) active:bg-hover active:text-(--fg-color) a",
         outline:
-          "hover:ghostHover focus-visible:ghostActive hover:outline-2 ring-(--bg-color)",
+          "hover:outline-2 hover:ghost-hover focus-visible:ghost-hover active:outline-2 active:ghost-active",
         contrasting:
-          "hover:text-(--fg-color) focus-visible:text-(--fg-color) active:fgHover outline-(--fg-color)",
+          "hover:text-(--fg-color) focus-visible:text-(--fg-color) active:fg-active outline-(--fg-color)",
       },
       radius: { default: "rounded", rect: "", pill: "rounded-full" },
       size: {
@@ -28,7 +28,7 @@ export const button = cva(
         lg: "",
         xl: "",
       },
-      scaling: { true: " hover:scale-[102%] active:scale-[98%]" },
+      scaling: { true: "active:scale-[99%]" },
       icon: { true: "" },
     },
     compoundVariants: [
