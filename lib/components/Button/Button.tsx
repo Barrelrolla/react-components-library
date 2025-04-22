@@ -71,7 +71,7 @@ export function Button<E extends ElementType = typeof defaultType>({
   return (
     <span className={wrapperStyles}>
       <Element
-        style={{ ...style, ...cssColorProps(resolvedColor) }}
+        style={{ ...cssColorProps(resolvedColor), ...style }}
         className={classes}
         disabled={isDisabled}
         {...rest}

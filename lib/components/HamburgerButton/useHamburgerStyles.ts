@@ -16,7 +16,7 @@ export function useHamburgerStyles(
 ): HamburgerStyles {
   const theme = useTheme();
   const hasTransitions = (!theme || theme.transitions) && transitions;
-  const button = twMerge("px-1 py-0 hover:outline-2", className);
+  const button = twMerge("px-1 py-0", className);
   const container = twMerge(
     "relative h-4.5 w-6 p-4",
     // hasTransitions && "transition-all duration-300",

@@ -1,4 +1,3 @@
-import { cssColorProps } from "@/util/cssColorProps";
 import { Button, ButtonProps } from "../Button";
 import { useHamburgerStyles } from "./useHamburgerStyles";
 
@@ -21,11 +20,9 @@ export function HamburgerButton({
   return (
     <Button
       aria-label="navigation toggle"
-      variant="ghost"
-      ghostHover="outline"
+      variant="solid"
       color={color}
       className={button}
-      style={cssColorProps(color)}
       {...rest}
     >
       <div className={container}>
