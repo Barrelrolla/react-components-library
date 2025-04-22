@@ -13,11 +13,18 @@ const meta: Meta<Props> = {
   component: ButtonGroup,
   args: { selection: true },
   argTypes: {
-    selection: {
-      control: { type: "boolean" },
+    selection: { control: { type: "boolean" } },
+    color: { control: { type: "inline-radio" } },
+    variant: { control: { type: "inline-radio" } },
+    size: { control: { type: "inline-radio" } },
+    radius: { control: { type: "inline-radio" } },
+    ghostHover: {
+      control: { type: "inline-radio" },
+      if: { arg: "variant", eq: "ghost" },
     },
+
     children: {
-      control: { disable: true },
+      if: { arg: "false", exists: true },
     },
   },
 };
@@ -34,7 +41,7 @@ export const Default: Story = {
       }
     };
     return (
-      <>
+      <div className="bg-main px-10 py-20">
         <ButtonGroup {...rest}>
           <Button selected={selected === 0} onClick={() => clickHandler(0)}>
             button
@@ -46,7 +53,7 @@ export const Default: Story = {
             button
           </Button>
         </ButtonGroup>
-      </>
+      </div>
     );
   },
 };

@@ -1,12 +1,17 @@
 import { createContext, useContext } from "react";
-import { ColorType } from "@/types";
-import { ButtonVariantProps } from "./buttonTypes";
+import { ColorType, InputRadius, SizeType } from "@/types";
+import { ButtonVariant, GhostHover } from "./buttonTypes";
 
 export type ButtonGroupContextType =
-  | ({
+  | {
       color?: ColorType;
+      variant?: ButtonVariant;
+      ghostHover?: GhostHover;
+      radius?: InputRadius;
+      size?: SizeType;
+      scaling?: boolean;
       transitions?: boolean;
-    } & ButtonVariantProps)
+    }
   | undefined;
 
 const ButtonGroupContext = createContext<ButtonGroupContextType>(undefined);

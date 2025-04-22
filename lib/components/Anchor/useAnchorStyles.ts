@@ -1,5 +1,6 @@
+import { twMerge } from "tailwind-merge";
 import { useTheme } from "@/contexts";
-import { cn } from "@/util";
+import { ColorType } from "@/types";
 
 export function useAnchorStyles(
   highlights: boolean,
@@ -7,19 +8,22 @@ export function useAnchorStyles(
   hoverUnderlineOffset: boolean,
   hoverUnderline: boolean,
   transitions: boolean,
+  color?: ColorType,
   className?: string,
 ) {
   const theme = useTheme();
 
-  return cn(
-    "text-(--fg-color) outline-(--fg-color)",
-    highlights &&
-      "hover:fg-hover focus-visible:fg-hover active:fg-active rounded outline-offset-4 focus-visible:outline-2",
-    underlined && "underline",
-    !hoverUnderlineOffset && "underline-offset-2",
-    hoverUnderlineOffset && "underline-offset-3 hover:underline-offset-2",
-    !underlined && hoverUnderline && "hover:underline",
-    (!theme || theme.transitions) && transitions && "transition-basic",
-    className,
-  );
+  return {
+    classes: twMerge(
+      "a",
+      highlights && "a-highlights",
+      underlined && "underline",
+      !underlined && hoverUnderline && "hover:underline",
+      !hoverUnderlineOffset && "underline-offset-1",
+      hoverUnderlineOffset && "underline-offset-2 hover:underline-offset-1",
+      (!theme || theme.transitions) && transitions && "transition-anchor",
+      className,
+    ),
+    resolvedColor: color || "main",
+  };
 }

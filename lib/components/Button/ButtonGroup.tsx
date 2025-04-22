@@ -1,25 +1,28 @@
 import { Children, ComponentProps } from "react";
 import { ButtonGroupContextProvider } from "./ButtonGroupContext";
-import { ButtonVariantProps } from "./buttonTypes";
 import { useButtonGroupStyles } from "./useButtonGroupStyles";
 import { Divider } from "../Divider";
-import { ColorType } from "@/types";
+import { ColorType, InputRadius, SizeType } from "@/types";
 import { cssColorProps } from "@/util/cssColorProps";
+import { ButtonVariant, GhostHover } from "./buttonTypes";
 
 export type ButtonGroupProps = {
   color?: ColorType;
+  variant?: ButtonVariant;
+  ghostHover?: GhostHover;
+  size?: SizeType;
+  radius?: InputRadius;
   transitions?: boolean;
   divider?: boolean;
   bordered?: boolean;
   vertical?: boolean;
   scaling?: boolean;
   dividerClasses?: string;
-} & ButtonVariantProps &
-  ComponentProps<"div">;
+} & ComponentProps<"div">;
 
 export function ButtonGroup({
   variant = "outline",
-  radius = "default",
+  radius = "small",
   ghostHover = "none",
   color = "primary",
   size = "md",
@@ -32,7 +35,8 @@ export function ButtonGroup({
   children,
 }: ButtonGroupProps) {
   const { groupStyles, dividerStyles } = useButtonGroupStyles(
-    { variant, radius },
+    variant,
+    radius,
     vertical,
     bordered,
     divider,

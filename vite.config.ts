@@ -10,7 +10,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "./lib/index.ts"),
-      name: "react-test-lib",
+      name: "@barrelrolla/react-components-library",
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {

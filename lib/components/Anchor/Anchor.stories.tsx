@@ -1,26 +1,17 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
-import { cn } from "@/util";
 import { Anchor } from "./Anchor";
+import { twMerge } from "tailwind-merge";
 
 const meta: Meta<typeof Anchor> = {
   title: "Components/Anchor",
   component: Anchor,
   argTypes: {
-    children: {
-      name: "text",
-    },
-    href: {
-      if: { exists: true, global: "true" },
-    },
-    primaryColor: {
-      control: { type: "select" },
-    },
-    secondaryColor: {
-      control: { type: "select" },
-    },
-    as: { if: { exists: true, global: "true" } },
-    ref: { if: { exists: true, global: "true" } },
+    children: { name: "text" },
+    color: { control: { type: "inline-radio" } },
+    href: { if: { arg: "false", exists: true } },
+    as: { if: { arg: "false", exists: true } },
+    ref: { if: { arg: "false", exists: true } },
   },
 };
 
@@ -33,6 +24,15 @@ export const Default: Story = {
     const button = canvas.getByText("Link");
     await expect(button, "renders").toBeTruthy();
   },
+  render: (props) => {
+    return (
+      <div className="bg-main min-h-100 px-10 py-20">
+        <Anchor href="#" {...props}>
+          {props.children}
+        </Anchor>
+      </div>
+    );
+  },
   args: {
     children: "Link",
     href: "#",
@@ -42,19 +42,14 @@ export const Default: Story = {
 export const InText: Story = {
   render: ({ classes, ...props }) => {
     return (
-      <p
-        className={cn(
-          "bg-(--color-main) p-2 text-(--color-main-content)",
-          classes,
-        )}
-      >
+      <p className={twMerge("bg-main text-main-content p-2", classes)}>
         Lorem ipsum{" "}
         <Anchor href="#" {...props}>
           dolor
         </Anchor>{" "}
         sit amet consectetur adipisicing elit. Velit vel iste veniam ut cumque
         dolores{" "}
-        <Anchor href="#" {...props}>
+        <Anchor data-selected href="#" {...props}>
           inventore
         </Anchor>{" "}
         natus molestiae totam temporibus, aperiam voluptates aut excepturi
@@ -65,9 +60,6 @@ export const InText: Story = {
         odio culpa quis!
       </p>
     );
-  },
-  args: {
-    classes: "",
   },
   argTypes: {
     children: { if: { exists: true, global: "true" } },

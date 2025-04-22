@@ -1,2 +1,1 @@
-export { cn } from "./cn";
-export { ButtonSizes, IconButtonSizes } from "./sizes";
+export type { ButtonSizes, IconButtonSizes } from "./sizes";

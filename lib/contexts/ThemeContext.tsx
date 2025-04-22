@@ -1,10 +1,12 @@
 import { createContext, PropsWithChildren, useContext } from "react";
 import { DarkModeContextProvider } from "./DarkModeContext";
+import { InputRadius } from "@/types";
 
 export type ThemeContextType =
   | {
-      transitions: boolean;
-      scalingButtons: boolean;
+      inputsRadius?: InputRadius;
+      transitions?: boolean;
+      scalingButtons?: boolean;
     }
   | undefined;
 

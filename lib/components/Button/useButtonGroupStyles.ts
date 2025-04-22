@@ -1,8 +1,10 @@
 import { twMerge } from "tailwind-merge";
-import { ButtonVariantProps } from "./buttonTypes";
+import { ButtonVariant } from "./buttonTypes";
+import { InputRadius } from "@/types";
 
 export function useButtonGroupStyles(
-  { radius, variant }: ButtonVariantProps,
+  variant: ButtonVariant,
+  radius: InputRadius,
   vertical: boolean,
   bordered: boolean,
   divider: boolean,
@@ -13,9 +15,9 @@ export function useButtonGroupStyles(
     "flex items-center justify-center",
     !vertical && "-space-x-0.25",
     vertical && "flex-col -space-y-0.25",
-    bordered && "border border-(--bg-color)",
-    radius === "default" && "rounded",
-    radius === "pill" && "rounded-full",
+    bordered && "border-(--bg-color)",
+    radius === "small" && "rounded",
+    radius === "full" && "rounded-full",
     className,
   );
 
@@ -23,8 +25,8 @@ export function useButtonGroupStyles(
     ? twMerge(
         "bg-(--bg-color)",
         variant === "solid" && "bg-(--fg-color)",
-        !vertical && "w-0.25",
-        vertical && "h-0.25",
+        !vertical && "h-10/12 w-0.25",
+        vertical && "h-0.25 w-11/12",
         "z-1",
         dividerClasses,
       )

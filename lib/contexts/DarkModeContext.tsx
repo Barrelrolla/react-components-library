@@ -28,15 +28,13 @@ const DarkModeContext = createContext<DarkModeContextProps>(undefined);
 
 export function DarkModeContextProvider({ children }: PropsWithChildren) {
   let initialTheme: ThemeModeType = systemTheme;
-  useEffect(() => {
-    const lsTheme = localStorage.getItem(lsThemeName);
-    initialTheme =
-      lsTheme === darkTheme
-        ? darkTheme
-        : lsTheme === lightTheme
-          ? lightTheme
-          : systemTheme;
-  }, []);
+  const lsTheme = localStorage.getItem(lsThemeName);
+  initialTheme =
+    lsTheme === darkTheme
+      ? darkTheme
+      : lsTheme === lightTheme
+        ? lightTheme
+        : systemTheme;
 
   const [themeMode, setThemeMode] = useState<ThemeModeType>(initialTheme);
   const [isDark, setIsDark] = useState(themeMode === darkTheme);

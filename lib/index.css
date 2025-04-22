@@ -1,61 +1,8 @@
 @import "tailwindcss";
-
-@custom-variant dark (&:where(.dark, .dark *));
-
-@utility transition-basic {
-  transition-property: color, text-underline-offset;
-  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-  transition-duration: var(--tw-duration, var(--default-transition-duration));
-}
-
-:root {
-  --color-main: var(--color-stone-200);
-  --color-main-content: var(--color-stone-800);
-  --color-light: var(--color-stone-50);
-  --color-light-content: var(--color-stone-950);
-  --color-dark: var(--color-stone-950);
-  --color-dark-content: var(--color-stone-50);
-  --color-primary: var(--color-sky-700);
-  --color-primary-content: var(--color-emerald-200);
-  --color-secondary: var(--color-fuchsia-700);
-  --color-secondary-content: var(--color-sky-200);
-  --color-accent: var(--color-emerald-700);
-  --color-accent-content: var(--color-fuchsia-200);
-  --color-info: var(--color-cyan-700);
-  --color-info-content: var(--color-cyan-100);
-  --color-success: var(--color-lime-700);
-  --color-success-content: var(--color-lime-100);
-  --color-warning: var(--color-amber-700);
-  --color-warning-content: var(--color-amber-100);
-  --color-error: var(--color-rose-700);
-  --color-error-content: var(--color-rose-100);
-}
-
-.dark {
-  --color-main: var(--color-stone-800);
-  --color-main-content: var(--color-stone-200);
-  --color-light: var(--color-stone-950);
-  --color-light-content: var(--color-stone-50);
-  --color-dark: var(--color-stone-50);
-  --color-dark-content: var(--color-stone-950);
-  --color-primary: var(--color-emerald-200);
-  --color-primary-content: var(--color-sky-700);
-  --color-secondary: var(--color-sky-200);
-  --color-secondary-content: var(--color-fuchsia-700);
-  --color-accent: var(--color-fuchsia-200);
-  --color-accent-content: var(--color-emerald-700);
-  --color-info: var(--color-cyan-200);
-  --color-info-content: var(--color-cyan-900);
-  --color-success: var(--color-lime-200);
-  --color-success-content: var(--color-lime-900);
-  --color-warning: var(--color-amber-200);
-  --color-warning-content: var(--color-amber-900);
-  --color-error: var(--color-rose-200);
-  --color-error-content: var(--color-rose-900);
-}
+@plugin './plugin';
 
 @theme {
-  --default-transition-duration: 100ms;
+  --default-transition-duration: 200ms;
 }
 
 @theme inline {
@@ -79,72 +26,16 @@
   --color-warning-content: var(--color-warning-content);
   --color-error: var(--color-error);
   --color-error-content: var(--color-error-content);
+  --highlighs: var(--highlights);
 
-  --btn-xs: 0.1rem;
-  --btn-sm: 0.25rem;
-  --btn-md: 0.5rem;
-  --btn-lg: 0.75rem;
-  --btn-xl: 1rem;
-  --icon-xs: 1.8rem;
+  /* --icon-xs: 1.8rem;
   --icon-sm: 2.3rem;
   --icon-md: 3rem;
   --icon-lg: 3.8rem;
-  --icon-xl: 4.5rem
+  --icon-xl: 4.5rem */
 }
 
-
-@layer base {
-  body {
-    @apply bg-main text-main-content
-  }
-}
-
-@utility bg-hover {
-  background-color: color-mix(in oklab,
-      var(--bg-color),
-      var(--color-dark) 10%);
-  outline-color: color-mix(in oklab,
-      var(--bg-color),
-      var(--color-dark) 10%);
-}
-
-@utility bg-active {
-  background-color: color-mix(in oklab,
-      var(--bg-color),
-      var(--color-dark) 20%);
-  outline-color: color-mix(in oklab,
-      var(--bg-color),
-      var(--color-dark) 20%);
-}
-
-@utility fg-hover {
-  color: color-mix(in oklab, var(--fg-color), var(--color-dark) 20%);
-  outline-color: color-mix(in oklab,
-      var(--fg-color),
-      var(--color-dark) 20%);
-}
-
-@utility fg-active {
-  color: color-mix(in oklab, var(--fg-color), var(--color-dark) 40%);
-  outline-color: color-mix(in oklab,
-      var(--fg-color),
-      var(--color-dark) 40%);
-}
-
-@utility ghost-hover {
-  color: color-mix(in oklab, var(--bg-color), var(--color-dark) 20%);
-  outline-color: color-mix(in oklab,
-      var(--bg-color),
-      var(--color-dark) 20%);
-}
-
-@utility ghost-active {
-  color: color-mix(in oklab, var(--bg-color), var(--color-dark) 40%);
-  outline-color: color-mix(in oklab,
-      var(--bg-color),
-      var(--color-dark) 40%);
-}
-
+/* 
 @utility btn-* {
   padding-inline: calc(--value(--btn-*) * 3);
   padding-block: --value(--btn-*);
@@ -154,4 +45,4 @@
 @utility icon-* {
   padding: calc(--value(--icon-*) / 8);
   font-size: calc(var(--text-xs) + calc(--value(--btn-*) * 2));
-}
+} */

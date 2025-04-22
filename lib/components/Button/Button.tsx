@@ -1,15 +1,19 @@
 import { ElementType, SVGProps } from "react";
 import { twMerge } from "tailwind-merge";
-import { ButtonVariantProps } from "./buttonTypes";
+import { ButtonVariant, GhostHover } from "./buttonTypes";
 import { useButtonStyles } from "./useButtonStyles";
 import { Spinner } from "@/icons";
-import { ColorType, PolymorphicProps } from "@/types";
-import { useButtonGroupContext } from "./ButtonGroupContext";
+import { ColorType, InputRadius, PolymorphicProps, SizeType } from "@/types";
 import { cssColorProps } from "@/util/cssColorProps";
 
 const defaultType = "button" as const;
 export type ButtonProps<E extends ElementType> = {
   color?: ColorType;
+  variant?: ButtonVariant;
+  size?: SizeType;
+  radius?: InputRadius;
+  ghostHover?: GhostHover;
+  scaling?: boolean;
   transitions?: boolean;
   disabled?: boolean;
   selected?: boolean;
@@ -18,16 +22,15 @@ export type ButtonProps<E extends ElementType> = {
   startIcon?: SVGProps<SVGSVGElement>;
   endIcon?: SVGProps<SVGSVGElement>;
   wrapperClasses?: string;
-} & ButtonVariantProps &
-  PolymorphicProps<E>;
+} & PolymorphicProps<E>;
 
 export function Button<E extends ElementType = typeof defaultType>({
   as,
+  color,
   variant = "solid",
-  radius = "default",
+  radius,
   ghostHover = "fill",
   size = "md",
-  color,
   disabled = false,
   selected = false,
   scaling = true,
@@ -36,7 +39,6 @@ export function Button<E extends ElementType = typeof defaultType>({
   loadingPosition = "front",
   startIcon,
   endIcon,
-  icon,
   className,
   wrapperClasses,
   style,
@@ -44,18 +46,17 @@ export function Button<E extends ElementType = typeof defaultType>({
   ...rest
 }: ButtonProps<E>) {
   const isIcon =
-    icon || ((startIcon !== undefined || endIcon !== undefined) && !children);
+    (startIcon !== undefined || endIcon !== undefined) && !children;
   const isDisabled = disabled || loading;
-  const classes = useButtonStyles(
-    {
-      variant,
-      radius,
-      size,
-      ghostHover,
-      scaling,
-      icon: isIcon,
-    },
+  const { classes, resolvedColor } = useButtonStyles(
+    variant,
+    ghostHover,
+    size,
+    isIcon,
+    scaling,
     transitions,
+    radius,
+    color,
     className,
   );
 
@@ -67,12 +68,10 @@ export function Button<E extends ElementType = typeof defaultType>({
 
   const Element = as || defaultType;
 
-  const resolvedColor = color || useButtonGroupContext()?.color || "primary";
-
   return (
     <span className={wrapperStyles}>
       <Element
-        style={style || cssColorProps(resolvedColor)}
+        style={{ ...style, ...cssColorProps(resolvedColor) }}
         className={classes}
         disabled={isDisabled}
         {...rest}

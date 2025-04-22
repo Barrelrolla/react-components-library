@@ -1,6 +1,7 @@
-import { CSSProperties, ElementType } from "react";
+import { ElementType } from "react";
 import { ColorType, PolymorphicProps } from "@/types";
 import { useAnchorStyles } from "./useAnchorStyles";
+import { cssColorProps, cssColorPropsReversed } from "@/util/cssColorProps";
 
 const defaultType = "a";
 export type AnchorProps<E extends ElementType> = {
@@ -14,37 +15,35 @@ export type AnchorProps<E extends ElementType> = {
 
 export function Anchor<E extends ElementType = typeof defaultType>({
   as,
-  color,
+  color = "main",
   underlined = true,
   hoverUnderline = true,
   hoverUnderlineOffset = true,
   highlights = true,
   transitions = true,
   className,
+  style,
   children,
   ...rest
 }: AnchorProps<E>) {
-  const classes = useAnchorStyles(
+  const { classes, resolvedColor } = useAnchorStyles(
     highlights,
     underlined,
     hoverUnderlineOffset,
     hoverUnderline,
     transitions,
+    color,
     className,
   );
 
   const Element = as || defaultType;
+  const styleVars =
+    color === "main"
+      ? cssColorProps(resolvedColor)
+      : cssColorPropsReversed(resolvedColor);
 
   return (
-    <Element
-      style={
-        {
-          "--fg-color": `var(--color-${color ?? "primary"}-content)`,
-        } as CSSProperties
-      }
-      className={classes}
-      {...rest}
-    >
+    <Element style={{ ...styleVars, ...style }} className={classes} {...rest}>
       {children}
     </Element>
   );

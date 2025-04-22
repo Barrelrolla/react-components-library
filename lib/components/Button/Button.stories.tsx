@@ -7,6 +7,23 @@ import { Button } from "./Button";
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
+  argTypes: {
+    children: { name: "text" },
+    color: { control: { type: "inline-radio" } },
+    variant: { control: { type: "inline-radio" } },
+    ghostHover: {
+      control: { type: "inline-radio" },
+      if: { arg: "variant", eq: "ghost" },
+    },
+    size: { control: { type: "inline-radio" } },
+    radius: { control: { type: "inline-radio" } },
+    loadingPosition: { control: { type: "inline-radio" } },
+    startIcon: { if: { arg: "false", exists: true } },
+    endIcon: { if: { arg: "false", exists: true } },
+    ref: { if: { arg: "false", exists: true } },
+    as: { if: { arg: "false", exists: true } },
+    wrapperClasses: { if: { arg: "false", exists: true } },
+  },
 };
 
 export default meta;
@@ -94,26 +111,14 @@ export const Default: Story = {
       "scales on press",
     ).toBeTruthy();
   },
-  args: {
-    children: "Button",
+  render: ({ children, ...rest }) => {
+    return (
+      <div className="bg-main min-h-100 px-10 py-20">
+        <Button {...rest}>{children}</Button>
+      </div>
+    );
   },
-  argTypes: {
-    clearButtonHover: {
-      if: { arg: "variant", eq: "clear" },
-    },
-    icon: {
-      if: { arg: "false", exists: true },
-    },
-    endIcon: {
-      if: { arg: "false", exists: true },
-    },
-    ref: {
-      if: { arg: "false", exists: true },
-    },
-    as: {
-      control: { type: "text" },
-    },
-  },
+  args: { children: "Button" },
 };
 
 export const Outline: Story = {
@@ -338,19 +343,19 @@ export const Basic: Story = {
       <div className="flex flex-col gap-12 bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap justify-evenly gap-2">
           <Button>Button</Button>
-          <Button radius="pill" variant="outline">
+          <Button radius="full" variant="outline">
             Button
           </Button>
-          <Button radius="rect" variant="ghost">
+          <Button radius="none" variant="ghost">
             Button
           </Button>
         </div>
         <div className="flex flex-wrap justify-evenly gap-2">
           <Button disabled>Button</Button>
-          <Button disabled radius="pill" variant="outline">
+          <Button disabled radius="full" variant="outline">
             Button
           </Button>
-          <Button disabled radius="rect" variant="ghost">
+          <Button disabled radius="none" variant="ghost">
             Button
           </Button>
         </div>
@@ -373,21 +378,21 @@ export const Icon: Story = {
       <div className="flex flex-col gap-12 bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap justify-evenly gap-2">
           <Button startIcon={<SunIcon />} />
-          <Button startIcon={<MoonIcon />} radius="pill" variant="outline" />
-          <Button startIcon={<ComputerIcon />} radius="rect" variant="ghost" />
+          <Button startIcon={<MoonIcon />} radius="full" variant="outline" />
+          <Button startIcon={<ComputerIcon />} radius="none" variant="ghost" />
         </div>
         <div className="flex flex-wrap justify-evenly gap-2">
           <Button disabled startIcon={<SunIcon />} />
           <Button
             disabled
             startIcon={<MoonIcon />}
-            radius="pill"
+            radius="full"
             variant="outline"
           />
           <Button
             disabled
             startIcon={<ComputerIcon />}
-            radius="rect"
+            radius="none"
             variant="ghost"
           />
         </div>
@@ -402,10 +407,10 @@ export const Primary: Story = {
       <div className="flex flex-col gap-12 bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap justify-evenly gap-2">
           <Button color="accent">Button</Button>
-          <Button color="accent" radius="pill" variant="outline">
+          <Button color="accent" radius="full" variant="outline">
             Button
           </Button>
-          <Button color="accent" radius="rect" variant="ghost">
+          <Button color="accent" radius="none" variant="ghost">
             Button
           </Button>
         </div>
@@ -413,7 +418,7 @@ export const Primary: Story = {
           <Button color="accent" disabled>
             Button
           </Button>
-          <Button color="accent" disabled variant="outline" radius="pill">
+          <Button color="accent" disabled variant="outline" radius="full">
             Button
           </Button>
           <Button color="accent" disabled variant="ghost">
@@ -431,10 +436,10 @@ export const Mixed: Story = {
       <div className="flex flex-col gap-12 bg-white p-20 dark:bg-black">
         <div className="flex flex-wrap justify-evenly gap-2">
           <Button color="secondary">Button</Button>
-          <Button color="secondary" radius="pill" variant="outline">
+          <Button color="secondary" radius="full" variant="outline">
             Button
           </Button>
-          <Button color="secondary" radius="rect" variant="ghost">
+          <Button color="secondary" radius="none" variant="ghost">
             Button
           </Button>
         </div>
@@ -442,10 +447,10 @@ export const Mixed: Story = {
           <Button disabled color="secondary">
             Button
           </Button>
-          <Button disabled color="secondary" radius="pill" variant="outline">
+          <Button disabled color="secondary" radius="full" variant="outline">
             Button
           </Button>
-          <Button disabled color="secondary" radius="rect" variant="ghost">
+          <Button disabled color="secondary" radius="none" variant="ghost">
             Button
           </Button>
         </div>
