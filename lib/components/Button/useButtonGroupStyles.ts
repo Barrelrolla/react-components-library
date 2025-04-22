@@ -6,16 +6,14 @@ export function useButtonGroupStyles(
   variant: ButtonVariant,
   radius: InputRadius,
   vertical: boolean,
-  bordered: boolean,
   divider: boolean,
   className?: string,
   dividerClasses?: string,
 ) {
   const groupStyles = twMerge(
     "flex items-center justify-center",
-    !vertical && "-space-x-0.25",
-    vertical && "flex-col -space-y-0.25",
-    bordered && "border-(--bg-color)",
+    variant === "outline" && "inset-ring inset-ring-(--bg-color)",
+    vertical && "flex-col",
     radius === "small" && "rounded",
     radius === "full" && "rounded-full",
     className,
@@ -25,8 +23,8 @@ export function useButtonGroupStyles(
     ? twMerge(
         "bg-(--bg-color)",
         variant === "solid" && "bg-(--fg-color)",
-        !vertical && "h-10/12 w-0.25",
-        vertical && "h-0.25 w-11/12",
+        !vertical && "w-0.25",
+        vertical && "h-0.25",
         "z-1",
         dividerClasses,
       )

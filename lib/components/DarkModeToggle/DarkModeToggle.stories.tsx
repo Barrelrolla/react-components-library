@@ -1,37 +1,22 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DarkModeToggle } from "./DarkModeToggle";
 import { DarkModeContextProvider } from "@/contexts";
-import { DarkModeSelector } from "./DarkModeSelector";
-
 const meta: Meta<typeof DarkModeToggle> = {
+  title: "Components/DarkModeToggle",
   component: DarkModeToggle,
 };
 
 export default meta;
 type Story = StoryObj<typeof DarkModeToggle>;
 
-export const ToggleTest: Story = {
-  render: () => {
+export const Default: Story = {
+  render: ({ ...props }) => {
     return (
       <DarkModeContextProvider>
-        <div className="bg-main p-4">
-          <DarkModeToggle />
+        <div className="bg-main px-10 py-20">
+          <DarkModeToggle {...props} />
         </div>
       </DarkModeContextProvider>
     );
   },
-  args: {},
-};
-
-export const ToggleSize: Story = {
-  render: () => {
-    return (
-      <DarkModeContextProvider>
-        <div className="bg-main flex justify-between p-4">
-          <DarkModeSelector />
-        </div>
-      </DarkModeContextProvider>
-    );
-  },
-  args: {},
 };

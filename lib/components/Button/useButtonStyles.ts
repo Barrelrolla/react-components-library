@@ -35,19 +35,30 @@ export function useButtonStyles(
       "btn",
       `btn-${resolvedVariant}`,
       !icon && `btn-${group?.size || size}`,
+      icon && `btn-icon-${group?.size || size}`,
       (variant === "ghost" || group?.variant === "ghost") &&
         `btn-ghost-${resolvedGhostHover}`,
       hasScaling && "active:scale-[99%]",
       hasTransitions && "transition",
+      group !== undefined && "btn-grouped",
       !group && resolvedRadius === "small" && "rounded",
       !group && resolvedRadius === "full" && "rounded-full",
-      group && "rounded-none border-none",
       group &&
+        !group.vertical &&
         groupRadius === "small" &&
         "group-first:rounded-l group-last:rounded-r",
       group &&
+        !group.vertical &&
         groupRadius === "full" &&
         "group-first:rounded-l-full group-last:rounded-r-full",
+      group &&
+        group.vertical &&
+        group.radius === "small" &&
+        "group-first:rounded-t group-last:rounded-b",
+      group &&
+        group.vertical &&
+        groupRadius === "full" &&
+        "group-first:rounded-t-full group-last:rounded-b-full",
       className,
     ),
     resolvedColor,

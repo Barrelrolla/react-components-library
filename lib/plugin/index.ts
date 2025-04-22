@@ -9,7 +9,7 @@ export default createPlugin(
     addBase(base),
       addComponents([anchor, button]),
       addUtilities(utilities),
-      addVariant("selected", "&[data-selected]");
+      addVariant("selected", "&[data-selected='true']");
   },
   {
     theme: {

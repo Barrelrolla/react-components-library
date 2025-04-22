@@ -14,7 +14,6 @@ export type ButtonGroupProps = {
   radius?: InputRadius;
   transitions?: boolean;
   divider?: boolean;
-  bordered?: boolean;
   vertical?: boolean;
   scaling?: boolean;
   dividerClasses?: string;
@@ -29,7 +28,7 @@ export function ButtonGroup({
   divider = true,
   vertical = false,
   scaling = false,
-  bordered = true,
+  transitions = true,
   className,
   dividerClasses,
   children,
@@ -38,7 +37,6 @@ export function ButtonGroup({
     variant,
     radius,
     vertical,
-    bordered,
     divider,
     className,
     dividerClasses,
@@ -53,6 +51,8 @@ export function ButtonGroup({
         color,
         size,
         scaling,
+        transitions,
+        vertical,
       }}
     >
       <div className="flex">

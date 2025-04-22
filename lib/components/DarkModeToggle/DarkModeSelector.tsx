@@ -11,13 +11,7 @@ export function DarkModeSelector({
 }: ButtonGroupProps) {
   const { themeMode, setThemeMode } = useDarkMode();
   return (
-    <ButtonGroup
-      variant={variant}
-      size={size}
-      divider={divider}
-      bordered={false}
-      {...rest}
-    >
+    <ButtonGroup variant={variant} size={size} divider={divider} {...rest}>
       <Button
         selected={themeMode === lightTheme}
         onClick={() => setThemeMode(lightTheme)}

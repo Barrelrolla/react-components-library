@@ -537,7 +537,7 @@ export const Sizes: Story = {
             responsive
           </Button>
           <Button
-            className="icon-xs sm:icon-sm md:icon-md lg:icon-lg xl:icon-xl"
+            className="btn-icon-xs sm:btn-icon-sm md:btn-icon-md lg:btn-icon-lg xl:btn-icon-xl"
             startIcon={<ComputerIcon />}
           ></Button>
         </div>

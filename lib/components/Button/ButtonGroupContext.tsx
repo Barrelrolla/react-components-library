@@ -11,6 +11,7 @@ export type ButtonGroupContextType =
       size?: SizeType;
       scaling?: boolean;
       transitions?: boolean;
+      vertical?: boolean;
     }
   | undefined;
 

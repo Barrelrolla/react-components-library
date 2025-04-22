@@ -1,3 +1,8 @@
+import {
+  cssColorProps,
+  cssColorPropsReversed,
+  cssColorUniform,
+} from "@/util/cssColorProps";
 import { Button, ButtonProps } from "../Button";
 import { useHamburgerStyles } from "./useHamburgerStyles";
 
@@ -9,6 +14,7 @@ export function HamburgerButton({
   color = "main",
   transitions = true,
   isOpen = false,
+  style,
   className,
   ...rest
 }: HamburgerButtonProps) {
@@ -20,8 +26,10 @@ export function HamburgerButton({
   return (
     <Button
       aria-label="navigation toggle"
-      variant="solid"
+      variant="ghost"
+      ghostHover="none"
       color={color}
+      style={{ ...cssColorUniform(color), ...style }}
       className={button}
       {...rest}
     >

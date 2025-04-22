@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
 import { ButtonGroup } from "./ButtonGroup";
 import { ComputerIcon } from "@/icons";
-import { ComponentProps, useState } from "react";
+import { ComponentProps, useEffect, useState } from "react";
 
 type Props = ComponentProps<typeof ButtonGroup> & {
   selection: boolean;
@@ -35,6 +35,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: ({ selection, ...rest }) => {
     const [selected, setSelected] = useState<number | undefined>(undefined);
+    useEffect(() => {
+      if (!selection) {
+        setSelected(undefined);
+      }
+    }, [selection]);
+
     const clickHandler = (index: number) => {
       if (selection) {
         setSelected(index);
