@@ -1,33 +1,50 @@
 # Button Group
 
-Used to group a few buttons together. Properties:
+<img src='../../../images/Button/buttonGroup.png' style='max-height:40px'/> 
+<br></br>
 
-`variant`  
-All buttons in the group will have this variant.
+Used to group a few buttons together. Most properties are the same as a button, they just get applied to all buttons in the group. You can read more about most of them in the [Button](./Button.md) docs.
 
-`radius`
+`divider`
 
-<img src='../../../images/Button/buttonGroupRadius.png'>
+Adds a small divider between the buttons.
 
-The whole group will have this radius.
+`dividerClasses`
 
-`clearButtonHover`  
-Hover variant for clear button groups.
-
-`primaryColor`  
-Primary color for the buttons.
-
-`secondaryColor`  
-Secondary color, used as primary in dark mode.
-
-`contrasting`  
-If primary and secondary colors should switch in dark mode. Default is `true`.
-
-`separator`  
-Set to `false` to remove the separator between buttons. Default is `true`.
+If you need to style the divider, pass your classes to this.
 
 `vertical`
 
-<img src='../../../images/Button/buttonGroupVertical.png' width=100px />
+Orients the group vertically instead of horizontally
 
-Switch to a vertical group
+`color`
+
+Selects the colors
+
+`variant`
+
+Button variant
+
+`ghostHover`
+
+Ghost button hover variant
+
+`retainFocusState`
+
+If buttons should retain hover state on focus.
+
+`size`
+
+Group size
+
+`radius`
+
+This applies the selected radius on the whole group, instead of every button individually.
+
+`transitions`
+
+If the buttons should have transition animations.
+
+`scaling`
+
+If the buttons should scale on press.

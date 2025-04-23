@@ -12,6 +12,7 @@ export type NavbarProps = {
   collapseAt?: ResponsiveSizes;
   fixed?: boolean;
   position?: "top" | "bottom";
+  glass?: boolean;
   backdropClasses?: string;
 } & ComponentProps<"nav">;
 
@@ -23,6 +24,7 @@ export function Navbar({
   collapseAt = "sm",
   fixed = true,
   position = "top",
+  glass = true,
   children,
   className,
   backdropClasses,
@@ -32,6 +34,7 @@ export function Navbar({
   const { navbarStyles, backdropStyles } = useNavbarStyles(
     fixed,
     position,
+    glass,
     hasBorder,
     hasShadow,
     isRounded,

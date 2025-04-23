@@ -1,15 +1,16 @@
 import { Children, ComponentProps } from "react";
+import { ColorType, InputRadius, SizeType } from "@/types";
+import { cssColorProps } from "@/util";
+import { ButtonVariant, GhostHover } from "./buttonTypes";
 import { ButtonGroupContextProvider } from "./ButtonGroupContext";
 import { useButtonGroupStyles } from "./useButtonGroupStyles";
 import { Divider } from "../Divider";
-import { ColorType, InputRadius, SizeType } from "@/types";
-import { cssColorProps } from "@/util/cssColorProps";
-import { ButtonVariant, GhostHover } from "./buttonTypes";
 
 export type ButtonGroupProps = {
   color?: ColorType;
   variant?: ButtonVariant;
   ghostHover?: GhostHover;
+  retainFocusState?: boolean;
   size?: SizeType;
   radius?: InputRadius;
   transitions?: boolean;
@@ -20,11 +21,12 @@ export type ButtonGroupProps = {
 } & ComponentProps<"div">;
 
 export function ButtonGroup({
-  variant = "outline",
-  radius = "small",
-  ghostHover = "none",
-  color = "primary",
-  size = "md",
+  variant,
+  radius,
+  ghostHover,
+  retainFocusState = false,
+  color,
+  size,
   divider = true,
   vertical = false,
   scaling = false,
@@ -33,22 +35,24 @@ export function ButtonGroup({
   dividerClasses,
   children,
 }: ButtonGroupProps) {
-  const { groupStyles, dividerStyles } = useButtonGroupStyles(
+  const { groupStyles, dividerStyles, resolvedColor } = useButtonGroupStyles({
+    color,
     variant,
     radius,
     vertical,
     divider,
     className,
     dividerClasses,
-  );
+  });
 
   return (
     <ButtonGroupContextProvider
       value={{
-        variant,
-        radius,
-        ghostHover,
         color,
+        variant,
+        ghostHover,
+        retainFocusState,
+        radius,
         size,
         scaling,
         transitions,
@@ -56,13 +60,13 @@ export function ButtonGroup({
       }}
     >
       <div className="flex">
-        <div className={groupStyles} style={cssColorProps(color)}>
+        <div className={groupStyles} style={cssColorProps(resolvedColor)}>
           {Children.map(children, (child, index) => {
             return (
               <>
                 {divider && index !== 0 && (
                   <Divider
-                    color={color}
+                    color={resolvedColor}
                     className={dividerStyles}
                     vertical={!vertical}
                   />

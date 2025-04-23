@@ -1,10 +1,9 @@
 import { ElementType, SVGProps } from "react";
-import { twMerge } from "tailwind-merge";
-import { ButtonVariant, GhostHover } from "./buttonTypes";
-import { useButtonStyles } from "./useButtonStyles";
 import { Spinner } from "@/icons";
 import { ColorType, InputRadius, PolymorphicProps, SizeType } from "@/types";
-import { cssColorProps } from "@/util/cssColorProps";
+import { cssColorProps } from "@/util";
+import { ButtonVariant, GhostHover } from "./buttonTypes";
+import { useButtonStyles } from "./useButtonStyles";
 
 const defaultType = "button" as const;
 export type ButtonProps<E extends ElementType> = {
@@ -13,6 +12,7 @@ export type ButtonProps<E extends ElementType> = {
   size?: SizeType;
   radius?: InputRadius;
   ghostHover?: GhostHover;
+  retainFocusState?: boolean;
   scaling?: boolean;
   transitions?: boolean;
   disabled?: boolean;
@@ -27,10 +27,11 @@ export type ButtonProps<E extends ElementType> = {
 export function Button<E extends ElementType = typeof defaultType>({
   as,
   color,
-  variant = "solid",
+  variant,
   radius,
-  ghostHover = "fill",
-  size = "md",
+  ghostHover,
+  size,
+  retainFocusState = true,
   disabled = false,
   selected = false,
   scaling = true,
@@ -48,23 +49,20 @@ export function Button<E extends ElementType = typeof defaultType>({
   const isIcon =
     (startIcon !== undefined || endIcon !== undefined) && !children;
   const isDisabled = disabled || loading;
-  const { classes, resolvedColor } = useButtonStyles(
+  const { classes, resolvedColor, wrapperStyles } = useButtonStyles({
+    retainFocusState,
     variant,
     ghostHover,
     size,
     isIcon,
     scaling,
     transitions,
+    disabled,
     radius,
     color,
     className,
-  );
-
-  const wrapperStyles = twMerge(
-    "group",
-    isDisabled && "cursor-not-allowed",
     wrapperClasses,
-  );
+  });
 
   const Element = as || defaultType;
 

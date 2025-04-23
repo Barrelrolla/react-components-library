@@ -1,21 +1,33 @@
 import { twMerge } from "tailwind-merge";
+import { useTheme } from "@/contexts";
+import { ColorType, InputRadius } from "@/types";
 import { ButtonVariant } from "./buttonTypes";
-import { InputRadius } from "@/types";
 
-export function useButtonGroupStyles(
-  variant: ButtonVariant,
-  radius: InputRadius,
-  vertical: boolean,
-  divider: boolean,
-  className?: string,
-  dividerClasses?: string,
-) {
+export function useButtonGroupStyles({
+  color = "primary",
+  variant = "solid",
+  radius,
+  vertical,
+  divider,
+  className,
+  dividerClasses,
+}: {
+  color?: ColorType;
+  variant?: ButtonVariant;
+  radius?: InputRadius;
+  vertical: boolean;
+  divider: boolean;
+  className?: string;
+  dividerClasses?: string;
+}) {
+  const theme = useTheme();
+  const resolvedRadiues = radius || theme?.inputsRadius || "small";
   const groupStyles = twMerge(
-    "flex items-center justify-center",
+    "btn-group",
     variant === "outline" && "inset-ring inset-ring-(--bg-color)",
     vertical && "flex-col",
-    radius === "small" && "rounded",
-    radius === "full" && "rounded-full",
+    resolvedRadiues === "small" && "rounded",
+    resolvedRadiues === "full" && "rounded-full",
     className,
   );
 
@@ -33,5 +45,6 @@ export function useButtonGroupStyles(
   return {
     groupStyles,
     dividerStyles,
+    resolvedColor: color,
   };
 }

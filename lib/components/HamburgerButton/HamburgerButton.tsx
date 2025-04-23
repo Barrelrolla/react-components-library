@@ -1,8 +1,4 @@
-import {
-  cssColorProps,
-  cssColorPropsReversed,
-  cssColorUniform,
-} from "@/util/cssColorProps";
+import { cssColorPropsReversed } from "@/util/cssColorProps";
 import { Button, ButtonProps } from "../Button";
 import { useHamburgerStyles } from "./useHamburgerStyles";
 
@@ -28,15 +24,24 @@ export function HamburgerButton({
       aria-label="navigation toggle"
       variant="ghost"
       ghostHover="none"
+      style={{ ...cssColorPropsReversed(color), ...style }}
       color={color}
-      style={{ ...cssColorUniform(color), ...style }}
       className={button}
       {...rest}
     >
       <div className={container}>
-        <span className={topLine}></span>
-        <span className={midLine}></span>
-        <span className={botLine}></span>
+        <span
+          style={{ ...cssColorPropsReversed(color) }}
+          className={topLine}
+        ></span>
+        <span
+          style={{ ...cssColorPropsReversed(color) }}
+          className={midLine}
+        ></span>
+        <span
+          style={{ ...cssColorPropsReversed(color) }}
+          className={botLine}
+        ></span>
       </div>
     </Button>
   );

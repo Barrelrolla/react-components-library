@@ -1,69 +1,82 @@
 # Button
 
-A basic button. It has the following properties:
+<img src='../../../images/Button/button.png' style='max-height:40px'/>
+<br></br>
+
+Buttons have the following properties:
 
 `variant`
 
-<img src='../../../images/Button/buttonVariants.png' height=50px />
+There are 3 available variants: `solid`, `outline` and `ghost`. Default one is solid.
 
-Choose which button variant you want. There are 3 available variants: solid, outline and clear. Default is solid.
+<img src='../../../images/Button/variants.png' style='max-height:50px'></img>
+<br></br>
+
+`ghostHover`
+
+In case a ghost variant is selected, use this prop to choose what the hover effect should be. 4 options: `none`, `fill`, `outline` and `contrasting`.
 
 `radius`
 
-<img src='../../../images/Button/buttonRadius.png' height=45px />
+Select between 3 variants: `small`, `full` and `none`. If none is selected, it will follow the theme, if there's one provided, or defaults to `small`.
 
-The corner radius of the button. There are 3 options: default, pill and rect. Default has a small radius, pill has a full radius and rect has sharp corners.
+`color`
 
-`clearButtonHover`
+There are 10 available colors. Read more about colors and customization here:
 
-<img src='../../../images/Button/buttonHoverNone.png' height=40px /><img src='../../../images/Button/buttonHoverFill.png' height=40px /><img src='../../../images/Button/buttonHoverOutline.png' height=40px /><img src='../../../images/Button/clearHoverContrasting.png' height=40px />
-
-Used to select the hover effect on a clear button. It can be: none, outline, fill or contrasting. None will just make the text color darker (or lighter in dark mode), outline will add a border, fill will make it look like a solid button and contrasting will change the text color to the secondary color.
+<img src='../../../images/Button/colors.png' style='max-height:80px'/>
+<br></br>
 
 `size`
 
-<img src='../../../images/Button/buttonSizes.png' height=50px />
+Five available sizes: `xs`, `sm`, `md`, `lg` and `xl`. They are responsive too.
 
-5 available sizes: xs, sm, md, lg and xl, md being the default.
+<img src='../../../images/Button/sizes.png' style='max-height:60px' />
+<br></br>
 
-`primaryColor`  
-The primary color of the button, used for the background of the solid button or the text and outline for the other button variant.
+`retainFocusState`
 
-`secondaryColor`  
-Secondary color for the button. In the solid button variant this is used for the text color. In the other variants, it's used as the text color while hovering.
+If this is `true` the outline and ghost button will retain their focused event on `focus:`. Otherwise they lose it as soon as the mouse leaves.
 
-`disabled`  
-If the button should be disabled or not.
+`disabled`
 
-`disableHoverHighlight`  
-Disables color changes on hover and press to allow for customization.
+Disables the button and applies `disabled:` styles.
 
-`disableScale`  
-Disables scale animations for hover and press.
+`selected`
 
-`disableDisabledStyle`  
-Disables disabled styling to allow for custom colors.
+Applies `selected:` styles. Can be used to indicated selected option in a button group.
 
-`contrasting`
+`scaling`
 
-<img src='../../../images/Button/buttonPrimary.png' height=40px /><img src='../../../images/Button/buttonSecondary.png' height=40px />
+Set to `false` to remove the scaling animation on button press.
 
-If this is `true` (default behaviour), button colors will change from primary to secondary in dark mode. Primary color uses a dark shade and secondry color uses a light shade, so even the same color can be selected.
+`transitions`
+
+Set to false to remove animated transitions between colors and scaling.
 
 `loading`
 
-<img src='../../../images/Button/loading.png' height=40px />
+Disables the button and adds a loading spinner. If an icon is provided with the `startIcon` or `endIcon` prop, that icon will be replaced by the spinner.
 
-Setting this to true will add a loading spinner in the button and disable it.
+<img src='../../../images/Button/loading.png' style='max-height:40px' />
+<br></br>
 
-`loadingPosition`  
-If the loading spinner should be in the front or the end of the button.
+`loadingPosition`
 
-`icon`  
-Adds the selected icon in the front of the button. You can put an icon in the children, but if you use this, this icon will be replaced by the loading icon if `loading` is true.
+Indicates if the loading spinner should appear at`start` or `end`.
 
-`endIcon`  
-Same as `icon`, but adds the icon at the end of the button.
+`startIcon`
 
-`as`  
-Set this as another HTML component if you want the button to be rendered as something else. Mostly used as an `a`, but you can use it as a `div` or `span` in some cases.
+Adds an icon before the text.
+
+`endIcon`
+
+Adds an icon after the text.
+
+`wrapperClasses`
+
+The button has a `div` wrapper, used to display the not allowed cursor when the button is disabled. Use this if you want to apply any additional classes to this wrapper.
+
+`as`
+
+If the button should render as another component, an anchor for example.

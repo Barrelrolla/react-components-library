@@ -1,4 +1,4 @@
-import { ElementType, MouseEvent } from "react";
+import { ElementType, MouseEvent, FocusEvent } from "react";
 import { useNavbarContext } from "./NavbarContext";
 import { Anchor, AnchorProps } from "../Anchor";
 import { useNavbarLinkStyles } from "./useNavbarStyles";
@@ -21,6 +21,8 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
   bgHighlight = false,
   selectedHighlight = true,
   onClick,
+  onFocus,
+  onBlur,
   children,
   selectedClasses,
   className,
@@ -33,10 +35,19 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
     );
   }
 
-  function clickHandler(event: MouseEvent<HTMLAnchorElement>) {
+  function clickHandler(event: MouseEvent) {
     context?.setIsOpen(false);
     window.scrollTo(0, 0);
     onClick?.(event);
+  }
+
+  function focusHandler(event: FocusEvent) {
+    context?.setIsOpen(true);
+    onFocus?.(event);
+  }
+  function blurHandler(event: FocusEvent) {
+    context?.setIsOpen(false);
+    onBlur?.(event);
   }
 
   const { collapseAt } = context;
@@ -57,6 +68,8 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
         selected={selected}
         className={classes}
         onClick={clickHandler}
+        onFocus={focusHandler}
+        onBlur={blurHandler}
         {...rest}
       >
         {children}

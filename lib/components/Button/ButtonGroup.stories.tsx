@@ -1,8 +1,8 @@
+import { ComponentProps, useEffect, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
+import { ComputerIcon } from "@/icons";
 import { Button } from "./Button";
 import { ButtonGroup } from "./ButtonGroup";
-import { ComputerIcon } from "@/icons";
-import { ComponentProps, useEffect, useState } from "react";
 
 type Props = ComponentProps<typeof ButtonGroup> & {
   selection: boolean;
@@ -49,13 +49,25 @@ export const Default: Story = {
     return (
       <div className="bg-main px-10 py-20">
         <ButtonGroup {...rest}>
-          <Button selected={selected === 0} onClick={() => clickHandler(0)}>
+          <Button
+            {...rest}
+            selected={selected === 0}
+            onClick={() => clickHandler(0)}
+          >
             button
           </Button>
-          <Button selected={selected === 1} onClick={() => clickHandler(1)}>
+          <Button
+            {...rest}
+            selected={selected === 1}
+            onClick={() => clickHandler(1)}
+          >
             button
           </Button>
-          <Button selected={selected === 2} onClick={() => clickHandler(2)}>
+          <Button
+            {...rest}
+            selected={selected === 2}
+            onClick={() => clickHandler(2)}
+          >
             button
           </Button>
         </ButtonGroup>
@@ -64,36 +76,100 @@ export const Default: Story = {
   },
 };
 
-export const Clear: Story = {
-  args: {
-    children: [
-      <Button>button</Button>,
-      <Button>button</Button>,
-      <Button>button</Button>,
-    ],
-    variant: "ghost",
-    bordered: false,
+export const Ghost: Story = {
+  render: ({ variant = "ghost", vertical = true, selection, ...rest }) => {
+    const [selected, setSelected] = useState<number | undefined>(undefined);
+    useEffect(() => {
+      if (!selection) {
+        setSelected(undefined);
+      }
+    }, [selection]);
+
+    const clickHandler = (index: number) => {
+      if (selection) {
+        setSelected(index);
+      }
+    };
+    return (
+      <div className="bg-main px-10 py-20">
+        <ButtonGroup variant={variant} vertical={vertical} {...rest}>
+          <Button
+            {...rest}
+            selected={selected === 0}
+            onClick={() => clickHandler(0)}
+          >
+            button
+          </Button>
+          <Button
+            {...rest}
+            selected={selected === 1}
+            onClick={() => clickHandler(1)}
+          >
+            button
+          </Button>
+          <Button
+            {...rest}
+            selected={selected === 2}
+            onClick={() => clickHandler(2)}
+          >
+            button
+          </Button>
+        </ButtonGroup>
+      </div>
+    );
   },
 };
 
 export const Icon: Story = {
-  args: {
-    radius: "pill",
-    children: [
-      <Button startIcon={<ComputerIcon />} />,
-      <Button startIcon={<ComputerIcon />} />,
-      <Button startIcon={<ComputerIcon />} />,
-    ],
+  render: ({ radius = "full", selection, ...rest }) => {
+    const [selected, setSelected] = useState<number | undefined>(undefined);
+    useEffect(() => {
+      if (!selection) {
+        setSelected(undefined);
+      }
+    }, [selection]);
+
+    const clickHandler = (index: number) => {
+      if (selection) {
+        setSelected(index);
+      }
+    };
+    return (
+      <div className="bg-main px-10 py-20">
+        <ButtonGroup radius={radius}>
+          <Button
+            {...rest}
+            selected={selected === 0}
+            onClick={() => clickHandler(0)}
+            startIcon={<ComputerIcon />}
+          />
+          <Button
+            {...rest}
+            selected={selected === 1}
+            onClick={() => clickHandler(1)}
+            startIcon={<ComputerIcon />}
+          />
+          <Button
+            {...rest}
+            selected={selected === 2}
+            onClick={() => clickHandler(2)}
+            startIcon={<ComputerIcon />}
+          />
+        </ButtonGroup>
+      </div>
+    );
   },
 };
 
 export const Fancy: Story = {
-  args: {
-    radius: "pill",
-    size: "md",
-    children: [
-      <Button className="">Button</Button>,
-      <Button startIcon={<ComputerIcon />} />,
-    ],
+  render: ({ radius = "full", size = "xl", variant = "solid", ...rest }) => {
+    return (
+      <div className="bg-main px-10 py-20">
+        <ButtonGroup {...rest} radius={radius} size={size} variant={variant}>
+          <Button className="">Button</Button>
+          <Button startIcon={<ComputerIcon />} />
+        </ButtonGroup>
+      </div>
+    );
   },
 };

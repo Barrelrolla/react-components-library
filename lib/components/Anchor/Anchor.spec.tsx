@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
 import { describe, it } from "vitest";
+import { render } from "@testing-library/react";
 import { Anchor } from "./Anchor";
 
 describe("Anchor tests", () => {

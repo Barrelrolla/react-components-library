@@ -1,28 +1,47 @@
 import { twMerge } from "tailwind-merge";
-import { useButtonGroupContext } from "./ButtonGroupContext";
-import { ButtonVariant, GhostHover } from "./buttonTypes";
 import { useTheme } from "@/contexts";
 import { ColorType, InputRadius, SizeType } from "@/types";
+import { useButtonGroupContext } from "./ButtonGroupContext";
+import { ButtonVariant, GhostHover } from "./buttonTypes";
 
-export function useButtonStyles(
-  variant: ButtonVariant,
-  ghostHover: GhostHover,
-  size: SizeType,
-  icon: boolean,
-  scaling: boolean,
-  transitions: boolean,
-  radius?: InputRadius,
-  color?: ColorType,
-  className?: string,
-) {
+export function useButtonStyles({
+  variant,
+  ghostHover,
+  retainFocusState,
+  size,
+  isIcon,
+  scaling,
+  transitions,
+  disabled,
+  radius,
+  color,
+  className,
+  wrapperClasses,
+}: {
+  variant?: ButtonVariant;
+  ghostHover?: GhostHover;
+  retainFocusState: boolean;
+  size?: SizeType;
+  isIcon: boolean;
+  scaling: boolean;
+  transitions: boolean;
+  disabled: boolean;
+  radius?: InputRadius;
+  color?: ColorType;
+  className?: string;
+  wrapperClasses?: string;
+}) {
   const theme = useTheme();
   const group = useButtonGroupContext();
 
-  const resolvedVariant = group?.variant || variant;
-  const resolvedGhostHover = group?.ghostHover || ghostHover;
+  const resolvedVariant = group?.variant || variant || "solid";
+  const resolvedGhostHover = group?.ghostHover || ghostHover || "none";
   const resolvedColor = group?.color || color || "primary";
   const resolvedRadius = radius || theme?.inputsRadius || "small";
   const groupRadius = group?.radius || theme?.inputsRadius || "small";
+  const inGroup = group !== undefined;
+  const shouldRetainFocus =
+    (!group || group.retainFocusState) && retainFocusState;
   const hasTransitions =
     (!theme || theme.transitions) &&
     (!group || group.transitions) &&
@@ -34,32 +53,41 @@ export function useButtonStyles(
     classes: twMerge(
       "btn",
       `btn-${resolvedVariant}`,
-      !icon && `btn-${group?.size || size}`,
-      icon && `btn-icon-${group?.size || size}`,
+      resolvedVariant === "outline" && shouldRetainFocus && "btn-outline-focus",
+      resolvedVariant === "ghost" &&
+        shouldRetainFocus &&
+        `btn-ghost-${resolvedGhostHover}-focus`,
+      !isIcon && `btn-${group?.size || size || "md"}`,
+      isIcon && `btn-icon-${group?.size || size || "md"}`,
       (variant === "ghost" || group?.variant === "ghost") &&
         `btn-ghost-${resolvedGhostHover}`,
       hasScaling && "active:scale-[99%]",
       hasTransitions && "transition",
-      group !== undefined && "btn-grouped",
-      !group && resolvedRadius === "small" && "rounded",
-      !group && resolvedRadius === "full" && "rounded-full",
-      group &&
+      inGroup && "btn-grouped",
+      !inGroup && resolvedRadius === "small" && "rounded",
+      !inGroup && resolvedRadius === "full" && "rounded-full",
+      inGroup &&
         !group.vertical &&
         groupRadius === "small" &&
         "group-first:rounded-l group-last:rounded-r",
-      group &&
+      inGroup &&
         !group.vertical &&
         groupRadius === "full" &&
         "group-first:rounded-l-full group-last:rounded-r-full",
-      group &&
+      inGroup &&
         group.vertical &&
         group.radius === "small" &&
         "group-first:rounded-t group-last:rounded-b",
-      group &&
+      inGroup &&
         group.vertical &&
         groupRadius === "full" &&
         "group-first:rounded-t-full group-last:rounded-b-full",
       className,
+    ),
+    wrapperStyles: twMerge(
+      "group",
+      disabled && "cursor-not-allowed",
+      wrapperClasses,
     ),
     resolvedColor,
   };

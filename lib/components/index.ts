@@ -5,6 +5,8 @@ export type {
   ButtonProps,
   ButtonGroupProps,
   ButtonGroupContextType,
+  ButtonVariant,
+  GhostHover,
 } from "./Button";
 export { DarkModeToggle, DarkModeSelector } from "./DarkModeToggle";
 export { Divider } from "./Divider";

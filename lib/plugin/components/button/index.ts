@@ -13,6 +13,10 @@ export default <Record<string, CssInJs>>{
     "@apply inset-ring text-(--bg-color) hover:inset-ring-transparent focus-visible:inset-ring-transparent hover:bg-(--bg-color) focus-visible:bg-(--bg-color) focus-visible:text-(--fg-color) hover:text-(--fg-color) active:bg-hover active:text-(--fg-color) active:inset-ring-transparent selected:bg-(--bg-color) selected:text-(--fg-color) selected:inset-ring-0 selected:hover:bg-hover":
       {},
   },
+  ".btn-outline-focus": {
+    "@apply focus:bg-(--bg-color) focus:text-(--fg-color) focus:inset-ring-transparent":
+      {},
+  },
   ".btn-ghost": {
     "@apply text-(--bg-color)": {},
   },
@@ -24,13 +28,22 @@ export default <Record<string, CssInJs>>{
     "@apply hover:bg-(--bg-color) focus-visible:bg-(--bg-color) hover:text-(--fg-color) focus-visible:text-(--fg-color) active:bg-hover active:text-(--fg-color) selected:bg-(--bg-color) selected:text-(--fg-color) selected:hover:bg-hover selected:focus-visible:bg-hover":
       {},
   },
+  ".btn-ghost-fill-focus": {
+    "@apply focus:bg-(--bg-color) focus:text-(--fg-color)": {},
+  },
   ".btn-ghost-outline": {
     "@apply hover:inset-ring hover:ghost-hover focus-visible:ghost-hover active:inset-ring active:ghost-active selected:inset-ring":
       {},
   },
+  ".btn-ghost-outline-focus": {
+    "@apply focus:inset-ring": {},
+  },
   ".btn-ghost-contrasting": {
     "@apply hover:text-(--fg-color) focus-visible:text-(--fg-color) active:fg-active outline-(--fg-color) selected:text-(--fg-color) selected:hover:fg-hover":
       {},
+  },
+  ".btn-ghost-contrasting-focus": {
+    "@apply focus:text-(--fg-color)": {},
   },
   ".btn-grouped": {
     "@apply inset-ring-0": {},
@@ -79,5 +92,8 @@ export default <Record<string, CssInJs>>{
   ".btn-icon-xl": {
     padding: "0.5625rem;",
     fontSize: "calc(var(--text-xs) + 2rem);",
+  },
+  ".btn-group": {
+    "@apply flex items-center justify-center": {},
   },
 };

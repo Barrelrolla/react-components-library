@@ -1,11 +1,10 @@
+import path from "path";
 import { resolve } from "path";
 import dts from "vite-plugin-dts";
-import tailwindPostCSS from "@tailwindcss/postcss";
-import path from "path";
 import { defineConfig } from "vitest/config";
+import tailwindPostCSS from "@tailwindcss/postcss";
 import react from "@vitejs/plugin-react-swc";
 
-// https://vite.dev/config/
 export default defineConfig({
   build: {
     lib: {
@@ -23,7 +22,7 @@ export default defineConfig({
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.names[0].endsWith(".css")) {
-            return "index.css"; // This renames the CSS file
+            return "index.css";
           }
           return assetInfo.names[0] || "[name].[ext]";
         },

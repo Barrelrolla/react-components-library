@@ -1,7 +1,7 @@
+import { twMerge } from "tailwind-merge";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
 import { Anchor } from "./Anchor";
-import { twMerge } from "tailwind-merge";
 
 const meta: Meta<typeof Anchor> = {
   title: "Components/Anchor",

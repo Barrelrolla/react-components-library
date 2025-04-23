@@ -10,6 +10,7 @@ interface NavbarStyles {
 export function useNavbarStyles(
   fixed: boolean,
   position: "top" | "bottom",
+  glass: boolean,
   hasBorder: boolean,
   hasShadow: boolean,
   isRounded: boolean,
@@ -22,6 +23,7 @@ export function useNavbarStyles(
     navbarStyles: twMerge(
       "flex w-full flex-wrap items-center justify-between px-4 py-2",
       "bg-(--bg-color) text-(--fg-color)",
+      glass && "bg-(--bg-color)/70 backdrop-blur-md",
       fixed && "fixed left-0 z-40",
       position === "top" && "top-0",
       position === "bottom" && "bottom-0",

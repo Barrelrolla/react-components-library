@@ -28,7 +28,7 @@ describe("Button test", () => {
     button.click();
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
-  it("can be clicked", () => {
+  it("should not be clicked if disabled", () => {
     const clickHandler = vi.fn();
     const { getByText } = render(
       <Button disabled onClick={clickHandler}>

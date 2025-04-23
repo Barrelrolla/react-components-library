@@ -2,21 +2,31 @@ import { twMerge } from "tailwind-merge";
 import { useTheme } from "@/contexts";
 import { ColorType } from "@/types";
 
-export function useAnchorStyles(
-  highlights: boolean,
-  underlined: boolean,
-  hoverUnderlineOffset: boolean,
-  hoverUnderline: boolean,
-  transitions: boolean,
-  color?: ColorType,
-  className?: string,
-) {
+export function useAnchorStyles({
+  highlights,
+  underlined,
+  hoverUnderline,
+  hoverUnderlineOffset,
+  transitions,
+  color,
+  className,
+}: {
+  highlights: boolean;
+  underlined: boolean;
+  hoverUnderline: boolean;
+  hoverUnderlineOffset: boolean;
+  transitions: boolean;
+  color?: ColorType;
+  className?: string;
+}) {
   const theme = useTheme();
 
   return {
     classes: twMerge(
       "a",
       highlights && "a-highlights",
+      theme?.inputsRadius === "full" && "rounded-full",
+      theme?.inputsRadius === "small" && "rounded",
       underlined && "underline",
       !underlined && hoverUnderline && "hover:underline",
       !hoverUnderlineOffset && "underline-offset-1",

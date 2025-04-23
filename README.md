@@ -4,33 +4,61 @@ A collection of react components for personal use.
 
 ## How to use
 
-Install using
+Assuming you already have react and tailwind installed, install the package through npm:
 
 ```
 npm install @barrelrolla/react-components-library
 ```
 
+Ideally there should be a separate package for the tailwind plugin, but for the moment you have to export it yourself. Create a `plugin.ts` file in the same folder as your `index.css` or wherever you want and add the following in it:
+
+```ts
+import { Plugin } from "@barrelrolla/react-components-library";
+export default Plugin;
+```
+
 In your `.css` file add
 
 ```css
-@layer theme, base, components, utilities;
-@import "tailwindcss/preflight.css" layer(base);
-@import "tailwindcss/utilities.css" layer(utilities);
-@import "../node_modules/@barrelrolla/react-components-library/dist/index.css";
-@import "tailwindcss/theme.css" layer(theme);
-
-@custom-variant dark (&:where(.dark, .dark *));
+@import "tailwindcss";
+@plugin "./plugin";
+@source "../node_modules/@barrelrolla/react-components-library/";
 ```
 
-We're splitting the tailwind layers, because the preflight overrides some of our classes and we have to import our styles after tailwind, and importing the theme after our styles allows for easy overriding of the colors like this:
+This adds the tailwind plugin, so you can use the provided components and utilities and the `@source` directive is requred to use the pre-built components, otherwise tailwind won't recongnize the classes used in the library and won't build the styles for them.
+
+## Customization
+
+Everything is built with tailwind so you can just use tailwind classes and utilities to style everything to your liking. To adjust the colors, simply override them like this:
 
 ```css
-@theme {
-  --color-primary-600: #4c5c5a;
-  --color-secondary-200: #dad6cf;
+:root {
+  --color-main: #yourColor;
+  --color-main-content: #yourColor;
+  --color-primary: #yourColor;
+  --color-primary-content: #yourColor;
 }
 ```
 
-The library uses shades between 50 and 950 so it's advisable to add all. The colors you can override are `primary`, `secondary` and `accent`.
+No need to use `dark:bg-dark` just override the colors for dark mode:
+
+```css
+.dark {
+  --color-main: #yourDarkColor;
+  --color-main-content: #yourDarkColor;
+  --color-primary: #yourDarkColor;
+  --color-primary-content: #yourDarkColor;
+}
+```
+
+The library is adjusting the `l` value of the `lch` colors to lighten or darken components on `hover:`. If you want to use a color that's not from the color list, you can assign it to the `--bg-color` or `--fg-color` variable and retain the hover effects. Or you can provide your own.
+
+```ts
+<Button style={{ "--bg-color": "var(--color-red-500)" } as  CSSProperties}>
+  button
+</Button>
+```
+
+There is also a hover modifier variable `--mod-highlight` that's used to adjust the color's `l` value. You can modify that value to change the hover effect for all colors, or if a specific color needs adjustment, you can use `--mod-highlight-primary` or any other color name you want to override the value for that specific color.
 
 For info about the components, check the [Components](https://github.com/Barrelrolla/react-components-library/tree/main/lib/README.md) section.

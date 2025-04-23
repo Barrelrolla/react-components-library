@@ -16,11 +16,3 @@ export function cssColorPropsReversed(color: ColorType) {
     "--h": `var(--mod-highlight-${color}, var(--mod-highlight))`,
   } as CSSProperties;
 }
-
-export function cssColorUniform(color: ColorType) {
-  return {
-    "--bg-color": `var(--color-${color}-content)`,
-    "--fg-color": `var(--color-${color}-content)`,
-    "--h": `var(--mod-highlight-${color}, var(--mod-highlight))`,
-  } as CSSProperties;
-}

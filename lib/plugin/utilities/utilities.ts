@@ -44,4 +44,8 @@ export default <Record<string, CssInJs>>{
     color: "oklch(from var(--bg-color) calc(l + var(--h) * 3) c h);",
     outlineColor: "oklch(from var(--bg-color) calc(l + var(--h) * 3) c h);",
   },
+
+  ".glass": {
+    "@apply bg-(--bg-color)/70 backdrop-blur-md": {},
+  },
 };

@@ -7,6 +7,7 @@ export type ButtonGroupContextType =
       color?: ColorType;
       variant?: ButtonVariant;
       ghostHover?: GhostHover;
+      retainFocusState?: boolean;
       radius?: InputRadius;
       size?: SizeType;
       scaling?: boolean;
