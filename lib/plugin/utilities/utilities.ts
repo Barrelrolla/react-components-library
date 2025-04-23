@@ -25,6 +25,12 @@ export default <Record<string, CssInJs>>{
     outlineColor: "oklch(from var(--bg-color) calc(l + var(--h) * 1.5) c h);",
   },
 
+  ".bg-active-inverse": {
+    backgroundColor:
+      "oklch(from var(--fg-color) calc(l + var(--h) * 1.5) c h);",
+    outlineColor: "oklch(from var(--fg-color) calc(l + var(--h) * 1.5) c h);",
+  },
+
   ".fg-hover": {
     color: "oklch(from var(--fg-color) calc(l + var(--h) * 2) c h);",
     outlineColor: "oklch(from var(--fg-color) calc(l + var(--h) * 2) c h);",
@@ -47,5 +53,9 @@ export default <Record<string, CssInJs>>{
 
   ".glass": {
     "@apply bg-(--bg-color)/70 backdrop-blur-md": {},
+  },
+
+  ".backdrop": {
+    "@apply fixed bg-dark/30 top-0 left-0 z-30 h-screen w-screen": {},
   },
 };

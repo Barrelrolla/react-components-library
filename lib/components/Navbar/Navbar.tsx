@@ -1,14 +1,15 @@
 import { ComponentProps, useEffect, useState } from "react";
+import { ColorType, ResponsiveSizes } from "@/types";
+import { cssColorProps } from "@/util";
 import { NavbarContextProvider } from "./NavbarContext";
 import { useNavbarStyles } from "./useNavbarStyles";
-import { ColorType, ResponsiveSizes } from "@/types";
-import { cssColorProps } from "@/util/cssColorProps";
+import { NavbarRadius } from "./NavbarTypes";
 
 export type NavbarProps = {
   color?: ColorType;
   hasShadow?: boolean;
   hasBorder?: boolean;
-  isRounded?: boolean;
+  radius?: NavbarRadius;
   collapseAt?: ResponsiveSizes;
   fixed?: boolean;
   position?: "top" | "bottom";
@@ -20,7 +21,7 @@ export function Navbar({
   color = "main",
   hasBorder = true,
   hasShadow = true,
-  isRounded = true,
+  radius,
   collapseAt = "sm",
   fixed = true,
   position = "top",
@@ -31,18 +32,18 @@ export function Navbar({
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { navbarStyles, backdropStyles } = useNavbarStyles(
+  const { navbarStyles, backdropStyles } = useNavbarStyles({
     fixed,
     position,
     glass,
     hasBorder,
     hasShadow,
-    isRounded,
+    radius,
     isOpen,
     collapseAt,
     className,
     backdropClasses,
-  );
+  });
 
   function outsideClickHandler() {
     setIsOpen(false);
@@ -73,7 +74,6 @@ export function Navbar({
       value={{
         color,
         position,
-        rounded: isRounded,
         collapseAt: collapseAt,
         isOpen,
         setIsOpen,

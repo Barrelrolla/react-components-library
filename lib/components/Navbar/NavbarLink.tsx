@@ -51,18 +51,17 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
   }
 
   const { collapseAt } = context;
-  const classes = useNavbarLinkStyles(
-    selected,
+  const classes = useNavbarLinkStyles({
     collapseAt,
     selectedUnderline,
     selectedUnderlineOffset,
     className,
-    selectedClasses,
-  );
+  });
 
   return (
     <li>
       <Anchor
+        data-selected={selected}
         color={context.color}
         as={as || defaultType}
         selected={selected}

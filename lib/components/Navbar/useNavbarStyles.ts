@@ -1,43 +1,54 @@
 import { twMerge } from "tailwind-merge";
 import { useTheme } from "@/contexts";
 import { ResponsiveSizes } from "@/types";
+import { NavbarRadius } from "./NavbarTypes";
 
-interface NavbarStyles {
-  navbarStyles: string;
-  backdropStyles: string;
-}
+export function useNavbarStyles({
+  fixed,
+  position,
+  glass,
+  hasBorder,
+  hasShadow,
+  radius,
+  collapseAt,
+  isOpen,
+  className,
+  backdropClasses,
+}: {
+  fixed: boolean;
+  position: "top" | "bottom";
+  glass: boolean;
+  hasBorder: boolean;
+  hasShadow: boolean;
+  radius?: NavbarRadius;
+  isOpen: boolean;
+  collapseAt: ResponsiveSizes;
+  className?: string;
+  backdropClasses?: string;
+}) {
+  const theme = useTheme();
+  const resolvedRadius = radius || theme?.containersRadius || "none";
 
-export function useNavbarStyles(
-  fixed: boolean,
-  position: "top" | "bottom",
-  glass: boolean,
-  hasBorder: boolean,
-  hasShadow: boolean,
-  isRounded: boolean,
-  isOpen: boolean,
-  collapseAt: ResponsiveSizes,
-  className?: string,
-  backdropClasses?: string,
-): NavbarStyles {
   return {
     navbarStyles: twMerge(
-      "flex w-full flex-wrap items-center justify-between px-4 py-2",
-      "bg-(--bg-color) text-(--fg-color)",
-      glass && "bg-(--bg-color)/70 backdrop-blur-md",
+      "navbar",
+      glass && "glass",
       fixed && "fixed left-0 z-40",
       position === "top" && "top-0",
       position === "bottom" && "bottom-0",
       hasBorder && position === "top" && "border-b-2",
       hasBorder && position === "bottom" && "border-t-2",
-      isRounded && position === "top" && "rounded-b-lg",
-      isRounded && position === "bottom" && "rounded-t-lg",
+      resolvedRadius === "small" && position === "top" && "rounded-b",
+      resolvedRadius === "small" && position === "bottom" && "rounded-t",
+      resolvedRadius === "big" && position === "top" && "rounded-b-lg",
+      resolvedRadius === "big" && position === "bottom" && "rounded-t-lg",
       hasShadow && "shadow-stone-600 dark:shadow-stone-800",
       hasShadow && position === "top" && "shadow-[0px_4px_8px_-1px]",
       hasShadow && position === "bottom" && "shadow-[0px_-4px_8px_-1px]",
       className,
     ),
     backdropStyles: twMerge(
-      "fixed top-0 left-0 z-30 h-screen w-screen",
+      "backdrop",
       collapseAt === "sm" && "sm:hidden",
       collapseAt === "md" && "md:hidden",
       collapseAt === "lg" && "lg:hidden",
@@ -49,47 +60,46 @@ export function useNavbarStyles(
   };
 }
 
-export function useNavbarCollapseStyles(
-  position: "top" | "bottom",
-  collapseAt: ResponsiveSizes,
-  isOpen: boolean,
-  rounded: boolean,
-  wrapperClasses?: string,
-  className?: string,
-) {
+export function useNavbarCollapseStyles({
+  position,
+  collapseAt,
+  isOpen,
+  transitions,
+  wrapperClasses,
+  className,
+}: {
+  position: "top" | "bottom";
+  collapseAt: ResponsiveSizes;
+  isOpen: boolean;
+  transitions: boolean;
+  wrapperClasses?: string;
+  className?: string;
+}) {
   const theme = useTheme();
-  const transitions = !theme || theme.transitions;
+  const hasTransitions = (!theme || theme.transitions) && transitions;
   const wrapperStyles = twMerge(
-    "w-full overflow-auto overscroll-contain",
-    transitions && "transition-[max-height]",
+    "navbar-collapse-container",
+    hasTransitions && "transition-[max-height]",
     position === "top" && "order-last",
     position === "bottom" && "order-first",
-    collapseAt === "sm" &&
-      "sm:order-none sm:max-h-fit sm:w-auto sm:overflow-visible",
-    collapseAt === "md" &&
-      "md:order-none md:max-h-fit md:w-auto md:overflow-visible",
-    collapseAt === "lg" &&
-      "lg:order-none lg:max-h-fit lg:w-auto lg:overflow-visible",
-    collapseAt === "xl" &&
-      "xl:order-none xl:max-h-fit xl:w-auto xl:overflow-visible",
+    collapseAt === "sm" && "sm:navbar-collapse-container-extended",
+    collapseAt === "md" && "md:navbar-collapse-container-extended",
+    collapseAt === "lg" && "lg:navbar-collapse-container-extended",
+    collapseAt === "xl" && "xl:navbar-collapse-container-extended",
     !isOpen && "max-h-0 ease-out",
     isOpen && "max-h-screen ease-in",
     wrapperClasses,
   );
 
   const listStyles = twMerge(
-    "flex flex-col gap-2 p-2",
+    "navbar-collapse-list",
     position === "top" && "mt-4",
     position === "bottom" && "mb-4",
-    collapseAt === "sm" &&
-      "sm:mt-0 sm:mb-0 sm:flex-row sm:items-center sm:gap-4 sm:p-0",
-    collapseAt === "md" &&
-      "md:mt-0 md:mb-0 md:flex-row md:items-center md:gap-4 md:p-0",
-    collapseAt === "lg" &&
-      "lg:mt-0 lg:mb-0 lg:flex-row lg:items-center lg:gap-4 lg:p-0",
-    collapseAt === "xl" &&
-      "xl:mt-0 xl:mb-0 xl:flex-row xl:items-center xl:gap-4 xl:p-0",
-    rounded && "rounded-lg",
+    collapseAt === "sm" && "sm:navbar-collapse-list-extended",
+    collapseAt === "md" && "md:navbar-collapse-list-extended",
+    collapseAt === "lg" && "lg:navbar-collapse-list-extended",
+    collapseAt === "xl" && "xl:navbar-collapse-list-extended",
+    // rounded && "rounded-lg",
     className,
   );
   return {
@@ -98,23 +108,25 @@ export function useNavbarCollapseStyles(
   };
 }
 
-export function useNavbarLinkStyles(
-  selected: boolean,
-  collapseAt: ResponsiveSizes,
-  selectedUnderline: boolean,
-  selectedUnderlineOffset: boolean,
-  className?: string,
-  selectedClasses?: string,
-) {
+export function useNavbarLinkStyles({
+  collapseAt,
+  selectedUnderline,
+  selectedUnderlineOffset,
+  className,
+}: {
+  collapseAt: ResponsiveSizes;
+  selectedUnderline: boolean;
+  selectedUnderlineOffset: boolean;
+  className?: string;
+}) {
   return twMerge(
-    "flex justify-start p-2 outline-offset-0",
-    collapseAt === "sm" && "sm:px-2 sm:py-0",
-    collapseAt === "md" && "md:px-2 md:py-0",
-    collapseAt === "lg" && "lg:px-2 lg:py-0",
-    collapseAt === "xl" && "xl:px-2 xl:py-0",
+    "navbar-link",
+    collapseAt === "sm" && "sm:navbar-link-extended",
+    collapseAt === "md" && "md:navbar-link-extended",
+    collapseAt === "lg" && "lg:navbar-link-extended",
+    collapseAt === "xl" && "xl:navbar-link-extended",
     className,
-    selectedUnderlineOffset && selected && "underline-offset-1",
-    selectedUnderline && selected && "underline",
-    selectedClasses,
+    selectedUnderlineOffset && "selected:underline-offset-1",
+    selectedUnderline && "selected:underline",
   );
 }

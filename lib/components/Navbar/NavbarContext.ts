@@ -6,7 +6,6 @@ export type NavbarContextType =
       color: ColorType;
       collapseAt: ResponsiveSizes;
       position: "top" | "bottom";
-      rounded: boolean;
       isOpen: boolean;
       setIsOpen: (isOpen: boolean) => void;
     }

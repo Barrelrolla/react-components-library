@@ -9,3 +9,4 @@ export type { NavbarContextType } from "./NavbarContext";
 export { NavbarLink } from "./NavbarLink";
 export type { NavbarLinkProps } from "./NavbarLink";
 export { NavbarToggle } from "./NavbarToggle";
+export type { NavbarRadius } from "./NavbarTypes";

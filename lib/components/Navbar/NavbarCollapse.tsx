@@ -3,10 +3,12 @@ import { useNavbarContext } from "./NavbarContext";
 import { useNavbarCollapseStyles } from "./useNavbarStyles";
 
 export type NavbarCollapseProps = {
+  transitions?: boolean;
   wrapperClasses?: string;
 } & ComponentProps<"ul">;
 
 export function NavbarCollapse({
+  transitions = true,
   className,
   wrapperClasses,
   children,
@@ -19,16 +21,16 @@ export function NavbarCollapse({
     );
   }
 
-  const { isOpen, position, collapseAt, rounded } = context;
+  const { isOpen, position, collapseAt } = context;
 
-  const { wrapperStyles, listStyles } = useNavbarCollapseStyles(
+  const { wrapperStyles, listStyles } = useNavbarCollapseStyles({
     position,
     collapseAt,
     isOpen,
-    rounded,
+    transitions,
     wrapperClasses,
     className,
-  );
+  });
 
   return (
     <div className={wrapperStyles}>

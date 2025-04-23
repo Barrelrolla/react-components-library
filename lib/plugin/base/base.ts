@@ -29,10 +29,10 @@ export default <CssInJs>{
   ".dark": {
     "--color-main": "oklch(0.27 0.0288 246.94);",
     "--color-main-content": "oklch(0.94 0.0035 247.86);",
-    "--color-light": "oklch(0.147 0.004 49.25);",
-    "--color-light-content": "oklch(0.985 0.001 106.423);",
-    "--color-dark": "oklch(0.985 0.001 106.423);",
-    "--color-dark-content": "oklch(0.147 0.004 49.25);",
+    "--color-dark": "oklch(0.147 0.004 49.25);",
+    "--color-dark-content": "oklch(0.985 0.001 106.423);",
+    "--color-light": "oklch(0.985 0.001 106.423);",
+    "--color-light-content": "oklch(0.147 0.004 49.25);",
     "--color-primary": "oklch(0.83 0.1048 302.37);",
     "--color-primary-content": "oklch(0.37 0.2161 274.77);",
     "--color-secondary": "oklch(0.73 0.2516 328.84);",
@@ -47,7 +47,7 @@ export default <CssInJs>{
     "--color-warning-content": "oklch(0.86 0.1634 87.13);",
     "--color-error": "oklch(0.3 0.1169 28.32);",
     "--color-error-content": "oklch(0.77 0.1443 359.93);",
-    "--mod-highlight-dark": "-0.1",
+    "--mod-highlight-light": "-0.1",
     "--mod-highlight": "0.05",
   },
 

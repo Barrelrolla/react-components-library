@@ -28,10 +28,7 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
     onClick?.(event);
   }
 
-  const classes = twMerge(
-    "flex items-center gap-2 text-2xl font-bold",
-    className,
-  );
+  const classes = twMerge("navbar-brand", className);
 
   return (
     <Anchor

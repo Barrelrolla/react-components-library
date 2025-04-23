@@ -16,42 +16,21 @@ type Props = ComponentProps<typeof Navbar> & {
 const meta: Meta<Props> = {
   title: "Components/Navbar",
   component: Navbar,
-  args: {
-    selected: undefined,
-  },
+  args: { selected: undefined },
   argTypes: {
-    color: {
-      control: {
-        type: "select",
-      },
-    },
+    color: { control: { type: "inline-radio" } },
+    radius: { control: { type: "inline-radio" } },
     selected: {
       control: {
         type: "inline-radio",
         min: 0,
         max: 6,
-        labels: {
-          0: "1",
-          1: "2",
-          2: "3",
-          3: "4",
-          4: "5",
-          5: "6",
-          6: "none",
-        },
+        labels: { 0: "1", 1: "2", 2: "3", 3: "4", 4: "5", 5: "6", 6: "none" },
       },
       options: [0, 1, 2, 3, 4, 5, 6],
     },
-    collapseAt: {
-      control: {
-        type: "inline-radio",
-      },
-    },
-    position: {
-      control: {
-        type: "inline-radio",
-      },
-    },
+    collapseAt: { control: { type: "inline-radio" } },
+    position: { control: { type: "inline-radio" } },
   },
 };
 
@@ -64,11 +43,11 @@ export const Default: Story = {
     const navbar = canvas.getByText("Test");
     await expect(navbar, "renders").toBeTruthy();
   },
-  render: ({ selected, color }) => {
+  render: ({ selected, ...rest }) => {
     const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
     return (
       <div className="bg-main h-[200vh]">
-        <Navbar color={color}>
+        <Navbar {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
             <ComputerIcon /> Test
