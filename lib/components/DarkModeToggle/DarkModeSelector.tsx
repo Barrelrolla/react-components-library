@@ -1,7 +1,6 @@
-import { Button, ButtonGroup, ButtonGroupProps } from "../Button";
+import { useDarkMode, darkTheme, lightTheme, systemTheme } from "@/contexts";
 import { ComputerIcon, MoonIcon, SunIcon } from "@/icons";
-import { useDarkMode } from "@/contexts";
-import { darkTheme, lightTheme, systemTheme } from "@/contexts/DarkModeContext";
+import { Button, ButtonGroup, ButtonGroupProps } from "../Button";
 
 export function DarkModeSelector({
   variant = "outline",

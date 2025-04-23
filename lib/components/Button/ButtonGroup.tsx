@@ -34,6 +34,7 @@ export function ButtonGroup({
   className,
   dividerClasses,
   children,
+  ...rest
 }: ButtonGroupProps) {
   const { groupStyles, dividerStyles, resolvedColor } = useButtonGroupStyles({
     color,
@@ -60,7 +61,11 @@ export function ButtonGroup({
       }}
     >
       <div className="flex">
-        <div className={groupStyles} style={cssColorProps(resolvedColor)}>
+        <div
+          className={groupStyles}
+          style={cssColorProps(resolvedColor)}
+          {...rest}
+        >
           {Children.map(children, (child, index) => {
             return (
               <>

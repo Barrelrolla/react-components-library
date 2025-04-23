@@ -1,4 +1,4 @@
-import { cssColorPropsReversed } from "@/util/cssColorProps";
+import { cssColorPropsReversed } from "@/util";
 import { Button, ButtonProps } from "../Button";
 import { useHamburgerStyles } from "./useHamburgerStyles";
 
@@ -14,11 +14,11 @@ export function HamburgerButton({
   className,
   ...rest
 }: HamburgerButtonProps) {
-  const { button, container, topLine, midLine, botLine } = useHamburgerStyles(
+  const { button, container, topLine, midLine, botLine } = useHamburgerStyles({
     isOpen,
     transitions,
     className,
-  );
+  });
   return (
     <Button
       aria-label="navigation toggle"

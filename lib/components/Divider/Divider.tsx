@@ -1,7 +1,7 @@
-import { ColorType, ResponsiveSizes } from "@/types";
-import { useDividerClasses } from "./useDividerStyles";
 import { ComponentProps } from "react";
-import { cssColorProps } from "@/util/cssColorProps";
+import { ColorType, ResponsiveSizes } from "@/types";
+import { cssColorProps } from "@/util";
+import { useDividerClasses } from "./useDividerStyles";
 
 export type DividerProps = {
   color?: ColorType;

@@ -1,7 +1,6 @@
-import { Button, ButtonProps } from "../Button";
-import { useDarkMode } from "@/contexts";
-import { darkTheme, lightTheme } from "@/contexts/DarkModeContext";
+import { useDarkMode, darkTheme, lightTheme } from "@/contexts";
 import { MoonIcon, SunIcon } from "@/icons";
+import { Button, ButtonProps } from "../Button";
 
 export function DarkModeToggle({
   size = "sm",

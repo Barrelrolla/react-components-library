@@ -36,7 +36,7 @@ export const Default: Story = {
   },
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex min-h-100 gap-4 px-10 py-20">
+      <div className="bg-main flex min-h-100 flex-wrap gap-4 px-10 py-20">
         <Button {...rest}>{children}</Button>
       </div>
     );
@@ -47,7 +47,7 @@ export const Default: Story = {
 export const Variants: Story = {
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex min-h-100 gap-4 px-10 py-20">
+      <div className="bg-main flex min-h-100 flex-wrap gap-4 px-10 py-20">
         <Button {...rest}>{children}</Button>
         <Button variant="outline" {...rest}>
           {children}
@@ -68,7 +68,7 @@ export const Variants: Story = {
 export const Ghost: Story = {
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex min-h-100 gap-4 px-10 py-20">
+      <div className="bg-main flex min-h-100 flex-wrap gap-4 px-10 py-20">
         <Button variant="ghost" {...rest}>
           {children}
         </Button>
@@ -121,7 +121,7 @@ export const Disabled: Story = {
 export const Icon: Story = {
   render: ({ ...rest }) => {
     return (
-      <div className="bg-main flex min-h-100 gap-10 px-10 py-20">
+      <div className="bg-main flex min-h-100 flex-wrap gap-10 px-10 py-20">
         <Button radius="full" startIcon={<ComputerIcon />} {...rest}></Button>
         <Button
           radius="none"
@@ -143,7 +143,7 @@ export const Icon: Story = {
 export const Colors: Story = {
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex flex-wrap items-end justify-end gap-2 px-10 py-20">
+      <div className="bg-main flex flex-wrap gap-2 px-10 py-20">
         <Button color="main" {...rest}>
           {children}
         </Button>
@@ -206,7 +206,7 @@ export const Sizes: Story = {
             Button
           </Button>
         </div>
-        <div className="flex flex-wrap items-end justify-center gap-2">
+        <div className="flex flex-wrap items-start justify-center gap-2">
           <Button
             startIcon={<ComputerIcon />}
             size="xs"
@@ -232,28 +232,6 @@ export const Sizes: Story = {
             size="xl"
             color="primary"
           ></Button>
-        </div>
-        <div className="flex flex-wrap items-start justify-center gap-2">
-          <Button disabled size="xs" color="primary">
-            <ComputerIcon />
-            Button
-          </Button>
-          <Button disabled size="sm" color="primary">
-            <ComputerIcon />
-            Button
-          </Button>
-          <Button disabled size="md" color="primary">
-            <ComputerIcon />
-            Button
-          </Button>
-          <Button disabled size="lg" color="primary">
-            <ComputerIcon />
-            Button
-          </Button>
-          <Button disabled size="xl" color="primary">
-            <ComputerIcon />
-            Button
-          </Button>
         </div>
         <div className="flex w-full items-start justify-center gap-2">
           <Button className="btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
