@@ -14,7 +14,7 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".btn-outline-focus": {
-    "@apply focus:bg-(--bg-color) focus:text-(--fg-color) focus:inset-ring-transparent":
+    "@apply focus:bg-(--bg-color) focus:text-(--fg-color) focus:inset-ring-transparent focus:active:bg-hover":
       {},
   },
   ".btn-ghost": {

@@ -7,6 +7,7 @@ export type ThemeContextType =
       inputsRadius?: InputRadius;
       transitions?: boolean;
       scalingButtons?: boolean;
+      buttonsRetainFocus?: boolean;
     }
   | undefined;
 

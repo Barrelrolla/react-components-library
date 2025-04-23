@@ -8,7 +8,9 @@ Radius for buttons and inputs.
 `transitions`  
 Ability to disable all animated transitions in the app.  
 `scalingButtons`  
-Choose if buttons will scale down on press.
+Choose if buttons will scale down on press.  
+`buttonsRetainFocus`  
+If buttons like the outline button should remain their solid hover state during focus.
 
 ## DarkModeContext
 

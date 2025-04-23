@@ -41,7 +41,9 @@ export function useButtonStyles({
   const groupRadius = group?.radius || theme?.inputsRadius || "small";
   const inGroup = group !== undefined;
   const shouldRetainFocus =
-    (!group || group.retainFocusState) && retainFocusState;
+    (!theme || theme.buttonsRetainFocus) &&
+    (!group || group.retainFocusState) &&
+    retainFocusState;
   const hasTransitions =
     (!theme || theme.transitions) &&
     (!group || group.transitions) &&
