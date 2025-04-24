@@ -3,13 +3,14 @@ import base from "./base/base";
 import anchor from "./components/anchor";
 import button from "./components/button";
 import hamburgerButton from "./components/hamburgerButton";
+import hero from "./components/hero";
 import navbar from "./components/navbar";
 import utilities from "./utilities/utilities";
 
 export default createPlugin(
   ({ addBase, addComponents, addUtilities, addVariant }) => {
     addBase(base),
-      addComponents([anchor, button, hamburgerButton, navbar]),
+      addComponents([anchor, button, hamburgerButton, hero, navbar]),
       addUtilities(utilities),
       addVariant("selected", "&[data-selected='true']");
   },

@@ -5,6 +5,14 @@
   --default-transition-duration: 200ms;
 }
 
+.sb-show-main.sb-main-padded {
+  padding: 0;
+}
+
+.sb-wrapper {
+  padding: 0;
+}
+
 /* 
 @utility btn-* {
   padding-inline: calc(--value(--btn-*) * 3);

@@ -14,6 +14,15 @@ export type { DividerProps } from "./Divider";
 export { HamburgerButton } from "./HamburgerButton";
 export type { HamburgerButtonProps } from "./HamburgerButton";
 export {
+  Hero,
+  HeroActions,
+  HeroContextProvider,
+  HeroSection,
+  HeroText,
+  HeroTitle,
+} from "./Hero";
+export type { HeroContextType, HeroProps } from "./Hero";
+export {
   Navbar,
   NavbarBrand,
   NavbarCollapse,
