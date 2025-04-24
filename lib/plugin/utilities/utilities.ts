@@ -56,6 +56,6 @@ export default <Record<string, CssInJs>>{
   },
 
   ".backdrop": {
-    "@apply fixed bg-dark/30 top-0 left-0 z-30 h-screen w-screen": {},
+    "@apply fixed top-0 left-0 z-30 h-screen w-screen": {},
   },
 };
