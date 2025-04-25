@@ -64,7 +64,11 @@ export const Default: Story = {
                 {link}
               </NavbarLink>
             ))}
-            <Button size="sm" scaling={false}>
+            <Button
+              variant="outline"
+              color="primary"
+              className="w-full md:w-auto"
+            >
               test
             </Button>
           </NavbarCollapse>

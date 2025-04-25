@@ -45,6 +45,29 @@ export const Default: Story = {
               <Button>action</Button>
             </HeroActions>
           </HeroSection>
+        </Hero>
+      </div>
+    );
+  },
+};
+
+export const WithImage: Story = {
+  render: ({ ...props }) => {
+    return (
+      <div className="bg-main">
+        <Hero {...props}>
+          <HeroSection>
+            <HeroTitle>Lorem ipsum dolor sit amet.</HeroTitle>
+            <HeroText>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore
+              ex, corporis rem dolores culpa quo corrupti doloremque minima
+              excepturi molestiae.
+            </HeroText>
+            <HeroActions>
+              <Button>action</Button>
+              <Button>action</Button>
+            </HeroActions>
+          </HeroSection>
           <HeroSection>
             <img
               className="hero-image"
