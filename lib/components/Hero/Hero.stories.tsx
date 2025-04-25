@@ -34,7 +34,7 @@ export const Default: Story = {
       <div className="bg-main">
         <Hero {...props}>
           <HeroSection>
-            <HeroTitle>Amazing hero title</HeroTitle>
+            <HeroTitle>Lorem ipsum dolor sit amet.</HeroTitle>
             <HeroText>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore
               ex, corporis rem dolores culpa quo corrupti doloremque minima
@@ -45,7 +45,7 @@ export const Default: Story = {
               <Button>action</Button>
             </HeroActions>
           </HeroSection>
-          <HeroSection className="">
+          <HeroSection>
             <img
               className="hero-image"
               src="https://picsum.photos/1400/1400?grayscale"
