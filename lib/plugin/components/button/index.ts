@@ -4,6 +4,7 @@ export default <Record<string, CssInJs>>{
   ".btn": {
     "@apply flex items-center justify-center gap-2 outline-(--bg-color) focus-visible:outline-2 outline-offset-2 cursor-pointer disabled:pointer-events-none disabled:contrast-75 disabled:saturate-50 disabled:opacity-70 select-none antialiased font-semibold":
       {},
+    "--p": "",
   },
   ".btn-solid": {
     "@apply bg-(--bg-color) hover:bg-hover focus-visible:bg-hover active:bg-active text-(--fg-color) selected:bg-(--fg-color) selected:text-(--bg-color) selected:hover:bg-hover-inverse selected:focus-visible:bg-hover-inverse":
@@ -14,7 +15,7 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".btn-outline-focus": {
-    "@apply focus:bg-(--bg-color) focus:text-(--fg-color) focus:inset-ring-transparent focus:active:bg-hover":
+    "@apply focus:bg-(--bg-color) focus:text-(--fg-color) focus:inset-ring-transparent focus:hover:bg-hover focus:active:bg-active":
       {},
   },
   ".btn-ghost": {
@@ -29,7 +30,8 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".btn-ghost-fill-focus": {
-    "@apply focus:bg-(--bg-color) focus:text-(--fg-color)": {},
+    "@apply focus:bg-(--bg-color) focus:text-(--fg-color) focus:hover:bg-hover focus:active:bg-active":
+      {},
   },
   ".btn-ghost-outline": {
     "@apply hover:inset-ring hover:ghost-hover focus-visible:ghost-hover active:inset-ring active:ghost-active selected:inset-ring":
@@ -43,55 +45,41 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".btn-ghost-contrasting-focus": {
-    "@apply focus:text-(--fg-color)": {},
+    "@apply focus:text-(--fg-color) focus:hover:fg-hover focus:active:fg-active":
+      {},
   },
   ".btn-grouped": {
     "@apply inset-ring-0": {},
   },
   ".btn-xs": {
-    paddingInline: "0.3rem;",
-    paddingBlock: "0.1rem;",
-    fontSize: "calc(var(--text-xs) + 0.05rem);",
+    "@apply px-3 h-[1.5rem] text-xs": {},
   },
   ".btn-sm": {
-    paddingInline: "0.75rem;",
-    paddingBlock: "0.25rem;",
-    fontSize: "calc(var(--text-xs) + 0.125rem);",
+    "@apply px-4.5 h-[2rem] text-sm": {},
   },
   ".btn-md": {
-    paddingInline: "1.5rem;",
-    paddingBlock: "0.5rem;",
-    fontSize: "calc(var(--text-xs) + 0.25rem);",
+    "@apply px-6 h-[2.5rem] text-base": {},
   },
   ".btn-lg": {
-    paddingInline: "2.25rem;",
-    paddingBlock: "0.75rem;",
-    fontSize: "calc(var(--text-xs) + 0.375rem);",
+    "@apply px-7.5 h-[3rem] text-lg": {},
   },
   ".btn-xl": {
-    paddingInline: "3rem;",
-    paddingBlock: "1rem;",
-    fontSize: "calc(var(--text-xs) + 0.5rem);",
+    "@apply px-9 h-[3.5rem] text-xl": {},
   },
   ".btn-icon-xs": {
-    padding: "0.225rem;",
-    fontSize: "calc(var(--text-xs) + 0.2rem);",
+    "@apply size-[1.5rem] text-base": {},
   },
   ".btn-icon-sm": {
-    padding: "0.28rem;",
-    fontSize: "calc(var(--text-xs) + 0.5rem);",
+    "@apply size-[2rem] text-lg": {},
   },
   ".btn-icon-md": {
-    padding: "0.375rem;",
-    fontSize: "calc(var(--text-xs) + 1rem);",
+    "@apply size-[2.5rem] text-xl": {},
   },
   ".btn-icon-lg": {
-    padding: "0.4675rem;",
-    fontSize: "calc(var(--text-xs) + 1.5rem);",
+    "@apply size-[3rem] text-2xl": {},
   },
   ".btn-icon-xl": {
-    padding: "0.5625rem;",
-    fontSize: "calc(var(--text-xs) + 2rem);",
+    "@apply size-[3.5rem] text-3xl": {},
   },
   ".btn-group": {
     "@apply flex items-center justify-center": {},

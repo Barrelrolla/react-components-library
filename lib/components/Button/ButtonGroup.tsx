@@ -18,6 +18,7 @@ export type ButtonGroupProps = {
   vertical?: boolean;
   scaling?: boolean;
   dividerClasses?: string;
+  wrapperClasses?: string;
 } & ComponentProps<"div">;
 
 export function ButtonGroup({
@@ -36,15 +37,16 @@ export function ButtonGroup({
   children,
   ...rest
 }: ButtonGroupProps) {
-  const { groupStyles, dividerStyles, resolvedColor } = useButtonGroupStyles({
-    color,
-    variant,
-    radius,
-    vertical,
-    divider,
-    className,
-    dividerClasses,
-  });
+  const { groupStyles, dividerStyles, wrapperStyles, resolvedColor } =
+    useButtonGroupStyles({
+      color,
+      variant,
+      radius,
+      vertical,
+      divider,
+      className,
+      dividerClasses,
+    });
 
   return (
     <ButtonGroupContextProvider
@@ -60,7 +62,7 @@ export function ButtonGroup({
         vertical,
       }}
     >
-      <div className="flex">
+      <div className={wrapperStyles}>
         <div
           className={groupStyles}
           style={cssColorProps(resolvedColor)}

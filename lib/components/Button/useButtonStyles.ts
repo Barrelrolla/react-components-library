@@ -63,7 +63,7 @@ export function useButtonStyles({
       isIcon && `btn-icon-${group?.size || size || "md"}`,
       (variant === "ghost" || group?.variant === "ghost") &&
         `btn-ghost-${resolvedGhostHover}`,
-      hasScaling && "active:scale-[99%]",
+      hasScaling && "active:scale-[98%]",
       hasTransitions && "transition",
       inGroup && "btn-grouped",
       !inGroup && resolvedRadius === "small" && "rounded",

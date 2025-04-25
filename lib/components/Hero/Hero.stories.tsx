@@ -13,6 +13,15 @@ const meta: Meta<typeof Hero> = {
     children: {
       if: { arg: "false", exists: true },
     },
+    textAlign: {
+      control: { type: "inline-radio" },
+    },
+    actionsAlign: {
+      control: { type: "inline-radio" },
+    },
+    responsiveAt: {
+      control: { type: "inline-radio" },
+    },
   },
 };
 
@@ -39,7 +48,7 @@ export const Default: Story = {
           <HeroSection className="">
             <img
               className="hero-image"
-              src="https://picsum.photos/1400/500?grayscale"
+              src="https://picsum.photos/1400/1400?grayscale"
             />
           </HeroSection>
         </Hero>

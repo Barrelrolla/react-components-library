@@ -11,6 +11,7 @@ export function useButtonGroupStyles({
   divider,
   className,
   dividerClasses,
+  wrapperClasses,
 }: {
   color?: ColorType;
   variant?: ButtonVariant;
@@ -19,6 +20,7 @@ export function useButtonGroupStyles({
   divider: boolean;
   className?: string;
   dividerClasses?: string;
+  wrapperClasses?: string;
 }) {
   const theme = useTheme();
   const resolvedRadiues = radius || theme?.inputsRadius || "small";
@@ -35,16 +37,19 @@ export function useButtonGroupStyles({
     ? twMerge(
         "bg-(--bg-color)",
         variant === "solid" && "bg-(--fg-color)",
-        !vertical && "w-0.25",
-        vertical && "h-0.25",
+        !vertical && "w-[0.1rem]",
+        vertical && "h-[0.1rem]",
         "z-1",
         dividerClasses,
       )
     : "";
 
+  const wrapperStyles = twMerge("flex", wrapperClasses);
+
   return {
     groupStyles,
     dividerStyles,
+    wrapperStyles,
     resolvedColor: color,
   };
 }

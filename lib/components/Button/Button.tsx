@@ -57,7 +57,7 @@ export function Button<E extends ElementType = typeof defaultType>({
     isIcon,
     scaling,
     transitions,
-    disabled,
+    disabled: isDisabled,
     radius,
     color,
     className,
