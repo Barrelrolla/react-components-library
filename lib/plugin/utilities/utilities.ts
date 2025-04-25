@@ -52,10 +52,11 @@ export default <Record<string, CssInJs>>{
   },
 
   ".glass": {
-    "@apply bg-(--bg-color)/70 backdrop-blur-md": {},
+    "@apply bg-(--bg-color)/30 backdrop-blur-sm": {},
   },
 
   ".backdrop": {
-    "@apply fixed top-0 left-0 z-30 h-screen w-screen": {},
+    "@apply bg-main/30 backdrop-blur-sm fixed top-0 left-0 z-30 h-screen w-screen":
+      {},
   },
 };

@@ -8,6 +8,7 @@ import { NavbarLink } from "./NavbarLink";
 import { NavbarToggle } from "./NavbarToggle";
 import { Button } from "../Button";
 import { ComputerIcon } from "@/icons";
+import { Hero, HeroActions, HeroSection, HeroText, HeroTitle } from "../Hero";
 
 type Props = ComponentProps<typeof Navbar> & {
   selected: number | undefined;
@@ -73,6 +74,67 @@ export const Default: Story = {
             </Button>
           </NavbarCollapse>
         </Navbar>
+      </div>
+    );
+  },
+};
+
+export const WithHero: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const navbar = canvas.getByText("Test");
+    await expect(navbar, "renders").toBeTruthy();
+  },
+  render: ({ selected, ...rest }) => {
+    const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
+    return (
+      <div className="bg-main h-[200vh]">
+        <Navbar {...rest}>
+          <NavbarToggle />
+          <NavbarBrand href="#">
+            <ComputerIcon /> Test
+          </NavbarBrand>
+          <div role="presentation" className="w-10 sm:hidden"></div>
+          <NavbarCollapse>
+            {links.map((link, index) => (
+              <NavbarLink
+                key={link}
+                href="#"
+                selected={selected === index}
+                underlined={false}
+              >
+                {link}
+              </NavbarLink>
+            ))}
+            <Button
+              variant="outline"
+              color="primary"
+              className="w-full md:w-auto"
+            >
+              test
+            </Button>
+          </NavbarCollapse>
+        </Navbar>
+        <Hero className="mt-10 md:mt-0">
+          <HeroSection>
+            <HeroTitle>Lorem ipsum dolor sit amet.</HeroTitle>
+            <HeroText>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore
+              ex, corporis rem dolores culpa quo corrupti doloremque minima
+              excepturi molestiae.
+            </HeroText>
+            <HeroActions>
+              <Button>action</Button>
+              <Button>action</Button>
+            </HeroActions>
+          </HeroSection>
+          <HeroSection>
+            <img
+              className="hero-image"
+              src="https://picsum.photos/1400/1400?grayscale"
+            />
+          </HeroSection>
+        </Hero>
       </div>
     );
   },
