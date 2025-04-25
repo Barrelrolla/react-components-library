@@ -44,12 +44,12 @@ export function useHeroSectionStyles({ className }: { className?: string }) {
 }
 
 export function useHeroTitleStyles({ className }: { className?: string }) {
-  const classes = twMerge("text-5xl font-semibold", className);
+  const classes = twMerge("px-6 text-5xl font-semibold", className);
   return { classes };
 }
 
 export function useHeroTextStyles({ className }: { className?: string }) {
-  const classes = twMerge(className);
+  const classes = twMerge("px-6", className);
   return { classes };
 }
 
