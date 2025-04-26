@@ -20,6 +20,7 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
   selectedUnderlineOffset = true,
   bgHighlight = false,
   selectedHighlight = true,
+  useBgColor = false,
   onClick,
   onFocus,
   onBlur,
@@ -65,6 +66,7 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
         color={context.color}
         as={as || defaultType}
         selected={selected}
+        useBgColor={useBgColor}
         className={classes}
         onClick={clickHandler}
         onFocus={focusHandler}

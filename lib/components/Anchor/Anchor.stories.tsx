@@ -23,10 +23,10 @@ export const Default: Story = {
     const button = canvas.getByText("Link");
     await expect(button, "renders").toBeTruthy();
   },
-  render: ({ href, children, ...rest }) => {
+  render: ({ children, ...rest }) => {
     return (
       <div className="bg-main min-h-100 px-10 py-20">
-        <Anchor href={href} {...rest}>
+        <Anchor href="#" {...rest}>
           {children}
         </Anchor>
       </div>
@@ -34,7 +34,6 @@ export const Default: Story = {
   },
   args: {
     children: "Link",
-    href: "#",
   },
 };
 
