@@ -111,13 +111,11 @@ export function useNavbarLinkStyles({
   collapseAt: ResponsiveSizes;
   className?: string;
 }) {
-  const theme = useTheme();
   return twMerge(
     collapseAt === "sm" && "not-sm:navbar-link sm:navbar-link-extended",
     collapseAt === "md" && "not-md:navbar-link md:navbar-link-extended",
     collapseAt === "lg" && "not-lg:navbar-link lg:navbar-link-extended",
     collapseAt === "xl" && "not-xl:navbar-link xl:navbar-link-extended",
-    (!theme || theme.transitions) && "transition-colors",
     className,
   );
 }

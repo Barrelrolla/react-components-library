@@ -30,7 +30,7 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".navbar-link-extended": {
-    "@apply hover:underline selected:underline hover:underline-offset-3 selected:underline-offset-1":
+    "@apply hover:underline selected:underline underline-offset-4 hover:underline-offset-2 selected:underline-offset-1":
       {},
   },
 };

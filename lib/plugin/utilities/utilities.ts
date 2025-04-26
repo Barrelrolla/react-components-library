@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".transition-anchor": {
-    transitionProperty: "color, text-underline-offset;",
+    transitionProperty: "color, background-color, text-underline-offset;",
     transitionTimingFunction:
       "var(--tw-ease, var(--default-transition-timing-function));",
     transitionDuration:
