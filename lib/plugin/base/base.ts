@@ -24,6 +24,11 @@ export default <CssInJs>{
     "--color-error-content": "oklch(0.77 0.1443 359.93);",
     "--mod-highlight-dark": "0.1",
     "--mod-highlight": "-0.05",
+    "--radius-inputs": "0.25rem",
+    "--radius-contaners": "0.5rem",
+    "--radius-navigation": "0.5rem",
+    "--border-containers": "1px",
+    "--border-navigation": "2px",
   },
 
   ".dark": {
@@ -49,11 +54,6 @@ export default <CssInJs>{
     "--color-error-content": "oklch(0.3 0.1169 28.32);",
     "--mod-highlight-light": "-0.1",
     "--mod-highlight": "0.05",
-    "--radius-inputs": "0.25rem",
-    "--radius-contaners": "0.5rem",
-    "--radius-navigation": "0.5rem",
-    "--border-containers": "1px",
-    "--border-navigation": "2px",
   },
 
   html: {
