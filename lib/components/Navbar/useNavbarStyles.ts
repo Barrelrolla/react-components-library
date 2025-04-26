@@ -21,10 +21,15 @@ export function useNavbarStyles({
   className?: string;
   backdropClasses?: string;
 }) {
+  const theme = useTheme();
   return {
     headerStyles: twMerge(
       "navbar",
       glass && "glass",
+      isOpen && collapseAt == "sm" && "not-sm:bg-main/80",
+      isOpen && collapseAt == "md" && "not-md:bg-main/80",
+      isOpen && collapseAt == "lg" && "not-lg:bg-main/80",
+      isOpen && collapseAt == "xl" && "not-xl:bg-main/80",
       fixed && "fixed left-0 z-40",
       position === "top" && "top-0",
       position === "bottom" && "bottom-0",
@@ -35,6 +40,7 @@ export function useNavbarStyles({
       hasShadow && "shadow-dark/60 dark:shadow-dark/80",
       hasShadow && position === "top" && "shadow-[0px_4px_8px_-1px]",
       hasShadow && position === "bottom" && "shadow-[0px_-4px_8px_-1px]",
+      (!theme || theme.transitions) && "transition-colors",
       className,
     ),
     navStyles: twMerge("navbar-nav"),
@@ -100,23 +106,18 @@ export function useNavbarCollapseStyles({
 
 export function useNavbarLinkStyles({
   collapseAt,
-  selectedUnderline,
-  selectedUnderlineOffset,
   className,
 }: {
   collapseAt: ResponsiveSizes;
-  selectedUnderline: boolean;
-  selectedUnderlineOffset: boolean;
   className?: string;
 }) {
+  const theme = useTheme();
   return twMerge(
-    "navbar-link",
-    collapseAt === "sm" && "sm:navbar-link-extended",
-    collapseAt === "md" && "md:navbar-link-extended",
-    collapseAt === "lg" && "lg:navbar-link-extended",
-    collapseAt === "xl" && "xl:navbar-link-extended",
+    collapseAt === "sm" && "not-sm:navbar-link sm:navbar-link-extended",
+    collapseAt === "md" && "not-md:navbar-link md:navbar-link-extended",
+    collapseAt === "lg" && "not-lg:navbar-link lg:navbar-link-extended",
+    collapseAt === "xl" && "not-xl:navbar-link xl:navbar-link-extended",
+    (!theme || theme.transitions) && "transition-colors",
     className,
-    selectedUnderlineOffset && "selected:underline-offset-1",
-    selectedUnderline && "selected:underline",
   );
 }

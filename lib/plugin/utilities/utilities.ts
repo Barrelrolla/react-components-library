@@ -55,9 +55,12 @@ export default <Record<string, CssInJs>>{
     "@apply bg-(--bg-color)/30 backdrop-blur-sm": {},
   },
 
+  ".glass-dark": {
+    "@apply bg-(--bg-color)/80 backdrop-blur-sm": {},
+  },
+
   ".backdrop": {
-    "@apply bg-main/30 backdrop-blur-sm fixed top-0 left-0 z-30 h-screen w-screen":
-      {},
+    "@apply fixed top-0 left-0 z-30 h-screen w-screen": {},
   },
 
   ".rounded-inputs": {

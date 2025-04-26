@@ -16,11 +16,13 @@ export type NavbarLinkProps<E extends ElementType> = {
 export function NavbarLink<E extends ElementType = typeof defaultType>({
   as,
   selected = false,
-  selectedUnderline = true,
-  selectedUnderlineOffset = true,
+  selectedUnderline = false,
+  selectedUnderlineOffset = false,
+  hoverUnderline = false,
   bgHighlight = false,
   selectedHighlight = true,
   useBgColor = false,
+  underlined = false,
   onClick,
   onFocus,
   onBlur,
@@ -54,8 +56,6 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
   const { collapseAt } = context;
   const classes = useNavbarLinkStyles({
     collapseAt,
-    selectedUnderline,
-    selectedUnderlineOffset,
     className,
   });
 
@@ -67,6 +67,8 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
         as={as || defaultType}
         selected={selected}
         useBgColor={useBgColor}
+        underlined={underlined}
+        hoverUnderline={hoverUnderline}
         className={classes}
         onClick={clickHandler}
         onFocus={focusHandler}

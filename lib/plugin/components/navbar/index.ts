@@ -2,11 +2,11 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".navbar": {
-    "@apply flex w-full justify-center bg-(--bg-color) text-(--fg-color) px-4 py-2":
+    "@apply flex w-full justify-center bg-(--bg-color) text-(--fg-color) z-40 px-4 py-2":
       {},
   },
   ".navbar-nav": {
-    "@apply flex flex-wrap items-center justify-between": {},
+    "@apply flex flex-wrap items-center justify-between z-40": {},
     width: "100%",
     "max-width": "var(--max-width)",
   },
@@ -26,11 +26,11 @@ export default <Record<string, CssInJs>>{
     "@apply mt-0 mb-0 flex-row items-center gap-4 p-0": {},
   },
   ".navbar-link": {
-    "@apply flex justify-start p-2 outline-offset-0 selected:bg-(--fg-color) selected:text-(--bg-color) hover:bg-hover focus-visible:bg-hover selected:hover:bg-hover-inverse selected:focus-visible:bg-hover-inverse selected:focus-visible:text-(--bg-color) selected:hover:text-(--bg-color) selected:active:bg-active-inverse selected:active:text-(--bg-color)":
+    "@apply flex hover:bg-(--fg-color)/10 focus-visible:bg-(--fg-color)/10 active:bg-(--fg-color)/30 selected:bg-(--fg-color) selected:text-(--bg-color) selected:hover:bg-(--fg-color)/90 selected:focus-visible:bg-(--fg-color)/90 selected:active:bg-(--fg-color)/80  outline-offset-1 p-2":
       {},
   },
   ".navbar-link-extended": {
-    "@apply px-2 py-0 hover:bg-transparent focus-visible:bg-transparent selected:bg-transparent selected:text-(--fg-color) selected:hover:bg-transparent selected:hover:text-(--fg-color) active:bg-transparent":
+    "@apply hover:underline selected:underline hover:underline-offset-3 selected:underline-offset-1":
       {},
   },
 };

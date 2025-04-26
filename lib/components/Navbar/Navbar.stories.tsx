@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, useEffect, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { within, expect } from "@storybook/test";
 import { Navbar } from "./Navbar";
@@ -43,8 +43,14 @@ export const Default: Story = {
     const navbar = canvas.getByText("Test");
     await expect(navbar, "renders").toBeTruthy();
   },
-  render: ({ selected, ...rest }) => {
+  render: ({ selected: storySelect, ...rest }) => {
     const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
+    const [selected, setSelected] = useState(storySelect);
+
+    useEffect(() => {
+      setSelected(storySelect);
+    }, [storySelect]);
+
     return (
       <div className="bg-main h-[200vh]">
         <Navbar {...rest}>
@@ -59,7 +65,9 @@ export const Default: Story = {
                 key={link}
                 href="#"
                 selected={selected === index}
-                underlined={false}
+                onClick={() => {
+                  setSelected(index);
+                }}
               >
                 {link}
               </NavbarLink>
@@ -84,8 +92,14 @@ export const WithHero: Story = {
     const navbar = canvas.getByText("Test");
     await expect(navbar, "renders").toBeTruthy();
   },
-  render: ({ selected, ...rest }) => {
+  render: ({ selected: storySelect, ...rest }) => {
     const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
+    const [selected, setSelected] = useState(storySelect);
+
+    useEffect(() => {
+      setSelected(storySelect);
+    }, [storySelect]);
+
     return (
       <div className="bg-main h-[200vh]">
         <Navbar {...rest}>
@@ -100,7 +114,9 @@ export const WithHero: Story = {
                 key={link}
                 href="#"
                 selected={selected === index}
-                underlined={false}
+                onClick={() => {
+                  setSelected(index);
+                }}
               >
                 {link}
               </NavbarLink>
