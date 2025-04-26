@@ -1,8 +1,8 @@
 import { twMerge } from "tailwind-merge";
 import { useTheme } from "@/contexts";
-import { ColorType, InputRadius, SizeType } from "@/types";
+import { ColorType, SizeType } from "@/types";
 import { useButtonGroupContext } from "./ButtonGroupContext";
-import { ButtonVariant, GhostHover } from "./buttonTypes";
+import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
 
 export function useButtonStyles({
   variant,
@@ -26,7 +26,7 @@ export function useButtonStyles({
   scaling: boolean;
   transitions: boolean;
   disabled: boolean;
-  radius?: InputRadius;
+  radius?: ButtonRadius;
   color?: ColorType;
   className?: string;
   wrapperClasses?: string;
@@ -37,8 +37,8 @@ export function useButtonStyles({
   const resolvedVariant = group?.variant || variant || "solid";
   const resolvedGhostHover = group?.ghostHover || ghostHover || "none";
   const resolvedColor = group?.color || color || "primary";
-  const resolvedRadius = radius || theme?.inputsRadius || "small";
-  const groupRadius = group?.radius || theme?.inputsRadius || "small";
+  const resolvedRadius = radius || "default";
+  const groupRadius = group?.radius || "default";
   const inGroup = group !== undefined;
   const shouldRetainFocus =
     (!theme || theme.buttonsRetainFocus) &&
@@ -66,23 +66,23 @@ export function useButtonStyles({
       hasScaling && "active:scale-[98%]",
       hasTransitions && "transition",
       inGroup && "btn-grouped",
-      !inGroup && resolvedRadius === "small" && "rounded",
-      !inGroup && resolvedRadius === "full" && "rounded-full",
+      !inGroup && resolvedRadius === "default" && "rounded-inputs",
+      !inGroup && resolvedRadius === "pill" && "rounded-full",
       inGroup &&
         !group.vertical &&
-        groupRadius === "small" &&
-        "group-first:rounded-l group-last:rounded-r",
+        groupRadius === "default" &&
+        "group-first:rounded-l-(--radius-inputs) group-last:rounded-r-(--radius-inputs)",
       inGroup &&
         !group.vertical &&
-        groupRadius === "full" &&
+        groupRadius === "pill" &&
         "group-first:rounded-l-full group-last:rounded-r-full",
       inGroup &&
         group.vertical &&
-        group.radius === "small" &&
-        "group-first:rounded-t group-last:rounded-b",
+        groupRadius === "default" &&
+        "group-first:rounded-t-(--radius-inputs) group-last:rounded-b-(--radius-inputs)",
       inGroup &&
         group.vertical &&
-        groupRadius === "full" &&
+        groupRadius === "pill" &&
         "group-first:rounded-t-full group-last:rounded-b-full",
       className,
     ),

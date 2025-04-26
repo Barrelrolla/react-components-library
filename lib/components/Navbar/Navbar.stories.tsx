@@ -20,7 +20,6 @@ const meta: Meta<Props> = {
   args: { selected: undefined },
   argTypes: {
     color: { control: { type: "inline-radio" } },
-    radius: { control: { type: "inline-radio" } },
     selected: {
       control: {
         type: "inline-radio",

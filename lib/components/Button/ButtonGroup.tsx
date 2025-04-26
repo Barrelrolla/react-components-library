@@ -1,7 +1,7 @@
 import { Children, ComponentProps } from "react";
-import { ColorType, InputRadius, SizeType } from "@/types";
+import { ColorType, SizeType } from "@/types";
 import { cssColorProps } from "@/util";
-import { ButtonVariant, GhostHover } from "./buttonTypes";
+import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
 import { ButtonGroupContextProvider } from "./ButtonGroupContext";
 import { useButtonGroupStyles } from "./useButtonGroupStyles";
 import { Divider } from "../Divider";
@@ -12,7 +12,7 @@ export type ButtonGroupProps = {
   ghostHover?: GhostHover;
   retainFocusState?: boolean;
   size?: SizeType;
-  radius?: InputRadius;
+  radius?: ButtonRadius;
   transitions?: boolean;
   divider?: boolean;
   vertical?: boolean;

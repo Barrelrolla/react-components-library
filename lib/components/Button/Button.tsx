@@ -1,8 +1,8 @@
 import { ElementType, SVGProps } from "react";
 import { Spinner } from "@/icons";
-import { ColorType, InputRadius, PolymorphicProps, SizeType } from "@/types";
+import { ColorType, PolymorphicProps, SizeType } from "@/types";
 import { cssColorProps } from "@/util";
-import { ButtonVariant, GhostHover } from "./buttonTypes";
+import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
 import { useButtonStyles } from "./useButtonStyles";
 
 const defaultType = "button" as const;
@@ -10,7 +10,7 @@ export type ButtonProps<E extends ElementType> = {
   color?: ColorType;
   variant?: ButtonVariant;
   size?: SizeType;
-  radius?: InputRadius;
+  radius?: ButtonRadius;
   ghostHover?: GhostHover;
   retainFocusState?: boolean;
   scaling?: boolean;

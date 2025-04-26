@@ -22,7 +22,7 @@ export function Anchor<E extends ElementType = typeof defaultType>({
   hoverUnderline = true,
   hoverUnderlineOffset = true,
   transitions = true,
-  useBgColor = false,
+  useBgColor = true,
   className,
   style,
   children,

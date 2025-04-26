@@ -1,7 +1,6 @@
 import { twMerge } from "tailwind-merge";
-import { useTheme } from "@/contexts";
-import { ColorType, InputRadius } from "@/types";
-import { ButtonVariant } from "./buttonTypes";
+import { ColorType } from "@/types";
+import { ButtonRadius, ButtonVariant } from "./buttonTypes";
 
 export function useButtonGroupStyles({
   color = "primary",
@@ -15,21 +14,20 @@ export function useButtonGroupStyles({
 }: {
   color?: ColorType;
   variant?: ButtonVariant;
-  radius?: InputRadius;
+  radius?: ButtonRadius;
   vertical: boolean;
   divider: boolean;
   className?: string;
   dividerClasses?: string;
   wrapperClasses?: string;
 }) {
-  const theme = useTheme();
-  const resolvedRadiues = radius || theme?.inputsRadius || "small";
+  const resolvedRadiues = radius || "default";
   const groupStyles = twMerge(
     "btn-group",
     variant === "outline" && "inset-ring inset-ring-(--bg-color)",
     vertical && "flex-col",
-    resolvedRadiues === "small" && "rounded",
-    resolvedRadiues === "full" && "rounded-full",
+    resolvedRadiues === "default" && "rounded-inputs",
+    resolvedRadiues === "pill" && "rounded-full",
     className,
   );
 

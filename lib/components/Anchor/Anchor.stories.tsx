@@ -1,4 +1,3 @@
-import { twMerge } from "tailwind-merge";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
 import { Anchor } from "./Anchor";
@@ -24,11 +23,11 @@ export const Default: Story = {
     const button = canvas.getByText("Link");
     await expect(button, "renders").toBeTruthy();
   },
-  render: (props) => {
+  render: ({ href, children, ...rest }) => {
     return (
       <div className="bg-main min-h-100 px-10 py-20">
-        <Anchor href="#" {...props}>
-          {props.children}
+        <Anchor href={href} {...rest}>
+          {children}
         </Anchor>
       </div>
     );
@@ -40,9 +39,9 @@ export const Default: Story = {
 };
 
 export const InText: Story = {
-  render: ({ classes, ...props }) => {
+  render: ({ ...props }) => {
     return (
-      <p className={twMerge("bg-main text-main-content p-2", classes)}>
+      <p className={"bg-main text-main-content p-2"}>
         Lorem ipsum{" "}
         <Anchor href="#" {...props}>
           dolor

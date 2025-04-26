@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
-import { ColorType, InputRadius, SizeType } from "@/types";
-import { ButtonVariant, GhostHover } from "./buttonTypes";
+import { ColorType, SizeType } from "@/types";
+import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
 
 export type ButtonGroupContextType =
   | {
@@ -8,7 +8,7 @@ export type ButtonGroupContextType =
       variant?: ButtonVariant;
       ghostHover?: GhostHover;
       retainFocusState?: boolean;
-      radius?: InputRadius;
+      radius?: ButtonRadius;
       size?: SizeType;
       scaling?: boolean;
       transitions?: boolean;

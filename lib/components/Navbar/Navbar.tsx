@@ -3,13 +3,10 @@ import { ColorType, ResponsiveSizes } from "@/types";
 import { cssColorProps } from "@/util";
 import { NavbarContextProvider } from "./NavbarContext";
 import { useNavbarStyles } from "./useNavbarStyles";
-import { NavbarRadius } from "./NavbarTypes";
 
 export type NavbarProps = {
   color?: ColorType;
   hasShadow?: boolean;
-  hasBorder?: boolean;
-  radius?: NavbarRadius;
   collapseAt?: ResponsiveSizes;
   fixed?: boolean;
   position?: "top" | "bottom";
@@ -19,9 +16,7 @@ export type NavbarProps = {
 
 export function Navbar({
   color = "main",
-  hasBorder = true,
   hasShadow = true,
-  radius,
   collapseAt = "sm",
   fixed = true,
   position = "top",
@@ -36,9 +31,7 @@ export function Navbar({
     fixed,
     position,
     glass,
-    hasBorder,
     hasShadow,
-    radius,
     isOpen,
     collapseAt,
     className,

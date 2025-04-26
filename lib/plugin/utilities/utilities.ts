@@ -59,4 +59,24 @@ export default <Record<string, CssInJs>>{
     "@apply bg-main/30 backdrop-blur-sm fixed top-0 left-0 z-30 h-screen w-screen":
       {},
   },
+
+  ".rounded-inputs": {
+    "@apply rounded-(--radius-inputs)": {},
+  },
+
+  ".rounded-containers": {
+    "@apply rounded-(--radius-containers)": {},
+  },
+
+  ".rounded-navigation": {
+    "@apply rounded-(--radius-navigation)": {},
+  },
+
+  ".border-containers": {
+    "@apply border-(--border-containers)": {},
+  },
+
+  ".border-navigation": {
+    "@apply border-(--border-navigation)": {},
+  },
 };

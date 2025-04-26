@@ -25,8 +25,6 @@ export function useAnchorStyles({
     classes: twMerge(
       "a",
       highlights && "a-highlights",
-      theme?.inputsRadius === "full" && "rounded-full",
-      theme?.inputsRadius === "small" && "rounded",
       underlined && "underline",
       !underlined && hoverUnderline && "hover:underline",
       !hoverUnderlineOffset && "underline-offset-1",
@@ -34,6 +32,6 @@ export function useAnchorStyles({
       (!theme || theme.transitions) && transitions && "transition-anchor",
       className,
     ),
-    resolvedColor: color || "main",
+    resolvedColor: color || "primary",
   };
 }

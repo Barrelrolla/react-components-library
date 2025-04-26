@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".a": {
-    "@apply text-(--fg-color) outline-(--fg-color) outline-offset-4 focus-visible:outline-2":
+    "@apply text-(--fg-color) outline-(--fg-color) outline-offset-4 focus-visible:outline-2 rounded-inputs":
       {},
   },
   ".a-highlights": {

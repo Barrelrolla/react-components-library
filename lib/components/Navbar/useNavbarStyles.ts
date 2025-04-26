@@ -1,15 +1,12 @@
 import { twMerge } from "tailwind-merge";
 import { useTheme } from "@/contexts";
 import { ResponsiveSizes } from "@/types";
-import { NavbarRadius } from "./NavbarTypes";
 
 export function useNavbarStyles({
   fixed,
   position,
   glass,
-  hasBorder,
   hasShadow,
-  radius,
   collapseAt,
   isOpen,
   className,
@@ -18,17 +15,12 @@ export function useNavbarStyles({
   fixed: boolean;
   position: "top" | "bottom";
   glass: boolean;
-  hasBorder: boolean;
   hasShadow: boolean;
-  radius?: NavbarRadius;
   isOpen: boolean;
   collapseAt: ResponsiveSizes;
   className?: string;
   backdropClasses?: string;
 }) {
-  const theme = useTheme();
-  const resolvedRadius = radius || theme?.containersRadius || "none";
-
   return {
     navbarStyles: twMerge(
       "navbar",
@@ -36,13 +28,11 @@ export function useNavbarStyles({
       fixed && "fixed left-0 z-40",
       position === "top" && "top-0",
       position === "bottom" && "bottom-0",
-      hasBorder && position === "top" && "border-b-2",
-      hasBorder && position === "bottom" && "border-t-2",
-      resolvedRadius === "small" && position === "top" && "rounded-b",
-      resolvedRadius === "small" && position === "bottom" && "rounded-t",
-      resolvedRadius === "big" && position === "top" && "rounded-b-lg",
-      resolvedRadius === "big" && position === "bottom" && "rounded-t-lg",
-      hasShadow && "shadow-stone-600 dark:shadow-stone-800",
+      position === "top" &&
+        "rounded-b-(length:--radius-navigation) border-b-(length:--border-navigation)",
+      position === "bottom" &&
+        "rounded-t-(length:--radius-navigation) border-t-(length:--border-navigation)",
+      hasShadow && "shadow-dark/60 dark:shadow-dark/80",
       hasShadow && position === "top" && "shadow-[0px_4px_8px_-1px]",
       hasShadow && position === "bottom" && "shadow-[0px_-4px_8px_-1px]",
       className,
@@ -99,7 +89,6 @@ export function useNavbarCollapseStyles({
     collapseAt === "md" && "md:navbar-collapse-list-extended",
     collapseAt === "lg" && "lg:navbar-collapse-list-extended",
     collapseAt === "xl" && "xl:navbar-collapse-list-extended",
-    // rounded && "rounded-lg",
     className,
   );
   return {

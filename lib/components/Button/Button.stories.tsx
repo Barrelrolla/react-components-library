@@ -122,7 +122,7 @@ export const Icon: Story = {
   render: ({ ...rest }) => {
     return (
       <div className="bg-main flex min-h-100 flex-wrap gap-10 px-10 py-20">
-        <Button radius="full" startIcon={<ComputerIcon />} {...rest}></Button>
+        <Button radius="pill" startIcon={<ComputerIcon />} {...rest}></Button>
         <Button
           radius="none"
           variant="outline"
@@ -183,66 +183,53 @@ export const Colors: Story = {
 };
 
 export const Sizes: Story = {
-  render: () => {
+  render: ({ size, ...rest }) => {
     return (
       <div className="bg-main flex flex-col gap-2 px-2 py-20">
         <div className="flex flex-wrap items-end justify-center gap-2">
-          <Button startIcon={<ComputerIcon />} size="xs" color="primary">
+          <Button {...rest} startIcon={<ComputerIcon />} size="xs">
             Button
           </Button>
-          <Button startIcon={<ComputerIcon />} size="sm" color="primary">
+          <Button {...rest} startIcon={<ComputerIcon />} size="sm">
             Button
           </Button>
-          <Button size="md" color="primary">
+          <Button {...rest} size="md">
             <ComputerIcon />
             Button
           </Button>
-          <Button size="lg" color="primary">
+          <Button {...rest} size="lg">
             <ComputerIcon />
             Button
           </Button>
-          <Button size="xl" color="primary">
+          <Button {...rest} size="xl">
             <ComputerIcon />
             Button
           </Button>
         </div>
         <div className="flex flex-wrap items-start justify-center gap-2">
-          <Button
-            startIcon={<ComputerIcon />}
-            size="xs"
-            color="primary"
-          ></Button>
-          <Button
-            startIcon={<ComputerIcon />}
-            size="sm"
-            color="primary"
-          ></Button>
-          <Button
-            startIcon={<ComputerIcon />}
-            size="md"
-            color="primary"
-          ></Button>
-          <Button
-            startIcon={<ComputerIcon />}
-            size="lg"
-            color="primary"
-          ></Button>
-          <Button
-            startIcon={<ComputerIcon />}
-            size="xl"
-            color="primary"
-          ></Button>
+          <Button {...rest} startIcon={<ComputerIcon />} size="xs"></Button>
+          <Button {...rest} startIcon={<ComputerIcon />} size="sm"></Button>
+          <Button {...rest} startIcon={<ComputerIcon />} size="md"></Button>
+          <Button {...rest} startIcon={<ComputerIcon />} size="lg"></Button>
+          <Button {...rest} startIcon={<ComputerIcon />} size="xl"></Button>
         </div>
         <div className="flex w-full items-start justify-center gap-2">
-          <Button className="btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
+          <Button
+            {...rest}
+            className="btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl"
+          >
             responsive
           </Button>
           <Button
+            {...rest}
             className="btn-icon-xs sm:btn-icon-sm md:btn-icon-md lg:btn-icon-lg xl:btn-icon-xl"
             startIcon={<ComputerIcon />}
           ></Button>
         </div>
       </div>
     );
+  },
+  argTypes: {
+    size: { if: { arg: "false", eq: "true" } },
   },
 };

@@ -77,7 +77,7 @@ export const Default: Story = {
 };
 
 export const Ghost: Story = {
-  render: ({ variant = "ghost", vertical = true, selection, ...rest }) => {
+  render: ({ selection, variant = "ghost", vertical = true, ...rest }) => {
     const [selected, setSelected] = useState<number | undefined>(undefined);
     useEffect(() => {
       if (!selection) {
@@ -121,7 +121,7 @@ export const Ghost: Story = {
 };
 
 export const Icon: Story = {
-  render: ({ radius = "full", selection, ...rest }) => {
+  render: ({ radius = "pill", selection, ...rest }) => {
     const [selected, setSelected] = useState<number | undefined>(undefined);
     useEffect(() => {
       if (!selection) {
@@ -162,10 +162,10 @@ export const Icon: Story = {
 };
 
 export const Fancy: Story = {
-  render: ({ radius = "full", size = "xl", variant = "solid", ...rest }) => {
+  render: ({ selection, radius = "pill", ...rest }) => {
     return (
       <div className="bg-main px-10 py-20">
-        <ButtonGroup {...rest} radius={radius} size={size} variant={variant}>
+        <ButtonGroup {...rest} radius={radius}>
           <Button className="">Button</Button>
           <Button startIcon={<ComputerIcon />} />
         </ButtonGroup>
