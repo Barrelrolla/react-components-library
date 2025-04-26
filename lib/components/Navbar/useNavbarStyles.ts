@@ -22,7 +22,7 @@ export function useNavbarStyles({
   backdropClasses?: string;
 }) {
   return {
-    navbarStyles: twMerge(
+    headerStyles: twMerge(
       "navbar",
       glass && "glass",
       fixed && "fixed left-0 z-40",
@@ -37,6 +37,7 @@ export function useNavbarStyles({
       hasShadow && position === "bottom" && "shadow-[0px_-4px_8px_-1px]",
       className,
     ),
+    navStyles: twMerge("navbar-nav"),
     backdropStyles: twMerge(
       "backdrop",
       collapseAt === "sm" && "sm:hidden",

@@ -2,8 +2,13 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".navbar": {
-    "@apply flex w-full flex-wrap items-center justify-between px-4 py-2 bg-(--bg-color) text-(--fg-color)":
+    "@apply flex w-full justify-center bg-(--bg-color) text-(--fg-color) px-4 py-2":
       {},
+  },
+  ".navbar-nav": {
+    "@apply flex flex-wrap items-center justify-between": {},
+    width: "100%",
+    "max-width": "var(--max-width)",
   },
   ".navbar-brand": {
     "@apply flex items-center gap-2 text-2xl font-bold": {},

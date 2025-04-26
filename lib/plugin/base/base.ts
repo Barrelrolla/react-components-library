@@ -29,6 +29,7 @@ export default <CssInJs>{
     "--radius-navigation": "0.5rem",
     "--border-containers": "1px",
     "--border-navigation": "2px",
+    "--max-width": "1440px",
   },
 
   ".dark": {

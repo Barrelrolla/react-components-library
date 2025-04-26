@@ -27,7 +27,7 @@ export function Navbar({
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { navbarStyles, backdropStyles } = useNavbarStyles({
+  const { headerStyles, navStyles, backdropStyles } = useNavbarStyles({
     fixed,
     position,
     glass,
@@ -73,10 +73,12 @@ export function Navbar({
       }}
     >
       <>
-        <nav className={navbarStyles} style={cssColorProps(color)}>
-          {children}
-        </nav>
-        <div className={backdropStyles} onClick={outsideClickHandler}></div>
+        <header className={headerStyles}>
+          <nav className={navStyles} style={cssColorProps(color)}>
+            {children}
+          </nav>
+          <div className={backdropStyles} onClick={outsideClickHandler}></div>
+        </header>
       </>
     </NavbarContextProvider>
   );

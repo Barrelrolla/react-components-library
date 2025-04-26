@@ -2,7 +2,8 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".hero": {
-    "@apply flex h-[100vh] flex-col justify-evenly": {},
+    "@apply flex h-[100vh] flex-col justify-self-center justify-evenly max-w-(--max-width)":
+      {},
   },
   ".hero-section": {
     "@apply flex flex-col h-full w-full box-border justify-center overflow-hidden gap-4":
