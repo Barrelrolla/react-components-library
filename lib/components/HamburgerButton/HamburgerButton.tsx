@@ -3,9 +3,11 @@ import { Button, ButtonProps } from "../Button";
 import { useHamburgerStyles } from "./useHamburgerStyles";
 
 export type HamburgerButtonProps = {
+  /** The component that uses it, should provide it's isOpen state here. */
   isOpen: boolean;
 } & ButtonProps<"button">;
 
+/** A hamburger button that becomes an X on open */
 export function HamburgerButton({
   color = "main",
   transitions = true,

@@ -36,7 +36,7 @@ export const Default: Story = {
   },
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main p-4">
+      <div className="storybookContainer">
         <Button {...rest}>{children}</Button>
       </div>
     );
@@ -47,7 +47,7 @@ export const Default: Story = {
 export const Variants: Story = {
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex flex-wrap gap-4 p-4">
+      <div className="storybookContainer">
         <Button {...rest}>{children}</Button>
         <Button variant="outline" {...rest}>
           {children}
@@ -68,7 +68,7 @@ export const Variants: Story = {
 export const Ghost: Story = {
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex flex-wrap gap-4 p-4">
+      <div className="storybookContainer">
         <Button variant="ghost" {...rest}>
           {children}
         </Button>
@@ -103,7 +103,7 @@ export const Disabled: Story = {
   },
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex flex-wrap gap-4 p-4">
+      <div className="storybookContainer">
         <Button disabled {...rest}>
           {children}
         </Button>
@@ -121,7 +121,7 @@ export const Disabled: Story = {
 export const Icon: Story = {
   render: ({ ...rest }) => {
     return (
-      <div className="bg-main flex flex-wrap gap-4 p-4">
+      <div className="storybookContainer">
         <Button radius="pill" startIcon={<ComputerIcon />} {...rest}></Button>
         <Button
           radius="none"
@@ -143,7 +143,7 @@ export const Icon: Story = {
 export const Colors: Story = {
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex flex-wrap gap-4 p-4">
+      <div className="storybookContainer">
         <Button color="main" {...rest}>
           {children}
         </Button>
@@ -185,7 +185,7 @@ export const Colors: Story = {
 export const Sizes: Story = {
   render: ({ size, ...rest }) => {
     return (
-      <div className="bg-main flex flex-col gap-4 p-4">
+      <div className="storybookContainer">
         <div className="flex flex-wrap items-end justify-center gap-2">
           <Button {...rest} startIcon={<ComputerIcon />} size="xs">
             Button

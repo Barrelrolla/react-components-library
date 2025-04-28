@@ -13,7 +13,7 @@ export type ButtonProps<E extends ElementType> = {
   variant?: ButtonVariant;
   /** Button size. If none is set it will be md. */
   size?: SizeType;
-  /** Button radius. If non is set it will use the theme's default. */
+  /** Button radius. If none is set it will use the theme's default. */
   radius?: ButtonRadius;
   /** If the button variant is `ghost` you can select the hover type. */
   ghostHover?: GhostHover;

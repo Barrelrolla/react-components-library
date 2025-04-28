@@ -61,4 +61,4 @@ The library is adjusting the `l` value of the `lch` colors to lighten or darken 
 
 There is also a hover modifier variable `--mod-highlight` that's used to adjust the color's `l` value. You can modify that value to change the hover effect for all colors, or if a specific color needs adjustment, you can use `--mod-highlight-primary` or any other color name you want to override the value for that specific color.
 
-For info about the components, check the [Components](https://github.com/Barrelrolla/react-components-library/tree/main/lib/README.md) section.
+For the full documentation, check the storyboard on github pages: [Docs](https://barrelrolla.github.io/react-components-library/) section.

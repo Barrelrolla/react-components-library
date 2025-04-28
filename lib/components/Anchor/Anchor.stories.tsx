@@ -4,13 +4,14 @@ import { Anchor } from "./Anchor";
 
 const meta: Meta<typeof Anchor> = {
   title: "Components/Anchor",
+  tags: ["autodocs"],
   component: Anchor,
   argTypes: {
     children: { name: "text" },
     color: { control: { type: "inline-radio" } },
     href: { if: { arg: "false", exists: true } },
-    as: { if: { arg: "false", exists: true } },
     ref: { if: { arg: "false", exists: true } },
+    as: { control: { disable: true } },
   },
 };
 
@@ -25,7 +26,7 @@ export const Default: Story = {
   },
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main min-h-100 px-10 py-20">
+      <div className="storybookContainer">
         <Anchor href="#" {...rest}>
           {children}
         </Anchor>
@@ -40,7 +41,7 @@ export const Default: Story = {
 export const InText: Story = {
   render: ({ ...props }) => {
     return (
-      <p className={"bg-main text-main-content p-2"}>
+      <p className={"bg-main p-4"}>
         Lorem ipsum{" "}
         <Anchor href="#" {...props}>
           dolor

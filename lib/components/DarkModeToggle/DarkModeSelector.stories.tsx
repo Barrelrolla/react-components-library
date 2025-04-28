@@ -4,6 +4,7 @@ import { DarkModeSelector } from "./DarkModeSelector";
 
 const meta: Meta<typeof DarkModeSelector> = {
   title: "Components/DarkModeSelector",
+  tags: ["autodocs"],
   component: DarkModeSelector,
   argTypes: {
     color: { control: { type: "inline-radio" } },
@@ -28,7 +29,7 @@ export const Default: Story = {
   render: ({ ...props }) => {
     return (
       <DarkModeContextProvider>
-        <div className="bg-main flex justify-between p-4">
+        <div className="storybookContainer">
           <DarkModeSelector {...props} />
         </div>
       </DarkModeContextProvider>

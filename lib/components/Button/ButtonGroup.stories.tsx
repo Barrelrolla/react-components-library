@@ -10,6 +10,7 @@ type Props = ComponentProps<typeof ButtonGroup> & {
 
 const meta: Meta<Props> = {
   title: "Components/ButtonGroup",
+  tags: ["autodocs"],
   component: ButtonGroup,
   args: { selection: true },
   argTypes: {
@@ -47,7 +48,7 @@ export const Default: Story = {
       }
     };
     return (
-      <div className="bg-main px-10 py-20">
+      <div className="storybookContainer">
         <ButtonGroup {...rest}>
           <Button
             {...rest}
@@ -91,7 +92,7 @@ export const Ghost: Story = {
       }
     };
     return (
-      <div className="bg-main px-10 py-20">
+      <div className="storybookContainer">
         <ButtonGroup variant={variant} vertical={vertical} {...rest}>
           <Button
             {...rest}
@@ -135,7 +136,7 @@ export const Icon: Story = {
       }
     };
     return (
-      <div className="bg-main px-10 py-20">
+      <div className="storybookContainer">
         <ButtonGroup radius={radius}>
           <Button
             {...rest}
@@ -164,7 +165,7 @@ export const Icon: Story = {
 export const Fancy: Story = {
   render: ({ selection, radius = "pill", ...rest }) => {
     return (
-      <div className="bg-main px-10 py-20">
+      <div className="storybookContainer">
         <ButtonGroup {...rest} radius={radius}>
           <Button className="">Button</Button>
           <Button startIcon={<ComputerIcon />} />

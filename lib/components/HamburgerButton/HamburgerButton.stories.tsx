@@ -4,6 +4,7 @@ import { HamburgerButton } from "./HamburgerButton";
 
 const meta: Meta<typeof HamburgerButton> = {
   title: "Components/HamburgerButton",
+  tags: ["autodocs"],
   component: HamburgerButton,
   argTypes: {
     children: { if: { arg: "false", eq: "true" } },
@@ -34,7 +35,7 @@ export const Default: Story = {
       setIsOpen((prevState) => !prevState);
     };
     return (
-      <div className="bg-main px-10 py-20">
+      <div className="storybookContainer">
         <HamburgerButton {...props} isOpen={isOpen} onClick={clickHandler} />
       </div>
     );

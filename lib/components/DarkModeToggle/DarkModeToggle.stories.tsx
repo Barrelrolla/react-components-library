@@ -4,6 +4,7 @@ import { DarkModeContextProvider } from "@/contexts";
 
 const meta: Meta<typeof DarkModeToggle> = {
   title: "Components/DarkModeToggle",
+  tags: ["autodocs"],
   component: DarkModeToggle,
   argTypes: {
     children: { if: { arg: "false", eq: "true" } },
@@ -31,7 +32,7 @@ export const Default: Story = {
   render: ({ ...props }) => {
     return (
       <DarkModeContextProvider>
-        <div className="bg-main px-10 py-20">
+        <div className="storybookContainer">
           <DarkModeToggle {...props} />
         </div>
       </DarkModeContextProvider>

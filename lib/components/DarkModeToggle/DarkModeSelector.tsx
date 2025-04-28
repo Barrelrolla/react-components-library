@@ -2,6 +2,7 @@ import { useDarkMode, darkTheme, lightTheme, systemTheme } from "@/contexts";
 import { ComputerIcon, MoonIcon, SunIcon } from "@/icons";
 import { Button, ButtonGroup, ButtonGroupProps } from "../Button";
 
+/** Provides an option to choose between light, dark and system theme. */
 export function DarkModeSelector({
   variant = "outline",
   size = "sm",

@@ -13,6 +13,10 @@
   padding: 0;
 }
 
+.storybookContainer {
+  @apply bg-main flex flex-wrap justify-center p-4 gap-4
+}
+
 /* 
 @utility btn-* {
   padding-inline: calc(--value(--btn-*) * 3);

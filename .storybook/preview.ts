@@ -4,6 +4,7 @@ import "../lib/index.css";
 
 const preview: Preview = {
   parameters: {
+    options: { storySort: { order: ["Intro", ["Welcome"], "Components"] } },
     backgrounds: {
       default: "dark",
     },
