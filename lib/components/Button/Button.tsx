@@ -7,23 +7,39 @@ import { useButtonStyles } from "./useButtonStyles";
 
 const defaultType = "button" as const;
 export type ButtonProps<E extends ElementType> = {
+  /** Color of the button. If none is chosen it will be Primary. */
   color?: ColorType;
+  /** Button variant. If none is set it will be solid. */
   variant?: ButtonVariant;
+  /** Button size. If none is set it will be md. */
   size?: SizeType;
+  /** Button radius. If non is set it will use the theme's default. */
   radius?: ButtonRadius;
+  /** If the button variant is `ghost` you can select the hover type. */
   ghostHover?: GhostHover;
+  /** By default, while the button is fouced, it will retain it's hover state, meaning an outline or ghost button will remain solid for example. Set to false if you don't want that behaviour. */
   retainFocusState?: boolean;
+  /** By default buttons scale on press. Set to false if you don't want that. */
   scaling?: boolean;
+  /** Disable  animations by setting to false. By default it uses the theme setting. */
   transitions?: boolean;
+  /** Used to disable the button */
   disabled?: boolean;
+  /** In a button group for example, you can set this property to the currently selected button. */
   selected?: boolean;
+  /** Set to true when submitting a form for example. The button will show a loading indicator. */
   loading?: boolean;
+  /** If the loading indicator should be shown in the start or end of the button */
   loadingPosition?: "front" | "end";
+  /** Start icon. You can just pass an icon in the children, but using this prop will automatically replace that icon for a loading one if the `loading` prop is set to `true` */
   startIcon?: SVGProps<SVGSVGElement>;
+  /** Same as start icon, but at the end. */
   endIcon?: SVGProps<SVGSVGElement>;
+  /** The button is wrapped in a div to change the cursor when disabled. If you need to pass any classes to that div, you can do so with this prop. */
   wrapperClasses?: string;
 } & PolymorphicProps<E>;
 
+/** A styled flexible button component */
 export function Button<E extends ElementType = typeof defaultType>({
   as,
   color,

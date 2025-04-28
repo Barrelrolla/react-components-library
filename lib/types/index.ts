@@ -7,6 +7,7 @@ type ElementTypeMap<T extends ElementType> =
     : HTMLElement;
 
 export type PolymorphicProps<T extends ElementType> = {
+  /** The html element (or other component) the component should be rendered as */
   as?: T;
   ref?: RefObject<ElementTypeMap<T> | null>;
 } & ComponentPropsWithoutRef<T>;

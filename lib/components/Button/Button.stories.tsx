@@ -6,6 +6,7 @@ import { Button } from "./Button";
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
+  tags: ["autodocs"],
   argTypes: {
     children: { name: "text" },
     color: { control: { type: "inline-radio" } },
@@ -20,8 +21,7 @@ const meta: Meta<typeof Button> = {
     startIcon: { if: { arg: "false", exists: true } },
     endIcon: { if: { arg: "false", exists: true } },
     ref: { if: { arg: "false", exists: true } },
-    as: { if: { arg: "false", exists: true } },
-    wrapperClasses: { if: { arg: "false", exists: true } },
+    as: { control: { disable: true } },
   },
 };
 
@@ -36,7 +36,7 @@ export const Default: Story = {
   },
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex min-h-100 flex-wrap gap-4 px-10 py-20">
+      <div className="bg-main p-4">
         <Button {...rest}>{children}</Button>
       </div>
     );
@@ -47,7 +47,7 @@ export const Default: Story = {
 export const Variants: Story = {
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex min-h-100 flex-wrap gap-4 px-10 py-20">
+      <div className="bg-main flex flex-wrap gap-4 p-4">
         <Button {...rest}>{children}</Button>
         <Button variant="outline" {...rest}>
           {children}
@@ -68,7 +68,7 @@ export const Variants: Story = {
 export const Ghost: Story = {
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex min-h-100 flex-wrap gap-4 px-10 py-20">
+      <div className="bg-main flex flex-wrap gap-4 p-4">
         <Button variant="ghost" {...rest}>
           {children}
         </Button>
@@ -103,7 +103,7 @@ export const Disabled: Story = {
   },
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex min-h-100 gap-4 px-10 py-20">
+      <div className="bg-main flex flex-wrap gap-4 p-4">
         <Button disabled {...rest}>
           {children}
         </Button>
@@ -121,7 +121,7 @@ export const Disabled: Story = {
 export const Icon: Story = {
   render: ({ ...rest }) => {
     return (
-      <div className="bg-main flex min-h-100 flex-wrap gap-10 px-10 py-20">
+      <div className="bg-main flex flex-wrap gap-4 p-4">
         <Button radius="pill" startIcon={<ComputerIcon />} {...rest}></Button>
         <Button
           radius="none"
@@ -143,7 +143,7 @@ export const Icon: Story = {
 export const Colors: Story = {
   render: ({ children, ...rest }) => {
     return (
-      <div className="bg-main flex flex-wrap gap-2 px-10 py-20">
+      <div className="bg-main flex flex-wrap gap-4 p-4">
         <Button color="main" {...rest}>
           {children}
         </Button>
@@ -185,7 +185,7 @@ export const Colors: Story = {
 export const Sizes: Story = {
   render: ({ size, ...rest }) => {
     return (
-      <div className="bg-main flex flex-col gap-2 px-2 py-20">
+      <div className="bg-main flex flex-col gap-4 p-4">
         <div className="flex flex-wrap items-end justify-center gap-2">
           <Button {...rest} startIcon={<ComputerIcon />} size="xs">
             Button

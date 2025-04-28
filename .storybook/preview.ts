@@ -7,6 +7,7 @@ const preview: Preview = {
     backgrounds: {
       default: "dark",
     },
+    layout: "fullscreen",
     controls: {
       matchers: {
         color: /(background|color)$/i,
