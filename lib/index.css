@@ -5,13 +5,6 @@
   --default-transition-duration: 200ms;
 }
 
-.sb-show-main.sb-main-padded {
-  padding: 0;
-}
-
-.sb-wrapper {
-  padding: 0;
-}
 
 .storybookContainer {
   @apply bg-main flex flex-wrap justify-center p-4 gap-4

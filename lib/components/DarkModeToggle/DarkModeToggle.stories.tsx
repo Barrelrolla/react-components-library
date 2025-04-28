@@ -6,9 +6,14 @@ const meta: Meta<typeof DarkModeToggle> = {
   title: "Components/DarkModeToggle",
   tags: ["autodocs"],
   component: DarkModeToggle,
+  decorators: (Story) => (
+    <div className="storybookContainer">
+      <Story />
+    </div>
+  ),
   argTypes: {
     children: { if: { arg: "false", eq: "true" } },
-    color: { control: { type: "inline-radio" } },
+    color: { control: { type: "select" } },
     variant: { control: { type: "inline-radio" } },
     ghostHover: {
       control: { type: "inline-radio" },
@@ -32,9 +37,7 @@ export const Default: Story = {
   render: ({ ...props }) => {
     return (
       <DarkModeContextProvider>
-        <div className="storybookContainer">
-          <DarkModeToggle {...props} />
-        </div>
+        <DarkModeToggle {...props} />
       </DarkModeContextProvider>
     );
   },

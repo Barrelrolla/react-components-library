@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
 import { useHeroTextStyles } from "./useHeroStyles";
 
+/** Body text for the Hero component. */
 export function HeroText({
   className,
   children,

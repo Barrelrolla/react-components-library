@@ -33,6 +33,7 @@ export type ButtonGroupProps = {
   wrapperClasses?: string;
 } & ComponentProps<"div">;
 
+/** A group of buttons */
 export function ButtonGroup({
   variant,
   radius,

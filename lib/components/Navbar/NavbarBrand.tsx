@@ -6,6 +6,7 @@ import { Anchor, AnchorProps } from "../Anchor";
 const defaultType = "a";
 export type NavbarBrandProps<E extends ElementType> = {} & AnchorProps<E>;
 
+/** Use inside a Navbar component to add a Brand name and logo. */
 export function NavbarBrand<E extends ElementType = typeof defaultType>({
   as,
   underlined = false,

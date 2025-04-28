@@ -2,6 +2,7 @@ import { twMerge } from "tailwind-merge";
 import { HamburgerButton } from "../HamburgerButton";
 import { useNavbarContext } from "./NavbarContext";
 
+/** Hamburger toggle button for the Navbar. */
 export function NavbarToggle() {
   const context = useNavbarContext();
   if (!context) {

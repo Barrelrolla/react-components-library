@@ -6,9 +6,14 @@ const meta: Meta<typeof HamburgerButton> = {
   title: "Components/HamburgerButton",
   tags: ["autodocs"],
   component: HamburgerButton,
+  decorators: (Story) => (
+    <div className="storybookContainer">
+      <Story />
+    </div>
+  ),
   argTypes: {
     children: { if: { arg: "false", eq: "true" } },
-    color: { control: { type: "inline-radio" } },
+    color: { control: { type: "select" } },
     variant: { control: { type: "inline-radio" } },
     ghostHover: {
       control: { type: "inline-radio" },
@@ -35,9 +40,7 @@ export const Default: Story = {
       setIsOpen((prevState) => !prevState);
     };
     return (
-      <div className="storybookContainer">
-        <HamburgerButton {...props} isOpen={isOpen} onClick={clickHandler} />
-      </div>
+      <HamburgerButton {...props} isOpen={isOpen} onClick={clickHandler} />
     );
   },
 };

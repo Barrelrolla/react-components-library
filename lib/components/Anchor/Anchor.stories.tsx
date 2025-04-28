@@ -6,9 +6,14 @@ const meta: Meta<typeof Anchor> = {
   title: "Components/Anchor",
   tags: ["autodocs"],
   component: Anchor,
+  decorators: (Story) => (
+    <div className="storybookContainer">
+      <Story />
+    </div>
+  ),
   argTypes: {
     children: { name: "text" },
-    color: { control: { type: "inline-radio" } },
+    color: { control: { type: "select" } },
     href: { if: { arg: "false", exists: true } },
     ref: { if: { arg: "false", exists: true } },
     as: { control: { disable: true } },
@@ -26,11 +31,9 @@ export const Default: Story = {
   },
   render: ({ children, ...rest }) => {
     return (
-      <div className="storybookContainer">
-        <Anchor href="#" {...rest}>
-          {children}
-        </Anchor>
-      </div>
+      <Anchor href="#" {...rest}>
+        {children}
+      </Anchor>
     );
   },
   args: {
@@ -41,7 +44,7 @@ export const Default: Story = {
 export const InText: Story = {
   render: ({ ...props }) => {
     return (
-      <p className={"bg-main p-4"}>
+      <p>
         Lorem ipsum{" "}
         <Anchor href="#" {...props}>
           dolor

@@ -12,10 +12,15 @@ const meta: Meta<Props> = {
   title: "Components/ButtonGroup",
   tags: ["autodocs"],
   component: ButtonGroup,
+  decorators: (Story) => (
+    <div className="storybookContainer">
+      <Story />
+    </div>
+  ),
   args: { selection: true },
   argTypes: {
     selection: { control: { type: "boolean" } },
-    color: { control: { type: "inline-radio" } },
+    color: { control: { type: "select" } },
     variant: { control: { type: "inline-radio" } },
     size: { control: { type: "inline-radio" } },
     radius: { control: { type: "inline-radio" } },
@@ -48,37 +53,35 @@ export const Default: Story = {
       }
     };
     return (
-      <div className="storybookContainer">
-        <ButtonGroup {...rest}>
-          <Button
-            {...rest}
-            selected={selected === 0}
-            onClick={() => clickHandler(0)}
-          >
-            button
-          </Button>
-          <Button
-            {...rest}
-            selected={selected === 1}
-            onClick={() => clickHandler(1)}
-          >
-            button
-          </Button>
-          <Button
-            {...rest}
-            selected={selected === 2}
-            onClick={() => clickHandler(2)}
-          >
-            button
-          </Button>
-        </ButtonGroup>
-      </div>
+      <ButtonGroup {...rest}>
+        <Button
+          {...rest}
+          selected={selected === 0}
+          onClick={() => clickHandler(0)}
+        >
+          button
+        </Button>
+        <Button
+          {...rest}
+          selected={selected === 1}
+          onClick={() => clickHandler(1)}
+        >
+          button
+        </Button>
+        <Button
+          {...rest}
+          selected={selected === 2}
+          onClick={() => clickHandler(2)}
+        >
+          button
+        </Button>
+      </ButtonGroup>
     );
   },
 };
 
-export const Ghost: Story = {
-  render: ({ selection, variant = "ghost", vertical = true, ...rest }) => {
+export const Vertical: Story = {
+  render: ({ selection, variant = "outline", vertical = true, ...rest }) => {
     const [selected, setSelected] = useState<number | undefined>(undefined);
     useEffect(() => {
       if (!selection) {
@@ -92,31 +95,29 @@ export const Ghost: Story = {
       }
     };
     return (
-      <div className="storybookContainer">
-        <ButtonGroup variant={variant} vertical={vertical} {...rest}>
-          <Button
-            {...rest}
-            selected={selected === 0}
-            onClick={() => clickHandler(0)}
-          >
-            button
-          </Button>
-          <Button
-            {...rest}
-            selected={selected === 1}
-            onClick={() => clickHandler(1)}
-          >
-            button
-          </Button>
-          <Button
-            {...rest}
-            selected={selected === 2}
-            onClick={() => clickHandler(2)}
-          >
-            button
-          </Button>
-        </ButtonGroup>
-      </div>
+      <ButtonGroup variant={variant} vertical={vertical} {...rest}>
+        <Button
+          {...rest}
+          selected={selected === 0}
+          onClick={() => clickHandler(0)}
+        >
+          button
+        </Button>
+        <Button
+          {...rest}
+          selected={selected === 1}
+          onClick={() => clickHandler(1)}
+        >
+          button
+        </Button>
+        <Button
+          {...rest}
+          selected={selected === 2}
+          onClick={() => clickHandler(2)}
+        >
+          button
+        </Button>
+      </ButtonGroup>
     );
   },
 };
@@ -136,41 +137,37 @@ export const Icon: Story = {
       }
     };
     return (
-      <div className="storybookContainer">
-        <ButtonGroup radius={radius}>
-          <Button
-            {...rest}
-            selected={selected === 0}
-            onClick={() => clickHandler(0)}
-            startIcon={<ComputerIcon />}
-          />
-          <Button
-            {...rest}
-            selected={selected === 1}
-            onClick={() => clickHandler(1)}
-            startIcon={<ComputerIcon />}
-          />
-          <Button
-            {...rest}
-            selected={selected === 2}
-            onClick={() => clickHandler(2)}
-            startIcon={<ComputerIcon />}
-          />
-        </ButtonGroup>
-      </div>
+      <ButtonGroup radius={radius}>
+        <Button
+          {...rest}
+          selected={selected === 0}
+          onClick={() => clickHandler(0)}
+          startIcon={<ComputerIcon />}
+        />
+        <Button
+          {...rest}
+          selected={selected === 1}
+          onClick={() => clickHandler(1)}
+          startIcon={<ComputerIcon />}
+        />
+        <Button
+          {...rest}
+          selected={selected === 2}
+          onClick={() => clickHandler(2)}
+          startIcon={<ComputerIcon />}
+        />
+      </ButtonGroup>
     );
   },
 };
 
-export const Fancy: Story = {
+export const ButtonWithIconButton: Story = {
   render: ({ selection, radius = "pill", ...rest }) => {
     return (
-      <div className="storybookContainer">
-        <ButtonGroup {...rest} radius={radius}>
-          <Button className="">Button</Button>
-          <Button startIcon={<ComputerIcon />} />
-        </ButtonGroup>
-      </div>
+      <ButtonGroup {...rest} radius={radius}>
+        <Button className="">Button</Button>
+        <Button startIcon={<ComputerIcon />} />
+      </ButtonGroup>
     );
   },
 };

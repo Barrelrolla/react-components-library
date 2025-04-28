@@ -5,15 +5,23 @@ import { NavbarContextProvider } from "./NavbarContext";
 import { useNavbarStyles } from "./useNavbarStyles";
 
 export type NavbarProps = {
+  /** Color of the Navbar the elements iniside */
   color?: ColorType;
+  /** Adds a small shadow underneath for a 3D effect. */
   hasShadow?: boolean;
+  /** The size at which the Navbar should switch from a dropdown to a full bar. */
   collapseAt?: ResponsiveSizes;
+  /** Prevents the navbar from hiding when scrolling down. Uses `fixed` style, so you should add some margin on the page content. */
   fixed?: boolean;
+  /** If the navbar is fixed, you can choose the position to be at the top or bottom of the screen. */
   position?: "top" | "bottom";
+  /** Adds a transparent background and a glass effect. */
   glass?: boolean;
+  /** There is a backdrop when the dropdown menu is open. If you want to add some classes to it, you can do it here. */
   backdropClasses?: string;
 } & ComponentProps<"nav">;
 
+/** Navbar with collapse functionality */
 export function Navbar({
   color = "main",
   hasShadow = true,

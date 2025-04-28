@@ -17,9 +17,11 @@ type Props = ComponentProps<typeof Navbar> & {
 const meta: Meta<Props> = {
   title: "Components/Navbar",
   component: Navbar,
+  subcomponents: { NavbarBrand, NavbarToggle, NavbarCollapse, NavbarLink },
+  tags: ["autodocs"],
   args: { selected: undefined },
   argTypes: {
-    color: { control: { type: "inline-radio" } },
+    color: { control: { type: "select" } },
     selected: {
       control: {
         type: "inline-radio",
@@ -52,7 +54,7 @@ export const Default: Story = {
     }, [storySelect]);
 
     return (
-      <div className="bg-main h-[200vh]">
+      <div className="bg-main h-[50vh]">
         <Navbar {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
@@ -72,13 +74,6 @@ export const Default: Story = {
                 {link}
               </NavbarLink>
             ))}
-            <Button
-              variant="outline"
-              color="primary"
-              className="w-full md:w-auto"
-            >
-              test
-            </Button>
           </NavbarCollapse>
         </Navbar>
       </div>
@@ -101,7 +96,7 @@ export const WithHero: Story = {
     }, [storySelect]);
 
     return (
-      <div className="bg-main h-[200vh]">
+      <div className="bg-main h-[100vh]">
         <Navbar {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
@@ -130,7 +125,7 @@ export const WithHero: Story = {
             </Button>
           </NavbarCollapse>
         </Navbar>
-        <Hero className="mt-10 md:mt-0">
+        <Hero>
           <HeroSection>
             <HeroTitle>Lorem ipsum dolor sit amet.</HeroTitle>
             <HeroText>

@@ -7,9 +7,14 @@ const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
   tags: ["autodocs"],
+  decorators: (Story) => (
+    <div className="storybookContainer">
+      <Story />
+    </div>
+  ),
   argTypes: {
     children: { name: "text" },
-    color: { control: { type: "inline-radio" } },
+    color: { control: { type: "select" } },
     variant: { control: { type: "inline-radio" } },
     ghostHover: {
       control: { type: "inline-radio" },
@@ -35,11 +40,7 @@ export const Default: Story = {
     await expect(button, "renders").toBeTruthy();
   },
   render: ({ children, ...rest }) => {
-    return (
-      <div className="storybookContainer">
-        <Button {...rest}>{children}</Button>
-      </div>
-    );
+    return <Button {...rest}>{children}</Button>;
   },
   args: { children: "Button" },
 };
@@ -47,7 +48,7 @@ export const Default: Story = {
 export const Variants: Story = {
   render: ({ children, ...rest }) => {
     return (
-      <div className="storybookContainer">
+      <>
         <Button {...rest}>{children}</Button>
         <Button variant="outline" {...rest}>
           {children}
@@ -55,7 +56,7 @@ export const Variants: Story = {
         <Button variant="ghost" {...rest}>
           {children}
         </Button>
-      </div>
+      </>
     );
   },
   args: { children: "Button" },
@@ -68,7 +69,7 @@ export const Variants: Story = {
 export const Ghost: Story = {
   render: ({ children, ...rest }) => {
     return (
-      <div className="storybookContainer">
+      <>
         <Button variant="ghost" {...rest}>
           {children}
         </Button>
@@ -81,7 +82,7 @@ export const Ghost: Story = {
         <Button variant="ghost" ghostHover="contrasting" {...rest}>
           {children}
         </Button>
-      </div>
+      </>
     );
   },
   args: { children: "Button" },
@@ -103,14 +104,14 @@ export const Disabled: Story = {
   },
   render: ({ children, ...rest }) => {
     return (
-      <div className="storybookContainer">
+      <>
         <Button disabled {...rest}>
           {children}
         </Button>
         <Button loading {...rest}>
           {children}
         </Button>
-      </div>
+      </>
     );
   },
   args: {
@@ -121,7 +122,7 @@ export const Disabled: Story = {
 export const Icon: Story = {
   render: ({ ...rest }) => {
     return (
-      <div className="storybookContainer">
+      <>
         <Button radius="pill" startIcon={<ComputerIcon />} {...rest}></Button>
         <Button
           radius="none"
@@ -135,7 +136,7 @@ export const Icon: Story = {
           startIcon={<MoonIcon />}
           {...rest}
         ></Button>
-      </div>
+      </>
     );
   },
 };
@@ -143,7 +144,7 @@ export const Icon: Story = {
 export const Colors: Story = {
   render: ({ children, ...rest }) => {
     return (
-      <div className="storybookContainer">
+      <>
         <Button color="main" {...rest}>
           {children}
         </Button>
@@ -174,7 +175,7 @@ export const Colors: Story = {
         <Button color="error" {...rest}>
           {children}
         </Button>
-      </div>
+      </>
     );
   },
   args: {
@@ -185,7 +186,7 @@ export const Colors: Story = {
 export const Sizes: Story = {
   render: ({ size, ...rest }) => {
     return (
-      <div className="storybookContainer">
+      <div className="flex flex-col gap-4">
         <div className="flex flex-wrap items-end justify-center gap-2">
           <Button {...rest} startIcon={<ComputerIcon />} size="xs">
             Button

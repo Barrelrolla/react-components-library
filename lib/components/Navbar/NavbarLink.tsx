@@ -5,29 +5,21 @@ import { useNavbarLinkStyles } from "./useNavbarStyles";
 
 const defaultType = "a";
 export type NavbarLinkProps<E extends ElementType> = {
+  /** Is the current menu item selected. */
   selected?: boolean;
-  bgHighlight?: boolean;
-  selectedHighlight?: boolean;
-  selectedUnderline?: boolean;
-  selectedUnderlineOffset?: boolean;
-  selectedClasses?: string;
 } & AnchorProps<E>;
 
+/** Link to be used in the Collapsable list of the Navbar. */
 export function NavbarLink<E extends ElementType = typeof defaultType>({
   as,
   selected = false,
-  selectedUnderline = false,
-  selectedUnderlineOffset = false,
   hoverUnderline = false,
-  bgHighlight = false,
-  selectedHighlight = true,
   useBgColor = false,
   underlined = false,
   onClick,
   onFocus,
   onBlur,
   children,
-  selectedClasses,
   className,
   ...rest
 }: NavbarLinkProps<E>) {

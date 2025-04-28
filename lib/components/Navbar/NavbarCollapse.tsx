@@ -3,10 +3,13 @@ import { useNavbarContext } from "./NavbarContext";
 import { useNavbarCollapseStyles } from "./useNavbarStyles";
 
 export type NavbarCollapseProps = {
+  /** Set to `false` to disable transition animations. */
   transitions?: boolean;
+  /** The list has a wrapper. Use this to add classes to it. */
   wrapperClasses?: string;
 } & ComponentProps<"ul">;
 
+/** List that hides when the Navbar is small. */
 export function NavbarCollapse({
   transitions = true,
   className,

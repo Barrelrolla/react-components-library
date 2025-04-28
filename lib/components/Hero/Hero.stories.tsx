@@ -3,12 +3,14 @@ import { Hero } from "./Hero";
 import { HeroTitle } from "./HeroTitle";
 import { HeroText } from "./HeroText";
 import { HeroActions } from "./HeroActions";
-import { Button } from "../Button";
 import { HeroSection } from "./HeroSection";
+import { Button } from "../Button";
 
 const meta: Meta<typeof Hero> = {
   title: "Components/Hero",
+  tags: ["autodocs"],
   component: Hero,
+  subcomponents: { HeroSection, HeroTitle, HeroText, HeroActions },
   argTypes: {
     children: {
       if: { arg: "false", exists: true },
