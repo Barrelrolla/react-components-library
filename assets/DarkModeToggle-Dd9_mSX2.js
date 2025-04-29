@@ -1,4 +1,4 @@
-import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{u as i,l as r,d as o}from"./ThemeContext-CzQ_9dh3.js";import{B as s,S as u,M as m}from"./Button-C02d4wDw.js";import"./ButtonGroup-CXl3chX7.js";function d({size:a="sm",...n}){const{isDark:t,setThemeMode:l}=i();return e.jsx(s,{onClick:()=>l(t?r:o),startIcon:t?e.jsx(u,{}):e.jsx(m,{}),size:a,...n})}d.__docgenInfo={description:"Toggles between light and dark theme.",methods:[],displayName:"DarkModeToggle",props:{color:{required:!1,tsType:{name:"union",raw:`| "main"\r
+import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{u as i,l as r,d as o}from"./ThemeContext-CzQ_9dh3.js";import{B as s,S as u,M as m}from"./Button-sCi0Z3AI.js";import"./ButtonGroup-zt3CRLsX.js";function d({size:a="sm",...n}){const{isDark:t,setThemeMode:l}=i();return e.jsx(s,{onClick:()=>l(t?r:o),startIcon:t?e.jsx(u,{}):e.jsx(m,{}),size:a,...n})}d.__docgenInfo={description:"Toggles between light and dark theme.",methods:[],displayName:"DarkModeToggle",props:{color:{required:!1,tsType:{name:"union",raw:`| "main"\r
 | "light"\r
 | "dark"\r
 | "primary"\r
