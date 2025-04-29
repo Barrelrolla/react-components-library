@@ -35,8 +35,8 @@ export function useButtonGroupStyles({
     ? twMerge(
         "bg-(--bg-color)",
         variant === "solid" && "bg-(--fg-color)",
-        !vertical && "w-[0.1rem]",
-        vertical && "h-[0.1rem]",
+        !vertical && "w-0.25",
+        vertical && "h-0.25",
         "z-1",
         dividerClasses,
       )

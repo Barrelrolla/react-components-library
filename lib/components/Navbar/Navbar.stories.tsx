@@ -45,7 +45,7 @@ export const Default: Story = {
     const navbar = canvas.getByText("Test");
     await expect(navbar, "renders").toBeTruthy();
   },
-  render: ({ selected: storySelect, ...rest }) => {
+  render: ({ fixed = false, selected: storySelect, ...rest }) => {
     const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
     const [selected, setSelected] = useState(storySelect);
 
@@ -54,8 +54,8 @@ export const Default: Story = {
     }, [storySelect]);
 
     return (
-      <div className="bg-main h-[50vh]">
-        <Navbar {...rest}>
+      <div className="bg-main">
+        <Navbar fixed={fixed} {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
             <ComputerIcon /> Test
@@ -96,7 +96,7 @@ export const WithHero: Story = {
     }, [storySelect]);
 
     return (
-      <div className="bg-main h-[100vh]">
+      <div className="bg-main h-[100vh] pt-10 md:p-0">
         <Navbar {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">

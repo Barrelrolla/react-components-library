@@ -1,13 +1,18 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @plugin './plugin';
 
 @theme {
+  --font-sans: "Montserrat", sans-serif;
   --default-transition-duration: 200ms;
 }
 
+html {
+  @apply font-light;
+}
 
 .storybookContainer {
-  @apply bg-main flex flex-wrap justify-center p-4 gap-4
+  @apply bg-main flex flex-wrap justify-center p-4 gap-4;
 }
 
 /* 

@@ -11,7 +11,7 @@ export default <Record<string, CssInJs>>{
     "max-width": "var(--max-width)",
   },
   ".navbar-brand": {
-    "@apply flex items-center gap-2 text-2xl font-bold": {},
+    "@apply flex items-center gap-2 text-2xl font-normal": {},
   },
   ".navbar-collapse-container": {
     "@apply w-full overflow-auto overscroll-contain": {},

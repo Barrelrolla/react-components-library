@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 
 export type SVGIconProps = {} & SVGProps<SVGSVGElement>;
 
-export function SunIcon({ strokeWidth = 10, ...rest }: SVGIconProps) {
+export function SunIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ export function SunIcon({ strokeWidth = 10, ...rest }: SVGIconProps) {
   );
 }
 
-export function MoonIcon({ strokeWidth = 10, ...rest }: SVGIconProps) {
+export function MoonIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@ export function MoonIcon({ strokeWidth = 10, ...rest }: SVGIconProps) {
   );
 }
 
-export function ComputerIcon({ strokeWidth = 10, ...rest }: SVGIconProps) {
+export function ComputerIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,7 @@ export function ComputerIcon({ strokeWidth = 10, ...rest }: SVGIconProps) {
 }
 
 export function Spinner({
-  strokeWidth = 16,
+  strokeWidth = 12,
   className,
   ...rest
 }: SVGIconProps) {

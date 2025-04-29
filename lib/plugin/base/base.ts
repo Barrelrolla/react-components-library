@@ -28,7 +28,7 @@ export default <CssInJs>{
     "--radius-contaners": "0.5rem",
     "--radius-navigation": "0.5rem",
     "--border-containers": "1px",
-    "--border-navigation": "2px",
+    "--border-navigation": "1px",
     "--max-width": "1440px",
   },
 

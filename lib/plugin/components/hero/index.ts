@@ -9,6 +9,12 @@ export default <Record<string, CssInJs>>{
     "@apply flex flex-col h-full w-full box-border justify-center overflow-hidden gap-4":
       {},
   },
+  ".hero-title": {
+    "@apply px-6 text-5xl": {},
+  },
+  ".hero-text": {
+    "@apply px-6": {},
+  },
   ".hero-actions": {
     "@apply flex flex-wrap px-6 gap-8": {},
   },
