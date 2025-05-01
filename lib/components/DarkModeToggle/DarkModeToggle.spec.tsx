@@ -1,14 +1,14 @@
 import { render } from "@testing-library/react";
-import { DarkModeContextProvider } from "@/contexts";
 import { DarkModeSelector } from "./DarkModeSelector";
 import { DarkModeToggle } from "./DarkModeToggle";
+import { ThemeContextProvider } from "@/contexts";
 
 describe("Dark Mode Selector test", () => {
   it("renders", () => {
     const { getByTestId } = render(
-      <DarkModeContextProvider>
+      <ThemeContextProvider>
         <DarkModeSelector data-testid="test" />
-      </DarkModeContextProvider>,
+      </ThemeContextProvider>,
     );
     expect(getByTestId("test")).toBeTruthy();
   });
@@ -20,9 +20,9 @@ describe("Dark Mode Selector test", () => {
 describe("Dark Mode Toggle test", () => {
   it("renders", () => {
     const { getByTestId } = render(
-      <DarkModeContextProvider>
+      <ThemeContextProvider>
         <DarkModeToggle data-testid="test" />
-      </DarkModeContextProvider>,
+      </ThemeContextProvider>,
     );
     expect(getByTestId("test")).toBeTruthy();
   });

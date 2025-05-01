@@ -9,6 +9,17 @@ import "../lib/index.css";
 const channel = addons.getChannel();
 
 const preview: Preview = {
+  decorators: [
+    (Story) => {
+      // some weird issue with storybook-dark-mode adding the `dark` class to the body and the html
+      document.body.classList.remove("dark");
+      return (
+        <div>
+          <Story />
+        </div>
+      );
+    },
+  ],
   parameters: {
     options: { storySort: { order: ["Intro", ["Welcome"], "Components"] } },
     layout: "fullscreen",

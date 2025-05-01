@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { DarkModeContextProvider } from "@/contexts";
 import { DarkModeSelector } from "./DarkModeSelector";
+import { ThemeContextProvider } from "@/contexts";
 
 const meta: Meta<typeof DarkModeSelector> = {
   title: "Components/DarkModeSelector",
@@ -33,9 +33,9 @@ type Story = StoryObj<typeof DarkModeSelector>;
 export const Default: Story = {
   render: ({ ...props }) => {
     return (
-      <DarkModeContextProvider>
+      <ThemeContextProvider>
         <DarkModeSelector {...props} />
-      </DarkModeContextProvider>
+      </ThemeContextProvider>
     );
   },
 };

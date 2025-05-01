@@ -1,6 +1,11 @@
-import { useDarkMode, darkTheme, lightTheme, systemTheme } from "@/contexts";
 import { ComputerIcon, MoonIcon, SunIcon } from "@/icons";
 import { Button, ButtonGroup, ButtonGroupProps } from "../Button";
+import {
+  darkModeName,
+  lightModeName,
+  systemModeName,
+  useTheme,
+} from "@/contexts";
 
 /** Provides an option to choose between light, dark and system theme. */
 export function DarkModeSelector({
@@ -9,22 +14,27 @@ export function DarkModeSelector({
   divider = false,
   ...rest
 }: ButtonGroupProps) {
-  const { themeMode, setThemeMode } = useDarkMode();
+  const theme = useTheme();
+  if (!theme) {
+    throw new Error("Dark Mode Selector requires a Theme Provider!");
+  }
+  const { darkMode, setDarkMode } = theme;
+
   return (
     <ButtonGroup variant={variant} size={size} divider={divider} {...rest}>
       <Button
-        selected={themeMode === lightTheme}
-        onClick={() => setThemeMode(lightTheme)}
+        selected={darkMode === lightModeName}
+        onClick={() => setDarkMode(lightModeName)}
         startIcon={<SunIcon />}
       ></Button>
       <Button
-        selected={themeMode === darkTheme}
-        onClick={() => setThemeMode(darkTheme)}
+        selected={darkMode === darkModeName}
+        onClick={() => setDarkMode(darkModeName)}
         startIcon={<MoonIcon />}
       ></Button>
       <Button
-        selected={themeMode === systemTheme}
-        onClick={() => setThemeMode(systemTheme)}
+        selected={darkMode === systemModeName}
+        onClick={() => setDarkMode(systemModeName)}
         startIcon={<ComputerIcon />}
       ></Button>
     </ButtonGroup>
