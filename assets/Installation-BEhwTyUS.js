@@ -1,4 +1,4 @@
-import{j as r}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as e}from"./index-BPV8d2tn.js";import{e as a,f as i}from"./index-CllqM0OH.js";import"./index-BKyFwriW.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-Bxh97Yt2.js";import"./index-CNHYh0y0.js";import"./index-DQw2Bw4b.js";import"./index-CXQShRbs.js";import"./index-DrFu-skq.js";const l=`# A react components library for personal use\r
+import{j as r}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as e}from"./index-BPV8d2tn.js";import{e as a,f as i}from"./index-ZlGoBf-j.js";import"./index-BKyFwriW.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-AWtHQCDv.js";import"./index-DQw2Bw4b.js";import"./index-CXQShRbs.js";import"./index-DrFu-skq.js";const l=`# A react components library for personal use\r
 \r
 A collection of react components for personal use.\r
 \r
@@ -63,4 +63,4 @@ There is also a hover modifier variable \`--mod-highlight\` that's used to adjus
 \r
 For the full documentation, check the storyboard on github pages: [Docs](https://barrelrolla.github.io/react-components-library/) section.\r
 `;function t(o){return r.jsxs(r.Fragment,{children:[r.jsx(a,{title:"Intro/Installation"}),`
-`,r.jsx(i,{children:l})]})}function b(o={}){const{wrapper:n}={...e(),...o.components};return n?r.jsx(n,{...o,children:r.jsx(t,{...o})}):t()}export{b as default};
+`,r.jsx(i,{children:l})]})}function g(o={}){const{wrapper:n}={...e(),...o.components};return n?r.jsx(n,{...o,children:r.jsx(t,{...o})}):t()}export{g as default};
