@@ -112,10 +112,10 @@ export function useNavbarLinkStyles({
   className?: string;
 }) {
   return twMerge(
-    collapseAt === "sm" && "not-sm:navbar-link sm:navbar-link-extended",
-    collapseAt === "md" && "not-md:navbar-link md:navbar-link-extended",
-    collapseAt === "lg" && "not-lg:navbar-link lg:navbar-link-extended",
-    collapseAt === "xl" && "not-xl:navbar-link xl:navbar-link-extended",
+    collapseAt === "sm" && "max-sm:navbar-link sm:navbar-link-extended",
+    collapseAt === "md" && "max-md:navbar-link md:navbar-link-extended",
+    collapseAt === "lg" && "max-lg:navbar-link lg:navbar-link-extended",
+    collapseAt === "xl" && "max-xl:navbar-link xl:navbar-link-extended",
     className,
   );
 }

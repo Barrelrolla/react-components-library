@@ -76,10 +76,10 @@ export default <Record<string, CssInJs>>{
   },
 
   ".border-containers": {
-    "@apply border-(--border-containers)": {},
+    "@apply border-(length:--border-containers)": {},
   },
 
   ".border-navigation": {
-    "@apply border-(--border-navigation)": {},
+    "@apply border-(length:--border-navigation)": {},
   },
 };
