@@ -1,11 +1,18 @@
 import { PropsWithChildren } from "react";
 import { getCardImageContainerStyles } from "./getCardStyles";
 
-/** Place an image inside if you don't want the image to stretch to the end of the card. */
+export type CardImageContainerProps = {
+  /** Adds padding and border to the image. */
+  padded?: boolean;
+  className?: string;
+};
+
+/** Container for an image inside a card component. */
 export function CardImageContainer({
+  padded = false,
   className,
   children,
-}: { className?: string } & PropsWithChildren) {
-  const { styles } = getCardImageContainerStyles({ className });
+}: CardImageContainerProps & PropsWithChildren) {
+  const { styles } = getCardImageContainerStyles({ padded, className });
   return <div className={styles}>{children}</div>;
 }

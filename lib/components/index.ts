@@ -8,6 +8,15 @@ export type {
   ButtonVariant,
   GhostHover,
 } from "./Button";
+export {
+  Card,
+  CardActions,
+  CardImageContainer,
+  CardInteract,
+  CardText,
+  CardTitle,
+} from "./Card";
+export type { CardProps, CardImageContainerProps } from "./Card";
 export { DarkModeToggle, DarkModeSelector } from "./DarkModeToggle";
 export { Divider } from "./Divider";
 export type { DividerProps } from "./Divider";
