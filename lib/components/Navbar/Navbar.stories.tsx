@@ -96,7 +96,7 @@ export const WithHero: Story = {
     }, [storySelect]);
 
     return (
-      <div className="bg-main h-[100vh] pt-10 md:p-0">
+      <div className="bg-main mt-16 md:mt-0">
         <Navbar {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
