@@ -73,7 +73,7 @@ export const WithImage: Story = {
           </HeroSection>
           <HeroImageSection className="max-md:h-1/2 md:w-1/2">
             <img
-              className="hero-image w-[50vw]"
+              className="hero-image md:w-[50vw]"
               src="https://picsum.photos/1400/1400?grayscale"
             />
           </HeroImageSection>
