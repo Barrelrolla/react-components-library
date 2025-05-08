@@ -12,7 +12,7 @@ export default <Record<string, CssInJs>>{
     "@apply resize min-w-60 max-w-120 min-h-40 max-h-120": {},
   },
   ".card-interact": {
-    "@apply hover:bg-light/40 dark:hover:bg-dark/20 rounded-containers focus-visible:outline-main-content focus-visible:bg-light/40 active:bg-light/50 dark:focus-visible:bg-dark/20 dark:active:bg-dark/30 -outline-offset-4 focus-visible:outline-2 transition-colors z-10":
+    "@apply relative w-full h-full inline-block hover:bg-light/40 dark:hover:bg-dark/20 rounded-containers focus-visible:outline-main-content focus-visible:bg-light/40 active:bg-light/50 dark:focus-visible:bg-dark/20 dark:active:bg-dark/30 -outline-offset-4 focus-visible:outline-2 transition-colors z-10":
       {},
   },
   ".card-image": {
@@ -32,9 +32,9 @@ export default <Record<string, CssInJs>>{
     "@apply place-self-end px-4 py-2": {},
   },
   ".card-image-container": {
-    "@apply h-full overflow-hidden": {},
+    "@apply overflow-hidden": {},
   },
   ".card-image-container-padded": {
-    "@apply mx-4 my-2 border-containers rounded-containers": {},
+    "@apply m-2 h-[calc(100%-16px)] border-containers rounded-containers": {},
   },
 };

@@ -94,16 +94,16 @@ export const WithClickableImage: Story = {
   render: ({ children, ...rest }) => {
     return (
       <Card {...rest}>
-        <CardInteract href="#">
-          <CardSection className="flex-1/3">
+        <CardSection className="flex-1/3">
+          <CardInteract href="#">
             <CardImageContainer>
               <img
                 className="card-image"
                 src="https://picsum.photos/400/200?grayscale"
               ></img>
             </CardImageContainer>
-          </CardSection>
-        </CardInteract>
+          </CardInteract>
+        </CardSection>
         <CardSection className="flex-2/3">
           <CardTitle>Lorem, ipsum dolor.</CardTitle>
           <CardText>
@@ -123,16 +123,20 @@ export const WithClickableBody: Story = {
     return (
       <Card {...rest}>
         <CardInteract href="#">
-          <CardImageContainer>
-            <img
-              className="card-image"
-              src="https://picsum.photos/400/200?grayscale"
-            ></img>
-          </CardImageContainer>
-          <CardTitle>Lorem, ipsum dolor.</CardTitle>
-          <CardText>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, id!
-          </CardText>
+          <CardSection>
+            <CardImageContainer>
+              <img
+                className="card-image"
+                src="https://picsum.photos/400/200?grayscale"
+              ></img>
+            </CardImageContainer>
+          </CardSection>
+          <CardSection>
+            <CardTitle>Lorem, ipsum dolor.</CardTitle>
+            <CardText>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, id!
+            </CardText>
+          </CardSection>
         </CardInteract>
         <CardActions>
           <Button>Learn more</Button>
@@ -142,20 +146,20 @@ export const WithClickableBody: Story = {
   },
 };
 
-export const WithImageContainer: Story = {
+export const WithPaddedImage: Story = {
   render: ({ children, ...rest }) => {
     return (
       <Card {...rest}>
-        <CardInteract href="#">
-          <CardSection className="flex-1/3">
+        <CardSection className="flex-1/3">
+          <CardInteract href="#">
             <CardImageContainer padded>
               <img
                 className="card-image"
                 src="https://picsum.photos/400/200?grayscale"
               ></img>
             </CardImageContainer>
-          </CardSection>
-        </CardInteract>
+          </CardInteract>
+        </CardSection>
         <CardSection className="flex-2/3">
           <CardTitle>Lorem, ipsum dolor.</CardTitle>
           <CardText>

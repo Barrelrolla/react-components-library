@@ -35,8 +35,10 @@ export function getCardStyles({
   };
 }
 
-export function getCardClickAreaStyles({ className }: { className?: string }) {
-  return { styles: twMerge("card-interact group", className) };
+export function getCardInteractStyles({ className }: { className?: string }) {
+  return {
+    styles: twMerge("card-interact group", className),
+  };
 }
 
 export function getCardSectionStyles({ className }: { className?: string }) {
@@ -73,6 +75,7 @@ export function getCardImageContainerStyles({
   return {
     styles: twMerge(
       "card-image-container",
+      !padded && "h-full",
       padded && "card-image-container-padded",
       className,
     ),
