@@ -52,11 +52,7 @@ export default <Record<string, CssInJs>>{
   },
 
   ".glass": {
-    "@apply bg-(--bg-color)/30 backdrop-blur-sm": {},
-  },
-
-  ".glass-dark": {
-    "@apply bg-(--bg-color)/80 backdrop-blur-sm": {},
+    "@apply bg-(--bg-color)/40 backdrop-blur-xs": {},
   },
 
   ".backdrop": {

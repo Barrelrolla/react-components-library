@@ -80,14 +80,10 @@ export function Navbar({
         setIsOpen,
       }}
     >
-      <>
-        <header className={headerStyles}>
-          <nav className={navStyles} style={cssColorProps(color)}>
-            {children}
-          </nav>
-          <div className={backdropStyles} onClick={outsideClickHandler}></div>
-        </header>
-      </>
+      <header className={headerStyles} style={cssColorProps(color)}>
+        <nav className={navStyles}>{children}</nav>
+        <div className={backdropStyles} onClick={outsideClickHandler}></div>
+      </header>
     </NavbarContextProvider>
   );
 }

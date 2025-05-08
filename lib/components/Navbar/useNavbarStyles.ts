@@ -26,11 +26,11 @@ export function useNavbarStyles({
     headerStyles: twMerge(
       "navbar",
       glass && "glass",
-      isOpen && collapseAt == "sm" && "not-sm:bg-main/80",
-      isOpen && collapseAt == "md" && "not-md:bg-main/80",
-      isOpen && collapseAt == "lg" && "not-lg:bg-main/80",
-      isOpen && collapseAt == "xl" && "not-xl:bg-main/80",
-      fixed && "fixed left-0 z-40",
+      isOpen && collapseAt == "sm" && "not-sm:bg-(--bg-color)/80",
+      isOpen && collapseAt == "md" && "not-md:bg-(--bg-color)/80",
+      isOpen && collapseAt == "lg" && "not-lg:bg-(--bg-color)/80",
+      isOpen && collapseAt == "xl" && "not-xl:bg-(--bg-color)/80",
+      fixed && "fixed left-0",
       position === "top" && "top-0",
       position === "bottom" && "bottom-0",
       position === "top" &&
