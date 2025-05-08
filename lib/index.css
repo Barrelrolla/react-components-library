@@ -9,6 +9,10 @@
   --default-transition-duration: 200ms;
 }
 
+tr {
+  @apply flex flex-wrap overflow-hidden
+}
+
 html {
   @apply font-light;
 }
