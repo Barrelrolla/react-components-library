@@ -30,7 +30,7 @@ export default <CssInJs>{
     "--border-containers": "1px",
     "--border-navigation": "1px",
     "--max-width": "1440px",
-    "--hero-height": "800px",
+    "--hero-max-height": "800px",
   },
 
   ".dark": {
