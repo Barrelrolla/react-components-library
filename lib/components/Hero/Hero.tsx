@@ -11,6 +11,8 @@ export type HeroProps = {
   actionsAlign?: HeroAlign;
   /** If the alignment of other components is `responsive`, chooose at which size it changes. */
   responsiveAt?: ResponsiveSizes;
+  /** The hero component has a wrapper that has the full page width, use this to apply styles to the wrapper. */
+  wrapperClasses?: string;
 } & ComponentProps<"div">;
 
 /** Hero component for your main page */
@@ -18,13 +20,20 @@ export function Hero({
   textAlign = "responsive",
   actionsAlign = "center",
   responsiveAt = "md",
+  wrapperClasses,
   className,
   children,
 }: HeroProps) {
-  const { classes } = useHeroStyles({ responsiveAt, className });
+  const { classes, wrapperStyles } = useHeroStyles({
+    responsiveAt,
+    wrapperClasses,
+    className,
+  });
   return (
     <HeroContextProvider value={{ textAlign, actionsAlign, responsiveAt }}>
-      <section className={classes}>{children}</section>
+      <section className={wrapperStyles}>
+        <div className={classes}>{children}</div>
+      </section>
     </HeroContextProvider>
   );
 }

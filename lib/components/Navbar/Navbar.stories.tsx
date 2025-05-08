@@ -8,7 +8,14 @@ import { NavbarLink } from "./NavbarLink";
 import { NavbarToggle } from "./NavbarToggle";
 import { Button } from "../Button";
 import { ComputerIcon } from "@/icons";
-import { Hero, HeroActions, HeroSection, HeroText, HeroTitle } from "../Hero";
+import {
+  Hero,
+  HeroActions,
+  HeroImageSection,
+  HeroSection,
+  HeroText,
+  HeroTitle,
+} from "../Hero";
 
 type Props = ComponentProps<typeof Navbar> & {
   selected: number | undefined;
@@ -126,7 +133,7 @@ export const WithHero: Story = {
           </NavbarCollapse>
         </Navbar>
         <Hero>
-          <HeroSection>
+          <HeroSection className="max-md:h-1/2 md:w-1/2">
             <HeroTitle>Lorem ipsum dolor sit amet.</HeroTitle>
             <HeroText>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore
@@ -138,12 +145,12 @@ export const WithHero: Story = {
               <Button>action</Button>
             </HeroActions>
           </HeroSection>
-          <HeroSection>
+          <HeroImageSection className="max-md:h-1/2 md:w-1/2">
             <img
-              className="hero-image"
+              className="hero-image w-[1400px]"
               src="https://picsum.photos/1400/1400?grayscale"
             />
-          </HeroSection>
+          </HeroImageSection>
         </Hero>
       </div>
     );

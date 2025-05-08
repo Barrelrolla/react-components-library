@@ -4,9 +4,11 @@ import { ResponsiveSizes } from "@/types";
 
 export function useHeroStyles({
   responsiveAt,
+  wrapperClasses,
   className,
 }: {
   responsiveAt?: ResponsiveSizes;
+  wrapperClasses?: string;
   className?: string;
 }) {
   const classes = twMerge(
@@ -15,16 +17,17 @@ export function useHeroStyles({
     responsiveAt === "md" && "md:flex-row",
     responsiveAt === "lg" && "lg:flex-row",
     responsiveAt === "xl" && "xl:flex-row",
-    className,
+    className
   );
-  return { classes };
+  const wrapperStyles = twMerge("hero-wrapper", wrapperClasses);
+  return { classes, wrapperStyles };
 }
 
 export function useHeroSectionStyles({ className }: { className?: string }) {
   const context = useHeroContext();
   if (!context) {
     throw new Error(
-      "Please use the Hero Section only inside a Hero component!",
+      "Please use the Hero Section only inside a Hero component!"
     );
   }
   const { textAlign, responsiveAt } = context;
@@ -38,7 +41,34 @@ export function useHeroSectionStyles({ className }: { className?: string }) {
     textAlign === "responsive" && responsiveAt === "md" && "md:text-left",
     textAlign === "responsive" && responsiveAt === "lg" && "lg:text-left",
     textAlign === "responsive" && responsiveAt === "xl" && "xl:text-left",
-    className,
+    className
+  );
+  return { classes };
+}
+
+export function useHeroImageSectionStyles({
+  className,
+}: {
+  className?: string;
+}) {
+  const context = useHeroContext();
+  if (!context) {
+    throw new Error(
+      "Please use the Hero Section only inside a Hero component!"
+    );
+  }
+  const { textAlign, responsiveAt } = context;
+
+  const classes = twMerge(
+    "hero-image-section",
+    textAlign === "left" && "text-start",
+    textAlign === "center" && "text-center",
+    textAlign === "responsive" && "text-center",
+    textAlign === "responsive" && responsiveAt === "sm" && "sm:text-left",
+    textAlign === "responsive" && responsiveAt === "md" && "md:text-left",
+    textAlign === "responsive" && responsiveAt === "lg" && "lg:text-left",
+    textAlign === "responsive" && responsiveAt === "xl" && "xl:text-left",
+    className
   );
   return { classes };
 }
@@ -57,7 +87,7 @@ export function useHeroActionsStyles({ className }: { className?: string }) {
   const context = useHeroContext();
   if (!context) {
     throw new Error(
-      "Please use the Hero Actions only inside a Hero component!",
+      "Please use the Hero Actions only inside a Hero component!"
     );
   }
   const { actionsAlign, responsiveAt } = context;
@@ -78,7 +108,7 @@ export function useHeroActionsStyles({ className }: { className?: string }) {
     actionsAlign === "responsive" &&
       responsiveAt === "xl" &&
       "xl:justify-start",
-    className,
+    className
   );
   return { classes };
 }
