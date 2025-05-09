@@ -4,12 +4,24 @@ import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
 
 export type FooterProps = {
-  className?: string;
   color?: ColorType;
+  decorations?: boolean;
+  containerClasses?: string;
+  className?: string;
 } & ComponentProps<"footer">;
 
-export function Footer({ className, color = "dark", children }: FooterProps) {
-  const { containerStyles, styles } = getFooterStyles({ className });
+export function Footer({
+  color = "dark",
+  decorations = false,
+  containerClasses,
+  className,
+  children,
+}: FooterProps) {
+  const { containerStyles, styles } = getFooterStyles({
+    decorations,
+    containerClasses,
+    className,
+  });
 
   return (
     <footer className={containerStyles} style={cssColorProps(color)}>

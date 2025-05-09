@@ -31,12 +31,8 @@ export function useNavbarStyles({
       isOpen && collapseAt == "lg" && "not-lg:bg-(--bg-color)/80",
       isOpen && collapseAt == "xl" && "not-xl:bg-(--bg-color)/80",
       fixed && "fixed left-0",
-      position === "top" && "top-0",
-      position === "bottom" && "bottom-0",
-      position === "top" &&
-        "rounded-b-(length:--radius-navigation) border-b-(length:--border-navigation)",
-      position === "bottom" &&
-        "rounded-t-(length:--radius-navigation) border-t-(length:--border-navigation)",
+      position === "top" && "top-0 navigation-decoration-bottom",
+      position === "bottom" && "bottom-0 navigation-decoration-top",
       hasShadow && "shadow-dark/60 dark:shadow-dark/80",
       hasShadow && position === "top" && "shadow-[0px_4px_8px_-1px]",
       hasShadow && position === "bottom" && "shadow-[0px_-4px_8px_-1px]",

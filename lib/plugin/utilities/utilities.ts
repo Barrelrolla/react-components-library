@@ -79,6 +79,16 @@ export default <Record<string, CssInJs>>{
     "@apply border-(length:--border-navigation)": {},
   },
 
+  ".navigation-decoration-top": {
+    "@apply rounded-t-(length:--radius-navigation) border-t-(length:--border-navigation)":
+      {},
+  },
+
+  ".navigation-decoration-bottom": {
+    "@apply rounded-b-(length:--radius-navigation) border-b-(length:--border-navigation)":
+      {},
+  },
+
   ".hide-scroll": {
     animation: "hide-scroll var(--default-transition-duration);",
   },

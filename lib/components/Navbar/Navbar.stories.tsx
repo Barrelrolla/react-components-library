@@ -16,6 +16,7 @@ import {
   HeroText,
   HeroTitle,
 } from "../Hero";
+import { Footer } from "../Footer";
 
 type Props = ComponentProps<typeof Navbar> & {
   selected: number | undefined;
@@ -152,6 +153,7 @@ export const WithHero: Story = {
             />
           </HeroImageSection>
         </Hero>
+        <Footer>footer</Footer>
       </div>
     );
   },

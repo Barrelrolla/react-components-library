@@ -6,13 +6,10 @@ const meta: Meta<typeof Footer> = {
   title: "Components/Footer",
   tags: ["autodocs"],
   component: Footer,
-  decorators: (Story) => (
-    <div className="">
-      <Story />
-    </div>
-  ),
   argTypes: {
     children: { name: "text" },
+    containerClasses: { if: { arg: "false", eq: "true" } },
+    className: { if: { arg: "false", eq: "true" } },
   },
 };
 
