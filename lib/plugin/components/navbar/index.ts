@@ -14,7 +14,7 @@ export default <Record<string, CssInJs>>{
     "@apply flex items-center gap-2 text-2xl font-normal": {},
   },
   ".navbar-collapse-container": {
-    "@apply w-full overflow-auto overscroll-contain": {},
+    "@apply w-full overflow-hidden overscroll-contain": {},
   },
   ".navbar-collapse-container-extended": {
     "@apply order-none max-h-fit w-auto overflow-visible": {},

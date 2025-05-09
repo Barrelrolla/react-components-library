@@ -84,7 +84,7 @@ export function useNavbarCollapseStyles({
     collapseAt === "lg" && "lg:navbar-collapse-container-extended",
     collapseAt === "xl" && "xl:navbar-collapse-container-extended",
     !isOpen && "max-h-0 ease-out",
-    isOpen && "max-h-screen ease-in",
+    isOpen && "max-h-screen ease-in hide-scroll overflow-auto",
     wrapperClasses,
   );
 

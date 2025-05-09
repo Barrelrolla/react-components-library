@@ -78,4 +78,8 @@ export default <Record<string, CssInJs>>{
   ".border-navigation": {
     "@apply border-(length:--border-navigation)": {},
   },
+
+  ".hide-scroll": {
+    animation: "hide-scroll var(--default-transition-duration);",
+  },
 };
