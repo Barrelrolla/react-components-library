@@ -5,7 +5,7 @@ export default <Record<string, CssInJs>>{
     "@apply w-full justify-center overflow-hidden flex": {},
   },
   ".hero": {
-    "@apply flex flex-col h-screen max-h-(--hero-max-height) w-full items-center overflow-x-visible justify-between gap-2 max-w-(--max-width)":
+    "@apply flex flex-col h-(--hero-height) w-full items-center overflow-x-visible justify-between gap-2 max-w-(--max-width)":
       {},
   },
   ".hero-section": {

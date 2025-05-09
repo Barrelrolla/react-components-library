@@ -18,7 +18,7 @@ export const Welcome: Story = {
   render: () => {
     return (
       <div className="bg-main">
-        <Hero textAlign="center">
+        <Hero textAlign="center" className="h-screen min-h-0">
           <HeroSection>
             <HeroTitle>Welcome to my react components library</HeroTitle>
             <HeroActions>
