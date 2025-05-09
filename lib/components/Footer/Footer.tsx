@@ -2,6 +2,7 @@ import { ComponentProps } from "react";
 import { getFooterStyles } from "./getFooterStyles";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
+import { FooterContextProvider } from "./FooterContext";
 
 export type FooterProps = {
   color?: ColorType;
@@ -24,8 +25,10 @@ export function Footer({
   });
 
   return (
-    <footer className={containerStyles} style={cssColorProps(color)}>
-      <div className={styles}>{children}</div>
-    </footer>
+    <FooterContextProvider value={{ color }}>
+      <footer className={containerStyles} style={cssColorProps(color)}>
+        <div className={styles}>{children}</div>
+      </footer>
+    </FooterContextProvider>
   );
 }
