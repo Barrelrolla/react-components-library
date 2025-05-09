@@ -2,11 +2,10 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".navbar": {
-    "@apply flex w-full justify-center bg-(--bg-color) text-(--fg-color) p-2":
-      {},
+    "@apply w-full bg-(--bg-color) text-(--fg-color) px-4 py-2": {},
   },
   ".navbar-nav": {
-    "@apply flex flex-wrap items-center justify-between z-40": {},
+    "@apply mx-auto flex flex-wrap items-center justify-between z-40": {},
     width: "100%",
     "max-width": "var(--max-width)",
   },
