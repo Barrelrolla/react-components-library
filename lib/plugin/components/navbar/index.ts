@@ -6,7 +6,7 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".navbar-nav": {
-    "@apply flex flex-wrap items-center justify-between": {},
+    "@apply flex flex-wrap items-center justify-between z-40": {},
     width: "100%",
     "max-width": "var(--max-width)",
   },
