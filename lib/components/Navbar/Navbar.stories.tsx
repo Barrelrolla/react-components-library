@@ -7,7 +7,7 @@ import { NavbarCollapse } from "./NavbarCollapse";
 import { NavbarLink } from "./NavbarLink";
 import { NavbarToggle } from "./NavbarToggle";
 import { Button } from "../Button";
-import { GitHubIcon, LinkedInLogo, SmileyIcon } from "@/icons";
+import { GitHubIcon, LinkedInLogo, RocketIcon } from "@/icons";
 import {
   Hero,
   HeroActions,
@@ -73,7 +73,7 @@ export const Default: Story = {
         <Navbar fixed={fixed} {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
-            <SmileyIcon /> Test
+            <RocketIcon /> Test
           </NavbarBrand>
           <div role="presentation" className="w-10 sm:hidden"></div>
           <NavbarCollapse>
@@ -110,7 +110,7 @@ export const PageDemo: Story = {
         <Navbar {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
-            <SmileyIcon /> Test
+            <RocketIcon /> Test
           </NavbarBrand>
           <div role="presentation" className="w-10 sm:hidden"></div>
           <NavbarCollapse>
@@ -157,7 +157,7 @@ export const PageDemo: Story = {
         </Hero>
         <Footer decorations color="main">
           <FooterBrand href="#">
-            <SmileyIcon /> Test
+            <RocketIcon /> Test
           </FooterBrand>
           <FooterLinksSection>
             <FooterLinkGroup>

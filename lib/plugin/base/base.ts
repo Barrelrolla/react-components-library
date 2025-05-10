@@ -31,6 +31,7 @@ export default <CssInJs>{
     "--border-navigation": "1px",
     "--max-width": "1440px",
     "--hero-height": "800px",
+    "--default-font-weight": "200",
   },
 
   ".dark": {
@@ -59,7 +60,7 @@ export default <CssInJs>{
   },
 
   html: {
-    "@apply bg-main text-main-content": {},
+    "@apply bg-main text-main-content font-(--default-font-weight)": {},
     scrollbarColor: "var(--color-main-content) var(--color-main)",
   },
   "::selection": {

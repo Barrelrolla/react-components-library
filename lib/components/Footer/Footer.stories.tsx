@@ -7,7 +7,7 @@ import { FooterLink } from "./FooterLink";
 import { FooterLinksSection } from "./FooterLinksSection";
 import { FooterLinksTitle } from "./FooterLinksTitle";
 import { FooterFullSection } from "./FooterFullSection";
-import { SmileyIcon, GitHubIcon, LinkedInLogo } from "@/icons";
+import { RocketIcon, GitHubIcon, LinkedInLogo } from "@/icons";
 import { Anchor } from "../Anchor";
 
 const meta: Meta<typeof Footer> = {
@@ -33,7 +33,7 @@ export const Default: Story = {
     return (
       <Footer {...rest}>
         <FooterBrand href="#">
-          <SmileyIcon /> Test
+          <RocketIcon /> Test
         </FooterBrand>
         <FooterLinksSection>
           <FooterLink href="#">long link text 1</FooterLink>
@@ -58,7 +58,7 @@ export const WithLinkGroups: Story = {
     return (
       <Footer {...rest}>
         <FooterBrand href="#">
-          <SmileyIcon /> Test
+          <RocketIcon /> Test
         </FooterBrand>
         <FooterLinksSection>
           <FooterLinkGroup>

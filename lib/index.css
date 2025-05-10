@@ -13,9 +13,10 @@ tr {
   @apply flex flex-wrap overflow-hidden
 }
 
+/* 
 html {
   @apply font-light;
-}
+} */
 
 .storybookContainer {
   @apply bg-main flex flex-wrap justify-center p-4 gap-4;

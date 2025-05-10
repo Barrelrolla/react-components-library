@@ -15,7 +15,7 @@ export default <Record<string, CssInJs>>{
     "@apply h-full w-full overflow-visible gap-4": {},
   },
   ".hero-title": {
-    "@apply px-4 text-5xl": {},
+    "@apply px-4 font-[calc(var(--default-font-weight)+100)] text-5xl": {},
   },
   ".hero-text": {
     "@apply px-4": {},

@@ -23,7 +23,7 @@ export default <Record<string, CssInJs>>{
     "@apply flex-1": {},
   },
   ".card-title": {
-    "@apply text-xl font-normal px-4 py-2": {},
+    "@apply text-xl font-[calc(var(--default-font-weight)+200)] px-4 py-2": {},
   },
   ".card-text": {
     "@apply px-4 py-2": {},
