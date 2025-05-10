@@ -96,7 +96,7 @@ export const Default: Story = {
   },
 };
 
-export const WithHero: Story = {
+export const PageDemo: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const navbar = canvas.getByText("Test");
@@ -160,7 +160,7 @@ export const WithHero: Story = {
             />
           </HeroImageSection>
         </Hero>
-        <Footer>
+        <Footer decorations color="main">
           <FooterBrand href="#">
             <SmileyIcon /> Test
           </FooterBrand>
@@ -187,10 +187,10 @@ export const WithHero: Story = {
           <FooterFullSection>
             <span>copyright stuff</span>
             <div className="flex gap-4 text-xl">
-              <Anchor href="#" color="dark" useBgColor={false}>
+              <Anchor href="#" color="main" useBgColor={false}>
                 <GitHubIcon />
               </Anchor>
-              <Anchor href="#" color="dark" useBgColor={false}>
+              <Anchor href="#" color="main" useBgColor={false}>
                 <LinkedInLogo />
               </Anchor>
             </div>

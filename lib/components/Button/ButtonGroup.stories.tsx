@@ -161,7 +161,7 @@ export const Icon: Story = {
   },
 };
 
-export const ButtonWithIconButton: Story = {
+export const SplitButton: Story = {
   render: ({ selection, radius = "pill", ...rest }) => {
     return (
       <ButtonGroup {...rest} radius={radius}>
