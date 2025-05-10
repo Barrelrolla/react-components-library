@@ -1,4 +1,4 @@
-import{j as r}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as e}from"./index-BPV8d2tn.js";import{e as a,f as i}from"./index-CZlpkmVa.js";import"./index-BKyFwriW.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-CS7zWCWJ.js";import"./index-DQw2Bw4b.js";import"./index-CXQShRbs.js";import"./index-DrFu-skq.js";const l=`# A react components library for personal use\r
+import{j as r}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as e}from"./index-BPV8d2tn.js";import{e as a,f as i}from"./index-sDHABnCR.js";import"./index-BKyFwriW.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-vioZa-v7.js";import"./index-DQw2Bw4b.js";import"./index-CXQShRbs.js";import"./index-DrFu-skq.js";const l=`# A react components library for personal use\r
 \r
 A collection of react components for personal use.\r
 \r
