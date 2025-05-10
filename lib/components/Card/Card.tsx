@@ -7,7 +7,7 @@ import { CardContextProvider } from "./CardContext";
 
 export type CardProps = {
   /** Color of the card. */
-  color: ColorType;
+  color?: ColorType;
   /** Set to 'false' if you want the card to be horizontal, default is `true`. */
   vertical?: boolean;
   /** Size of the card. */
