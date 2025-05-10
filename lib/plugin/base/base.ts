@@ -31,7 +31,7 @@ export default <CssInJs>{
     "--border-navigation": "1px",
     "--max-width": "1440px",
     "--hero-height": "800px",
-    "--default-font-weight": "200",
+    "--default-font-weight": "300",
   },
 
   ".dark": {

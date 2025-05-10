@@ -6,7 +6,7 @@
 
 @theme {
   --font-sans: "Montserrat", sans-serif;
-  --default-transition-duration: 250ms;
+  --default-transition-duration: 150ms;
 }
 
 tr {

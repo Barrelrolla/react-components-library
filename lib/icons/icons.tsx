@@ -4,8 +4,12 @@ import { twMerge } from "tailwind-merge";
 // https://phosphoricons.com/
 
 export type SVGIconProps = {} & SVGProps<SVGSVGElement>;
+const defaultStrokeWidth = 7;
 
-export function SunIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+export function SunIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +28,10 @@ export function SunIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
   );
 }
 
-export function MoonIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+export function MoonIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +50,10 @@ export function MoonIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
   );
 }
 
-export function ComputerIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+export function ComputerIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +72,10 @@ export function ComputerIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
   );
 }
 
-export function HeartIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+export function HeartIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +111,10 @@ export function HeartFillIcon({ ...rest }: SVGIconProps) {
   );
 }
 
-export function BookmarkIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+export function BookmarkIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +133,10 @@ export function BookmarkIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
   );
 }
 
-export function ThumbIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+export function ThumbIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +155,10 @@ export function ThumbIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
   );
 }
 
-export function SmileyIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+export function SmileyIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +177,10 @@ export function SmileyIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
   );
 }
 
-export function RocketIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+export function RocketIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -174,7 +199,10 @@ export function RocketIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
   );
 }
 
-export function GitHubIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+export function GitHubIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -193,7 +221,10 @@ export function GitHubIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
   );
 }
 
-export function LinkedInLogo({ strokeWidth = 9, ...rest }: SVGIconProps) {
+export function LinkedInLogo({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
