@@ -36,7 +36,8 @@ export function useNavbarStyles({
       hasShadow && "shadow-dark/60 dark:shadow-dark/80",
       hasShadow && position === "top" && "shadow-[0px_4px_8px_-1px]",
       hasShadow && position === "bottom" && "shadow-[0px_-4px_8px_-1px]",
-      (!theme || theme.transitions) && "transition-colors",
+      (!theme || theme.transitions) &&
+        "transition-colors duration-(--dropdown-animation-duration)",
       className,
     ),
     navStyles: twMerge("navbar-nav"),
