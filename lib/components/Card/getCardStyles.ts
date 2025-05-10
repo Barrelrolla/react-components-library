@@ -1,5 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import { CardSizes } from "./CardTypes";
+import { useCardContext } from "./CardContext";
 
 export function getCardStyles({
   vertical,
@@ -35,9 +36,17 @@ export function getCardStyles({
   };
 }
 
-export function getCardInteractStyles({ className }: { className?: string }) {
+export function useCardInteractStyles({ className }: { className?: string }) {
+  const context = useCardContext();
+  if (!context) {
+    throw new Error(
+      "Please use the Card interact only inside a Card component!",
+    );
+  }
+
   return {
     styles: twMerge("card-interact group", className),
+    color: context.color,
   };
 }
 
