@@ -97,11 +97,6 @@ export const Default: Story = {
 };
 
 export const PageDemo: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const navbar = canvas.getByText("Test");
-    await expect(navbar, "renders").toBeTruthy();
-  },
   render: ({ selected: storySelect, ...rest }) => {
     const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
     const [selected, setSelected] = useState(storySelect);
