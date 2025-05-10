@@ -1,4 +1,4 @@
-import{j as n}from"./jsx-runtime-D_zvdyIk.js";import{w as u,e as g}from"./index-D_lHLW6D.js";import{F as a}from"./Footer-DMgWdnP0.js";import{F as L,a as p,b as e,c as m,d as i,e as l}from"./FooterFullSection-C99O78HQ.js";import{S as j,G as T,L as B}from"./icons-CI4VIGa8.js";import{A as c}from"./Anchor-DJVMO5w5.js";import"./ThemeContext-EqqjHPk4.js";import"./index-BKyFwriW.js";import"./_commonjsHelpers-CqkleIqs.js";const N={title:"Components/Footer",tags:["autodocs"],component:a,argTypes:{containerClasses:{if:{arg:"false",eq:"true"}},className:{if:{arg:"false",eq:"true"}}}},o={play:async({canvasElement:r})=>{const s=u(r).getByText("Test");await g(s,"renders").toBeTruthy()},render:({...r})=>n.jsxs(a,{...r,children:[n.jsxs(L,{href:"#",children:[n.jsx(j,{})," Test"]}),n.jsxs(p,{children:[n.jsx(e,{href:"#",children:"long link text 1"}),n.jsx(e,{href:"#",children:"long link text 2"}),n.jsx(e,{href:"#",children:"long link text 3"})]}),n.jsx(m,{className:"justify-center",children:"copyright stuff"})]})},t={play:async({canvasElement:r})=>{const s=u(r).getByText("Test");await g(s,"renders").toBeTruthy()},render:({...r})=>n.jsxs(a,{...r,children:[n.jsxs(L,{href:"#",children:[n.jsx(j,{})," Test"]}),n.jsxs(p,{children:[n.jsxs(i,{children:[n.jsx(l,{children:"long section name 1"}),n.jsx(e,{href:"#",children:"long link text 1"}),n.jsx(e,{href:"#",children:"long link text 2"}),n.jsx(e,{href:"#",children:"long link text 3"})]}),n.jsxs(i,{children:[n.jsx(l,{children:"long section name 2"}),n.jsx(e,{href:"#",children:"long link text 1"}),n.jsx(e,{href:"#",children:"long link text 2"}),n.jsx(e,{href:"#",children:"long link text 3"})]}),n.jsxs(i,{children:[n.jsx(l,{children:"long section name 3"}),n.jsx(e,{href:"#",children:"long link text 1"}),n.jsx(e,{href:"#",children:"long link text 2"}),n.jsx(e,{href:"#",children:"long link text 3"})]})]}),n.jsxs(m,{children:[n.jsx("span",{children:"copyright stuff"}),n.jsxs("div",{className:"flex gap-4 text-xl",children:[n.jsx(c,{href:"#",color:"dark",useBgColor:!1,children:n.jsx(T,{})}),n.jsx(c,{href:"#",color:"dark",useBgColor:!1,children:n.jsx(B,{})})]})]})]})};var h,k,x;o.parameters={...o.parameters,docs:{...(h=o.parameters)==null?void 0:h.docs,source:{originalSource:`{
+import{j as n}from"./jsx-runtime-D_zvdyIk.js";import{w as u,e as g}from"./index-D_lHLW6D.js";import{F as a}from"./Footer-DMgWdnP0.js";import{F as L,a as p,b as e,c as m,d as i,e as l}from"./FooterFullSection-C99O78HQ.js";import{R as j,G as y,L as B}from"./icons-DeaS2o7k.js";import{A as c}from"./Anchor-DJVMO5w5.js";import"./ThemeContext-EqqjHPk4.js";import"./index-BKyFwriW.js";import"./_commonjsHelpers-CqkleIqs.js";const N={title:"Components/Footer",tags:["autodocs"],component:a,argTypes:{containerClasses:{if:{arg:"false",eq:"true"}},className:{if:{arg:"false",eq:"true"}}}},o={play:async({canvasElement:r})=>{const s=u(r).getByText("Test");await g(s,"renders").toBeTruthy()},render:({...r})=>n.jsxs(a,{...r,children:[n.jsxs(L,{href:"#",children:[n.jsx(j,{})," Test"]}),n.jsxs(p,{children:[n.jsx(e,{href:"#",children:"long link text 1"}),n.jsx(e,{href:"#",children:"long link text 2"}),n.jsx(e,{href:"#",children:"long link text 3"})]}),n.jsx(m,{className:"justify-center",children:"copyright stuff"})]})},t={play:async({canvasElement:r})=>{const s=u(r).getByText("Test");await g(s,"renders").toBeTruthy()},render:({...r})=>n.jsxs(a,{...r,children:[n.jsxs(L,{href:"#",children:[n.jsx(j,{})," Test"]}),n.jsxs(p,{children:[n.jsxs(i,{children:[n.jsx(l,{children:"long section name 1"}),n.jsx(e,{href:"#",children:"long link text 1"}),n.jsx(e,{href:"#",children:"long link text 2"}),n.jsx(e,{href:"#",children:"long link text 3"})]}),n.jsxs(i,{children:[n.jsx(l,{children:"long section name 2"}),n.jsx(e,{href:"#",children:"long link text 1"}),n.jsx(e,{href:"#",children:"long link text 2"}),n.jsx(e,{href:"#",children:"long link text 3"})]}),n.jsxs(i,{children:[n.jsx(l,{children:"long section name 3"}),n.jsx(e,{href:"#",children:"long link text 1"}),n.jsx(e,{href:"#",children:"long link text 2"}),n.jsx(e,{href:"#",children:"long link text 3"})]})]}),n.jsxs(m,{children:[n.jsx("span",{children:"copyright stuff"}),n.jsxs("div",{className:"flex gap-4 text-xl",children:[n.jsx(c,{href:"#",color:"dark",useBgColor:!1,children:n.jsx(y,{})}),n.jsx(c,{href:"#",color:"dark",useBgColor:!1,children:n.jsx(B,{})})]})]})]})};var h,k,x;o.parameters={...o.parameters,docs:{...(h=o.parameters)==null?void 0:h.docs,source:{originalSource:`{
   play: async ({
     canvasElement
   }) => {
@@ -11,7 +11,7 @@ import{j as n}from"./jsx-runtime-D_zvdyIk.js";import{w as u,e as g}from"./index-
   }) => {
     return <Footer {...rest}>\r
         <FooterBrand href="#">\r
-          <SmileyIcon /> Test\r
+          <RocketIcon /> Test\r
         </FooterBrand>\r
         <FooterLinksSection>\r
           <FooterLink href="#">long link text 1</FooterLink>\r
@@ -36,7 +36,7 @@ import{j as n}from"./jsx-runtime-D_zvdyIk.js";import{w as u,e as g}from"./index-
   }) => {
     return <Footer {...rest}>\r
         <FooterBrand href="#">\r
-          <SmileyIcon /> Test\r
+          <RocketIcon /> Test\r
         </FooterBrand>\r
         <FooterLinksSection>\r
           <FooterLinkGroup>\r
@@ -71,4 +71,4 @@ import{j as n}from"./jsx-runtime-D_zvdyIk.js";import{w as u,e as g}from"./index-
         </FooterFullSection>\r
       </Footer>;
   }
-}`,...(f=(d=t.parameters)==null?void 0:d.docs)==null?void 0:f.source}}};const q=["Default","WithLinkGroups"];export{o as Default,t as WithLinkGroups,q as __namedExportsOrder,N as default};
+}`,...(f=(d=t.parameters)==null?void 0:d.docs)==null?void 0:f.source}}};const R=["Default","WithLinkGroups"];export{o as Default,t as WithLinkGroups,R as __namedExportsOrder,N as default};
