@@ -2,12 +2,13 @@ import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
 import { Footer } from "./Footer";
 import { FooterBrand } from "./FooterBrand";
-import { ComputerIcon } from "@/icons";
 import { FooterLinkGroup } from "./FooterLinkGroup";
 import { FooterLink } from "./FooterLink";
 import { FooterLinksSection } from "./FooterLinksSection";
 import { FooterLinksTitle } from "./FooterLinksTitle";
 import { FooterFullSection } from "./FooterFullSection";
+import { SmileyIcon, GitHubIcon, LinkedInLogo } from "@/icons";
+import { Anchor } from "../Anchor";
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Footer",
@@ -31,30 +32,65 @@ export const Default: Story = {
   render: ({ ...rest }) => {
     return (
       <Footer {...rest}>
-        <FooterBrand href="#" className="justify-center w-full md:w-auto">
-          <ComputerIcon /> Test
+        <FooterBrand href="#">
+          <SmileyIcon /> Test
+        </FooterBrand>
+        <FooterLinksSection>
+          <FooterLink href="#">long link text 1</FooterLink>
+          <FooterLink href="#">long link text 2</FooterLink>
+          <FooterLink href="#">long link text 3</FooterLink>
+        </FooterLinksSection>
+        <FooterFullSection className="justify-center">
+          copyright stuff
+        </FooterFullSection>
+      </Footer>
+    );
+  },
+};
+
+export const WithLinkGroups: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByText("Test");
+    await expect(button, "renders").toBeTruthy();
+  },
+  render: ({ ...rest }) => {
+    return (
+      <Footer {...rest}>
+        <FooterBrand href="#">
+          <SmileyIcon /> Test
         </FooterBrand>
         <FooterLinksSection>
           <FooterLinkGroup>
-            <FooterLinksTitle>section 1 section</FooterLinksTitle>
-            <FooterLink href="#">link 1 link 1 link 1</FooterLink>
-            <FooterLink href="#">link 2 link 2 link 2</FooterLink>
-            <FooterLink href="#">link 3 link 3 link 3</FooterLink>
+            <FooterLinksTitle>long section name 1</FooterLinksTitle>
+            <FooterLink href="#">long link text 1</FooterLink>
+            <FooterLink href="#">long link text 2</FooterLink>
+            <FooterLink href="#">long link text 3</FooterLink>
           </FooterLinkGroup>
           <FooterLinkGroup>
-            <FooterLinksTitle>section 2 section</FooterLinksTitle>
-            <FooterLink href="#">link 1 link 1 link 1</FooterLink>
-            <FooterLink href="#">link 2 link 2 link 2</FooterLink>
-            <FooterLink href="#">link 3 link 3 link 3</FooterLink>
+            <FooterLinksTitle>long section name 2</FooterLinksTitle>
+            <FooterLink href="#">long link text 1</FooterLink>
+            <FooterLink href="#">long link text 2</FooterLink>
+            <FooterLink href="#">long link text 3</FooterLink>
           </FooterLinkGroup>
           <FooterLinkGroup>
-            <FooterLinksTitle>section 3 section</FooterLinksTitle>
-            <FooterLink href="#">link 1 link 1 link 1</FooterLink>
-            <FooterLink href="#">link 2 link 2 link 2</FooterLink>
-            <FooterLink href="#">link 3 link 3 link 3</FooterLink>
+            <FooterLinksTitle>long section name 3</FooterLinksTitle>
+            <FooterLink href="#">long link text 1</FooterLink>
+            <FooterLink href="#">long link text 2</FooterLink>
+            <FooterLink href="#">long link text 3</FooterLink>
           </FooterLinkGroup>
         </FooterLinksSection>
-        <FooterFullSection>copyright stuff</FooterFullSection>
+        <FooterFullSection>
+          <span>copyright stuff</span>
+          <div className="flex gap-4 text-xl">
+            <Anchor href="#" color="dark" useBgColor={false}>
+              <GitHubIcon />
+            </Anchor>
+            <Anchor href="#" color="dark" useBgColor={false}>
+              <LinkedInLogo />
+            </Anchor>
+          </div>
+        </FooterFullSection>
       </Footer>
     );
   },

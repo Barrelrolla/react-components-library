@@ -62,6 +62,137 @@ export function ComputerIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
   );
 }
 
+export function HeartIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 256 256"
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M178 44c-21.44 0-39.92 10.19-50 27.07C117.92 54.19 99.44 44 78 44a58.07 58.07 0 0 0-58 58c0 28.59 18 58.47 53.4 88.79a334 334 0 0 0 52.7 36.73a4 4 0 0 0 3.8 0a334 334 0 0 0 52.7-36.73C218 160.47 236 130.59 236 102a58.07 58.07 0 0 0-58-58m-50 175.42c-14-8-100-59.35-100-117.42a50.06 50.06 0 0 1 50-50c21.11 0 38.85 11.31 46.3 29.51a4 4 0 0 0 7.4 0C139.15 63.31 156.89 52 178 52a50.06 50.06 0 0 1 50 50c0 58-86 109.46-100 117.42"
+        strokeWidth={strokeWidth}
+        stroke="currentColor"
+      ></path>
+    </svg>
+  );
+}
+
+export function HeartFillIcon({ ...rest }: SVGIconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 256 256"
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M240 102c0 70-103.79 126.66-108.21 129a8 8 0 0 1-7.58 0C119.79 228.66 16 172 16 102a62.07 62.07 0 0 1 62-62c20.65 0 38.73 8.88 50 23.89C139.27 48.88 157.35 40 178 40a62.07 62.07 0 0 1 62 62"
+      ></path>
+    </svg>
+  );
+}
+
+export function BookmarkIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 256 256"
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M184 36H72a12 12 0 0 0-12 12v176a4 4 0 0 0 6.12 3.39L128 188.72l61.89 38.67a4 4 0 0 0 2.11.61a4.06 4.06 0 0 0 1.94-.5A4 4 0 0 0 196 224V48a12 12 0 0 0-12-12m4 180.78l-57.89-36.17a4 4 0 0 0-4.24 0L68 216.78V48a4 4 0 0 1 4-4h112a4 4 0 0 1 4 4Z"
+        strokeWidth={strokeWidth}
+        stroke="currentColor"
+      ></path>
+    </svg>
+  );
+}
+
+export function ThumbIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 256 256"
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M231 82.76A20 20 0 0 0 216 76h-60V56a36 36 0 0 0-36-36a4 4 0 0 0-3.58 2.21L77.53 100H32a12 12 0 0 0-12 12v88a12 12 0 0 0 12 12h172a20 20 0 0 0 19.85-17.52l12-96A20 20 0 0 0 231 82.76M76 204H32a4 4 0 0 1-4-4v-88a4 4 0 0 1 4-4h44ZM227.91 97.49l-12 96A12 12 0 0 1 204 204H84v-99.06l38.42-76.84A28 28 0 0 1 148 56v24a4 4 0 0 0 4 4h64a12 12 0 0 1 11.91 13.49"
+        strokeWidth={strokeWidth}
+        stroke="currentColor"
+      ></path>
+    </svg>
+  );
+}
+
+export function SmileyIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 256 256"
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M171.46 154c-9.55 16.52-25.39 26-43.46 26s-33.91-9.48-43.46-26a4 4 0 0 1 6.92-4c8.21 14.19 21.19 22 36.54 22s28.33-7.81 36.54-22a4 4 0 1 1 6.92 4M228 128A100 100 0 1 1 128 28a100.11 100.11 0 0 1 100 100m-8 0a92 92 0 1 0-92 92a92.1 92.1 0 0 0 92-92M92 116a8 8 0 1 0-8-8a8 8 0 0 0 8 8m72-16a8 8 0 1 0 8 8a8 8 0 0 0-8-8"
+        strokeWidth={strokeWidth}
+        stroke="currentColor"
+      ></path>
+    </svg>
+  );
+}
+
+export function GitHubIcon({ strokeWidth = 9, ...rest }: SVGIconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 256 256"
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M203.94 76.16A55.73 55.73 0 0 0 199.46 30a4 4 0 0 0-3.46-2a55.78 55.78 0 0 0-46 24h-28a55.78 55.78 0 0 0-46-24a4 4 0 0 0-3.46 2a55.73 55.73 0 0 0-4.48 46.16A53.8 53.8 0 0 0 60 104v8a52.06 52.06 0 0 0 52 52h1.41A36 36 0 0 0 100 192v12H72a28 28 0 0 1-28-28a36 36 0 0 0-36-36a4 4 0 0 0 0 8a28 28 0 0 1 28 28a36 36 0 0 0 36 36h28v20a4 4 0 0 0 8 0v-40a28 28 0 0 1 56 0v40a4 4 0 0 0 8 0v-40a36 36 0 0 0-13.41-28H160a52.06 52.06 0 0 0 52-52v-8a53.8 53.8 0 0 0-8.06-27.84M204 112a44.05 44.05 0 0 1-44 44h-48a44.05 44.05 0 0 1-44-44v-8a45.76 45.76 0 0 1 7.71-24.89a4 4 0 0 0 .53-3.84a47.82 47.82 0 0 1 2.1-39.21a47.8 47.8 0 0 1 38.12 22.1a4 4 0 0 0 3.37 1.84h32.34a4 4 0 0 0 3.37-1.84a47.8 47.8 0 0 1 38.12-22.1a47.82 47.82 0 0 1 2.1 39.21a4 4 0 0 0 .53 3.83A45.85 45.85 0 0 1 204 104Z"
+        strokeWidth={strokeWidth}
+        stroke="currentColor"
+      ></path>
+    </svg>
+  );
+}
+
+export function LinkedInLogo({ strokeWidth = 9, ...rest }: SVGIconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 256 256"
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M216 28H40a12 12 0 0 0-12 12v176a12 12 0 0 0 12 12h176a12 12 0 0 0 12-12V40a12 12 0 0 0-12-12m4 188a4 4 0 0 1-4 4H40a4 4 0 0 1-4-4V40a4 4 0 0 1 4-4h176a4 4 0 0 1 4 4ZM92 112v64a4 4 0 0 1-8 0v-64a4 4 0 0 1 8 0m88 28v36a4 4 0 0 1-8 0v-36a24 24 0 0 0-48 0v36a4 4 0 0 1-8 0v-64a4 4 0 0 1 8 0v6.87A32 32 0 0 1 180 140M96 84a8 8 0 1 1-8-8a8 8 0 0 1 8 8"
+        strokeWidth={strokeWidth}
+        stroke="currentColor"
+      ></path>
+    </svg>
+  );
+}
+
 export function Spinner({
   strokeWidth = 12,
   className,

@@ -1,6 +1,6 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { ComputerIcon } from "@/icons";
+import { HeartIcon } from "@/icons";
 import { Button } from "./Button";
 import { ButtonGroup } from "./ButtonGroup";
 
@@ -142,19 +142,19 @@ export const Icon: Story = {
           {...rest}
           selected={selected === 0}
           onClick={() => clickHandler(0)}
-          startIcon={<ComputerIcon />}
+          startIcon={<HeartIcon />}
         />
         <Button
           {...rest}
           selected={selected === 1}
           onClick={() => clickHandler(1)}
-          startIcon={<ComputerIcon />}
+          startIcon={<HeartIcon />}
         />
         <Button
           {...rest}
           selected={selected === 2}
           onClick={() => clickHandler(2)}
-          startIcon={<ComputerIcon />}
+          startIcon={<HeartIcon />}
         />
       </ButtonGroup>
     );
@@ -166,7 +166,7 @@ export const ButtonWithIconButton: Story = {
     return (
       <ButtonGroup {...rest} radius={radius}>
         <Button className="">Button</Button>
-        <Button startIcon={<ComputerIcon />} />
+        <Button startIcon={<HeartIcon />} />
       </ButtonGroup>
     );
   },

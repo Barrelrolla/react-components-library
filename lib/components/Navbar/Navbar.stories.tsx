@@ -7,7 +7,7 @@ import { NavbarCollapse } from "./NavbarCollapse";
 import { NavbarLink } from "./NavbarLink";
 import { NavbarToggle } from "./NavbarToggle";
 import { Button } from "../Button";
-import { ComputerIcon } from "@/icons";
+import { GitHubIcon, LinkedInLogo, SmileyIcon } from "@/icons";
 import {
   Hero,
   HeroActions,
@@ -17,6 +17,13 @@ import {
   HeroTitle,
 } from "../Hero";
 import { Footer } from "../Footer";
+import { FooterBrand } from "../Footer/FooterBrand";
+import { FooterLinksSection } from "../Footer/FooterLinksSection";
+import { FooterLinkGroup } from "../Footer/FooterLinkGroup";
+import { FooterLink } from "../Footer/FooterLink";
+import { FooterLinksTitle } from "../Footer/FooterLinksTitle";
+import { FooterFullSection } from "../Footer/FooterFullSection";
+import { Anchor } from "../Anchor";
 
 type Props = ComponentProps<typeof Navbar> & {
   selected: number | undefined;
@@ -66,7 +73,7 @@ export const Default: Story = {
         <Navbar fixed={fixed} {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
-            <ComputerIcon /> Test
+            <SmileyIcon /> Test
           </NavbarBrand>
           <div role="presentation" className="w-10 sm:hidden"></div>
           <NavbarCollapse>
@@ -108,7 +115,7 @@ export const WithHero: Story = {
         <Navbar {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
-            <ComputerIcon /> Test
+            <SmileyIcon /> Test
           </NavbarBrand>
           <div role="presentation" className="w-10 sm:hidden"></div>
           <NavbarCollapse>
@@ -153,7 +160,42 @@ export const WithHero: Story = {
             />
           </HeroImageSection>
         </Hero>
-        <Footer>footer</Footer>
+        <Footer>
+          <FooterBrand href="#">
+            <SmileyIcon /> Test
+          </FooterBrand>
+          <FooterLinksSection>
+            <FooterLinkGroup>
+              <FooterLinksTitle>long section name 1</FooterLinksTitle>
+              <FooterLink href="#">long link text 1</FooterLink>
+              <FooterLink href="#">long link text 2</FooterLink>
+              <FooterLink href="#">long link text 3</FooterLink>
+            </FooterLinkGroup>
+            <FooterLinkGroup>
+              <FooterLinksTitle>long section name 2</FooterLinksTitle>
+              <FooterLink href="#">long link text 1</FooterLink>
+              <FooterLink href="#">long link text 2</FooterLink>
+              <FooterLink href="#">long link text 3</FooterLink>
+            </FooterLinkGroup>
+            <FooterLinkGroup>
+              <FooterLinksTitle>long section name 3</FooterLinksTitle>
+              <FooterLink href="#">long link text 1</FooterLink>
+              <FooterLink href="#">long link text 2</FooterLink>
+              <FooterLink href="#">long link text 3</FooterLink>
+            </FooterLinkGroup>
+          </FooterLinksSection>
+          <FooterFullSection>
+            <span>copyright stuff</span>
+            <div className="flex gap-4 text-xl">
+              <Anchor href="#" color="dark" useBgColor={false}>
+                <GitHubIcon />
+              </Anchor>
+              <Anchor href="#" color="dark" useBgColor={false}>
+                <LinkedInLogo />
+              </Anchor>
+            </div>
+          </FooterFullSection>
+        </Footer>
       </div>
     );
   },

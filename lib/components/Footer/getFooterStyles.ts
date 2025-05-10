@@ -20,16 +20,52 @@ export function getFooterStyles({
   };
 }
 
-export function getFooterBrandStyles({ className }: { className?: string }) {
-  return { classes: twMerge("footer-brand", className) };
+export function useFooterBrandStyles({ className }: { className?: string }) {
+  const context = useFooterContext();
+  if (!context) {
+    throw new Error(
+      "Please use the Footer brand only inside a Footer component!",
+    );
+  }
+
+  const { responsiveAt } = context;
+
+  return {
+    classes: twMerge(
+      "footer-brand",
+      responsiveAt === "sm" && "sm:w-auto",
+      responsiveAt === "md" && "md:w-auto",
+      responsiveAt === "lg" && "lg:w-auto",
+      responsiveAt === "xl" && "xl:w-auto",
+      className,
+    ),
+  };
 }
 
-export function getFooterLInksSectionStyles({
+export function useFooterLInksSectionStyles({
   className,
 }: {
   className?: string;
 }) {
-  return { styles: twMerge("footer-links-section", className) };
+  const context = useFooterContext();
+  if (!context) {
+    throw new Error(
+      "Please use the Footer brand only inside a Footer component!",
+    );
+  }
+
+  const { responsiveAt } = context;
+
+  return {
+    styles: twMerge(
+      "footer-links-section",
+      responsiveAt === "sm" && "sm:w-auto",
+      responsiveAt === "md" && "md:w-auto",
+      responsiveAt === "lg" && "lg:w-auto",
+      responsiveAt === "xl" && "xl:w-auto",
+      className,
+    ),
+  };
 }
 
 export function getFooterLinkGroupStyles({
@@ -61,10 +97,28 @@ export function useFooterLinkStyles({ className }: { className?: string }) {
   };
 }
 
-export function getFooterFullSectionStyles({
+export function useFooterFullSectionStyles({
   className,
 }: {
   className?: string;
 }) {
-  return { styles: twMerge("footer-full-section", className) };
+  const context = useFooterContext();
+  if (!context) {
+    throw new Error(
+      "Please use the Footer Links only inside a Footer component!",
+    );
+  }
+
+  const { responsiveAt } = context;
+
+  return {
+    styles: twMerge(
+      "footer-full-section",
+      responsiveAt === "sm" && "sm:flex-row",
+      responsiveAt === "md" && "md:flex-row",
+      responsiveAt === "lg" && "lg:flex-row",
+      responsiveAt === "xl" && "xl:flex-row",
+      className,
+    ),
+  };
 }

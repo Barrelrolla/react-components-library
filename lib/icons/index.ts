@@ -1,2 +1,2 @@
-export { ComputerIcon, SunIcon, MoonIcon, Spinner } from "./icons";
+export * from "./icons";
 export type { SVGIconProps } from "./icons";

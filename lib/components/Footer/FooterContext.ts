@@ -1,9 +1,10 @@
-import { ColorType } from "@/types";
+import { ColorType, ResponsiveSizes } from "@/types";
 import { createContext, useContext } from "react";
 
 export type FooterContextProps =
   | {
       color: ColorType;
+      responsiveAt: ResponsiveSizes;
     }
   | undefined;
 

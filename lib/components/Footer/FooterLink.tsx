@@ -18,8 +18,8 @@ export function FooterLink<E extends ElementType>({
       color={color}
       tabIndex={tabIndex}
       underlined={underlined}
-      className={styles}
       useBgColor={false}
+      className={styles}
       {...rest}
     >
       {children}

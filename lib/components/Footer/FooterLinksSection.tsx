@@ -1,10 +1,10 @@
 import { ComponentProps } from "react";
-import { getFooterLInksSectionStyles } from "./getFooterStyles";
+import { useFooterLInksSectionStyles } from "./getFooterStyles";
 
 export function FooterLinksSection({
   className,
   children,
 }: ComponentProps<"div">) {
-  const { styles } = getFooterLInksSectionStyles({ className });
+  const { styles } = useFooterLInksSectionStyles({ className });
   return <div className={styles}>{children}</div>;
 }

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
-import { ComputerIcon, MoonIcon, SunIcon } from "@/icons";
+import { HeartIcon, BookmarkIcon, ThumbIcon } from "@/icons";
 import { Button } from "./Button";
 
 const meta: Meta<typeof Button> = {
@@ -123,17 +123,17 @@ export const Icon: Story = {
   render: ({ ...rest }) => {
     return (
       <>
-        <Button radius="pill" startIcon={<ComputerIcon />} {...rest}></Button>
+        <Button radius="pill" startIcon={<HeartIcon />} {...rest}></Button>
         <Button
           radius="none"
           variant="outline"
-          startIcon={<SunIcon />}
+          startIcon={<ThumbIcon />}
           {...rest}
         ></Button>
         <Button
           variant="ghost"
           ghostHover="fill"
-          startIcon={<MoonIcon />}
+          startIcon={<BookmarkIcon />}
           {...rest}
         ></Button>
       </>
@@ -184,35 +184,35 @@ export const Colors: Story = {
 };
 
 export const Sizes: Story = {
-  render: ({ size, ...rest }) => {
+  render: ({ ...rest }) => {
     return (
       <div className="flex flex-col gap-4">
         <div className="flex flex-wrap items-end justify-center gap-2">
-          <Button {...rest} startIcon={<ComputerIcon />} size="xs">
+          <Button {...rest} startIcon={<HeartIcon />} size="xs">
             Button
           </Button>
-          <Button {...rest} startIcon={<ComputerIcon />} size="sm">
+          <Button {...rest} startIcon={<HeartIcon />} size="sm">
             Button
           </Button>
           <Button {...rest} size="md">
-            <ComputerIcon />
+            <HeartIcon />
             Button
           </Button>
           <Button {...rest} size="lg">
-            <ComputerIcon />
+            <HeartIcon />
             Button
           </Button>
           <Button {...rest} size="xl">
-            <ComputerIcon />
+            <HeartIcon />
             Button
           </Button>
         </div>
         <div className="flex flex-wrap items-start justify-center gap-2">
-          <Button {...rest} startIcon={<ComputerIcon />} size="xs"></Button>
-          <Button {...rest} startIcon={<ComputerIcon />} size="sm"></Button>
-          <Button {...rest} startIcon={<ComputerIcon />} size="md"></Button>
-          <Button {...rest} startIcon={<ComputerIcon />} size="lg"></Button>
-          <Button {...rest} startIcon={<ComputerIcon />} size="xl"></Button>
+          <Button {...rest} startIcon={<HeartIcon />} size="xs"></Button>
+          <Button {...rest} startIcon={<HeartIcon />} size="sm"></Button>
+          <Button {...rest} startIcon={<HeartIcon />} size="md"></Button>
+          <Button {...rest} startIcon={<HeartIcon />} size="lg"></Button>
+          <Button {...rest} startIcon={<HeartIcon />} size="xl"></Button>
         </div>
         <div className="flex w-full items-start justify-center gap-2">
           <Button
@@ -224,7 +224,7 @@ export const Sizes: Story = {
           <Button
             {...rest}
             className="btn-icon-xs sm:btn-icon-sm md:btn-icon-md lg:btn-icon-lg xl:btn-icon-xl"
-            startIcon={<ComputerIcon />}
+            startIcon={<HeartIcon />}
           ></Button>
         </div>
       </div>

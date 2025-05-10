@@ -5,7 +5,8 @@ export default <Record<string, CssInJs>>{
     "@apply w-full bg-(--bg-color) text-(--fg-color) px-4 py-2": {},
   },
   ".navbar-nav": {
-    "@apply mx-auto flex flex-wrap items-center justify-between z-40": {},
+    "@apply relative mx-auto flex flex-wrap items-center justify-between z-40":
+      {},
     width: "100%",
     "max-width": "var(--max-width)",
   },

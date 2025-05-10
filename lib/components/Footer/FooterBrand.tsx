@@ -1,4 +1,4 @@
-import { getFooterBrandStyles } from "./getFooterStyles";
+import { useFooterBrandStyles } from "./getFooterStyles";
 import { PolymorphicProps } from "@/types";
 
 export function FooterBrand({
@@ -6,7 +6,7 @@ export function FooterBrand({
   children,
   ...rest
 }: PolymorphicProps<"a">) {
-  const { classes } = getFooterBrandStyles({ className });
+  const { classes } = useFooterBrandStyles({ className });
   return (
     <a className={classes} {...rest}>
       {children}
