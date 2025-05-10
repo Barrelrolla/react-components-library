@@ -9,6 +9,12 @@ export default <Record<string, CssInJs>>{
       "var(--tw-duration, var(--default-transition-duration));",
   },
 
+  ".transition-dropdown": {
+    transitionProperty: "max-height;",
+    transitionDuration:
+      "var(--dropdown-animation-duration, var(--default-transition-duration));",
+  },
+
   ".bg-hover": {
     backgroundColor: "oklch(from var(--bg-color) calc(l + var(--h)) c h);",
     outlineColor: "oklch(from var(--bg-color) calc(l + var(--h)) c h);",
@@ -90,6 +96,7 @@ export default <Record<string, CssInJs>>{
   },
 
   ".hide-scroll": {
-    animation: "hide-scroll var(--default-transition-duration);",
+    animation:
+      "hide-scroll var(--dropdown-animation-duration, var(--default-transition-duration));",
   },
 };

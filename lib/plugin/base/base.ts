@@ -32,6 +32,7 @@ export default <CssInJs>{
     "--max-width": "1440px",
     "--hero-height": "800px",
     "--default-font-weight": "300",
+    "--dropdown-animation-duration": "300ms",
   },
 
   ".dark": {

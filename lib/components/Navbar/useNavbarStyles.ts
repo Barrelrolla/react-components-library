@@ -72,7 +72,7 @@ export function useNavbarCollapseStyles({
   const hasTransitions = (!theme || theme.transitions) && transitions;
   const wrapperStyles = twMerge(
     "navbar-collapse-container",
-    hasTransitions && "transition-[max-height] duration-300",
+    hasTransitions && "transition-dropdown",
     position === "top" && "order-last",
     position === "bottom" && "order-first",
     collapseAt === "sm" && "sm:navbar-collapse-container-extended",
