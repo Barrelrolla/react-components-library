@@ -122,3 +122,11 @@ export function useFooterFullSectionStyles({
     ),
   };
 }
+
+export function getFooterIconsContainerStyles({
+  className,
+}: {
+  className?: string;
+}) {
+  return { styles: twMerge("footer-icons-container", className) };
+}

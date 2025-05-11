@@ -8,7 +8,7 @@ import { FooterLinksSection } from "./FooterLinksSection";
 import { FooterLinksTitle } from "./FooterLinksTitle";
 import { FooterFullSection } from "./FooterFullSection";
 import { RocketIcon, GitHubIcon, LinkedInLogo } from "@/icons";
-import { Anchor } from "../Anchor";
+import { FooterIconsContainer } from "./FooterIconsContainer";
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Footer",
@@ -82,14 +82,14 @@ export const WithLinkGroups: Story = {
         </FooterLinksSection>
         <FooterFullSection>
           <span>copyright stuff</span>
-          <div className="flex gap-4 text-xl">
-            <Anchor href="#" color="dark" useBgColor={false}>
+          <FooterIconsContainer>
+            <FooterLink href="#">
               <GitHubIcon />
-            </Anchor>
-            <Anchor href="#" color="dark" useBgColor={false}>
+            </FooterLink>
+            <FooterLink href="#">
               <LinkedInLogo />
-            </Anchor>
-          </div>
+            </FooterLink>
+          </FooterIconsContainer>
         </FooterFullSection>
       </Footer>
     );

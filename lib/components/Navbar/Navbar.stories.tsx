@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { ComponentProps, useEffect, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { within, expect } from "@storybook/test";
@@ -23,7 +24,6 @@ import { FooterLinkGroup } from "../Footer/FooterLinkGroup";
 import { FooterLink } from "../Footer/FooterLink";
 import { FooterLinksTitle } from "../Footer/FooterLinksTitle";
 import { FooterFullSection } from "../Footer/FooterFullSection";
-import { Anchor } from "../Anchor";
 
 type Props = ComponentProps<typeof Navbar> & {
   selected: number | undefined;
@@ -151,7 +151,7 @@ export const PageDemo: Story = {
           <HeroImageSection className="max-md:h-1/2 md:w-1/2">
             <img
               className="hero-image md:w-[50svw]"
-              src="https://picsum.photos/1400/1400?grayscale"
+              src="https://picsum.photos/1400/1400"
             />
           </HeroImageSection>
         </Hero>
@@ -182,12 +182,12 @@ export const PageDemo: Story = {
           <FooterFullSection>
             <span>copyright stuff</span>
             <div className="flex gap-4 text-xl">
-              <Anchor href="#" color="main" useBgColor={false}>
+              <FooterLink href="#">
                 <GitHubIcon />
-              </Anchor>
-              <Anchor href="#" color="main" useBgColor={false}>
+              </FooterLink>
+              <FooterLink href="#">
                 <LinkedInLogo />
-              </Anchor>
+              </FooterLink>
             </div>
           </FooterFullSection>
         </Footer>

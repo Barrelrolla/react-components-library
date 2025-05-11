@@ -34,7 +34,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: ({ children, ...rest }) => {
+  render: ({ ...rest }) => {
     return (
       <Card {...rest}>
         <CardTitle>Lorem, ipsum dolor.</CardTitle>
@@ -50,7 +50,7 @@ export const Default: Story = {
 };
 
 export const Clickable: Story = {
-  render: ({ children, ...rest }) => {
+  render: ({ ...rest }) => {
     return (
       <Card className="group rounded-containers" {...rest}>
         <CardInteract href="#">
@@ -65,14 +65,14 @@ export const Clickable: Story = {
 };
 
 export const WithImage: Story = {
-  render: ({ children, ...rest }) => {
+  render: ({ ...rest }) => {
     return (
       <Card {...rest}>
         <CardSection className="flex-1/3">
           <CardImageContainer>
             <img
               className="card-image"
-              src="https://picsum.photos/400/200?grayscale"
+              src="https://picsum.photos/400/200"
             ></img>
           </CardImageContainer>
         </CardSection>
@@ -91,7 +91,7 @@ export const WithImage: Story = {
 };
 
 export const WithClickableImage: Story = {
-  render: ({ children, ...rest }) => {
+  render: ({ ...rest }) => {
     return (
       <Card {...rest}>
         <CardSection className="flex-1/3">
@@ -99,7 +99,7 @@ export const WithClickableImage: Story = {
             <CardImageContainer>
               <img
                 className="card-image"
-                src="https://picsum.photos/400/200?grayscale"
+                src="https://picsum.photos/400/200"
               ></img>
             </CardImageContainer>
           </CardInteract>
@@ -119,7 +119,7 @@ export const WithClickableImage: Story = {
 };
 
 export const WithClickableBody: Story = {
-  render: ({ children, ...rest }) => {
+  render: ({ ...rest }) => {
     return (
       <Card {...rest}>
         <CardInteract href="#">
@@ -127,7 +127,7 @@ export const WithClickableBody: Story = {
             <CardImageContainer>
               <img
                 className="card-image"
-                src="https://picsum.photos/400/200?grayscale"
+                src="https://picsum.photos/400/200"
               ></img>
             </CardImageContainer>
           </CardSection>
@@ -147,7 +147,7 @@ export const WithClickableBody: Story = {
 };
 
 export const WithPaddedImage: Story = {
-  render: ({ children, ...rest }) => {
+  render: ({ ...rest }) => {
     return (
       <Card {...rest}>
         <CardSection className="flex-1/3">
@@ -155,7 +155,7 @@ export const WithPaddedImage: Story = {
             <CardImageContainer padded>
               <img
                 className="card-image"
-                src="https://picsum.photos/400/200?grayscale"
+                src="https://picsum.photos/400/200"
               ></img>
             </CardImageContainer>
           </CardInteract>
@@ -175,14 +175,14 @@ export const WithPaddedImage: Story = {
 };
 
 export const Horizontal: Story = {
-  render: ({ size = "lg", children, ...rest }) => {
+  render: ({ size = "lg", ...rest }) => {
     return (
       <Card vertical={false} size={size} {...rest}>
         <CardSection className="flex-1/3">
           <CardImageContainer>
             <img
               className="card-image"
-              src="https://picsum.photos/400/200?grayscale"
+              src="https://picsum.photos/400/200"
             ></img>
           </CardImageContainer>
         </CardSection>

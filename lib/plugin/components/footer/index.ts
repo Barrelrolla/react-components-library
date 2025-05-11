@@ -29,4 +29,7 @@ export default <Record<string, CssInJs>>{
   ".footer-full-section": {
     "@apply flex w-full flex-col gap-4 items-center justify-between": {},
   },
+  ".footer-icons-container": {
+    "@apply flex gap-4 text-xl": {},
+  },
 };
