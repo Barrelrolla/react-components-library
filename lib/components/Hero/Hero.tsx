@@ -7,7 +7,7 @@ import { cssColorProps } from "@/util";
 
 export type HeroProps = {
   /** Hero color */
-  color: ColorType;
+  color?: ColorType;
   /** Aligns text to the left or to the center. By default it's `responsive` meaning it's left aligned on big screens and center on small ones. */
   textAlign?: HeroAlign;
   /** Alignment of the actions. By default it's `center` */
