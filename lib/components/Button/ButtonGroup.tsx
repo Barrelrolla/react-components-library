@@ -32,11 +32,11 @@ export type ButtonGroupProps = {
 } & ComponentProps<"div">;
 
 export function ButtonGroup({
-  variant,
+  color = "primary",
+  variant = "solid",
   radius,
   ghostHover,
   retainFocusState = false,
-  color,
   size,
   divider = true,
   vertical = false,
@@ -46,16 +46,12 @@ export function ButtonGroup({
   children,
   ...rest
 }: ButtonGroupProps) {
-  const { groupStyles, dividerStyles, wrapperStyles, resolvedColor } =
-    useButtonGroupStyles({
-      color,
-      variant,
-      radius,
-      vertical,
-      divider,
-      className,
-      dividerClasses,
-    });
+  const { groupStyles, wrapperStyles } = useButtonGroupStyles({
+    variant,
+    radius,
+    vertical,
+    className,
+  });
 
   return (
     <ButtonGroupContextProvider
@@ -71,19 +67,16 @@ export function ButtonGroup({
       }}
     >
       <div className={wrapperStyles}>
-        <div
-          className={groupStyles}
-          style={cssColorProps(resolvedColor)}
-          {...rest}
-        >
+        <div className={groupStyles} style={cssColorProps(color)} {...rest}>
           {Children.map(children, (child, index) => {
             return (
               <>
                 {divider && index !== 0 && (
                   <Divider
-                    color={resolvedColor}
-                    className={dividerStyles}
+                    color={color}
+                    useBgColor={variant !== "solid"}
                     vertical={!vertical}
+                    className={dividerClasses}
                   />
                 )}
                 {child}

@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".hero-wrapper": {
-    "@apply w-full overflow-hidden": {},
+    "@apply w-full overflow-hidden bg-(--bg-color) text-(--fg-color)": {},
   },
   ".hero": {
     "@apply flex mx-auto flex-col h-(--hero-height) w-full items-center overflow-x-visible justify-between gap-2 max-w-(--max-width)":

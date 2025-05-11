@@ -1,6 +1,7 @@
 export { Footer } from "./Footer";
 export type { FooterProps } from "./Footer";
 export { FooterBrand } from "./FooterBrand";
+export { FooterDivider } from "./FooterDivider";
 export { FooterFullSection } from "./FooterFullSection";
 export { FooterIconsContainer } from "./FooterIconsContainer";
 export { FooterLink } from "./FooterLink";

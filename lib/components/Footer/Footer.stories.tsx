@@ -3,6 +3,7 @@ import { expect, within } from "@storybook/test";
 import { RocketIcon, GitHubIcon, LinkedInLogo } from "@/icons";
 import { Footer } from "./Footer";
 import { FooterBrand } from "./FooterBrand";
+import { FooterDivider } from "./FooterDivider";
 import { FooterFullSection } from "./FooterFullSection";
 import { FooterIconsContainer } from "./FooterIconsContainer";
 import { FooterLink } from "./FooterLink";
@@ -16,6 +17,7 @@ const meta: Meta<typeof Footer> = {
   component: Footer,
   subcomponents: {
     FooterBrand,
+    FooterDivider,
     FooterFullSection,
     FooterIconsContainer,
     FooterLink,
@@ -89,6 +91,7 @@ export const WithLinkGroups: Story = {
             <FooterLink href="#">long link text 3</FooterLink>
           </FooterLinkGroup>
         </FooterLinksSection>
+        <FooterDivider />
         <FooterFullSection>
           <span>copyright stuff</span>
           <FooterIconsContainer>

@@ -16,13 +16,17 @@ import {
   HeroText,
   HeroTitle,
 } from "../Hero";
-import { Footer } from "../Footer";
-import { FooterBrand } from "../Footer/FooterBrand";
-import { FooterLinksSection } from "../Footer/FooterLinksSection";
-import { FooterLinkGroup } from "../Footer/FooterLinkGroup";
-import { FooterLink } from "../Footer/FooterLink";
-import { FooterLinksTitle } from "../Footer/FooterLinksTitle";
-import { FooterFullSection } from "../Footer/FooterFullSection";
+import {
+  Footer,
+  FooterBrand,
+  FooterDivider,
+  FooterFullSection,
+  FooterLink,
+  FooterLinkGroup,
+  FooterLinksSection,
+  FooterLinksTitle,
+} from "../Footer";
+import { cssColorProps } from "@/util";
 
 type Props = ComponentProps<typeof Navbar> & {
   selected: number | undefined;
@@ -96,7 +100,7 @@ export const Default: Story = {
 };
 
 export const PageDemo: Story = {
-  render: ({ selected: storySelect, ...rest }) => {
+  render: ({ color, selected: storySelect, ...rest }) => {
     const links = ["link 1", "link 2", "link 3", "link 4", "link 5", "link 6"];
     const [selected, setSelected] = useState(storySelect);
 
@@ -105,8 +109,11 @@ export const PageDemo: Story = {
     }, [storySelect]);
 
     return (
-      <div className="bg-main mt-16 md:mt-0">
-        <Navbar {...rest}>
+      <div
+        style={cssColorProps(color)}
+        className="bg-(--bg-color) pt-14 md:pt-0"
+      >
+        <Navbar color={color} {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
             <RocketIcon /> Test
@@ -134,7 +141,7 @@ export const PageDemo: Story = {
             </Button>
           </NavbarCollapse>
         </Navbar>
-        <Hero>
+        <Hero color={color}>
           <HeroSection className="max-md:h-1/2 md:w-1/2">
             <HeroTitle>Lorem ipsum dolor sit amet.</HeroTitle>
             <HeroText>
@@ -154,7 +161,7 @@ export const PageDemo: Story = {
             />
           </HeroImageSection>
         </Hero>
-        <Footer decorations color="main">
+        <Footer decorations color={color}>
           <FooterBrand href="#">
             <RocketIcon /> Test
           </FooterBrand>
@@ -178,6 +185,7 @@ export const PageDemo: Story = {
               <FooterLink href="#">long link text 3</FooterLink>
             </FooterLinkGroup>
           </FooterLinksSection>
+          <FooterDivider />
           <FooterFullSection>
             <span>copyright stuff</span>
             <div className="flex gap-4 text-xl">

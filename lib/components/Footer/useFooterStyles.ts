@@ -44,6 +44,14 @@ export function useFooterBrandStyles({ className }: { className?: string }) {
   };
 }
 
+export function useFooterDivider() {
+  const context = useFooterContext();
+  if (!context) {
+    throw new Error(getErrorMessage("Footer divider"));
+  }
+  return { resolvedColor: context.color };
+}
+
 export function useFooterLinksSectionStyles({
   className,
 }: {
