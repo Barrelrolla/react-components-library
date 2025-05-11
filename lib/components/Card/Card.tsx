@@ -1,15 +1,15 @@
-import { PropsWithChildren } from "react";
-import { getCardStyles } from "./getCardStyles";
-import { CardSizes } from "./CardTypes";
+import { ComponentProps } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
 import { CardContextProvider } from "./CardContext";
+import { CardSizes } from "./CardTypes";
+import { useCardStyles } from "./useCardStyles";
 
 export type CardProps = {
   /** Color of the card. */
   color?: ColorType;
-  /** Set to 'false' if you want the card to be horizontal, default is `true`. */
-  vertical?: boolean;
+  /** If the card sections should be horizontal or vertical Default is `false`. */
+  horizontal?: boolean;
   /** Size of the card. */
   size?: CardSizes;
   /** The card is inside a `@container`. Add any classes to it here. */
@@ -18,25 +18,27 @@ export type CardProps = {
   className?: string;
 };
 
-/** Card component */
 export function Card({
   color = "main",
-  vertical = true,
+  horizontal = false,
   size = "sm",
   containerClasses,
   className,
   children,
-}: CardProps & PropsWithChildren) {
-  const { cardStyles, cardContainerStyles } = getCardStyles({
-    vertical,
+  ...rest
+}: CardProps & ComponentProps<"div">) {
+  const { styles, containerStyles } = useCardStyles({
+    horizontal,
     size,
     containerClasses,
     className,
   });
   return (
     <CardContextProvider value={{ color }}>
-      <div style={cssColorProps(color)} className={cardContainerStyles}>
-        <div className={cardStyles}>{children}</div>
+      <div style={cssColorProps(color)} className={containerStyles}>
+        <div className={styles} {...rest}>
+          {children}
+        </div>
       </div>
     </CardContextProvider>
   );

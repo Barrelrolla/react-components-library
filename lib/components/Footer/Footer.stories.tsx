@@ -1,19 +1,28 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
+import { RocketIcon, GitHubIcon, LinkedInLogo } from "@/icons";
 import { Footer } from "./Footer";
 import { FooterBrand } from "./FooterBrand";
-import { FooterLinkGroup } from "./FooterLinkGroup";
+import { FooterFullSection } from "./FooterFullSection";
+import { FooterIconsContainer } from "./FooterIconsContainer";
 import { FooterLink } from "./FooterLink";
+import { FooterLinkGroup } from "./FooterLinkGroup";
 import { FooterLinksSection } from "./FooterLinksSection";
 import { FooterLinksTitle } from "./FooterLinksTitle";
-import { FooterFullSection } from "./FooterFullSection";
-import { RocketIcon, GitHubIcon, LinkedInLogo } from "@/icons";
-import { FooterIconsContainer } from "./FooterIconsContainer";
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Footer",
   tags: ["autodocs"],
   component: Footer,
+  subcomponents: {
+    FooterBrand,
+    FooterFullSection,
+    FooterIconsContainer,
+    FooterLink,
+    FooterLinkGroup,
+    FooterLinksSection,
+    FooterLinksTitle,
+  },
   argTypes: {
     containerClasses: { if: { arg: "false", eq: "true" } },
     className: { if: { arg: "false", eq: "true" } },

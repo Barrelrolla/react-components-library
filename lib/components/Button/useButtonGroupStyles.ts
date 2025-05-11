@@ -37,7 +37,6 @@ export function useButtonGroupStyles({
         variant === "solid" && "bg-(--fg-color)",
         !vertical && "w-0.25",
         vertical && "h-0.25",
-        "z-1",
         dividerClasses,
       )
     : "";

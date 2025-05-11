@@ -1,5 +1,5 @@
-import { ResponsiveSizes } from "@/types";
 import { createContext, useContext } from "react";
+import { ResponsiveSizes } from "@/types";
 import { HeroAlign } from "./HeroTypes";
 
 /** Context holding data for components inside a Hero */

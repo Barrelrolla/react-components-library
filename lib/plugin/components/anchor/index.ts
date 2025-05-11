@@ -1,11 +1,8 @@
 import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
-  ".a": {
-    "@apply text-(--fg-color) outline-(--fg-color) outline-offset-4 focus-visible:outline-2 rounded-inputs":
+  ".link": {
+    "@apply text-(--fg-color) outline-(--fg-color) outline-offset-4 focus-visible:outline-2 rounded-inputs hover:fg-hover focus-visible:fg-hover active:fg-active transition-anchor":
       {},
-  },
-  ".a-highlights": {
-    "@apply hover:fg-hover focus-visible:fg-hover active:fg-active": {},
   },
 };

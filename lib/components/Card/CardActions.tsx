@@ -1,11 +1,16 @@
-import { PropsWithChildren } from "react";
-import { getCardActionsStyles } from "./getCardStyles";
+import { ComponentProps } from "react";
+import { useCardActionsStyles } from "./useCardStyles";
 
 /** Section for actions inside a Card */
 export function CardActions({
   className,
   children,
-}: { className?: string } & PropsWithChildren) {
-  const { styles } = getCardActionsStyles({ className });
-  return <div className={styles}>{children}</div>;
+  ...rest
+}: { className?: string } & ComponentProps<"div">) {
+  const { styles } = useCardActionsStyles({ className });
+  return (
+    <div className={styles} {...rest}>
+      {children}
+    </div>
+  );
 }

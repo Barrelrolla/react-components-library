@@ -1,5 +1,5 @@
-import { ColorType } from "@/types";
 import { createContext, useContext } from "react";
+import { ColorType } from "@/types";
 
 export type CardContextProps =
   | {

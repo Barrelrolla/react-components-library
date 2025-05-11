@@ -1,7 +1,10 @@
 import { twMerge } from "tailwind-merge";
 import { useFooterContext } from "./FooterContext";
 
-export function getFooterStyles({
+function getErrorMessage(componentName: string) {
+  return `Please use the ${componentName} only inside a Footer component!`;
+}
+export function useFooterStyles({
   decorations,
   containerClasses,
   className,
@@ -23,9 +26,7 @@ export function getFooterStyles({
 export function useFooterBrandStyles({ className }: { className?: string }) {
   const context = useFooterContext();
   if (!context) {
-    throw new Error(
-      "Please use the Footer brand only inside a Footer component!",
-    );
+    throw new Error(getErrorMessage("Footer brand"));
   }
 
   const { responsiveAt } = context;
@@ -39,20 +40,18 @@ export function useFooterBrandStyles({ className }: { className?: string }) {
       responsiveAt === "xl" && "xl:w-auto",
       className,
     ),
-    color: context.color,
+    resolvedColor: context.color,
   };
 }
 
-export function useFooterLInksSectionStyles({
+export function useFooterLinksSectionStyles({
   className,
 }: {
   className?: string;
 }) {
   const context = useFooterContext();
   if (!context) {
-    throw new Error(
-      "Please use the Footer brand only inside a Footer component!",
-    );
+    throw new Error(getErrorMessage("Footer links section"));
   }
 
   const { responsiveAt } = context;
@@ -69,29 +68,38 @@ export function useFooterLInksSectionStyles({
   };
 }
 
-export function getFooterLinkGroupStyles({
+export function useFooterLinkGroupStyles({
   className,
 }: {
   className?: string;
 }) {
+  const context = useFooterContext();
+  if (!context) {
+    throw new Error(getErrorMessage("Footer link group"));
+  }
+
   return { styles: twMerge("footer-link-group", className) };
 }
 
-export function getFooterLinksTitleStyles({
+export function useFooterLinksTitleStyles({
   className,
 }: {
   className?: string;
 }) {
+  const context = useFooterContext();
+  if (!context) {
+    throw new Error(getErrorMessage("Footer links title"));
+  }
+
   return { styles: twMerge("footer-links-title", className) };
 }
 
 export function useFooterLinkStyles({ className }: { className?: string }) {
   const context = useFooterContext();
   if (!context) {
-    throw new Error(
-      "Please use the Footer Links only inside a Footer component!",
-    );
+    throw new Error(getErrorMessage("Footer link"));
   }
+
   return {
     styles: twMerge("footer-link", className),
     color: context.color,
@@ -105,9 +113,7 @@ export function useFooterFullSectionStyles({
 }) {
   const context = useFooterContext();
   if (!context) {
-    throw new Error(
-      "Please use the Footer Links only inside a Footer component!",
-    );
+    throw new Error(getErrorMessage("Footer full section"));
   }
 
   const { responsiveAt } = context;
@@ -124,10 +130,15 @@ export function useFooterFullSectionStyles({
   };
 }
 
-export function getFooterIconsContainerStyles({
+export function useFooterIconsContainerStyles({
   className,
 }: {
   className?: string;
 }) {
+  const context = useFooterContext();
+  if (!context) {
+    throw new Error(getErrorMessage("Footer icons container"));
+  }
+
   return { styles: twMerge("footer-icons-container", className) };
 }

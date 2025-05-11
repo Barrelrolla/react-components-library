@@ -181,6 +181,9 @@ export const Colors: Story = {
   args: {
     children: "Button",
   },
+  argTypes: {
+    color: { if: { arg: "false", eq: "true" } },
+  },
 };
 
 export const Sizes: Story = {

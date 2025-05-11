@@ -1,8 +1,8 @@
 import { ComponentProps } from "react";
-import { HeroContextProvider } from "./HeroContext";
-import { useHeroStyles } from "./useHeroStyles";
 import { ResponsiveSizes } from "@/types";
+import { HeroContextProvider } from "./HeroContext";
 import { HeroAlign } from "./HeroTypes";
+import { useHeroStyles } from "./useHeroStyles";
 
 export type HeroProps = {
   /** Aligns text to the left or to the center. By default it's `responsive` meaning it's left aligned on big screens and center on small ones. */
@@ -15,7 +15,6 @@ export type HeroProps = {
   wrapperClasses?: string;
 } & ComponentProps<"div">;
 
-/** Hero component for your main page */
 export function Hero({
   textAlign = "responsive",
   actionsAlign = "center",
@@ -23,8 +22,9 @@ export function Hero({
   wrapperClasses,
   className,
   children,
+  ...rest
 }: HeroProps) {
-  const { classes, wrapperStyles } = useHeroStyles({
+  const { styles, wrapperStyles } = useHeroStyles({
     responsiveAt,
     wrapperClasses,
     className,
@@ -32,7 +32,9 @@ export function Hero({
   return (
     <HeroContextProvider value={{ textAlign, actionsAlign, responsiveAt }}>
       <section className={wrapperStyles}>
-        <div className={classes}>{children}</div>
+        <div className={styles} {...rest}>
+          {children}
+        </div>
       </section>
     </HeroContextProvider>
   );

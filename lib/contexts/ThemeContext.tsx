@@ -19,7 +19,6 @@ export type DarkModeType =
   | typeof systemModeName;
 
 export type ThemeContextProps = {
-  transitions?: boolean;
   scalingButtons?: boolean;
   buttonsRetainFocus?: boolean;
 };
@@ -118,7 +117,6 @@ export function ThemeContextProvider({
         darkMode,
         setTheme,
         setDarkMode,
-        transitions: value?.transitions,
         scalingButtons: value?.scalingButtons,
         buttonsRetainFocus: value?.buttonsRetainFocus,
       }}

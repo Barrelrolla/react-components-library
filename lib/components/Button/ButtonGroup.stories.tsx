@@ -162,7 +162,7 @@ export const Icon: Story = {
 };
 
 export const SplitButton: Story = {
-  render: ({ selection, radius = "pill", ...rest }) => {
+  render: ({ radius = "pill", ...rest }) => {
     return (
       <ButtonGroup {...rest} radius={radius}>
         <Button className="">Button</Button>

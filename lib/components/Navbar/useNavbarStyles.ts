@@ -1,6 +1,10 @@
 import { twMerge } from "tailwind-merge";
-import { useTheme } from "@/contexts";
 import { ResponsiveSizes } from "@/types";
+import { useNavbarContext } from "./NavbarContext";
+
+function getErrorMessage(componentName: string) {
+  return `Please use the ${componentName} only inside a Navbar component!`;
+}
 
 export function useNavbarStyles({
   fixed,
@@ -21,9 +25,8 @@ export function useNavbarStyles({
   className?: string;
   backdropClasses?: string;
 }) {
-  const theme = useTheme();
   return {
-    headerStyles: twMerge(
+    styles: twMerge(
       "navbar",
       glass && "glass",
       isOpen && collapseAt == "sm" && "not-sm:bg-(--bg-color)/80",
@@ -36,8 +39,6 @@ export function useNavbarStyles({
       hasShadow && "shadow-dark/60 dark:shadow-dark/80",
       hasShadow && position === "top" && "shadow-[0px_4px_8px_-1px]",
       hasShadow && position === "bottom" && "shadow-[0px_-4px_8px_-1px]",
-      (!theme || theme.transitions) &&
-        "transition-colors duration-(--dropdown-animation-duration)",
       className,
     ),
     navStyles: twMerge("navbar-nav"),
@@ -54,65 +55,97 @@ export function useNavbarStyles({
   };
 }
 
-export function useNavbarCollapseStyles({
-  position,
-  collapseAt,
-  isOpen,
-  transitions,
-  wrapperClasses,
-  className,
-}: {
-  position: "top" | "bottom";
-  collapseAt: ResponsiveSizes;
-  isOpen: boolean;
-  transitions: boolean;
-  wrapperClasses?: string;
-  className?: string;
-}) {
-  const theme = useTheme();
-  const hasTransitions = (!theme || theme.transitions) && transitions;
-  const wrapperStyles = twMerge(
-    "navbar-collapse-container",
-    hasTransitions && "transition-dropdown",
-    position === "top" && "order-last",
-    position === "bottom" && "order-first",
-    collapseAt === "sm" && "sm:navbar-collapse-container-extended",
-    collapseAt === "md" && "md:navbar-collapse-container-extended",
-    collapseAt === "lg" && "lg:navbar-collapse-container-extended",
-    collapseAt === "xl" && "xl:navbar-collapse-container-extended",
-    !isOpen && "max-h-0 ease-out",
-    isOpen && "hide-scroll max-h-screen overflow-auto ease-in",
-    wrapperClasses,
-  );
+export function useNavbarBrandStyles({ className }: { className?: string }) {
+  const context = useNavbarContext();
+  if (!context) {
+    throw new Error(getErrorMessage("Navbar brand"));
+  }
 
-  const listStyles = twMerge(
-    "navbar-collapse-list",
-    position === "top" && "mt-4",
-    position === "bottom" && "mb-4",
-    collapseAt === "sm" && "sm:navbar-collapse-list-extended",
-    collapseAt === "md" && "md:navbar-collapse-list-extended",
-    collapseAt === "lg" && "lg:navbar-collapse-list-extended",
-    collapseAt === "xl" && "xl:navbar-collapse-list-extended",
-    className,
-  );
   return {
-    wrapperStyles,
-    listStyles,
+    styles: twMerge("navbar-brand", className),
+    resolvedColor: context.color,
   };
 }
 
-export function useNavbarLinkStyles({
-  collapseAt,
+export function useNavbarCollapseStyles({
+  wrapperClasses,
   className,
 }: {
-  collapseAt: ResponsiveSizes;
+  wrapperClasses?: string;
   className?: string;
 }) {
-  return twMerge(
-    collapseAt === "sm" && "max-sm:navbar-link sm:navbar-link-extended",
-    collapseAt === "md" && "max-md:navbar-link md:navbar-link-extended",
-    collapseAt === "lg" && "max-lg:navbar-link lg:navbar-link-extended",
-    collapseAt === "xl" && "max-xl:navbar-link xl:navbar-link-extended",
-    className,
-  );
+  const context = useNavbarContext();
+  if (!context) {
+    throw new Error(getErrorMessage("Navbar collapse"));
+  }
+
+  const { position, isOpen, collapseAt } = context;
+
+  return {
+    wrapperStyles: twMerge(
+      "navbar-collapse-container",
+      position === "top" && "order-last",
+      position === "bottom" && "order-first",
+      collapseAt === "sm" && "sm:navbar-collapse-container-extended",
+      collapseAt === "md" && "md:navbar-collapse-container-extended",
+      collapseAt === "lg" && "lg:navbar-collapse-container-extended",
+      collapseAt === "xl" && "xl:navbar-collapse-container-extended",
+      !isOpen && "max-h-0 ease-out",
+      isOpen && "hide-scroll max-h-screen overflow-auto ease-in",
+      wrapperClasses,
+    ),
+    styles: twMerge(
+      "navbar-collapse-list",
+      position === "top" && "mt-4",
+      position === "bottom" && "mb-4",
+      collapseAt === "sm" && "sm:navbar-collapse-list-extended",
+      collapseAt === "md" && "md:navbar-collapse-list-extended",
+      collapseAt === "lg" && "lg:navbar-collapse-list-extended",
+      collapseAt === "xl" && "xl:navbar-collapse-list-extended",
+      className,
+    ),
+  };
+}
+
+export function useNavbarLinkStyles({ className }: { className?: string }) {
+  const context = useNavbarContext();
+  if (!context) {
+    throw new Error(getErrorMessage("Navbar link"));
+  }
+
+  const { collapseAt } = context;
+  return {
+    styles: twMerge(
+      collapseAt === "sm" && "max-sm:navbar-link sm:navbar-link-extended",
+      collapseAt === "md" && "max-md:navbar-link md:navbar-link-extended",
+      collapseAt === "lg" && "max-lg:navbar-link lg:navbar-link-extended",
+      collapseAt === "xl" && "max-xl:navbar-link xl:navbar-link-extended",
+      className,
+    ),
+    resolvedColor: context.color,
+  };
+}
+
+export function useNavbarToggleStyles({
+  wrapperClasses,
+}: {
+  wrapperClasses?: string;
+}) {
+  const context = useNavbarContext();
+  if (!context) {
+    throw new Error(getErrorMessage("Navbar toggle"));
+  }
+
+  const { color, collapseAt } = context;
+
+  return {
+    styles: twMerge(
+      collapseAt === "sm" && "sm:hidden",
+      collapseAt === "md" && "md:hidden",
+      collapseAt === "lg" && "lg:hidden",
+      collapseAt === "xl" && "xl:hidden",
+      wrapperClasses,
+    ),
+    resolvedColor: color,
+  };
 }

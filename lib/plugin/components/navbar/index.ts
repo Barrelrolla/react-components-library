@@ -2,7 +2,8 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".navbar": {
-    "@apply w-full bg-(--bg-color) text-(--fg-color) px-4 py-2": {},
+    "@apply w-full bg-(--bg-color) text-(--fg-color) px-4 py-2 transition-colors duration-(--dropdown-animation-duration)":
+      {},
   },
   ".navbar-nav": {
     "@apply relative mx-auto flex flex-wrap items-center justify-between z-40":
@@ -15,7 +16,7 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".navbar-collapse-container": {
-    "@apply w-full overflow-hidden overscroll-contain": {},
+    "@apply w-full overflow-hidden overscroll-contain transition-dropdown": {},
   },
   ".navbar-collapse-container-extended": {
     "@apply order-none max-h-fit w-auto overflow-visible": {},

@@ -1,5 +1,5 @@
-import { PropsWithChildren } from "react";
-import { getCardImageContainerStyles } from "./getCardStyles";
+import { ComponentProps } from "react";
+import { useCardImageContainerStyles } from "./useCardStyles";
 
 export type CardImageContainerProps = {
   /** Adds padding and border to the image. */
@@ -12,7 +12,12 @@ export function CardImageContainer({
   padded = false,
   className,
   children,
-}: CardImageContainerProps & PropsWithChildren) {
-  const { styles } = getCardImageContainerStyles({ padded, className });
-  return <div className={styles}>{children}</div>;
+  ...rest
+}: CardImageContainerProps & ComponentProps<"div">) {
+  const { styles } = useCardImageContainerStyles({ padded, className });
+  return (
+    <div className={styles} {...rest}>
+      {children}
+    </div>
+  );
 }

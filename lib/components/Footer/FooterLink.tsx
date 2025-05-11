@@ -1,4 +1,4 @@
-import { useFooterLinkStyles } from "./getFooterStyles";
+import { useFooterLinkStyles } from "./useFooterStyles";
 import { Anchor, AnchorProps } from "../Anchor";
 import { ElementType } from "react";
 

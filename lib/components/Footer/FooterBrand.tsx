@@ -1,6 +1,6 @@
 import { ElementType } from "react";
 import { Anchor } from "../Anchor";
-import { useFooterBrandStyles } from "./getFooterStyles";
+import { useFooterBrandStyles } from "./useFooterStyles";
 import { PolymorphicProps } from "@/types";
 
 const defaultType = "a";
@@ -13,15 +13,15 @@ export function FooterBrand<E extends ElementType>({
   children,
   ...rest
 }: PolymorphicProps<E>) {
-  const { color, classes } = useFooterBrandStyles({ className });
+  const { resolvedColor, classes } = useFooterBrandStyles({ className });
   return (
     <Anchor
       as={as || defaultType}
-      className={classes}
+      color={resolvedColor}
       underlined={underlined}
       hoverUnderline={hoverUnderline}
-      color={color}
       useBgColor={useBgColor}
+      className={classes}
       {...rest}
     >
       {children}

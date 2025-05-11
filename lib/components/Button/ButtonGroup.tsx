@@ -19,8 +19,6 @@ export type ButtonGroupProps = {
   size?: SizeType;
   /** Radius of the buttons. */
   radius?: ButtonRadius;
-  /** Use to disable transitions. */
-  transitions?: boolean;
   /** Adds a divider between the buttons. */
   divider?: boolean;
   /** Set to `true` for a vertical group. */
@@ -33,7 +31,6 @@ export type ButtonGroupProps = {
   wrapperClasses?: string;
 } & ComponentProps<"div">;
 
-/** A group of buttons */
 export function ButtonGroup({
   variant,
   radius,
@@ -44,7 +41,6 @@ export function ButtonGroup({
   divider = true,
   vertical = false,
   scaling = false,
-  transitions = true,
   className,
   dividerClasses,
   children,
@@ -71,7 +67,6 @@ export function ButtonGroup({
         radius,
         size,
         scaling,
-        transitions,
         vertical,
       }}
     >

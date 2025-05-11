@@ -1,2 +1,11 @@
 export { Footer } from "./Footer";
 export type { FooterProps } from "./Footer";
+export { FooterBrand } from "./FooterBrand";
+export { FooterFullSection } from "./FooterFullSection";
+export { FooterIconsContainer } from "./FooterIconsContainer";
+export { FooterLink } from "./FooterLink";
+export { FooterLinkGroup } from "./FooterLinkGroup";
+export { FooterLinksSection } from "./FooterLinksSection";
+export { FooterLinksTitle } from "./FooterLinksTitle";
+export { FooterContextProvider, useFooterContext } from "./FooterContext";
+export type { FooterContextProps } from "./FooterContext";

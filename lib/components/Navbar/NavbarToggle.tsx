@@ -1,35 +1,33 @@
-import { twMerge } from "tailwind-merge";
-import { HamburgerButton } from "../HamburgerButton";
+import { HamburgerButton, HamburgerButtonProps } from "../HamburgerButton";
 import { useNavbarContext } from "./NavbarContext";
+import { useNavbarToggleStyles } from "./useNavbarStyles";
 
 /** Hamburger toggle button for the Navbar. */
-export function NavbarToggle() {
+export function NavbarToggle({
+  wrapperClasses,
+  ...rest
+}: Omit<HamburgerButtonProps, "isOpen">) {
   const context = useNavbarContext();
   if (!context) {
     throw new Error(
-      "Please use the Navbar toggle Component only inside a Navbar",
+      "Please use the Navbar toggle only inside a Navbar component!",
     );
   }
+  const { isOpen, setIsOpen } = context;
 
   function clickHandler() {
     setIsOpen(!isOpen);
   }
 
-  const { color, collapseAt, isOpen, setIsOpen } = context;
-
-  const classes = twMerge(
-    collapseAt === "sm" && "sm:hidden",
-    collapseAt === "md" && "md:hidden",
-    collapseAt === "lg" && "lg:hidden",
-    collapseAt === "xl" && "xl:hidden",
-  );
+  const { styles, resolvedColor } = useNavbarToggleStyles({ wrapperClasses });
 
   return (
     <HamburgerButton
-      wrapperClasses={classes}
-      color={color}
+      wrapperClasses={styles}
+      color={resolvedColor}
       isOpen={isOpen}
       onClick={clickHandler}
+      {...rest}
     />
   );
 }

@@ -18,8 +18,6 @@ export type ButtonGroupContextType =
       size?: SizeType;
       /** If the buttons should scale on press. */
       scaling?: boolean;
-      /** Set to `false` to disable transition animations. */
-      transitions?: boolean;
       /** Set to `true` to make it a vertical aligned group. */
       vertical?: boolean;
     }

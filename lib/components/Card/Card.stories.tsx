@@ -52,7 +52,7 @@ export const Default: Story = {
 export const Clickable: Story = {
   render: ({ ...rest }) => {
     return (
-      <Card className="group rounded-containers" {...rest}>
+      <Card {...rest}>
         <CardInteract href="#">
           <CardTitle>Lorem, ipsum dolor.</CardTitle>
           <CardText>
@@ -177,7 +177,7 @@ export const WithPaddedImage: Story = {
 export const Horizontal: Story = {
   render: ({ size = "lg", ...rest }) => {
     return (
-      <Card vertical={false} size={size} {...rest}>
+      <Card horizontal size={size} {...rest}>
         <CardSection className="flex-1/3">
           <CardImageContainer>
             <img

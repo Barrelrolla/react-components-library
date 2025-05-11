@@ -1,11 +1,16 @@
-import { PropsWithChildren } from "react";
-import { getCardSectionStyles } from "./getCardStyles";
+import { ComponentProps } from "react";
+import { useCardSectionStyles } from "./useCardStyles";
 
 /** Use to divide a Card into multiple sections. */
 export function CardSection({
   className,
   children,
-}: { className?: string } & PropsWithChildren) {
-  const { styles } = getCardSectionStyles({ className });
-  return <div className={styles}>{children}</div>;
+  ...rest
+}: { className?: string } & ComponentProps<"div">) {
+  const { styles } = useCardSectionStyles({ className });
+  return (
+    <div className={styles} {...rest}>
+      {children}
+    </div>
+  );
 }

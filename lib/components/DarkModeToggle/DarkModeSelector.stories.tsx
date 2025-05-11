@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { DarkModeSelector } from "./DarkModeSelector";
 import { ThemeContextProvider } from "@/contexts";
+import { DarkModeSelector } from "./DarkModeSelector";
 
 const meta: Meta<typeof DarkModeSelector> = {
   title: "Components/DarkModeSelector",

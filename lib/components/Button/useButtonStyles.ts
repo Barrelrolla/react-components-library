@@ -11,7 +11,6 @@ export function useButtonStyles({
   size,
   isIcon,
   scaling,
-  transitions,
   disabled,
   radius,
   color,
@@ -24,7 +23,6 @@ export function useButtonStyles({
   size?: SizeType;
   isIcon: boolean;
   scaling: boolean;
-  transitions: boolean;
   disabled: boolean;
   radius?: ButtonRadius;
   color?: ColorType;
@@ -44,15 +42,11 @@ export function useButtonStyles({
     (!theme || theme.buttonsRetainFocus) &&
     (!group || group.retainFocusState) &&
     retainFocusState;
-  const hasTransitions =
-    (!theme || theme.transitions) &&
-    (!group || group.transitions) &&
-    transitions;
   const hasScaling =
     (!theme || theme.scalingButtons) && (!group || group.scaling) && scaling;
 
   return {
-    classes: twMerge(
+    styles: twMerge(
       "btn",
       `btn-${resolvedVariant}`,
       resolvedVariant === "outline" && shouldRetainFocus && "btn-outline-focus",
@@ -64,7 +58,6 @@ export function useButtonStyles({
       (variant === "ghost" || group?.variant === "ghost") &&
         `btn-ghost-${resolvedGhostHover}`,
       hasScaling && "active:scale-[98%]",
-      hasTransitions && "transition",
       inGroup && "btn-grouped",
       !inGroup && resolvedRadius === "default" && "rounded-inputs",
       !inGroup && resolvedRadius === "pill" && "rounded-full",

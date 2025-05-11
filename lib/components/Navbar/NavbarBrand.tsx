@@ -1,7 +1,7 @@
 import { ElementType, MouseEvent } from "react";
-import { twMerge } from "tailwind-merge";
-import { useNavbarContext } from "./NavbarContext";
 import { Anchor, AnchorProps } from "../Anchor";
+import { useNavbarContext } from "./NavbarContext";
+import { useNavbarBrandStyles } from "./useNavbarStyles";
 
 const defaultType = "a";
 export type NavbarBrandProps<E extends ElementType> = {} & AnchorProps<E>;
@@ -18,11 +18,6 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
   ...rest
 }: NavbarBrandProps<E>) {
   const context = useNavbarContext();
-  if (!context) {
-    throw new Error(
-      "Please use the Navbar Brand component only inside a Navbar.",
-    );
-  }
 
   function clickHandler(event: MouseEvent<HTMLAnchorElement>) {
     context?.setIsOpen(false);
@@ -30,16 +25,15 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
     onClick?.(event);
   }
 
-  const classes = twMerge("navbar-brand", className);
-
+  const { styles, resolvedColor } = useNavbarBrandStyles({ className });
   return (
     <Anchor
-      color={context.color}
+      as={as || defaultType}
+      color={resolvedColor}
       underlined={underlined}
       hoverUnderline={hoverUnderline}
-      as={as || defaultType}
-      className={classes}
       useBgColor={useBgColor}
+      className={styles}
       onClick={clickHandler}
       {...rest}
     >

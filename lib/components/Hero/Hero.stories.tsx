@@ -11,7 +11,13 @@ const meta: Meta<typeof Hero> = {
   title: "Components/Hero",
   tags: ["autodocs"],
   component: Hero,
-  subcomponents: { HeroSection, HeroTitle, HeroText, HeroActions },
+  subcomponents: {
+    HeroActions,
+    HeroImageSection,
+    HeroSection,
+    HeroTitle,
+    HeroText,
+  },
   argTypes: {
     children: {
       if: { arg: "false", exists: true },

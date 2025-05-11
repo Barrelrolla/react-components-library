@@ -5,7 +5,7 @@ import { NavbarContextProvider } from "./NavbarContext";
 import { useNavbarStyles } from "./useNavbarStyles";
 
 export type NavbarProps = {
-  /** Color of the Navbar the elements iniside */
+  /** Color of the Navbar and the elements iniside */
   color?: ColorType;
   /** Adds a small shadow underneath for a 3D effect. */
   hasShadow?: boolean;
@@ -21,7 +21,6 @@ export type NavbarProps = {
   backdropClasses?: string;
 } & ComponentProps<"nav">;
 
-/** Navbar with collapse functionality */
 export function Navbar({
   color = "main",
   hasShadow = true,
@@ -32,10 +31,11 @@ export function Navbar({
   children,
   className,
   backdropClasses,
+  ...rest
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { headerStyles, navStyles, backdropStyles } = useNavbarStyles({
+  const { styles, navStyles, backdropStyles } = useNavbarStyles({
     fixed,
     position,
     glass,
@@ -80,8 +80,10 @@ export function Navbar({
         setIsOpen,
       }}
     >
-      <header className={headerStyles} style={cssColorProps(color)}>
-        <nav className={navStyles}>{children}</nav>
+      <header className={styles} style={cssColorProps(color)}>
+        <nav className={navStyles} {...rest}>
+          {children}
+        </nav>
         <div className={backdropStyles} onClick={outsideClickHandler}></div>
       </header>
     </NavbarContextProvider>

@@ -1,11 +1,11 @@
 import { ComputerIcon, MoonIcon, SunIcon } from "@/icons";
-import { Button, ButtonGroup, ButtonGroupProps } from "../Button";
 import {
   darkModeName,
   lightModeName,
   systemModeName,
   useTheme,
 } from "@/contexts";
+import { Button, ButtonGroup, ButtonGroupProps } from "../Button";
 
 /** Provides an option to choose between light, dark and system theme. */
 export function DarkModeSelector({

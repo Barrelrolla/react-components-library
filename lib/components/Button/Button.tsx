@@ -17,21 +17,19 @@ export type ButtonProps<E extends ElementType> = {
   radius?: ButtonRadius;
   /** If the button variant is `ghost` you can select the hover type. */
   ghostHover?: GhostHover;
-  /** By default, while the button is fouced, it will retain it's hover state, meaning an outline or ghost button will remain solid for example. Set to `false` if you don't want that behaviour. */
+  /** By default, while the button is focused, it will retain it's hover state, meaning an outline or ghost button will remain solid for example. Set to `false` if you don't want that behaviour. */
   retainFocusState?: boolean;
   /** By default buttons scale on press. Set to `false` if you don't want that. */
   scaling?: boolean;
-  /** Disable  animations by setting to `false`. By default it uses the theme setting. */
-  transitions?: boolean;
-  /** Used to disable the button */
+  /** Used to disable the button. */
   disabled?: boolean;
   /** In a button group for example, you can set this property to the currently selected button. */
   selected?: boolean;
-  /** Set to true when submitting a form for example. The button will show a loading indicator. */
+  /** Set to `true` when submitting a form for example. The button will show a loading indicator. */
   loading?: boolean;
-  /** If the loading indicator should be shown in the start or end of the button */
+  /** If the loading indicator should be shown in the start or end of the button. */
   loadingPosition?: "start" | "end";
-  /** Start icon. You can just pass an icon in the children, but using this prop will automatically replace that icon for a loading one if the `loading` prop is set to `true` */
+  /** Start icon. You can just pass an icon in the children, but using this prop will automatically replace that icon for a loading one if the `loading` prop is set to `true`. */
   startIcon?: SVGProps<SVGSVGElement>;
   /** Same as start icon, but at the end. */
   endIcon?: SVGProps<SVGSVGElement>;
@@ -39,7 +37,6 @@ export type ButtonProps<E extends ElementType> = {
   wrapperClasses?: string;
 } & PolymorphicProps<E>;
 
-/** A styled flexible button component */
 export function Button<E extends ElementType = typeof defaultType>({
   as,
   color,
@@ -51,7 +48,6 @@ export function Button<E extends ElementType = typeof defaultType>({
   disabled = false,
   selected = false,
   scaling = true,
-  transitions = true,
   loading = false,
   loadingPosition = "start",
   startIcon,
@@ -65,14 +61,13 @@ export function Button<E extends ElementType = typeof defaultType>({
   const isIcon =
     (startIcon !== undefined || endIcon !== undefined) && !children;
   const isDisabled = disabled || loading;
-  const { classes, resolvedColor, wrapperStyles } = useButtonStyles({
+  const { styles, resolvedColor, wrapperStyles } = useButtonStyles({
     retainFocusState,
     variant,
     ghostHover,
     size,
     isIcon,
     scaling,
-    transitions,
     disabled: isDisabled,
     radius,
     color,
@@ -87,7 +82,7 @@ export function Button<E extends ElementType = typeof defaultType>({
       <Element
         data-selected={selected}
         style={{ ...cssColorProps(resolvedColor), ...style }}
-        className={classes}
+        className={styles}
         disabled={isDisabled}
         {...rest}
       >

@@ -1,11 +1,16 @@
-import { PropsWithChildren } from "react";
-import { getCardTitleStyles } from "./getCardStyles";
+import { ComponentProps } from "react";
+import { useCardTitleStyles } from "./useCardStyles";
 
 /** Card title */
 export function CardTitle({
   className,
   children,
-}: { className?: string } & PropsWithChildren) {
-  const { styles } = getCardTitleStyles({ className });
-  return <p className={styles}>{children}</p>;
+  ...rest
+}: { className?: string } & ComponentProps<"p">) {
+  const { styles } = useCardTitleStyles({ className });
+  return (
+    <p className={styles} {...rest}>
+      {children}
+    </p>
+  );
 }

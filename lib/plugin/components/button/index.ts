@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".btn": {
-    "@apply flex items-center justify-center gap-2 outline-(--bg-color) focus-visible:outline-2 outline-offset-2 cursor-pointer disabled:pointer-events-none disabled:contrast-75 disabled:saturate-50 disabled:opacity-70 select-none antialiased font-[calc(var(--default-font-weight)+200)]":
+    "@apply flex items-center justify-center gap-2 outline-(--bg-color) focus-visible:outline-2 outline-offset-2 cursor-pointer disabled:pointer-events-none disabled:contrast-75 disabled:saturate-50 disabled:opacity-70 select-none antialiased font-[calc(var(--default-font-weight)+200)] transition":
       {},
     "--p": "",
   },

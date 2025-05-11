@@ -1,14 +1,16 @@
-import { PolymorphicProps } from "@/types";
 import { ElementType } from "react";
-import { useCardInteractStyles } from "./getCardStyles";
+import { PolymorphicProps } from "@/types";
 import { cssColorProps } from "@/util";
+import { useCardInteractStyles } from "./useCardStyles";
 
 const defaultType = "a" as const;
+
 /** An anchor element to be used inside a card component. All children will be part of the interactable area. */
 export function CardInteract<E extends ElementType = typeof defaultType>({
   as,
-  className,
   tabIndex = 0,
+  style,
+  className,
   children,
   ...rest
 }: PolymorphicProps<E>) {
@@ -16,7 +18,7 @@ export function CardInteract<E extends ElementType = typeof defaultType>({
   const { styles, color } = useCardInteractStyles({ className });
   return (
     <Element
-      style={cssColorProps(color)}
+      style={{ ...cssColorProps(color), ...style }}
       className={styles}
       tabIndex={tabIndex}
       {...rest}
