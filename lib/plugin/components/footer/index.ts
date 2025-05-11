@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".footer-container": {
-    "@apply w-full bg-(--bg-color) text-(--fg-color) px-4 py-2 mb-4": {},
+    "@apply w-full bg-(--bg-color) text-(--fg-color) px-4 pt-2 pb-8": {},
   },
   ".footer": {
     "@apply flex flex-wrap items-start justify-between gap-x-8 gap-y-4 mx-auto w-full max-w-(--max-width) bg-(--bg-color) text-(--fg-color)":

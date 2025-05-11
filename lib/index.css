@@ -6,17 +6,12 @@
 
 @theme {
   --font-sans: "Montserrat", sans-serif;
-  --default-transition-duration: 250ms;
+  --default-transition-duration: 150ms;
 }
 
 tr {
   @apply flex flex-wrap overflow-hidden
 }
-
-/* 
-html {
-  @apply font-light;
-} */
 
 .storybookContainer {
   @apply bg-main flex flex-wrap justify-center p-4 gap-4;

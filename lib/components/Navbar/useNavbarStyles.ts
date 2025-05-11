@@ -31,12 +31,13 @@ export function useNavbarStyles({
       isOpen && collapseAt == "lg" && "not-lg:bg-(--bg-color)/80",
       isOpen && collapseAt == "xl" && "not-xl:bg-(--bg-color)/80",
       fixed && "fixed left-0",
-      position === "top" && "top-0 navigation-decoration-bottom",
-      position === "bottom" && "bottom-0 navigation-decoration-top",
+      position === "top" && "navigation-decoration-bottom top-0",
+      position === "bottom" && "navigation-decoration-top bottom-0",
       hasShadow && "shadow-dark/60 dark:shadow-dark/80",
       hasShadow && position === "top" && "shadow-[0px_4px_8px_-1px]",
       hasShadow && position === "bottom" && "shadow-[0px_-4px_8px_-1px]",
-      (!theme || theme.transitions) && "transition-colors",
+      (!theme || theme.transitions) &&
+        "transition-colors duration-(--dropdown-animation-duration)",
       className,
     ),
     navStyles: twMerge("navbar-nav"),
@@ -72,7 +73,7 @@ export function useNavbarCollapseStyles({
   const hasTransitions = (!theme || theme.transitions) && transitions;
   const wrapperStyles = twMerge(
     "navbar-collapse-container",
-    hasTransitions && "transition-[max-height]",
+    hasTransitions && "transition-dropdown",
     position === "top" && "order-last",
     position === "bottom" && "order-first",
     collapseAt === "sm" && "sm:navbar-collapse-container-extended",
@@ -80,7 +81,7 @@ export function useNavbarCollapseStyles({
     collapseAt === "lg" && "lg:navbar-collapse-container-extended",
     collapseAt === "xl" && "xl:navbar-collapse-container-extended",
     !isOpen && "max-h-0 ease-out",
-    isOpen && "max-h-screen ease-in hide-scroll overflow-auto",
+    isOpen && "hide-scroll max-h-screen overflow-auto ease-in",
     wrapperClasses,
   );
 

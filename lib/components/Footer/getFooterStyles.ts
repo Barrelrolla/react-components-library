@@ -39,6 +39,7 @@ export function useFooterBrandStyles({ className }: { className?: string }) {
       responsiveAt === "xl" && "xl:w-auto",
       className,
     ),
+    color: context.color,
   };
 }
 

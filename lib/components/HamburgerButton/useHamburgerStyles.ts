@@ -21,14 +21,10 @@ export function useHamburgerStyles({
   const theme = useTheme();
   const hasTransitions = (!theme || theme.transitions) && transitions;
   const button = twMerge("group px-1 py-0", className);
-  const container = twMerge(
-    "hamburger",
-    // hasTransitions && "transition-all duration-300",
-    // isOpen && "rotate-90",
-  );
+  const container = twMerge("hamburger");
   const lineClasses = twMerge(
     "hamburger-line",
-    hasTransitions && "transition-all",
+    hasTransitions && "transition-all duration-(--dropdown-animation-duration)",
   );
   const topLine = twMerge(
     lineClasses,
