@@ -20,11 +20,11 @@ export function useCardStyles({
   return {
     containerStyles: twMerge(
       "card-container",
-      size === "xs" && "w-xs",
-      size === "sm" && "w-sm",
-      size === "md" && "w-md",
-      size === "lg" && "w-lg",
-      size === "xl" && "w-xl",
+      size === "xs" && "max-w-xs",
+      size === "sm" && "max-w-sm",
+      size === "md" && "max-w-md",
+      size === "lg" && "max-w-lg",
+      size === "xl" && "max-w-xl",
       containerClasses,
     ),
     styles: twMerge(

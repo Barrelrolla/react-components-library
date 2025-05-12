@@ -33,7 +33,7 @@ export function useNavbarStyles({
       isOpen && collapseAt == "md" && "not-md:bg-(--bg-color)/80",
       isOpen && collapseAt == "lg" && "not-lg:bg-(--bg-color)/80",
       isOpen && collapseAt == "xl" && "not-xl:bg-(--bg-color)/80",
-      fixed && "fixed left-0",
+      fixed && "fixed left-0 z-10",
       position === "top" && "navigation-decoration-bottom top-0",
       position === "bottom" && "navigation-decoration-top bottom-0",
       hasShadow && "shadow-dark/60 dark:shadow-dark/80",

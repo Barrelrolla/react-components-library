@@ -117,8 +117,10 @@ export function ThemeContextProvider({
         darkMode,
         setTheme,
         setDarkMode,
-        scalingButtons: value?.scalingButtons,
-        buttonsRetainFocus: value?.buttonsRetainFocus,
+        scalingButtons:
+          value?.scalingButtons !== undefined ? value.scalingButtons : true,
+        buttonsRetainFocus:
+          value?.buttonsRetainFocus !== undefined ? value.scalingButtons : true,
       }}
     >
       {children}

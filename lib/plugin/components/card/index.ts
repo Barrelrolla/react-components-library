@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".card-container": {
-    "@apply @container overflow-hidden border-containers rounded-containers bg-(--bg-color) text-(--fg-color)":
+    "@apply @container overflow-hidden border-containers rounded-containers bg-(--bg-color) text-(--fg-color) w-full":
       {},
   },
   ".card": {
