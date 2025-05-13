@@ -23,16 +23,19 @@ export function DarkModeSelector({
   return (
     <ButtonGroup variant={variant} size={size} divider={divider} {...rest}>
       <Button
+        aria-label="ligth theme mode"
         selected={darkMode === lightModeName}
         onClick={() => setDarkMode(lightModeName)}
         startIcon={<SunIcon />}
       ></Button>
       <Button
+        aria-label="dark theme mode"
         selected={darkMode === darkModeName}
         onClick={() => setDarkMode(darkModeName)}
         startIcon={<MoonIcon />}
       ></Button>
       <Button
+        aria-label="system theme mode"
         selected={darkMode === systemModeName}
         onClick={() => setDarkMode(systemModeName)}
         startIcon={<ComputerIcon />}

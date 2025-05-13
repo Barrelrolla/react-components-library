@@ -94,8 +94,12 @@ export function useNavbarCollapseStyles({
         "lg:navbar-collapse-container-extended max-lg:scrollbar-stable-gutter",
       collapseAt === "xl" &&
         "xl:navbar-collapse-container-extended max-xl:scrollbar-stable-gutter",
+      isOpen && collapseAt === "sm" && "max-sm:hide-scroll",
+      isOpen && collapseAt === "md" && "max-md:hide-scroll",
+      isOpen && collapseAt === "lg" && "max-lg:hide-scroll",
+      isOpen && collapseAt === "xl" && "max-xl:hide-scroll",
       !isOpen && "max-h-0 ease-out",
-      isOpen && "hide-scroll max-h-[calc(100vh-5rem)] overflow-auto ease-in",
+      isOpen && "max-h-[calc(100vh-5rem)] overflow-auto ease-in",
       wrapperClasses,
     ),
     styles: twMerge(
