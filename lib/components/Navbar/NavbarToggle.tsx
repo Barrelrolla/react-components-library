@@ -2,11 +2,14 @@ import { HamburgerButton, HamburgerButtonProps } from "../HamburgerButton";
 import { useNavbarContext } from "./NavbarContext";
 import { useNavbarToggleStyles } from "./useNavbarStyles";
 
+export type NavbarToggleProps = Omit<HamburgerButtonProps, "isOpen">;
+
 /** Hamburger toggle button for the Navbar. */
 export function NavbarToggle({
+  size = "sm",
   wrapperClasses,
   ...rest
-}: Omit<HamburgerButtonProps, "isOpen">) {
+}: NavbarToggleProps) {
   const context = useNavbarContext();
   if (!context) {
     throw new Error(
@@ -23,6 +26,7 @@ export function NavbarToggle({
 
   return (
     <HamburgerButton
+      size={size}
       wrapperClasses={styles}
       color={resolvedColor}
       isOpen={isOpen}

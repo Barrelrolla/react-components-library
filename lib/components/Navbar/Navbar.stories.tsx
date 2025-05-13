@@ -135,6 +135,7 @@ export const PageDemo: Story = {
             <Button
               variant="outline"
               color="primary"
+              size="sm"
               className="w-full md:w-auto"
             >
               test
