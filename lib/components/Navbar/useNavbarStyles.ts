@@ -91,7 +91,7 @@ export function useNavbarCollapseStyles({
       collapseAt === "lg" && "lg:navbar-collapse-container-extended",
       collapseAt === "xl" && "xl:navbar-collapse-container-extended",
       !isOpen && "max-h-0 ease-out",
-      isOpen && "hide-scroll max-h-screen overflow-auto ease-in",
+      isOpen && "hide-scroll max-h-[calc(100vh-5rem)] overflow-auto ease-in",
       wrapperClasses,
     ),
     styles: twMerge(

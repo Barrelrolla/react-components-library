@@ -19,7 +19,7 @@ export function NavbarCollapse({
   });
 
   return (
-    <div className={wrapperStyles}>
+    <div className={wrapperStyles} style={{ scrollbarGutter: "stable" }}>
       <ul className={styles} {...rest}>
         {children}
       </ul>
