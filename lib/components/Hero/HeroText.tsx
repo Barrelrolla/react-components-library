@@ -9,8 +9,8 @@ export function HeroText({
 }: { className?: string } & ComponentProps<"div">) {
   const { styles } = useHeroTextStyles({ className });
   return (
-    <p className={styles} {...rest}>
+    <h3 className={styles} {...rest}>
       {children}
-    </p>
+    </h3>
   );
 }

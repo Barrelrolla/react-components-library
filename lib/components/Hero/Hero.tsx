@@ -19,7 +19,7 @@ export type HeroProps = {
 } & ComponentProps<"div">;
 
 export function Hero({
-  color = "main",
+  color,
   textAlign = "responsive",
   actionsAlign = "center",
   responsiveAt = "md",
@@ -34,12 +34,10 @@ export function Hero({
     wrapperClasses,
     className,
   });
+  const styleVars = color ? cssColorProps(color) : {};
   return (
     <HeroContextProvider value={{ textAlign, actionsAlign, responsiveAt }}>
-      <section
-        style={{ ...cssColorProps(color), ...style }}
-        className={wrapperStyles}
-      >
+      <section style={{ ...styleVars, ...style }} className={wrapperStyles}>
         <div className={styles} {...rest}>
           {children}
         </div>
