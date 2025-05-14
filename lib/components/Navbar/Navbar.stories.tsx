@@ -7,7 +7,7 @@ import { NavbarCollapse } from "./NavbarCollapse";
 import { NavbarLink } from "./NavbarLink";
 import { NavbarToggle } from "./NavbarToggle";
 import { Button } from "../Button";
-import { GitHubIcon, LinkedInLogo, RocketIcon } from "@/icons";
+import { GitHubIcon, LinkedInIcon, RocketIcon } from "@/icons";
 import {
   Hero,
   HeroActions,
@@ -194,7 +194,7 @@ export const PageDemo: Story = {
                 <GitHubIcon />
               </FooterLink>
               <FooterLink href="#">
-                <LinkedInLogo />
+                <LinkedInIcon />
               </FooterLink>
             </div>
           </FooterFullSection>

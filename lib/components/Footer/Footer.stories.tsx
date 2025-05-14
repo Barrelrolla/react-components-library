@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
-import { RocketIcon, GitHubIcon, LinkedInLogo } from "@/icons";
+import { RocketIcon, GitHubIcon, LinkedInIcon } from "@/icons";
 import { Footer } from "./Footer";
 import { FooterBrand } from "./FooterBrand";
 import { FooterDivider } from "./FooterDivider";
@@ -100,7 +100,7 @@ export const WithLinkGroups: Story = {
               <GitHubIcon />
             </FooterLink>
             <FooterLink href="#">
-              <LinkedInLogo />
+              <LinkedInIcon />
             </FooterLink>
           </FooterIconsContainer>
         </FooterFullSection>
