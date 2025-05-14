@@ -86,12 +86,20 @@ export function useNavbarCollapseStyles({
       "navbar-collapse-container",
       position === "top" && "order-last",
       position === "bottom" && "order-first",
-      collapseAt === "sm" && "sm:navbar-collapse-container-extended",
-      collapseAt === "md" && "md:navbar-collapse-container-extended",
-      collapseAt === "lg" && "lg:navbar-collapse-container-extended",
-      collapseAt === "xl" && "xl:navbar-collapse-container-extended",
+      collapseAt === "sm" &&
+        "sm:navbar-collapse-container-extended max-sm:scrollbar-stable-gutter",
+      collapseAt === "md" &&
+        "md:navbar-collapse-container-extended max-md:scrollbar-stable-gutter",
+      collapseAt === "lg" &&
+        "lg:navbar-collapse-container-extended max-lg:scrollbar-stable-gutter",
+      collapseAt === "xl" &&
+        "xl:navbar-collapse-container-extended max-xl:scrollbar-stable-gutter",
+      isOpen && collapseAt === "sm" && "max-sm:hide-scroll",
+      isOpen && collapseAt === "md" && "max-md:hide-scroll",
+      isOpen && collapseAt === "lg" && "max-lg:hide-scroll",
+      isOpen && collapseAt === "xl" && "max-xl:hide-scroll",
       !isOpen && "max-h-0 ease-out",
-      isOpen && "hide-scroll max-h-screen overflow-auto ease-in",
+      isOpen && "max-h-[calc(100vh-5rem)] overflow-auto ease-in",
       wrapperClasses,
     ),
     styles: twMerge(

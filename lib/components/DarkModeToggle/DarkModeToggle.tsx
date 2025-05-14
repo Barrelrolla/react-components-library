@@ -14,6 +14,7 @@ export function DarkModeToggle({
   const { isDark, setDarkMode } = theme;
   return (
     <Button
+      aria-label="dark mode toggle"
       onClick={() => setDarkMode(isDark ? lightModeName : darkModeName)}
       startIcon={isDark ? <SunIcon /> : <MoonIcon />}
       size={size}

@@ -99,4 +99,8 @@ export default <Record<string, CssInJs>>{
     animation:
       "hide-scroll var(--dropdown-animation-duration, var(--default-transition-duration));",
   },
+
+  ".scrollbar-stable-gutter": {
+    scrollbarGutter: "stable",
+  },
 };

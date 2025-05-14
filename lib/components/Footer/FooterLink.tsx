@@ -3,7 +3,7 @@ import { Anchor, AnchorProps } from "../Anchor";
 import { ElementType } from "react";
 
 const defaultType = "a";
-export function FooterLink<E extends ElementType>({
+export function FooterLink<E extends ElementType = typeof defaultType>({
   as,
   underlined = false,
   tabIndex = 0,

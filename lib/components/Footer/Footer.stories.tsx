@@ -47,6 +47,7 @@ export const Default: Story = {
           <RocketIcon /> Test
         </FooterBrand>
         <FooterLinksSection>
+          <FooterLink></FooterLink>
           <FooterLink href="#">long link text 1</FooterLink>
           <FooterLink href="#">long link text 2</FooterLink>
           <FooterLink href="#">long link text 3</FooterLink>
