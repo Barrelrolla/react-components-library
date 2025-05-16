@@ -27,7 +27,6 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
 
   function clickHandler(event: MouseEvent) {
     context?.setIsOpen(false);
-    window.scrollTo(0, 0);
     onClick?.(event);
   }
 
