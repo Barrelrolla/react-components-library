@@ -18,7 +18,7 @@ export default <Record<string, CssInJs>>{
     "@apply px-4 font-[calc(var(--default-font-weight)+100)] text-5xl": {},
   },
   ".hero-text": {
-    "@apply px-4": {},
+    "@apply text-pretty px-4": {},
   },
   ".hero-actions": {
     "@apply flex flex-wrap px-4 gap-8": {},
