@@ -7,13 +7,13 @@
   "description": "Personal react components library",
   "license": "MIT",
   "author": "Julian Teofilov",
-  "homepage": "./react-components-library/",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/barrelrolla"
-  },
+  "homepage": "https://barrelrolla.github.io/react-components-library/",
   "repository": {
     "type": "git",
     "url": "https://github.com/Barrelrolla/react-components-library"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "dist"

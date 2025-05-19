@@ -22,7 +22,7 @@ export default <Record<string, CssInJs>>{
     "@apply order-none max-h-fit w-auto overflow-visible": {},
   },
   ".navbar-collapse-list": {
-    "@apply flex flex-col gap-2 p-2": {},
+    "@apply flex flex-col gap-2": {},
   },
   ".navbar-collapse-list-extended": {
     "@apply mt-0 mb-0 flex-row items-center gap-4 p-0": {},
