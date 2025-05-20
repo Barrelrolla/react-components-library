@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".navbar": {
-    "@apply w-full bg-(--bg-color) text-(--fg-color) transition-colors duration-(--dropdown-animation-duration)":
+    "@apply w-full bg-(--bg-color) text-(--fg-color) transition-colors motion-safe:duration-(--dropdown-animation-duration)":
       {},
   },
   ".navbar-nav": {
@@ -16,7 +16,8 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".navbar-collapse-container": {
-    "@apply w-full overflow-hidden overscroll-contain transition-dropdown": {},
+    "@apply w-full overflow-hidden overscroll-contain motion-safe:transition-dropdown":
+      {},
   },
   ".navbar-collapse-container-extended": {
     "@apply order-none max-h-fit w-auto overflow-visible": {},
