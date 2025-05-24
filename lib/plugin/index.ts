@@ -11,18 +11,18 @@ import utilities from "./utilities/utilities";
 
 export default createPlugin(
   ({ addBase, addComponents, addUtilities, addVariant }) => {
-    addBase(base),
-      addComponents([
-        anchor,
-        button,
-        card,
-        footer,
-        hamburgerButton,
-        hero,
-        navbar,
-      ]),
-      addUtilities(utilities),
-      addVariant("selected", "&[data-selected='true']");
+    addBase(base);
+    addComponents([
+      anchor,
+      button,
+      card,
+      footer,
+      hamburgerButton,
+      hero,
+      navbar,
+    ]);
+    addUtilities(utilities);
+    addVariant("selected", "&[data-selected='true']");
   },
   {
     theme: {

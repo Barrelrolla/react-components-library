@@ -1,5 +1,3 @@
-"use client";
-
 import { ComponentProps } from "react";
 import { ColorType, ResponsiveSizes } from "@/types";
 import { HeroContextProvider } from "./HeroContext";

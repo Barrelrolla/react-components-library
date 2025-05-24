@@ -1,5 +1,3 @@
-"use client";
-
 import { ComponentProps, useEffect, useState } from "react";
 import { ColorType, ResponsiveSizes } from "@/types";
 import { cssColorProps } from "@/util";

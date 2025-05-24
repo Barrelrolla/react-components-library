@@ -1,5 +1,3 @@
-"use client";
-
 import { ElementType, SVGProps } from "react";
 import { Spinner } from "@/icons";
 import { ColorType, PolymorphicProps, SizeType } from "@/types";

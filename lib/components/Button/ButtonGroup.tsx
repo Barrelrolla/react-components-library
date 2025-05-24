@@ -1,5 +1,3 @@
-"use client";
-
 import { Children, ComponentProps } from "react";
 import { ColorType, SizeType } from "@/types";
 import { cssColorProps } from "@/util";
