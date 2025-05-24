@@ -1,3 +1,5 @@
+"use client";
+
 import { ComponentProps } from "react";
 import { ColorType, ResponsiveSizes } from "@/types";
 import { cssColorProps, cssColorPropsReversed } from "@/util";

@@ -4,7 +4,7 @@ import { useNavbarCollapseStyles } from "./useNavbarStyles";
 export type NavbarCollapseProps = {
   /** The list has a wrapper. Use this to add classes to it. */
   wrapperClasses?: string;
-} & ComponentProps<"ul">;
+} & ComponentProps<"menu">;
 
 /** List that hides when the Navbar is small. */
 export function NavbarCollapse({
@@ -20,9 +20,9 @@ export function NavbarCollapse({
 
   return (
     <div className={wrapperStyles}>
-      <ul className={styles} {...rest}>
+      <menu className={styles} {...rest}>
         {children}
-      </ul>
+      </menu>
     </div>
   );
 }

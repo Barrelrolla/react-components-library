@@ -1,3 +1,5 @@
+"use client";
+
 import { ComponentProps } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";

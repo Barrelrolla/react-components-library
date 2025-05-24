@@ -1,3 +1,5 @@
+"use client";
+
 import { ElementType } from "react";
 import { ColorType, PolymorphicProps } from "@/types";
 import { cssColorProps, cssColorPropsReversed } from "@/util";
