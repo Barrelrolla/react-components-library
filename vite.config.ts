@@ -2,6 +2,7 @@ import path from "path";
 import { resolve } from "path";
 import dts from "vite-plugin-dts";
 import { defineConfig } from "vitest/config";
+import preserveDirectives from "rollup-preserve-directives";
 import tailwindPostCSS from "@tailwindcss/postcss";
 import react from "@vitejs/plugin-react-swc";
 
@@ -31,7 +32,7 @@ export default defineConfig({
     sourcemap: true,
     emptyOutDir: true,
   },
-  plugins: [react(), dts({ rollupTypes: true })],
+  plugins: [react(), dts({ rollupTypes: true }), preserveDirectives()],
   test: {
     globals: true,
     environment: "jsdom",
