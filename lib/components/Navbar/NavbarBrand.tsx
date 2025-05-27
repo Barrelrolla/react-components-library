@@ -21,7 +21,6 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
 
   function clickHandler(event: MouseEvent<HTMLAnchorElement>) {
     context?.setIsOpen(false);
-    window.scrollTo(0, 0);
     onClick?.(event);
   }
 

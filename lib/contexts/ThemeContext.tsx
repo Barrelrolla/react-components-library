@@ -37,16 +37,16 @@ export function ThemeContextProvider({
   value,
   children,
 }: { value?: ThemeContextProps } & PropsWithChildren) {
-  let initialTheme: string | undefined = undefined;
-  let initialDarkMode: DarkModeType = systemModeName;
-  const lsDarkMode = localStorage.getItem(lsDarkModeName);
-  const lsTheme = localStorage.getItem(lsThemeName);
-  initialDarkMode = (lsDarkMode as DarkModeType) || systemModeName;
-  initialTheme = lsTheme || undefined;
-
-  const [theme, setTheme] = useState<string | undefined>(initialTheme);
-  const [darkMode, setDarkMode] = useState<DarkModeType>(initialDarkMode);
+  const [theme, setTheme] = useState<string | undefined>(undefined);
+  const [darkMode, setDarkMode] = useState<DarkModeType>(systemModeName);
   const [isDark, setIsDark] = useState(darkMode === darkModeName);
+
+  useEffect(() => {
+    const lsDarkMode = localStorage.getItem(lsDarkModeName);
+    const lsTheme = localStorage.getItem(lsThemeName);
+    setDarkMode((lsDarkMode as DarkModeType) || systemModeName);
+    setTheme(lsTheme || undefined);
+  }, []);
 
   useEffect(() => {
     const onPrefersChange = (event: MediaQueryListEvent) => {
