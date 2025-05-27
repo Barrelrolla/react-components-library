@@ -6,4 +6,5 @@ export * from "./Divider";
 export * from "./Footer";
 export * from "./HamburgerButton";
 export * from "./Hero";
+export * from "./InputField";
 export * from "./Navbar";

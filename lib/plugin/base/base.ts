@@ -36,6 +36,7 @@ export default <CssInJs>{
   },
 
   ".dark": {
+    "color-scheme": "dark",
     "--color-main": "oklch(0.27 0.0288 246.94);",
     "--color-main-content": "oklch(0.94 0.0035 247.86);",
     "--color-dark": "oklch(0.147 0.004 49.25);",
