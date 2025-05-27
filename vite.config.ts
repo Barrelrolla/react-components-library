@@ -3,7 +3,6 @@ import { resolve } from "path";
 import dts from "vite-plugin-dts";
 import { defineConfig } from "vitest/config";
 import preserveDirectives from "rollup-preserve-directives";
-import tailwindPostCSS from "@tailwindcss/postcss";
 import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig({
@@ -21,12 +20,6 @@ export default defineConfig({
           "react-dom": "ReactDOM",
           tailwindcss: "tailwindcss",
         },
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.names[0].endsWith(".css")) {
-            return "index.css";
-          }
-          return assetInfo.names[0] || "[name].[ext]";
-        },
       },
     },
     sourcemap: true,
@@ -40,10 +33,5 @@ export default defineConfig({
   },
   resolve: {
     alias: { "@": path.resolve(__dirname, "lib") },
-  },
-  css: {
-    postcss: {
-      plugins: [tailwindPostCSS],
-    },
   },
 });
