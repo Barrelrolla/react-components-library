@@ -1,7 +1,7 @@
 import { ElementType, SVGProps } from "react";
 import { Spinner } from "@/icons";
 import { ColorType, PolymorphicProps, SizeType } from "@/types";
-import { cssColorProps } from "@/util";
+import { cssColorPropsReversed } from "@/util";
 import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
 import { useButtonStyles } from "./useButtonStyles";
 
@@ -81,7 +81,7 @@ export function Button<E extends ElementType = typeof defaultType>({
     <span className={wrapperStyles}>
       <Element
         data-selected={selected}
-        style={{ ...cssColorProps(resolvedColor), ...style }}
+        style={{ ...cssColorPropsReversed(resolvedColor), ...style }}
         className={styles}
         disabled={isDisabled}
         {...rest}

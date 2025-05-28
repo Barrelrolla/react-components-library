@@ -1,11 +1,11 @@
 import { ElementType } from "react";
 import { ColorType, PolymorphicProps } from "@/types";
-import { cssColorProps, cssColorPropsReversed } from "@/util";
+import { cssColorProps } from "@/util";
 import { useAnchorStyles } from "./useAnchorStyles";
 
 const defaultType = "a";
 export type AnchorProps<E extends ElementType> = {
-  /** Color of the anchor element. Uses the content variant, unless specified otherwise with the `useBgColor` prop. */
+  /** Color of the anchor element. */
   color?: ColorType;
   /** Adds underline. */
   underlined?: boolean;
@@ -13,8 +13,6 @@ export type AnchorProps<E extends ElementType> = {
   hoverUnderline?: boolean;
   /** Adds an offset to the underline on hover. */
   hoverUnderlineOffset?: boolean;
-  /** Set to `true` if you want the anchor to use the main color, instead of the content one. */
-  useBgColor?: boolean;
 } & PolymorphicProps<E>;
 
 export function Anchor<E extends ElementType = typeof defaultType>({
@@ -23,7 +21,6 @@ export function Anchor<E extends ElementType = typeof defaultType>({
   underlined = true,
   hoverUnderline = true,
   hoverUnderlineOffset = true,
-  useBgColor = true,
   className,
   style,
   children,
@@ -38,12 +35,13 @@ export function Anchor<E extends ElementType = typeof defaultType>({
   });
 
   const Element = as || defaultType;
-  const styleVars = useBgColor
-    ? cssColorPropsReversed(resolvedColor)
-    : cssColorProps(resolvedColor);
 
   return (
-    <Element style={{ ...styleVars, ...style }} className={styles} {...rest}>
+    <Element
+      style={{ ...cssColorProps(resolvedColor), ...style }}
+      className={styles}
+      {...rest}
+    >
       {children}
     </Element>
   );

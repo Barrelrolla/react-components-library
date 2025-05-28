@@ -11,7 +11,6 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
   as,
   underlined = false,
   hoverUnderline = false,
-  useBgColor = false,
   children,
   className,
   onClick,
@@ -31,7 +30,6 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
       color={resolvedColor}
       underlined={underlined}
       hoverUnderline={hoverUnderline}
-      useBgColor={useBgColor}
       className={styles}
       onClick={clickHandler}
       {...rest}

@@ -1,6 +1,6 @@
 import { ComponentProps, SVGProps, useRef } from "react";
 import { ColorType } from "@/types";
-import { cssColorPropsReversed } from "@/util";
+import { cssColorProps } from "@/util";
 import { useInputFieldStyles } from "./useInputFieldStyles";
 
 export type InputFieldProps = {
@@ -63,7 +63,7 @@ export function InputField({
 
   let styleVars = {};
   if (color) {
-    styleVars = cssColorPropsReversed(color);
+    styleVars = cssColorProps(color);
   }
 
   return (

@@ -1,6 +1,6 @@
 import { Children, ComponentProps } from "react";
 import { ColorType, SizeType } from "@/types";
-import { cssColorProps } from "@/util";
+import { cssColorPropsReversed } from "@/util";
 import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
 import { ButtonGroupContextProvider } from "./ButtonGroupContext";
 import { useButtonGroupStyles } from "./useButtonGroupStyles";
@@ -67,14 +67,18 @@ export function ButtonGroup({
       }}
     >
       <div className={wrapperStyles}>
-        <div className={groupStyles} style={cssColorProps(color)} {...rest}>
+        <div
+          className={groupStyles}
+          style={cssColorPropsReversed(color)}
+          {...rest}
+        >
           {Children.map(children, (child, index) => {
             return (
               <>
                 {divider && index !== 0 && (
                   <Divider
                     color={color}
-                    useBgColor={variant !== "solid"}
+                    useBgColor={variant === "solid"}
                     vertical={!vertical}
                     className={dividerClasses}
                   />

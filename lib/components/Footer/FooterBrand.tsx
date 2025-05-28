@@ -8,7 +8,6 @@ export function FooterBrand<E extends ElementType>({
   as,
   underlined = false,
   hoverUnderline = false,
-  useBgColor = false,
   className,
   children,
   ...rest
@@ -20,7 +19,6 @@ export function FooterBrand<E extends ElementType>({
       color={resolvedColor}
       underlined={underlined}
       hoverUnderline={hoverUnderline}
-      useBgColor={useBgColor}
       className={classes}
       {...rest}
     >

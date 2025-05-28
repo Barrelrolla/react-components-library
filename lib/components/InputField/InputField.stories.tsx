@@ -82,6 +82,7 @@ export const Colors: Story = {
   render: (props) => {
     return (
       <>
+        <InputField label="main" id={"main"} color={"main"} {...props} />
         <InputField label="light" id={"light"} color={"light"} {...props} />
         <InputField label="dark" id={"dark"} color={"dark"} {...props} />
         <InputField

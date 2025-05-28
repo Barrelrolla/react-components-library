@@ -14,7 +14,6 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
   as,
   selected = false,
   hoverUnderline = false,
-  useBgColor = false,
   underlined = false,
   onClick,
   onFocus,
@@ -49,7 +48,6 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
         as={as || defaultType}
         data-selected={selected}
         color={resolvedColor}
-        useBgColor={useBgColor}
         underlined={underlined}
         hoverUnderline={hoverUnderline}
         className={styles}
