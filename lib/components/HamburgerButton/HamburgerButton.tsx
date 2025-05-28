@@ -11,7 +11,6 @@ export type HamburgerButtonProps = {
 export function HamburgerButton({
   color = "main",
   isOpen = false,
-  style,
   className,
   ...rest
 }: HamburgerButtonProps) {
@@ -24,7 +23,6 @@ export function HamburgerButton({
       aria-label="navigation toggle"
       variant="ghost"
       ghostHover="none"
-      style={{ ...cssColorPropsReversed(color), ...style }}
       color={color}
       className={button}
       {...rest}
