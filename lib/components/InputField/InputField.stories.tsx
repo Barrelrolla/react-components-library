@@ -13,7 +13,6 @@ const meta: Meta<typeof InputField> = {
     </div>
   ),
   argTypes: {
-    id: { if: { arg: "false", eq: true } },
     startIcon: { control: { disable: true } },
     endIcon: { control: { disable: true } },
     labelClasses: { control: { disable: true } },
@@ -37,42 +36,38 @@ export const Default: Story = {
   },
   args: {
     placeholder: "Input",
-    id: "Default",
   },
 };
 
 export const WithLabel: Story = {
   render: (props) => {
-    return <InputField {...props} />;
+    return <InputField id="WithLabel" {...props} />;
   },
   args: {
     placeholder: "Input",
     label: "Label",
-    id: "WithLabel",
   },
 };
 
 export const WithIcon: Story = {
   render: (props) => {
-    return <InputField {...props} />;
+    return <InputField id="WithIcon" {...props} />;
   },
   args: {
     startIcon: <SearchIcon />,
     placeholder: "Input",
     label: "Label",
-    id: "WithIcon",
   },
 };
 
 export const WithError: Story = {
   render: (props) => {
-    return <InputField {...props} />;
+    return <InputField id="WithError" {...props} />;
   },
   args: {
     startIcon: <SearchIcon />,
     placeholder: "Input",
     label: "Label",
-    id: "WithError",
     color: "error",
     error: "Error",
   },
@@ -82,36 +77,21 @@ export const Colors: Story = {
   render: (props) => {
     return (
       <>
-        <InputField label="main" id={"main"} color={"main"} {...props} />
-        <InputField label="light" id={"light"} color={"light"} {...props} />
-        <InputField label="dark" id={"dark"} color={"dark"} {...props} />
-        <InputField
-          label="primary"
-          id={"primary"}
-          color={"primary"}
-          {...props}
-        />
+        <InputField label="main" id="main" color="main" {...props} />
+        <InputField label="light" id="light" color="light" {...props} />
+        <InputField label="dark" id="dark" color="dark" {...props} />
+        <InputField label="primary" id="primary" color="primary" {...props} />
         <InputField
           label="secondary"
-          id={"secondary"}
-          color={"secondary"}
+          id="secondary"
+          color="secondary"
           {...props}
         />
-        <InputField label="accent" id={"accent"} color={"accent"} {...props} />
-        <InputField label="info" id={"info"} color={"info"} {...props} />
-        <InputField
-          label="success"
-          id={"success"}
-          color={"success"}
-          {...props}
-        />
-        <InputField
-          label="warning"
-          id={"warning"}
-          color={"warning"}
-          {...props}
-        />
-        <InputField label="error" id={"error"} color={"error"} {...props} />
+        <InputField label="accent" id="accent" color="accent" {...props} />
+        <InputField label="info" id="info" color="info" {...props} />
+        <InputField label="success" id="success" color="success" {...props} />
+        <InputField label="warning" id="warning" color="warning" {...props} />
+        <InputField label="error" id="error" color="error" {...props} />
       </>
     );
   },

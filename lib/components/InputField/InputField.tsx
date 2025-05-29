@@ -1,4 +1,4 @@
-import { ComponentProps, SVGProps, useRef } from "react";
+import { ComponentProps, SVGProps } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
 import { useInputFieldStyles } from "./useInputFieldStyles";
@@ -6,6 +6,8 @@ import { useInputFieldStyles } from "./useInputFieldStyles";
 export type InputFieldProps = {
   /** Color of the texts and outlines. */
   color?: ColorType;
+  /** Type of the input. Only text based types are accepted. */
+  type?: "text" | "email" | "password" | "tel" | "url";
   /** Label of the input. */
   label?: string;
   /** Icon that will be placed inside the input field before the input text. */
@@ -25,8 +27,7 @@ export type InputFieldProps = {
 } & ComponentProps<"input">;
 
 export function InputField({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  type,
+  type = "text",
   color,
   label,
   startIcon,
@@ -40,7 +41,6 @@ export function InputField({
   className,
   ...rest
 }: InputFieldProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
   const {
     styles,
     labelStyles,
@@ -57,10 +57,6 @@ export function InputField({
     inputContainerClasses,
   });
 
-  function handleIconClick() {
-    inputRef.current?.focus();
-  }
-
   let styleVars = {};
   if (color) {
     styleVars = cssColorProps(color);
@@ -75,20 +71,19 @@ export function InputField({
       )}
       <div className={inputContainerStyles}>
         {startIcon && (
-          <div tabIndex={-1} className="ps-2" onClick={handleIconClick}>
+          <div className="absolute start-0 ps-2 pointer-events-none">
             <>{startIcon}</>
           </div>
         )}
         <input
-          ref={inputRef}
-          type="text"
+          type={type}
           aria-describedby={`${id}-error`}
           className={styles}
           id={id}
           {...rest}
         />
         {endIcon && (
-          <div tabIndex={-1} className="pe-2" onClick={handleIconClick}>
+          <div className="absolute end-0 pe-2 pointer-events-none">
             <>{endIcon}</>
           </div>
         )}

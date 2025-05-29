@@ -20,8 +20,8 @@ export function useInputFieldStyles({
   return {
     styles: twMerge(
       "input-field",
-      startIcon && " rounded-l-none",
-      endIcon && " rounded-r-none",
+      startIcon && "rounded-l-none ps-7",
+      endIcon && "rounded-r-none pe-7 ps-2",
       className,
     ),
     wrapperStyles: twMerge("input-field-wrapper", wrapperClasses),
