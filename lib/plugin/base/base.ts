@@ -69,6 +69,11 @@ export default <CssInJs>{
     color: "var(--color-main)",
     background: "var(--color-main-content)",
   },
+
+  ":autofill": {
+    borderRadius: "var(--radius-inputs);",
+  },
+
   "@keyframes hide-scroll": {
     "0%": { overflow: "hidden;" },
     "99%": { overflow: "hidden;" },

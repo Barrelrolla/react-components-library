@@ -32,7 +32,14 @@ export const Default: Story = {
     await expect(button, "renders").toBeTruthy();
   },
   render: (props) => {
-    return <InputField data-testid="default" {...props} />;
+    return (
+      <InputField
+        disabled
+        data-testid="default"
+        defaultValue={"gjegoeo"}
+        {...props}
+      />
+    );
   },
   args: {
     placeholder: "Input",
@@ -77,7 +84,21 @@ export const Colors: Story = {
   render: (props) => {
     return (
       <>
-        <InputField label="main" id="main" color="main" {...props} />
+        <InputField
+          defaultValue="gege"
+          disabled
+          label="main"
+          id="main"
+          color="main"
+          {...props}
+        />
+        <InputField
+          defaultValue="gege"
+          label="main"
+          id="main"
+          color="main"
+          {...props}
+        />
         <InputField label="light" id="light" color="light" {...props} />
         <InputField label="dark" id="dark" color="dark" {...props} />
         <InputField label="primary" id="primary" color="primary" {...props} />

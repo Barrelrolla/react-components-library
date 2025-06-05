@@ -2,10 +2,11 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".input-field-wrapper": {
-    "@apply relative flex flex-col cursor-text text-(--fg-color)": {},
+    "@apply relative flex flex-col cursor-text text-(--fg-color) ": {},
   },
   ".input-field": {
-    "@apply focus:outline-none p-2": {},
+    "@apply focus:outline-none p-2 disabled:cursor-not-allowed disabled:bg-dark/10 dark:disabled:bg-light/10 rounded-inputs disabled:opacity-70":
+      {},
   },
   ".input-field-label": {
     "@apply text-sm": {},

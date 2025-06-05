@@ -77,7 +77,7 @@ export function InputField({
         )}
         <input
           type={type}
-          aria-describedby={`${id}-error`}
+          aria-describedby={id ? `${id}-error` : ""}
           className={styles}
           id={id}
           {...rest}
