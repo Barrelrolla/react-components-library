@@ -8,7 +8,7 @@ import hamburgerButton from "./components/hamburgerButton";
 import hero from "./components/hero";
 import navbar from "./components/navbar";
 import utilities from "./utilities/utilities";
-import inputField from "./components/inputField";
+import input from "./components/input";
 
 export default createPlugin(
   ({ addBase, addComponents, addUtilities, addVariant }) => {
@@ -20,7 +20,7 @@ export default createPlugin(
       footer,
       hamburgerButton,
       hero,
-      inputField,
+      input,
       navbar,
     ]);
     addUtilities(utilities);

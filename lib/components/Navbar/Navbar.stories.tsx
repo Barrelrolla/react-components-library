@@ -1,6 +1,6 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { within, expect } from "@storybook/test";
+import { within, expect } from "storybook/test";
 import { Navbar } from "./Navbar";
 import { NavbarBrand } from "./NavbarBrand";
 import { NavbarCollapse } from "./NavbarCollapse";

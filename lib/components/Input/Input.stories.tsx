@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { expect, within } from "@storybook/test";
+import { expect, within } from "storybook/test";
 import { SearchIcon } from "@/icons";
-import { InputField } from "./InputField";
+import { Input } from "./Input";
 
-const meta: Meta<typeof InputField> = {
-  title: "Components/InputField",
+const meta: Meta<typeof Input> = {
+  title: "Components/Input",
   tags: ["autodocs"],
-  component: InputField,
+  component: Input,
   decorators: (Story) => (
     <div className="storybookContainer">
       <Story />
@@ -32,14 +32,7 @@ export const Default: Story = {
     await expect(button, "renders").toBeTruthy();
   },
   render: (props) => {
-    return (
-      <InputField
-        disabled
-        data-testid="default"
-        defaultValue={"gjegoeo"}
-        {...props}
-      />
-    );
+    return <Input data-testid="default" {...props} />;
   },
   args: {
     placeholder: "Input",
@@ -48,7 +41,7 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   render: (props) => {
-    return <InputField id="WithLabel" {...props} />;
+    return <Input id="WithLabel" {...props} />;
   },
   args: {
     placeholder: "Input",
@@ -58,7 +51,7 @@ export const WithLabel: Story = {
 
 export const WithIcon: Story = {
   render: (props) => {
-    return <InputField id="WithIcon" {...props} />;
+    return <Input id="WithIcon" {...props} />;
   },
   args: {
     startIcon: <SearchIcon />,
@@ -69,7 +62,7 @@ export const WithIcon: Story = {
 
 export const WithError: Story = {
   render: (props) => {
-    return <InputField id="WithError" {...props} />;
+    return <Input id="WithError" {...props} />;
   },
   args: {
     startIcon: <SearchIcon />,
@@ -84,35 +77,16 @@ export const Colors: Story = {
   render: (props) => {
     return (
       <>
-        <InputField
-          defaultValue="gege"
-          disabled
-          label="main"
-          id="main"
-          color="main"
-          {...props}
-        />
-        <InputField
-          defaultValue="gege"
-          label="main"
-          id="main"
-          color="main"
-          {...props}
-        />
-        <InputField label="light" id="light" color="light" {...props} />
-        <InputField label="dark" id="dark" color="dark" {...props} />
-        <InputField label="primary" id="primary" color="primary" {...props} />
-        <InputField
-          label="secondary"
-          id="secondary"
-          color="secondary"
-          {...props}
-        />
-        <InputField label="accent" id="accent" color="accent" {...props} />
-        <InputField label="info" id="info" color="info" {...props} />
-        <InputField label="success" id="success" color="success" {...props} />
-        <InputField label="warning" id="warning" color="warning" {...props} />
-        <InputField label="error" id="error" color="error" {...props} />
+        <Input label="main" id="main" color="main" {...props} />
+        <Input label="light" id="light" color="light" {...props} />
+        <Input label="dark" id="dark" color="dark" {...props} />
+        <Input label="primary" id="primary" color="primary" {...props} />
+        <Input label="secondary" id="secondary" color="secondary" {...props} />
+        <Input label="accent" id="accent" color="accent" {...props} />
+        <Input label="info" id="info" color="info" {...props} />
+        <Input label="success" id="success" color="success" {...props} />
+        <Input label="warning" id="warning" color="warning" {...props} />
+        <Input label="error" id="error" color="error" {...props} />
       </>
     );
   },

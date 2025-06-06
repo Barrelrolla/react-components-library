@@ -1,8 +1,9 @@
-import React from "react";
-import { DocsContainer } from "@storybook/blocks";
-import { addons } from "@storybook/preview-api";
-import { themes } from "@storybook/theming";
-import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode";
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useEffect, useState } from "react";
+import { DocsContainer } from "@storybook/addon-docs/blocks";
+import { addons } from "storybook/preview-api";
+import { themes } from "storybook/theming";
+import { DARK_MODE_EVENT_NAME } from "@vueless/storybook-dark-mode";
 import type { Preview } from "@storybook/react";
 import "../lib/index.css";
 
@@ -33,12 +34,12 @@ const preview: Preview = {
 
     docs: {
       container: ({ children, context }) => {
-        const [isDark, setDark] = React.useState();
+        const [isDark, setDark] = useState();
 
-        React.useEffect(() => {
+        useEffect(() => {
           channel.on(DARK_MODE_EVENT_NAME, setDark);
           return () => channel.removeListener(DARK_MODE_EVENT_NAME, setDark);
-        }, [channel, setDark]);
+        }, [setDark]);
 
         return (
           <DocsContainer

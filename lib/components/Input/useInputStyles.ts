@@ -1,6 +1,7 @@
 import { twMerge } from "tailwind-merge";
 
-export function useInputFieldStyles({
+export function useInputStyles({
+  bgFill,
   startIcon,
   endIcon,
   className,
@@ -9,6 +10,7 @@ export function useInputFieldStyles({
   errorClasses,
   inputContainerClasses,
 }: {
+  bgFill?: boolean;
   startIcon: boolean;
   endIcon: boolean;
   className?: string;
@@ -29,6 +31,7 @@ export function useInputFieldStyles({
     errorStyles: twMerge("input-field-error", errorClasses),
     inputContainerStyles: twMerge(
       "input-field-container",
+      bgFill && "bg-(--bg-color)/50",
       inputContainerClasses,
     ),
   };

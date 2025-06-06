@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { expect, within } from "@storybook/test";
+import { expect, within } from "storybook/test";
 import { HeartIcon, BookmarkIcon, ThumbIcon } from "@/icons";
 import { Button } from "./Button";
 

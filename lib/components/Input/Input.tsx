@@ -1,11 +1,13 @@
 import { ComponentProps, SVGProps } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
-import { useInputFieldStyles } from "./useInputFieldStyles";
+import { useInputStyles } from "./useInputStyles";
 
-export type InputFieldProps = {
+export type InputProps = {
   /** Color of the texts and outlines. */
   color?: ColorType;
+  /** If `true` will apply a bg fill on the input in the same color */
+  bgFill?: boolean;
   /** Type of the input. Only text based types are accepted. */
   type?: "text" | "email" | "password" | "tel" | "url";
   /** Label of the input. */
@@ -26,9 +28,10 @@ export type InputFieldProps = {
   inputContainerClasses?: string;
 } & ComponentProps<"input">;
 
-export function InputField({
+export function Input({
   type = "text",
   color,
+  bgFill = false,
   label,
   startIcon,
   endIcon,
@@ -40,14 +43,15 @@ export function InputField({
   id,
   className,
   ...rest
-}: InputFieldProps) {
+}: InputProps) {
   const {
     styles,
     labelStyles,
     errorStyles,
     wrapperStyles,
     inputContainerStyles,
-  } = useInputFieldStyles({
+  } = useInputStyles({
+    bgFill,
     startIcon: startIcon != undefined,
     endIcon: endIcon != undefined,
     className,

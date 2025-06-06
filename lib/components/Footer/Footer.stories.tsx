@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { expect, within } from "@storybook/test";
+import { expect, within } from "storybook/test";
 import { RocketIcon, GitHubIcon, LinkedInIcon } from "@/icons";
 import { Footer } from "./Footer";
 import { FooterBrand } from "./FooterBrand";

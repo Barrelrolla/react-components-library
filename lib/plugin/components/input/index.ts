@@ -15,7 +15,7 @@ export default <Record<string, CssInJs>>{
     "@apply text-sm": {},
   },
   ".input-field-container": {
-    "@apply flex items-center rounded-inputs border focus-within:outline-2 border-(--fg-color) outline-(--fg-color) bg-(--bg-color)/50":
+    "@apply flex items-center rounded-inputs border focus-within:outline-2 border-(--fg-color) outline-(--fg-color)":
       {},
   },
 };
