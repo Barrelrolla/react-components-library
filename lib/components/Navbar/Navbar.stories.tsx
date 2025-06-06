@@ -1,4 +1,4 @@
-import { ComponentProps, useEffect, useState } from "react";
+import { ComponentProps, ComponentType, useEffect, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { within, expect } from "storybook/test";
 import { Navbar } from "./Navbar";
@@ -35,7 +35,12 @@ type Props = ComponentProps<typeof Navbar> & {
 const meta: Meta<Props> = {
   title: "Components/Navbar",
   component: Navbar,
-  subcomponents: { NavbarBrand, NavbarToggle, NavbarCollapse, NavbarLink },
+  subcomponents: {
+    NavbarBrand: NavbarBrand as ComponentType<unknown>,
+    NavbarToggle: NavbarToggle as ComponentType<unknown>,
+    NavbarCollapse: NavbarCollapse as ComponentType<unknown>,
+    NavbarLink: NavbarLink as ComponentType<unknown>,
+  },
   tags: ["autodocs"],
   args: { selected: undefined },
   argTypes: {
@@ -110,7 +115,7 @@ export const PageDemo: Story = {
 
     return (
       <div
-        style={cssColorProps(color)}
+        style={color ? cssColorProps(color) : {}}
         className="bg-(--bg-color) pt-14 md:pt-0"
       >
         <Navbar color={color} {...rest}>

@@ -10,20 +10,21 @@ import { FooterLink } from "./FooterLink";
 import { FooterLinkGroup } from "./FooterLinkGroup";
 import { FooterLinksSection } from "./FooterLinksSection";
 import { FooterLinksTitle } from "./FooterLinksTitle";
+import { ComponentType } from "react";
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Footer",
   tags: ["autodocs"],
   component: Footer,
   subcomponents: {
-    FooterBrand,
-    FooterDivider,
-    FooterFullSection,
-    FooterIconsContainer,
-    FooterLink,
-    FooterLinkGroup,
-    FooterLinksSection,
-    FooterLinksTitle,
+    FooterBrand: FooterBrand as ComponentType<unknown>,
+    FooterDivider: FooterDivider as ComponentType<unknown>,
+    FooterFullSection: FooterFullSection as ComponentType<unknown>,
+    FooterIconsContainer: FooterIconsContainer as ComponentType<unknown>,
+    FooterLink: FooterLink as ComponentType<unknown>,
+    FooterLinkGroup: FooterLinkGroup as ComponentType<unknown>,
+    FooterLinksSection: FooterLinksSection as ComponentType<unknown>,
+    FooterLinksTitle: FooterLinksTitle as ComponentType<unknown>,
   },
   argTypes: {
     containerClasses: { if: { arg: "false", eq: "true" } },

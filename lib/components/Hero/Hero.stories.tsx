@@ -6,17 +6,18 @@ import { HeroSection } from "./HeroSection";
 import { HeroTitle } from "./HeroTitle";
 import { HeroText } from "./HeroText";
 import { Button } from "../Button";
+import { ComponentType } from "react";
 
 const meta: Meta<typeof Hero> = {
   title: "Components/Hero",
   tags: ["autodocs"],
   component: Hero,
   subcomponents: {
-    HeroActions,
-    HeroImageSection,
-    HeroSection,
-    HeroTitle,
-    HeroText,
+    HeroActions: HeroActions as ComponentType<unknown>,
+    HeroImageSection: HeroImageSection as ComponentType<unknown>,
+    HeroSection: HeroSection as ComponentType<unknown>,
+    HeroTitle: HeroTitle as ComponentType<unknown>,
+    HeroText: HeroText as ComponentType<unknown>,
   },
   argTypes: {
     children: {

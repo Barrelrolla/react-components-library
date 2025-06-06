@@ -54,25 +54,13 @@ export const Default: Story = {
     };
     return (
       <ButtonGroup {...rest}>
-        <Button
-          {...rest}
-          selected={selected === 0}
-          onClick={() => clickHandler(0)}
-        >
+        <Button selected={selected === 0} onClick={() => clickHandler(0)}>
           button
         </Button>
-        <Button
-          {...rest}
-          selected={selected === 1}
-          onClick={() => clickHandler(1)}
-        >
+        <Button selected={selected === 1} onClick={() => clickHandler(1)}>
           button
         </Button>
-        <Button
-          {...rest}
-          selected={selected === 2}
-          onClick={() => clickHandler(2)}
-        >
+        <Button selected={selected === 2} onClick={() => clickHandler(2)}>
           button
         </Button>
       </ButtonGroup>
@@ -96,25 +84,13 @@ export const Vertical: Story = {
     };
     return (
       <ButtonGroup variant={variant} vertical={vertical} {...rest}>
-        <Button
-          {...rest}
-          selected={selected === 0}
-          onClick={() => clickHandler(0)}
-        >
+        <Button selected={selected === 0} onClick={() => clickHandler(0)}>
           button
         </Button>
-        <Button
-          {...rest}
-          selected={selected === 1}
-          onClick={() => clickHandler(1)}
-        >
+        <Button selected={selected === 1} onClick={() => clickHandler(1)}>
           button
         </Button>
-        <Button
-          {...rest}
-          selected={selected === 2}
-          onClick={() => clickHandler(2)}
-        >
+        <Button selected={selected === 2} onClick={() => clickHandler(2)}>
           button
         </Button>
       </ButtonGroup>
@@ -137,21 +113,18 @@ export const Icon: Story = {
       }
     };
     return (
-      <ButtonGroup radius={radius}>
+      <ButtonGroup radius={radius} {...rest}>
         <Button
-          {...rest}
           selected={selected === 0}
           onClick={() => clickHandler(0)}
           startIcon={<HeartIcon />}
         />
         <Button
-          {...rest}
           selected={selected === 1}
           onClick={() => clickHandler(1)}
           startIcon={<HeartIcon />}
         />
         <Button
-          {...rest}
           selected={selected === 2}
           onClick={() => clickHandler(2)}
           startIcon={<HeartIcon />}

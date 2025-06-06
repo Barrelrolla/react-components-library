@@ -6,11 +6,11 @@ export function CardText({
   className,
   children,
   ...rest
-}: { className?: string } & ComponentProps<"h2">) {
+}: { className?: string } & ComponentProps<"p">) {
   const { styles } = useCardTextStyles({ className });
   return (
-    <h2 className={styles} {...rest}>
+    <p className={styles} {...rest}>
       {children}
-    </h2>
+    </p>
   );
 }

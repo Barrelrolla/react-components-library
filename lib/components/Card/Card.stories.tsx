@@ -7,18 +7,19 @@ import { CardImageContainer } from "./CardImageContainer";
 import { CardTitle } from "./CardTitle";
 import { CardText } from "./CardText";
 import { CardSection } from "./CardSection";
+import { ComponentType } from "react";
 
 const meta: Meta<typeof Card> = {
   title: "Components/Card",
   tags: ["autodocs"],
   component: Card,
   subcomponents: {
-    CardActions,
-    CardInteract,
-    CardImageContainer,
-    CardTitle,
-    CardText,
-    CardSection,
+    CardActions: CardActions as ComponentType<unknown>,
+    CardInteract: CardInteract as ComponentType<unknown>,
+    CardImageContainer: CardImageContainer as ComponentType<unknown>,
+    CardTitle: CardTitle as ComponentType<unknown>,
+    CardText: CardText as ComponentType<unknown>,
+    CardSection: CardSection as ComponentType<unknown>,
   },
   decorators: (Story) => (
     <div className="storybookContainer">
@@ -199,7 +200,7 @@ export const Horizontal: Story = {
     );
   },
   argTypes: {
-    vertical: {
+    horizontal: {
       if: { arg: "false", eq: "true" },
     },
   },
