@@ -18,10 +18,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./lib/*"]
     },
+    "types": ["vitest", "@testing-library/jest-dom"],
     "outDir": "./dist"
   },
   "include": ["lib"],

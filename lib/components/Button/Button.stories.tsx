@@ -46,6 +46,13 @@ export const Default: Story = {
 };
 
 export const Variants: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttons = canvas.getAllByRole("button");
+    await expect(buttons).toHaveLength(3);
+    await expect(buttons[1]).toHaveClass("btn-outline");
+    await expect(buttons[2]).toHaveClass("btn-ghost-none");
+  },
   render: ({ children, ...rest }) => {
     return (
       <>
@@ -67,6 +74,15 @@ export const Variants: Story = {
 };
 
 export const Ghost: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttons = canvas.getAllByRole("button");
+    await expect(buttons).toHaveLength(4);
+    await expect(buttons[0]).toHaveClass("btn-ghost-none");
+    await expect(buttons[1]).toHaveClass("btn-ghost-fill");
+    await expect(buttons[2]).toHaveClass("btn-ghost-outline");
+    await expect(buttons[3]).toHaveClass("btn-ghost-contrasting");
+  },
   render: ({ children, ...rest }) => {
     return (
       <>
@@ -120,6 +136,14 @@ export const Disabled: Story = {
 };
 
 export const Icon: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttons = canvas.getAllByRole("button");
+    await expect(buttons).toHaveLength(3);
+    await expect(
+      canvas.queryByText("Button", { selector: "button" }),
+    ).toBeNull();
+  },
   render: ({ ...rest }) => {
     return (
       <>
@@ -142,6 +166,11 @@ export const Icon: Story = {
 };
 
 export const Colors: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttons = canvas.getAllByRole("button");
+    await expect(buttons).toHaveLength(10);
+  },
   render: ({ children, ...rest }) => {
     return (
       <>

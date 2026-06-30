@@ -1,4 +1,4 @@
-import { ElementType, SVGProps } from "react";
+import { ElementType, ReactNode } from "react";
 import { Spinner } from "@/icons";
 import { ColorType, PolymorphicProps, SizeType } from "@/types";
 import { cssColorPropsReversed } from "@/util";
@@ -30,9 +30,9 @@ export type ButtonProps<E extends ElementType> = {
   /** If the loading indicator should be shown in the start or end of the button. */
   loadingPosition?: "start" | "end";
   /** Start icon. You can just pass an icon in the children, but using this prop will automatically replace that icon for a loading one if the `loading` prop is set to `true`. */
-  startIcon?: SVGProps<SVGSVGElement>;
+  startIcon?: ReactNode;
   /** Same as start icon, but at the end. */
-  endIcon?: SVGProps<SVGSVGElement>;
+  endIcon?: ReactNode;
   /** The button is wrapped in a div to change the cursor when disabled. If you need to pass any classes to that div, you can do so with this prop. */
   wrapperClasses?: string;
 } & PolymorphicProps<E>;
@@ -76,6 +76,12 @@ export function Button<E extends ElementType = typeof defaultType>({
   });
 
   const Element = as || defaultType;
+  const elementProps = {
+    ...(isDisabled && Element === "button" ? { disabled: true } : {}),
+    ...(isDisabled && Element !== "button"
+      ? { "aria-disabled": true as const, tabIndex: -1 as const }
+      : {}),
+  };
 
   return (
     <span className={wrapperStyles}>
@@ -83,7 +89,7 @@ export function Button<E extends ElementType = typeof defaultType>({
         data-selected={selected}
         style={{ ...cssColorPropsReversed(resolvedColor), ...style }}
         className={styles}
-        disabled={isDisabled}
+        {...elementProps}
         {...rest}
       >
         <>

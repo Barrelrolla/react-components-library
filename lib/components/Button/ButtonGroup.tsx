@@ -1,4 +1,4 @@
-import { Children, ComponentProps } from "react";
+import { Children, ComponentProps, Fragment } from "react";
 import { ColorType, SizeType } from "@/types";
 import { cssColorPropsReversed } from "@/util";
 import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
@@ -74,7 +74,7 @@ export function ButtonGroup({
         >
           {Children.map(children, (child, index) => {
             return (
-              <>
+              <Fragment key={index}>
                 {divider && index !== 0 && (
                   <Divider
                     color={color}
@@ -84,7 +84,7 @@ export function ButtonGroup({
                   />
                 )}
                 {child}
-              </>
+              </Fragment>
             );
           })}
         </div>

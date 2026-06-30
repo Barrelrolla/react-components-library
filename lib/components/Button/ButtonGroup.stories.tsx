@@ -1,5 +1,6 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
+import { expect, within } from "storybook/test";
 import { HeartIcon } from "@/icons";
 import { Button } from "./Button";
 import { ButtonGroup } from "./ButtonGroup";
@@ -39,6 +40,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttons = canvas.getAllByRole("button");
+    await expect(buttons).toHaveLength(3);
+    await buttons[0].click();
+    await expect(buttons[0]).toHaveAttribute("data-selected", "true");
+  },
   render: ({ selection, ...rest }) => {
     const [selected, setSelected] = useState<number | undefined>(undefined);
     useEffect(() => {
@@ -69,6 +77,11 @@ export const Default: Story = {
 };
 
 export const Vertical: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const group = canvas.getByTestId("button-group");
+    await expect(group).toHaveClass("flex-col");
+  },
   render: ({ selection, variant = "outline", vertical = true, ...rest }) => {
     const [selected, setSelected] = useState<number | undefined>(undefined);
     useEffect(() => {
@@ -83,7 +96,12 @@ export const Vertical: Story = {
       }
     };
     return (
-      <ButtonGroup variant={variant} vertical={vertical} {...rest}>
+      <ButtonGroup
+        variant={variant}
+        vertical={vertical}
+        {...rest}
+        data-testid="button-group"
+      >
         <Button selected={selected === 0} onClick={() => clickHandler(0)}>
           button
         </Button>
@@ -99,6 +117,12 @@ export const Vertical: Story = {
 };
 
 export const Icon: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttons = canvas.getAllByRole("button");
+    await expect(buttons).toHaveLength(3);
+    await expect(buttons[0]).toHaveClass("btn-icon-md");
+  },
   render: ({ radius = "pill", selection, ...rest }) => {
     const [selected, setSelected] = useState<number | undefined>(undefined);
     useEffect(() => {
@@ -135,6 +159,11 @@ export const Icon: Story = {
 };
 
 export const SplitButton: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttons = canvas.getAllByRole("button");
+    await expect(buttons).toHaveLength(2);
+  },
   render: ({ radius = "pill", ...rest }) => {
     return (
       <ButtonGroup {...rest} radius={radius}>
