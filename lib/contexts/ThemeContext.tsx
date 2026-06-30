@@ -1,3 +1,4 @@
+"use client";
 import {
   createContext,
   PropsWithChildren,
@@ -111,8 +112,6 @@ export function ThemeContextProvider({
       localStorage.removeItem(lsThemeName);
     }
   }, [theme]);
-
-  console.log(darkMode);
 
   return (
     <ThemeContext.Provider
