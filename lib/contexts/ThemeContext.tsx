@@ -37,8 +37,11 @@ export function ThemeContextProvider({
   value,
   children,
 }: { value?: ThemeContextProps } & PropsWithChildren) {
-  const [theme, setTheme] = useState<string | undefined>(undefined);
-  const [darkMode, setDarkMode] = useState<DarkModeType>(systemModeName);
+  const initialDarkMode =
+    (localStorage.getItem(lsDarkModeName) as DarkModeType) || systemModeName;
+  const initialTheme = localStorage.getItem(lsThemeName) || undefined;
+  const [theme, setTheme] = useState<string | undefined>(initialTheme);
+  const [darkMode, setDarkMode] = useState<DarkModeType>(initialDarkMode);
   const [isDark, setIsDark] = useState(darkMode === darkModeName);
 
   useEffect(() => {
@@ -108,6 +111,8 @@ export function ThemeContextProvider({
       localStorage.removeItem(lsThemeName);
     }
   }, [theme]);
+
+  console.log(darkMode);
 
   return (
     <ThemeContext.Provider
