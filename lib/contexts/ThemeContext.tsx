@@ -1,4 +1,3 @@
-"use client";
 import {
   createContext,
   PropsWithChildren,
@@ -27,7 +26,7 @@ export type ThemeContextType =
   | ({
       theme: string | undefined;
       setTheme: (theme: string) => void;
-      darkMode: DarkModeType;
+      darkMode: DarkModeType | undefined;
       isDark: boolean;
       setDarkMode: (themeMode: DarkModeType) => void;
     } & ThemeContextProps)
@@ -38,11 +37,8 @@ export function ThemeContextProvider({
   value,
   children,
 }: { value?: ThemeContextProps } & PropsWithChildren) {
-  const initialDarkMode =
-    (localStorage.getItem(lsDarkModeName) as DarkModeType) || systemModeName;
-  const initialTheme = localStorage.getItem(lsThemeName) || undefined;
-  const [theme, setTheme] = useState<string | undefined>(initialTheme);
-  const [darkMode, setDarkMode] = useState<DarkModeType>(initialDarkMode);
+  const [theme, setTheme] = useState<string | undefined>(undefined);
+  const [darkMode, setDarkMode] = useState<DarkModeType | undefined>(undefined);
   const [isDark, setIsDark] = useState(darkMode === darkModeName);
 
   useEffect(() => {
@@ -82,6 +78,10 @@ export function ThemeContextProvider({
 
   useEffect(() => {
     const { classList } = document.documentElement;
+    if (!darkMode) {
+      return;
+    }
+
     if (darkMode === darkModeName) {
       classList.add(darkModeName);
       localStorage.setItem(lsDarkModeName, darkModeName);
