@@ -98,10 +98,10 @@ export const WithLinkGroups: Story = {
           <span>copyright stuff</span>
           <FooterIconsContainer>
             <FooterLink href="#">
-              <GitHubIcon />
+              <GitHubIcon aria-label="github logo" />
             </FooterLink>
             <FooterLink href="#">
-              <LinkedInIcon />
+              <LinkedInIcon aria-label="linkedin logo" />
             </FooterLink>
           </FooterIconsContainer>
         </FooterFullSection>

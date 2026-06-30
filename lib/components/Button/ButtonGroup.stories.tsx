@@ -139,16 +139,19 @@ export const Icon: Story = {
     return (
       <ButtonGroup radius={radius} {...rest}>
         <Button
+          aria-label="like"
           selected={selected === 0}
           onClick={() => clickHandler(0)}
           startIcon={<HeartIcon />}
         />
         <Button
+          aria-label="like"
           selected={selected === 1}
           onClick={() => clickHandler(1)}
           startIcon={<HeartIcon />}
         />
         <Button
+          aria-label="like"
           selected={selected === 2}
           onClick={() => clickHandler(2)}
           startIcon={<HeartIcon />}
@@ -168,7 +171,7 @@ export const SplitButton: Story = {
     return (
       <ButtonGroup {...rest} radius={radius}>
         <Button className="">Button</Button>
-        <Button startIcon={<HeartIcon />} />
+        <Button aria-label="like" startIcon={<HeartIcon />} />
       </ButtonGroup>
     );
   },

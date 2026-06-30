@@ -164,6 +164,7 @@ export const PageDemo: Story = {
             <img
               className="hero-image md:w-[50svw]"
               src="https://picsum.photos/1400/1400"
+              alt="placeholder image"
             />
           </HeroImageSection>
         </Hero>
@@ -196,10 +197,10 @@ export const PageDemo: Story = {
             <span>copyright stuff</span>
             <div className="flex gap-4 text-xl">
               <FooterLink href="#">
-                <GitHubIcon />
+                <GitHubIcon aria-label="github logo" />
               </FooterLink>
               <FooterLink href="#">
-                <LinkedInIcon />
+                <LinkedInIcon aria-label="linkedin logo" />
               </FooterLink>
             </div>
           </FooterFullSection>

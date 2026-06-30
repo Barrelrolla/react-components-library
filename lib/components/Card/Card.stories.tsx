@@ -74,6 +74,7 @@ export const WithImage: Story = {
             <img
               className="card-image"
               src="https://picsum.photos/400/200"
+              alt="placeholder image"
             ></img>
           </CardImageContainer>
         </CardSection>
@@ -101,6 +102,7 @@ export const WithClickableImage: Story = {
               <img
                 className="card-image"
                 src="https://picsum.photos/400/200"
+                alt="placeholder image"
               ></img>
             </CardImageContainer>
           </CardInteract>
@@ -129,6 +131,7 @@ export const WithClickableBody: Story = {
               <img
                 className="card-image"
                 src="https://picsum.photos/400/200"
+                alt="placeholder image"
               ></img>
             </CardImageContainer>
           </CardSection>
@@ -157,6 +160,7 @@ export const WithPaddedImage: Story = {
               <img
                 className="card-image"
                 src="https://picsum.photos/400/200"
+                alt="placeholder image"
               ></img>
             </CardImageContainer>
           </CardInteract>
@@ -184,6 +188,7 @@ export const Horizontal: Story = {
             <img
               className="card-image"
               src="https://picsum.photos/400/200"
+              alt="placeholder image"
             ></img>
           </CardImageContainer>
         </CardSection>

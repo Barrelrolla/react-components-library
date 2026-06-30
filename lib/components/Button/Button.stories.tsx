@@ -147,14 +147,21 @@ export const Icon: Story = {
   render: ({ ...rest }) => {
     return (
       <>
-        <Button radius="pill" startIcon={<HeartIcon />} {...rest}></Button>
         <Button
+          aria-label="like"
+          radius="pill"
+          startIcon={<HeartIcon />}
+          {...rest}
+        ></Button>
+        <Button
+          aria-label="thumbsup"
           radius="none"
           variant="outline"
           startIcon={<ThumbIcon />}
           {...rest}
         ></Button>
         <Button
+          aria-label="bookmark"
           variant="ghost"
           ghostHover="fill"
           startIcon={<BookmarkIcon />}
@@ -240,11 +247,36 @@ export const Sizes: Story = {
           </Button>
         </div>
         <div className="flex flex-wrap items-start justify-center gap-2">
-          <Button {...rest} startIcon={<HeartIcon />} size="xs"></Button>
-          <Button {...rest} startIcon={<HeartIcon />} size="sm"></Button>
-          <Button {...rest} startIcon={<HeartIcon />} size="md"></Button>
-          <Button {...rest} startIcon={<HeartIcon />} size="lg"></Button>
-          <Button {...rest} startIcon={<HeartIcon />} size="xl"></Button>
+          <Button
+            aria-label="like"
+            {...rest}
+            startIcon={<HeartIcon />}
+            size="xs"
+          ></Button>
+          <Button
+            aria-label="like"
+            {...rest}
+            startIcon={<HeartIcon />}
+            size="sm"
+          ></Button>
+          <Button
+            aria-label="like"
+            {...rest}
+            startIcon={<HeartIcon />}
+            size="md"
+          ></Button>
+          <Button
+            aria-label="like"
+            {...rest}
+            startIcon={<HeartIcon />}
+            size="lg"
+          ></Button>
+          <Button
+            aria-label="like"
+            {...rest}
+            startIcon={<HeartIcon />}
+            size="xl"
+          ></Button>
         </div>
         <div className="flex w-full items-start justify-center gap-2">
           <Button
@@ -254,6 +286,7 @@ export const Sizes: Story = {
             responsive
           </Button>
           <Button
+            aria-label="like"
             {...rest}
             className="btn-icon-xs sm:btn-icon-sm md:btn-icon-md lg:btn-icon-lg xl:btn-icon-xl"
             startIcon={<HeartIcon />}

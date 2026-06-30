@@ -82,6 +82,7 @@ export const WithImage: Story = {
             <img
               className="hero-image md:w-[50vw]"
               src="https://picsum.photos/1400/1400"
+              alt="placeholder image"
             />
           </HeroImageSection>
         </Hero>
