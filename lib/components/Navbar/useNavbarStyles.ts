@@ -9,7 +9,7 @@ function getErrorMessage(componentName: string) {
 export function useNavbarStyles({
   fixed,
   position,
-  glass,
+  glass: isGlass,
   hasShadow,
   collapseAt,
   isOpen,
@@ -28,11 +28,11 @@ export function useNavbarStyles({
   return {
     styles: twMerge(
       "navbar",
-      glass && "glass",
-      glass && isOpen && collapseAt == "sm" && "not-sm:bg-(--bg-color)/80",
-      glass && isOpen && collapseAt == "md" && "not-md:bg-(--bg-color)/80",
-      glass && isOpen && collapseAt == "lg" && "not-lg:bg-(--bg-color)/80",
-      glass && isOpen && collapseAt == "xl" && "not-xl:bg-(--bg-color)/80",
+      isGlass && "glass",
+      isGlass && isOpen && collapseAt == "sm" && "not-sm:bg-(--bg-color)/80",
+      isGlass && isOpen && collapseAt == "md" && "not-md:bg-(--bg-color)/80",
+      isGlass && isOpen && collapseAt == "lg" && "not-lg:bg-(--bg-color)/80",
+      isGlass && isOpen && collapseAt == "xl" && "not-xl:bg-(--bg-color)/80",
       fixed && "fixed left-0 z-20",
       position === "top" && "navigation-decoration-bottom top-0",
       position === "bottom" && "navigation-decoration-top bottom-0",
