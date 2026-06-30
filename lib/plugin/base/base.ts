@@ -26,6 +26,7 @@ export default <CssInJs>{
     "--mod-highlight": "-0.05",
     "--radius-inputs": "0.25rem",
     "--radius-containers": "0.5rem",
+    "--radius-infos": "1rem",
     "--radius-navigation": "0.5rem",
     "--border-containers": "1px",
     "--border-navigation": "1px",

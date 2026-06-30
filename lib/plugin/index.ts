@@ -1,6 +1,7 @@
 import createPlugin from "tailwindcss/plugin";
 import base from "./base/base";
 import anchor from "./components/anchor";
+import badge from "./components/badge";
 import button from "./components/button";
 import card from "./components/card";
 import footer from "./components/footer";
@@ -10,11 +11,14 @@ import navbar from "./components/navbar";
 import utilities from "./utilities/utilities";
 import input from "./components/input";
 
-export default createPlugin(
+type TailwindPlugin = ReturnType<typeof createPlugin>;
+
+const plugin: TailwindPlugin = createPlugin(
   ({ addBase, addComponents, addUtilities, addVariant }) => {
     addBase(base);
     addComponents([
       anchor,
+      badge,
       button,
       card,
       footer,
@@ -55,3 +59,5 @@ export default createPlugin(
     },
   },
 );
+
+export default plugin;
