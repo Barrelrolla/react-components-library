@@ -84,8 +84,8 @@ export function Navbar({
         <nav className={navStyles} {...rest}>
           {children}
         </nav>
-        <div className={backdropStyles} onClick={outsideClickHandler}></div>
       </header>
+      <div className={backdropStyles} onClick={outsideClickHandler}></div>
     </NavbarContextProvider>
   );
 }
