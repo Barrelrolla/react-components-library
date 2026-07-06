@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".navbar": {
-    "@apply w-full bg-(--bg-color) text-(--fg-color) transition-colors motion-safe:duration-(--dropdown-animation-duration)":
+    "@apply flex w-full bg-(--bg-color) text-(--fg-color) transition-colors motion-safe:duration-(--dropdown-animation-duration)":
       {},
   },
   ".navbar-nav": {
