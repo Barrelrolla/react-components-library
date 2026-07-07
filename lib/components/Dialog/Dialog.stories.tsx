@@ -34,6 +34,50 @@ export const Default: Story = {
         <Button onClick={() => setIsOpen(true)} data-testid="default">
           open dialog
         </Button>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem
+        sint in illum consequatur reprehenderit reiciendis nostrum, fugiat ullam
+        modi distinctio nihil, fuga corporis dolor magni ex minus obcaecati
+        adipisci fugit soluta maxime accusantium delectus ipsam molestiae
+        veniam? Est ipsam placeat atque recusandae tenetur veritatis deleniti,
+        animi omnis provident obcaecati distinctio cupiditate ea incidunt odio
+        sapiente eos a eaque voluptate veniam ab nemo. Consequuntur adipisci
+        eveniet vero repudiandae, blanditiis id molestias aliquam, temporibus,
+        voluptatibus iusto eaque eius? Fuga voluptatum molestias neque quasi
+        doloribus, nobis esse animi perspiciatis ad id commodi est! Cum et
+        quidem deleniti officiis velit sed autem? Accusamus aut numquam iure
+        laudantium corporis sint sapiente non facere, consequatur harum
+        repudiandae, maiores eligendi doloremque. Quibusdam ex eaque eum.
+        Veritatis, ipsa nostrum incidunt placeat velit eveniet cupiditate. In
+        quis perferendis enim at assumenda alias mollitia modi dolor earum
+        ducimus tempora libero a laudantium sit iusto tenetur facere veniam
+        corporis, impedit, aspernatur aliquid aperiam ipsum. Blanditiis, est
+        impedit assumenda exercitationem maiores, quas debitis perferendis quasi
+        provident repellendus dicta fuga ipsum? Repudiandae, quam. Commodi
+        explicabo dolorem nihil voluptatem cupiditate repudiandae sequi quasi
+        earum laboriosam animi. Dicta illum sed numquam excepturi, beatae
+        nostrum pariatur architecto eveniet quam non laboriosam, id
+        reprehenderit? Quibusdam iure, alias, quae sequi pariatur eius amet
+        aliquam deserunt doloribus soluta nobis omnis dignissimos unde id animi,
+        inventore eveniet libero harum nisi ipsum vel recusandae. Provident
+        eligendi quidem expedita libero quas nesciunt aspernatur id veritatis
+        necessitatibus doloribus nulla impedit omnis ipsam laudantium eius
+        dignissimos sit, aperiam, consequatur placeat minus, quo laborum
+        perferendis porro ratione! Ex eos, provident, facilis maxime nisi vel
+        reprehenderit sit repellat sapiente tempore quaerat perspiciatis placeat
+        quos esse a, officia inventore ullam quod earum velit odio saepe et quo
+        fugit! Amet deleniti vero mollitia quasi ad facere vitae doloribus vel
+        est ipsum suscipit delectus excepturi expedita minima et tenetur fugit
+        maiores animi dicta cum, molestiae rem commodi? Amet sit dolores
+        laudantium beatae dolorum aspernatur est nemo, eius sed quis, autem hic
+        aut saepe repudiandae enim et doloremque necessitatibus provident
+        architecto numquam ad corrupti, reiciendis exercitationem ratione? Nam
+        enim deleniti, corrupti dolore, voluptates, molestiae odit quibusdam
+        fuga obcaecati hic autem dicta. Cumque voluptatem laboriosam animi
+        commodi dignissimos porro dolores nam facere quo amet quod, esse
+        deserunt earum, illum, itaque officiis iure repudiandae vel ullam.
+        Vitae, pariatur temporibus delectus exercitationem nobis ratione minus
+        repudiandae illum rerum? Commodi alias ratione velit veniam, magnam et
+        esse sapiente officiis quidem? Ullam delectus beatae et.
         <Dialog isOpen={isOpen} setIsOpen={setIsOpen}>
           <Card containerClasses="@container-normal">
             <CardTitle>Lorem, ipsum dolor.</CardTitle>
@@ -46,7 +90,10 @@ export const Default: Story = {
             </CardActions>
           </Card>
           <Dialog isOpen={isOpenSecond} setIsOpen={setIsOpenSecond}>
-            <Card containerClasses="@container-normal" size="xl">
+            <Card
+              containerClasses="@container-normal max-h-[calc(100vh-2rem)] overflow-y-scroll"
+              size="xl"
+            >
               <CardTitle>Lorem, ipsum dolor.</CardTitle>
               <CardText>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
@@ -74,7 +121,7 @@ export const Default: Story = {
                 totam? Cupiditate illo iure molestiae modi quasi excepturi magni
                 dolore eum temporibus. Veniam incidunt quos ipsam alias.
               </CardText>
-              <CardActions className="flex w-full flex-row justify-between">
+              <CardActions className="flex w-full flex-row justify-end">
                 <Button onClick={() => setIsOpenSecond(false)}>
                   Close second
                 </Button>
