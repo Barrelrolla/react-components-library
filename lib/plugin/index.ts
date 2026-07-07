@@ -10,6 +10,7 @@ import hero from "./components/hero";
 import navbar from "./components/navbar";
 import utilities from "./utilities/utilities";
 import input from "./components/input";
+import dialog from "./components/dialog";
 
 type TailwindPlugin = ReturnType<typeof createPlugin>;
 
@@ -21,6 +22,7 @@ const plugin: TailwindPlugin = createPlugin(
       badge,
       button,
       card,
+      dialog,
       footer,
       hamburgerButton,
       hero,

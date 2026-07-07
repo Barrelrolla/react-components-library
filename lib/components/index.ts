@@ -3,6 +3,7 @@ export * from "./Badge";
 export * from "./Button";
 export * from "./Card";
 export * from "./DarkModeToggle";
+export * from "./Dialog";
 export * from "./Divider";
 export * from "./Footer";
 export * from "./HamburgerButton";
