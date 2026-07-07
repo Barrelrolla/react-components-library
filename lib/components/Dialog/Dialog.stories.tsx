@@ -28,6 +28,35 @@ export const Default: Story = {
   },
   render: (props) => {
     const [isOpen, setIsOpen] = useState(props.isOpen);
+    return (
+      <>
+        <Button onClick={() => setIsOpen(true)} data-testid="default">
+          open dialog
+        </Button>
+        <Dialog isOpen={isOpen} setIsOpen={setIsOpen}>
+          <Card containerClasses="@container-normal">
+            <CardTitle>Lorem, ipsum dolor.</CardTitle>
+            <CardText>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, id!
+            </CardText>
+            <CardActions className="flex w-full flex-row justify-end">
+              <Button onClick={() => setIsOpen(false)}>close</Button>
+            </CardActions>
+          </Card>
+        </Dialog>
+      </>
+    );
+  },
+};
+
+export const BigText: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByTestId("default");
+    await expect(button, "renders").toBeTruthy();
+  },
+  render: (props) => {
+    const [isOpen, setIsOpen] = useState(props.isOpen);
     const [isOpenSecond, setIsOpenSecond] = useState(props.isOpen);
     return (
       <>
