@@ -28,6 +28,7 @@ export function Navbar({
   fixed = true,
   position = "top",
   glass = true,
+  style,
   children,
   className,
   backdropClasses,
@@ -80,7 +81,7 @@ export function Navbar({
         setIsOpen,
       }}
     >
-      <header className={styles} style={cssColorProps(color)}>
+      <header className={styles} style={{ ...cssColorProps(color), ...style }}>
         <nav className={navStyles} {...rest}>
           {children}
         </nav>
