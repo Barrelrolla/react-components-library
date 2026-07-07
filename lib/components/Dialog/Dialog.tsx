@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   FloatingFocusManager,
@@ -26,6 +26,7 @@ export function Dialog({
   children,
   ...props
 }: DialogProps) {
+  const [container, setContainer] = useState<HTMLElement | null>(null);
   const { refs, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
@@ -43,7 +44,11 @@ export function Dialog({
     backdropClasses,
   });
 
-  if (!isOpen) {
+  useEffect(() => {
+    setContainer(document.body);
+  }, []);
+
+  if (!isOpen || !container) {
     return;
   }
 
@@ -63,6 +68,6 @@ export function Dialog({
         </dialog>
       </FloatingFocusManager>
     </FloatingOverlay>,
-    document.body,
+    container,
   );
 }
