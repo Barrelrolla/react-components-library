@@ -33,7 +33,7 @@ export function Dialog({
   });
 
   const click = useClick(context);
-  const dismiss = useDismiss(context, { outsidePressEvent: "mousedown" });
+  const dismiss = useDismiss(context, { outsidePressEvent: "click" });
   const role = useRole(context);
   const { getFloatingProps } = useInteractions([click, dismiss, role]);
   const labelId = useId();

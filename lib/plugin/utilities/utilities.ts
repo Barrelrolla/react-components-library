@@ -62,7 +62,7 @@ export default <Record<string, CssInJs>>{
   },
 
   ".backdrop": {
-    "@apply fixed top-0 left-0 z-30 h-screen w-screen": {},
+    "@apply fixed top-0 left-0 z-30 h-screen w-screen backdrop-blur-xs": {},
   },
 
   ".rounded-inputs": {
@@ -77,21 +77,28 @@ export default <Record<string, CssInJs>>{
     "@apply rounded-(--radius-navigation)": {},
   },
 
+  ".border-inputs": {
+    "@apply border-(length:--border-inputs) border-(--fg-color)/(--border-transparency)":
+      {},
+  },
+
   ".border-containers": {
-    "@apply border-(length:--border-containers)": {},
+    "@apply border-(length:--border-containers) border-(--fg-color)/(--border-transparency)":
+      {},
   },
 
   ".border-navigation": {
-    "@apply border-(length:--border-navigation)": {},
+    "@apply border-(length:--border-navigation) border-(--fg-color)/(--border-transparency)":
+      {},
   },
 
   ".navigation-decoration-top": {
-    "@apply rounded-t-(length:--radius-navigation) border-t-(length:--border-navigation)":
+    "@apply rounded-t-(length:--radius-navigation) border-t-(length:--border-navigation) border-(--fg-color)/(--border-transparency)":
       {},
   },
 
   ".navigation-decoration-bottom": {
-    "@apply rounded-b-(length:--radius-navigation) border-b-(length:--border-navigation)":
+    "@apply rounded-b-(length:--radius-navigation) border-b-(length:--border-navigation) border-(--fg-color)/(--border-transparency)":
       {},
   },
 

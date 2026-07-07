@@ -5,7 +5,7 @@ export default <Record<string, CssInJs>>{
     "@apply relative flex flex-col cursor-text text-(--fg-color) ": {},
   },
   ".input-field": {
-    "@apply focus:outline-none p-2 disabled:cursor-not-allowed disabled:bg-dark/10 dark:disabled:bg-light/10 rounded-inputs disabled:opacity-70":
+    "@apply focus:outline-none py-1 px-2 disabled:cursor-not-allowed disabled:bg-dark/10 dark:disabled:bg-light/10 rounded-inputs disabled:opacity-70":
       {},
   },
   ".input-field-label": {
@@ -15,7 +15,7 @@ export default <Record<string, CssInJs>>{
     "@apply text-sm": {},
   },
   ".input-field-container": {
-    "@apply flex items-center rounded-inputs border focus-within:outline-2 border-(--fg-color) outline-(--fg-color)":
+    "@apply flex items-center rounded-inputs border-inputs focus-within:outline-2 outline-(--fg-color)":
       {},
   },
 };

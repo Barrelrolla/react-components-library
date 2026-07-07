@@ -30,7 +30,7 @@ export type InputProps = {
 
 export function Input({
   type = "text",
-  color,
+  color = "main",
   bgFill = false,
   label,
   startIcon,
@@ -75,7 +75,7 @@ export function Input({
       )}
       <div className={inputContainerStyles}>
         {startIcon && (
-          <div className="absolute start-0 ps-2 pointer-events-none">
+          <div className="pointer-events-none absolute start-0 ps-2">
             <>{startIcon}</>
           </div>
         )}
@@ -87,7 +87,7 @@ export function Input({
           {...rest}
         />
         {endIcon && (
-          <div className="absolute end-0 pe-2 pointer-events-none">
+          <div className="pointer-events-none absolute end-0 pe-2">
             <>{endIcon}</>
           </div>
         )}
