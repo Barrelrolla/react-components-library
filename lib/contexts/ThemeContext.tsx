@@ -102,7 +102,7 @@ export function ThemeContextProvider({
     }
   }, [darkMode]);
 
-  useEffect(() => {
+  function setThemeFromOutside(theme: string) {
     const { dataset } = document.documentElement;
     if (theme) {
       dataset.theme = theme;
@@ -111,7 +111,7 @@ export function ThemeContextProvider({
       dataset.theme = undefined;
       localStorage.removeItem(lsThemeName);
     }
-  }, [theme]);
+  }
 
   return (
     <ThemeContext.Provider
@@ -119,7 +119,7 @@ export function ThemeContextProvider({
         theme,
         isDark,
         darkMode,
-        setTheme,
+        setTheme: setThemeFromOutside,
         setDarkMode,
         scalingButtons:
           value?.scalingButtons !== undefined ? value.scalingButtons : true,
