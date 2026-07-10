@@ -1,0 +1,19 @@
+import{j as r}from"./iframe-BAI6kfnW.js";import"./Anchor-CtHsuR9g.js";import"./Badge-CEHTjUab.js";import{B as t}from"./Button-DX1ZFo-Y.js";import"./ButtonGroup-DhewJFWd.js";import"./CardTitle-Na0ZiRr_.js";import"./DarkModeToggle-Mx-4FEhf.js";import"./DarkModeSelector-DSD88ylm.js";import"./Divider-C34ctDMH.js";import"./FooterLinksTitle-D2i4iADH.js";import"./HamburgerButton-CZnvXgRJ.js";import{H as i,a,b as m,c}from"./HeroText-dCOEXrk_.js";import"./Input-LIN5AMJX.js";import"./NavbarToggle-COBZhP0L.js";import"./preload-helper-Dp1pzeXC.js";import"./bundle-mjs-169JcMJR.js";import"./icons-D0qGngJ9.js";const S={title:"Intro/Welcome"},o={render:()=>r.jsx("div",{className:"bg-main",children:r.jsx(i,{textAlign:"center",className:"h-screen min-h-0",children:r.jsxs(a,{children:[r.jsx(m,{children:"Welcome to my react components library"}),r.jsxs(c,{children:[r.jsx(t,{as:"a",href:"./?path=/story/components",variant:"outline",children:"Components"}),r.jsx(t,{as:"a",href:"./?path=/docs/intro-installation--docs",children:"Installation"})]})]})})})};var e,n,s;o.parameters={...o.parameters,docs:{...(e=o.parameters)==null?void 0:e.docs,source:{originalSource:`{
+  render: () => {
+    return <div className="bg-main">\r
+        <Hero textAlign="center" className="h-screen min-h-0">\r
+          <HeroSection>\r
+            <HeroTitle>Welcome to my react components library</HeroTitle>\r
+            <HeroActions>\r
+              <Button as="a" href="./?path=/story/components" variant="outline">\r
+                Components\r
+              </Button>\r
+              <Button as="a" href="./?path=/docs/intro-installation--docs">\r
+                Installation\r
+              </Button>\r
+            </HeroActions>\r
+          </HeroSection>\r
+        </Hero>\r
+      </div>;
+  }
+}`,...(s=(n=o.parameters)==null?void 0:n.docs)==null?void 0:s.source}}};const I=["Welcome"];export{o as Welcome,I as __namedExportsOrder,S as default};
