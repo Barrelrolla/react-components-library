@@ -107,9 +107,11 @@ export function ThemeContextProvider({
     if (theme) {
       dataset.theme = theme;
       localStorage.setItem(lsThemeName, theme);
+      setTheme(theme);
     } else {
       dataset.theme = undefined;
       localStorage.removeItem(lsThemeName);
+      setTheme(undefined);
     }
   }
 
