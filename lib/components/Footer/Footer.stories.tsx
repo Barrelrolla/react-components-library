@@ -11,6 +11,7 @@ import { FooterLinkGroup } from "./FooterLinkGroup";
 import { FooterLinksSection } from "./FooterLinksSection";
 import { FooterLinksTitle } from "./FooterLinksTitle";
 import { ComponentType } from "react";
+import { availableColors, availableResponsiveSizes } from "@/types";
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Footer",
@@ -27,8 +28,14 @@ const meta: Meta<typeof Footer> = {
     FooterLinksTitle: FooterLinksTitle as ComponentType<unknown>,
   },
   argTypes: {
-    containerClasses: { if: { arg: "false", eq: "true" } },
-    className: { if: { arg: "false", eq: "true" } },
+    color: { control: { type: "select" }, options: availableColors },
+    responsiveAt: {
+      control: { type: "inline-radio" },
+      options: availableResponsiveSizes,
+    },
+    containerStyle: { table: { disable: true } },
+    containerClasses: { table: { disable: true } },
+    className: { table: { disable: true } },
   },
 };
 

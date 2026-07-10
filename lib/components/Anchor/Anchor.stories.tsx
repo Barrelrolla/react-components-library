@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { Anchor } from "./Anchor";
+import { availableColors } from "@/types";
 
 const meta: Meta<typeof Anchor> = {
   title: "Components/Anchor",
@@ -13,10 +14,14 @@ const meta: Meta<typeof Anchor> = {
   ),
   argTypes: {
     children: { name: "text" },
-    color: { control: { type: "select" } },
-    href: { if: { arg: "false", exists: true } },
-    ref: { if: { arg: "false", exists: true } },
-    as: { control: { disable: true } },
+    color: {
+      options: availableColors,
+      control: { type: "select" },
+      table: { defaultValue: { summary: "main" } },
+    },
+    href: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    as: { table: { disable: true } },
   },
 };
 
@@ -63,7 +68,8 @@ export const InText: Story = {
       </p>
     );
   },
+
   argTypes: {
-    children: { if: { exists: true, global: "true" } },
+    children: { table: { disable: true } },
   },
 };

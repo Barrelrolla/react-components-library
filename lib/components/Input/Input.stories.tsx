@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { SearchIcon } from "@/icons";
 import { Input } from "./Input";
+import { availableColors } from "@/types";
 
 const meta: Meta<typeof Input> = {
   title: "Components/Input",
@@ -13,12 +14,16 @@ const meta: Meta<typeof Input> = {
     </div>
   ),
   argTypes: {
-    startIcon: { control: { disable: true } },
-    endIcon: { control: { disable: true } },
-    labelClasses: { control: { disable: true } },
-    wrapperClasses: { control: { disable: true } },
-    errorClasses: { control: { disable: true } },
-    inputContainerClasses: { control: { disable: true } },
+    color: { control: { type: "select" }, options: availableColors },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    labelClasses: { table: { disable: true } },
+    wrapperClasses: { table: { disable: true } },
+    errorClasses: { table: { disable: true } },
+    inputContainerClasses: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    inputContainerStyle: { table: { disable: true } },
+    bgFillOnError: { control: { type: "boolean" } },
   },
 };
 

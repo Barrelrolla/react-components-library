@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, CSSProperties } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
 import { CardContextProvider } from "./CardContext";
@@ -14,6 +14,8 @@ export type CardProps = {
   size?: CardSizes;
   /** The card is inside a `@container`. Add any classes to it here. */
   containerClasses?: string;
+  /** Add any styles for the container here. */
+  containerStyle?: CSSProperties;
   /** Classes for the card itself. */
   className?: string;
 };
@@ -23,6 +25,8 @@ export function Card({
   horizontal = false,
   size = "sm",
   containerClasses,
+  containerStyle,
+  style,
   className,
   children,
   ...rest
@@ -35,8 +39,11 @@ export function Card({
   });
   return (
     <CardContextProvider value={{ color }}>
-      <div style={cssColorProps(color)} className={containerStyles}>
-        <div className={styles} {...rest}>
+      <div
+        style={{ ...cssColorProps(color), ...containerStyle }}
+        className={containerStyles}
+      >
+        <div className={styles} style={style} {...rest}>
           {children}
         </div>
       </div>

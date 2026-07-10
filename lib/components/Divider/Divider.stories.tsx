@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Divider } from "./Divider";
+import { availableColors, availableResponsiveSizes } from "@/types";
 
 const meta: Meta<typeof Divider> = {
   title: "Components/Divider",
@@ -11,8 +12,11 @@ const meta: Meta<typeof Divider> = {
     </div>
   ),
   argTypes: {
-    color: { control: { type: "select" } },
-    responsiveAt: { control: { type: "inline-radio" } },
+    color: { control: { type: "select" }, options: availableColors },
+    responsiveAt: {
+      control: { type: "inline-radio" },
+      options: availableResponsiveSizes,
+    },
   },
 };
 
@@ -22,7 +26,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: ({ ...rest }) => {
     return (
-      <div className="w-full h-5">
+      <div className="h-5 w-full">
         <Divider {...rest} />
       </div>
     );

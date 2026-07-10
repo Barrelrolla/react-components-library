@@ -86,7 +86,7 @@ export function Button<E extends ElementType = typeof defaultType>({
   return (
     <span className={wrapperStyles}>
       <Element
-        data-selected={selected}
+        data-selected={selected ? selected : undefined}
         style={{ ...cssColorPropsReversed(resolvedColor), ...style }}
         className={styles}
         {...elementProps}

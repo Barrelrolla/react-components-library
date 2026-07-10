@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".badge": {
-    "@apply text-sm py-1 px-4 text-(--fg-color) bg-(--bg-color) border-(--fg-color)/30 border rounded-(--radius-infos)":
+    "@apply muted-bg text-sm py-0.5 px-3 text-(--fg-color) border-(--fg-color)/15 border rounded-(--radius-infos) font-[calc(var(--default-font-weight)+200)]":
       {},
   },
 };

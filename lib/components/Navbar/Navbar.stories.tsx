@@ -27,6 +27,7 @@ import {
   FooterLinksTitle,
 } from "../Footer";
 import { cssColorProps } from "@/util";
+import { availableColors, availableResponsiveSizes } from "@/types";
 
 type Props = ComponentProps<typeof Navbar> & {
   selected: number | undefined;
@@ -44,7 +45,7 @@ const meta: Meta<Props> = {
   tags: ["autodocs"],
   args: { selected: undefined },
   argTypes: {
-    color: { control: { type: "select" } },
+    color: { control: { type: "select" }, options: availableColors },
     selected: {
       control: {
         type: "inline-radio",
@@ -54,8 +55,12 @@ const meta: Meta<Props> = {
       },
       options: [0, 1, 2, 3, 4, 5, 6],
     },
-    collapseAt: { control: { type: "inline-radio" } },
+    collapseAt: {
+      control: { type: "inline-radio" },
+      options: availableResponsiveSizes,
+    },
     position: { control: { type: "inline-radio" } },
+    backdropClasses: { table: { disable: true } },
   },
 };
 

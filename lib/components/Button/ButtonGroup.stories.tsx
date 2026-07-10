@@ -4,6 +4,7 @@ import { expect, within } from "storybook/test";
 import { HeartIcon } from "@/icons";
 import { Button } from "./Button";
 import { ButtonGroup } from "./ButtonGroup";
+import { availableColors } from "@/types";
 
 type Props = ComponentProps<typeof ButtonGroup> & {
   selection: boolean;
@@ -21,7 +22,7 @@ const meta: Meta<Props> = {
   args: { selection: true },
   argTypes: {
     selection: { control: { type: "boolean" } },
-    color: { control: { type: "select" } },
+    color: { control: { type: "select" }, options: availableColors },
     variant: { control: { type: "inline-radio" } },
     size: { control: { type: "inline-radio" } },
     radius: { control: { type: "inline-radio" } },
@@ -29,9 +30,8 @@ const meta: Meta<Props> = {
       control: { type: "inline-radio" },
       if: { arg: "variant", eq: "ghost" },
     },
-
     children: {
-      if: { arg: "false", exists: true },
+      table: { disable: true },
     },
   },
 };

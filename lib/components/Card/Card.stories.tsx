@@ -8,6 +8,7 @@ import { CardTitle } from "./CardTitle";
 import { CardText } from "./CardText";
 import { CardSection } from "./CardSection";
 import { ComponentType } from "react";
+import { availableColors } from "@/types";
 
 const meta: Meta<typeof Card> = {
   title: "Components/Card",
@@ -28,6 +29,10 @@ const meta: Meta<typeof Card> = {
   ),
   argTypes: {
     size: { control: { type: "inline-radio" } },
+    color: { control: { type: "select" }, options: availableColors },
+    containerClasses: { table: { disable: true } },
+    containerStyle: { table: { disable: true } },
+    className: { table: { disable: true } },
   },
 };
 

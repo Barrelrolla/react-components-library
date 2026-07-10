@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { HamburgerButton } from "./HamburgerButton";
+import { availableColors, availableSizes } from "@/types";
 
 const meta: Meta<typeof HamburgerButton> = {
   title: "Components/HamburgerButton",
@@ -12,21 +13,21 @@ const meta: Meta<typeof HamburgerButton> = {
     </div>
   ),
   argTypes: {
-    children: { if: { arg: "false", eq: "true" } },
-    color: { control: { type: "select" } },
-    variant: { control: { type: "inline-radio" } },
-    ghostHover: {
-      control: { type: "inline-radio" },
-      if: { arg: "variant", eq: "ghost" },
-    },
-    size: { control: { type: "inline-radio" } },
-    radius: { control: { type: "inline-radio" } },
-    loadingPosition: { control: { type: "inline-radio" } },
-    startIcon: { if: { arg: "false", exists: true } },
-    endIcon: { if: { arg: "false", exists: true } },
-    ref: { if: { arg: "false", exists: true } },
-    as: { if: { arg: "false", exists: true } },
-    wrapperClasses: { if: { arg: "false", exists: true } },
+    children: { table: { disable: true } },
+    isOpen: { table: { disable: true } },
+    color: { control: { type: "select" }, options: availableColors },
+    variant: { table: { disable: true } },
+    ghostHover: { table: { disable: true } },
+    size: { control: { type: "inline-radio" }, options: availableSizes },
+    radius: { table: { disable: true } },
+    selected: { table: { disable: true } },
+    loading: { table: { disable: true } },
+    loadingPosition: { table: { disable: true } },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    as: { table: { disable: true } },
+    wrapperClasses: { table: { disable: true } },
   },
 };
 

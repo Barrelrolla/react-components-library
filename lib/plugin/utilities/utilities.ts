@@ -57,12 +57,13 @@ export default <Record<string, CssInJs>>{
     outlineColor: "oklch(from var(--bg-color) calc(l + var(--h) * 3) c h);",
   },
 
-  ".glass": {
-    "@apply bg-(--bg-color)/40 backdrop-blur-xs": {},
+  ".muted-bg": {
+    backgroundColor:
+      "color-mix(in oklab, var(--fg-color) 15%, var(--color-main))",
   },
 
-  ".backdrop": {
-    "@apply fixed top-0 left-0 z-30 h-screen w-screen backdrop-blur-xs": {},
+  ".glass": {
+    "@apply bg-(--bg-color)/40 backdrop-blur-xs": {},
   },
 
   ".rounded-inputs": {
@@ -93,12 +94,12 @@ export default <Record<string, CssInJs>>{
   },
 
   ".navigation-decoration-top": {
-    "@apply rounded-t-(length:--radius-navigation) border-t-(length:--border-navigation) border-(--fg-color)/(--border-transparency)":
+    "@apply rounded-t-(--radius-navigation) border-t-(length:--border-navigation) border-(--fg-color)/(--border-transparency)":
       {},
   },
 
   ".navigation-decoration-bottom": {
-    "@apply rounded-b-(length:--radius-navigation) border-b-(length:--border-navigation) border-(--fg-color)/(--border-transparency)":
+    "@apply rounded-b-(--radius-navigation) border-b-(length:--border-navigation) border-(--fg-color)/(--border-transparency)":
       {},
   },
 

@@ -1,4 +1,4 @@
-import { ComponentProps, SVGProps } from "react";
+import { ComponentProps, CSSProperties, SVGProps } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
 import { useInputStyles } from "./useInputStyles";
@@ -8,6 +8,8 @@ export type InputProps = {
   color?: ColorType;
   /** If `true` will apply a bg fill on the input in the same color */
   bgFill?: boolean;
+  /** Will apply bg fill on error if it is validating. */
+  bgFillOnError?: boolean;
   /** Type of the input. Only text based types are accepted. */
   type?: "text" | "email" | "password" | "tel" | "url";
   /** Label of the input. */
@@ -16,22 +18,34 @@ export type InputProps = {
   startIcon?: SVGProps<SVGSVGElement>;
   /** Icon that will be placed inside the input field after the input text. */
   endIcon?: SVGProps<SVGSVGElement>;
+  /** Disabled the input field. */
+  disabled?: boolean;
   /** Error message that will appear under the input. */
   error?: string;
+  /** If `true` will apply appropriate colors on error. */
+  validating?: boolean;
   /** Used to apply classes to the label. */
   labelClasses?: string;
   /** Used to apply classes to the error message. */
   errorClasses?: string;
   /** Used to apply classes to the whole wrapper. */
   wrapperClasses?: string;
-  /** Used to apply classes to the input and icons wrapper. */
+  /** Style for the wrapper. */
+  wrapperStyle?: CSSProperties;
+  /** Used to apply classes to the input and icons container. */
   inputContainerClasses?: string;
+  /** Input conainer style. */
+  inputContainerStyle?: CSSProperties;
 } & ComponentProps<"input">;
 
+/** The input has a wrapper, which holds the label and the error message. Also a container, which holds the input itself, and any icons that should appear inside the input field. */
 export function Input({
   type = "text",
   color = "main",
+  validating = true,
   bgFill = false,
+  bgFillOnError = false,
+  disabled = false,
   label,
   startIcon,
   endIcon,
@@ -39,11 +53,15 @@ export function Input({
   labelClasses,
   errorClasses,
   wrapperClasses,
+  wrapperStyle,
   inputContainerClasses,
+  inputContainerStyle,
   id,
   className,
   ...rest
 }: InputProps) {
+  const resolvedColor: ColorType = validating && error ? "error" : color;
+  const resolvedFill = validating && error && bgFillOnError ? true : bgFill;
   const {
     styles,
     labelStyles,
@@ -51,7 +69,7 @@ export function Input({
     wrapperStyles,
     inputContainerStyles,
   } = useInputStyles({
-    bgFill,
+    bgFill: resolvedFill,
     startIcon: startIcon != undefined,
     endIcon: endIcon != undefined,
     className,
@@ -61,33 +79,33 @@ export function Input({
     inputContainerClasses,
   });
 
-  let styleVars = {};
-  if (color) {
-    styleVars = cssColorProps(color);
-  }
-
   return (
-    <div className={wrapperStyles} style={styleVars}>
+    <div
+      className={wrapperStyles}
+      style={{ ...cssColorProps(resolvedColor), ...wrapperStyle }}
+    >
       {label && (
         <label className={labelStyles} htmlFor={id}>
           {label}
         </label>
       )}
-      <div className={inputContainerStyles}>
+      <div className={inputContainerStyles} style={inputContainerStyle}>
         {startIcon && (
-          <div className="pointer-events-none absolute start-0 ps-2">
+          <div className="input-start-icon">
             <>{startIcon}</>
           </div>
         )}
         <input
           type={type}
-          aria-describedby={id ? `${id}-error` : ""}
           className={styles}
+          disabled={disabled}
           id={id}
+          data-error={error ? true : undefined}
+          aria-describedby={id && error ? `${id}-error` : undefined}
           {...rest}
         />
         {endIcon && (
-          <div className="pointer-events-none absolute end-0 pe-2">
+          <div className="input-end-icon">
             <>{endIcon}</>
           </div>
         )}

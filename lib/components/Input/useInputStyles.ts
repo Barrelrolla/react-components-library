@@ -23,7 +23,7 @@ export function useInputStyles({
     styles: twMerge(
       "input-field",
       startIcon && "rounded-l-none ps-7",
-      endIcon && "rounded-r-none pe-7 ps-2",
+      endIcon && "rounded-r-none ps-2 pe-7",
       className,
     ),
     wrapperStyles: twMerge("input-field-wrapper", wrapperClasses),
@@ -31,7 +31,7 @@ export function useInputStyles({
     errorStyles: twMerge("input-field-error", errorClasses),
     inputContainerStyles: twMerge(
       "input-field-container",
-      bgFill && "bg-(--bg-color)/50",
+      bgFill && "muted-bg",
       inputContainerClasses,
     ),
   };

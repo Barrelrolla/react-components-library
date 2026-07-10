@@ -1,20 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { Badge } from "./Badge";
-import { ColorType } from "@/types";
-
-const colors: ColorType[] = [
-  "main",
-  "light",
-  "dark",
-  "primary",
-  "secondary",
-  "accent",
-  "info",
-  "success",
-  "warning",
-  "error",
-];
+import { availableColors } from "@/types";
 
 const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
@@ -25,6 +12,13 @@ const meta: Meta<typeof Badge> = {
       <Story />
     </div>
   ),
+  argTypes: {
+    children: { name: "text" },
+    color: {
+      options: availableColors,
+      control: { type: "select" },
+    },
+  },
 };
 
 export default meta;
@@ -50,12 +44,12 @@ export const Colors: Story = {
     const badges = canvas.getAllByText(
       /^(main|light|dark|primary|secondary|accent|info|success|warning|error)$/,
     );
-    await expect(badges).toHaveLength(colors.length);
+    await expect(badges).toHaveLength(availableColors.length);
   },
   render: ({ ...rest }) => {
     return (
       <div className="flex flex-wrap gap-2">
-        {colors.map((color) => (
+        {availableColors.map((color) => (
           <Badge color={color} key={color} {...rest}>
             {color}
           </Badge>
@@ -65,6 +59,7 @@ export const Colors: Story = {
   },
   args: {},
   argTypes: {
-    color: { if: { arg: "false", eq: "true" } },
+    color: { table: { disable: true } },
+    children: { table: { disable: true } },
   },
 };

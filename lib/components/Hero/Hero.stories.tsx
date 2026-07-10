@@ -7,6 +7,7 @@ import { HeroTitle } from "./HeroTitle";
 import { HeroText } from "./HeroText";
 import { Button } from "../Button";
 import { ComponentType } from "react";
+import { availableColors, availableResponsiveSizes } from "@/types";
 
 const meta: Meta<typeof Hero> = {
   title: "Components/Hero",
@@ -20,9 +21,8 @@ const meta: Meta<typeof Hero> = {
     HeroText: HeroText as ComponentType<unknown>,
   },
   argTypes: {
-    children: {
-      if: { arg: "false", exists: true },
-    },
+    children: { table: { disable: true } },
+    color: { control: { type: "select" }, options: availableColors },
     textAlign: {
       control: { type: "inline-radio" },
     },
@@ -31,7 +31,10 @@ const meta: Meta<typeof Hero> = {
     },
     responsiveAt: {
       control: { type: "inline-radio" },
+      options: availableResponsiveSizes,
     },
+    wrapperClasses: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
   },
 };
 

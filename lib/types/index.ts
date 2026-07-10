@@ -24,9 +24,31 @@ export type ColorType =
   | "warning"
   | "error";
 
+export const availableColors: ColorType[] = [
+  "main",
+  "light",
+  "dark",
+  "primary",
+  "secondary",
+  "accent",
+  "info",
+  "success",
+  "warning",
+  "error",
+];
+
 export type SizeType = "xs" | "sm" | "md" | "lg" | "xl";
 
+export const availableSizes: SizeType[] = ["xs", "sm", "md", "lg", "xl"];
+
 export type ResponsiveSizes = "sm" | "md" | "lg" | "xl";
+
+export const availableResponsiveSizes: ResponsiveSizes[] = [
+  "sm",
+  "md",
+  "lg",
+  "xl",
+];
 
 export type CssInJs = {
   [key: string]: string | string[] | CssInJs | CssInJs[];

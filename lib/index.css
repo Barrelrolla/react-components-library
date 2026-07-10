@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @plugin './plugin';
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -10,25 +10,13 @@
 }
 
 tr {
-  @apply flex flex-wrap overflow-hidden
+  @apply flex flex-wrap overflow-hidden;
 }
 
 .docs-story {
-  @apply bg-main
+  @apply bg-main;
 }
 
 .storybookContainer {
-  @apply bg-main flex flex-wrap justify-center p-4 gap-4;
+  @apply bg-main flex flex-wrap justify-center gap-4 p-4;
 }
-
-/* 
-@utility btn-* {
-  padding-inline: calc(--value(--btn-*) * 3);
-  padding-block: --value(--btn-*);
-  font-size: calc(var(--text-xs) + calc(--value(--btn-*) / 2));
-}
-
-@utility icon-* {
-  padding: calc(--value(--icon-*) / 8);
-  font-size: calc(var(--text-xs) + calc(--value(--btn-*) * 2));
-} */

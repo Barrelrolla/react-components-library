@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ThemeContextProvider } from "@/contexts";
 import { DarkModeToggle } from "./DarkModeToggle";
+import { availableColors, availableSizes } from "@/types";
 
 const meta: Meta<typeof DarkModeToggle> = {
   title: "Components/DarkModeToggle",
@@ -13,20 +14,21 @@ const meta: Meta<typeof DarkModeToggle> = {
   ),
   argTypes: {
     children: { if: { arg: "false", eq: "true" } },
-    color: { control: { type: "select" } },
+    color: { control: { type: "select" }, options: availableColors },
     variant: { control: { type: "inline-radio" } },
     ghostHover: {
       control: { type: "inline-radio" },
       if: { arg: "variant", eq: "ghost" },
     },
-    size: { control: { type: "inline-radio" } },
+    size: { control: { type: "inline-radio" }, options: availableSizes },
     radius: { control: { type: "inline-radio" } },
-    loadingPosition: { control: { type: "inline-radio" } },
-    startIcon: { if: { arg: "false", exists: true } },
-    endIcon: { if: { arg: "false", exists: true } },
-    ref: { if: { arg: "false", exists: true } },
-    as: { if: { arg: "false", exists: true } },
-    wrapperClasses: { if: { arg: "false", exists: true } },
+    loading: { table: { disable: true } },
+    loadingPosition: { table: { disable: true } },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    as: { table: { disable: true } },
+    wrapperClasses: { table: { disable: true } },
   },
 };
 

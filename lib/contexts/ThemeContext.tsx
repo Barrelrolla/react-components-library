@@ -14,9 +14,7 @@ const lsDarkModeName = "darkMode";
 const matchMedia = "(prefers-color-scheme: dark)";
 
 export type DarkModeType =
-  | typeof lightModeName
-  | typeof darkModeName
-  | typeof systemModeName;
+  typeof lightModeName | typeof darkModeName | typeof systemModeName;
 
 export type ThemeContextProps = {
   scalingButtons?: boolean;
@@ -45,7 +43,9 @@ export function ThemeContextProvider({
     const lsDarkMode = localStorage.getItem(lsDarkModeName);
     const lsTheme = localStorage.getItem(lsThemeName);
     setDarkMode((lsDarkMode as DarkModeType) || systemModeName);
-    setTheme(lsTheme || undefined);
+    if (lsTheme) {
+      setTheme(lsTheme);
+    }
   }, []);
 
   useEffect(() => {
@@ -77,11 +77,11 @@ export function ThemeContextProvider({
   }, [darkMode]);
 
   useEffect(() => {
-    const { classList } = document.documentElement;
     if (!darkMode) {
       return;
     }
 
+    const { classList } = document.documentElement;
     if (darkMode === darkModeName) {
       classList.add(darkModeName);
       localStorage.setItem(lsDarkModeName, darkModeName);
@@ -124,7 +124,9 @@ export function ThemeContextProvider({
         scalingButtons:
           value?.scalingButtons !== undefined ? value.scalingButtons : true,
         buttonsRetainFocus:
-          value?.buttonsRetainFocus !== undefined ? value.scalingButtons : true,
+          value?.buttonsRetainFocus !== undefined
+            ? value.buttonsRetainFocus
+            : true,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, CSSProperties } from "react";
 import { ColorType, ResponsiveSizes } from "@/types";
 import { HeroContextProvider } from "./HeroContext";
 import { HeroAlign } from "./HeroTypes";
@@ -14,8 +14,10 @@ export type HeroProps = {
   actionsAlign?: HeroAlign;
   /** If the alignment of other components is `responsive`, chooose at which size it changes. */
   responsiveAt?: ResponsiveSizes;
-  /** The hero component has a wrapper that has the full page width, use this to apply styles to the wrapper. */
+  /** The hero component has a wrapper that has the full page width, use this to apply classes to the wrapper. */
   wrapperClasses?: string;
+  /** Stype for the wrapper. */
+  wrapperStyle?: CSSProperties;
 } & ComponentProps<"div">;
 
 export function Hero({
@@ -24,7 +26,7 @@ export function Hero({
   actionsAlign = "center",
   responsiveAt = "md",
   wrapperClasses,
-  style,
+  wrapperStyle,
   className,
   children,
   ...rest
@@ -37,7 +39,10 @@ export function Hero({
   const styleVars = color ? cssColorProps(color) : {};
   return (
     <HeroContextProvider value={{ textAlign, actionsAlign, responsiveAt }}>
-      <section style={{ ...styleVars, ...style }} className={wrapperStyles}>
+      <section
+        style={{ ...styleVars, ...wrapperStyle }}
+        className={wrapperStyles}
+      >
         <div className={styles} {...rest}>
           {children}
         </div>

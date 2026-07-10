@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ThemeContextProvider } from "@/contexts";
 import { DarkModeSelector } from "./DarkModeSelector";
+import { availableColors, availableSizes } from "@/types";
 
 const meta: Meta<typeof DarkModeSelector> = {
   title: "Components/DarkModeSelector",
@@ -12,18 +13,18 @@ const meta: Meta<typeof DarkModeSelector> = {
     </div>
   ),
   argTypes: {
-    color: { control: { type: "select" } },
+    color: { control: { type: "select" }, options: availableColors },
     variant: { control: { type: "inline-radio" } },
-    size: { control: { type: "inline-radio" } },
+    size: { control: { type: "inline-radio" }, options: availableSizes },
     radius: { control: { type: "inline-radio" } },
     ghostHover: {
       control: { type: "inline-radio" },
       if: { arg: "variant", eq: "ghost" },
     },
-
-    children: {
-      if: { arg: "false", exists: true },
-    },
+    dividerClasses: { table: { disable: true } },
+    wrapperClasses: { table: { disable: true } },
+    className: { table: { disable: true } },
+    children: { table: { disable: true } },
   },
 };
 

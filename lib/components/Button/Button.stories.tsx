@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { HeartIcon, BookmarkIcon, ThumbIcon } from "@/icons";
 import { Button } from "./Button";
+import { availableColors, availableSizes } from "@/types";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -14,19 +15,19 @@ const meta: Meta<typeof Button> = {
   ),
   argTypes: {
     children: { name: "text" },
-    color: { control: { type: "select" } },
+    color: { control: { type: "select" }, options: availableColors },
     variant: { control: { type: "inline-radio" } },
     ghostHover: {
       control: { type: "inline-radio" },
       if: { arg: "variant", eq: "ghost" },
     },
-    size: { control: { type: "inline-radio" } },
+    size: { control: { type: "inline-radio" }, options: availableSizes },
     radius: { control: { type: "inline-radio" } },
     loadingPosition: { control: { type: "inline-radio" } },
-    startIcon: { if: { arg: "false", exists: true } },
-    endIcon: { if: { arg: "false", exists: true } },
-    ref: { if: { arg: "false", exists: true } },
-    as: { control: { disable: true } },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    as: { table: { disable: true } },
   },
 };
 
@@ -68,8 +69,8 @@ export const Variants: Story = {
   },
   args: { children: "Button" },
   argTypes: {
-    variant: { if: { arg: "false", eq: "true" } },
-    ghostHover: { if: { arg: "false", eq: "true" } },
+    variant: { table: { disable: true } },
+    ghostHover: { table: { disable: true } },
   },
 };
 
@@ -103,8 +104,8 @@ export const Ghost: Story = {
   },
   args: { children: "Button" },
   argTypes: {
-    variant: { if: { arg: "false", eq: "true" } },
-    ghostHover: { if: { arg: "false", eq: "true" } },
+    variant: { table: { disable: true } },
+    ghostHover: { table: { disable: true } },
   },
 };
 
@@ -218,7 +219,7 @@ export const Colors: Story = {
     children: "Button",
   },
   argTypes: {
-    color: { if: { arg: "false", eq: "true" } },
+    color: { table: { disable: true } },
   },
 };
 
@@ -296,6 +297,6 @@ export const Sizes: Story = {
     );
   },
   argTypes: {
-    size: { if: { arg: "false", eq: "true" } },
+    size: { table: { disable: true } },
   },
 };

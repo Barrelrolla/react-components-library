@@ -31,6 +31,7 @@ const plugin: TailwindPlugin = createPlugin(
     ]);
     addUtilities(utilities);
     addVariant("selected", "&[data-selected='true']");
+    addVariant("error", "&[data-error='true']");
   },
   {
     theme: {

@@ -6,13 +6,17 @@ import { twMerge } from "tailwind-merge";
 export type BadgeProps = {
   /** Badge text color theme. */
   color?: ColorType;
-  className?: string;
 } & ComponentProps<"div">;
 
-export function Badge({ className, color = "main", ...rest }: BadgeProps) {
+export function Badge({
+  color = "main",
+  style,
+  className,
+  ...rest
+}: BadgeProps) {
   return (
     <div
-      style={cssColorProps(color)}
+      style={{ ...cssColorProps(color), ...style }}
       className={twMerge("badge", className)}
       {...rest}
     />

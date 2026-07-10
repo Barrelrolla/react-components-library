@@ -34,7 +34,7 @@ export const Default: Story = {
           open dialog
         </Button>
         <Dialog isOpen={isOpen} setIsOpen={setIsOpen}>
-          <Card containerClasses="@container-normal">
+          <Card size="md">
             <CardTitle>Lorem, ipsum dolor.</CardTitle>
             <CardText>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, id!
@@ -108,7 +108,7 @@ export const BigText: Story = {
         repudiandae illum rerum? Commodi alias ratione velit veniam, magnam et
         esse sapiente officiis quidem? Ullam delectus beatae et.
         <Dialog isOpen={isOpen} setIsOpen={setIsOpen}>
-          <Card containerClasses="@container-normal">
+          <Card size="md">
             <CardTitle>Lorem, ipsum dolor.</CardTitle>
             <CardText>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, id!
@@ -120,7 +120,7 @@ export const BigText: Story = {
           </Card>
           <Dialog isOpen={isOpenSecond} setIsOpen={setIsOpenSecond}>
             <Card
-              containerClasses="@container-normal max-h-[calc(100vh-2rem)] overflow-y-scroll"
+              containerClasses="max-h-[calc(100vh-2rem)] overflow-y-auto"
               size="xl"
             >
               <CardTitle>Lorem, ipsum dolor.</CardTitle>

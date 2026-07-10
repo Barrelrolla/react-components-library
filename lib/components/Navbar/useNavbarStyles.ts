@@ -43,7 +43,7 @@ export function useNavbarStyles({
     ),
     navStyles: twMerge("navbar-nav"),
     backdropStyles: twMerge(
-      "backdrop",
+      "navbar-backdrop",
       collapseAt === "sm" && "sm:hidden",
       collapseAt === "md" && "md:hidden",
       collapseAt === "lg" && "lg:hidden",
