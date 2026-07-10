@@ -20,6 +20,11 @@ export default <Record<string, CssInJs>>{
     outlineColor: "oklch(from var(--bg-color) calc(l + var(--h)) c h);",
   },
 
+  ".bg-hover-neg": {
+    backgroundColor: "oklch(from var(--bg-color) calc(l - var(--h)) c h);",
+    outlineColor: "oklch(from var(--bg-color) calc(l - var(--h)) c h);",
+  },
+
   ".bg-hover-inverse": {
     backgroundColor: "oklch(from var(--fg-color) calc(l + var(--h) * -1) c h);",
     outlineColor: "oklch(from var(--fg-color) calc(l + var(--h) * -1) c h);",
@@ -29,6 +34,12 @@ export default <Record<string, CssInJs>>{
     backgroundColor:
       "oklch(from var(--bg-color) calc(l + var(--h) * 1.5) c h);",
     outlineColor: "oklch(from var(--bg-color) calc(l + var(--h) * 1.5) c h);",
+  },
+
+  ".bg-active-neg": {
+    backgroundColor:
+      "oklch(from var(--bg-color) calc(l - var(--h) * 1.5) c h);",
+    outlineColor: "oklch(from var(--bg-color) calc(l - var(--h) * 1.5) c h);",
   },
 
   ".bg-active-inverse": {

@@ -1,6 +1,6 @@
 {
   "name": "@barrelrolla/react-components-library",
-  "version": "0.2.52",
+  "version": "0.2.53",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
