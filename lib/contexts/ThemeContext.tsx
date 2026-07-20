@@ -121,9 +121,6 @@ export function ThemeContextProvider({
     }
   }
 
-  console.log("dark mode", darkMode);
-  console.log("is dark", isDark);
-
   return (
     <ThemeContext.Provider
       value={{
