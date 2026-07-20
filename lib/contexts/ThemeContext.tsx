@@ -55,9 +55,11 @@ export function ThemeContextProvider({
           const { classList } = document.documentElement;
           if (event.matches) {
             classList.add(darkModeName);
+            document.cookie = `${lsDarkModeName}=${darkModeName}`;
             setIsDark(true);
           } else {
             classList.remove(darkModeName);
+            document.cookie = `${lsDarkModeName}=${lightModeName}`;
             setIsDark(false);
           }
         }
@@ -94,12 +96,13 @@ export function ThemeContextProvider({
       setIsDark(false);
     } else {
       localStorage.setItem(lsDarkModeName, systemModeName);
-      document.cookie = `${lsDarkModeName}=${systemModeName}`;
       if (window.matchMedia(matchMedia).matches) {
         classList.add(darkModeName);
+        document.cookie = `${lsDarkModeName}=${darkModeName}`;
         setIsDark(true);
       } else {
         classList.remove(darkModeName);
+        document.cookie = `${lsDarkModeName}=${lightModeName}`;
         setIsDark(false);
       }
     }
@@ -110,12 +113,10 @@ export function ThemeContextProvider({
     if (theme) {
       dataset.theme = theme;
       localStorage.setItem(lsThemeName, theme);
-      document.cookie = `${lsThemeName}=${theme}`;
       setTheme(theme);
     } else {
       dataset.theme = undefined;
       localStorage.removeItem(lsThemeName);
-      document.cookie = `${lsThemeName}=`;
       setTheme(undefined);
     }
   }
