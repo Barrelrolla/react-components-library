@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
-import { SearchIcon } from "@/icons";
+import { PiMagnifyingGlass } from "react-icons/pi";
 import { Input } from "./Input";
 import { availableColors } from "@/types";
 
@@ -59,7 +59,7 @@ export const WithIcon: Story = {
     return <Input id="WithIcon" {...props} />;
   },
   args: {
-    startIcon: <SearchIcon />,
+    startIcon: <PiMagnifyingGlass />,
     placeholder: "Input",
     label: "Label",
   },
@@ -70,10 +70,9 @@ export const WithError: Story = {
     return <Input id="WithError" {...props} />;
   },
   args: {
-    startIcon: <SearchIcon />,
+    startIcon: <PiMagnifyingGlass />,
     placeholder: "Input",
     label: "Label",
-    color: "error",
     error: "Error",
   },
 };
@@ -82,21 +81,81 @@ export const Colors: Story = {
   render: (props) => {
     return (
       <>
-        <Input label="main" id="main" color="main" {...props} />
-        <Input label="light" id="light" color="light" {...props} />
-        <Input label="dark" id="dark" color="dark" {...props} />
-        <Input label="primary" id="primary" color="primary" {...props} />
-        <Input label="secondary" id="secondary" color="secondary" {...props} />
-        <Input label="accent" id="accent" color="accent" {...props} />
-        <Input label="info" id="info" color="info" {...props} />
-        <Input label="success" id="success" color="success" {...props} />
-        <Input label="warning" id="warning" color="warning" {...props} />
-        <Input label="error" id="error" color="error" {...props} />
+        <Input
+          validating={false}
+          label="main"
+          id="main"
+          color="main"
+          {...props}
+        />
+        <Input
+          validating={false}
+          label="light"
+          id="light"
+          color="light"
+          {...props}
+        />
+        <Input
+          validating={false}
+          label="dark"
+          id="dark"
+          color="dark"
+          {...props}
+        />
+        <Input
+          validating={false}
+          label="primary"
+          id="primary"
+          color="primary"
+          {...props}
+        />
+        <Input
+          validating={false}
+          label="secondary"
+          id="secondary"
+          color="secondary"
+          {...props}
+        />
+        <Input
+          validating={false}
+          label="accent"
+          id="accent"
+          color="accent"
+          {...props}
+        />
+        <Input
+          validating={false}
+          label="info"
+          id="info"
+          color="info"
+          {...props}
+        />
+        <Input
+          validating={false}
+          label="success"
+          id="success"
+          color="success"
+          {...props}
+        />
+        <Input
+          validating={false}
+          label="warning"
+          id="warning"
+          color="warning"
+          {...props}
+        />
+        <Input
+          validating={false}
+          label="error"
+          id="error"
+          color="error"
+          {...props}
+        />
       </>
     );
   },
   args: {
-    startIcon: <SearchIcon />,
+    startIcon: <PiMagnifyingGlass />,
     placeholder: "Input",
     error: "Error",
   },

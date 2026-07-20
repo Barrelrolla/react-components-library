@@ -4,6 +4,7 @@ export function useInputStyles({
   bgFill,
   startIcon,
   endIcon,
+  validating,
   className,
   wrapperClasses,
   labelClasses,
@@ -13,6 +14,7 @@ export function useInputStyles({
   bgFill?: boolean;
   startIcon: boolean;
   endIcon: boolean;
+  validating: boolean;
   className?: string;
   wrapperClasses?: string;
   labelClasses?: string;
@@ -31,6 +33,7 @@ export function useInputStyles({
     errorStyles: twMerge("input-field-error", errorClasses),
     inputContainerStyles: twMerge(
       "input-field-container",
+      validating && "has-error:outline-1",
       bgFill && "muted-bg",
       inputContainerClasses,
     ),

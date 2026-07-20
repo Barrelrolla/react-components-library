@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
-import { RocketIcon, GitHubIcon, LinkedInIcon } from "@/icons";
+import { PiRocket, PiGithubLogo, PiLinkedinLogo } from "react-icons/pi";
 import { Footer } from "./Footer";
 import { FooterBrand } from "./FooterBrand";
 import { FooterDivider } from "./FooterDivider";
@@ -52,7 +52,7 @@ export const Default: Story = {
     return (
       <Footer {...rest}>
         <FooterBrand href="#">
-          <RocketIcon /> Test
+          <PiRocket /> Test
         </FooterBrand>
         <FooterLinksSection>
           <FooterLink></FooterLink>
@@ -78,7 +78,7 @@ export const WithLinkGroups: Story = {
     return (
       <Footer {...rest}>
         <FooterBrand href="#">
-          <RocketIcon /> Test
+          <PiRocket /> Test
         </FooterBrand>
         <FooterLinksSection>
           <FooterLinkGroup>
@@ -105,10 +105,10 @@ export const WithLinkGroups: Story = {
           <span>copyright stuff</span>
           <FooterIconsContainer>
             <FooterLink href="#">
-              <GitHubIcon aria-label="github logo" />
+              <PiGithubLogo aria-label="github logo" />
             </FooterLink>
             <FooterLink href="#">
-              <LinkedInIcon aria-label="linkedin logo" />
+              <PiLinkedinLogo aria-label="linkedin logo" />
             </FooterLink>
           </FooterIconsContainer>
         </FooterFullSection>

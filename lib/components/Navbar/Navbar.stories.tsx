@@ -7,7 +7,7 @@ import { NavbarCollapse } from "./NavbarCollapse";
 import { NavbarLink } from "./NavbarLink";
 import { NavbarToggle } from "./NavbarToggle";
 import { Button } from "../Button";
-import { GitHubIcon, LinkedInIcon, RocketIcon } from "@/icons";
+import { PiGithubLogo, PiLinkedinLogo, PiRocket } from "react-icons/pi";
 import {
   Hero,
   HeroActions,
@@ -86,7 +86,7 @@ export const Default: Story = {
         <Navbar fixed={fixed} {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
-            <RocketIcon /> Test
+            <PiRocket /> Test
           </NavbarBrand>
           <div role="presentation" className="w-10 sm:hidden"></div>
           <NavbarCollapse>
@@ -126,7 +126,7 @@ export const PageDemo: Story = {
         <Navbar color={color} {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
-            <RocketIcon /> Test
+            <PiRocket /> Test
           </NavbarBrand>
           <div role="presentation" className="w-10 sm:hidden"></div>
           <NavbarCollapse>
@@ -175,7 +175,7 @@ export const PageDemo: Story = {
         </Hero>
         <Footer decorations color={color}>
           <FooterBrand href="#">
-            <RocketIcon /> Test
+            <PiRocket /> Test
           </FooterBrand>
           <FooterLinksSection>
             <FooterLinkGroup>
@@ -202,10 +202,10 @@ export const PageDemo: Story = {
             <span>copyright stuff</span>
             <div className="flex gap-4 text-xl">
               <FooterLink href="#">
-                <GitHubIcon aria-label="github logo" />
+                <PiGithubLogo aria-label="github logo" />
               </FooterLink>
               <FooterLink href="#">
-                <LinkedInIcon aria-label="linkedin logo" />
+                <PiLinkedinLogo aria-label="linkedin logo" />
               </FooterLink>
             </div>
           </FooterFullSection>

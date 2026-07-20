@@ -72,6 +72,7 @@ export function Input({
     bgFill: resolvedFill,
     startIcon: startIcon != undefined,
     endIcon: endIcon != undefined,
+    validating,
     className,
     wrapperClasses,
     labelClasses,

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
-import { HeartIcon, BookmarkIcon, ThumbIcon } from "@/icons";
+import { PiHeart, PiBookmark, PiThumbsUp } from "react-icons/pi";
 import { Button } from "./Button";
 import { availableColors, availableSizes } from "@/types";
 
@@ -151,21 +151,21 @@ export const Icon: Story = {
         <Button
           aria-label="like"
           radius="pill"
-          startIcon={<HeartIcon />}
+          startIcon={<PiHeart />}
           {...rest}
         ></Button>
         <Button
           aria-label="thumbsup"
           radius="none"
           variant="outline"
-          startIcon={<ThumbIcon />}
+          startIcon={<PiThumbsUp />}
           {...rest}
         ></Button>
         <Button
           aria-label="bookmark"
           variant="ghost"
           ghostHover="fill"
-          startIcon={<BookmarkIcon />}
+          startIcon={<PiBookmark />}
           {...rest}
         ></Button>
       </>
@@ -228,22 +228,22 @@ export const Sizes: Story = {
     return (
       <div className="flex flex-col gap-4">
         <div className="flex flex-wrap items-end justify-center gap-2">
-          <Button {...rest} startIcon={<HeartIcon />} size="xs">
+          <Button {...rest} startIcon={<PiHeart />} size="xs">
             Button
           </Button>
-          <Button {...rest} startIcon={<HeartIcon />} size="sm">
+          <Button {...rest} startIcon={<PiHeart />} size="sm">
             Button
           </Button>
           <Button {...rest} size="md">
-            <HeartIcon />
+            <PiHeart />
             Button
           </Button>
           <Button {...rest} size="lg">
-            <HeartIcon />
+            <PiHeart />
             Button
           </Button>
           <Button {...rest} size="xl">
-            <HeartIcon />
+            <PiHeart />
             Button
           </Button>
         </div>
@@ -251,31 +251,31 @@ export const Sizes: Story = {
           <Button
             aria-label="like"
             {...rest}
-            startIcon={<HeartIcon />}
+            startIcon={<PiHeart />}
             size="xs"
           ></Button>
           <Button
             aria-label="like"
             {...rest}
-            startIcon={<HeartIcon />}
+            startIcon={<PiHeart />}
             size="sm"
           ></Button>
           <Button
             aria-label="like"
             {...rest}
-            startIcon={<HeartIcon />}
+            startIcon={<PiHeart />}
             size="md"
           ></Button>
           <Button
             aria-label="like"
             {...rest}
-            startIcon={<HeartIcon />}
+            startIcon={<PiHeart />}
             size="lg"
           ></Button>
           <Button
             aria-label="like"
             {...rest}
-            startIcon={<HeartIcon />}
+            startIcon={<PiHeart />}
             size="xl"
           ></Button>
         </div>
@@ -290,7 +290,7 @@ export const Sizes: Story = {
             aria-label="like"
             {...rest}
             className="btn-icon-xs sm:btn-icon-sm md:btn-icon-md lg:btn-icon-lg xl:btn-icon-xl"
-            startIcon={<HeartIcon />}
+            startIcon={<PiHeart />}
           ></Button>
         </div>
       </div>

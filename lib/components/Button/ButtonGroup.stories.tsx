@@ -1,7 +1,7 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
-import { HeartIcon } from "@/icons";
+import { PiHeart } from "react-icons/pi";
 import { Button } from "./Button";
 import { ButtonGroup } from "./ButtonGroup";
 import { availableColors } from "@/types";
@@ -142,19 +142,19 @@ export const Icon: Story = {
           aria-label="like"
           selected={selected === 0}
           onClick={() => clickHandler(0)}
-          startIcon={<HeartIcon />}
+          startIcon={<PiHeart />}
         />
         <Button
           aria-label="like"
           selected={selected === 1}
           onClick={() => clickHandler(1)}
-          startIcon={<HeartIcon />}
+          startIcon={<PiHeart />}
         />
         <Button
           aria-label="like"
           selected={selected === 2}
           onClick={() => clickHandler(2)}
-          startIcon={<HeartIcon />}
+          startIcon={<PiHeart />}
         />
       </ButtonGroup>
     );
@@ -171,7 +171,7 @@ export const SplitButton: Story = {
     return (
       <ButtonGroup {...rest} radius={radius}>
         <Button className="">Button</Button>
-        <Button aria-label="like" startIcon={<HeartIcon />} />
+        <Button aria-label="like" startIcon={<PiHeart />} />
       </ButtonGroup>
     );
   },

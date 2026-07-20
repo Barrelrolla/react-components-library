@@ -15,7 +15,7 @@ export default <Record<string, CssInJs>>{
     "@apply text-sm": {},
   },
   ".input-field-container": {
-    "@apply flex items-center rounded-inputs border-inputs has-error:outline-1 outline-offset-1 has-disabled:border-none focus-within:ring-1":
+    "@apply flex items-center rounded-inputs border-inputs outline-offset-1 has-disabled:border-none focus-within:ring-1":
       {},
   },
   ".input-start-icon": {

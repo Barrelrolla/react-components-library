@@ -8,5 +8,5 @@ export { NavbarLink } from "./NavbarLink";
 export type { NavbarLinkProps } from "./NavbarLink";
 export { NavbarToggle } from "./NavbarToggle";
 export type { NavbarToggleProps } from "./NavbarToggle";
-export { NavbarContextProvider } from "./NavbarContext";
+export { NavbarContextProvider, useNavbarContext } from "./NavbarContext";
 export type { NavbarContextType } from "./NavbarContext";
