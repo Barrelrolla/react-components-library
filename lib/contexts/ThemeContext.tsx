@@ -25,7 +25,7 @@ export type ThemeContextType =
       theme: string | undefined;
       setTheme: (theme: string) => void;
       darkMode: DarkModeType | undefined;
-      isDark: boolean;
+      isDark: boolean | undefined;
       setDarkMode: (themeMode: DarkModeType) => void;
     } & ThemeContextProps)
   | undefined;
@@ -37,7 +37,7 @@ export function ThemeContextProvider({
 }: { value?: ThemeContextProps } & PropsWithChildren) {
   const [theme, setTheme] = useState<string | undefined>(undefined);
   const [darkMode, setDarkMode] = useState<DarkModeType | undefined>(undefined);
-  const [isDark, setIsDark] = useState(darkMode === darkModeName);
+  const [isDark, setIsDark] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
     const lsDarkMode = localStorage.getItem(lsDarkModeName);
@@ -120,6 +120,9 @@ export function ThemeContextProvider({
       setTheme(undefined);
     }
   }
+
+  console.log("dark mode", darkMode);
+  console.log("is dark", isDark);
 
   return (
     <ThemeContext.Provider
