@@ -42,21 +42,21 @@ module.exports = function (plop) {
       },
       {
         type: "add",
-        path: "lib/plugin/components/{{lowerCase name}}/index.ts",
+        path: "lib/plugin/components/{{camelCase name}}/index.ts",
         templateFile: "plop-templates/plugin.ts.hbs",
       },
       {
         type: "modify",
         path: "lib/plugin/index.ts",
         pattern: /(addComponents\(\[\s*)/g,
-        template: "$1{{lowerCase name}},\n",
+        template: "$1{{camelCase name}},\n",
       },
       {
         type: "modify",
         path: "lib/plugin/index.ts",
         pattern: /(import base from ".\/base\/base";)/g,
         template:
-          '$1\nimport {{lowerCase name}} from "./components/{{lowerCase name}}";',
+          '$1\nimport {{camelCase name}} from "./components/{{camelCase name}}";',
       },
     ],
   });
