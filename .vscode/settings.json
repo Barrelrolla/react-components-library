@@ -1,0 +1,32 @@
+{
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "files.autoSave": "onFocusChange",
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "workbench.startupEditor": "none",
+  "editor.tabSize": 2,
+  "html.completion.attributeDefaultValue": "singlequotes",
+  "editor.wordWrap": "on",
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    ".*classes.*",
+    ".*color.*"
+  ],
+  "tailwindCSS.experimental.classRegex": [
+    "twMerge\\(([^)]*)\\)",
+    "cn\\(([^)]*)\\)",
+    "cva\\(([^)]*)\\)",
+    "[\"'`]([^\"'`]*).*?[\"'`]"
+  ],
+  "css.customData": ["./tailwind.json"],
+  "chat.extensionTools.enabled": false,
+  "telemetry.feedback.enabled": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "prettier.trailingComma": "all"
+}

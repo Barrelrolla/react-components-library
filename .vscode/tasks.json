@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Add Component",
+      "type": "shell",
+      "command": "npx plop component",
+      "problemMatcher": []
+    }
+  ]
+}
