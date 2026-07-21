@@ -1,0 +1,24 @@
+import { ComponentProps } from "react";
+import { ColorType } from "@/types";
+import { cssColorProps } from "@/util";
+import { use{{pascalCase name}}Styles } from "./use{{pascalCase name}}Styles";
+
+export type {{pascalCase name}}Props = {
+  color?: ColorType;
+} & ComponentProps<"div">;
+
+export function {{pascalCase name}}({
+  color = "main",
+  style,
+  className,
+  children,
+  ...rest
+}: {{pascalCase name}}Props) {
+  const { classes } = use{{pascalCase name}}Styles({ className });
+  const styles = { ...cssColorProps(color), ...style };
+  return (
+    <div style={styles} className={classes} {...rest}>
+      {children}
+    </div>
+  );
+}

@@ -1,10 +1,10 @@
 import { ComponentProps } from "react";
 import { ColorType } from "@/types";
-import { cssColorProps } from "@/util";
-import { twMerge } from "tailwind-merge";
+import { cssColorProps, cssColorPropsReversed } from "@/util";
+import { useBadgeStyles } from "./useBadgeStyles";
 
 export type BadgeProps = {
-  /** Badge text color theme. */
+  /** Badge text color. */
   color?: ColorType;
 } & ComponentProps<"div">;
 
@@ -14,11 +14,12 @@ export function Badge({
   className,
   ...rest
 }: BadgeProps) {
+  const { classes } = useBadgeStyles({ className });
+  const colorStyle =
+    color === "light" || color === "dark"
+      ? { ...cssColorPropsReversed(color) }
+      : { ...cssColorProps(color) };
   return (
-    <div
-      style={{ ...cssColorProps(color), ...style }}
-      className={twMerge("badge", className)}
-      {...rest}
-    />
+    <div style={{ ...colorStyle, ...style }} className={classes} {...rest} />
   );
 }

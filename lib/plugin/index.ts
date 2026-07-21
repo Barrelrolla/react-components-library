@@ -8,9 +8,9 @@ import footer from "./components/footer";
 import hamburgerButton from "./components/hamburgerButton";
 import hero from "./components/hero";
 import navbar from "./components/navbar";
-import utilities from "./utilities/utilities";
 import input from "./components/input";
 import dialog from "./components/dialog";
+import utilities from "./utilities/utilities";
 
 type TailwindPlugin = ReturnType<typeof createPlugin>;
 

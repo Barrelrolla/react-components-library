@@ -1,0 +1,65 @@
+import { Meta, StoryObj } from "@storybook/react";
+import { expect, within } from "storybook/test";
+import { {{pascalCase name}} } from "./{{pascalCase name}}";
+import { availableColors } from "@/types";
+
+const meta: Meta<typeof {{pascalCase name}}> = {
+  title: "Components/{{pascalCase name}}",
+  tags: ["autodocs"],
+  component: {{pascalCase name}},
+  decorators: (Story) => (
+    <div className="storybookContainer">
+      <Story />
+    </div>
+  ),
+  argTypes: {
+    children: { name: "text" },
+    color: {
+      options: availableColors,
+      control: { type: "select" },
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const {{lowerCase name}} = canvas.getByText("{{pascalCase name}}");
+    await expect({{lowerCase name}}, "renders").toBeTruthy();
+  },
+  render: ({ children, ...rest }) => {
+    return <{{pascalCase name}} {...rest}>{children}</{{pascalCase name}}>;
+  },
+  args: {
+    children: "{{pascalCase name}}",
+  },
+};
+
+export const Colors: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const {{lowerCase name}}s = canvas.getAllByText(
+      /^(main|light|dark|primary|secondary|accent|info|success|warning|error)$/,
+    );
+    await expect({{lowerCase name}}s).toHaveLength(availableColors.length);
+  },
+  render: ({ ...rest }) => {
+    return (
+      <div className="flex flex-wrap gap-2">
+        {availableColors.map((color) => (
+          <{{pascalCase name}} color={color} key={color} {...rest}>
+            {color}
+          </{{pascalCase name}}>
+        ))}
+      </div>
+    );
+  },
+  args: {},
+  argTypes: {
+    color: { table: { disable: true } },
+    children: { table: { disable: true } },
+  },
+};
