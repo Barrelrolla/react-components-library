@@ -18,12 +18,7 @@
     ".*classes.*",
     ".*color.*"
   ],
-  "tailwindCSS.experimental.classRegex": [
-    "twMerge\\(([^)]*)\\)",
-    "cn\\(([^)]*)\\)",
-    "cva\\(([^)]*)\\)",
-    "[\"'`]([^\"'`]*).*?[\"'`]"
-  ],
+  "tailwindCSS.classFunctions": ["twMerge", "cn", "cva"],
   "chat.extensionTools.enabled": false,
   "telemetry.feedback.enabled": false,
   "terminal.integrated.enableMultiLinePasteWarning": "never",
