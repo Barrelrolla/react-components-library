@@ -24,7 +24,6 @@
     "cva\\(([^)]*)\\)",
     "[\"'`]([^\"'`]*).*?[\"'`]"
   ],
-  "css.customData": ["./tailwind.json"],
   "chat.extensionTools.enabled": false,
   "telemetry.feedback.enabled": false,
   "terminal.integrated.enableMultiLinePasteWarning": "never",
