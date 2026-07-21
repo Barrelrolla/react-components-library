@@ -14,14 +14,14 @@ export function useButtonGroupStyles({
   className?: string;
   wrapperClasses?: string;
 }) {
-  const resolvedRadiues = radius || "default";
+  const resolvedRadius = radius || "default";
   return {
     groupStyles: twMerge(
       "btn-group",
       variant === "outline" && "inset-ring inset-ring-(--bg-color)",
       vertical && "flex-col",
-      resolvedRadiues === "default" && "rounded-inputs",
-      resolvedRadiues === "pill" && "rounded-full",
+      resolvedRadius === "default" && "rounded-inputs",
+      resolvedRadius === "pill" && "rounded-full",
       className,
     ),
 

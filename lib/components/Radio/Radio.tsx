@@ -3,6 +3,7 @@ import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
 import { useRadioStyles } from "./useRadioStyles";
 import { Circle, CircleCheck } from "@/icons";
+import { useRadioGroupContext } from "./RadioGroupContext";
 
 export type RadioProps = {
   color?: ColorType;
@@ -15,30 +16,52 @@ export type RadioProps = {
 } & ComponentProps<"input">;
 
 export function Radio({
-  color = "primary",
-  labelColor = "main",
+  color,
+  labelColor,
   size = 20,
   style,
   labelStyle,
   labelClasses,
   className,
+  name,
   children,
   ...rest
 }: RadioProps) {
-  const { checkedClasses, unCheckedClasses, labelClass, wrapperClass } =
-    useRadioStyles({
-      className,
-      labelClasses,
-    });
-  const styles = { "--size": `${size}px`, ...cssColorProps(color), ...style };
+  const {
+    resolvedColor,
+    resolvedLabelColor,
+    checkedClasses,
+    unCheckedClasses,
+    labelClass,
+    wrapperClass,
+  } = useRadioStyles({
+    color,
+    labelColor,
+    className,
+    labelClasses,
+  });
+  const context = useRadioGroupContext();
+  const groupName = context?.name ?? name;
+  const groupSize = context?.size ?? size;
+  const styles = {
+    "--size": `${groupSize}px`,
+    ...cssColorProps(resolvedColor),
+    ...style,
+  };
   const labelStyles = {
-    "--size": `${size}px`,
-    ...cssColorProps(labelColor),
+    "--size": `${groupSize}px`,
+    ...cssColorProps(resolvedLabelColor),
     ...labelStyle,
   };
+
   return (
     <label className={wrapperClass}>
-      <input type="radio" className="peer appearance-none" {...rest} />
+      <input
+        name={groupName}
+        type="radio"
+        className="peer appearance-none"
+        {...rest}
+      />
       <CircleCheck className={checkedClasses} style={styles} />
       <Circle style={styles} className={unCheckedClasses} />
 

@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { Radio } from "./Radio";
 import { availableColors } from "@/types";
+import RadioGroup from "./radioGroup";
 
 const meta: Meta<typeof Radio> = {
   title: "Components/Radio",
@@ -24,6 +25,8 @@ const meta: Meta<typeof Radio> = {
     },
     defaultChecked: { table: { disable: true } },
     labelStyle: { table: { disable: true } },
+    labelClasses: { table: { disable: true } },
+    wrapperClasses: { table: { disable: true } },
   },
 };
 
@@ -46,18 +49,17 @@ export const Default: Story = {
 };
 
 export const Colors: Story = {
-  render: ({ name, ...rest }) => {
+  render: ({ ...rest }) => {
     return (
-      <fieldset className="flex flex-wrap gap-2">
+      <RadioGroup name="colors" title="" className="flex flex-wrap gap-2">
         {availableColors.map((color) => (
-          <Radio name={name} color={color} key={color} {...rest}>
+          <Radio color={color} key={color} {...rest}>
             {color}
           </Radio>
         ))}
-      </fieldset>
+      </RadioGroup>
     );
   },
-  args: { name: "colors" },
   argTypes: {
     color: { table: { disable: true } },
     children: { table: { disable: true } },

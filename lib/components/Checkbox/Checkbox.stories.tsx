@@ -24,6 +24,8 @@ const meta: Meta<typeof Checkbox> = {
     },
     defaultChecked: { table: { disable: true } },
     labelStyle: { table: { disable: true } },
+    labelClasses: { table: { disable: true } },
+    wrapperClasses: { table: { disable: true } },
   },
 };
 
