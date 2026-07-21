@@ -11,3 +11,4 @@ export * from "./Hero";
 export * from "./Input";
 export * from "./Navbar";
 export * from "./Checkbox";
+export * from "./Radio";

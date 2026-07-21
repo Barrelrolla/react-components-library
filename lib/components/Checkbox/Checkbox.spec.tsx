@@ -5,7 +5,7 @@ import { Checkbox } from "./Checkbox";
 describe("Checkbox tests", () => {
   it("renders", () => {
     const { container } = render(<Checkbox />);
-    const checkbox = container.querySelector("div");
+    const checkbox = container.querySelector("label");
     expect(checkbox).toBeTruthy();
   });
 });

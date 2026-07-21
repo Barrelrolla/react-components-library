@@ -1,5 +1,6 @@
 import createPlugin from "tailwindcss/plugin";
 import base from "./base/base";
+import radio from "./components/radio";
 import checkbox from "./components/checkbox";
 import anchor from "./components/anchor";
 import badge from "./components/badge";
@@ -19,7 +20,8 @@ const plugin: TailwindPlugin = createPlugin(
   ({ addBase, addComponents, addUtilities, addVariant }) => {
     addBase(base);
     addComponents([
-      checkbox,
+      radio,
+checkbox,
 anchor,
       badge,
       button,

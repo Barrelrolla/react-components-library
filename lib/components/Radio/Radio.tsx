@@ -1,10 +1,10 @@
 import { ComponentProps, CSSProperties } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
-import { useCheckboxStyles } from "./useCheckboxStyles";
-import { Square, SquareCheck } from "@/icons";
+import { useRadioStyles } from "./useRadioStyles";
+import { Circle, CircleCheck } from "@/icons";
 
-export type CheckboxProps = {
+export type RadioProps = {
   color?: ColorType;
   labelColor?: ColorType;
   labelStyle?: CSSProperties;
@@ -14,19 +14,19 @@ export type CheckboxProps = {
   size?: number;
 } & ComponentProps<"input">;
 
-export function Checkbox({
+export function Radio({
   color = "primary",
   labelColor = "main",
-  size = 24,
+  size = 20,
   style,
   labelStyle,
   labelClasses,
   className,
   children,
   ...rest
-}: CheckboxProps) {
+}: RadioProps) {
   const { checkedClasses, unCheckedClasses, labelClass, wrapperClass } =
-    useCheckboxStyles({
+    useRadioStyles({
       className,
       labelClasses,
     });
@@ -38,9 +38,9 @@ export function Checkbox({
   };
   return (
     <label className={wrapperClass}>
-      <input type="checkbox" className="peer appearance-none" {...rest} />
-      <SquareCheck className={checkedClasses} style={styles} />
-      <Square style={styles} className={unCheckedClasses} />
+      <input type="radio" className="peer appearance-none" {...rest} />
+      <CircleCheck className={checkedClasses} style={styles} />
+      <Circle style={styles} className={unCheckedClasses} />
 
       {children && (
         <span style={labelStyles} className={labelClass}>
