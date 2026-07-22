@@ -1,13 +1,11 @@
 import { createContext, useContext } from "react";
 import { ColorType } from "@/types";
 
-export type CardContextProps =
-  | {
-      color: ColorType;
-    }
-  | undefined;
+export type CardContextProps = {
+  color: ColorType;
+} | null;
 
-const CardContext = createContext<CardContextProps>(undefined);
+const CardContext = createContext<CardContextProps>(null);
 
 export const CardContextProvider = CardContext.Provider;
 

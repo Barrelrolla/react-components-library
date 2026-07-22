@@ -37,7 +37,7 @@ export function useButtonStyles({
   const resolvedColor = group?.color || color || "primary";
   const resolvedRadius = radius || "default";
   const groupRadius = group?.radius || "default";
-  const inGroup = group !== undefined;
+  const inGroup = group !== null;
   const shouldRetainFocus =
     (!theme || theme.buttonsRetainFocus) &&
     (!group || group.retainFocusState) &&

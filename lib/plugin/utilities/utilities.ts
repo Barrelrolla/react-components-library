@@ -73,6 +73,10 @@ export default <Record<string, CssInJs>>{
       "color-mix(in oklab, var(--fg-color) 15%, var(--color-main))",
   },
 
+  ".arrow": {
+    "@apply fill-(--fg-color)": {},
+  },
+
   ".glass": {
     "@apply bg-(--bg-color)/40 backdrop-blur-xs": {},
   },

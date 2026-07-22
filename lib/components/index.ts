@@ -12,3 +12,4 @@ export * from "./Input";
 export * from "./Navbar";
 export * from "./Checkbox";
 export * from "./Radio";
+export * from "./Tooltip";

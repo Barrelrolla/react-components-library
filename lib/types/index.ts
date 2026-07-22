@@ -1,4 +1,5 @@
-import { ComponentPropsWithoutRef, RefObject } from "react";
+import { Placement } from "@floating-ui/react";
+import { ComponentPropsWithoutRef, Ref } from "react";
 import { ElementType } from "react";
 
 type ElementTypeMap<T extends ElementType> =
@@ -9,7 +10,7 @@ type ElementTypeMap<T extends ElementType> =
 export type PolymorphicProps<T extends ElementType> = {
   /** The html element (or other component) the component should be rendered as */
   as?: T;
-  ref?: RefObject<ElementTypeMap<T> | null>;
+  ref?: Ref<ElementTypeMap<T> | null>;
 } & ComponentPropsWithoutRef<T>;
 
 export type ColorType =
@@ -48,6 +49,21 @@ export const availableResponsiveSizes: ResponsiveSizes[] = [
   "md",
   "lg",
   "xl",
+];
+
+export const availablePlacements: Placement[] = [
+  "bottom",
+  "bottom-end",
+  "bottom-start",
+  "left",
+  "left-end",
+  "left-start",
+  "right",
+  "right-end",
+  "right-start",
+  "top",
+  "top-end",
+  "top-start",
 ];
 
 export type CssInJs = {

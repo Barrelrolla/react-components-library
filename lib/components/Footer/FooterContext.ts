@@ -1,14 +1,12 @@
 import { createContext, useContext } from "react";
 import { ColorType, ResponsiveSizes } from "@/types";
 
-export type FooterContextProps =
-  | {
-      color: ColorType;
-      responsiveAt: ResponsiveSizes;
-    }
-  | undefined;
+export type FooterContextProps = {
+  color: ColorType;
+  responsiveAt: ResponsiveSizes;
+} | null;
 
-const FooterContext = createContext<FooterContextProps>(undefined);
+const FooterContext = createContext<FooterContextProps>(null);
 
 export const FooterContextProvider = FooterContext.Provider;
 

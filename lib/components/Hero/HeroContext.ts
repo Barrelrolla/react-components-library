@@ -3,18 +3,16 @@ import { ResponsiveSizes } from "@/types";
 import { HeroAlign } from "./HeroTypes";
 
 /** Context holding data for components inside a Hero */
-export type HeroContextType =
-  | {
-      /** Select if text should be left or center aligned. By default it's left aligned on big screens and center on small ones. */
-      textAlign: HeroAlign;
-      /** Same as `textAlign` but for actions. */
-      actionsAlign: HeroAlign;
-      /** The size at which the component should change alignment. */
-      responsiveAt: ResponsiveSizes;
-    }
-  | undefined;
+export type HeroContextType = {
+  /** Select if text should be left or center aligned. By default it's left aligned on big screens and center on small ones. */
+  textAlign: HeroAlign;
+  /** Same as `textAlign` but for actions. */
+  actionsAlign: HeroAlign;
+  /** The size at which the component should change alignment. */
+  responsiveAt: ResponsiveSizes;
+} | null;
 
-const HeroContext = createContext<HeroContextType>(undefined);
+const HeroContext = createContext<HeroContextType>(null);
 export const HeroContextProvider = HeroContext.Provider;
 
 export function useHeroContext() {

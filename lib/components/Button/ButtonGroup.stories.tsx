@@ -5,6 +5,9 @@ import { PiHeart } from "react-icons/pi";
 import { Button } from "./Button";
 import { ButtonGroup } from "./ButtonGroup";
 import { availableColors } from "@/types";
+import TooltipTrigger from "../Tooltip/TooltipTrigger";
+import TooltipContent from "../Tooltip/TooltipContent";
+import { Tooltip } from "../Tooltip";
 
 type Props = ComponentProps<typeof ButtonGroup> & {
   selection: boolean;
@@ -138,12 +141,17 @@ export const Icon: Story = {
     };
     return (
       <ButtonGroup radius={radius} {...rest}>
-        <Button
-          aria-label="like"
-          selected={selected === 0}
-          onClick={() => clickHandler(0)}
-          startIcon={<PiHeart />}
-        />
+        <Tooltip>
+          <TooltipTrigger>
+            <Button
+              aria-label="like"
+              selected={selected === 0}
+              onClick={() => clickHandler(0)}
+              startIcon={<PiHeart />}
+            />
+          </TooltipTrigger>
+          <TooltipContent>Heart</TooltipContent>
+        </Tooltip>
         <Button
           aria-label="like"
           selected={selected === 1}
