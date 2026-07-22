@@ -21,6 +21,7 @@ export function Checkbox({
   style,
   labelStyle,
   labelClasses,
+  wrapperClasses,
   className,
   children,
   ...rest
@@ -29,6 +30,7 @@ export function Checkbox({
     useCheckboxStyles({
       className,
       labelClasses,
+      wrapperClasses,
     });
   const styles = { "--size": `${size}px`, ...cssColorProps(color), ...style };
   const labelStyles = {
