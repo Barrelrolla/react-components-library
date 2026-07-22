@@ -1,3 +1,4 @@
+import { FloatingTree } from "@floating-ui/react";
 import {
   createContext,
   PropsWithChildren,
@@ -137,7 +138,7 @@ export function ThemeContextProvider({
             : true,
       }}
     >
-      {children}
+      <FloatingTree>{children}</FloatingTree>
     </ThemeContext.Provider>
   );
 }

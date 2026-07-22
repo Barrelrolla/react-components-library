@@ -5,12 +5,14 @@ import {
   arrow,
   autoUpdate,
   flip,
+  FloatingNode,
   offset,
   Placement,
   safePolygon,
   shift,
   useDismiss,
   useFloating,
+  useFloatingNodeId,
   useFocus,
   useHover,
   useInteractions,
@@ -61,12 +63,7 @@ export function Tooltip({
     open: open,
     onOpenChange: setOpen,
     whileElementsMounted: autoUpdate,
-    middleware: [
-      offset(10),
-      flip(),
-      shift({ padding: 4 }),
-      arrow({ element: arrowRef }),
-    ],
+    middleware: [offset(10), flip(), shift(), arrow({ element: arrowRef })],
   });
 
   const context = data.context;
@@ -80,19 +77,23 @@ export function Tooltip({
   const role = useRole(context, { role: isLabel ? "label" : "tooltip" });
   const interactions = useInteractions([hover, focus, dismiss, role]);
 
+  const nodeId = useFloatingNodeId();
+
   return (
-    <TooltipContextProvider
-      value={{
-        color,
-        isOpen: disabled ? false : open,
-        setIsOpen: disabled ? () => {} : setOpen,
-        data,
-        interactions,
-        hasArrow,
-        arrowRef,
-      }}
-    >
-      {children}
-    </TooltipContextProvider>
+    <FloatingNode id={nodeId}>
+      <TooltipContextProvider
+        value={{
+          color,
+          isOpen: disabled ? false : open,
+          setIsOpen: disabled ? () => {} : setOpen,
+          data,
+          interactions,
+          hasArrow,
+          arrowRef,
+        }}
+      >
+        {children}
+      </TooltipContextProvider>
+    </FloatingNode>
   );
 }
