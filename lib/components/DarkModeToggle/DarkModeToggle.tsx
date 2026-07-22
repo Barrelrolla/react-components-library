@@ -10,8 +10,8 @@ export function DarkModeToggle({
   darkModeTooltip = "Dark",
   ...rest
 }: {
-  lightModeTooltip: string;
-  darkModeTooltip: string;
+  lightModeTooltip?: string;
+  darkModeTooltip?: string;
 } & ButtonProps<"button">) {
   const theme = useTheme();
   if (!theme) {

@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useEffect, useState } from "react";
-import { DocsContainer } from "@storybook/addon-docs/blocks";
+import { useEffect, useState, ReactNode } from "react";
+import { DocsContainer, DocsContextProps } from "@storybook/addon-docs/blocks";
 import { addons } from "storybook/preview-api";
 import { themes } from "storybook/theming";
 import { DARK_MODE_EVENT_NAME } from "@vueless/storybook-dark-mode";
 import type { Preview } from "@storybook/react";
+import { Renderer } from "storybook/internal/csf";
 import "../lib/index.css";
 
 const channel = addons.getChannel();
@@ -34,7 +35,13 @@ const preview: Preview = {
     },
 
     docs: {
-      container: ({ children, context }) => {
+      container: ({
+        children,
+        context,
+      }: {
+        children: ReactNode;
+        context: DocsContextProps<Renderer>;
+      }) => {
         const [isDark, setDark] = useState();
 
         useEffect(() => {

@@ -18,9 +18,9 @@ export function DarkModeSelector({
   systemModeTooltip = "System",
   ...rest
 }: ButtonGroupProps & {
-  lightModeTooltip: string;
-  darkModeTooltip: string;
-  systemModeTooltip: string;
+  lightModeTooltip?: string;
+  darkModeTooltip?: string;
+  systemModeTooltip?: string;
 }) {
   const theme = useTheme();
   if (!theme) {

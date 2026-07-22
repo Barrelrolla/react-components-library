@@ -3,7 +3,7 @@ import { resolve } from "path";
 import dts from "vite-plugin-dts";
 import { defineConfig } from "vitest/config";
 import preserveDirectives from "rollup-preserve-directives";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   build: {
