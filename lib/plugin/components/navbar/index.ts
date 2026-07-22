@@ -2,14 +2,14 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".navbar": {
-    "@apply flex w-full bg-(--bg-color) text-(--fg-color) transition-colors motion-safe:duration-(--dropdown-animation-duration)":
+    "@apply flex w-full bg-(--bg-color) text-(--fg-color) transition-colors motion-safe:duration-(--dropdown-animation-duration) left-0 z-(--z-navbar)":
       {},
   },
   ".navbar-backdrop": {
-    "@apply fixed top-0 left-0 z-30 h-screen w-screen": {},
+    "@apply absolute top-0 left-0 h-screen w-screen": {},
   },
   ".navbar-nav": {
-    "@apply relative px-4 py-2 mx-auto flex flex-wrap items-center justify-between z-40":
+    "@apply relative px-4 py-2 mx-auto flex flex-wrap items-center justify-between z-(--z-navbar)":
       {},
     width: "100%",
     "max-width": "var(--max-width)",

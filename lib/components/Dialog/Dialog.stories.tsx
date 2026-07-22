@@ -4,6 +4,7 @@ import { Dialog } from "./Dialog";
 import { useState } from "react";
 import { Button } from "../Button";
 import { Card, CardActions, CardText, CardTitle } from "../Card";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
 
 const meta: Meta<typeof Dialog> = {
   title: "Components/Dialog",
@@ -39,8 +40,14 @@ export const Default: Story = {
             <CardText>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, id!
             </CardText>
+
             <CardActions className="flex w-full flex-row justify-end">
-              <Button onClick={() => setIsOpen(false)}>close</Button>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Button onClick={() => setIsOpen(false)}>close</Button>
+                </TooltipTrigger>
+                <TooltipContent>Close</TooltipContent>
+              </Tooltip>
             </CardActions>
           </Card>
         </Dialog>

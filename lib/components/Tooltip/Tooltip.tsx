@@ -67,7 +67,7 @@ export function Tooltip({
     middleware: [
       offset(10),
       flip(),
-      shift({ padding: 16 }),
+      shift({ padding: 8 }),
       arrow({ element: arrowRef }),
     ],
   });

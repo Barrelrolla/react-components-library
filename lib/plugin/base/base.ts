@@ -34,6 +34,8 @@ export default <CssInJs>{
     "--border-containers": "1px",
     "--border-navigation": "1px",
     "--border-transparency": "100%",
+    "--z-navbar": "100",
+    "--z-floats": "1000",
     "--max-width": "1440px",
     "--hero-height": "800px",
     "--default-font-weight": "300",

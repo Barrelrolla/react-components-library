@@ -144,14 +144,19 @@ export const PageDemo: Story = {
                 {link}
               </NavbarLink>
             ))}
-            <Button
-              variant="outline"
-              color="primary"
-              size="sm"
-              className="w-full md:w-auto"
-            >
-              test
-            </Button>
+            <Tooltip placement="left">
+              <TooltipTrigger>
+                <Button
+                  variant="outline"
+                  color="primary"
+                  size="sm"
+                  className="w-full md:w-auto"
+                >
+                  test
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>tooltip</TooltipContent>
+            </Tooltip>
           </NavbarCollapse>
         </Navbar>
         <Hero color={color}>
