@@ -64,7 +64,12 @@ export function Tooltip({
     open: open,
     onOpenChange: setOpen,
     whileElementsMounted: autoUpdate,
-    middleware: [offset(10), flip(), shift(), arrow({ element: arrowRef })],
+    middleware: [
+      offset(10),
+      flip(),
+      shift({ padding: 16 }),
+      arrow({ element: arrowRef }),
+    ],
   });
 
   const { delay: groupDelay } = useDelayGroup(data.context);
