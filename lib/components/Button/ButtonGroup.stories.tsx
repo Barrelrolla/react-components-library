@@ -1,13 +1,11 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
-import { PiHeart } from "react-icons/pi";
+import { PiBookmark, PiHeart, PiThumbsUp } from "react-icons/pi";
 import { Button } from "./Button";
 import { ButtonGroup } from "./ButtonGroup";
 import { availableColors } from "@/types";
-import TooltipTrigger from "../Tooltip/TooltipTrigger";
-import TooltipContent from "../Tooltip/TooltipContent";
-import { Tooltip } from "../Tooltip";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip";
 
 type Props = ComponentProps<typeof ButtonGroup> & {
   selection: boolean;
@@ -141,29 +139,39 @@ export const Icon: Story = {
     };
     return (
       <ButtonGroup radius={radius} {...rest}>
-        <Tooltip>
+        <Tooltip isLabel>
           <TooltipTrigger>
             <Button
-              aria-label="like"
+              aria-label="love"
               selected={selected === 0}
               onClick={() => clickHandler(0)}
               startIcon={<PiHeart />}
             />
           </TooltipTrigger>
-          <TooltipContent>Heart</TooltipContent>
+          <TooltipContent>Love</TooltipContent>
         </Tooltip>
-        <Button
-          aria-label="like"
-          selected={selected === 1}
-          onClick={() => clickHandler(1)}
-          startIcon={<PiHeart />}
-        />
-        <Button
-          aria-label="like"
-          selected={selected === 2}
-          onClick={() => clickHandler(2)}
-          startIcon={<PiHeart />}
-        />
+        <Tooltip isLabel>
+          <TooltipTrigger>
+            <Button
+              aria-label="like"
+              selected={selected === 1}
+              onClick={() => clickHandler(1)}
+              startIcon={<PiThumbsUp />}
+            />
+          </TooltipTrigger>
+          <TooltipContent>Like</TooltipContent>
+        </Tooltip>
+        <Tooltip isLabel>
+          <TooltipTrigger>
+            <Button
+              aria-label="save"
+              selected={selected === 2}
+              onClick={() => clickHandler(2)}
+              startIcon={<PiBookmark />}
+            />
+          </TooltipTrigger>
+          <TooltipContent>Save</TooltipContent>
+        </Tooltip>
       </ButtonGroup>
     );
   },
@@ -179,7 +187,12 @@ export const SplitButton: Story = {
     return (
       <ButtonGroup {...rest} radius={radius}>
         <Button className="">Button</Button>
-        <Button aria-label="like" startIcon={<PiHeart />} />
+        <Tooltip isLabel>
+          <TooltipTrigger>
+            <Button aria-label="like" startIcon={<PiHeart />} />
+          </TooltipTrigger>
+          <TooltipContent>Like</TooltipContent>
+        </Tooltip>
       </ButtonGroup>
     );
   },

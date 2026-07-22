@@ -3,6 +3,8 @@ import { expect, within } from "storybook/test";
 import { PiHeart, PiBookmark, PiThumbsUp } from "react-icons/pi";
 import { Button } from "./Button";
 import { availableColors, availableSizes } from "@/types";
+import { FloatingDelayGroupContextProvider } from "@/contexts/FloatingDelayGroup";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -148,26 +150,43 @@ export const Icon: Story = {
   render: ({ ...rest }) => {
     return (
       <>
-        <Button
-          aria-label="like"
-          radius="pill"
-          startIcon={<PiHeart />}
-          {...rest}
-        ></Button>
-        <Button
-          aria-label="thumbsup"
-          radius="none"
-          variant="outline"
-          startIcon={<PiThumbsUp />}
-          {...rest}
-        ></Button>
-        <Button
-          aria-label="bookmark"
-          variant="ghost"
-          ghostHover="fill"
-          startIcon={<PiBookmark />}
-          {...rest}
-        ></Button>
+        <FloatingDelayGroupContextProvider>
+          <Tooltip isLabel>
+            <TooltipTrigger>
+              <Button
+                aria-label="love"
+                radius="pill"
+                startIcon={<PiHeart />}
+                {...rest}
+              ></Button>
+            </TooltipTrigger>
+            <TooltipContent>Love</TooltipContent>
+          </Tooltip>
+          <Tooltip isLabel>
+            <TooltipTrigger>
+              <Button
+                aria-label="like"
+                radius="none"
+                variant="outline"
+                startIcon={<PiThumbsUp />}
+                {...rest}
+              ></Button>
+            </TooltipTrigger>
+            <TooltipContent>Like</TooltipContent>
+          </Tooltip>
+          <Tooltip isLabel>
+            <TooltipTrigger>
+              <Button
+                aria-label="save"
+                variant="ghost"
+                ghostHover="fill"
+                startIcon={<PiBookmark />}
+                {...rest}
+              ></Button>
+            </TooltipTrigger>
+            <TooltipContent>Save</TooltipContent>
+          </Tooltip>
+        </FloatingDelayGroupContextProvider>
       </>
     );
   },

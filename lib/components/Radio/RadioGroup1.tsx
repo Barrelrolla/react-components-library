@@ -8,7 +8,7 @@ export type RadioGroupProps = {
 } & ComponentProps<"fieldset"> &
   RadioProps;
 
-export default function RadioGroup({
+export function RadioGroup({
   title,
   name,
   color,

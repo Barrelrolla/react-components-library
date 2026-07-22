@@ -29,9 +29,9 @@ export type ThemeContextType =
       isDark: boolean | undefined;
       setDarkMode: (themeMode: DarkModeType) => void;
     } & ThemeContextProps)
-  | undefined;
+  | null;
 
-const ThemeContext = createContext<ThemeContextType>(undefined);
+const ThemeContext = createContext<ThemeContextType>(null);
 export function ThemeContextProvider({
   value,
   children,

@@ -4,7 +4,7 @@ import { FloatingArrow, FloatingPortal } from "@floating-ui/react";
 import { useTooltipStyles } from "./useTooltipStyles";
 import { cssColorProps } from "@/util";
 
-export default function TooltipContent({
+export function TooltipContent({
   className,
   style,
   children,

@@ -10,6 +10,7 @@ import {
   Placement,
   safePolygon,
   shift,
+  useDelayGroup,
   useDismiss,
   useFloating,
   useFloatingNodeId,
@@ -66,9 +67,10 @@ export function Tooltip({
     middleware: [offset(10), flip(), shift(), arrow({ element: arrowRef })],
   });
 
+  const { delay: groupDelay } = useDelayGroup(data.context);
   const context = data.context;
   const hover = useHover(context, {
-    delay: { open: delay, close: 0 },
+    delay: groupDelay || { open: delay, close: 0 },
     move: false,
     handleClose: safePolygon(),
   });

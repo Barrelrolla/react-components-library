@@ -2,11 +2,7 @@ import { ReactElement } from "react";
 import { useTooltipContext } from "./TooltipContext";
 import { Slot } from "../Slot/Slot";
 
-export default function TooltipTrigger({
-  children,
-}: {
-  children: ReactElement;
-}) {
+export function TooltipTrigger({ children }: { children: ReactElement }) {
   const context = useTooltipContext();
   if (!context) {
     throw new Error(

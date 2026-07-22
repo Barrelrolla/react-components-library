@@ -21,6 +21,7 @@ import {
   FooterBrand,
   FooterDivider,
   FooterFullSection,
+  FooterIconsContainer,
   FooterLink,
   FooterLinkGroup,
   FooterLinksSection,
@@ -28,6 +29,7 @@ import {
 } from "../Footer";
 import { cssColorProps } from "@/util";
 import { availableColors, availableResponsiveSizes } from "@/types";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
 
 type Props = ComponentProps<typeof Navbar> & {
   selected: number | undefined;
@@ -200,14 +202,24 @@ export const PageDemo: Story = {
           <FooterDivider />
           <FooterFullSection>
             <span>copyright stuff</span>
-            <div className="flex gap-4 text-xl">
-              <FooterLink href="#">
-                <PiGithubLogo aria-label="github logo" />
-              </FooterLink>
-              <FooterLink href="#">
-                <PiLinkedinLogo aria-label="linkedin logo" />
-              </FooterLink>
-            </div>
+            <FooterIconsContainer>
+              <Tooltip isLabel color="dark">
+                <TooltipTrigger>
+                  <FooterLink href="#">
+                    <PiGithubLogo aria-label="github logo" />
+                  </FooterLink>
+                </TooltipTrigger>
+                <TooltipContent>Github</TooltipContent>
+              </Tooltip>
+              <Tooltip isLabel color="dark">
+                <TooltipTrigger>
+                  <FooterLink href="#">
+                    <PiLinkedinLogo aria-label="linkedin logo" />
+                  </FooterLink>
+                </TooltipTrigger>
+                <TooltipContent>LinkedIn</TooltipContent>
+              </Tooltip>
+            </FooterIconsContainer>
           </FooterFullSection>
         </Footer>
       </div>

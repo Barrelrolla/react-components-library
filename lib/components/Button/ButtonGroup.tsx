@@ -5,6 +5,7 @@ import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
 import { ButtonGroupContextProvider } from "./ButtonGroupContext";
 import { useButtonGroupStyles } from "./useButtonGroupStyles";
 import { Divider } from "../Divider";
+import { FloatingDelayGroup } from "@floating-ui/react";
 
 export type ButtonGroupProps = {
   /** Color of the buttons in the group. */
@@ -29,6 +30,7 @@ export type ButtonGroupProps = {
   dividerClasses?: string;
   /** The button group wraps all buttons in a wrapper. You can add css classes to it here. */
   wrapperClasses?: string;
+  tooltipDelay?: number;
 } & ComponentProps<"div">;
 
 export function ButtonGroup({
@@ -41,6 +43,7 @@ export function ButtonGroup({
   divider = true,
   vertical = false,
   scaling = false,
+  tooltipDelay = 300,
   className,
   dividerClasses,
   children,
@@ -66,29 +69,31 @@ export function ButtonGroup({
         vertical,
       }}
     >
-      <div className={wrapperStyles}>
-        <div
-          className={groupStyles}
-          style={cssColorPropsReversed(color)}
-          {...rest}
-        >
-          {Children.map(children, (child, index) => {
-            return (
-              <Fragment key={index}>
-                {divider && index !== 0 && (
-                  <Divider
-                    color={color}
-                    useBgColor={variant === "solid"}
-                    vertical={!vertical}
-                    className={dividerClasses}
-                  />
-                )}
-                {child}
-              </Fragment>
-            );
-          })}
+      <FloatingDelayGroup delay={{ open: tooltipDelay, close: 0 }}>
+        <div className={wrapperStyles}>
+          <div
+            className={groupStyles}
+            style={cssColorPropsReversed(color)}
+            {...rest}
+          >
+            {Children.map(children, (child, index) => {
+              return (
+                <Fragment key={index}>
+                  {divider && index !== 0 && (
+                    <Divider
+                      color={color}
+                      useBgColor={variant === "solid"}
+                      vertical={!vertical}
+                      className={dividerClasses}
+                    />
+                  )}
+                  {child}
+                </Fragment>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </FloatingDelayGroup>
     </ButtonGroupContextProvider>
   );
 }

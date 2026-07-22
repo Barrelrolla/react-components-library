@@ -1,10 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, waitFor, within } from "storybook/test";
-import { Tooltip } from "./Tooltip";
 import { availableColors, availablePlacements } from "@/types";
 import { Button } from "../Button";
-import TooltipTrigger from "./TooltipTrigger";
-import TooltipContent from "./TooltipContent";
+import { Tooltip, TooltipTrigger, TooltipContent } from "./";
 
 const meta: Meta<typeof Tooltip> = {
   title: "Components/Tooltip",

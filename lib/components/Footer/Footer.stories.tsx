@@ -12,6 +12,7 @@ import { FooterLinksSection } from "./FooterLinksSection";
 import { FooterLinksTitle } from "./FooterLinksTitle";
 import { ComponentType } from "react";
 import { availableColors, availableResponsiveSizes } from "@/types";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Footer",
@@ -104,12 +105,22 @@ export const WithLinkGroups: Story = {
         <FooterFullSection>
           <span>copyright stuff</span>
           <FooterIconsContainer>
-            <FooterLink href="#">
-              <PiGithubLogo aria-label="github logo" />
-            </FooterLink>
-            <FooterLink href="#">
-              <PiLinkedinLogo aria-label="linkedin logo" />
-            </FooterLink>
+            <Tooltip isLabel color="dark">
+              <TooltipTrigger>
+                <FooterLink href="#">
+                  <PiGithubLogo aria-label="github logo" />
+                </FooterLink>
+              </TooltipTrigger>
+              <TooltipContent>Github</TooltipContent>
+            </Tooltip>
+            <Tooltip isLabel color="dark">
+              <TooltipTrigger>
+                <FooterLink href="#">
+                  <PiLinkedinLogo aria-label="linkedin logo" />
+                </FooterLink>
+              </TooltipTrigger>
+              <TooltipContent>LinkedIn</TooltipContent>
+            </Tooltip>
           </FooterIconsContainer>
         </FooterFullSection>
       </Footer>
