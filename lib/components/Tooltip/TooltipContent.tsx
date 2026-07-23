@@ -8,6 +8,7 @@ export function TooltipContent({
   className,
   style,
   children,
+  ...rest
 }: ComponentProps<"span">) {
   const { classes } = useTooltipStyles({ className });
 
@@ -32,6 +33,7 @@ export function TooltipContent({
         ref={context.data.refs.setFloating}
         style={styles}
         className={classes}
+        {...rest}
         {...context.interactions.getFloatingProps()}
       >
         <>

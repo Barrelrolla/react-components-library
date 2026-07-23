@@ -8,6 +8,7 @@ export function PopoverContent({
   className,
   style,
   children,
+  ...rest
 }: ComponentProps<"span">) {
   const { classes } = usePopoverStyles({ className });
 
@@ -26,6 +27,14 @@ export function PopoverContent({
     ...style,
   };
 
+  const ariaLabel = { ...rest }["aria-label"];
+  const ariaDescribed = { ...rest }["aria-describedby"];
+  if (!ariaLabel && !ariaDescribed) {
+    console.warn(
+      "Provide an aria-label describing the purpose of the popover.",
+    );
+  }
+
   return (
     <FloatingPortal>
       <span
@@ -33,6 +42,7 @@ export function PopoverContent({
         style={styles}
         className={classes}
         {...context.interactions.getFloatingProps()}
+        {...rest}
       >
         <>
           {context.hasArrow && (

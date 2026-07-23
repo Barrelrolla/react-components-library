@@ -4,7 +4,7 @@ import { expect, within } from "storybook/test";
 import { PiBookmark, PiHeart, PiThumbsUp } from "react-icons/pi";
 import { Button } from "./Button";
 import { ButtonGroup } from "./ButtonGroup";
-import { availableColors } from "@/types";
+import { availableColors, availableSizes } from "@/types";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip";
 
 type Props = ComponentProps<typeof ButtonGroup> & {
@@ -25,7 +25,7 @@ const meta: Meta<Props> = {
     selection: { control: { type: "boolean" } },
     color: { control: { type: "select" }, options: availableColors },
     variant: { control: { type: "inline-radio" } },
-    size: { control: { type: "inline-radio" } },
+    size: { control: { type: "inline-radio" }, options: availableSizes },
     radius: { control: { type: "inline-radio" } },
     ghostHover: {
       control: { type: "inline-radio" },
@@ -196,4 +196,6 @@ export const SplitButton: Story = {
       </ButtonGroup>
     );
   },
+  args: { selection: undefined },
+  argTypes: { selection: { table: { disable: true } } },
 };

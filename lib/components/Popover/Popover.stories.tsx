@@ -49,7 +49,7 @@ export const Default: Story = {
         <PopoverTrigger>
           <Button disabled={disabled}>hover me</Button>
         </PopoverTrigger>
-        <PopoverContent>
+        <PopoverContent aria-label="test">
           <Card>
             <CardTitle>Lorem, ipsum dolor.</CardTitle>
             <CardText>
@@ -73,7 +73,7 @@ export const Nested: Story = {
           <PopoverTrigger>
             <Button disabled={disabled}>hover me</Button>
           </PopoverTrigger>
-          <PopoverContent>
+          <PopoverContent aria-label="test">
             <Card>
               <CardTitle>Lorem, ipsum dolor.</CardTitle>
               <CardText>
@@ -85,7 +85,7 @@ export const Nested: Story = {
                   <PopoverTrigger>
                     <Button disabled={disabled}>hover me</Button>
                   </PopoverTrigger>
-                  <PopoverContent>
+                  <PopoverContent aria-label="test">
                     <Card>
                       <CardTitle>Lorem, ipsum dolor.</CardTitle>
                       <CardText>
@@ -124,7 +124,7 @@ export const Colors: Story = {
             <PopoverTrigger>
               <Button color={color}>{color}</Button>
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent aria-label="test">
               <Card color={color}>
                 <CardTitle>Lorem, ipsum dolor.</CardTitle>
                 <CardText>

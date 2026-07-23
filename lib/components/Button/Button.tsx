@@ -83,9 +83,16 @@ export function Button<E extends ElementType = typeof defaultType>({
       : {}),
   };
 
+  const ariaLabel = { ...rest }["aria-label"] || "false";
+  const ariaDescribed = { ...rest }["aria-describedby"];
+  if (!ariaLabel && !ariaDescribed && !children) {
+    console.warn("Provide an aria-label for buttons without text!");
+  }
+
   return (
     <span className={wrapperStyles}>
       <Element
+        aria-label={ariaLabel}
         data-selected={selected ? selected : undefined}
         style={{ ...cssColorPropsReversed(resolvedColor), ...style }}
         className={styles}
