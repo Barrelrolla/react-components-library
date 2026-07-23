@@ -6,7 +6,7 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".navbar-backdrop": {
-    "@apply absolute top-0 left-0 h-screen w-screen": {},
+    "@apply fixed top-0 left-0 h-screen w-screen z-90": {},
   },
   ".navbar-nav": {
     "@apply relative px-4 py-2 mx-auto flex flex-wrap items-center justify-between z-(--z-navbar)":
