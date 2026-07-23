@@ -8,7 +8,7 @@ export function DialogContent({
 }: ComponentProps<"div">) {
   return (
     <div
-      className={twMerge("w-100 max-w-[calc(100vw-4rem)]", className)}
+      className={twMerge("w-100 max-w-[calc(100vw-2rem)]", className)}
       {...rest}
     >
       {children}

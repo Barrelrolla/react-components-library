@@ -136,7 +136,7 @@ export const BigText: Story = {
             <Dialog isOpen={isOpenSecond} setIsOpen={setIsOpenSecond}>
               <DialogContent>
                 <Card
-                  className="max-h-[calc(100vh-4rem)] overflow-x-auto"
+                  className="max-h-[calc(100vh-2.2rem)] overflow-x-auto"
                   size="xl"
                 >
                   <CardTitle>Lorem, ipsum dolor.</CardTitle>
