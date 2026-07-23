@@ -14,3 +14,4 @@ export * from "./Checkbox";
 export * from "./Radio";
 export * from "./Tooltip";
 export * from "./Popover";
+export * from "./Dropdown";

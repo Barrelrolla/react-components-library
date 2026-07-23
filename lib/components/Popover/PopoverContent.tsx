@@ -14,7 +14,9 @@ export function PopoverContent({
 
   const context = usePopoverContext();
   if (!context) {
-    return "Please use the Popover Content only inside a Popover component!";
+    throw new Error(
+      "Please use the Popover Content only inside a Popover component!",
+    );
   }
 
   if (!context.isOpen) {

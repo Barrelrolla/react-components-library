@@ -1,5 +1,6 @@
 import createPlugin from "tailwindcss/plugin";
 import base from "./base/base";
+import dropdown from "./components/dropdown";
 import popover from "./components/popover";
 import tooltip from "./components/tooltip";
 import radio from "./components/radio";
@@ -22,6 +23,7 @@ const plugin: TailwindPlugin = createPlugin(
   ({ addBase, addComponents, addUtilities, addVariant }) => {
     addBase(base);
     addComponents([
+      dropdown,
       popover,
       tooltip,
       radio,

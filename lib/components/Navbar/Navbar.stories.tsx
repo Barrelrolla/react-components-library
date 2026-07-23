@@ -85,7 +85,7 @@ export const Default: Story = {
 
     return (
       <div className="bg-main">
-        <Navbar fixed={fixed} {...rest}>
+        <Navbar fixed={fixed} {...rest} className={fixed ? "" : "relative"}>
           <NavbarToggle />
           <NavbarBrand href="#">
             <PiRocket /> Test

@@ -26,13 +26,13 @@ export default <Record<string, CssInJs>>{
     "@apply order-none max-h-fit w-auto overflow-visible": {},
   },
   ".navbar-collapse-list": {
-    "@apply flex flex-col gap-2": {},
+    "@apply flex flex-col gap-2 px-1 py-2": {},
   },
   ".navbar-collapse-list-extended": {
     "@apply mt-0 mb-0 flex-row items-center gap-4 p-0": {},
   },
   ".navbar-link": {
-    "@apply flex hover:bg-(--fg-color)/10 focus-visible:bg-(--fg-color)/10 active:bg-(--fg-color)/30 selected:bg-(--fg-color) selected:text-(--bg-color) selected:hover:bg-(--fg-color)/90 selected:focus-visible:bg-(--fg-color)/90 selected:active:bg-(--fg-color)/80  outline-offset-1 p-2":
+    "@apply flex hover:bg-(--fg-color)/10 focus-visible:bg-(--fg-color)/10 active:bg-(--fg-color)/30 selected:bg-(--fg-color) selected:text-(--bg-color) selected:hover:bg-(--fg-color)/90 selected:focus-visible:bg-(--fg-color)/90 selected:active:bg-(--fg-color)/80 outline-offset-1 p-2":
       {},
   },
   ".navbar-link-extended": {

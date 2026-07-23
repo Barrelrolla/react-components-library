@@ -1,21 +1,21 @@
 import { ComponentProps } from "react";
-import { useTooltipContext } from "./TooltipContext";
+import { useDropdownContext } from "./DropdownContext";
 import { FloatingArrow, FloatingPortal } from "@floating-ui/react";
-import { useTooltipStyles } from "./useTooltipStyles";
+import { useDropdownStyles } from "./useDropdownStyles";
 import { cssColorProps } from "@/util";
 
-export function TooltipContent({
+export function DropdownContent({
   className,
   style,
   children,
   ...rest
 }: ComponentProps<"span">) {
-  const { classes } = useTooltipStyles({ className });
+  const { classes } = useDropdownStyles({ className });
 
-  const context = useTooltipContext();
+  const context = useDropdownContext();
   if (!context) {
     throw new Error(
-      "Please use the Tooltip Content only inside a Tooltip component!",
+      "Please use the Dropdown Content only inside a Dropdown component!",
     );
   }
 
@@ -31,12 +31,12 @@ export function TooltipContent({
 
   return (
     <FloatingPortal>
-      <span
+      <section
         ref={context.data.refs.setFloating}
         style={styles}
         className={classes}
-        {...rest}
         {...context.interactions.getFloatingProps()}
+        {...rest}
       >
         <>
           {context.hasArrow && (
@@ -51,7 +51,7 @@ export function TooltipContent({
           )}
           {children}
         </>
-      </span>
+      </section>
     </FloatingPortal>
   );
 }
