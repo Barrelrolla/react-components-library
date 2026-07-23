@@ -66,6 +66,18 @@ export const availablePlacements: Placement[] = [
   "top-start",
 ];
 
+export type floatingRoles =
+  | "tooltip"
+  | "dialog"
+  | "alertdialog"
+  | "menu"
+  | "listbox"
+  | "grid"
+  | "tree"
+  | "label"
+  | "select"
+  | "combobox";
+
 export type CssInJs = {
   [key: string]: string | string[] | CssInJs | CssInJs[];
 };
