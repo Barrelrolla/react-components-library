@@ -41,13 +41,13 @@ export const Default: Story = {
 export const Colors: Story = {
   render: ({ ...rest }) => {
     return (
-      <div className="flex flex-wrap gap-2">
+      <>
         {availableColors.map((color) => (
           <{{pascalCase name}} color={color} key={color} {...rest}>
             {color}
           </{{pascalCase name}}>
         ))}
-      </div>
+      </>
     );
   },
   args: {},

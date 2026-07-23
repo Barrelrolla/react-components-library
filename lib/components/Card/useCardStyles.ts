@@ -20,6 +20,7 @@ export function useCardStyles({
   return {
     containerStyles: twMerge(
       "card-container",
+      horizontal && "@container",
       size === "xs" && "max-w-xs",
       size === "sm" && "max-w-sm",
       size === "md" && "max-w-md",

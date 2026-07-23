@@ -6,6 +6,7 @@ import {
   autoUpdate,
   flip,
   FloatingNode,
+  FloatingTree,
   offset,
   Placement,
   safePolygon,
@@ -15,6 +16,7 @@ import {
   useDismiss,
   useFloating,
   useFloatingNodeId,
+  useFloatingParentNodeId,
   useFocus,
   useHover,
   useInteractions,
@@ -33,7 +35,7 @@ export type PopoverProps = {
   disabled?: boolean;
 } & PropsWithChildren;
 
-export function Popover({
+export function PopoverComponent({
   color = "main",
   isOpen,
   onOpenChange,
@@ -62,7 +64,9 @@ export function Popover({
   );
 
   const arrowRef = useRef(null);
+  const nodeId = useFloatingNodeId();
   const data = useFloating({
+    nodeId,
     placement,
     open: open,
     onOpenChange: setOpen,
@@ -88,9 +92,6 @@ export function Popover({
   const dismiss = useDismiss(context);
   const r = useRole(context, { role: role });
   const interactions = useInteractions([hover, click, focus, dismiss, r]);
-
-  const nodeId = useFloatingNodeId();
-
   return (
     <FloatingNode id={nodeId}>
       <PopoverContextProvider
@@ -108,4 +109,17 @@ export function Popover({
       </PopoverContextProvider>
     </FloatingNode>
   );
+}
+
+export function Popover(props: PopoverProps) {
+  const parentId = useFloatingParentNodeId();
+  if (parentId === null) {
+    return (
+      <FloatingTree>
+        <PopoverComponent {...props} />
+      </FloatingTree>
+    );
+  }
+
+  return <PopoverComponent {...props} />;
 }

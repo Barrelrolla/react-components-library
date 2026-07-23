@@ -59,16 +59,16 @@ export const Default: Story = {
 export const Colors: Story = {
   render: ({ ...rest }) => {
     return (
-      <div className="flex flex-wrap gap-2">
+      <>
         {availableColors.map((color) => (
           <Tooltip color={color} key={color} {...rest}>
             <TooltipTrigger>
-              <Button>hover me</Button>
+              <Button color={color}>{color}</Button>
             </TooltipTrigger>
             <TooltipContent>{color}</TooltipContent>
           </Tooltip>
         ))}
-      </div>
+      </>
     );
   },
   args: {},
