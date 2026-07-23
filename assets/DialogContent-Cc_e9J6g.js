@@ -1,0 +1,1 @@
+import{j as a}from"./iframe-BFJxpdhf.js";import{t as n}from"./bundle-mjs-169JcMJR.js";function r({className:o,children:t,...e}){return a.jsx("div",{className:n("w-100 max-w-[calc(100vw-2rem)]",o),...e,children:t})}r.__docgenInfo={description:"",methods:[],displayName:"DialogContent"};export{r as D};
