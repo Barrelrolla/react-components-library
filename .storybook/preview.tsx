@@ -13,7 +13,7 @@ const channel = addons.getChannel();
 const preview: Preview = {
   decorators: [
     (Story) => {
-      // some weird issue with storybook-dark-mode adding the `dark` class to the body and the html
+      // Fixes the issue where storybook-dark-mode adds the dark class to body elements inside docs
       document.body.classList.remove("dark");
       return (
         <div>
@@ -42,17 +42,26 @@ const preview: Preview = {
         children: ReactNode;
         context: DocsContextProps<Renderer>;
       }) => {
-        const [isDark, setDark] = useState();
+        const [isDark, setDark] = useState(() => {
+          return (
+            document.documentElement.classList.contains("dark") ||
+            document.body.classList.contains("dark")
+          );
+        });
 
         useEffect(() => {
-          channel.on(DARK_MODE_EVENT_NAME, setDark);
-          return () => channel.removeListener(DARK_MODE_EVENT_NAME, setDark);
-        }, [setDark]);
+          const handleThemeChange = (dark: boolean) => {
+            setDark(dark);
+          };
+          channel.on(DARK_MODE_EVENT_NAME, handleThemeChange);
+          return () =>
+            channel.removeListener(DARK_MODE_EVENT_NAME, handleThemeChange);
+        }, []);
 
         return (
           <DocsContainer
             context={context}
-            theme={isDark ? themes.dark : themes.normal}
+            theme={isDark ? themes.dark : themes.light}
           >
             {children}
           </DocsContainer>
@@ -61,9 +70,6 @@ const preview: Preview = {
     },
 
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
       test: "todo",
     },
   },
