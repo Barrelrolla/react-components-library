@@ -23,6 +23,7 @@ const meta: Meta<typeof Popover> = {
     },
     placement: { control: { type: "select" }, options: availablePlacements },
     role: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
   },
 };
 
@@ -108,6 +109,9 @@ export const Nested: Story = {
         </Popover>
       </ThemeContextProvider>
     );
+  },
+  argTypes: {
+    placement: { table: { disable: true } },
   },
 };
 
