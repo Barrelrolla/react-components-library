@@ -1,8 +1,13 @@
-import { ReactElement } from "react";
+import { ReactElement, FocusEvent, HTMLAttributes } from "react";
 import { useDropdownContext } from "./DropdownContext";
 import { Slot } from "../Slot/Slot";
+import { useListItem, useMergeRefs } from "@floating-ui/react";
 
-export function DropdownTrigger({ children }: { children: ReactElement }) {
+interface DropdownTriggerProps extends HTMLAttributes<HTMLElement> {
+  children: ReactElement;
+}
+
+export function DropdownTrigger({ children, ...rest }: DropdownTriggerProps) {
   const context = useDropdownContext();
   if (!context) {
     throw new Error(
@@ -10,10 +15,27 @@ export function DropdownTrigger({ children }: { children: ReactElement }) {
     );
   }
 
+  const { data, isNested, parent } = context;
+  const item = useListItem();
+  const refs = useMergeRefs([data.refs.setReference, item.ref]);
+
   return (
     <Slot
-      {...context.interactions.getReferenceProps()}
-      ref={context.data.refs.setReference}
+      ref={refs}
+      tabIndex={
+        !isNested ? undefined : parent?.activeIndex === item.index ? 0 : -1
+      }
+      role={isNested ? "menuitem" : undefined}
+      {...context.interactions.getReferenceProps(
+        parent?.getItemProps({
+          ...rest,
+          onFocus(event: FocusEvent<HTMLElement>) {
+            rest.onFocus?.(event);
+            context.setHasFocusInside(false);
+            parent.setHasFocusInside(true);
+          },
+        }),
+      )}
     >
       {children}
     </Slot>

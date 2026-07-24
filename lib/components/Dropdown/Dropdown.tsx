@@ -1,6 +1,12 @@
-import { PropsWithChildren, useCallback, useRef, useState } from "react";
-import { ColorType, floatingRoles } from "@/types";
-import { DropdownContextProvider } from "./DropdownContext";
+import {
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { ColorType } from "@/types";
+import { DropdownContextProvider, useDropdownContext } from "./DropdownContext";
 import {
   arrow,
   autoUpdate,
@@ -16,7 +22,7 @@ import {
   useFloating,
   useFloatingNodeId,
   useFloatingParentNodeId,
-  useFocus,
+  useFloatingTree,
   useHover,
   useInteractions,
   useListNavigation,
@@ -29,8 +35,7 @@ export type DropdownProps = {
   onOpenChange?: (isOpen: boolean) => void;
   placement?: Placement;
   hasArrow?: boolean;
-  requireClick: boolean;
-  role?: floatingRoles;
+  requireClick?: boolean;
   disabled?: boolean;
 } & PropsWithChildren;
 
@@ -41,14 +46,14 @@ export function DropdownComponent({
   placement = "top",
   hasArrow = true,
   requireClick = true,
-  role = "menu",
   disabled,
   children,
 }: DropdownProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [hasFocusInside, setHasFocusInside] = useState(false);
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
-  const controlled = isOpen !== undefined;
 
+  const controlled = isOpen !== undefined;
   const open = controlled ? isOpen : uncontrolledOpen;
 
   const setOpen = useCallback(
@@ -62,50 +67,81 @@ export function DropdownComponent({
     [controlled, onOpenChange],
   );
 
-  const arrowRef = useRef(null);
+  let isMobile = false;
+  if (window) {
+    isMobile = window.matchMedia("(width <= 600px)").matches;
+  }
+
+  const parent = useDropdownContext();
+  const listRef = useRef<(HTMLElement | null)[]>([]);
+  const tree = useFloatingTree();
   const nodeId = useFloatingNodeId();
+  const parentId = useFloatingParentNodeId();
+  const arrowRef = useRef(null);
+  const isNested = parentId != null;
+
   const data = useFloating({
     nodeId,
-    placement,
     open: open,
     onOpenChange: setOpen,
-    whileElementsMounted: autoUpdate,
+    placement: isNested ? "right-start" : placement,
     middleware: [
-      offset(10),
+      offset(isNested ? 2 : 10),
       flip(),
       shift({ padding: 8 }),
       arrow({ element: arrowRef }),
     ],
+    whileElementsMounted: autoUpdate,
   });
 
-  const listRef = useRef<(HTMLElement | null)[]>([]);
-  const context = data.context;
+  const { context } = data;
   const hover = useHover(context, {
-    enabled: !requireClick,
+    enabled: !requireClick || isNested,
     move: false,
-    handleClose: safePolygon(),
+    handleClose: safePolygon({ blockPointerEvents: true }),
   });
-  const click = useClick(context, { enabled: requireClick });
-  const focus = useFocus(context, {
-    enabled: !requireClick,
-    visibleOnly: true,
+  const click = useClick(context, {
+    enabled: requireClick || isMobile,
+    toggle: !isNested,
+    ignoreMouse: isNested,
   });
-  const dismiss = useDismiss(context);
+  const role = useRole(context, { role: "menu" });
+  const dismiss = useDismiss(context, { bubbles: true });
   const listNav = useListNavigation(context, {
-    nested: true,
     listRef,
     activeIndex,
+    nested: isNested,
     onNavigate: setActiveIndex,
   });
-  const r = useRole(context, { role: role });
-  const interactions = useInteractions([
-    hover,
-    click,
-    focus,
-    dismiss,
-    listNav,
-    r,
-  ]);
+  const interactions = useInteractions([hover, click, role, dismiss, listNav]);
+
+  useEffect(() => {
+    if (!tree) return;
+
+    function handleTreeClick() {
+      setOpen(false);
+    }
+
+    function onSubMenuOpen(event: { nodeId: string; parentId: string }) {
+      if (event.nodeId !== nodeId && event.parentId === parentId) {
+        setOpen(false);
+      }
+    }
+
+    tree.events.on("click", handleTreeClick);
+    tree.events.on("menuopen", onSubMenuOpen);
+
+    return () => {
+      tree.events.off("click", handleTreeClick);
+      tree.events.off("menuopen", onSubMenuOpen);
+    };
+  }, [tree, nodeId, parentId, setOpen]);
+
+  useEffect(() => {
+    if (open && tree) {
+      tree.events.emit("menuopen", { parentId, nodeId });
+    }
+  }, [tree, open, nodeId, parentId]);
 
   return (
     <FloatingNode id={nodeId}>
@@ -114,12 +150,18 @@ export function DropdownComponent({
           color,
           isOpen: disabled ? false : open,
           setIsOpen: disabled ? () => {} : setOpen,
-          data,
-          interactions,
-          listRef,
+          isNested,
           activeIndex,
+          setActiveIndex,
+          hasFocusInside,
+          setHasFocusInside,
+          getItemProps: interactions.getItemProps,
+          interactions,
+          data,
+          listRef,
           hasArrow,
           arrowRef,
+          parent,
         }}
       >
         {children}
@@ -130,6 +172,7 @@ export function DropdownComponent({
 
 export function Dropdown(props: DropdownProps) {
   const parentId = useFloatingParentNodeId();
+
   if (parentId === null) {
     return (
       <FloatingTree>

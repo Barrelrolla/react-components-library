@@ -5,8 +5,8 @@ export default <Record<string, CssInJs>>{
     "@apply text-(--fg-color) bg-(--bg-color) border-containers p-2 rounded-containers":
       {},
   },
-  ".dropdown-mobie": {
-    "@apply fixed top-0 left-0 w-full": {},
+  ".dropdown-mobile": {
+    "@apply fixed bottom-0 left-0 w-full": {},
   },
   ".dropdown-title": {
     "@apply text-sm": {},

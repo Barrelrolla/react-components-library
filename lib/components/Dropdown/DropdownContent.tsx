@@ -1,6 +1,10 @@
 import { ComponentProps } from "react";
 import { useDropdownContext } from "./DropdownContext";
-import { FloatingArrow, FloatingPortal } from "@floating-ui/react";
+import {
+  FloatingArrow,
+  FloatingFocusManager,
+  FloatingPortal,
+} from "@floating-ui/react";
 import { useDropdownStyles } from "./useDropdownStyles";
 import { cssColorProps } from "@/util";
 
@@ -23,35 +27,42 @@ export function DropdownContent({
     return null;
   }
 
-  const styles = {
-    ...cssColorProps(context.color),
-    ...context.data.floatingStyles,
-    ...style,
-  };
+  const colorProps = cssColorProps(context.color);
+  let isMobile = false;
+  if (window) {
+    isMobile = window.matchMedia("(width <= 600px)").matches;
+  }
+
+  const colorStyle = { ...cssColorProps(context.color), ...style };
+  const styles = { ...colorStyle, ...context.data.floatingStyles };
 
   return (
     <FloatingPortal>
-      <section
-        ref={context.data.refs.setFloating}
-        style={styles}
-        className={classes}
-        {...context.interactions.getFloatingProps()}
-        {...rest}
+      <FloatingFocusManager
+        context={context.data.context}
+        modal={false}
+        initialFocus={context.isNested ? -1 : 0}
+        returnFocus={!context.isNested}
       >
-        <>
-          {context.hasArrow && (
-            <>
-              <FloatingArrow
-                className="arrow"
-                style={{ ...cssColorProps(context.color) }}
-                ref={context.arrowRef}
-                context={context.data.context}
-              />
-            </>
+        <section
+          className={classes}
+          ref={context.data.refs.setFloating}
+          style={isMobile ? colorStyle : styles}
+          {...context.interactions.getFloatingProps()}
+          {...rest}
+        >
+          {context.hasArrow && !isMobile && (
+            <FloatingArrow
+              className="arrow"
+              style={colorProps}
+              ref={context.arrowRef}
+              context={context.data.context}
+            />
           )}
           {children}
-        </>
-      </section>
+          <></>
+        </section>
+      </FloatingFocusManager>
     </FloatingPortal>
   );
 }

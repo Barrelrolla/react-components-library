@@ -1,13 +1,15 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, screen, userEvent, within } from "storybook/test";
-import { Dropdown } from "./Dropdown";
+import {
+  Dropdown,
+  DropdownList,
+  DropdownTitle,
+  DropdownListItem,
+  DropdownContent,
+  DropdownTrigger,
+} from "./index";
 import { availableColors } from "@/types";
-import { DropdownTitle } from "./DropdownTitle";
-import { DropdownList } from "./DropdownList";
-import { DropdownListItem } from "./DropdownListItem";
-import { DropdownTrigger } from "./DropdownTrigger";
 import { Button } from "../Button";
-import { DropdownContent } from "./DropdownContent";
 import { PiCaretRight } from "react-icons/pi";
 
 const meta: Meta<typeof Dropdown> = {
@@ -33,22 +35,22 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const trigger = canvas.getByText("click me");
-    expect(canvas.queryByText("title")).toBeNull();
+    const trigger = canvas.getByText("open menu");
+    expect(canvas.queryByText("menu")).toBeNull();
     await userEvent.click(trigger);
-    const dropdown = screen.getByText("title");
+    const dropdown = screen.getByText("menu");
     expect(dropdown, "renders").toBeInTheDocument();
     await userEvent.click(document.body);
-    expect(canvas.queryByText("title")).toBeNull();
+    expect(canvas.queryByText("menu")).toBeNull();
   },
   render: ({ ...rest }) => {
     return (
       <Dropdown {...rest}>
         <DropdownTrigger>
-          <Button>click me</Button>
+          <Button>open menu</Button>
         </DropdownTrigger>
         <DropdownContent>
-          <DropdownTitle>title</DropdownTitle>
+          <DropdownTitle>menu</DropdownTitle>
           <DropdownList>
             <DropdownListItem>item 1</DropdownListItem>
             <DropdownListItem>item 2</DropdownListItem>
@@ -63,45 +65,40 @@ export const Default: Story = {
 export const Nested: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const trigger = canvas.getByText("click me");
-    expect(canvas.queryByText("title")).toBeNull();
+    const trigger = canvas.getByText("open menu");
+    expect(canvas.queryByText("menu")).toBeNull();
     await userEvent.click(trigger);
-    const dropdown = screen.getByText("title");
+    const dropdown = screen.getByText("menu");
     expect(dropdown, "renders").toBeInTheDocument();
     await userEvent.click(document.body);
-    expect(canvas.queryByText("title")).toBeNull();
+    expect(canvas.queryByText("menu")).toBeNull();
   },
   render: ({ ...rest }) => {
     return (
       <Dropdown {...rest}>
         <DropdownTrigger>
-          <Button>click me</Button>
+          <Button>open menu</Button>
         </DropdownTrigger>
         <DropdownContent>
-          <DropdownTitle>title</DropdownTitle>
+          <DropdownTitle>menu</DropdownTitle>
           <DropdownList>
             <DropdownListItem>item 1</DropdownListItem>
             <DropdownListItem>item 2</DropdownListItem>
-            <DropdownListItem as={"ul"} className="p-0">
-              <Dropdown requireClick={false} placement="right">
-                <DropdownTrigger>
-                  <DropdownListItem
-                    className="flex items-center gap-1"
-                    onFocus={() => console.log("blg")}
-                  >
-                    <span>item 3</span> <PiCaretRight />
-                  </DropdownListItem>
-                </DropdownTrigger>
-                <DropdownContent>
-                  <DropdownTitle>title</DropdownTitle>
-                  <DropdownList>
-                    <DropdownListItem>nested 1</DropdownListItem>
-                    <DropdownListItem>nested 2</DropdownListItem>
-                    <DropdownListItem>nested 3</DropdownListItem>
-                  </DropdownList>
-                </DropdownContent>
-              </Dropdown>
-            </DropdownListItem>
+            <Dropdown placement="right">
+              <DropdownTrigger>
+                <DropdownListItem className="flex items-center gap-1 pr-0">
+                  <span>item 3</span> <PiCaretRight />
+                </DropdownListItem>
+              </DropdownTrigger>
+              <DropdownContent>
+                <DropdownTitle>sub menu</DropdownTitle>
+                <DropdownList>
+                  <DropdownListItem>nested 1</DropdownListItem>
+                  <DropdownListItem>nested 2</DropdownListItem>
+                  <DropdownListItem>nested 3</DropdownListItem>
+                </DropdownList>
+              </DropdownContent>
+            </Dropdown>
           </DropdownList>
         </DropdownContent>
       </Dropdown>

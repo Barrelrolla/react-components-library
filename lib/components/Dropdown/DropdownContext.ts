@@ -1,19 +1,35 @@
 import { ColorType } from "@/types";
 import { UseFloatingReturn, UseInteractionsReturn } from "@floating-ui/react";
-import { createContext, Ref, RefObject, useContext } from "react";
+import {
+  createContext,
+  Dispatch,
+  HTMLProps,
+  Ref,
+  RefObject,
+  SetStateAction,
+  useContext,
+} from "react";
 
 export type DropdownContextType =
   | {
       color: ColorType;
       isOpen: boolean;
       setIsOpen: (open: boolean) => void;
+      isNested: boolean;
+      activeIndex: number | null;
+      setActiveIndex: Dispatch<SetStateAction<number | null>>;
+      hasFocusInside: boolean;
+      setHasFocusInside: Dispatch<SetStateAction<boolean>>;
       data: UseFloatingReturn;
       interactions: UseInteractionsReturn;
-      activeIndex: number | null;
       listRef: RefObject<(HTMLElement | null)[]>;
       disabled?: boolean;
       hasArrow?: boolean;
       arrowRef?: Ref<SVGSVGElement> | undefined;
+      getItemProps: (
+        userProps?: HTMLProps<HTMLElement>,
+      ) => Record<string, unknown>;
+      parent: DropdownContextType;
     }
   | undefined;
 
