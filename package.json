@@ -1,6 +1,6 @@
 {
   "name": "@barrelrolla/react-components-library",
-  "version": "0.2.76",
+  "version": "0.2.77",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
@@ -31,7 +31,7 @@
     "preview": "vite preview",
     "dev": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build",
-    "deploy": "storybook build && touch ./storybook-static/.nojekyll && gh-pages -d ./storybook-static -t",
+    "deploy": "npm run build && npm login && npm publish && storybook build && touch ./storybook-static/.nojekyll && gh-pages -d ./storybook-static -t",
     "test": "vitest"
   },
   "peerDependencies": {
