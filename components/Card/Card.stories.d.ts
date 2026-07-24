@@ -1,0 +1,12 @@
+import { Meta, StoryObj } from '@storybook/react';
+import { Card } from './Card';
+declare const meta: Meta<typeof Card>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export declare const Default: Story;
+export declare const Clickable: Story;
+export declare const WithImage: Story;
+export declare const WithClickableImage: Story;
+export declare const WithClickableBody: Story;
+export declare const WithPaddedImage: Story;
+export declare const Horizontal: Story;
