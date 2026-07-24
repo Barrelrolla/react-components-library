@@ -28,6 +28,7 @@ import {
   useListNavigation,
   useRole,
 } from "@floating-ui/react";
+import useIsMobile from "@/hooks/useIsMobile";
 
 export type DropdownProps = {
   color?: ColorType;
@@ -67,11 +68,7 @@ export function DropdownComponent({
     [controlled, onOpenChange],
   );
 
-  let isMobile = false;
-  if (window) {
-    isMobile = window.matchMedia("(width <= 600px)").matches;
-  }
-
+  const isMobile = useIsMobile();
   const parent = useDropdownContext();
   const listRef = useRef<(HTMLElement | null)[]>([]);
   const tree = useFloatingTree();

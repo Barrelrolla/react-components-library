@@ -7,6 +7,7 @@ import {
 } from "@floating-ui/react";
 import { useDropdownStyles } from "./useDropdownStyles";
 import { cssColorProps } from "@/util";
+import useIsMobile from "@/hooks/useIsMobile";
 
 export function DropdownContent({
   className,
@@ -16,6 +17,7 @@ export function DropdownContent({
 }: ComponentProps<"span">) {
   const { classes } = useDropdownStyles({ className });
 
+  const isMobile = useIsMobile();
   const context = useDropdownContext();
   if (!context) {
     throw new Error(
@@ -28,10 +30,6 @@ export function DropdownContent({
   }
 
   const colorProps = cssColorProps(context.color);
-  let isMobile = false;
-  if (window) {
-    isMobile = window.matchMedia("(width <= 600px)").matches;
-  }
 
   const colorStyle = { ...cssColorProps(context.color), ...style };
   const styles = { ...colorStyle, ...context.data.floatingStyles };
