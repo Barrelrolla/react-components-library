@@ -4,7 +4,7 @@ import { useDropdownContext } from "./DropdownContext";
 import { Anchor, AnchorProps } from "../Anchor";
 import { useDropdownLinkStyles } from "./useDropdownStyles";
 
-const defaultType = "a";
+const defaultType = "button";
 export function DropdownListItem<E extends ElementType = typeof defaultType>({
   as,
   ref,

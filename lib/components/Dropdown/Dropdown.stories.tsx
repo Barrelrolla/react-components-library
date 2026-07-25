@@ -52,7 +52,9 @@ export const Default: Story = {
         <DropdownContent>
           <DropdownTitle>menu</DropdownTitle>
           <DropdownList>
-            <DropdownListItem>item 1</DropdownListItem>
+            <DropdownListItem onClick={() => console.log("clickdd")}>
+              item 1
+            </DropdownListItem>
             <DropdownListItem>item 2</DropdownListItem>
             <DropdownListItem>item 3</DropdownListItem>
           </DropdownList>

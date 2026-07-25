@@ -5,9 +5,9 @@ import {
   FloatingFocusManager,
   FloatingPortal,
 } from "@floating-ui/react";
-import { useDropdownStyles } from "./useDropdownStyles";
+import { useDropdownContentStyles } from "./useDropdownStyles";
 import { cssColorProps } from "@/util";
-import useIsMobile from "@/hooks/useIsMobile";
+import { useIsMobile } from "@/hooks";
 
 export function DropdownContent({
   className,
@@ -15,8 +15,6 @@ export function DropdownContent({
   children,
   ...rest
 }: ComponentProps<"span">) {
-  const { classes } = useDropdownStyles({ className });
-
   const isMobile = useIsMobile();
   const context = useDropdownContext();
   if (!context) {
@@ -24,6 +22,10 @@ export function DropdownContent({
       "Please use the Dropdown Content only inside a Dropdown component!",
     );
   }
+  const { classes } = useDropdownContentStyles({
+    mobileSheet: context.mobileSheet,
+    className,
+  });
 
   if (!context.isOpen) {
     return null;
@@ -45,11 +47,11 @@ export function DropdownContent({
         <section
           className={classes}
           ref={context.data.refs.setFloating}
-          style={isMobile ? colorStyle : styles}
+          style={isMobile && context.mobileSheet ? colorStyle : styles}
           {...context.interactions.getFloatingProps()}
           {...rest}
         >
-          {context.hasArrow && !isMobile && (
+          {context.hasArrow && (!isMobile || !context.mobileSheet) && (
             <FloatingArrow
               className="arrow"
               style={colorProps}

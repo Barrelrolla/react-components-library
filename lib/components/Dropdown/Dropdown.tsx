@@ -28,7 +28,7 @@ import {
   useListNavigation,
   useRole,
 } from "@floating-ui/react";
-import useIsMobile from "@/hooks/useIsMobile";
+import { useIsMobile } from "@/hooks";
 
 export type DropdownProps = {
   color?: ColorType;
@@ -38,6 +38,7 @@ export type DropdownProps = {
   hasArrow?: boolean;
   requireClick?: boolean;
   disabled?: boolean;
+  mobileSheet?: boolean;
 } & PropsWithChildren;
 
 export function DropdownComponent({
@@ -47,6 +48,7 @@ export function DropdownComponent({
   placement = "top",
   hasArrow = true,
   requireClick = true,
+  mobileSheet = true,
   disabled,
   children,
 }: DropdownProps) {
@@ -159,6 +161,7 @@ export function DropdownComponent({
           hasArrow,
           arrowRef,
           parent,
+          mobileSheet,
         }}
       >
         {children}

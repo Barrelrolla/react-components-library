@@ -26,6 +26,7 @@ export type DropdownContextType =
       disabled?: boolean;
       hasArrow?: boolean;
       arrowRef?: Ref<SVGSVGElement> | undefined;
+      mobileSheet: boolean;
       getItemProps: (
         userProps?: HTMLProps<HTMLElement>,
       ) => Record<string, unknown>;

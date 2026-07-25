@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".dropdown": {
-    "@apply text-(--fg-color) bg-(--bg-color) border-containers p-2 rounded-containers":
+    "@apply text-(--fg-color) bg-(--bg-color) border-containers p-2 rounded-containers z-(--z-floats) focus-visible:outline-none":
       {},
   },
   ".dropdown-mobile": {
@@ -12,10 +12,10 @@ export default <Record<string, CssInJs>>{
     "@apply text-sm mb-4": {},
   },
   ".dropdown-list": {
-    "@apply flex flex-col gap-4 md:block": {},
+    "@apply flex flex-col gap-4 sm:block": {},
   },
   ".dropdown-link": {
-    "@apply flex hover:bg-(--fg-color)/5 focus-visible:bg-(--fg-color)/5 active:bg-(--fg-color)/10 selected:bg-(--fg-color) selected:text-(--bg-color) selected:hover:bg-(--fg-color)/40 selected:focus-visible:bg-(--fg-color)/90 selected:active:bg-(--fg-color)/80 px-2 py-1":
+    "@apply flex w-full hover:bg-(--fg-color)/5 focus-visible:bg-(--fg-color)/5 active:bg-(--fg-color)/10 selected:bg-(--fg-color) selected:text-(--bg-color) selected:hover:bg-(--fg-color)/40 selected:focus-visible:bg-(--fg-color)/90 selected:active:bg-(--fg-color)/80 px-2 py-1":
       {},
   },
 };

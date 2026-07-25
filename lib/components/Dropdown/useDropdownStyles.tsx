@@ -1,7 +1,19 @@
 import { twMerge } from "tailwind-merge";
 
-export function useDropdownStyles({ className }: { className?: string }) {
-  return { classes: twMerge("dropdown max-md:dropdown-mobile", className) };
+export function useDropdownContentStyles({
+  mobileSheet,
+  className,
+}: {
+  mobileSheet: boolean;
+  className?: string;
+}) {
+  return {
+    classes: twMerge(
+      "dropdown",
+      mobileSheet && "max-sm:dropdown-mobile",
+      className,
+    ),
+  };
 }
 
 export function useDropdownTitleStyles({ className }: { className?: string }) {
