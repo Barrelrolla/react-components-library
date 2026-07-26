@@ -75,9 +75,9 @@ describe("Button", () => {
     expect(getByText("test")).toHaveAttribute("data-selected", "true");
   });
 
-  it("applies wrapperClasses to the button wrapper", () => {
+  it("applies wrapperClassName to the button wrapper", () => {
     const { container } = render(
-      <Button wrapperClasses="wrapper-test">test</Button>,
+      <Button wrapperClassName="wrapper-test">test</Button>,
     );
     expect(container.querySelector("span.wrapper-test")).toBeTruthy();
   });
