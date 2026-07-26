@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import { useHeroTextStyles } from "./useHeroStyles";
+import { getHeroTextClasses } from "./getHeroClasses";
 
 /** Body text for the Hero component. */
 export function HeroText({
@@ -7,9 +7,9 @@ export function HeroText({
   children,
   ...rest
 }: { className?: string } & ComponentProps<"div">) {
-  const { styles } = useHeroTextStyles({ className });
+  const { classes } = getHeroTextClasses({ className });
   return (
-    <p className={styles} {...rest}>
+    <p className={classes} {...rest}>
       {children}
     </p>
   );

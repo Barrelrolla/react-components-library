@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import { useFooterIconsContainerStyles } from "./useFooterStyles";
+import { getFooterIconsContainerClasses } from "./getFooterClasses";
 import { FloatingDelayGroupContextProvider } from "@/contexts/FloatingDelayGroup";
 
 export function FooterIconsContainer({
@@ -7,7 +7,7 @@ export function FooterIconsContainer({
   children,
   ...rest
 }: ComponentProps<"div">) {
-  const { styles } = useFooterIconsContainerStyles({ className });
+  const { styles } = getFooterIconsContainerClasses({ className });
   return (
     <FloatingDelayGroupContextProvider>
       <div className={styles} {...rest}>

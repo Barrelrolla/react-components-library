@@ -1,14 +1,19 @@
 import { ComponentProps } from "react";
-import { useFooterLinksSectionStyles } from "./useFooterStyles";
+import { getFooterLinksSectionClasses } from "./getFooterClasses";
+import { useFooterContext } from "./FooterContext";
 
 export function FooterLinksSection({
   className,
   children,
   ...rest
 }: ComponentProps<"div">) {
-  const { styles } = useFooterLinksSectionStyles({ className });
+  const footerContext = useFooterContext();
+  const { classes } = getFooterLinksSectionClasses({
+    className,
+    footerContext,
+  });
   return (
-    <div className={styles} {...rest}>
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

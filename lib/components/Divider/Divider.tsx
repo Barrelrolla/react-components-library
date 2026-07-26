@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import { ColorType, ResponsiveSizes } from "@/types";
 import { cssColorProps, cssColorPropsReversed } from "@/util";
-import { useDividerClasses } from "./useDividerStyles";
+import { getDividerClasses } from "./getDividerClasses";
 
 export type DividerProps = {
   /** Color of the divider. */
@@ -26,7 +26,7 @@ export function Divider({
   className,
   ...rest
 }: DividerProps) {
-  const { styles } = useDividerClasses(vertical, responsiveAt, className);
+  const { classes } = getDividerClasses(vertical, responsiveAt, className);
   const styleVars = useBgColor
     ? cssColorProps(color)
     : cssColorPropsReversed(color);
@@ -38,7 +38,7 @@ export function Divider({
         ...{ "--w": `${width}px` },
         ...style,
       }}
-      className={styles}
+      className={classes}
       {...rest}
     ></div>
   );

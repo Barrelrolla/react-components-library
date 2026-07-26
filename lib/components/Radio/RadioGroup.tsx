@@ -5,12 +5,14 @@ import { RadioProps } from "./Radio";
 export type RadioGroupProps = {
   name: string;
   title: string;
+  legendClassName?: string;
 } & ComponentProps<"fieldset"> &
   RadioProps;
 
 export function RadioGroup({
   title,
   name,
+  legendClassName,
   color,
   labelColor,
   size,
@@ -20,7 +22,7 @@ export function RadioGroup({
   return (
     <RadioGroupContextProvider value={{ name, color, labelColor, size }}>
       <fieldset {...rest}>
-        <legend>{title}</legend>
+        <legend className={legendClassName}>{title}</legend>
         {children}
       </fieldset>
     </RadioGroupContextProvider>

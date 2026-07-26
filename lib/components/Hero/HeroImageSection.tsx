@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
-import { useHeroImageSectionStyles } from "./useHeroStyles";
+import { getHeroImageSectionClasses } from "./getHeroClasses";
+import { useHeroContext } from "./HeroContext";
 
 /** Section for the Hero Component. Separate your hero in multiple sections using this component. */
 export function HeroImageSection({
@@ -7,9 +8,10 @@ export function HeroImageSection({
   children,
   ...rest
 }: { className?: string } & ComponentProps<"div">) {
-  const { styles } = useHeroImageSectionStyles({ className });
+  const heroContext = useHeroContext();
+  const { classes } = getHeroImageSectionClasses({ className, heroContext });
   return (
-    <div className={styles} {...rest}>
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

@@ -75,7 +75,7 @@ const meta: Meta<Props> = {
       options: availableResponsiveSizes,
     },
     position: { control: { type: "inline-radio" } },
-    backdropClasses: { table: { disable: true } },
+    backdropClassName: { table: { disable: true } },
   },
 };
 

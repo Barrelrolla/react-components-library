@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
-import { useCardTitleStyles } from "./useCardStyles";
+import { getCardTitleClasses } from "./getCardClasses";
+import { useCardContext } from "./CardContext";
 
 /** Card title */
 export function CardTitle({
@@ -7,9 +8,10 @@ export function CardTitle({
   children,
   ...rest
 }: { className?: string } & ComponentProps<"h2">) {
-  const { styles } = useCardTitleStyles({ className });
+  const cardContext = useCardContext();
+  const { classes } = getCardTitleClasses({ className, cardContext });
   return (
-    <h2 className={styles} {...rest}>
+    <h2 className={classes} {...rest}>
       {children}
     </h2>
   );

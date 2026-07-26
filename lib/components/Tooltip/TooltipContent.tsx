@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import { useTooltipContext } from "./TooltipContext";
 import { FloatingArrow, FloatingPortal } from "@floating-ui/react";
-import { useTooltipStyles } from "./useTooltipStyles";
+import { getTooltipClasses } from "./getTooltipClasses";
 import { cssColorProps } from "@/util";
 
 export function TooltipContent({
@@ -10,7 +10,7 @@ export function TooltipContent({
   children,
   ...rest
 }: ComponentProps<"span">) {
-  const { classes } = useTooltipStyles({ className });
+  const { classes } = getTooltipClasses({ className });
 
   const context = useTooltipContext();
   if (!context) {

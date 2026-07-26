@@ -35,7 +35,7 @@ const meta: Meta<typeof Footer> = {
       options: availableResponsiveSizes,
     },
     containerStyle: { table: { disable: true } },
-    containerClasses: { table: { disable: true } },
+    containerClassName: { table: { disable: true } },
     className: { table: { disable: true } },
   },
 };

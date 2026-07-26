@@ -9,4 +9,4 @@ export { FooterLinkGroup } from "./FooterLinkGroup";
 export { FooterLinksSection } from "./FooterLinksSection";
 export { FooterLinksTitle } from "./FooterLinksTitle";
 export { FooterContextProvider, useFooterContext } from "./FooterContext";
-export type { FooterContextProps } from "./FooterContext";
+export type { FooterContextType } from "./FooterContext";

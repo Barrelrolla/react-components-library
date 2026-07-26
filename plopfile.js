@@ -11,8 +11,8 @@ module.exports = function (plop) {
     actions: [
       {
         type: "add",
-        path: "lib/components/{{pascalCase name}}/use{{pascalCase name}}Styles.tsx",
-        templateFile: "plop-templates/useComponentSytles.ts.hbs",
+        path: "lib/components/{{pascalCase name}}/get{{pascalCase name}}Classes.tsx",
+        templateFile: "plop-templates/getComponentClasses.ts.hbs",
       },
       {
         type: "add",

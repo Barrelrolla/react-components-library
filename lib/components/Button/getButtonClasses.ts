@@ -1,10 +1,10 @@
 import { twMerge } from "tailwind-merge";
-import { useTheme } from "@/contexts";
+import { ThemeContextType } from "@/contexts";
 import { ColorType, SizeType } from "@/types";
-import { useButtonGroupContext } from "./ButtonGroupContext";
+import { ButtonGroupContextType } from "./ButtonGroupContext";
 import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
 
-export function useButtonStyles({
+export function getButtonClasses({
   variant,
   ghostHover,
   retainFocusState,
@@ -15,7 +15,9 @@ export function useButtonStyles({
   radius,
   color,
   className,
-  wrapperClasses,
+  wrapperClassName,
+  theme,
+  group,
 }: {
   variant?: ButtonVariant;
   ghostHover?: GhostHover;
@@ -27,11 +29,10 @@ export function useButtonStyles({
   radius?: ButtonRadius;
   color?: ColorType;
   className?: string;
-  wrapperClasses?: string;
+  wrapperClassName?: string;
+  theme: ThemeContextType;
+  group: ButtonGroupContextType;
 }) {
-  const theme = useTheme();
-  const group = useButtonGroupContext();
-
   const resolvedVariant = group?.variant || variant || "solid";
   const resolvedGhostHover = group?.ghostHover || ghostHover || "muted";
   const resolvedColor = group?.color || color || "primary";
@@ -46,7 +47,7 @@ export function useButtonStyles({
     (!theme || theme.scalingButtons) && (!group || group.scaling) && scaling;
 
   return {
-    styles: twMerge(
+    classes: twMerge(
       "btn",
       `btn-${resolvedVariant}`,
       resolvedVariant === "outline" && shouldRetainFocus && "btn-outline-focus",
@@ -79,10 +80,10 @@ export function useButtonStyles({
         "group-first:rounded-t-full group-last:rounded-b-full",
       className,
     ),
-    wrapperStyles: twMerge(
+    wrapperClasses: twMerge(
       "group",
       disabled && "cursor-not-allowed",
-      wrapperClasses,
+      wrapperClassName,
     ),
     resolvedColor,
   };

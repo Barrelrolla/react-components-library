@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
-import { useNavbarCollapseStyles } from "./useNavbarStyles";
+import { getNavbarCollapseClasses } from "./getNavbarClasses";
+import { useNavbarContext } from "./NavbarContext";
 
 /** List that hides when the Navbar is small. */
 export function NavbarCollapse({
@@ -7,12 +8,14 @@ export function NavbarCollapse({
   children,
   ...rest
 }: ComponentProps<"div">) {
-  const { styles } = useNavbarCollapseStyles({
+  const navbarContext = useNavbarContext();
+  const { classes } = getNavbarCollapseClasses({
     className,
+    navbarContext,
   });
 
   return (
-    <div className={styles} {...rest}>
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

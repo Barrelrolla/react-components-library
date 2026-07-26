@@ -1,16 +1,16 @@
 import { ComponentProps, CSSProperties } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
-import { useCheckboxStyles } from "./useCheckboxStyles";
+import { getCheckboxClasses } from "./getCheckboxClasses";
 import { Square, SquareCheck } from "@/icons";
 
 export type CheckboxProps = {
   color?: ColorType;
   labelColor?: ColorType;
   labelStyle?: CSSProperties;
-  labelClasses?: string;
+  labelClassName?: string;
   defaultChecked?: boolean;
-  wrapperClasses?: string;
+  wrapperClassName?: string;
   size?: number;
 } & ComponentProps<"input">;
 
@@ -18,19 +18,21 @@ export function Checkbox({
   color = "primary",
   labelColor = "main",
   size = 24,
+  disabled,
   style,
   labelStyle,
-  labelClasses,
-  wrapperClasses,
+  labelClassName,
+  wrapperClassName,
   className,
   children,
   ...rest
 }: CheckboxProps) {
-  const { checkedClasses, unCheckedClasses, labelClass, wrapperClass } =
-    useCheckboxStyles({
+  const { checkedClasses, unCheckedClasses, labelClasses, wrapperClasses } =
+    getCheckboxClasses({
+      disabled,
       className,
-      labelClasses,
-      wrapperClasses,
+      labelClassName,
+      wrapperClassName,
     });
   const styles = { "--size": `${size}px`, ...cssColorProps(color), ...style };
   const labelStyles = {
@@ -39,13 +41,18 @@ export function Checkbox({
     ...labelStyle,
   };
   return (
-    <label className={wrapperClass}>
-      <input type="checkbox" className="peer appearance-none" {...rest} />
+    <label className={wrapperClasses}>
+      <input
+        disabled={disabled}
+        type="checkbox"
+        className="peer appearance-none"
+        {...rest}
+      />
       <SquareCheck className={checkedClasses} style={styles} />
       <Square style={styles} className={unCheckedClasses} />
 
       {children && (
-        <span style={labelStyles} className={labelClass}>
+        <span style={labelStyles} className={labelClasses}>
           {children}
         </span>
       )}

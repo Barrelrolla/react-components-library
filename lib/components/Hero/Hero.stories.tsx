@@ -33,7 +33,7 @@ const meta: Meta<typeof Hero> = {
       control: { type: "inline-radio" },
       options: availableResponsiveSizes,
     },
-    wrapperClasses: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
     wrapperStyle: { table: { disable: true } },
   },
 };

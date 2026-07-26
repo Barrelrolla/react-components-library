@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import { useHeroTitleStyles } from "./useHeroStyles";
+import { getHeroTitleClasses } from "./getHeroClasses";
 
 /** A title to be used inside a Hero component. */
 export function HeroTitle({
@@ -7,9 +7,9 @@ export function HeroTitle({
   children,
   ...rest
 }: { className?: string } & ComponentProps<"h1">) {
-  const { styles } = useHeroTitleStyles({ className });
+  const { classes } = getHeroTitleClasses({ className });
   return (
-    <h1 className={styles} {...rest}>
+    <h1 className={classes} {...rest}>
       {children}
     </h1>
   );

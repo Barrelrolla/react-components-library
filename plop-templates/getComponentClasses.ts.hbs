@@ -1,0 +1,5 @@
+import { twMerge } from "tailwind-merge";
+
+export function get{{pascalCase name}}Classes({ className }: { className?: string }) {
+  return { classes: twMerge("{{kebabCase name}}", className) };
+}

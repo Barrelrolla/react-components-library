@@ -1,33 +1,36 @@
 import { HamburgerButton, HamburgerButtonProps } from "../HamburgerButton";
 import { useNavbarContext } from "./NavbarContext";
-import { useNavbarToggleStyles } from "./useNavbarStyles";
+import { getNavbarToggleClasses } from "./getNavbarClasses";
 
 export type NavbarToggleProps = Omit<HamburgerButtonProps, "isOpen">;
 
 /** Hamburger toggle button for the Navbar. */
 export function NavbarToggle({
   size = "sm",
-  wrapperClasses,
+  wrapperClassName,
   ...rest
 }: NavbarToggleProps) {
-  const context = useNavbarContext();
-  if (!context) {
+  const navbarContext = useNavbarContext();
+  if (!navbarContext) {
     throw new Error(
       "Please use the Navbar toggle only inside a Navbar component!",
     );
   }
-  const { isOpen, setIsOpen } = context;
+  const { isOpen, setIsOpen } = navbarContext;
 
   function clickHandler() {
     setIsOpen(!isOpen);
   }
 
-  const { styles, resolvedColor } = useNavbarToggleStyles({ wrapperClasses });
+  const { classes, resolvedColor } = getNavbarToggleClasses({
+    wrapperClassName,
+    navbarContext,
+  });
 
   return (
     <HamburgerButton
       size={size}
-      wrapperClasses={styles}
+      wrapperClassName={classes}
       color={resolvedColor}
       isOpen={isOpen}
       onClick={clickHandler}

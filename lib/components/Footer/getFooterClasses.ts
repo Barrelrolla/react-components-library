@@ -1,35 +1,40 @@
 import { twMerge } from "tailwind-merge";
-import { useFooterContext } from "./FooterContext";
+import { FooterContextType, useFooterContext } from "./FooterContext";
 
 function getErrorMessage(componentName: string) {
   return `Please use the ${componentName} only inside a Footer component!`;
 }
-export function useFooterStyles({
+export function getFooterClasses({
   decorations,
-  containerClasses,
+  containerClassName,
   className,
 }: {
   decorations: boolean;
-  containerClasses?: string;
+  containerClassName?: string;
   className?: string;
 }) {
   return {
-    containerStyles: twMerge(
+    containerClasses: twMerge(
       "footer-container",
       decorations && "navigation-decoration-top",
-      containerClasses,
+      containerClassName,
     ),
-    styles: twMerge("footer", className),
+    classes: twMerge("footer", className),
   };
 }
 
-export function useFooterBrandStyles({ className }: { className?: string }) {
-  const context = useFooterContext();
-  if (!context) {
+export function getFooterBrandClasses({
+  className,
+  footerContext,
+}: {
+  className?: string;
+  footerContext: FooterContextType;
+}) {
+  if (!footerContext) {
     throw new Error(getErrorMessage("Footer brand"));
   }
 
-  const { responsiveAt } = context;
+  const { responsiveAt } = footerContext;
 
   return {
     classes: twMerge(
@@ -40,7 +45,7 @@ export function useFooterBrandStyles({ className }: { className?: string }) {
       responsiveAt === "xl" && "xl:w-auto",
       className,
     ),
-    resolvedColor: context.color,
+    resolvedColor: footerContext.color,
   };
 }
 
@@ -52,20 +57,21 @@ export function useFooterDivider() {
   return { resolvedColor: context.color };
 }
 
-export function useFooterLinksSectionStyles({
+export function getFooterLinksSectionClasses({
   className,
+  footerContext,
 }: {
   className?: string;
+  footerContext: FooterContextType;
 }) {
-  const context = useFooterContext();
-  if (!context) {
+  if (!footerContext) {
     throw new Error(getErrorMessage("Footer links section"));
   }
 
-  const { responsiveAt } = context;
+  const { responsiveAt } = footerContext;
 
   return {
-    styles: twMerge(
+    classes: twMerge(
       "footer-links-section",
       responsiveAt === "sm" && "sm:w-auto",
       responsiveAt === "md" && "md:w-auto",
@@ -76,58 +82,54 @@ export function useFooterLinksSectionStyles({
   };
 }
 
-export function useFooterLinkGroupStyles({
+export function getFooterLinkGroupClasses({
   className,
 }: {
   className?: string;
 }) {
-  const context = useFooterContext();
-  if (!context) {
-    throw new Error(getErrorMessage("Footer link group"));
-  }
-
-  return { styles: twMerge("footer-link-group", className) };
+  return { classes: twMerge("footer-link-group", className) };
 }
 
-export function useFooterLinksTitleStyles({
+export function getFooterLinksTitleClasses({
   className,
 }: {
   className?: string;
 }) {
-  const context = useFooterContext();
-  if (!context) {
-    throw new Error(getErrorMessage("Footer links title"));
-  }
-
-  return { styles: twMerge("footer-links-title", className) };
+  return { classes: twMerge("footer-links-title", className) };
 }
 
-export function useFooterLinkStyles({ className }: { className?: string }) {
-  const context = useFooterContext();
-  if (!context) {
+export function getFooterLinkClasses({
+  className,
+  footerContext,
+}: {
+  className?: string;
+  footerContext: FooterContextType;
+}) {
+  if (!footerContext) {
     throw new Error(getErrorMessage("Footer link"));
   }
 
   return {
-    styles: twMerge("footer-link", className),
-    color: context.color,
+    classes: twMerge("footer-link", className),
+    color: footerContext.color,
   };
 }
 
-export function useFooterFullSectionStyles({
+export function getFooterFullSectionClasses({
   className,
+  footerContext,
 }: {
   className?: string;
+  footerContext: FooterContextType;
 }) {
-  const context = useFooterContext();
-  if (!context) {
+  if (!footerContext) {
     throw new Error(getErrorMessage("Footer full section"));
   }
 
-  const { responsiveAt } = context;
+  const { responsiveAt } = footerContext;
 
   return {
-    styles: twMerge(
+    classes: twMerge(
       "footer-full-section",
       responsiveAt === "sm" && "sm:flex-row",
       responsiveAt === "md" && "md:flex-row",
@@ -138,15 +140,10 @@ export function useFooterFullSectionStyles({
   };
 }
 
-export function useFooterIconsContainerStyles({
+export function getFooterIconsContainerClasses({
   className,
 }: {
   className?: string;
 }) {
-  const context = useFooterContext();
-  if (!context) {
-    throw new Error(getErrorMessage("Footer icons container"));
-  }
-
   return { styles: twMerge("footer-icons-container", className) };
 }

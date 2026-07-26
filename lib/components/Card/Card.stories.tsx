@@ -30,7 +30,7 @@ const meta: Meta<typeof Card> = {
   argTypes: {
     size: { control: { type: "inline-radio" } },
     color: { control: { type: "select" }, options: availableColors },
-    containerClasses: { table: { disable: true } },
+    containerClassName: { table: { disable: true } },
     containerStyle: { table: { disable: true } },
     className: { table: { disable: true } },
   },

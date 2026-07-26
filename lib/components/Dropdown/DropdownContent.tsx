@@ -5,7 +5,7 @@ import {
   FloatingFocusManager,
   FloatingPortal,
 } from "@floating-ui/react";
-import { useDropdownContentStyles } from "./useDropdownStyles";
+import { getDropdownContentClasses } from "./getDropdownClasses";
 import { cssColorProps } from "@/util";
 import { useIsMobile } from "@/hooks";
 
@@ -22,7 +22,7 @@ export function DropdownContent({
       "Please use the Dropdown Content only inside a Dropdown component!",
     );
   }
-  const { classes } = useDropdownContentStyles({
+  const { classes } = getDropdownContentClasses({
     mobileSheet: context.mobileSheet,
     mobileSheetPlacement: context.mobileSheetPlacement || "bottom",
     className,

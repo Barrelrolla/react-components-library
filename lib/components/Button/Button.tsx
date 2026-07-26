@@ -3,7 +3,9 @@ import { Spinner } from "@/icons";
 import { ColorType, PolymorphicProps, SizeType } from "@/types";
 import { cssColorPropsReversed } from "@/util";
 import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
-import { useButtonStyles } from "./useButtonStyles";
+import { getButtonClasses } from "./getButtonClasses";
+import { useTheme } from "@/contexts";
+import { useButtonGroupContext } from "./ButtonGroupContext";
 
 const defaultType = "button" as const;
 export type ButtonProps<E extends ElementType> = {
@@ -34,7 +36,7 @@ export type ButtonProps<E extends ElementType> = {
   /** Same as start icon, but at the end. */
   endIcon?: ReactNode;
   /** The button is wrapped in a div to change the cursor when disabled. If you need to pass any classes to that div, you can do so with this prop. */
-  wrapperClasses?: string;
+  wrapperClassName?: string;
 } & PolymorphicProps<E>;
 
 export function Button<E extends ElementType = typeof defaultType>({
@@ -53,15 +55,17 @@ export function Button<E extends ElementType = typeof defaultType>({
   startIcon,
   endIcon,
   className,
-  wrapperClasses,
+  wrapperClassName,
   style,
   children,
   ...rest
 }: ButtonProps<E>) {
+  const theme = useTheme();
+  const group = useButtonGroupContext();
   const isIcon =
     (startIcon !== undefined || endIcon !== undefined) && !children;
   const isDisabled = disabled || loading;
-  const { styles, resolvedColor, wrapperStyles } = useButtonStyles({
+  const { classes, resolvedColor, wrapperClasses } = getButtonClasses({
     retainFocusState,
     variant,
     ghostHover,
@@ -72,7 +76,9 @@ export function Button<E extends ElementType = typeof defaultType>({
     radius,
     color,
     className,
-    wrapperClasses,
+    wrapperClassName,
+    theme,
+    group,
   });
 
   const Element = as || defaultType;
@@ -90,12 +96,12 @@ export function Button<E extends ElementType = typeof defaultType>({
   }
 
   return (
-    <span className={wrapperStyles}>
+    <span className={wrapperClasses}>
       <Element
         aria-label={ariaLabel}
         data-selected={selected ? selected : undefined}
         style={{ ...cssColorPropsReversed(resolvedColor), ...style }}
-        className={styles}
+        className={classes}
         {...elementProps}
         {...rest}
       >

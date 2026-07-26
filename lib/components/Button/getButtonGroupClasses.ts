@@ -1,22 +1,22 @@
 import { twMerge } from "tailwind-merge";
 import { ButtonRadius, ButtonVariant } from "./buttonTypes";
 
-export function useButtonGroupStyles({
+export function getButtonGroupClasses({
   variant,
   radius,
   vertical,
   className,
-  wrapperClasses,
+  wrapperClassName,
 }: {
   variant?: ButtonVariant;
   radius?: ButtonRadius;
   vertical: boolean;
   className?: string;
-  wrapperClasses?: string;
+  wrapperClassName?: string;
 }) {
   const resolvedRadius = radius || "default";
   return {
-    groupStyles: twMerge(
+    groupClasses: twMerge(
       "btn-group",
       variant === "outline" && "inset-ring inset-ring-(--bg-color)",
       vertical && "flex-col",
@@ -25,6 +25,6 @@ export function useButtonGroupStyles({
       className,
     ),
 
-    wrapperStyles: twMerge("flex", wrapperClasses),
+    wrapperClasses: twMerge("flex", wrapperClassName),
   };
 }

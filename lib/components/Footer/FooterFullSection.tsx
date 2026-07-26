@@ -1,14 +1,16 @@
 import { ComponentProps } from "react";
-import { useFooterFullSectionStyles } from "./useFooterStyles";
+import { getFooterFullSectionClasses } from "./getFooterClasses";
+import { useFooterContext } from "./FooterContext";
 
 export function FooterFullSection({
   className,
   children,
   ...rest
 }: ComponentProps<"div">) {
-  const { styles } = useFooterFullSectionStyles({ className });
+  const footerContext = useFooterContext();
+  const { classes } = getFooterFullSectionClasses({ className, footerContext });
   return (
-    <div className={styles} {...rest}>
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

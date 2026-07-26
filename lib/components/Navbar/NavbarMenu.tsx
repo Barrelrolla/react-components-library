@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import { useNavbarMenuStyles } from "./useNavbarStyles";
+import { getNavbarMenuClasses } from "./getNavbarClasses";
 import { Composite } from "@floating-ui/react";
 import { useIsMobile } from "@/hooks";
 import { useNavbarContext } from "./NavbarContext";
@@ -9,7 +9,8 @@ export function NavbarMenu({
   children,
   ...rest
 }: ComponentProps<"menu">) {
-  const { styles } = useNavbarMenuStyles({ className });
+  const navbarContext = useNavbarContext();
+  const { classes } = getNavbarMenuClasses({ className, navbarContext });
 
   const context = useNavbarContext();
   const isMobile = useIsMobile();
@@ -21,7 +22,7 @@ export function NavbarMenu({
     <Composite
       orientation={isMobile ? "vertical" : "horizontal"}
       render={
-        <menu className={styles} {...rest}>
+        <menu className={classes} {...rest}>
           {children}
         </menu>
       }

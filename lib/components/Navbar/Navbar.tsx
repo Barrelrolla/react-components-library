@@ -2,7 +2,7 @@ import { ComponentProps, useEffect, useState } from "react";
 import { ColorType, ResponsiveSizes } from "@/types";
 import { cssColorProps } from "@/util";
 import { NavbarContextProvider } from "./NavbarContext";
-import { useNavbarStyles } from "./useNavbarStyles";
+import { getNavbarClasses } from "./getNavbarClasses";
 
 export type NavbarProps = {
   /** Color of the Navbar and the elements iniside */
@@ -18,7 +18,7 @@ export type NavbarProps = {
   /** Adds a transparent background and a glass effect. */
   glass?: boolean;
   /** There is a backdrop when the dropdown menu is open. If you want to add some classes to it, you can do it here. */
-  backdropClasses?: string;
+  backdropClassName?: string;
 } & ComponentProps<"nav">;
 
 export function Navbar({
@@ -31,12 +31,12 @@ export function Navbar({
   style,
   children,
   className,
-  backdropClasses,
+  backdropClassName,
   ...rest
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { styles, navStyles, backdropStyles } = useNavbarStyles({
+  const { classes, navClasses, backdropClasses } = getNavbarClasses({
     fixed,
     position,
     glass,
@@ -44,7 +44,7 @@ export function Navbar({
     isOpen,
     collapseAt,
     className,
-    backdropClasses,
+    backdropClassName,
   });
 
   function outsideClickHandler() {
@@ -81,12 +81,12 @@ export function Navbar({
         setIsOpen,
       }}
     >
-      <header className={styles} style={{ ...cssColorProps(color), ...style }}>
-        <nav className={navStyles} {...rest}>
+      <header className={classes} style={{ ...cssColorProps(color), ...style }}>
+        <nav className={navClasses} {...rest}>
           {children}
         </nav>
       </header>
-      <div className={backdropStyles} onClick={outsideClickHandler}></div>
+      <div className={backdropClasses} onClick={outsideClickHandler}></div>
     </NavbarContextProvider>
   );
 }

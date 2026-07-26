@@ -1,7 +1,7 @@
 import { ElementType, MouseEvent } from "react";
 import { Anchor, AnchorProps } from "../Anchor";
 import { useNavbarContext } from "./NavbarContext";
-import { useNavbarBrandStyles } from "./useNavbarStyles";
+import { getNavbarBrandClasses } from "./getNavbarClasses";
 
 const defaultType = "a";
 export type NavbarBrandProps<E extends ElementType> = {} & AnchorProps<E>;
@@ -16,21 +16,24 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
   onClick,
   ...rest
 }: NavbarBrandProps<E>) {
-  const context = useNavbarContext();
+  const navbarContext = useNavbarContext();
 
   function clickHandler(event: MouseEvent<HTMLAnchorElement>) {
-    context?.setIsOpen(false);
+    navbarContext?.setIsOpen(false);
     onClick?.(event);
   }
 
-  const { styles, resolvedColor } = useNavbarBrandStyles({ className });
+  const { classes, resolvedColor } = getNavbarBrandClasses({
+    className,
+    navbarContext,
+  });
   return (
     <Anchor
       as={as || defaultType}
       color={resolvedColor}
       underlined={underlined}
       hoverUnderline={hoverUnderline}
-      className={styles}
+      className={classes}
       onClick={clickHandler}
       {...rest}
     >

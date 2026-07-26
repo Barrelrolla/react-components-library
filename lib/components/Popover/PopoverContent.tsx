@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import { usePopoverContext } from "./PopoverContext";
 import { FloatingArrow, FloatingPortal } from "@floating-ui/react";
-import { usePopoverStyles } from "./usePopoverStyles";
+import { getPopoverClasses } from "./getPopoverClasses";
 import { cssColorProps } from "@/util";
 
 export function PopoverContent({
@@ -10,7 +10,7 @@ export function PopoverContent({
   children,
   ...rest
 }: ComponentProps<"span">) {
-  const { classes } = usePopoverStyles({ className });
+  const { classes } = getPopoverClasses({ className });
 
   const context = usePopoverContext();
   if (!context) {

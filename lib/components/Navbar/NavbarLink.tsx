@@ -1,7 +1,7 @@
 import { ElementType, MouseEvent, FocusEvent } from "react";
 import { Anchor, AnchorProps } from "../Anchor";
 import { useNavbarContext } from "./NavbarContext";
-import { useNavbarLinkStyles } from "./useNavbarStyles";
+import { getNavbarLinkClasses } from "./getNavbarClasses";
 import { CompositeItem } from "@floating-ui/react";
 
 const defaultType = "a";
@@ -23,24 +23,25 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
   className,
   ...rest
 }: NavbarLinkProps<E>) {
-  const context = useNavbarContext();
+  const navbarContext = useNavbarContext();
 
   function clickHandler(event: MouseEvent) {
-    context?.setIsOpen(false);
+    navbarContext?.setIsOpen(false);
     onClick?.(event);
   }
 
   function focusHandler(event: FocusEvent) {
-    context?.setIsOpen(true);
+    navbarContext?.setIsOpen(true);
     onFocus?.(event);
   }
   function blurHandler(event: FocusEvent) {
-    context?.setIsOpen(false);
+    navbarContext?.setIsOpen(false);
     onBlur?.(event);
   }
 
-  const { styles, resolvedColor } = useNavbarLinkStyles({
+  const { classes, resolvedColor } = getNavbarLinkClasses({
     className,
+    navbarContext,
   });
 
   return (
@@ -53,7 +54,7 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
             color={resolvedColor}
             underlined={underlined}
             hoverUnderline={hoverUnderline}
-            className={styles}
+            className={classes}
             onClick={clickHandler}
             onFocus={focusHandler}
             onBlur={blurHandler}

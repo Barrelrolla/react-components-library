@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-export function useBadgeStyles({ className }: { className?: string }) {
+export function getBadgeClasses({ className }: { className?: string }) {
   return {
     classes: twMerge("badge", className),
   };

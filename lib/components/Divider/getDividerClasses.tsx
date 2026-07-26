@@ -1,21 +1,21 @@
 import { twMerge } from "tailwind-merge";
 import { ResponsiveSizes } from "@/types";
 
-export function useDividerClasses(
+export function getDividerClasses(
   vertical: boolean,
   responsiveAt?: ResponsiveSizes,
   className?: string,
 ) {
   return {
-    styles: twMerge(
+    classes: twMerge(
       "bg-(--bg-color)",
-      !vertical && getHorizontalStyles(),
-      vertical && getVerticalStyles(),
+      !vertical && getHorizontalClasses(),
+      vertical && getVerticalClasses(),
       className,
     ),
   };
 
-  function getHorizontalStyles() {
+  function getHorizontalClasses() {
     return twMerge(
       "h-(--w) w-full",
       responsiveAt === "sm" && "sm:h-full sm:w-(--w)",
@@ -25,7 +25,7 @@ export function useDividerClasses(
     );
   }
 
-  function getVerticalStyles() {
+  function getVerticalClasses() {
     return twMerge(
       "h-full w-(--w)",
       responsiveAt === "sm" && "sm:h-(--w) sm:w-full",

@@ -1,24 +1,24 @@
 import { twMerge } from "tailwind-merge";
 import { CardSizes } from "./CardTypes";
-import { useCardContext } from "./CardContext";
+import { CardContextType } from "./CardContext";
 
 function getErrorMessage(componentName: string) {
   return `Please use the the ${componentName} only inside a Card component`;
 }
 
-export function useCardStyles({
+export function getCardClasses({
   horizontal,
   size,
-  containerClasses,
+  containerClassName,
   className,
 }: {
   horizontal: boolean;
   size: CardSizes;
-  containerClasses?: string;
+  containerClassName?: string;
   className?: string;
 }) {
   return {
-    containerStyles: twMerge(
+    containerClasses: twMerge(
       "card-container",
       horizontal && "@container",
       size === "xs" && "max-w-xs",
@@ -26,9 +26,9 @@ export function useCardStyles({
       size === "md" && "max-w-md",
       size === "lg" && "max-w-lg",
       size === "xl" && "max-w-xl",
-      containerClasses,
+      containerClassName,
     ),
-    styles: twMerge(
+    classes: twMerge(
       "card",
       "flex-col",
       horizontal && size === "xs" && "@2xs:flex-row",
@@ -41,76 +41,102 @@ export function useCardStyles({
   };
 }
 
-export function useCardInteractStyles({ className }: { className?: string }) {
-  const context = useCardContext();
-  if (!context) {
+export function getCardInteractClasses({
+  className,
+  cardContext,
+}: {
+  className?: string;
+  cardContext: CardContextType;
+}) {
+  if (!cardContext) {
     throw new Error(getErrorMessage("Card interact"));
   }
 
   return {
-    styles: twMerge("card-interact group", className),
-    color: context.color,
+    classes: twMerge("card-interact group", className),
+    color: cardContext.color,
   };
 }
 
-export function useCardSectionStyles({ className }: { className?: string }) {
-  const context = useCardContext();
-  if (!context) {
+export function getCardSectionClasses({
+  className,
+  cardContext,
+}: {
+  className?: string;
+  cardContext: CardContextType;
+}) {
+  if (!cardContext) {
     throw new Error(getErrorMessage("Card section"));
   }
 
   return {
-    styles: twMerge("card-section", className),
+    classes: twMerge("card-section", className),
   };
 }
 
-export function useCardTitleStyles({ className }: { className?: string }) {
-  const context = useCardContext();
-  if (!context) {
+export function getCardTitleClasses({
+  className,
+  cardContext,
+}: {
+  className?: string;
+  cardContext: CardContextType;
+}) {
+  if (!cardContext) {
     throw new Error(getErrorMessage("Card title"));
   }
 
   return {
-    styles: twMerge("card-title", className),
+    classes: twMerge("card-title", className),
   };
 }
 
-export function useCardTextStyles({ className }: { className?: string }) {
-  const context = useCardContext();
-  if (!context) {
+export function getCardTextClasses({
+  className,
+  cardContext,
+}: {
+  className?: string;
+  cardContext: CardContextType;
+}) {
+  if (!cardContext) {
     throw new Error(getErrorMessage("Card text"));
   }
 
   return {
-    styles: twMerge("card-text", className),
+    classes: twMerge("card-text", className),
   };
 }
 
-export function useCardActionsStyles({ className }: { className?: string }) {
-  const context = useCardContext();
-  if (!context) {
+export function getCardActionsClasses({
+  className,
+  cardContext,
+}: {
+  className?: string;
+  cardContext: CardContextType;
+}) {
+  if (!cardContext) {
     throw new Error(getErrorMessage("Card actions"));
   }
 
   return {
-    styles: twMerge("card-actions", className),
+    classes: twMerge("card-actions", className),
   };
 }
 
-export function useCardImageContainerStyles({
+export function getCardImageContainerClasses({
   padded,
   className,
+  cardContext,
 }: {
   padded: boolean;
   className?: string;
+  cardContext: CardContextType;
 }) {
-  const context = useCardContext();
-  if (!context) {
+  if (!cardContext) {
     throw new Error(getErrorMessage("Card image container"));
   }
 
   return {
-    styles: twMerge(
+    classes: twMerge(
       "card-image-container",
       !padded && "h-full",
       padded && "card-image-container-padded",

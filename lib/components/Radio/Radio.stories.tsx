@@ -24,8 +24,8 @@ const meta: Meta<typeof Radio> = {
     },
     defaultChecked: { table: { disable: true } },
     labelStyle: { table: { disable: true } },
-    labelClasses: { table: { disable: true } },
-    wrapperClasses: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
   },
 };
 
@@ -40,6 +40,25 @@ export const Default: Story = {
   },
   render: ({ children, ...rest }) => {
     return <Radio {...rest}>{children}</Radio>;
+  },
+  args: {
+    children: "Radio",
+    size: 20,
+  },
+};
+
+export const Disabled: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const radio = canvas.getByText("Radio");
+    await expect(radio, "renders").toBeTruthy();
+  },
+  render: ({ children, ...rest }) => {
+    return (
+      <Radio disabled {...rest}>
+        {children}
+      </Radio>
+    );
   },
   args: {
     children: "Radio",

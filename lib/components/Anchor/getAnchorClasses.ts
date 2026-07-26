@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { ColorType } from "@/types";
 
-export function useAnchorStyles({
+export function getAnchorClasses({
   underlined,
   hoverUnderline,
   hoverUnderlineOffset,
@@ -15,7 +15,7 @@ export function useAnchorStyles({
   className?: string;
 }) {
   return {
-    styles: twMerge(
+    classes: twMerge(
       "link",
       underlined && "underline",
       !underlined && hoverUnderline && "hover:underline",

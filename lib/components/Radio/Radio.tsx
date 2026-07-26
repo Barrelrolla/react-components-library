@@ -1,7 +1,7 @@
 import { ComponentProps, CSSProperties } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
-import { useRadioStyles } from "./useRadioStyles";
+import { getRadioClasses } from "./getRadioClasses";
 import { Circle, CircleCheck } from "@/icons";
 import { useRadioGroupContext } from "./RadioGroupContext";
 
@@ -9,9 +9,9 @@ export type RadioProps = {
   color?: ColorType;
   labelColor?: ColorType;
   labelStyle?: CSSProperties;
-  labelClasses?: string;
+  labelClassName?: string;
   defaultChecked?: boolean;
-  wrapperClasses?: string;
+  wrapperClassName?: string;
   size?: number;
 } & ComponentProps<"input">;
 
@@ -19,30 +19,35 @@ export function Radio({
   color,
   labelColor,
   size = 20,
+  disabled,
   style,
   labelStyle,
-  labelClasses,
+  labelClassName,
+  wrapperClassName,
   className,
   name,
   children,
   ...rest
 }: RadioProps) {
+  const groupContext = useRadioGroupContext();
   const {
     resolvedColor,
     resolvedLabelColor,
     checkedClasses,
     unCheckedClasses,
-    labelClass,
-    wrapperClass,
-  } = useRadioStyles({
+    labelClasses,
+    wrapperClasses,
+  } = getRadioClasses({
     color,
     labelColor,
     className,
-    labelClasses,
+    labelClassName,
+    wrapperClassName,
+    groupContext,
+    disabled,
   });
-  const context = useRadioGroupContext();
-  const groupName = context?.name ?? name;
-  const groupSize = context?.size ?? size;
+  const groupName = groupContext?.name ?? name;
+  const groupSize = groupContext?.size ?? size;
   const styles = {
     "--size": `${groupSize}px`,
     ...cssColorProps(resolvedColor),
@@ -55,8 +60,9 @@ export function Radio({
   };
 
   return (
-    <label className={wrapperClass}>
+    <label className={wrapperClasses}>
       <input
+        disabled={disabled}
         name={groupName}
         type="radio"
         className="peer appearance-none"
@@ -66,7 +72,7 @@ export function Radio({
       <Circle style={styles} className={unCheckedClasses} />
 
       {children && (
-        <span style={labelStyles} className={labelClass}>
+        <span style={labelStyles} className={labelClasses}>
           {children}
         </span>
       )}

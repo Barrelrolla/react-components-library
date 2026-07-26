@@ -1,6 +1,6 @@
 import { cssColorPropsReversed } from "@/util";
 import { Button, ButtonProps } from "../Button";
-import { useHamburgerStyles } from "./useHamburgerStyles";
+import { getHamburgerClasses } from "./getHamburgerClasses";
 
 export type HamburgerButtonProps = {
   /** The component that uses it, should provide its isOpen state here. */
@@ -14,7 +14,7 @@ export function HamburgerButton({
   className,
   ...rest
 }: HamburgerButtonProps) {
-  const { button, container, topLine, midLine, botLine } = useHamburgerStyles({
+  const { button, container, topLine, midLine, botLine } = getHamburgerClasses({
     isOpen,
     className,
   });

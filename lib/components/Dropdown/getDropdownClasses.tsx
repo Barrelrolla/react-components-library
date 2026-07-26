@@ -1,7 +1,7 @@
 import { MobileSheetPlacementType } from "@/types";
 import { twMerge } from "tailwind-merge";
 
-export function useDropdownContentStyles({
+export function getDropdownContentClasses({
   mobileSheet,
   mobileSheetPlacement,
   className,
@@ -31,10 +31,14 @@ export function useDropdownContentStyles({
   };
 }
 
-export function useDropdownTitleStyles({ className }: { className?: string }) {
+export function getDropdownTitleClasses({ className }: { className?: string }) {
   return { classes: twMerge("dropdown-title", className) };
 }
 
-export function useDropdownLinkStyles({ className }: { className?: string }) {
+export function getDropdownListClasses({ className }: { className?: string }) {
+  return { classes: twMerge("dropdown-list", className) };
+}
+
+export function getDropdownLinkClasses({ className }: { className?: string }) {
   return { classes: twMerge("dropdown-link outline-offset-0", className) };
 }

@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
-import { useCardSectionStyles } from "./useCardStyles";
+import { getCardSectionClasses } from "./getCardClasses";
+import { useCardContext } from "./CardContext";
 
 /** Use to divide a Card into multiple sections. */
 export function CardSection({
@@ -7,9 +8,10 @@ export function CardSection({
   children,
   ...rest
 }: { className?: string } & ComponentProps<"div">) {
-  const { styles } = useCardSectionStyles({ className });
+  const cardContext = useCardContext();
+  const { classes } = getCardSectionClasses({ className, cardContext });
   return (
-    <div className={styles} {...rest}>
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

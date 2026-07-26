@@ -1,7 +1,8 @@
 import { ElementType } from "react";
 import { PolymorphicProps } from "@/types";
 import { cssColorProps } from "@/util";
-import { useCardInteractStyles } from "./useCardStyles";
+import { getCardInteractClasses } from "./getCardClasses";
+import { useCardContext } from "./CardContext";
 
 const defaultType = "a" as const;
 
@@ -15,11 +16,15 @@ export function CardInteract<E extends ElementType = typeof defaultType>({
   ...rest
 }: PolymorphicProps<E>) {
   const Element = as || defaultType;
-  const { styles, color } = useCardInteractStyles({ className });
+  const cardContext = useCardContext();
+  const { classes, color } = getCardInteractClasses({
+    className,
+    cardContext,
+  });
   return (
     <Element
       style={{ ...cssColorProps(color), ...style }}
-      className={styles}
+      className={classes}
       tabIndex={tabIndex}
       {...rest}
     >

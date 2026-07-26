@@ -9,4 +9,4 @@ export { CardText } from "./CardText";
 export { CardTitle } from "./CardTitle";
 export type { CardSizes } from "./CardTypes";
 export { CardContextProvider, useCardContext } from "./CardContext";
-export type { CardContextProps } from "./CardContext";
+export type { CardContextType as CardContextProps } from "./CardContext";

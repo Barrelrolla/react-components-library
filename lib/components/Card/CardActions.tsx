@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
-import { useCardActionsStyles } from "./useCardStyles";
+import { getCardActionsClasses } from "./getCardClasses";
+import { useCardContext } from "./CardContext";
 
 /** Section for actions inside a Card */
 export function CardActions({
@@ -7,9 +8,10 @@ export function CardActions({
   children,
   ...rest
 }: { className?: string } & ComponentProps<"div">) {
-  const { styles } = useCardActionsStyles({ className });
+  const cardContext = useCardContext();
+  const { classes } = getCardActionsClasses({ className, cardContext });
   return (
-    <div className={styles} {...rest}>
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

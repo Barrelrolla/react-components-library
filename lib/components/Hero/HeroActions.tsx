@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
-import { useHeroActionsStyles } from "./useHeroStyles";
+import { getHeroActionsClasses } from "./getHeroClasses";
+import { useHeroContext } from "./HeroContext";
 
 /** Wrapper for actions to be used inside a Hero component */
 export function HeroActions({
@@ -7,9 +8,10 @@ export function HeroActions({
   children,
   ...rest
 }: { className?: string } & ComponentProps<"div">) {
-  const { styles } = useHeroActionsStyles({ className });
+  const heroContext = useHeroContext();
+  const { classes } = getHeroActionsClasses({ className, heroContext });
   return (
-    <div className={styles} {...rest}>
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

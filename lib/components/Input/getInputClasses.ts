@@ -1,0 +1,41 @@
+import { twMerge } from "tailwind-merge";
+
+export function getInputClasses({
+  bgFill,
+  startIcon,
+  endIcon,
+  validating,
+  className,
+  wrapperClassName,
+  labelClassName,
+  errorClassName,
+  inputContainerClassName,
+}: {
+  bgFill?: boolean;
+  startIcon: boolean;
+  endIcon: boolean;
+  validating: boolean;
+  className?: string;
+  wrapperClassName?: string;
+  labelClassName?: string;
+  errorClassName?: string;
+  inputContainerClassName?: string;
+}) {
+  return {
+    classes: twMerge(
+      "input-field",
+      startIcon && "rounded-l-none ps-7",
+      endIcon && "rounded-r-none ps-2 pe-7",
+      className,
+    ),
+    wrapperClasses: twMerge("input-field-wrapper", wrapperClassName),
+    labelClasses: twMerge("input-field-label", labelClassName),
+    errorClasses: twMerge("input-field-error", errorClassName),
+    inputContainerClasses: twMerge(
+      "input-field-container",
+      validating && "has-error:outline-1",
+      bgFill && "muted-bg",
+      inputContainerClassName,
+    ),
+  };
+}

@@ -2,7 +2,7 @@ import { ComponentProps, CSSProperties } from "react";
 import { ColorType, ResponsiveSizes } from "@/types";
 import { cssColorProps } from "@/util";
 import { FooterContextProvider } from "./FooterContext";
-import { useFooterStyles } from "./useFooterStyles";
+import { getFooterClasses } from "./getFooterClasses";
 
 export type FooterProps = {
   /** Color of the footer. */
@@ -12,7 +12,7 @@ export type FooterProps = {
   /** Size at which the ordering should switch from col to row. */
   responsiveAt?: ResponsiveSizes;
   /** The footer sits inside a continer. Add classes to it here. */
-  containerClasses?: string;
+  containerClassName?: string;
   /**Any styles for the container. */
   containerStyle?: CSSProperties;
   className?: string;
@@ -23,24 +23,24 @@ export function Footer({
   decorations = false,
   responsiveAt = "md",
   containerStyle,
-  containerClasses,
+  containerClassName,
   className,
   children,
   ...rest
 }: FooterProps) {
-  const { containerStyles, styles } = useFooterStyles({
+  const { containerClasses, classes } = getFooterClasses({
     decorations,
-    containerClasses,
+    containerClassName,
     className,
   });
 
   return (
     <FooterContextProvider value={{ color, responsiveAt }}>
       <footer
-        className={containerStyles}
+        className={containerClasses}
         style={{ ...cssColorProps(color), ...containerStyle }}
       >
-        <div className={styles} {...rest}>
+        <div className={classes} {...rest}>
           {children}
         </div>
       </footer>

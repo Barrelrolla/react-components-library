@@ -1,12 +1,12 @@
 import { ComponentProps } from "react";
-import { useDropdownTitleStyles } from "./useDropdownStyles";
+import { getDropdownTitleClasses } from "./getDropdownClasses";
 
 export function DropdownTitle({
   className,
   children,
   ...rest
 }: ComponentProps<"h3">) {
-  const { classes } = useDropdownTitleStyles({ className });
+  const { classes } = getDropdownTitleClasses({ className });
   return (
     <h1 className={classes} {...rest}>
       {children}

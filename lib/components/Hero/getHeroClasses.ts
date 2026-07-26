@@ -1,21 +1,21 @@
 import { twMerge } from "tailwind-merge";
-import { useHeroContext } from "./HeroContext";
+import { HeroContextType } from "./HeroContext";
 import { ResponsiveSizes } from "@/types";
 
 function getErrorMessage(componentName: string) {
   return `Please use the ${componentName} only inside a Hero component!`;
 }
-export function useHeroStyles({
+export function getHeroClasses({
   responsiveAt,
-  wrapperClasses,
+  wrapperClassName,
   className,
 }: {
   responsiveAt?: ResponsiveSizes;
-  wrapperClasses?: string;
+  wrapperClassName?: string;
   className?: string;
 }) {
   return {
-    styles: twMerge(
+    classes: twMerge(
       "hero",
       responsiveAt === "sm" && "sm:flex-row",
       responsiveAt === "md" && "md:flex-row",
@@ -23,19 +23,24 @@ export function useHeroStyles({
       responsiveAt === "xl" && "xl:flex-row",
       className,
     ),
-    wrapperStyles: twMerge("hero-wrapper", wrapperClasses),
+    wrapperClasses: twMerge("hero-wrapper", wrapperClassName),
   };
 }
 
-export function useHeroSectionStyles({ className }: { className?: string }) {
-  const context = useHeroContext();
-  if (!context) {
+export function getHeroSectionClasses({
+  className,
+  heroContext,
+}: {
+  className?: string;
+  heroContext: HeroContextType;
+}) {
+  if (!heroContext) {
     throw new Error(getErrorMessage("Hero section"));
   }
-  const { textAlign, responsiveAt } = context;
+  const { textAlign, responsiveAt } = heroContext;
 
   return {
-    styles: twMerge(
+    classes: twMerge(
       "hero-section",
       textAlign === "left" && "text-start",
       textAlign === "center" && "text-center",
@@ -49,19 +54,20 @@ export function useHeroSectionStyles({ className }: { className?: string }) {
   };
 }
 
-export function useHeroImageSectionStyles({
+export function getHeroImageSectionClasses({
   className,
+  heroContext,
 }: {
   className?: string;
+  heroContext: HeroContextType;
 }) {
-  const context = useHeroContext();
-  if (!context) {
+  if (!heroContext) {
     throw new Error(getErrorMessage("Hero image section"));
   }
-  const { textAlign, responsiveAt } = context;
+  const { textAlign, responsiveAt } = heroContext;
 
   return {
-    styles: twMerge(
+    classes: twMerge(
       "hero-image-section",
       textAlign === "left" && "text-start",
       textAlign === "center" && "text-center",
@@ -75,33 +81,28 @@ export function useHeroImageSectionStyles({
   };
 }
 
-export function useHeroTitleStyles({ className }: { className?: string }) {
-  const context = useHeroContext();
-  if (!context) {
-    throw new Error(getErrorMessage("Hero title"));
-  }
-
-  return { styles: twMerge("hero-title", className) };
+export function getHeroTitleClasses({ className }: { className?: string }) {
+  return { classes: twMerge("hero-title", className) };
 }
 
-export function useHeroTextStyles({ className }: { className?: string }) {
-  const context = useHeroContext();
-  if (!context) {
-    throw new Error(getErrorMessage("Hero text"));
-  }
-
-  return { styles: twMerge("hero-text", className) };
+export function getHeroTextClasses({ className }: { className?: string }) {
+  return { classes: twMerge("hero-text", className) };
 }
 
-export function useHeroActionsStyles({ className }: { className?: string }) {
-  const context = useHeroContext();
-  if (!context) {
+export function getHeroActionsClasses({
+  className,
+  heroContext,
+}: {
+  className?: string;
+  heroContext: HeroContextType;
+}) {
+  if (!heroContext) {
     throw new Error(getErrorMessage("Hero actions"));
   }
-  const { actionsAlign, responsiveAt } = context;
+  const { actionsAlign, responsiveAt } = heroContext;
 
   return {
-    styles: twMerge(
+    classes: twMerge(
       "hero-actions",
       actionsAlign === "left" && "justify-start",
       actionsAlign === "center" && "justify-center",

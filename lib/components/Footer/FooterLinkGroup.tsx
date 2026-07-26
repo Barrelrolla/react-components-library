@@ -1,14 +1,14 @@
 import { ComponentProps } from "react";
-import { useFooterLinkGroupStyles } from "./useFooterStyles";
+import { getFooterLinkGroupClasses } from "./getFooterClasses";
 
 export function FooterLinkGroup({
   className,
   children,
   ...rest
 }: ComponentProps<"div">) {
-  const { styles } = useFooterLinkGroupStyles({ className });
+  const { classes } = getFooterLinkGroupClasses({ className });
   return (
-    <div className={styles} {...rest}>
+    <div className={classes} {...rest}>
       {children}
     </div>
   );

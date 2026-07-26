@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps, cssColorPropsReversed } from "@/util";
-import { useBadgeStyles } from "./useBadgeStyles";
+import { getBadgeClasses } from "./getBadgeClasses";
 
 export type BadgeProps = {
   /** Badge text color. */
@@ -14,7 +14,7 @@ export function Badge({
   className,
   ...rest
 }: BadgeProps) {
-  const { classes } = useBadgeStyles({ className });
+  const { classes } = getBadgeClasses({ className });
   const colorStyle =
     color === "light" || color === "dark"
       ? { ...cssColorPropsReversed(color) }

@@ -1,6 +1,7 @@
-import { useFooterLinkStyles } from "./useFooterStyles";
+import { getFooterLinkClasses } from "./getFooterClasses";
 import { Anchor, AnchorProps } from "../Anchor";
 import { ElementType } from "react";
+import { useFooterContext } from "./FooterContext";
 
 const defaultType = "a";
 export function FooterLink<E extends ElementType = typeof defaultType>({
@@ -11,14 +12,15 @@ export function FooterLink<E extends ElementType = typeof defaultType>({
   children,
   ...rest
 }: AnchorProps<E>) {
-  const { color, styles } = useFooterLinkStyles({ className });
+  const footerContext = useFooterContext();
+  const { color, classes } = getFooterLinkClasses({ className, footerContext });
   return (
     <Anchor
       as={as || defaultType}
       color={color}
       tabIndex={tabIndex}
       underlined={underlined}
-      className={styles}
+      className={classes}
       {...rest}
     >
       {children}

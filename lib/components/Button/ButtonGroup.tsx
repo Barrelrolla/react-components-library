@@ -3,7 +3,7 @@ import { ColorType, SizeType } from "@/types";
 import { cssColorPropsReversed } from "@/util";
 import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
 import { ButtonGroupContextProvider } from "./ButtonGroupContext";
-import { useButtonGroupStyles } from "./useButtonGroupStyles";
+import { getButtonGroupClasses } from "./getButtonGroupClasses";
 import { Divider } from "../Divider";
 import { FloatingDelayGroup } from "@floating-ui/react";
 
@@ -29,7 +29,7 @@ export type ButtonGroupProps = {
   /** You can add any styles to the divider here. */
   dividerClasses?: string;
   /** The button group wraps all buttons in a wrapper. You can add css classes to it here. */
-  wrapperClasses?: string;
+  wrapperClassName?: string;
   tooltipDelay?: number;
 } & ComponentProps<"div">;
 
@@ -46,14 +46,16 @@ export function ButtonGroup({
   tooltipDelay = 300,
   className,
   dividerClasses,
+  wrapperClassName,
   children,
   ...rest
 }: ButtonGroupProps) {
-  const { groupStyles, wrapperStyles } = useButtonGroupStyles({
+  const { groupClasses, wrapperClasses } = getButtonGroupClasses({
     variant,
     radius,
     vertical,
     className,
+    wrapperClassName,
   });
 
   return (
@@ -70,9 +72,9 @@ export function ButtonGroup({
       }}
     >
       <FloatingDelayGroup delay={{ open: tooltipDelay, close: 0 }}>
-        <div className={wrapperStyles}>
+        <div className={wrapperClasses}>
           <div
-            className={groupStyles}
+            className={groupClasses}
             style={cssColorPropsReversed(color)}
             {...rest}
           >

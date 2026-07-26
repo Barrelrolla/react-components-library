@@ -22,8 +22,8 @@ const meta: Meta<typeof RadioGroup> = {
     },
     labelStyle: { table: { disable: true } },
     defaultChecked: { table: { disable: true } },
-    wrapperClasses: { table: { disable: true } },
-    labelClasses: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
     name: { table: { disable: true } },
   },
 };

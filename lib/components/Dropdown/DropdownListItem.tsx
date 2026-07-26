@@ -2,7 +2,7 @@ import { useFloatingTree, useListItem, useMergeRefs } from "@floating-ui/react";
 import { ElementType, MouseEvent, FocusEvent } from "react";
 import { useDropdownContext } from "./DropdownContext";
 import { Anchor, AnchorProps } from "../Anchor";
-import { useDropdownLinkStyles } from "./useDropdownStyles";
+import { getDropdownLinkClasses } from "./getDropdownClasses";
 
 const defaultType = "button";
 export function DropdownListItem<E extends ElementType = typeof defaultType>({
@@ -20,7 +20,7 @@ export function DropdownListItem<E extends ElementType = typeof defaultType>({
   }
   const item = useListItem();
   const tree = useFloatingTree();
-  const { classes } = useDropdownLinkStyles({ className });
+  const { classes } = getDropdownLinkClasses({ className });
   const isActive = item.index === context.activeIndex;
 
   return (

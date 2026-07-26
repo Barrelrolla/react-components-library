@@ -1,14 +1,14 @@
 import { ComponentProps } from "react";
-import { useFooterLinksTitleStyles } from "./useFooterStyles";
+import { getFooterLinksTitleClasses } from "./getFooterClasses";
 
 export function FooterLinksTitle({
   className,
   children,
   ...rest
 }: ComponentProps<"h3">) {
-  const { styles } = useFooterLinksTitleStyles({ className });
+  const { classes } = getFooterLinksTitleClasses({ className });
   return (
-    <h3 className={styles} {...rest}>
+    <h3 className={classes} {...rest}>
       {children}
     </h3>
   );

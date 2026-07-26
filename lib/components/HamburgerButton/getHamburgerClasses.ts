@@ -8,7 +8,7 @@ interface HamburgerStyles {
   botLine: string;
 }
 
-export function useHamburgerStyles({
+export function getHamburgerClasses({
   isOpen,
   className,
 }: {

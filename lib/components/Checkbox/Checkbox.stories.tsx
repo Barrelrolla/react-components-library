@@ -24,8 +24,8 @@ const meta: Meta<typeof Checkbox> = {
     },
     defaultChecked: { table: { disable: true } },
     labelStyle: { table: { disable: true } },
-    labelClasses: { table: { disable: true } },
-    wrapperClasses: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
   },
 };
 
@@ -40,6 +40,25 @@ export const Default: Story = {
   },
   render: ({ children, ...rest }) => {
     return <Checkbox {...rest}>{children}</Checkbox>;
+  },
+  args: {
+    children: "Checkbox",
+    size: 24,
+  },
+};
+
+export const Disabled: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const checkbox = canvas.getByText("Checkbox");
+    await expect(checkbox, "renders").toBeTruthy();
+  },
+  render: ({ children, ...rest }) => {
+    return (
+      <Checkbox disabled {...rest}>
+        {children}
+      </Checkbox>
+    );
   },
   args: {
     children: "Checkbox",
