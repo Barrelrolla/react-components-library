@@ -1,8 +1,6 @@
 import { ComponentProps } from "react";
 import { useNavbarCollapseStyles } from "./useNavbarStyles";
 
-export type NavbarCollapseProps = {} & ComponentProps<"menu">;
-
 /** List that hides when the Navbar is small. */
 export function NavbarCollapse({
   className,

@@ -3,7 +3,7 @@ export type { NavbarProps } from "./Navbar";
 export { NavbarBrand } from "./NavbarBrand";
 export type { NavbarBrandProps } from "./NavbarBrand";
 export { NavbarCollapse } from "./NavbarCollapse";
-export type { NavbarCollapseProps } from "./NavbarCollapse";
+export { NavbarMenu } from "./NavbarMenu";
 export { NavbarLink } from "./NavbarLink";
 export type { NavbarLinkProps } from "./NavbarLink";
 export { NavbarToggle } from "./NavbarToggle";
