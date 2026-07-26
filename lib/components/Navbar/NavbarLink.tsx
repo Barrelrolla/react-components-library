@@ -2,6 +2,7 @@ import { ElementType, MouseEvent, FocusEvent } from "react";
 import { Anchor, AnchorProps } from "../Anchor";
 import { useNavbarContext } from "./NavbarContext";
 import { useNavbarLinkStyles } from "./useNavbarStyles";
+import { CompositeItem } from "@floating-ui/react";
 
 const defaultType = "a";
 export type NavbarLinkProps<E extends ElementType> = {
@@ -44,20 +45,24 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
 
   return (
     <li>
-      <Anchor
-        as={as || defaultType}
-        data-selected={selected}
-        color={resolvedColor}
-        underlined={underlined}
-        hoverUnderline={hoverUnderline}
-        className={styles}
-        onClick={clickHandler}
-        onFocus={focusHandler}
-        onBlur={blurHandler}
-        {...rest}
-      >
-        {children}
-      </Anchor>
+      <CompositeItem
+        render={
+          <Anchor
+            as={as || defaultType}
+            data-selected={selected}
+            color={resolvedColor}
+            underlined={underlined}
+            hoverUnderline={hoverUnderline}
+            className={styles}
+            onClick={clickHandler}
+            onFocus={focusHandler}
+            onBlur={blurHandler}
+            {...rest}
+          >
+            {children}
+          </Anchor>
+        }
+      />
     </li>
   );
 }

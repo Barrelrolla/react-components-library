@@ -101,6 +101,9 @@ export const Ghost: Story = {
         <Button variant="ghost" ghostHover="contrasting" {...rest}>
           {children}
         </Button>
+        <Button variant="ghost" ghostHover="none" {...rest}>
+          {children}
+        </Button>
       </>
     );
   },

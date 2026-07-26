@@ -24,6 +24,7 @@ export function DropdownContent({
   }
   const { classes } = useDropdownContentStyles({
     mobileSheet: context.mobileSheet,
+    mobileSheetPlacement: context.mobileSheetPlacement || "bottom",
     className,
   });
 
@@ -42,7 +43,11 @@ export function DropdownContent({
         context={context.data.context}
         modal={false}
         initialFocus={context.isNested ? -1 : 0}
-        returnFocus={!context.isNested}
+        returnFocus={
+          context && context.returnFocus !== null
+            ? context.returnFocus
+            : !context.isNested
+        }
       >
         <section
           className={classes}

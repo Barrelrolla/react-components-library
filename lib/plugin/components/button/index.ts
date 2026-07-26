@@ -29,6 +29,10 @@ export default <Record<string, CssInJs>>{
     "@apply hover:bg-(--bg-color) focus-visible:bg-(--bg-color) hover:text-(--fg-color) focus-visible:text-(--fg-color) active:bg-hover active:text-(--fg-color) selected:bg-(--bg-color) selected:text-(--fg-color) selected:hover:bg-hover selected:focus-visible:bg-hover":
       {},
   },
+  ".btn-ghost-muted": {
+    "@apply hover:bg-(--bg-color)/5 focus-visible:bg-(--bg-color)/5 active:bg-(--bg-color)/10 selected:bg-(--bg-color) selected:text-(--fg-color) selected:hover:bg-hover selected:focus-visible:bg-hover":
+      {},
+  },
   ".btn-ghost-fill-focus": {
     "@apply focus:bg-(--bg-color) focus:text-(--fg-color) focus:hover:bg-hover focus:active:bg-active":
       {},

@@ -5,7 +5,7 @@ export default <Record<string, CssInJs>>{
     "@apply relative flex flex-col cursor-text text-(--fg-color) ": {},
   },
   ".input-field": {
-    "@apply focus:outline-none w-full py-1 px-2 disabled:cursor-not-allowed disabled:muted-bg rounded-inputs disabled:opacity-70":
+    "@apply focus:outline-none w-full py-1 px-2 disabled:cursor-not-allowed disabled:select-none disabled:muted-bg rounded-inputs disabled:opacity-70":
       {},
   },
   ".input-field-label": {

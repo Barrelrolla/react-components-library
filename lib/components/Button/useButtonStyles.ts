@@ -33,7 +33,7 @@ export function useButtonStyles({
   const group = useButtonGroupContext();
 
   const resolvedVariant = group?.variant || variant || "solid";
-  const resolvedGhostHover = group?.ghostHover || ghostHover || "none";
+  const resolvedGhostHover = group?.ghostHover || ghostHover || "muted";
   const resolvedColor = group?.color || color || "primary";
   const resolvedRadius = radius || "default";
   const groupRadius = group?.radius || "default";

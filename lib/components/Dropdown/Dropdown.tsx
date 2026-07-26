@@ -5,7 +5,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { ColorType } from "@/types";
+import { ColorType, MobileSheetPlacementType } from "@/types";
 import { DropdownContextProvider, useDropdownContext } from "./DropdownContext";
 import {
   arrow,
@@ -37,8 +37,10 @@ export type DropdownProps = {
   placement?: Placement;
   hasArrow?: boolean;
   requireClick?: boolean;
+  returnFocus?: boolean | null;
   disabled?: boolean;
   mobileSheet?: boolean;
+  mobileSheetPlacement?: MobileSheetPlacementType;
 } & PropsWithChildren;
 
 export function DropdownComponent({
@@ -49,6 +51,8 @@ export function DropdownComponent({
   hasArrow = true,
   requireClick = true,
   mobileSheet = true,
+  returnFocus = null,
+  mobileSheetPlacement = "bottom",
   disabled,
   children,
 }: DropdownProps) {
@@ -162,6 +166,8 @@ export function DropdownComponent({
           arrowRef,
           parent,
           mobileSheet,
+          mobileSheetPlacement,
+          returnFocus,
         }}
       >
         {children}

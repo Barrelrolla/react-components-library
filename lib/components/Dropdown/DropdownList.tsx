@@ -10,9 +10,9 @@ export function DropdownList({ children, ...rest }: ComponentProps<"ul">) {
 
   return (
     <FloatingList elementsRef={context.listRef}>
-      <ul className="dropdown-list" {...rest}>
+      <menu className="dropdown-list" {...rest}>
         {children}
-      </ul>
+      </menu>
     </FloatingList>
   );
 }

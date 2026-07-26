@@ -1,4 +1,4 @@
-import { ColorType } from "@/types";
+import { ColorType, MobileSheetPlacementType } from "@/types";
 import { UseFloatingReturn, UseInteractionsReturn } from "@floating-ui/react";
 import {
   createContext,
@@ -13,6 +13,7 @@ import {
 export type DropdownContextType =
   | {
       color: ColorType;
+      returnFocus: boolean | null;
       isOpen: boolean;
       setIsOpen: (open: boolean) => void;
       isNested: boolean;
@@ -27,6 +28,7 @@ export type DropdownContextType =
       hasArrow?: boolean;
       arrowRef?: Ref<SVGSVGElement> | undefined;
       mobileSheet: boolean;
+      mobileSheetPlacement?: MobileSheetPlacementType;
       getItemProps: (
         userProps?: HTMLProps<HTMLElement>,
       ) => Record<string, unknown>;

@@ -66,6 +66,15 @@ export const availablePlacements: Placement[] = [
   "top-start",
 ];
 
+export type MobileSheetPlacementType = "top" | "bottom" | "left" | "right";
+
+export const availableMobileSheetPlacements: MobileSheetPlacementType[] = [
+  "top",
+  "bottom",
+  "left",
+  "right",
+];
+
 export type floatingRoles =
   | "tooltip"
   | "dialog"

@@ -68,13 +68,7 @@ export function useNavbarBrandStyles({ className }: { className?: string }) {
   };
 }
 
-export function useNavbarCollapseStyles({
-  wrapperClasses,
-  className,
-}: {
-  wrapperClasses?: string;
-  className?: string;
-}) {
+export function useNavbarCollapseStyles({ className }: { className?: string }) {
   const context = useNavbarContext();
   if (!context) {
     throw new Error(getErrorMessage("Navbar collapse"));
@@ -83,7 +77,7 @@ export function useNavbarCollapseStyles({
   const { position, isOpen, collapseAt } = context;
 
   return {
-    wrapperStyles: twMerge(
+    styles: twMerge(
       "navbar-collapse-container",
       position === "top" && "order-last",
       position === "bottom" && "order-first",
@@ -101,8 +95,20 @@ export function useNavbarCollapseStyles({
       isOpen && collapseAt === "xl" && "max-xl:hide-scroll",
       !isOpen && "max-h-0 ease-out",
       isOpen && "max-h-[calc(100vh-5rem)] overflow-auto ease-in",
-      wrapperClasses,
+      className,
     ),
+  };
+}
+
+export function useNavbarMenuStyles({ className }: { className?: string }) {
+  const context = useNavbarContext();
+  if (!context) {
+    throw new Error(getErrorMessage("Navbar collapse"));
+  }
+
+  const { position, collapseAt } = context;
+
+  return {
     styles: twMerge(
       "navbar-collapse-list",
       position === "top" && "mt-4",

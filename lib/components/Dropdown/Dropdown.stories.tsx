@@ -8,7 +8,7 @@ import {
   DropdownContent,
   DropdownTrigger,
 } from "./index";
-import { availableColors } from "@/types";
+import { availableColors, availableMobileSheetPlacements } from "@/types";
 import { Button } from "../Button";
 import { PiCaretRight } from "react-icons/pi";
 
@@ -24,6 +24,10 @@ const meta: Meta<typeof Dropdown> = {
   argTypes: {
     color: {
       options: availableColors,
+      control: { type: "select" },
+    },
+    mobileSheetPlacement: {
+      options: availableMobileSheetPlacements,
       control: { type: "select" },
     },
   },
@@ -85,7 +89,7 @@ export const Nested: Story = {
           <DropdownTitle>menu</DropdownTitle>
           <DropdownList>
             <DropdownListItem>item 1</DropdownListItem>
-            <DropdownListItem>item 2</DropdownListItem>
+            <DropdownListItem disabled>item 2</DropdownListItem>
             <Dropdown placement="right">
               <DropdownTrigger>
                 <DropdownListItem className="flex items-center gap-1 pr-0">
@@ -101,6 +105,7 @@ export const Nested: Story = {
                 </DropdownList>
               </DropdownContent>
             </Dropdown>
+            <DropdownListItem>item 4</DropdownListItem>
           </DropdownList>
         </DropdownContent>
       </Dropdown>

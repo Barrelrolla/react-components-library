@@ -7,7 +7,12 @@ import { NavbarCollapse } from "./NavbarCollapse";
 import { NavbarLink } from "./NavbarLink";
 import { NavbarToggle } from "./NavbarToggle";
 import { Button } from "../Button";
-import { PiGithubLogo, PiLinkedinLogo, PiRocket } from "react-icons/pi";
+import {
+  PiCaretDown,
+  PiGithubLogo,
+  PiLinkedinLogo,
+  PiRocket,
+} from "react-icons/pi";
 import {
   Hero,
   HeroActions,
@@ -30,6 +35,14 @@ import {
 import { cssColorProps } from "@/util";
 import { availableColors, availableResponsiveSizes } from "@/types";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownList,
+  DropdownListItem,
+  DropdownTrigger,
+} from "../Dropdown";
+import { NavbarMenu } from "./NavbarMenu";
 
 type Props = ComponentProps<typeof Navbar> & {
   selected: number | undefined;
@@ -92,18 +105,34 @@ export const Default: Story = {
           </NavbarBrand>
           <div role="presentation" className="w-10 sm:hidden"></div>
           <NavbarCollapse>
-            {links.map((link, index) => (
-              <NavbarLink
-                key={link}
-                href="#"
-                selected={selected === index}
-                onClick={() => {
-                  setSelected(index);
-                }}
-              >
-                {link}
-              </NavbarLink>
-            ))}
+            <NavbarMenu>
+              <Dropdown returnFocus={false} mobileSheetPlacement="left">
+                <DropdownTrigger>
+                  <NavbarLink as="button" className="w-full">
+                    <span>
+                      Dropdown <PiCaretDown className="inline-block" />
+                    </span>
+                  </NavbarLink>
+                </DropdownTrigger>
+                <DropdownContent>
+                  <DropdownList>
+                    <DropdownListItem>item</DropdownListItem>
+                  </DropdownList>
+                </DropdownContent>
+              </Dropdown>
+              {links.map((link, index) => (
+                <NavbarLink
+                  key={link}
+                  href="#"
+                  selected={selected === index}
+                  onClick={() => {
+                    setSelected(index);
+                  }}
+                >
+                  {link}
+                </NavbarLink>
+              ))}
+            </NavbarMenu>
           </NavbarCollapse>
         </Navbar>
       </div>
@@ -132,18 +161,20 @@ export const PageDemo: Story = {
           </NavbarBrand>
           <div role="presentation" className="w-10 sm:hidden"></div>
           <NavbarCollapse>
-            {links.map((link, index) => (
-              <NavbarLink
-                key={link}
-                href="#"
-                selected={selected === index}
-                onClick={() => {
-                  setSelected(index);
-                }}
-              >
-                {link}
-              </NavbarLink>
-            ))}
+            <NavbarMenu>
+              {links.map((link, index) => (
+                <NavbarLink
+                  key={link}
+                  href="#"
+                  selected={selected === index}
+                  onClick={() => {
+                    setSelected(index);
+                  }}
+                >
+                  {link}
+                </NavbarLink>
+              ))}
+            </NavbarMenu>
             <Tooltip placement="left">
               <TooltipTrigger>
                 <Button
