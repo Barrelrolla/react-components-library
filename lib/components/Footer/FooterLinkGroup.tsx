@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
 import { getFooterLinkGroupClasses } from "./getFooterClasses";
+import { Composite } from "@floating-ui/react";
 
 export function FooterLinkGroup({
   className,
@@ -8,8 +9,10 @@ export function FooterLinkGroup({
 }: ComponentProps<"div">) {
   const { classes } = getFooterLinkGroupClasses({ className });
   return (
-    <div className={classes} {...rest}>
-      {children}
-    </div>
+    <Composite>
+      <div className={classes} {...rest}>
+        {children}
+      </div>
+    </Composite>
   );
 }

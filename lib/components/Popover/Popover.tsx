@@ -100,7 +100,7 @@ export function PopoverComponent({
       <PopoverContextProvider
         value={{
           useFocus: false,
-          returnFocus: null,
+          returnFocus: false,
           isNested: false,
           mobileSheet: false,
           color,

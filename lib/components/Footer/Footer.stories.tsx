@@ -13,6 +13,7 @@ import { FooterLinksTitle } from "./FooterLinksTitle";
 import { ComponentType } from "react";
 import { availableColors, availableResponsiveSizes } from "@/types";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
+import { Anchor } from "../Anchor";
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Footer",
@@ -75,9 +76,9 @@ export const WithLinkGroups: Story = {
     const button = canvas.getByText("Test");
     await expect(button, "renders").toBeTruthy();
   },
-  render: ({ ...rest }) => {
+  render: ({ color, ...rest }) => {
     return (
-      <Footer {...rest}>
+      <Footer color={color} {...rest}>
         <FooterBrand href="#">
           <PiRocket /> Test
         </FooterBrand>
@@ -107,17 +108,17 @@ export const WithLinkGroups: Story = {
           <FooterIconsContainer>
             <Tooltip isLabel color="dark">
               <TooltipTrigger>
-                <FooterLink href="#">
+                <Anchor color={color || 'main'} href="#">
                   <PiGithubLogo aria-label="github logo" />
-                </FooterLink>
+                </Anchor>
               </TooltipTrigger>
               <TooltipContent>Github</TooltipContent>
             </Tooltip>
             <Tooltip isLabel color="dark">
               <TooltipTrigger>
-                <FooterLink href="#">
+                <Anchor color={color || 'main'} href="#">
                   <PiLinkedinLogo aria-label="linkedin logo" />
-                </FooterLink>
+                </Anchor>
               </TooltipTrigger>
               <TooltipContent>LinkedIn</TooltipContent>
             </Tooltip>
