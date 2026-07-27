@@ -1,22 +1,7 @@
-import { ColorType } from "@/types";
-import { UseFloatingReturn, UseInteractionsReturn } from "@floating-ui/react";
-import { createContext, CSSProperties, Ref, useContext } from "react";
+import { createContext, useContext } from "react";
+import { FloatingElementContextType } from "../Floating";
 
-export type TooltipContextType =
-  | {
-      color: ColorType;
-      isOpen: boolean;
-      setIsOpen: (open: boolean) => void;
-      data: UseFloatingReturn;
-      interactions: UseInteractionsReturn;
-      transitionStyles: CSSProperties;
-      disabled?: boolean;
-      hasArrow?: boolean;
-      arrowRef?: Ref<SVGSVGElement> | undefined;
-    }
-  | undefined;
-
-const TooltipContext = createContext<TooltipContextType>(undefined);
+const TooltipContext = createContext<FloatingElementContextType | null>(null);
 export const TooltipContextProvider = TooltipContext.Provider;
 
 export function useTooltipContext() {

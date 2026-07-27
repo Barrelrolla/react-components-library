@@ -14,7 +14,7 @@ export function useFloatingTransitionStyles(
   const arrowX = data.middlewareData.arrow?.x ?? 0;
   const arrowY = data.middlewareData.arrow?.y ?? 0;
   const transformX = arrowX + arrowSize / 2;
-  const transformY = arrowY + arrowSize;
+  const transformY = arrowY + arrowSize / 2;
 
   const { isMounted, styles: transitionStyles } = useTransitionStyles(
     data.context,
@@ -40,10 +40,10 @@ export function useFloatingTransitionStyles(
             }
           : ({ side }) => ({
               transformOrigin: {
-                top: `${transformX}px calc(100% + ${arrowSize}px)`,
-                bottom: `${transformX}px ${-arrowSize}px`,
-                left: `calc(100% + ${arrowSize}px) ${transformY}px`,
-                right: `${-arrowSize}px ${transformY}px`,
+                top: `${transformX}px calc(100% + ${arrowSize / 2}px)`,
+                bottom: `${transformX}px ${-arrowSize / 2}px`,
+                left: `calc(100% + ${arrowSize / 2}px) ${transformY}px`,
+                right: `${-arrowSize / 2}px ${transformY}px`,
               }[side],
             }),
     },

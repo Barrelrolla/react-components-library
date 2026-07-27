@@ -15,4 +15,3 @@ export * from "./Radio";
 export * from "./Tooltip";
 export * from "./Popover";
 export * from "./Dropdown";
-export * from "./Sheet";

@@ -2,15 +2,15 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".dropdown": {
-    "@apply text-(--fg-color) bg-(--bg-color) border-containers p-2 rounded-containers z-(--z-floats) focus-visible:outline-none":
+    "@apply text-(--fg-color) bg-(--bg-color) border-containers p-2 rounded-containers focus-visible:outline-none":
       {},
   },
   ".dropdown-mobile-bottom": {
-    "@apply fixed bottom-0 left-0 w-full border-l-0 border-r-0 border-b-0 mb-2":
+    "@apply fixed bottom-0 left-0 w-full border-l-0 border-r-0 border-b-0 pb-2":
       {},
   },
   ".dropdown-mobile-top": {
-    "@apply fixed top-0 left-0 w-full border-l-0 border-r-0 border-t-0 mt-2":
+    "@apply fixed top-0 left-0 w-full border-l-0 border-r-0 border-t-0 pt-2":
       {},
   },
   ".dropdown-mobile-left": {

@@ -1,6 +1,5 @@
 import createPlugin from "tailwindcss/plugin";
 import base from "./base/base";
-import sheet from "./components/sheet";
 import dropdown from "./components/dropdown";
 import popover from "./components/popover";
 import tooltip from "./components/tooltip";
@@ -24,7 +23,6 @@ const plugin: TailwindPlugin = createPlugin(
   ({ addBase, addComponents, addUtilities, addVariant }) => {
     addBase(base);
     addComponents([
-      sheet,
       dropdown,
       popover,
       tooltip,

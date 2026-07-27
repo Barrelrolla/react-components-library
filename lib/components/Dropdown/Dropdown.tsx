@@ -90,7 +90,7 @@ export function DropdownComponent({
     onOpenChange: setOpen,
     placement: isNested ? "right-start" : placement,
     middleware: [
-      offset(isNested ? 2 : 10),
+      offset(isNested ? 4 : 10),
       flip(),
       shift({ padding: 8 }),
       arrow({ element: arrowRef }),
