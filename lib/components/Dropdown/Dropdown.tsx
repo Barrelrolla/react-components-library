@@ -29,6 +29,7 @@ import {
   useRole,
 } from "@floating-ui/react";
 import { useIsMobile } from "@/hooks";
+import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles";
 
 export type DropdownProps = {
   color?: ColorType;
@@ -117,6 +118,7 @@ export function DropdownComponent({
     onNavigate: setActiveIndex,
   });
   const interactions = useInteractions([hover, click, role, dismiss, listNav]);
+  const { isMounted, transitionStyles } = useFloatingTransitionStyles(data, mobileSheet, mobileSheetPlacement);
 
   useEffect(() => {
     if (!tree) return;
@@ -151,8 +153,8 @@ export function DropdownComponent({
       <DropdownContextProvider
         value={{
           color,
-          isOpen: disabled ? false : open,
-          setIsOpen: disabled ? () => {} : setOpen,
+          isOpen: disabled ? false : isMounted,
+          setIsOpen: disabled ? () => { } : setOpen,
           isNested,
           activeIndex,
           setActiveIndex,
@@ -161,6 +163,7 @@ export function DropdownComponent({
           getItemProps: interactions.getItemProps,
           interactions,
           data,
+          transitionStyles,
           listRef,
           hasArrow,
           arrowRef,

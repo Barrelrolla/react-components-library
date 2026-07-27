@@ -9,7 +9,7 @@ export function TooltipContent({
   style,
   children,
   ...rest
-}: ComponentProps<"span">) {
+}: ComponentProps<"div">) {
   const { classes } = getTooltipClasses({ className });
 
   const context = useTooltipContext();
@@ -25,33 +25,37 @@ export function TooltipContent({
 
   const styles = {
     ...cssColorProps(context.color),
-    ...context.data.floatingStyles,
+    ...context.transitionStyles,
     ...style,
   };
 
   return (
     <FloatingPortal>
-      <span
+      <div
         ref={context.data.refs.setFloating}
-        style={styles}
-        className={classes}
-        {...rest}
+        style={context.data.floatingStyles}
         {...context.interactions.getFloatingProps()}
       >
-        <>
-          {context.hasArrow && (
-            <>
-              <FloatingArrow
-                className="arrow"
-                style={{ ...cssColorProps(context.color) }}
-                ref={context.arrowRef}
-                context={context.data.context}
-              />
-            </>
-          )}
-          {children}
-        </>
-      </span>
+        <div
+          style={styles}
+          className={classes}
+          {...rest}
+        >
+          <>
+            {context.hasArrow && (
+              <>
+                <FloatingArrow
+                  className="arrow"
+                  style={{ ...cssColorProps(context.color) }}
+                  ref={context.arrowRef}
+                  context={context.data.context}
+                />
+              </>
+            )}
+            {children}
+          </>
+        </div>
+      </div>
     </FloatingPortal>
   );
 }

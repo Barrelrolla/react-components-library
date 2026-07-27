@@ -14,7 +14,7 @@ export function DropdownContent({
   style,
   children,
   ...rest
-}: ComponentProps<"span">) {
+}: ComponentProps<"div">) {
   const isMobile = useIsMobile();
   const context = useDropdownContext();
   if (!context) {
@@ -34,8 +34,11 @@ export function DropdownContent({
 
   const colorProps = cssColorProps(context.color);
 
-  const colorStyle = { ...cssColorProps(context.color), ...style };
-  const styles = { ...colorStyle, ...context.data.floatingStyles };
+  const styles = {
+    ...cssColorProps(context.color),
+    ...context.transitionStyles,
+    ...style,
+  };
 
   return (
     <FloatingPortal>
@@ -49,24 +52,29 @@ export function DropdownContent({
             : !context.isNested
         }
       >
-        <section
-          className={classes}
+        <div
           ref={context.data.refs.setFloating}
-          style={isMobile && context.mobileSheet ? colorStyle : styles}
+          // style={context.data.floatingStyles}
           {...context.interactions.getFloatingProps()}
-          {...rest}
+          style={isMobile && context.mobileSheet ? undefined : context.data.floatingStyles}
         >
-          {context.hasArrow && (!isMobile || !context.mobileSheet) && (
-            <FloatingArrow
-              className="arrow"
-              style={colorProps}
-              ref={context.arrowRef}
-              context={context.data.context}
-            />
-          )}
-          {children}
-          <></>
-        </section>
+          <div
+            style={styles}
+            className={classes}
+            {...rest}
+
+          >
+            {context.hasArrow && (!isMobile || !context.mobileSheet) && (
+              <FloatingArrow
+                className="arrow"
+                style={colorProps}
+                ref={context.arrowRef}
+                context={context.data.context}
+              />
+            )}
+            {children}
+          </div>
+        </div>
       </FloatingFocusManager>
     </FloatingPortal>
   );

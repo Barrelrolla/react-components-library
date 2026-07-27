@@ -1,4 +1,4 @@
-import { ComponentProps, useEffect, useState } from "react";
+import { ComponentProps, CSSProperties, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   FloatingFocusManager,
@@ -9,6 +9,7 @@ import {
   useId,
   useInteractions,
   useRole,
+  useTransitionStyles,
 } from "@floating-ui/react";
 import { getDialogClasses } from "./getDialogClasses";
 
@@ -19,6 +20,7 @@ export type DialogProps = {
   setIsOpen: (open: boolean) => void;
   /** Classes for the backdrop. */
   backdropClassName?: string;
+  initialStyles?: CSSProperties
 } & ComponentProps<"dialog">;
 
 /** The dialog component has no visuals. You should add your own visual as children. You can use a card or a form or whatever you'd like */
@@ -26,8 +28,10 @@ export function Dialog({
   isOpen,
   setIsOpen,
   backdropClassName,
+  initialStyles,
   className,
   children,
+  style,
   ...props
 }: DialogProps) {
   const [container, setContainer] = useState<HTMLElement | null>(null);
@@ -36,6 +40,8 @@ export function Dialog({
     onOpenChange: setIsOpen,
   });
 
+  const resolvedInitialStyles = initialStyles || { opacity: 0, scale: 0.5, translate: '0 -100px' };
+  const { isMounted, styles } = useTransitionStyles(context, { initial: resolvedInitialStyles, duration: 150 });
   const click = useClick(context);
   const dismiss = useDismiss(context, { outsidePressEvent: "click" });
   const role = useRole(context);
@@ -52,7 +58,7 @@ export function Dialog({
     setContainer(document.body);
   }, []);
 
-  if (!isOpen || !container) {
+  if (!isMounted || !container) {
     return;
   }
 
@@ -64,7 +70,8 @@ export function Dialog({
           ref={refs.setFloating}
           aria-labelledby={labelId}
           aria-describedby={descriptionId}
-          open={isOpen}
+          open
+          style={{ ...style, ...styles }}
           {...getFloatingProps()}
           {...props}
         >

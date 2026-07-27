@@ -1,6 +1,6 @@
 import { ColorType } from "@/types";
 import { UseFloatingReturn, UseInteractionsReturn } from "@floating-ui/react";
-import { createContext, Ref, useContext } from "react";
+import { createContext, CSSProperties, Ref, useContext } from "react";
 
 export type PopoverContextType =
   | {
@@ -9,6 +9,7 @@ export type PopoverContextType =
       setIsOpen: (open: boolean) => void;
       data: UseFloatingReturn;
       interactions: UseInteractionsReturn;
+      transitionStyles: CSSProperties;
       disabled?: boolean;
       hasArrow?: boolean;
       arrowRef?: Ref<SVGSVGElement> | undefined;

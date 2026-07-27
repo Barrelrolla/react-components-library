@@ -13,7 +13,7 @@ export function FloatingDelayGroupContextProvider({
 }: FloatingDelayGroupContextProps & PropsWithChildren) {
   return (
     <FloatingDelayGroupContext.Provider value={{ delay: delay }}>
-      <FloatingDelayGroup delay={{ open: delay, close: 50 }}>
+      <FloatingDelayGroup delay={{ open: delay, close: 150 }}>
         {children}
       </FloatingDelayGroup>
     </FloatingDelayGroupContext.Provider>

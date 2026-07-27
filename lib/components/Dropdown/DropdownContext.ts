@@ -2,6 +2,7 @@ import { ColorType, MobileSheetPlacementType } from "@/types";
 import { UseFloatingReturn, UseInteractionsReturn } from "@floating-ui/react";
 import {
   createContext,
+  CSSProperties,
   Dispatch,
   HTMLProps,
   Ref,
@@ -23,6 +24,7 @@ export type DropdownContextType =
       setHasFocusInside: Dispatch<SetStateAction<boolean>>;
       data: UseFloatingReturn;
       interactions: UseInteractionsReturn;
+      transitionStyles: CSSProperties;
       listRef: RefObject<(HTMLElement | null)[]>;
       disabled?: boolean;
       hasArrow?: boolean;

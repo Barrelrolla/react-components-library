@@ -19,6 +19,7 @@ import {
   useInteractions,
   useRole,
 } from "@floating-ui/react";
+import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles";
 
 export type TooltipProps = {
   color?: ColorType;
@@ -83,6 +84,7 @@ export function Tooltip({
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: isLabel ? "label" : "tooltip" });
   const interactions = useInteractions([hover, focus, dismiss, role]);
+  const { isMounted, transitionStyles } = useFloatingTransitionStyles(data);
 
   const nodeId = useFloatingNodeId();
 
@@ -91,10 +93,11 @@ export function Tooltip({
       <TooltipContextProvider
         value={{
           color,
-          isOpen: disabled ? false : open,
-          setIsOpen: disabled ? () => {} : setOpen,
+          isOpen: disabled ? false : isMounted,
+          setIsOpen: disabled ? () => { } : setOpen,
           data,
           interactions,
+          transitionStyles,
           hasArrow,
           arrowRef,
         }}

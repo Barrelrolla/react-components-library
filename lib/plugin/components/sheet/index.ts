@@ -1,7 +1,7 @@
 import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
-  ".{{kebabCase name}}": {
+  ".sheet": {
     "@apply text-(--fg-color) bg-(--bg-color)": {},
   },
 };

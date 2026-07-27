@@ -22,6 +22,7 @@ import {
   useInteractions,
   useRole,
 } from "@floating-ui/react";
+import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles";
 
 export type PopoverProps = {
   color?: ColorType;
@@ -92,15 +93,18 @@ export function PopoverComponent({
   const dismiss = useDismiss(context);
   const r = useRole(context, { role: role });
   const interactions = useInteractions([hover, click, focus, dismiss, r]);
+  const { isMounted, transitionStyles } = useFloatingTransitionStyles(data);
+
   return (
     <FloatingNode id={nodeId}>
       <PopoverContextProvider
         value={{
           color,
-          isOpen: disabled ? false : open,
-          setIsOpen: disabled ? () => {} : setOpen,
+          isOpen: disabled ? false : isMounted,
+          setIsOpen: disabled ? () => { } : setOpen,
           data,
           interactions,
+          transitionStyles,
           hasArrow,
           arrowRef,
         }}

@@ -9,7 +9,7 @@ export function PopoverContent({
   style,
   children,
   ...rest
-}: ComponentProps<"span">) {
+}: ComponentProps<"div">) {
   const { classes } = getPopoverClasses({ className });
 
   const context = usePopoverContext();
@@ -25,7 +25,7 @@ export function PopoverContent({
 
   const styles = {
     ...cssColorProps(context.color),
-    ...context.data.floatingStyles,
+    ...context.transitionStyles,
     ...style,
   };
 
@@ -39,27 +39,31 @@ export function PopoverContent({
 
   return (
     <FloatingPortal>
-      <span
+      <div
         ref={context.data.refs.setFloating}
-        style={styles}
-        className={classes}
+        style={context.data.floatingStyles}
         {...context.interactions.getFloatingProps()}
-        {...rest}
       >
-        <>
-          {context.hasArrow && (
-            <>
-              <FloatingArrow
-                className="arrow"
-                style={{ ...cssColorProps(context.color) }}
-                ref={context.arrowRef}
-                context={context.data.context}
-              />
-            </>
-          )}
-          {children}
-        </>
-      </span>
+        <div
+          style={styles}
+          className={classes}
+          {...rest}
+        >
+          <>
+            {context.hasArrow && (
+              <>
+                <FloatingArrow
+                  className="arrow"
+                  style={{ ...cssColorProps(context.color) }}
+                  ref={context.arrowRef}
+                  context={context.data.context}
+                />
+              </>
+            )}
+            {children}
+          </>
+        </div>
+      </div>
     </FloatingPortal>
   );
 }

@@ -8,7 +8,7 @@ import {
   DropdownContent,
   DropdownTrigger,
 } from "./index";
-import { availableColors, availableMobileSheetPlacements } from "@/types";
+import { availableColors, availableMobileSheetPlacements, availablePlacements } from "@/types";
 import { Button } from "../Button";
 import { PiCaretRight } from "react-icons/pi";
 
@@ -30,6 +30,7 @@ const meta: Meta<typeof Dropdown> = {
       options: availableMobileSheetPlacements,
       control: { type: "select" },
     },
+    placement: { options: availablePlacements, control: { type: 'select' } }
   },
 };
 
