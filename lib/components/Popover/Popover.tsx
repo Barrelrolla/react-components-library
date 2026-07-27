@@ -99,6 +99,10 @@ export function PopoverComponent({
     <FloatingNode id={nodeId}>
       <PopoverContextProvider
         value={{
+          useFocus: false,
+          returnFocus: null,
+          isNested: false,
+          mobileSheet: false,
           color,
           isOpen: disabled ? false : isMounted,
           setIsOpen: disabled ? () => { } : setOpen,

@@ -48,7 +48,7 @@ export function FloatingElementContent({
       <FloatingFocusManager
         context={context.data.context}
         modal={false}
-        initialFocus={context.isNested ? -1 : 0}
+        initialFocus={context.isNested || !context.useFocus ? -1 : 0}
         returnFocus={
           context && context.returnFocus !== null
             ? context.returnFocus
@@ -81,6 +81,6 @@ export function FloatingElementContent({
           </div>
         </div>
       </FloatingFocusManager>
-    </FloatingPortal>
+    </FloatingPortal >
   );
 }

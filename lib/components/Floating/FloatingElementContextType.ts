@@ -4,6 +4,7 @@ import { CSSProperties, Ref } from "react";
 
 export interface FloatingElementContextType {
   color: ColorType;
+  useFocus: boolean;
   returnFocus: boolean | null;
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;

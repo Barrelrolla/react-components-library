@@ -27,7 +27,7 @@ export type ButtonGroupProps = {
   /** Disables scaling of the buttons on press. */
   scaling?: boolean;
   /** You can add any styles to the divider here. */
-  dividerClasses?: string;
+  dividerClassName?: string;
   /** The button group wraps all buttons in a wrapper. You can add css classes to it here. */
   wrapperClassName?: string;
   tooltipDelay?: number;
@@ -45,7 +45,7 @@ export function ButtonGroup({
   scaling = false,
   tooltipDelay = 300,
   className,
-  dividerClasses,
+  dividerClassName,
   wrapperClassName,
   children,
   ...rest
@@ -86,7 +86,7 @@ export function ButtonGroup({
                       color={color}
                       useBgColor={variant === "solid"}
                       vertical={!vertical}
-                      className={dividerClasses}
+                      className={dividerClassName}
                     />
                   )}
                   {child}

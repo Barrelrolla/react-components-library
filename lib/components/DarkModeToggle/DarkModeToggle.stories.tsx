@@ -28,7 +28,7 @@ const meta: Meta<typeof DarkModeToggle> = {
     endIcon: { table: { disable: true } },
     ref: { table: { disable: true } },
     as: { table: { disable: true } },
-    wrapperClasses: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
   },
 };
 

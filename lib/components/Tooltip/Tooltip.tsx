@@ -92,6 +92,10 @@ export function Tooltip({
     <FloatingNode id={nodeId}>
       <TooltipContextProvider
         value={{
+          useFocus: false,
+          returnFocus: null,
+          isNested: false,
+          mobileSheet: false,
           color,
           isOpen: disabled ? false : isMounted,
           setIsOpen: disabled ? () => { } : setOpen,
