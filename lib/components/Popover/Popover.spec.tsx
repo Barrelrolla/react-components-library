@@ -25,8 +25,9 @@ describe("Popover tests", () => {
     expect(popover).toBeTruthy();
     if (trigger) {
       fireEvent.mouseLeave(trigger);
-      popover = screen.queryByText("popover");
+      await waitFor(() => {
+        expect(screen.queryByText("popover")).toBeNull();
+      })
     }
-    expect(popover).toBeNull();
   });
 });

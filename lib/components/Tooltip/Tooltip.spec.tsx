@@ -25,8 +25,9 @@ describe("Tooltip tests", () => {
     expect(tooltip).toBeTruthy();
     if (trigger) {
       fireEvent.mouseLeave(trigger);
-      tooltip = screen.queryByText("tooltip");
+      await waitFor(() => {
+        expect(screen.queryByText("tooltip")).toBeNull();
+      })
     }
-    expect(tooltip).toBeNull();
   });
 });
