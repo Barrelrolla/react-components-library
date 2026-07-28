@@ -73,6 +73,10 @@ export default <Record<string, CssInJs>>{
       "color-mix(in oklab, var(--fg-color) 15%, var(--color-main))",
   },
 
+  ".floating-container": {
+    "@apply absolute z-(--z-floats) focus-visible:outline-none": {},
+  },
+
   ".arrow": {
     "@apply fill-(--fg-color)": {},
   },

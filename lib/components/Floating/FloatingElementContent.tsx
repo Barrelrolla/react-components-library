@@ -56,7 +56,7 @@ export function FloatingElementContent({
         }
       >
         <div
-          className="z-(--z-floats) focus-visible:outline-none"
+          className="floating-container"
           ref={context.data.refs.setFloating}
           {...context.interactions.getFloatingProps()}
           style={isMobile && context.mobileSheet ? undefined : context.data.floatingStyles}

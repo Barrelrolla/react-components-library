@@ -162,6 +162,20 @@ export const PageDemo: Story = {
           <div role="presentation" className="w-10 sm:hidden"></div>
           <NavbarCollapse>
             <NavbarMenu>
+              <Dropdown returnFocus={false} strategy="fixed" mobileSheetPlacement="left">
+                <DropdownTrigger>
+                  <NavbarLink as="button" className="w-full">
+                    <span>
+                      Dropdown <PiCaretDown className="inline-block" />
+                    </span>
+                  </NavbarLink>
+                </DropdownTrigger>
+                <DropdownContent>
+                  <DropdownList>
+                    <DropdownListItem>item</DropdownListItem>
+                  </DropdownList>
+                </DropdownContent>
+              </Dropdown>
               {links.map((link, index) => (
                 <NavbarLink
                   key={link}
@@ -175,7 +189,7 @@ export const PageDemo: Story = {
                 </NavbarLink>
               ))}
             </NavbarMenu>
-            <Tooltip placement="left">
+            <Tooltip strategy="fixed" placement="left">
               <TooltipTrigger>
                 <Button
                   variant="outline"

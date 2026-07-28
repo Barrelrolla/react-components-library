@@ -35,6 +35,7 @@ export type DropdownProps = {
   color?: ColorType;
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
+  strategy?: 'absolute' | 'fixed',
   placement?: Placement;
   hasArrow?: boolean;
   requireClick?: boolean;
@@ -48,6 +49,7 @@ export function DropdownComponent({
   color = "main",
   isOpen,
   onOpenChange,
+  strategy = 'absolute',
   placement = "top",
   hasArrow = true,
   requireClick = true,
@@ -95,6 +97,7 @@ export function DropdownComponent({
       shift({ padding: 8 }),
       arrow({ element: arrowRef }),
     ],
+    strategy,
     whileElementsMounted: autoUpdate,
   });
 
@@ -152,6 +155,7 @@ export function DropdownComponent({
     <FloatingNode id={nodeId}>
       <DropdownContextProvider
         value={{
+          useFocus: true,
           color,
           isOpen: disabled ? false : isMounted,
           setIsOpen: disabled ? () => { } : setOpen,

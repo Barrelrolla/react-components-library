@@ -25,6 +25,7 @@ export type TooltipProps = {
   color?: ColorType;
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
+  strategy?: 'absolute' | 'fixed',
   placement?: Placement;
   delay?: number;
   hasArrow?: boolean;
@@ -36,6 +37,7 @@ export function Tooltip({
   color = "main",
   isOpen,
   onOpenChange,
+  strategy = 'absolute',
   placement = "top",
   delay = 300,
   hasArrow = true,
@@ -71,6 +73,7 @@ export function Tooltip({
       shift({ padding: 8 }),
       arrow({ element: arrowRef }),
     ],
+    strategy,
   });
 
   const { delay: groupDelay } = useDelayGroup(data.context);

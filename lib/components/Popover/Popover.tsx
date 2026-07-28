@@ -28,6 +28,7 @@ export type PopoverProps = {
   color?: ColorType;
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
+  strategy: "absolute" | "fixed",
   placement?: Placement;
   delay?: number;
   requireClick?: boolean;
@@ -40,6 +41,7 @@ export function PopoverComponent({
   color = "main",
   isOpen,
   onOpenChange,
+  strategy = 'absolute',
   placement = "top",
   delay = 300,
   hasArrow = true,
@@ -78,6 +80,7 @@ export function PopoverComponent({
       shift({ padding: 8 }),
       arrow({ element: arrowRef }),
     ],
+    strategy,
   });
 
   const { delay: groupDelay } = useDelayGroup(data.context);
