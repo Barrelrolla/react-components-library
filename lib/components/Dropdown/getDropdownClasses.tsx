@@ -13,18 +13,20 @@ export function getDropdownContentClasses({
   return {
     classes: twMerge(
       "dropdown",
+      !mobileSheet && 'dropdown-border',
+      mobileSheet && 'sm:dropdown-border',
       mobileSheet &&
-        mobileSheetPlacement === "top" &&
-        "max-sm:dropdown-mobile-top",
+      mobileSheetPlacement === "top" &&
+      "max-sm:dropdown-mobile-top",
       mobileSheet &&
-        mobileSheetPlacement === "bottom" &&
-        "max-sm:dropdown-mobile-bottom",
+      mobileSheetPlacement === "bottom" &&
+      "max-sm:dropdown-mobile-bottom",
       mobileSheet &&
-        mobileSheetPlacement === "left" &&
-        "max-sm:dropdown-mobile-left",
+      mobileSheetPlacement === "left" &&
+      "max-sm:dropdown-mobile-left",
       mobileSheet &&
-        mobileSheetPlacement === "right" &&
-        "max-sm:dropdown-mobile-right",
+      mobileSheetPlacement === "right" &&
+      "max-sm:dropdown-mobile-right",
 
       className,
     ),
