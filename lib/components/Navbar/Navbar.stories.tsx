@@ -162,7 +162,11 @@ export const PageDemo: Story = {
           <div role="presentation" className="w-10 sm:hidden"></div>
           <NavbarCollapse>
             <NavbarMenu>
-              <Dropdown returnFocus={false} strategy="fixed" mobileSheetPlacement="left">
+              <Dropdown
+                returnFocus={false}
+                strategy="fixed"
+                mobileSheetPlacement="left"
+              >
                 <DropdownTrigger>
                   <NavbarLink as="button" className="w-full">
                     <span>
@@ -192,8 +196,8 @@ export const PageDemo: Story = {
             <Tooltip strategy="fixed" placement="left">
               <TooltipTrigger>
                 <Button
+                  color={color}
                   variant="outline"
-                  color="primary"
                   size="sm"
                   className="w-full md:w-auto"
                 >
@@ -213,8 +217,8 @@ export const PageDemo: Story = {
               excepturi molestiae.
             </HeroText>
             <HeroActions>
-              <Button>action</Button>
-              <Button>action</Button>
+              <Button color={color}>action</Button>
+              <Button color={color}>action</Button>
             </HeroActions>
           </HeroSection>
           <HeroImageSection className="max-md:h-1/2 md:w-1/2">
@@ -253,7 +257,7 @@ export const PageDemo: Story = {
           <FooterFullSection>
             <span>copyright stuff</span>
             <FooterIconsContainer>
-              <Tooltip isLabel color="dark">
+              <Tooltip isLabel>
                 <TooltipTrigger>
                   <FooterLink href="#">
                     <PiGithubLogo aria-label="github logo" />
@@ -261,7 +265,7 @@ export const PageDemo: Story = {
                 </TooltipTrigger>
                 <TooltipContent>Github</TooltipContent>
               </Tooltip>
-              <Tooltip isLabel color="dark">
+              <Tooltip isLabel>
                 <TooltipTrigger>
                   <FooterLink href="#">
                     <PiLinkedinLogo aria-label="linkedin logo" />

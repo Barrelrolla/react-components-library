@@ -34,8 +34,8 @@ export type ButtonGroupProps = {
 } & ComponentProps<"div">;
 
 export function ButtonGroup({
-  color = "primary",
-  variant = "solid",
+  color = "main",
+  variant = "outline",
   radius,
   ghostHover,
   retainFocusState = false,

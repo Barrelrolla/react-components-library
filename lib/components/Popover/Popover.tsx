@@ -28,7 +28,7 @@ export type PopoverProps = {
   color?: ColorType;
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
-  strategy: "absolute" | "fixed",
+  strategy?: "absolute" | "fixed";
   placement?: Placement;
   delay?: number;
   requireClick?: boolean;
@@ -41,7 +41,7 @@ export function PopoverComponent({
   color = "main",
   isOpen,
   onOpenChange,
-  strategy = 'absolute',
+  strategy = "absolute",
   placement = "top",
   delay = 300,
   hasArrow = true,
@@ -108,7 +108,7 @@ export function PopoverComponent({
           mobileSheet: false,
           color,
           isOpen: disabled ? false : isMounted,
-          setIsOpen: disabled ? () => { } : setOpen,
+          setIsOpen: disabled ? () => {} : setOpen,
           data,
           interactions,
           transitionStyles,

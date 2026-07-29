@@ -5,6 +5,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip";
 
 /** Toggles between light and dark theme. */
 export function DarkModeToggle({
+  variant = "ghost",
   size = "sm",
   lightModeTooltip = "Light",
   darkModeTooltip = "Dark",
@@ -22,6 +23,7 @@ export function DarkModeToggle({
     <Tooltip isLabel>
       <TooltipTrigger>
         <Button
+          variant={variant}
           aria-label="dark mode toggle"
           onClick={() => setDarkMode(isDark ? lightModeName : darkModeName)}
           startIcon={isDark ? <SunIcon /> : <MoonIcon />}

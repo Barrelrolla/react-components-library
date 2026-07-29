@@ -15,7 +15,7 @@ export type CheckboxProps = {
 } & ComponentProps<"input">;
 
 export function Checkbox({
-  color = "primary",
+  color = "main",
   labelColor = "main",
   size = 24,
   disabled,

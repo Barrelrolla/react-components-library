@@ -23,8 +23,5 @@
   "chat.extensionTools.enabled": false,
   "telemetry.feedback.enabled": false,
   "terminal.integrated.enableMultiLinePasteWarning": "never",
-  "prettier.trailingComma": "all",
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+  "prettier.trailingComma": "all"
 }

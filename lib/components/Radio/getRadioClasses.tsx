@@ -19,7 +19,7 @@ export function getRadioClasses({
   wrapperClassName?: string;
   groupContext: RadioGroupContextType;
 }) {
-  const resolvedColor = groupContext?.color || color || "primary";
+  const resolvedColor = groupContext?.color || color || "main";
   const resolvedLabelColor = groupContext?.labelColor || labelColor || "main";
   return {
     resolvedColor,

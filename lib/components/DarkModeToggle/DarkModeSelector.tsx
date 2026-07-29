@@ -10,7 +10,6 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
 
 /** Provides an option to choose between light, dark and system theme. */
 export function DarkModeSelector({
-  variant = "outline",
   size = "sm",
   divider = false,
   lightModeTooltip = "Light",
@@ -29,7 +28,7 @@ export function DarkModeSelector({
   const { darkMode, setDarkMode } = theme;
 
   return (
-    <ButtonGroup variant={variant} size={size} divider={divider} {...rest}>
+    <ButtonGroup size={size} divider={divider} {...rest}>
       <Tooltip isLabel>
         <TooltipTrigger>
           <Button

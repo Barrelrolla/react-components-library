@@ -13,7 +13,7 @@ export function RadioGroup({
   title,
   name,
   legendClassName,
-  color,
+  color = "main",
   labelColor,
   size,
   children,
