@@ -18,12 +18,16 @@ import {
 import { SidemenuContextProvider } from "./SidemenuContext";
 
 export type SidemenuProps = {
+  initialActiveIndex?: number;
+  onActiveIndexChange?: (index: number) => void;
   color?: ColorType;
   wrapperClassName?: string;
   wrapperStyle?: CSSProperties;
 } & ComponentProps<"div">;
 
 export function Sidemenu({
+  initialActiveIndex = 0,
+  onActiveIndexChange,
   color = "main",
   className,
   style,
@@ -32,13 +36,20 @@ export function Sidemenu({
   children,
   ...rest
 }: SidemenuProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
   const [availableScroll, setAvailableScroll] = useState({
     top: false,
     bottom: false,
     left: false,
     right: false,
   });
+
+  useEffect(() => {
+    if (onActiveIndexChange) {
+      onActiveIndexChange(activeIndex);
+    }
+  }, [activeIndex, onActiveIndexChange]);
+
   const divRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   useEffect(() => {

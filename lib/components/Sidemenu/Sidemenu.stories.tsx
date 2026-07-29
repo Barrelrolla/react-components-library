@@ -4,6 +4,7 @@ import { Sidemenu } from "./Sidemenu";
 import { availableColors } from "@/types";
 import { SidemenuSection } from "./SidemenuSection";
 import { SidemenuItem } from "./SidemenuItem";
+import { useState } from "react";
 
 const meta: Meta<typeof Sidemenu> = {
   title: "Components/Sidemenu",
@@ -33,23 +34,31 @@ export const Default: Story = {
     await expect(sidemenu, "renders").toBeTruthy();
   },
   render: () => {
+    const [activeIndex, setActiveIndex] = useState(5);
+    console.log(activeIndex);
     const items = Array.from(
       { length: 12 },
       (_item, index) => "Item" + ` ${index + 1}`,
     );
     return (
-      <Sidemenu wrapperClassName="w-full sm:w-60">
-        <SidemenuSection>
-          <SidemenuItem index={0}>Sidemenu</SidemenuItem>
-          {items.map((item, index) => {
-            return (
-              <SidemenuItem key={item} index={index + 1}>
-                {item}
-              </SidemenuItem>
-            );
-          })}
-        </SidemenuSection>
-      </Sidemenu>
+      <div className="w-full sm:w-auto">
+        <Sidemenu
+          className="max-h-100"
+          initialActiveIndex={activeIndex}
+          onActiveIndexChange={setActiveIndex}
+        >
+          <SidemenuSection>
+            <SidemenuItem index={0}>Sidemenu</SidemenuItem>
+            {items.map((item, index) => {
+              return (
+                <SidemenuItem key={item} index={index + 1}>
+                  {item}
+                </SidemenuItem>
+              );
+            })}
+          </SidemenuSection>
+        </Sidemenu>
+      </div>
     );
   },
   args: {
