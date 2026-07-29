@@ -2,8 +2,8 @@ import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { Sidemenu } from "./Sidemenu";
 import { availableColors } from "@/types";
-import { Button, ButtonGroup } from "../Button";
-import { useIsMobile } from "@/hooks";
+import { SidemenuSection } from "./SidemenuSection";
+import { SidemenuItem } from "./SidemenuItem";
 
 const meta: Meta<typeof Sidemenu> = {
   title: "Components/Sidemenu",
@@ -33,103 +33,22 @@ export const Default: Story = {
     await expect(sidemenu, "renders").toBeTruthy();
   },
   render: () => {
-    const isMobile = useIsMobile();
+    const items = Array.from(
+      { length: 12 },
+      (_item, index) => "Item" + ` ${index + 1}`,
+    );
     return (
       <Sidemenu wrapperClassName="w-full sm:w-60">
-        <ButtonGroup
-          variant="ghost"
-          className="w-full"
-          vertical={!isMobile}
-          divider={isMobile}
-        >
-          <Button
-            wrapperClassName="sm:w-full"
-            className="w-full sm:justify-start"
-          >
-            Sidemenu
-          </Button>
-          <Button
-            wrapperClassName="sm:w-full"
-            className="w-full sm:justify-start"
-          >
-            item
-          </Button>
-          <Button
-            wrapperClassName="sm:w-full"
-            className="w-full sm:justify-start"
-          >
-            item
-          </Button>
-          <Button
-            wrapperClassName="sm:w-full"
-            className="w-full sm:justify-start"
-          >
-            item
-          </Button>
-          <Button
-            wrapperClassName="sm:w-full"
-            className="w-full sm:justify-start"
-          >
-            item
-          </Button>
-          <Button
-            wrapperClassName="sm:w-full"
-            className="w-full sm:justify-start"
-          >
-            item
-          </Button>
-          <Button
-            wrapperClassName="sm:w-full"
-            className="w-full sm:justify-start"
-          >
-            item
-          </Button>
-          <Button
-            selected
-            wrapperClassName="sm:w-full"
-            className="w-full sm:justify-start"
-          >
-            item
-          </Button>
-          <Button
-            wrapperClassName="sm:w-full"
-            className="w-full sm:justify-start"
-          >
-            item
-          </Button>
-          <Button
-            wrapperClassName="sm:w-full"
-            className="w-full sm:justify-start"
-          >
-            item
-          </Button>
-          <Button
-            wrapperClassName="sm:w-full"
-            className="w-full sm:justify-start"
-          >
-            item
-          </Button>
-          <Button
-            wrapperClassName="sm:w-full"
-            className="w-full sm:justify-start"
-          >
-            item
-          </Button>
-        </ButtonGroup>
-        {/* <div>Sidemenu</div>
-        <div>item</div>
-        <div>item</div>
-        <div>item</div>
-        <div>item</div>
-        <div>item</div>
-        <div>item</div>
-        <div>item</div>
-        <div>item</div>
-        <div>item</div>
-        <div>item</div>
-        <div>item</div>
-        <div>item</div>
-        <div>item</div> */}
+        <SidemenuSection>
+          <SidemenuItem index={0}>Sidemenu</SidemenuItem>
+          {items.map((item, index) => {
+            return (
+              <SidemenuItem key={item} index={index + 1}>
+                {item}
+              </SidemenuItem>
+            );
+          })}
+        </SidemenuSection>
       </Sidemenu>
     );
   },

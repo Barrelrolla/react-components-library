@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".sidemenu-wrapper": {
-    "@apply bg-(--bg-color) text-(--fg-color) border rounded-containers border-(--fg-color)":
+    "@apply bg-(--bg-color) text-(--fg-color) border rounded-containers border-(--fg-color)/(--border-transparency)":
       {},
   },
   ".sidemenu": {

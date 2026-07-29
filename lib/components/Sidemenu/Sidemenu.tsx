@@ -15,6 +15,7 @@ import {
   PiCaretRightThin,
   PiCaretUpThin,
 } from "react-icons/pi";
+import { SidemenuContextProvider } from "./SidemenuContext";
 
 export type SidemenuProps = {
   color?: ColorType;
@@ -31,6 +32,7 @@ export function Sidemenu({
   children,
   ...rest
 }: SidemenuProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
   const [availableScroll, setAvailableScroll] = useState({
     top: false,
     bottom: false,
@@ -40,16 +42,18 @@ export function Sidemenu({
   const divRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   useEffect(() => {
-    const cur = divRef.current;
-    if (!cur) {
+    const container = divRef.current;
+    if (!container) {
       return;
     }
 
     function updateScrollState() {
-      if (cur === null) return;
+      if (!container) {
+        return;
+      }
 
       if (isMobile) {
-        const { scrollLeft, scrollWidth, clientWidth } = cur;
+        const { scrollLeft, scrollWidth, clientWidth } = container;
         const canScrollLeft = scrollLeft > 1;
         const canScrollRight = scrollLeft + clientWidth < scrollWidth - 1;
         setAvailableScroll({
@@ -58,16 +62,16 @@ export function Sidemenu({
           left: canScrollLeft,
           right: canScrollRight,
         });
-        cur.style.setProperty(
+        container.style.setProperty(
           "--start-fade",
           canScrollLeft ? "transparent" : "black",
         );
-        cur.style.setProperty(
+        container.style.setProperty(
           "--end-fade",
           canScrollRight ? "transparent" : "black",
         );
       } else {
-        const { scrollTop, scrollHeight, clientHeight } = cur;
+        const { scrollTop, scrollHeight, clientHeight } = container;
         const canScrollTop = scrollTop > 1;
         const canScrollBottom = scrollTop + clientHeight < scrollHeight - 1;
         setAvailableScroll({
@@ -77,25 +81,40 @@ export function Sidemenu({
           right: false,
         });
 
-        cur.style.setProperty(
+        container.style.setProperty(
           "--start-fade",
           canScrollTop ? "transparent" : "black",
         );
-        cur.style.setProperty(
+        container.style.setProperty(
           "--end-fade",
           canScrollBottom ? "transparent" : "black",
         );
       }
     }
 
-    cur.addEventListener("scroll", updateScrollState);
+    container.addEventListener("scroll", updateScrollState);
     window.addEventListener("resize", updateScrollState);
     updateScrollState();
 
     return () => {
-      cur.removeEventListener("scroll", updateScrollState);
+      container.removeEventListener("scroll", updateScrollState);
       window.removeEventListener("resize", updateScrollState);
     };
+  }, [isMobile]);
+
+  useEffect(() => {
+    const container = divRef.current;
+    if (!container) return;
+
+    const selected = container.querySelector<HTMLElement>(
+      "[data-selected='true']",
+    );
+
+    selected?.scrollIntoView({
+      block: "center",
+      inline: "center",
+      behavior: "auto",
+    });
   }, [isMobile]);
 
   const { classes, wrapperClasses } = getSidemenuClasses({
@@ -147,7 +166,9 @@ export function Sidemenu({
         }
         {...rest}
       >
-        {children}
+        <SidemenuContextProvider value={{ activeIndex, setActiveIndex }}>
+          {children}
+        </SidemenuContextProvider>
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ const plugin: TailwindPlugin = createPlugin(
     addBase(base);
     addComponents([
       sidemenu,
-dropdown,
+      dropdown,
       popover,
       tooltip,
       radio,
