@@ -86,7 +86,7 @@ export function Input({
       style={{ ...cssColorProps(resolvedColor), ...wrapperStyle }}
     >
       <label className={labelClasses} htmlFor={id}>
-        <span>{label}</span>
+        <span className="block">{label}</span>
         <div className={inputContainerClasses} style={inputContainerStyle}>
           {startIcon && (
             <div className="input-start-icon">

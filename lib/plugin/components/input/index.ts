@@ -2,14 +2,14 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".input-field-wrapper": {
-    "@apply relative flex flex-col cursor-text text-(--fg-color) ": {},
+    "@apply relative cursor-text text-(--fg-color) ": {},
   },
   ".input-field": {
     "@apply focus:outline-none w-full py-1 px-2 disabled:cursor-not-allowed disabled:select-none disabled:muted-bg rounded-inputs disabled:opacity-70":
       {},
   },
   ".input-field-label": {
-    "@apply flex flex-col text-sm": {},
+    "@apply text-sm": {},
   },
   ".input-field-error": {
     "@apply text-sm": {},
