@@ -58,7 +58,7 @@ export function getButtonClasses({
       isIcon && `btn-icon-${group?.size || size || "md"}`,
       (variant === "ghost" || group?.variant === "ghost") &&
         `btn-ghost-${resolvedGhostHover}`,
-      hasScaling && "motion-safe:active:scale-[98%]",
+      hasScaling && "active:scale-[98%]",
       inGroup && "btn-grouped",
       !inGroup && resolvedRadius === "default" && "rounded-inputs",
       !inGroup && resolvedRadius === "pill" && "rounded-full",

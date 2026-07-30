@@ -85,32 +85,30 @@ export function Input({
       className={wrapperClasses}
       style={{ ...cssColorProps(resolvedColor), ...wrapperStyle }}
     >
-      {label && (
-        <label className={labelClasses} htmlFor={id}>
-          {label}
-        </label>
-      )}
-      <div className={inputContainerClasses} style={inputContainerStyle}>
-        {startIcon && (
-          <div className="input-start-icon">
-            <>{startIcon}</>
-          </div>
-        )}
-        <input
-          type={type}
-          className={classes}
-          disabled={disabled}
-          id={id}
-          data-error={error ? true : undefined}
-          aria-describedby={id && error ? `${id}-error` : undefined}
-          {...rest}
-        />
-        {endIcon && (
-          <div className="input-end-icon">
-            <>{endIcon}</>
-          </div>
-        )}
-      </div>
+      <label className={labelClasses} htmlFor={id}>
+        <span>{label}</span>
+        <div className={inputContainerClasses} style={inputContainerStyle}>
+          {startIcon && (
+            <div className="input-start-icon">
+              <>{startIcon}</>
+            </div>
+          )}
+          <input
+            type={type}
+            className={classes}
+            disabled={disabled}
+            id={id}
+            data-error={error ? true : undefined}
+            aria-describedby={id && error ? `${id}-error` : undefined}
+            {...rest}
+          />
+          {endIcon && (
+            <div className="input-end-icon">
+              <>{endIcon}</>
+            </div>
+          )}
+        </div>
+      </label>
       {error && (
         <div id={`${id}-error`} className={errorClasses}>
           {error}

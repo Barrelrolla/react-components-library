@@ -168,6 +168,7 @@ export function Sidemenu({
       <div
         ref={divRef}
         className={classes}
+        onFocus={(e) => e.target.scrollIntoView()}
         style={
           {
             "--start-fade": "black",
