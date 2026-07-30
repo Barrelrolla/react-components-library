@@ -9,7 +9,7 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".input-field-label": {
-    "@apply text-sm": {},
+    "@apply flex flex-col text-sm": {},
   },
   ".input-field-error": {
     "@apply text-sm": {},
