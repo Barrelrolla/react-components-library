@@ -24,7 +24,7 @@ export function getCheckboxClasses({
       className,
     ),
     labelClasses: twMerge(
-      "ml-(--size) text-(--fg-color)",
+      "ml-(--size) text-(--fg-color) peer-focus-visible:outline-none",
       !disabled && "checkbox-highlights",
       disabled && "opacity-50",
       labelClassName,
