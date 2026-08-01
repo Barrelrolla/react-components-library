@@ -8,17 +8,21 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, "./lib/index.ts"),
+      entry: {
+        index: resolve(__dirname, "./lib/index.ts"),
+        plugin: resolve(__dirname, "./lib/plugin/index.ts"),
+      },
+      formats: ["es", "cjs"],
       name: "@barrelrolla/react-components-library",
-      fileName: (format) => `index.${format}.js`,
+      fileName: (format, entryName) =>
+        `${entryName}.${format === "es" ? "js" : "cjs"}`,
     },
     rollupOptions: {
-      external: ["react", "react-dom", "tailwindcss"],
+      external: [/^react($|\/)/, /^react-dom($|\/)/, /^tailwindcss($|\/)/],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
-          tailwindcss: "tailwindcss",
         },
       },
     },
