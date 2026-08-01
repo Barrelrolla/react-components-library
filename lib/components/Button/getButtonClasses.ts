@@ -35,7 +35,7 @@ export function getButtonClasses({
 }) {
   const resolvedVariant = group?.variant || variant || "solid";
   const resolvedGhostHover = group?.ghostHover || ghostHover || "muted";
-  const resolvedColor = group?.color || color || "main";
+  const resolvedColor = color || group?.color || "main";
   const resolvedRadius = radius || "default";
   const groupRadius = group?.radius || "default";
   const inGroup = group !== null;
