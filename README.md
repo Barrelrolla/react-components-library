@@ -10,18 +10,11 @@ Assuming you already have react and tailwind installed, install the package thro
 npm install @barrelrolla/react-components-library
 ```
 
-Ideally there should be a separate package for the tailwind plugin, but for the moment you have to export it yourself. Create a `plugin.ts` file in the same folder as your `index.css` or wherever you want and add the following in it:
-
-```ts
-import { Plugin } from "@barrelrolla/react-components-library";
-export default Plugin;
-```
-
 In your `.css` file add
 
 ```css
 @import "tailwindcss";
-@plugin "./plugin";
+@plugin "@barrelrolla/react-components-library/plugin";
 @source "../node_modules/@barrelrolla/react-components-library/";
 ```
 
