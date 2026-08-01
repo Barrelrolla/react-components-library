@@ -1,6 +1,6 @@
-# A react components library for personal use
+# A react components library
 
-A collection of react components for personal use.
+A collection of react components built for personal use, but you can use it, or modify it freely. If you find, or especially fix, any issues, please let me know.
 
 ## How to use
 
