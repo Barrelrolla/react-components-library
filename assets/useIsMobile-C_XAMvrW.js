@@ -1,1 +1,0 @@
-import{r as a}from"./iframe-CIDGPNHV.js";function c(t){const[r,n]=a.useState(!1);return a.useEffect(()=>{function s(u){n(u.matches)}const e=matchMedia(t);return e.addEventListener("change",s),n(e.matches),()=>e.removeEventListener("change",s)},[t]),r}function i(){return c("(width < 640px)")}export{i as u};
