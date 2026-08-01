@@ -35,7 +35,7 @@ export function getRadioClasses({
       className,
     ),
     labelClasses: twMerge(
-      "ml-(--size) text-(--fg-color) peer-disabled:opacity-50",
+      "ml-(--size) text-(--fg-color) peer-focus-visible:outline-none peer-disabled:opacity-50",
       !disabled && "radio-highlights",
       labelClassName,
     ),
