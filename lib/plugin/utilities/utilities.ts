@@ -73,6 +73,18 @@ export default <Record<string, CssInJs>>{
       "color-mix(in oklab, var(--fg-color) 15%, var(--color-main))",
   },
 
+  ".no-spinners": {
+    "-moz-appearance": "textfield",
+    "&::-webkit-outer-spin-button": {
+      "-webkit-appearance": "none",
+      margin: "0",
+    },
+    "&::-webkit-inner-spin-button": {
+      "-webkit-appearance": "none",
+      margin: "0",
+    },
+  },
+
   ".floating-container": {
     "@apply absolute z-(--z-floats) focus-visible:outline-none": {},
   },

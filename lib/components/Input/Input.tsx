@@ -1,9 +1,21 @@
-import { ComponentProps, CSSProperties, SVGProps } from "react";
+import {
+  ComponentPropsWithoutRef,
+  CSSProperties,
+  ReactNode,
+  useCallback,
+  useId,
+  useRef,
+} from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
 import { getInputClasses } from "./getInputClasses";
+import { Button } from "../Button";
+import { useRepeatAction } from "@/hooks/useRepeatAction";
 
-export type InputProps = {
+type InputFieldType = "input" | "textarea";
+
+export type InputProps<T extends InputFieldType = "input"> = {
+  as?: T;
   /** Color of the texts and outlines. */
   color?: ColorType;
   /** If `true` will apply a bg fill on the input in the same color */
@@ -11,13 +23,13 @@ export type InputProps = {
   /** Will apply bg fill on error if it is validating. */
   bgFillOnError?: boolean;
   /** Type of the input. Only text based types are accepted. */
-  type?: "text" | "email" | "password" | "tel" | "url";
+  type?: "text" | "email" | "password" | "tel" | "url" | "number";
   /** Label of the input. */
   label?: string;
   /** Icon that will be placed inside the input field before the input text. */
-  startIcon?: SVGProps<SVGSVGElement>;
+  startIcon?: ReactNode;
   /** Icon that will be placed inside the input field after the input text. */
-  endIcon?: SVGProps<SVGSVGElement>;
+  endIcon?: ReactNode;
   /** Disabled the input field. */
   disabled?: boolean;
   /** Error message that will appear under the input. */
@@ -36,12 +48,13 @@ export type InputProps = {
   inputContainerClassName?: string;
   /** Input conainer style. */
   inputContainerStyle?: CSSProperties;
-} & ComponentProps<"input">;
+} & ComponentPropsWithoutRef<T>;
 
 /** The input has a wrapper, which holds the label and the error message. Also a container, which holds the input itself, and any icons that should appear inside the input field. */
-export function Input({
-  type = "text",
+export function Input<T extends InputFieldType = "input">({
+  as,
   color = "main",
+  type,
   validating = true,
   bgFill = false,
   bgFillOnError = false,
@@ -56,10 +69,11 @@ export function Input({
   wrapperStyle,
   inputContainerClassName,
   inputContainerStyle,
-  id,
   className,
   ...rest
-}: InputProps) {
+}: InputProps<T>) {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
   const resolvedColor: ColorType = validating && error ? "error" : color;
   const resolvedFill = validating && error && bgFillOnError ? true : bgFill;
   const {
@@ -80,6 +94,44 @@ export function Input({
     inputContainerClassName,
   });
 
+  const id = useId();
+
+  const elementProps = {
+    className: classes,
+    disabled,
+    id,
+    type,
+    "data-error": error ? true : undefined,
+    "aria-describedby": id && error ? `${id}-error` : undefined,
+  };
+
+  const handleStep = useCallback(
+    (direction: "up" | "down") => {
+      const input = inputRef.current;
+      if (!input || disabled) {
+        return;
+      }
+
+      const step = Number(input.step) || 1;
+      const min = input.min !== "" ? Number(input.min) : -Infinity;
+      const max = input.max !== "" ? Number(input.max) : Infinity;
+      const currentValue = Number(input.value) || 0;
+
+      let newValue =
+        direction === "up" ? currentValue + step : currentValue - step;
+      newValue = Math.max(min, Math.min(max, newValue));
+
+      input.value = newValue.toString();
+    },
+    [disabled],
+  );
+
+  const stepUp = useCallback(() => handleStep("up"), [handleStep]);
+  const stepDown = useCallback(() => handleStep("down"), [handleStep]);
+
+  const stepUpProps = useRepeatAction(stepUp);
+  const stepDownProps = useRepeatAction(stepDown);
+
   return (
     <div
       className={wrapperClasses}
@@ -93,26 +145,53 @@ export function Input({
               <>{startIcon}</>
             </div>
           )}
-          <input
-            type={type}
-            className={classes}
-            disabled={disabled}
-            id={id}
-            data-error={error ? true : undefined}
-            aria-describedby={id && error ? `${id}-error` : undefined}
-            {...rest}
-          />
+          {as === "textarea" ? (
+            <textarea
+              {...(elementProps as ComponentPropsWithoutRef<"textarea">)}
+              {...(rest as ComponentPropsWithoutRef<"textarea">)}
+            />
+          ) : (
+            <input
+              ref={inputRef}
+              {...(elementProps as ComponentPropsWithoutRef<"input">)}
+              {...(rest as ComponentPropsWithoutRef<"input">)}
+            />
+          )}
           {endIcon && (
             <div className="input-end-icon">
               <>{endIcon}</>
             </div>
           )}
+          {type === "number" && (
+            <>
+              <Button
+                disabled={disabled}
+                tabIndex={-1}
+                color={color}
+                variant="ghost"
+                size="xs"
+                {...stepDownProps}
+              >
+                -
+              </Button>
+              <Button
+                disabled={disabled}
+                tabIndex={-1}
+                color={color}
+                variant="ghost"
+                size="xs"
+                {...stepUpProps}
+              >
+                +
+              </Button>
+            </>
+          )}
         </div>
       </label>
       {error && (
-        <div id={`${id}-error`} className={errorClasses}>
+        <p id={`${id}-error`} className={errorClasses}>
           {error}
-        </div>
+        </p>
       )}
     </div>
   );

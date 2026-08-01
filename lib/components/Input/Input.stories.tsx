@@ -15,6 +15,7 @@ const meta: Meta<typeof Input> = {
   ),
   argTypes: {
     color: { control: { type: "select" }, options: availableColors },
+    bgFillOnError: { control: { type: "boolean" } },
     startIcon: { table: { disable: true } },
     endIcon: { table: { disable: true } },
     labelClassName: { table: { disable: true } },
@@ -22,8 +23,8 @@ const meta: Meta<typeof Input> = {
     errorClassName: { table: { disable: true } },
     inputContainerClassName: { table: { disable: true } },
     wrapperStyle: { table: { disable: true } },
+    as: { table: { disable: true } },
     inputContainerStyle: { table: { disable: true } },
-    bgFillOnError: { control: { type: "boolean" } },
   },
 };
 
@@ -46,7 +47,7 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   render: (props) => {
-    return <Input id="WithLabel" {...props} />;
+    return <Input {...props} />;
   },
   args: {
     placeholder: "Input",
@@ -56,7 +57,7 @@ export const WithLabel: Story = {
 
 export const WithIcon: Story = {
   render: (props) => {
-    return <Input id="WithIcon" {...props} />;
+    return <Input {...props} />;
   },
   args: {
     startIcon: <PiMagnifyingGlass />,
@@ -67,13 +68,44 @@ export const WithIcon: Story = {
 
 export const WithError: Story = {
   render: (props) => {
-    return <Input id="WithError" {...props} />;
+    return <Input {...props} />;
   },
   args: {
     startIcon: <PiMagnifyingGlass />,
     placeholder: "Input",
     label: "Label",
     error: "Error",
+  },
+};
+
+export const Textarea: Story = {
+  render: (props) => {
+    return <Input as="textarea" {...props} />;
+  },
+  args: {
+    placeholder: "Input",
+    label: "Label",
+  },
+};
+
+export const Number: Story = {
+  render: (props) => {
+    return <Input type="number" {...props} />;
+  },
+  args: {
+    placeholder: "Input",
+    label: "Label",
+  },
+};
+
+export const Disabled: Story = {
+  render: (props) => {
+    return <Input disabled {...props} />;
+  },
+  args: {
+    startIcon: <PiMagnifyingGlass />,
+    placeholder: "Input",
+    label: "Label",
   },
 };
 

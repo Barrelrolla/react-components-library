@@ -5,7 +5,7 @@ export default <Record<string, CssInJs>>{
     "@apply relative cursor-text text-(--fg-color) ": {},
   },
   ".input-field": {
-    "@apply focus:outline-none w-full py-1 px-2 disabled:cursor-not-allowed disabled:select-none disabled:muted-bg rounded-inputs disabled:opacity-70":
+    "@apply focus:outline-none w-full py-1 px-2 disabled:cursor-not-allowed disabled:select-none rounded-inputs disabled:opacity-70 no-spinners":
       {},
   },
   ".input-field-label": {
@@ -15,7 +15,7 @@ export default <Record<string, CssInJs>>{
     "@apply text-sm": {},
   },
   ".input-field-container": {
-    "@apply inline-flex items-center rounded-inputs border-inputs outline-offset-1 has-disabled:border-none focus-within:ring-1":
+    "@apply inline-flex items-center rounded-inputs border-inputs outline-offset-1 has-disabled:border-none focus-within:ring-1 has-disabled:muted-bg":
       {},
   },
   ".input-start-icon": {
