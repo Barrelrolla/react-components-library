@@ -9,13 +9,8 @@ import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
 import { getSidemenuClasses } from "./getSidemenuClasses";
 import { useIsMobile } from "@/hooks";
-import {
-  PiCaretDownThin,
-  PiCaretLeftThin,
-  PiCaretRightThin,
-  PiCaretUpThin,
-} from "react-icons/pi";
 import { SidemenuContextProvider } from "./SidemenuContext";
+import { CaretDown } from "@/icons";
 
 export type SidemenuProps = {
   initialActiveIndex?: number;
@@ -134,10 +129,10 @@ export function Sidemenu({
   });
 
   const caretClasses = {
-    top: "absolute top-1 left-[calc(50%-10px)]",
-    bottom: "absolute bottom-1 left-[calc(50%-10px)]",
-    left: "absolute left-1 top-[calc(50%-10px)]",
-    right: "absolute right-1 top-[calc(50%-10px)]",
+    top: "absolute top-1 left-[calc(50%-8px)]",
+    bottom: "absolute bottom-1 left-[calc(50%-8px)]",
+    left: "absolute left-1 top-[calc(50%-8px)]",
+    right: "absolute right-1 top-[calc(50%-8px)]",
   };
 
   return (
@@ -147,28 +142,30 @@ export function Sidemenu({
     >
       {availableScroll.top && (
         <div className={caretClasses.top}>
-          <PiCaretUpThin size={20} />
+          <CaretDown className="rotate-180" />
         </div>
       )}
       {availableScroll.bottom && (
         <div className={caretClasses.bottom}>
-          <PiCaretDownThin size={20} />
+          <CaretDown />
         </div>
       )}
       {availableScroll.left && (
         <div className={caretClasses.left}>
-          <PiCaretLeftThin size={20} />
+          <CaretDown className="rotate-90" />
         </div>
       )}
       {availableScroll.right && (
         <div className={caretClasses.right}>
-          <PiCaretRightThin size={20} />
+          <CaretDown className="-rotate-90" />
         </div>
       )}
       <div
         ref={divRef}
         className={classes}
-        onFocus={(e) => e.target.scrollIntoView()}
+        onFocus={(e) =>
+          e.target.scrollIntoView({ block: "center", inline: "center" })
+        }
         style={
           {
             "--start-fade": "black",

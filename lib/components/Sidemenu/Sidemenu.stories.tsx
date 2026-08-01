@@ -35,7 +35,6 @@ export const Default: Story = {
   },
   render: () => {
     const [activeIndex, setActiveIndex] = useState(5);
-    console.log(activeIndex);
     const items = Array.from(
       { length: 12 },
       (_item, index) => "Item" + ` ${index + 1}`,

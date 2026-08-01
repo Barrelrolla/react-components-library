@@ -8,7 +8,11 @@ import {
   DropdownContent,
   DropdownTrigger,
 } from "./index";
-import { availableColors, availableMobileSheetPlacements, availablePlacements } from "@/types";
+import {
+  availableColors,
+  availableMobileSheetPlacements,
+  availablePlacements,
+} from "@/types";
 import { Button } from "../Button";
 import { PiCaretRight } from "react-icons/pi";
 
@@ -30,7 +34,7 @@ const meta: Meta<typeof Dropdown> = {
       options: availableMobileSheetPlacements,
       control: { type: "select" },
     },
-    placement: { options: availablePlacements, control: { type: 'select' } }
+    placement: { options: availablePlacements, control: { type: "select" } },
   },
 };
 
@@ -57,9 +61,7 @@ export const Default: Story = {
         <DropdownContent>
           <DropdownTitle>menu</DropdownTitle>
           <DropdownList>
-            <DropdownListItem onClick={() => console.log("clickdd")}>
-              item 1
-            </DropdownListItem>
+            <DropdownListItem>item 1</DropdownListItem>
             <DropdownListItem>item 2</DropdownListItem>
             <DropdownListItem>item 3</DropdownListItem>
           </DropdownList>
