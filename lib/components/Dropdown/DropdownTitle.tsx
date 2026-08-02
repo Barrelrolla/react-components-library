@@ -8,8 +8,8 @@ export function DropdownTitle({
 }: ComponentProps<"h3">) {
   const { classes } = getDropdownTitleClasses({ className });
   return (
-    <h1 className={classes} {...rest}>
+    <h3 className={classes} {...rest}>
       {children}
-    </h1>
+    </h3>
   );
 }

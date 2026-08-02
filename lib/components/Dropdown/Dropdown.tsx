@@ -27,6 +27,7 @@ import {
   useInteractions,
   useListNavigation,
   useRole,
+  useTypeahead,
 } from "@floating-ui/react";
 import { useIsMobile } from "@/hooks";
 import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles";
@@ -35,7 +36,7 @@ export type DropdownProps = {
   color?: ColorType;
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
-  strategy?: 'absolute' | 'fixed',
+  strategy?: "absolute" | "fixed";
   placement?: Placement;
   hasArrow?: boolean;
   requireClick?: boolean;
@@ -49,8 +50,8 @@ export function DropdownComponent({
   color = "main",
   isOpen,
   onOpenChange,
-  strategy = 'absolute',
-  placement = "top",
+  strategy = "absolute",
+  placement = "bottom",
   hasArrow = true,
   requireClick = true,
   mobileSheet = true,
@@ -80,6 +81,7 @@ export function DropdownComponent({
   const isMobile = useIsMobile();
   const parent = useDropdownContext();
   const listRef = useRef<(HTMLElement | null)[]>([]);
+  const labelsRef = useRef<(string | null)[]>([]);
   const tree = useFloatingTree();
   const nodeId = useFloatingNodeId();
   const parentId = useFloatingParentNodeId();
@@ -120,8 +122,24 @@ export function DropdownComponent({
     nested: isNested,
     onNavigate: setActiveIndex,
   });
-  const interactions = useInteractions([hover, click, role, dismiss, listNav]);
-  const { isMounted, transitionStyles } = useFloatingTransitionStyles(data, mobileSheet, mobileSheetPlacement);
+  const typeahead = useTypeahead(context, {
+    listRef: labelsRef,
+    activeIndex,
+    onMatch: setActiveIndex,
+  });
+  const interactions = useInteractions([
+    hover,
+    click,
+    role,
+    dismiss,
+    listNav,
+    typeahead,
+  ]);
+  const { isMounted, transitionStyles } = useFloatingTransitionStyles(
+    data,
+    mobileSheet,
+    mobileSheetPlacement,
+  );
 
   useEffect(() => {
     if (!tree) return;
@@ -158,17 +176,17 @@ export function DropdownComponent({
           useFocus: true,
           color,
           isOpen: disabled ? false : isMounted,
-          setIsOpen: disabled ? () => { } : setOpen,
+          setIsOpen: disabled ? () => {} : setOpen,
           isNested,
           activeIndex,
           setActiveIndex,
           hasFocusInside,
           setHasFocusInside,
-          getItemProps: interactions.getItemProps,
           interactions,
           data,
           transitionStyles,
           listRef,
+          labelsRef,
           hasArrow,
           arrowRef,
           parent,

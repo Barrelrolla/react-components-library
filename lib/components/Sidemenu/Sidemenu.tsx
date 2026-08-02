@@ -10,7 +10,7 @@ import { cssColorProps } from "@/util";
 import { getSidemenuClasses } from "./getSidemenuClasses";
 import { useIsMobile } from "@/hooks";
 import { SidemenuContextProvider } from "./SidemenuContext";
-import { CaretDown } from "@/icons";
+import { CaretDownIcon } from "@/icons";
 
 export type SidemenuProps = {
   initialActiveIndex?: number;
@@ -142,30 +142,27 @@ export function Sidemenu({
     >
       {availableScroll.top && (
         <div className={caretClasses.top}>
-          <CaretDown className="rotate-180" />
+          <CaretDownIcon className="rotate-180" />
         </div>
       )}
       {availableScroll.bottom && (
         <div className={caretClasses.bottom}>
-          <CaretDown />
+          <CaretDownIcon />
         </div>
       )}
       {availableScroll.left && (
         <div className={caretClasses.left}>
-          <CaretDown className="rotate-90" />
+          <CaretDownIcon className="rotate-90" />
         </div>
       )}
       {availableScroll.right && (
         <div className={caretClasses.right}>
-          <CaretDown className="-rotate-90" />
+          <CaretDownIcon className="-rotate-90" />
         </div>
       )}
       <div
         ref={divRef}
         className={classes}
-        onFocus={(e) =>
-          e.target.scrollIntoView({ block: "center", inline: "center" })
-        }
         style={
           {
             "--start-fade": "black",

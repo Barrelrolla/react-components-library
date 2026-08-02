@@ -3,31 +3,36 @@ import { ElementType, MouseEvent, FocusEvent } from "react";
 import { useDropdownContext } from "./DropdownContext";
 import { Anchor, AnchorProps } from "../Anchor";
 import { getDropdownLinkClasses } from "./getDropdownClasses";
+import { CaretDownIcon } from "@/icons";
+import { getTextFromChildren } from "@/util/helpers";
 
 const defaultType = "button";
 export function DropdownListItem<E extends ElementType = typeof defaultType>({
   as,
+  color,
   ref,
-  color = "main",
   disabled,
+  showCaret,
   children,
   className,
   ...rest
-}: { disabled?: boolean } & AnchorProps<E>) {
+}: { disabled?: boolean; showCaret?: boolean } & AnchorProps<E>) {
   const context = useDropdownContext();
   if (!context) {
     throw new Error("Please use the Dropdown List Item only inside a Dropdown");
   }
-  const item = useListItem();
+
+  const label = getTextFromChildren(children);
+  const item = useListItem({ label: disabled ? null : label });
   const tree = useFloatingTree();
-  const { classes } = getDropdownLinkClasses({ className });
   const isActive = item.index === context.activeIndex;
+  const { classes } = getDropdownLinkClasses({ className });
 
   return (
     <li>
       <Anchor
-        color={color}
         as={as || defaultType}
+        color={color ?? "main"}
         role="menuitem"
         ref={useMergeRefs([item.ref, ref])}
         disabled={disabled}
@@ -35,7 +40,7 @@ export function DropdownListItem<E extends ElementType = typeof defaultType>({
         className={classes}
         underlined={false}
         hoverUnderline={false}
-        {...context?.getItemProps({
+        {...context?.interactions.getItemProps({
           onClick(event: MouseEvent<HTMLButtonElement>) {
             rest.onClick?.(event);
             tree?.events.emit("click");
@@ -48,6 +53,7 @@ export function DropdownListItem<E extends ElementType = typeof defaultType>({
         {...rest}
       >
         {children}
+        {showCaret && <CaretDownIcon className="inline -rotate-90" />}
       </Anchor>
     </li>
   );

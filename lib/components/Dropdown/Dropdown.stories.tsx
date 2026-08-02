@@ -14,7 +14,7 @@ import {
   availablePlacements,
 } from "@/types";
 import { Button } from "../Button";
-import { PiCaretRight } from "react-icons/pi";
+import { PiGearThin } from "react-icons/pi";
 
 const meta: Meta<typeof Dropdown> = {
   title: "Components/Dropdown",
@@ -95,9 +95,7 @@ export const Nested: Story = {
             <DropdownListItem disabled>item 2</DropdownListItem>
             <Dropdown placement="right">
               <DropdownTrigger>
-                <DropdownListItem className="flex items-center gap-1 pr-0">
-                  <span>item 3</span> <PiCaretRight />
-                </DropdownListItem>
+                <DropdownListItem>item 3</DropdownListItem>
               </DropdownTrigger>
               <DropdownContent>
                 <DropdownTitle>sub menu</DropdownTitle>
@@ -108,7 +106,10 @@ export const Nested: Story = {
                 </DropdownList>
               </DropdownContent>
             </Dropdown>
-            <DropdownListItem>item 4</DropdownListItem>
+            <DropdownListItem>
+              <PiGearThin />
+              item 4
+            </DropdownListItem>
           </DropdownList>
         </DropdownContent>
       </Dropdown>

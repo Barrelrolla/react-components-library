@@ -2,7 +2,7 @@ import { ComponentProps, CSSProperties } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
 import { getCheckboxClasses } from "./getCheckboxClasses";
-import { Square, SquareCheck } from "@/icons";
+import { EmtpySquareIcon, SquareCheckIcon } from "@/icons";
 
 export type CheckboxProps = {
   color?: ColorType;
@@ -48,8 +48,8 @@ export function Checkbox({
         className="peer appearance-none"
         {...rest}
       />
-      <SquareCheck className={checkedClasses} style={styles} />
-      <Square style={styles} className={unCheckedClasses} />
+      <SquareCheckIcon className={checkedClasses} style={styles} />
+      <EmtpySquareIcon style={styles} className={unCheckedClasses} />
 
       {children && (
         <span style={labelStyles} className={labelClasses}>

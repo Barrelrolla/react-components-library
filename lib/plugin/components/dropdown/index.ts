@@ -31,7 +31,7 @@ export default <Record<string, CssInJs>>{
     "@apply flex flex-col gap-1 sm:block": {},
   },
   ".dropdown-link": {
-    "@apply flex w-full not-disabled:hover:bg-(--fg-color)/5 not-disabled:focus-visible:bg-(--fg-color)/5 not-disabled:active:bg-(--fg-color)/10 selected:bg-(--fg-color) selected:text-(--bg-color) selected:hover:bg-(--fg-color)/40 selected:focus-visible:bg-(--fg-color)/90 selected:active:bg-(--fg-color)/80 p-3 sm:p-1 disabled:text-(--fg-color)/50 hover:disabled:text-(--fg-color)/50 disabled:cursor-not-allowed":
+    "@apply flex w-full items-center gap-2 not-disabled:hover:bg-(--fg-color)/5 not-disabled:focus-visible:bg-(--fg-color)/5 not-disabled:active:bg-(--fg-color)/10 selected:bg-(--fg-color) selected:text-(--bg-color) selected:hover:bg-(--fg-color)/40 selected:focus-visible:bg-(--fg-color)/90 selected:active:bg-(--fg-color)/80 p-3 sm:p-1 disabled:text-(--fg-color)/50 hover:disabled:text-(--fg-color)/50 disabled:cursor-not-allowed":
       {},
   },
 };

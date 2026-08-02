@@ -162,6 +162,7 @@ export const Icon: Story = {
           <TooltipContent>Like</TooltipContent>
         </Tooltip>
         <Tooltip isLabel>
+          <TooltipContent>Save</TooltipContent>
           <TooltipTrigger>
             <Button
               aria-label="save"
@@ -170,7 +171,6 @@ export const Icon: Story = {
               startIcon={<PiBookmark />}
             />
           </TooltipTrigger>
-          <TooltipContent>Save</TooltipContent>
         </Tooltip>
       </ButtonGroup>
     );
@@ -188,10 +188,10 @@ export const SplitButton: Story = {
       <ButtonGroup {...rest} radius={radius}>
         <Button className="">Button</Button>
         <Tooltip isLabel>
+          <TooltipContent>Like</TooltipContent>
           <TooltipTrigger>
             <Button aria-label="like" startIcon={<PiHeart />} />
           </TooltipTrigger>
-          <TooltipContent>Like</TooltipContent>
         </Tooltip>
       </ButtonGroup>
     );

@@ -27,7 +27,7 @@ export function DropdownTrigger({ children, ...rest }: DropdownTriggerProps) {
       }
       role={isNested ? "menuitem" : undefined}
       {...context.interactions.getReferenceProps(
-        parent?.getItemProps({
+        parent?.interactions.getItemProps({
           ...rest,
           onFocus(event: FocusEvent<HTMLElement>) {
             rest.onFocus?.(event);
@@ -36,6 +36,7 @@ export function DropdownTrigger({ children, ...rest }: DropdownTriggerProps) {
           },
         }),
       )}
+      showCaret={isNested}
     >
       {children}
     </Slot>

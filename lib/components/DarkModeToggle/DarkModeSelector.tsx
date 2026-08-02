@@ -52,6 +52,7 @@ export function DarkModeSelector({
         <TooltipContent>{darkModeTooltip}</TooltipContent>
       </Tooltip>
       <Tooltip isLabel>
+        <TooltipContent>{systemModeTooltip}</TooltipContent>
         <TooltipTrigger>
           <Button
             aria-label="system theme mode"
@@ -60,7 +61,6 @@ export function DarkModeSelector({
             startIcon={<ComputerIcon />}
           ></Button>
         </TooltipTrigger>
-        <TooltipContent>{systemModeTooltip}</TooltipContent>
       </Tooltip>
     </ButtonGroup>
   );

@@ -1,5 +1,6 @@
 import createPlugin from "tailwindcss/plugin";
 import base from "./base/base";
+import select from "./components/select";
 import sidemenu from "./components/sidemenu";
 import dropdown from "./components/dropdown";
 import popover from "./components/popover";
@@ -24,6 +25,7 @@ const plugin: TailwindPlugin = createPlugin(
   ({ addBase, addComponents, addUtilities, addVariant }) => {
     addBase(base);
     addComponents([
+      select,
       sidemenu,
       dropdown,
       popover,

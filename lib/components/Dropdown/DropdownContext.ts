@@ -1,7 +1,6 @@
 import {
   createContext,
   Dispatch,
-  HTMLProps,
   RefObject,
   SetStateAction,
   useContext,
@@ -14,7 +13,7 @@ interface DropdownContextType extends FloatingElementContextType {
   hasFocusInside: boolean;
   setHasFocusInside: Dispatch<SetStateAction<boolean>>;
   listRef: RefObject<(HTMLElement | null)[]>;
-  getItemProps: (userProps?: HTMLProps<HTMLElement>) => Record<string, unknown>;
+  labelsRef: RefObject<(string | null)[]>;
   parent: DropdownContextType | null;
 }
 

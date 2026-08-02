@@ -15,7 +15,7 @@ export function DropdownList({
 
   const { classes } = getDropdownListClasses({ className });
   return (
-    <FloatingList elementsRef={context.listRef}>
+    <FloatingList elementsRef={context.listRef} labelsRef={context.labelsRef}>
       <menu className={classes} {...rest}>
         {children}
       </menu>

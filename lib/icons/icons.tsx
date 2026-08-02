@@ -72,7 +72,7 @@ export function ComputerIcon({
   );
 }
 
-export function Square({
+export function EmtpySquareIcon({
   strokeWidth = defaultStrokeWidth,
   ...rest
 }: SVGIconProps) {
@@ -94,7 +94,7 @@ export function Square({
   );
 }
 
-export function SquareCheck({ strokeWidth = 0, ...rest }: SVGIconProps) {
+export function SquareCheckIcon({ strokeWidth = 0, ...rest }: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +113,7 @@ export function SquareCheck({ strokeWidth = 0, ...rest }: SVGIconProps) {
   );
 }
 
-export function Circle({
+export function EmptyCircleIcon({
   strokeWidth = defaultStrokeWidth,
   ...rest
 }: SVGIconProps) {
@@ -135,7 +135,7 @@ export function Circle({
   );
 }
 
-export function CircleCheck({ strokeWidth = 0, ...rest }: SVGIconProps) {
+export function CircleCheckIcon({ strokeWidth = 0, ...rest }: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +154,7 @@ export function CircleCheck({ strokeWidth = 0, ...rest }: SVGIconProps) {
   );
 }
 
-export function CaretDown({
+export function CaretDownIcon({
   strokeWidth = defaultStrokeWidth,
   ...rest
 }: SVGIconProps) {

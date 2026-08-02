@@ -2,7 +2,7 @@ import { ComponentProps, CSSProperties } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
 import { getRadioClasses } from "./getRadioClasses";
-import { Circle, CircleCheck } from "@/icons";
+import { EmptyCircleIcon, CircleCheckIcon } from "@/icons";
 import { useRadioGroupContext } from "./RadioGroupContext";
 
 export type RadioProps = {
@@ -68,8 +68,8 @@ export function Radio({
         className="peer appearance-none"
         {...rest}
       />
-      <CircleCheck className={checkedClasses} style={styles} />
-      <Circle style={styles} className={unCheckedClasses} />
+      <CircleCheckIcon className={checkedClasses} style={styles} />
+      <EmptyCircleIcon style={styles} className={unCheckedClasses} />
 
       {children && (
         <span style={labelStyles} className={labelClasses}>

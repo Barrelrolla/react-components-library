@@ -6,7 +6,7 @@ const EVENT_REGEX = /^on[A-Z]/;
 
 type SlotProps = HTMLAttributes<HTMLElement> & {
   ref?: React.Ref<HTMLElement>;
-};
+} & Record<string, unknown>;
 
 function composeEventHandlers<E extends React.SyntheticEvent>(
   childHandler?: (event: E) => void,
