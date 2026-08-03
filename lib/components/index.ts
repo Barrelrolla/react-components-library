@@ -17,3 +17,4 @@ export * from "./Popover";
 export * from "./Dropdown";
 export * from "./Sidemenu";
 export * from "./Select";
+export * from "./Skeleton";
