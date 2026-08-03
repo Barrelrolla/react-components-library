@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 // https://phosphoricons.com/
 
 export type SVGIconProps = {} & SVGProps<SVGSVGElement>;
-const defaultStrokeWidth = 7;
+const defaultStrokeWidth = 8;
 
 export function SunIcon({
   strokeWidth = defaultStrokeWidth,
@@ -171,6 +171,72 @@ export function CaretDownIcon({
         stroke="currentColor"
         strokeWidth={strokeWidth}
         d="M210.83,98.83l-80,80a4,4,0,0,1-5.66,0l-80-80a4,4,0,0,1,5.66-5.66L128,170.34l77.17-77.17a4,4,0,1,1,5.66,5.66Z"
+      ></path>
+    </svg>
+  );
+}
+
+export function CheckMarkIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 256 256"
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
+        d="M226.83,74.83l-128,128a4,4,0,0,1-5.66,0l-56-56a4,4,0,0,1,5.66-5.66L96,194.34,221.17,69.17a4,4,0,1,1,5.66,5.66Z"
+      ></path>
+    </svg>
+  );
+}
+
+export function PlusIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 256 256"
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
+        d="M220,128a4,4,0,0,1-4,4H132v84a4,4,0,0,1-8,0V132H40a4,4,0,0,1,0-8h84V40a4,4,0,0,1,8,0v84h84A4,4,0,0,1,220,128Z"
+      ></path>
+    </svg>
+  );
+}
+
+export function MinusIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 256 256"
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
+        d="M220,128a4,4,0,0,1-4,4H40a4,4,0,0,1,0-8H216A4,4,0,0,1,220,128Z"
       ></path>
     </svg>
   );

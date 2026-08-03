@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, useCallback } from "react";
 import {
   FloatingArrow,
   FloatingFocusManager,
@@ -9,11 +9,20 @@ import { useIsMobile } from "@/hooks";
 import { MobileSheetPlacementType } from "@/types";
 import { FloatingElementContextType } from "./FloatingElementContextType";
 import { useFloatingContext } from "@/contexts/FloatingContext";
+import { twMerge } from "tailwind-merge";
 
 export type FloatingContentProps = {
   context: FloatingElementContextType;
-  getClasses: ({ mobileSheet, mobileSheetPlacement, className }: { mobileSheet: boolean, mobileSheetPlacement: MobileSheetPlacementType, className?: string }) => { classes: string }
-}
+  getClasses: ({
+    mobileSheet,
+    mobileSheetPlacement,
+    className,
+  }: {
+    mobileSheet: boolean;
+    mobileSheetPlacement: MobileSheetPlacementType;
+    className?: string;
+  }) => { classes: string };
+};
 
 export function FloatingElementContent({
   context,
@@ -30,6 +39,19 @@ export function FloatingElementContent({
     mobileSheetPlacement: context.mobileSheetPlacement || "bottom",
     className,
   });
+
+  const innerRef = useCallback((node: HTMLDivElement | null) => {
+    if (!node) return;
+
+    setTimeout(() => {
+      const selected = node.querySelector<HTMLElement>(
+        '[data-selected="true"]',
+      );
+      if (selected) {
+        selected.scrollIntoView({ block: "center" });
+      }
+    }, 50);
+  }, []);
 
   if (!context.isOpen) {
     return null;
@@ -59,28 +81,38 @@ export function FloatingElementContent({
           className="floating-container"
           ref={context.data.refs.setFloating}
           {...context.interactions.getFloatingProps()}
-          style={isMobile && context.mobileSheet ? undefined : context.data.floatingStyles}
+          style={
+            isMobile && context.mobileSheet
+              ? undefined
+              : context.data.floatingStyles
+          }
         >
           <div
             style={styles}
-            className={classes}
+            className={twMerge("floating-container-inner", classes)}
+            ref={innerRef}
             {...rest}
-
           >
-            {(!floatingContext || floatingContext.hasArrow) && context.hasArrow && (!isMobile || !context.mobileSheet) && (
-              <FloatingArrow
-                className="arrow"
-                style={colorProps}
-                ref={context.arrowRef}
-                context={context.data.context}
-                height={floatingContext?.arrowSize ? floatingContext.arrowSize / 2 : 7}
-                width={floatingContext?.arrowSize ?? 14}
-              />
-            )}
+            {(!floatingContext || floatingContext.hasArrow) &&
+              context.hasArrow &&
+              (!isMobile || !context.mobileSheet) && (
+                <FloatingArrow
+                  className="arrow"
+                  style={colorProps}
+                  ref={context.arrowRef}
+                  context={context.data.context}
+                  height={
+                    floatingContext?.arrowSize
+                      ? floatingContext.arrowSize / 2
+                      : 7
+                  }
+                  width={floatingContext?.arrowSize ?? 14}
+                />
+              )}
             {children}
           </div>
         </div>
       </FloatingFocusManager>
-    </FloatingPortal >
+    </FloatingPortal>
   );
 }

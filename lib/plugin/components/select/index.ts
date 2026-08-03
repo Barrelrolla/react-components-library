@@ -15,11 +15,11 @@ export default <Record<string, CssInJs>>{
     "@apply text-sm": {},
   },
   ".select-content": {
-    "@apply text-(--fg-color) bg-(--bg-color) border-inputs rounded-inputs px-2 py-1 text-sm":
+    "@apply text-(--fg-color) bg-(--bg-color) border-inputs rounded-inputs text-sm":
       {},
   },
   ".select-option": {
-    "@apply text-(--fg-color) bg-(--bg-color) px-0.5 w-full rounded-inputs not-disabled:hover:bg-hover not-disabled:active:bg-active focus-visible:outline-none text-left focus-visible:bg-hover disabled:cursor-not-allowed disabled:opacity-50 disabled:select-none":
+    "@apply flex justify-between items-center text-(--fg-color) bg-(--bg-color) px-0.5 w-full rounded-inputs not-disabled:hover:bg-hover not-disabled:active:bg-active focus-visible:outline-none text-left not-disabled:focus-visible:bg-hover disabled:cursor-not-allowed disabled:opacity-50 disabled:select-none px-2 py-1":
       {},
   },
 };

@@ -34,37 +34,25 @@ export const Default: Story = {
   },
   render: ({ color, error, disabled, ...rest }) => {
     return (
-      <div className="flex flex-col gap-2">
-        <Input
-          color={color}
-          error={error}
-          disabled={disabled}
-          label="Select"
-          placeholder="Select..."
-        />
-        <Select
-          color={color}
-          error={error}
-          disabled={disabled}
-          name="select"
-          label="Select"
-          {...rest}
-        >
-          <SelectContent>
-            <SelectOption value={"one"}>One</SelectOption>
-            <SelectOption disabled value={"two"}>
-              Two
-            </SelectOption>
-            <SelectOption value={"three"}>Three</SelectOption>
-          </SelectContent>
-        </Select>
-      </div>
+      <Select
+        color={color}
+        error={error}
+        disabled={disabled}
+        name="select"
+        label="Select"
+        {...rest}
+      >
+        <SelectContent>
+          <SelectOption value={"one"}>One</SelectOption>
+          <SelectOption disabled value={"two"}>
+            Two
+          </SelectOption>
+          <SelectOption value={"three"}>Three</SelectOption>
+        </SelectContent>
+      </Select>
     );
   },
-  args: {
-    error: "error",
-    disabled: true,
-  },
+  args: {},
 };
 
 export const Colors: Story = {

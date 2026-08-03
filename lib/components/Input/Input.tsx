@@ -11,6 +11,7 @@ import { cssColorProps } from "@/util";
 import { getInputClasses } from "./getInputClasses";
 import { Button } from "../Button";
 import { useRepeatAction } from "@/hooks/useRepeatAction";
+import { MinusIcon, PlusIcon } from "@/icons";
 
 type InputFieldType = "input" | "textarea";
 
@@ -172,7 +173,7 @@ export function Input<T extends InputFieldType = "input">({
                 size="xs"
                 {...stepDownProps}
               >
-                -
+                <MinusIcon strokeWidth={16} />
               </Button>
               <Button
                 disabled={disabled}
@@ -182,7 +183,7 @@ export function Input<T extends InputFieldType = "input">({
                 size="xs"
                 {...stepUpProps}
               >
-                +
+                <PlusIcon strokeWidth={16} />
               </Button>
             </>
           )}

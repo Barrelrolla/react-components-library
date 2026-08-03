@@ -3,6 +3,7 @@ import { ComponentProps } from "react";
 import { useSelectContext } from "./SelectContext";
 import { getSelectOptionClasses } from "./getSelectClasses";
 import { getTextFromChildren } from "@/util/helpers";
+import { CheckMarkIcon } from "@/icons";
 
 export function SelectOption({
   value,
@@ -23,6 +24,7 @@ export function SelectOption({
   const label = getTextFromChildren(children);
   const item = useListItem({ label: disabled ? null : label });
   const isActive = item.index === context.activeIndex;
+  const isSelected = item.index === context.selectedIndex;
   const { classes } = getSelectOptionClasses({ className });
 
   return (
@@ -32,6 +34,7 @@ export function SelectOption({
         role="menuitem"
         ref={useMergeRefs([item.ref, ref])}
         disabled={disabled}
+        data-selected={isSelected}
         tabIndex={isActive ? 0 : -1}
         className={classes}
         {...context?.interactions.getItemProps()}
@@ -44,6 +47,7 @@ export function SelectOption({
         }}
       >
         {children}
+        {isSelected && <CheckMarkIcon />}
       </button>
     </li>
   );
