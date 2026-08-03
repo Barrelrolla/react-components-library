@@ -3,6 +3,7 @@ import { expect, within } from "storybook/test";
 import { Select, SelectOption } from "./index";
 import { availableColors } from "@/types";
 import { SelectContent } from "./SelectContent";
+import { Input } from "../Input";
 
 const meta: Meta<typeof Select> = {
   title: "Components/Select",
@@ -31,13 +32,29 @@ export const Default: Story = {
     const select = canvas.getByText("Select...");
     await expect(select, "renders").toBeTruthy();
   },
-  render: ({ ...rest }) => {
+  render: ({ color, error, disabled, ...rest }) => {
     return (
-      <div>
-        <Select name="select" {...rest}>
+      <div className="flex flex-col gap-2">
+        <Input
+          color={color}
+          error={error}
+          disabled={disabled}
+          label="Select"
+          placeholder="Select..."
+        />
+        <Select
+          color={color}
+          error={error}
+          disabled={disabled}
+          name="select"
+          label="Select"
+          {...rest}
+        >
           <SelectContent>
             <SelectOption value={"one"}>One</SelectOption>
-            <SelectOption value={"two"}>Two</SelectOption>
+            <SelectOption disabled value={"two"}>
+              Two
+            </SelectOption>
             <SelectOption value={"three"}>Three</SelectOption>
           </SelectContent>
         </Select>
@@ -45,7 +62,8 @@ export const Default: Story = {
     );
   },
   args: {
-    children: "select",
+    error: "error",
+    disabled: true,
   },
 };
 

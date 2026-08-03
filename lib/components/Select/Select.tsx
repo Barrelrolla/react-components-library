@@ -1,7 +1,9 @@
 import {
-  PropsWithChildren,
+  ComponentProps,
+  CSSProperties,
   ReactNode,
   useCallback,
+  useId,
   useRef,
   useState,
 } from "react";
@@ -22,10 +24,16 @@ import {
   useTypeahead,
 } from "@floating-ui/react";
 import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles";
+import { getSelectClasses } from "./getSelectClasses";
+import { cssColorProps } from "@/util";
+import { CaretDownIcon } from "@/icons";
 
 export type SelectProps = {
   color?: ColorType;
+  label?: string;
   name?: string;
+  error?: string;
+  validating?: boolean;
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
   placeholder?: string;
@@ -34,11 +42,18 @@ export type SelectProps = {
   disabled?: boolean;
   mobileSheet?: boolean;
   mobileSheetPlacement?: MobileSheetPlacementType;
-} & PropsWithChildren;
+  labelClassName?: string;
+  errorClassName?: string;
+  wrapperClassName?: string;
+  wrapperStyle?: CSSProperties;
+} & ComponentProps<"button">;
 
 export function Select({
   color = "main",
+  label,
   name,
+  error,
+  validating = true,
   isOpen,
   onOpenChange,
   placeholder = "Select...",
@@ -48,6 +63,12 @@ export function Select({
   mobileSheetPlacement = "bottom",
   disabled,
   children,
+  className,
+  labelClassName,
+  errorClassName,
+  wrapperClassName,
+  wrapperStyle,
+  ...rest
 }: SelectProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -110,11 +131,24 @@ export function Select({
     mobileSheetPlacement,
   );
 
+  const { classes, labelClasses, errorClasses, caretClasses, wrapperClasses } =
+    getSelectClasses({
+      isOpen: open,
+      isMounted,
+      className,
+      labelClassName,
+      errorClassName,
+      wrapperClassName,
+    });
+
+  const id = useId();
+  const resolvedColor = validating && error ? "error" : color;
+
   return (
     <SelectContextProvider
       value={{
         useFocus: true,
-        color,
+        color: resolvedColor,
         isOpen: disabled ? false : isMounted,
         setIsOpen: disabled ? () => {} : setOpen,
         activeIndex,
@@ -136,17 +170,36 @@ export function Select({
         isNested: false,
       }}
     >
-      <button
-        tabIndex={0}
-        type="button"
-        className="select"
-        ref={context.refs.setReference}
-        {...interactions.getReferenceProps()}
+      <div
+        className={wrapperClasses}
+        style={{ ...cssColorProps(resolvedColor), ...wrapperStyle }}
       >
-        {selectedItem ?? placeholder}
-      </button>
-      {name && <input name={name} type="hidden" value={selectedValue ?? ""} />}
-      {children}
+        {label && <p className={labelClasses}>{label}</p>}
+        <button
+          id={id}
+          tabIndex={0}
+          type="button"
+          disabled={disabled}
+          className={classes}
+          data-error={error ? true : undefined}
+          aria-describedby={id && error ? `${id}-error` : undefined}
+          ref={context.refs.setReference}
+          {...interactions.getReferenceProps()}
+          {...rest}
+        >
+          {selectedItem ?? placeholder}
+          <CaretDownIcon className={caretClasses} />
+        </button>
+        {name && (
+          <input name={name} type="hidden" value={selectedValue ?? ""} />
+        )}
+        {children}
+        {error && (
+          <p id={`${id}-error`} className={errorClasses}>
+            {error}
+          </p>
+        )}
+      </div>
     </SelectContextProvider>
   );
 }
