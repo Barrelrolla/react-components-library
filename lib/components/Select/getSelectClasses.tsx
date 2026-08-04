@@ -27,10 +27,6 @@ export function getSelectClasses({
   };
 }
 
-export function getSelectContentClasses({ className }: { className?: string }) {
-  return { classes: twMerge("select-content", className) };
-}
-
 export function getSelectOptionClasses({ className }: { className?: string }) {
   return { classes: twMerge("select-option", className) };
 }
