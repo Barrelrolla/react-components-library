@@ -40,7 +40,6 @@ export function SelectOption({
         onClick={() => {
           context.setSelectedIndex(item.index);
           context.setSelectedValue(value);
-          context.setIsOpen(false);
           context.setSelectedItem(children);
         }}
       >

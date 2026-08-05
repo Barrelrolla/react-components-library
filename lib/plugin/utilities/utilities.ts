@@ -89,7 +89,7 @@ export default <Record<string, CssInJs>>{
   },
 
   ".floating-container-inner": {
-    "@apply max-h-3/4 sm:max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-(--fg-color) scrollbar-track-(--bg-color)":
+    "@apply max-h-3/4 sm:max-h-80 overflow-auto scrollbar-thin scrollbar-thumb-(--color-main-content) scrollbar-track-main":
       {},
   },
 

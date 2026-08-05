@@ -148,7 +148,10 @@ export function Select({
 
   function setSelected(value: string | undefined) {
     setSelectedValue(value);
-    onSelectedValueChange(value);
+    setOpen(false);
+    if (onSelectedValueChange) {
+      onSelectedValueChange(value);
+    }
   }
 
   const id = useId();

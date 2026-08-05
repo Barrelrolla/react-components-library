@@ -9,7 +9,6 @@ import { useIsMobile } from "@/hooks";
 import { MobileSheetPlacementType } from "@/types";
 import { FloatingElementContextType } from "./FloatingElementContextType";
 import { useFloatingContext } from "@/contexts/FloatingContext";
-import { twMerge } from "tailwind-merge";
 
 export type FloatingContentProps = {
   context: FloatingElementContextType;
@@ -50,7 +49,7 @@ export function FloatingElementContent({
       if (selected) {
         selected.scrollIntoView({ block: "center" });
       }
-    }, 50);
+    }, 60);
   }, []);
 
   if (!context.isOpen) {
@@ -87,11 +86,8 @@ export function FloatingElementContent({
               : context.data.floatingStyles
           }
         >
-          <div {...rest} style={styles}>
-            <div
-              className={twMerge("floating-container-inner", classes)}
-              ref={innerRef}
-            >
+          <div style={styles} className={classes} {...rest}>
+            <div className="floating-container-inner" ref={innerRef}>
               {children}
             </div>
             {(!floatingContext || floatingContext.hasArrow) &&

@@ -52,7 +52,7 @@ export function DropdownComponent({
   onOpenChange,
   strategy = "absolute",
   placement = "bottom",
-  hasArrow = false,
+  hasArrow = true,
   requireClick = true,
   mobileSheet = true,
   returnFocus = null,
@@ -94,7 +94,7 @@ export function DropdownComponent({
     onOpenChange: setOpen,
     placement: isNested ? "right-start" : placement,
     middleware: [
-      offset(isNested ? 0 : 4),
+      offset(isNested ? 0 : 10),
       flip(),
       shift({ padding: 8 }),
       arrow({ element: arrowRef }),
