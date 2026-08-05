@@ -34,7 +34,7 @@ export const Default: Story = {
     await expect(sidemenu, "renders").toBeTruthy();
   },
   render: () => {
-    const [activeIndex, setActiveIndex] = useState(5);
+    const [activeIndex, setActiveIndex] = useState(0);
     const items = Array.from(
       { length: 12 },
       (_item, index) => "Item" + ` ${index + 1}`,
@@ -72,19 +72,13 @@ export const Fill: Story = {
     await expect(sidemenu, "renders").toBeTruthy();
   },
   render: () => {
-    const [activeIndex, setActiveIndex] = useState(5);
     const items = Array.from(
       { length: 12 },
       (_item, index) => "Item" + ` ${index + 1}`,
     );
     return (
       <div className="w-full sm:w-auto">
-        <Sidemenu
-          fillOnSelect
-          className="max-h-100"
-          initialActiveIndex={activeIndex}
-          onActiveIndexChange={setActiveIndex}
-        >
+        <Sidemenu fillOnSelect className="max-h-100">
           <SidemenuSection>
             <SidemenuItem index={0}>Sidemenu</SidemenuItem>
             {items.map((item, index) => {
@@ -98,9 +92,6 @@ export const Fill: Story = {
         </Sidemenu>
       </div>
     );
-  },
-  args: {
-    children: "sidemenu",
   },
 };
 

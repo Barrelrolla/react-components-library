@@ -136,6 +136,13 @@ export function Sidemenu({
     right: "absolute right-1 top-[calc(50%-8px)]",
   };
 
+  function setActive(index: number) {
+    if (onActiveIndexChange) {
+      onActiveIndexChange(index);
+    }
+    setActiveIndex(index);
+  }
+
   return (
     <div style={wrapperStyle} className={wrapperClasses}>
       {availableScroll.top && (
@@ -171,7 +178,12 @@ export function Sidemenu({
         {...rest}
       >
         <SidemenuContextProvider
-          value={{ activeIndex, setActiveIndex, color, fillOnSelect }}
+          value={{
+            activeIndex,
+            setActiveIndex: setActive,
+            color,
+            fillOnSelect,
+          }}
         >
           {children}
         </SidemenuContextProvider>
