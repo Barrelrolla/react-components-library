@@ -51,17 +51,17 @@ export const InText: Story = {
     return (
       <p>
         Lorem ipsum{" "}
-        <Anchor href="#" {...props}>
+        <Anchor underlined href="#" {...props}>
           dolor
         </Anchor>{" "}
         sit amet consectetur adipisicing elit. Velit vel iste veniam ut cumque
         dolores{" "}
-        <Anchor data-selected href="#" {...props}>
+        <Anchor underlined data-selected href="#" {...props}>
           inventore
         </Anchor>{" "}
         natus molestiae totam temporibus, aperiam voluptates aut excepturi
         possimus praesentium{" "}
-        <Anchor href="#" {...props}>
+        <Anchor underlined href="#" {...props}>
           mollitia
         </Anchor>{" "}
         odio culpa quis!
@@ -72,4 +72,22 @@ export const InText: Story = {
   argTypes: {
     children: { table: { disable: true } },
   },
+};
+
+export const Colors: Story = {
+  render: ({ children, ...rest }) => {
+    return (
+      <>
+        {availableColors.map((color) => (
+          <Anchor color={color} key={color} {...rest}>
+            {children}
+          </Anchor>
+        ))}
+      </>
+    );
+  },
+  args: {
+    children: "Link",
+  },
+  argTypes: { color: { table: { disable: true } } },
 };

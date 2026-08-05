@@ -20,6 +20,7 @@ export function FloatingDelayGroupContextProvider({
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useFloatingDelayGroupContext() {
   return useContext(FloatingDelayGroupContext);
 }

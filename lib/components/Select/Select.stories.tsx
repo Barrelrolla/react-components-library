@@ -3,7 +3,6 @@ import { expect, within } from "storybook/test";
 import { Select, SelectOption } from "./index";
 import { availableColors } from "@/types";
 import { SelectContent } from "./SelectContent";
-import { Input } from "../Input";
 
 const meta: Meta<typeof Select> = {
   title: "Components/Select",
@@ -39,7 +38,35 @@ export const Default: Story = {
         error={error}
         disabled={disabled}
         name="select"
+        {...rest}
+      >
+        <SelectContent>
+          <SelectOption value={"one"}>One</SelectOption>
+          <SelectOption disabled value={"two"}>
+            Two
+          </SelectOption>
+          <SelectOption value={"three"}>Three</SelectOption>
+        </SelectContent>
+      </Select>
+    );
+  },
+  args: {},
+};
+
+export const WithLabel: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByText("Select...");
+    await expect(select, "renders").toBeTruthy();
+  },
+  render: ({ color, error, disabled, ...rest }) => {
+    return (
+      <Select
+        color={color}
+        error={error}
+        disabled={disabled}
         label="Select"
+        name="select"
         {...rest}
       >
         <SelectContent>
@@ -60,8 +87,10 @@ export const Colors: Story = {
     return (
       <>
         {availableColors.map((color) => (
-          <Select color={color} key={color} {...rest}>
-            {color}
+          <Select label={color} color={color} key={color} {...rest}>
+            <SelectContent>
+              <SelectOption value={"option"}>option</SelectOption>
+            </SelectContent>
           </Select>
         ))}
       </>

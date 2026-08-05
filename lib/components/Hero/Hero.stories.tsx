@@ -7,7 +7,7 @@ import { HeroTitle } from "./HeroTitle";
 import { HeroText } from "./HeroText";
 import { Button } from "../Button";
 import { ComponentType } from "react";
-import { availableColors, availableResponsiveSizes } from "@/types";
+import { availableResponsiveSizes } from "@/types";
 
 const meta: Meta<typeof Hero> = {
   title: "Components/Hero",
@@ -22,7 +22,6 @@ const meta: Meta<typeof Hero> = {
   },
   argTypes: {
     children: { table: { disable: true } },
-    color: { control: { type: "select" }, options: availableColors },
     textAlign: {
       control: { type: "inline-radio" },
     },

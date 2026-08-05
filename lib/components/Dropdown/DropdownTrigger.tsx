@@ -36,7 +36,6 @@ export function DropdownTrigger({ children, ...rest }: DropdownTriggerProps) {
           },
         }),
       )}
-      showCaret={isNested}
     >
       {children}
     </Slot>

@@ -7,7 +7,6 @@ import { CheckMarkIcon } from "@/icons";
 
 export function SelectOption({
   value,
-  color,
   ref,
   disabled,
   children,
@@ -30,7 +29,6 @@ export function SelectOption({
   return (
     <li>
       <button
-        color={color ?? "main"}
         role="menuitem"
         ref={useMergeRefs([item.ref, ref])}
         disabled={disabled}

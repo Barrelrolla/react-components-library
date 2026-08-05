@@ -39,19 +39,19 @@ export function NavbarLink<E extends ElementType = typeof defaultType>({
     onBlur?.(event);
   }
 
-  const { classes, resolvedColor } = getNavbarLinkClasses({
+  const { classes } = getNavbarLinkClasses({
     className,
     navbarContext,
   });
 
   return (
-    <li>
+    <li role="menuitem">
       <CompositeItem
         render={
           <Anchor
             as={as || defaultType}
             data-selected={selected}
-            color={resolvedColor}
+            color={navbarContext?.color || "main"}
             underlined={underlined}
             hoverUnderline={hoverUnderline}
             className={classes}

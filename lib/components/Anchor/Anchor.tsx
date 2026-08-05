@@ -1,6 +1,6 @@
 import { ElementType } from "react";
 import { ColorType, PolymorphicProps } from "@/types";
-import { cssColorProps } from "@/util";
+import { cssColorPropsReversed } from "@/util";
 import { getAnchorClasses } from "./getAnchorClasses";
 
 const defaultType = "a";
@@ -18,7 +18,7 @@ export type AnchorProps<E extends ElementType> = {
 export function Anchor<E extends ElementType = typeof defaultType>({
   as,
   color,
-  underlined = true,
+  underlined = false,
   hoverUnderline = true,
   hoverUnderlineOffset = true,
   className,
@@ -38,7 +38,7 @@ export function Anchor<E extends ElementType = typeof defaultType>({
 
   return (
     <Element
-      style={{ ...cssColorProps(resolvedColor), ...style }}
+      style={{ ...cssColorPropsReversed(resolvedColor), ...style }}
       className={classes}
       {...rest}
     >

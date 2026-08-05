@@ -15,8 +15,7 @@ export type PolymorphicProps<T extends ElementType> = {
 
 export type ColorType =
   | "main"
-  | "light"
-  | "dark"
+  | "neutral"
   | "primary"
   | "secondary"
   | "accent"
@@ -27,8 +26,7 @@ export type ColorType =
 
 export const availableColors: ColorType[] = [
   "main",
-  "light",
-  "dark",
+  "neutral",
   "primary",
   "secondary",
   "accent",

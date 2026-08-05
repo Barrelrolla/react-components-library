@@ -1,6 +1,6 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { ColorType, ResponsiveSizes } from "@/types";
-import { cssColorProps } from "@/util";
+import { cssColorPropsReversed } from "@/util";
 import { NavbarContextProvider } from "./NavbarContext";
 import { getNavbarClasses } from "./getNavbarClasses";
 
@@ -22,7 +22,7 @@ export type NavbarProps = {
 } & ComponentProps<"nav">;
 
 export function Navbar({
-  color = "main",
+  color = "primary",
   hasShadow = true,
   collapseAt = "sm",
   fixed = true,
@@ -81,7 +81,10 @@ export function Navbar({
         setIsOpen,
       }}
     >
-      <header className={classes} style={{ ...cssColorProps(color), ...style }}>
+      <header
+        className={classes}
+        style={{ ...cssColorPropsReversed(color), ...style }}
+      >
         <nav className={navClasses} {...rest}>
           {children}
         </nav>

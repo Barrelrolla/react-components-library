@@ -6,7 +6,7 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".dialog-backdrop": {
-    "@apply bg-dark/30 h-full w-full flex items-center justify-center overflow-y-auto p-4 mx-auto z-(--z-floats)":
+    "@apply bg-zinc-800/30 h-full w-full flex items-center justify-center overflow-y-auto p-4 mx-auto z-(--z-floats)":
       {},
   },
 };

@@ -29,10 +29,10 @@ export function getNavbarClasses({
     classes: twMerge(
       "navbar",
       isGlass && "glass",
-      isGlass && isOpen && collapseAt == "sm" && "not-sm:bg-(--bg-color)/80",
-      isGlass && isOpen && collapseAt == "md" && "not-md:bg-(--bg-color)/80",
-      isGlass && isOpen && collapseAt == "lg" && "not-lg:bg-(--bg-color)/80",
-      isGlass && isOpen && collapseAt == "xl" && "not-xl:bg-(--bg-color)/80",
+      isGlass && isOpen && collapseAt == "sm" && "not-sm:bg-main/80",
+      isGlass && isOpen && collapseAt == "md" && "not-md:bg-main/80",
+      isGlass && isOpen && collapseAt == "lg" && "not-lg:bg-main/80",
+      isGlass && isOpen && collapseAt == "xl" && "not-xl:bg-main/80",
       fixed && "fixed",
       !fixed && "absolute",
       position === "top" && "navigation-decoration-bottom top-0",
@@ -56,20 +56,9 @@ export function getNavbarClasses({
   };
 }
 
-export function getNavbarBrandClasses({
-  className,
-  navbarContext,
-}: {
-  className?: string;
-  navbarContext: NavbarContextType;
-}) {
-  if (!navbarContext) {
-    throw new Error(getErrorMessage("Navbar brand"));
-  }
-
+export function getNavbarBrandClasses({ className }: { className?: string }) {
   return {
     classes: twMerge("navbar-brand", className),
-    resolvedColor: navbarContext.color,
   };
 }
 
@@ -157,7 +146,6 @@ export function getNavbarLinkClasses({
       collapseAt === "xl" && "max-xl:navbar-link xl:navbar-link-extended",
       className,
     ),
-    resolvedColor: navbarContext.color,
   };
 }
 
@@ -172,7 +160,7 @@ export function getNavbarToggleClasses({
     throw new Error(getErrorMessage("Navbar toggle"));
   }
 
-  const { color, collapseAt } = navbarContext;
+  const { collapseAt } = navbarContext;
 
   return {
     classes: twMerge(
@@ -182,6 +170,5 @@ export function getNavbarToggleClasses({
       collapseAt === "xl" && "xl:hidden",
       wrapperClassName,
     ),
-    resolvedColor: color,
   };
 }

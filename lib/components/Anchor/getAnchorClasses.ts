@@ -20,7 +20,7 @@ export function getAnchorClasses({
       underlined && "underline",
       !underlined && hoverUnderline && "hover:underline",
       !hoverUnderlineOffset && "underline-offset-1",
-      hoverUnderlineOffset && "underline-offset-2 hover:underline-offset-1",
+      hoverUnderlineOffset && "underline-offset-4 hover:underline-offset-2",
       className,
     ),
     resolvedColor: color || "primary",

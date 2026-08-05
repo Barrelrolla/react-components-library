@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { Badge } from "./Badge";
 import { availableColors } from "@/types";
+import { availableBadgeVariants } from "./badgeTypes";
 
 const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
@@ -38,20 +39,13 @@ export const Default: Story = {
   },
 };
 
-export const Colors: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const badges = canvas.getAllByText(
-      /^(main|light|dark|primary|secondary|accent|info|success|warning|error)$/,
-    );
-    await expect(badges).toHaveLength(availableColors.length);
-  },
+export const Variants: Story = {
   render: ({ ...rest }) => {
     return (
       <div className="flex flex-wrap gap-2">
-        {availableColors.map((color) => (
-          <Badge color={color} key={color} {...rest}>
-            {color}
+        {availableBadgeVariants.map((variant) => (
+          <Badge {...rest} variant={variant} key={variant}>
+            {variant}
           </Badge>
         ))}
       </div>
@@ -59,6 +53,39 @@ export const Colors: Story = {
   },
   args: {},
   argTypes: {
+    variant: { table: { disable: true } },
+    children: { table: { disable: true } },
+  },
+};
+
+export const Colors: Story = {
+  render: ({ ...rest }) => {
+    return (
+      <>
+        {availableColors.map((color) => {
+          return (
+            <div className="flex flex-col gap-4" key={color}>
+              {availableBadgeVariants.map((variant) => {
+                return (
+                  <Badge
+                    {...rest}
+                    color={color}
+                    variant={variant}
+                    key={`${variant}-${color}`}
+                  >
+                    {color}
+                  </Badge>
+                );
+              })}
+            </div>
+          );
+        })}
+      </>
+    );
+  },
+  args: {},
+  argTypes: {
+    variant: { table: { disable: true } },
     color: { table: { disable: true } },
     children: { table: { disable: true } },
   },

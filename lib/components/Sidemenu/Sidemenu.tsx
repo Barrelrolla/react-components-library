@@ -6,7 +6,6 @@ import {
   useState,
 } from "react";
 import { ColorType } from "@/types";
-import { cssColorProps } from "@/util";
 import { getSidemenuClasses } from "./getSidemenuClasses";
 import { useIsMobile } from "@/hooks";
 import { SidemenuContextProvider } from "./SidemenuContext";
@@ -16,6 +15,7 @@ export type SidemenuProps = {
   initialActiveIndex?: number;
   onActiveIndexChange?: (index: number) => void;
   color?: ColorType;
+  fillOnSelect?: boolean;
   wrapperClassName?: string;
   wrapperStyle?: CSSProperties;
 } & ComponentProps<"div">;
@@ -23,7 +23,8 @@ export type SidemenuProps = {
 export function Sidemenu({
   initialActiveIndex = 0,
   onActiveIndexChange,
-  color = "main",
+  color = "primary",
+  fillOnSelect = false,
   className,
   style,
   wrapperClassName,
@@ -136,10 +137,7 @@ export function Sidemenu({
   };
 
   return (
-    <div
-      style={{ ...cssColorProps(color), ...wrapperStyle }}
-      className={wrapperClasses}
-    >
+    <div style={wrapperStyle} className={wrapperClasses}>
       {availableScroll.top && (
         <div className={caretClasses.top}>
           <CaretDownIcon className="rotate-180" />
@@ -172,7 +170,9 @@ export function Sidemenu({
         }
         {...rest}
       >
-        <SidemenuContextProvider value={{ activeIndex, setActiveIndex }}>
+        <SidemenuContextProvider
+          value={{ activeIndex, setActiveIndex, color, fillOnSelect }}
+        >
           {children}
         </SidemenuContextProvider>
       </div>

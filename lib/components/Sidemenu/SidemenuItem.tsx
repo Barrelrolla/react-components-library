@@ -1,12 +1,12 @@
-import { twMerge } from "tailwind-merge";
 import { Button, ButtonProps } from "../Button";
 import { useSidemenuContext } from "./SidemenuContext";
 import { CompositeItem } from "@floating-ui/react";
+import { getSidemenuItemClasses } from "./getSidemenuClasses";
 
 export function SidemenuItem({
   index,
-  wrapperClassName,
   className,
+  wrapperClassName,
   children,
   ...rest
 }: { index: number } & ButtonProps<"button">) {
@@ -15,15 +15,21 @@ export function SidemenuItem({
     throw new Error("Please use the Sidemenu Item only inside a Sidemenu");
   }
 
+  const { classes, wrapperClasses } = getSidemenuItemClasses({
+    fillOnSelect: context.fillOnSelect,
+    className,
+    wrapperClassName,
+  });
+
+  const isSelected = context.activeIndex === index;
   return (
     <CompositeItem
       render={
         <Button
-          wrapperClassName={twMerge("w-max sm:w-full", wrapperClassName)}
-          className={twMerge(
-            "selected:focus-visible:outline-(--fg-color) w-max shrink-0 justify-start text-start -outline-offset-4 focus-visible:outline-2 sm:h-14 sm:w-full",
-            className,
-          )}
+          role="menuitem"
+          color={isSelected ? context.color : undefined}
+          wrapperClassName={wrapperClasses}
+          className={classes}
           selected={context.activeIndex === index}
           onClick={() => {
             context.setActiveIndex(index);

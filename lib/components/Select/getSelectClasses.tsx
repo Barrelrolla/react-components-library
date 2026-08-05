@@ -16,14 +16,22 @@ export function getSelectClasses({
   wrapperClassName?: string;
 }) {
   return {
-    classes: twMerge("select", (isOpen || isMounted) && "ring-1", className),
+    classes: twMerge(
+      "select",
+      (isOpen || isMounted) && "border-(--fg-color) ring-1",
+      className,
+    ),
     labelClasses: twMerge("select-label", labelClassName),
     errorClasses: twMerge("select-error", errorClassName),
     caretClasses: twMerge(
       isOpen ? "rotate-180" : "rotate-0",
       "transition-transform",
     ),
-    wrapperClasses: twMerge("select-wrapper", wrapperClassName),
+    wrapperClasses: twMerge(
+      "select-wrapper",
+      (isOpen || isMounted) && "text-(--fg-color)",
+      wrapperClassName,
+    ),
   };
 }
 

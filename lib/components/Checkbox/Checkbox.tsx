@@ -1,6 +1,6 @@
 import { ComponentProps, CSSProperties } from "react";
 import { ColorType } from "@/types";
-import { cssColorProps } from "@/util";
+import { cssColorPropsReversed } from "@/util";
 import { getCheckboxClasses } from "./getCheckboxClasses";
 import { EmtpySquareIcon, SquareCheckIcon } from "@/icons";
 
@@ -15,8 +15,7 @@ export type CheckboxProps = {
 } & ComponentProps<"input">;
 
 export function Checkbox({
-  color = "main",
-  labelColor = "main",
+  color = "primary",
   size = 24,
   disabled,
   style,
@@ -34,10 +33,13 @@ export function Checkbox({
       labelClassName,
       wrapperClassName,
     });
-  const styles = { "--size": `${size}px`, ...cssColorProps(color), ...style };
+  const styles = {
+    "--size": `${size}px`,
+    ...cssColorPropsReversed(color),
+    ...style,
+  };
   const labelStyles = {
     "--size": `${size}px`,
-    ...cssColorProps(labelColor),
     ...labelStyle,
   };
   return (
@@ -49,7 +51,7 @@ export function Checkbox({
         {...rest}
       />
       <SquareCheckIcon className={checkedClasses} style={styles} />
-      <EmtpySquareIcon style={styles} className={unCheckedClasses} />
+      <EmtpySquareIcon className={unCheckedClasses} style={styles} />
 
       {children && (
         <span style={labelStyles} className={labelClasses}>

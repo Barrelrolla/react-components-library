@@ -7,7 +7,7 @@ export default <Record<string, CssInJs>>{
     "--p": "",
   },
   ".btn-solid": {
-    "@apply bg-(--bg-color) hover:bg-hover focus-visible:bg-hover active:bg-active text-(--fg-color) selected:bg-(--fg-color) selected:text-(--bg-color) selected:hover:bg-hover-inverse selected:focus-visible:bg-hover-inverse":
+    "@apply bg-(--bg-color) hover:bg-hover focus-visible:bg-hover active:bg-active text-(--fg-color) selected:bg-(--fg-color) selected:outline-(--fg-color) selected:text-(--bg-color) selected:hover:bg-hover-inverse selected:focus-visible:bg-hover-inverse":
       {},
   },
   ".btn-outline": {
@@ -19,38 +19,23 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".btn-ghost": {
-    "@apply text-(--bg-color)": {},
-  },
-  ".btn-ghost-none": {
-    "@apply hover:ghost-hover focus-visible:ghost-hover active:ghost-active selected:ghost-active selected:hover:ghost-hover":
+    "@apply text-(--bg-color) hover:bg-(--bg-color)/5 focus-visible:bg-(--bg-color)/5 active:bg-(--bg-color)/10 selected:bg-(--bg-color) selected:text-(--fg-color) selected:hover:bg-hover selected:focus-visible:bg-hover":
       {},
   },
-  ".btn-ghost-fill": {
-    "@apply hover:bg-(--bg-color) focus-visible:bg-(--bg-color) hover:text-(--fg-color) focus-visible:text-(--fg-color) active:bg-hover active:text-(--fg-color) selected:bg-(--bg-color) selected:text-(--fg-color) selected:hover:bg-hover selected:focus-visible:bg-hover":
+  ".btn-solid-ghost": {
+    "@apply text-(--bg-color) hover:bg-(--bg-color) focus-visible:bg-(--bg-color) hover:text-(--fg-color) focus-visible:text-(--fg-color) active:bg-hover active:text-(--fg-color) selected:bg-(--bg-color) selected:text-(--fg-color) selected:hover:bg-hover selected:focus-visible:bg-hover":
       {},
   },
-  ".btn-ghost-muted": {
-    "@apply hover:bg-(--bg-color)/5 focus-visible:bg-(--bg-color)/5 active:bg-(--bg-color)/10 selected:bg-(--bg-color) selected:text-(--fg-color) selected:hover:bg-hover selected:focus-visible:bg-hover":
+  ".btn-outline-ghost": {
+    "@apply text-(--bg-color) hover:inset-ring hover:ghost-hover focus-visible:ghost-hover active:inset-ring active:ghost-active selected:inset-ring":
       {},
   },
-  ".btn-ghost-fill-focus": {
+  ".btn-solid-ghost-focus": {
     "@apply focus:bg-(--bg-color) focus:text-(--fg-color) focus:hover:bg-hover focus:active:bg-active":
       {},
   },
-  ".btn-ghost-outline": {
-    "@apply hover:inset-ring hover:ghost-hover focus-visible:ghost-hover active:inset-ring active:ghost-active selected:inset-ring":
-      {},
-  },
-  ".btn-ghost-outline-focus": {
+  ".btn-outline-ghost-focus": {
     "@apply focus:inset-ring": {},
-  },
-  ".btn-ghost-contrasting": {
-    "@apply hover:text-(--fg-color) focus-visible:text-(--fg-color) active:fg-active outline-(--fg-color) selected:text-(--fg-color) selected:hover:fg-hover":
-      {},
-  },
-  ".btn-ghost-contrasting-focus": {
-    "@apply focus:text-(--fg-color) focus:hover:fg-hover focus:active:fg-active":
-      {},
   },
   ".btn-grouped": {
     "@apply inset-ring-0": {},

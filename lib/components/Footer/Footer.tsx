@@ -1,6 +1,6 @@
 import { ComponentProps, CSSProperties } from "react";
 import { ColorType, ResponsiveSizes } from "@/types";
-import { cssColorProps } from "@/util";
+import { cssColorPropsReversed } from "@/util";
 import { FooterContextProvider } from "./FooterContext";
 import { getFooterClasses } from "./getFooterClasses";
 
@@ -19,7 +19,7 @@ export type FooterProps = {
 } & ComponentProps<"div">;
 
 export function Footer({
-  color = "dark",
+  color = "neutral",
   decorations = false,
   responsiveAt = "md",
   containerStyle,
@@ -38,7 +38,7 @@ export function Footer({
     <FooterContextProvider value={{ color, responsiveAt }}>
       <footer
         className={containerClasses}
-        style={{ ...cssColorProps(color), ...containerStyle }}
+        style={{ ...cssColorPropsReversed(color), ...containerStyle }}
       >
         <div className={classes} {...rest}>
           {children}

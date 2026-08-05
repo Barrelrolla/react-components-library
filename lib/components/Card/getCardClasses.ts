@@ -54,7 +54,6 @@ export function getCardInteractClasses({
 
   return {
     classes: twMerge("card-interact group", className),
-    color: cardContext.color,
   };
 }
 

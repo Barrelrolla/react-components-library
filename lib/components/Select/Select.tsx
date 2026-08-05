@@ -25,7 +25,7 @@ import {
 } from "@floating-ui/react";
 import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles";
 import { getSelectClasses } from "./getSelectClasses";
-import { cssColorProps } from "@/util";
+import { cssColorPropsReversed } from "@/util";
 import { CaretDownIcon } from "@/icons";
 
 export type SelectProps = {
@@ -33,7 +33,6 @@ export type SelectProps = {
   label?: string;
   name?: string;
   error?: string;
-  validating?: boolean;
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
   placeholder?: string;
@@ -49,11 +48,10 @@ export type SelectProps = {
 } & ComponentProps<"button">;
 
 export function Select({
-  color = "main",
+  color = "primary",
   label,
   name,
   error,
-  validating = true,
   isOpen,
   onOpenChange,
   placeholder = "Select...",
@@ -142,13 +140,13 @@ export function Select({
     });
 
   const id = useId();
-  const resolvedColor = validating && error ? "error" : color;
+  const resolvedColor = error ? "error" : color;
 
   return (
     <SelectContextProvider
       value={{
         useFocus: true,
-        color: resolvedColor,
+        color: color,
         isOpen: disabled ? false : isMounted,
         setIsOpen: disabled ? () => {} : setOpen,
         activeIndex,
@@ -172,11 +170,16 @@ export function Select({
     >
       <div
         className={wrapperClasses}
-        style={{ ...cssColorProps(resolvedColor), ...wrapperStyle }}
+        style={{ ...cssColorPropsReversed(resolvedColor), ...wrapperStyle }}
       >
-        {label && <p className={labelClasses}>{label}</p>}
+        {label && (
+          <label htmlFor={id} className={labelClasses}>
+            {label}
+          </label>
+        )}
         <button
           id={id}
+          aria-label={!label ? "Select" : undefined}
           tabIndex={0}
           type="button"
           disabled={disabled}

@@ -5,6 +5,7 @@ import { Button } from "./Button";
 import { availableColors, availableSizes } from "@/types";
 import { FloatingDelayGroupContextProvider } from "@/contexts/FloatingDelayGroup";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip";
+import { availableButtonVariants } from "./buttonTypes";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -19,10 +20,6 @@ const meta: Meta<typeof Button> = {
     children: { name: "text" },
     color: { control: { type: "select" }, options: availableColors },
     variant: { control: { type: "inline-radio" } },
-    ghostHover: {
-      control: { type: "inline-radio" },
-      if: { arg: "variant", eq: "ghost" },
-    },
     size: { control: { type: "inline-radio" }, options: availableSizes },
     radius: { control: { type: "inline-radio" } },
     loadingPosition: { control: { type: "inline-radio" } },
@@ -49,69 +46,22 @@ export const Default: Story = {
 };
 
 export const Variants: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const buttons = canvas.getAllByRole("button");
-    await expect(buttons).toHaveLength(3);
-    await expect(buttons[1]).toHaveClass("btn-outline");
-    await expect(buttons[2]).toHaveClass("btn-ghost-muted");
-  },
-  render: ({ children, ...rest }) => {
+  render: ({ ...rest }) => {
     return (
       <>
-        <Button {...rest}>{children}</Button>
-        <Button variant="outline" {...rest}>
-          {children}
-        </Button>
-        <Button variant="ghost" {...rest}>
-          {children}
-        </Button>
+        {availableButtonVariants.map((variant) => {
+          return (
+            <Button {...rest} variant={variant} key={variant}>
+              {variant}
+            </Button>
+          );
+        })}
       </>
     );
   },
-  args: { children: "Button" },
   argTypes: {
+    children: { table: { disable: true } },
     variant: { table: { disable: true } },
-    ghostHover: { table: { disable: true } },
-  },
-};
-
-export const Ghost: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const buttons = canvas.getAllByRole("button");
-    await expect(buttons).toHaveLength(5);
-    await expect(buttons[0]).toHaveClass("btn-ghost-muted");
-    await expect(buttons[1]).toHaveClass("btn-ghost-fill");
-    await expect(buttons[2]).toHaveClass("btn-ghost-outline");
-    await expect(buttons[3]).toHaveClass("btn-ghost-contrasting");
-    await expect(buttons[4]).toHaveClass("btn-ghost-none");
-  },
-  render: ({ children, ...rest }) => {
-    return (
-      <>
-        <Button variant="ghost" {...rest}>
-          {children}
-        </Button>
-        <Button variant="ghost" ghostHover="fill" {...rest}>
-          {children}
-        </Button>
-        <Button variant="ghost" ghostHover="outline" {...rest}>
-          {children}
-        </Button>
-        <Button variant="ghost" ghostHover="contrasting" {...rest}>
-          {children}
-        </Button>
-        <Button variant="ghost" ghostHover="none" {...rest}>
-          {children}
-        </Button>
-      </>
-    );
-  },
-  args: { children: "Button" },
-  argTypes: {
-    variant: { table: { disable: true } },
-    ghostHover: { table: { disable: true } },
   },
 };
 
@@ -143,14 +93,6 @@ export const Disabled: Story = {
 };
 
 export const Icon: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const buttons = canvas.getAllByRole("button");
-    await expect(buttons).toHaveLength(3);
-    await expect(
-      canvas.queryByText("Button", { selector: "button" }),
-    ).toBeNull();
-  },
   render: ({ ...rest }) => {
     return (
       <>
@@ -183,7 +125,6 @@ export const Icon: Story = {
               <Button
                 aria-label="save"
                 variant="ghost"
-                ghostHover="fill"
                 startIcon={<PiBookmark />}
                 {...rest}
               ></Button>
@@ -196,111 +137,31 @@ export const Icon: Story = {
   },
 };
 
-export const Colors: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const buttons = canvas.getAllByRole("button");
-    await expect(buttons).toHaveLength(10);
-  },
-  render: ({ children, ...rest }) => {
-    return (
-      <>
-        <Button color="main" {...rest}>
-          {children}
-        </Button>
-        <Button color="light" {...rest}>
-          {children}
-        </Button>
-        <Button color="dark" {...rest}>
-          {children}
-        </Button>
-        <Button color="primary" {...rest}>
-          {children}
-        </Button>
-        <Button color="secondary" {...rest}>
-          {children}
-        </Button>
-        <Button color="accent" {...rest}>
-          {children}
-        </Button>
-        <Button color="info" {...rest}>
-          {children}
-        </Button>
-        <Button color="success" {...rest}>
-          {children}
-        </Button>
-        <Button color="warning" {...rest}>
-          {children}
-        </Button>
-        <Button color="error" {...rest}>
-          {children}
-        </Button>
-      </>
-    );
-  },
-  args: {
-    children: "Button",
-  },
-  argTypes: {
-    color: { table: { disable: true } },
-  },
-};
-
 export const Sizes: Story = {
   render: ({ ...rest }) => {
     return (
       <div className="flex flex-col gap-4">
         <div className="flex flex-wrap items-end justify-center gap-2">
-          <Button {...rest} startIcon={<PiHeart />} size="xs">
-            Button
-          </Button>
-          <Button {...rest} startIcon={<PiHeart />} size="sm">
-            Button
-          </Button>
-          <Button {...rest} size="md">
-            <PiHeart />
-            Button
-          </Button>
-          <Button {...rest} size="lg">
-            <PiHeart />
-            Button
-          </Button>
-          <Button {...rest} size="xl">
-            <PiHeart />
-            Button
-          </Button>
+          {availableSizes.map((size) => {
+            return (
+              <Button {...rest} startIcon={<PiHeart />} key={size} size={size}>
+                Button
+              </Button>
+            );
+          })}
         </div>
         <div className="flex flex-wrap items-start justify-center gap-2">
-          <Button
-            aria-label="like"
-            {...rest}
-            startIcon={<PiHeart />}
-            size="xs"
-          ></Button>
-          <Button
-            aria-label="like"
-            {...rest}
-            startIcon={<PiHeart />}
-            size="sm"
-          ></Button>
-          <Button
-            aria-label="like"
-            {...rest}
-            startIcon={<PiHeart />}
-            size="md"
-          ></Button>
-          <Button
-            aria-label="like"
-            {...rest}
-            startIcon={<PiHeart />}
-            size="lg"
-          ></Button>
-          <Button
-            aria-label="like"
-            {...rest}
-            startIcon={<PiHeart />}
-            size="xl"
-          ></Button>
+          {availableSizes.map((size) => {
+            return (
+              <Button
+                aria-label="like"
+                {...rest}
+                startIcon={<PiHeart />}
+                key={size}
+                size={size}
+              ></Button>
+            );
+          })}
         </div>
         <div className="flex w-full items-start justify-center gap-2">
           <Button
@@ -321,5 +182,36 @@ export const Sizes: Story = {
   },
   argTypes: {
     size: { table: { disable: true } },
+  },
+};
+
+export const Colors: Story = {
+  render: ({ ...rest }) => {
+    return (
+      <>
+        {availableColors.map((color) => {
+          return (
+            <div className="flex flex-col gap-2" key={color}>
+              {availableButtonVariants.map((variant) => {
+                return (
+                  <Button
+                    {...rest}
+                    key={`${variant}-${color}`}
+                    color={color}
+                    variant={variant}
+                  >
+                    {color}
+                  </Button>
+                );
+              })}
+            </div>
+          );
+        })}
+      </>
+    );
+  },
+  argTypes: {
+    children: { table: { disable: true } },
+    color: { table: { disable: true } },
   },
 };

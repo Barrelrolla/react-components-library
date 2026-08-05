@@ -1,13 +1,10 @@
 import { ComponentProps, CSSProperties } from "react";
-import { ColorType, ResponsiveSizes } from "@/types";
+import { ResponsiveSizes } from "@/types";
 import { HeroContextProvider } from "./HeroContext";
 import { HeroAlign } from "./HeroTypes";
 import { getHeroClasses } from "./getHeroClasses";
-import { cssColorProps } from "@/util";
 
 export type HeroProps = {
-  /** Hero color */
-  color?: ColorType;
   /** Aligns text to the left or to the center. By default it's `responsive` meaning it's left aligned on big screens and center on small ones. */
   textAlign?: HeroAlign;
   /** Alignment of the actions. By default it's `center` */
@@ -21,7 +18,6 @@ export type HeroProps = {
 } & ComponentProps<"div">;
 
 export function Hero({
-  color,
   textAlign = "responsive",
   actionsAlign = "center",
   responsiveAt = "md",
@@ -36,13 +32,9 @@ export function Hero({
     wrapperClassName,
     className,
   });
-  const styleVars = color ? cssColorProps(color) : {};
   return (
     <HeroContextProvider value={{ textAlign, actionsAlign, responsiveAt }}>
-      <section
-        style={{ ...styleVars, ...wrapperStyle }}
-        className={wrapperClasses}
-      >
+      <section style={wrapperStyle} className={wrapperClasses}>
         <div className={classes} {...rest}>
           {children}
         </div>

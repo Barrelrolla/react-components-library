@@ -1,8 +1,7 @@
 import { createContext, useContext } from "react";
-import { ColorType } from "@/types";
 
 export type CardContextType = {
-  color: ColorType;
+  hasContext: true;
 } | null;
 
 const CardContext = createContext<CardContextType>(null);

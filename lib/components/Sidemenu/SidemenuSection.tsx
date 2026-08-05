@@ -17,8 +17,11 @@ export function SidemenuSection({
   return (
     <Composite
       loop={false}
+      orientation={isMobile ? "horizontal" : "vertical"}
       render={
         <ButtonGroup
+          role={isMobile ? "menubar" : "menu"}
+          color="main"
           variant="ghost"
           className={twMerge("w-full", className)}
           vertical={!isMobile}

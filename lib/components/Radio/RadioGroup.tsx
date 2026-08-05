@@ -13,14 +13,13 @@ export function RadioGroup({
   title,
   name,
   legendClassName,
-  color = "main",
-  labelColor,
+  color = "primary",
   size,
   children,
   ...rest
 }: RadioGroupProps) {
   return (
-    <RadioGroupContextProvider value={{ name, color, labelColor, size }}>
+    <RadioGroupContextProvider value={{ name, color, size }}>
       <fieldset {...rest}>
         <legend className={legendClassName}>{title}</legend>
         {children}

@@ -94,7 +94,10 @@ export function EmtpySquareIcon({
   );
 }
 
-export function SquareCheckIcon({ strokeWidth = 0, ...rest }: SVGIconProps) {
+export function SquareCheckIcon({
+  strokeWidth = defaultStrokeWidth,
+  ...rest
+}: SVGIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

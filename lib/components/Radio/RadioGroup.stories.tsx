@@ -16,10 +16,6 @@ const meta: Meta<typeof RadioGroup> = {
       options: availableColors,
       control: { type: "select" },
     },
-    labelColor: {
-      options: availableColors,
-      control: { type: "select" },
-    },
     labelStyle: { table: { disable: true } },
     defaultChecked: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },

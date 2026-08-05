@@ -1,14 +1,12 @@
 import { createContext, useContext } from "react";
 import { ColorType, SizeType } from "@/types";
-import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
+import { ButtonRadius, ButtonVariant } from "./buttonTypes";
 
 export type ButtonGroupContextType = {
   /** Color of the buttons. */
   color?: ColorType;
   /** Variant of the buttons. */
   variant?: ButtonVariant;
-  /** Hover variant if the buttons are of `ghost` variant. */
-  ghostHover?: GhostHover;
   /** If the buttons should retains focus state. */
   retainFocusState?: boolean;
   /** Radius of the button group. */

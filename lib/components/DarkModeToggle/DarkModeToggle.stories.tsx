@@ -16,10 +16,6 @@ const meta: Meta<typeof DarkModeToggle> = {
     children: { if: { arg: "false", eq: "true" } },
     color: { control: { type: "select" }, options: availableColors },
     variant: { control: { type: "inline-radio" } },
-    ghostHover: {
-      control: { type: "inline-radio" },
-      if: { arg: "variant", eq: "ghost" },
-    },
     size: { control: { type: "inline-radio" }, options: availableSizes },
     radius: { control: { type: "inline-radio" } },
     loading: { table: { disable: true } },

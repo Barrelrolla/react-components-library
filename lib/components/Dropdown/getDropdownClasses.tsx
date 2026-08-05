@@ -41,5 +41,7 @@ export function getDropdownListClasses({ className }: { className?: string }) {
 }
 
 export function getDropdownLinkClasses({ className }: { className?: string }) {
-  return { classes: twMerge("dropdown-link outline-offset-0", className) };
+  return {
+    classes: twMerge("dropdown-link group outline-offset-0", className),
+  };
 }

@@ -5,7 +5,6 @@ import { ColorType } from "@/types";
 export function getRadioClasses({
   disabled,
   color,
-  labelColor,
   className,
   labelClassName,
   wrapperClassName,
@@ -13,17 +12,14 @@ export function getRadioClasses({
 }: {
   disabled?: boolean;
   color?: ColorType;
-  labelColor?: ColorType;
   className?: string;
   labelClassName?: string;
   wrapperClassName?: string;
   groupContext: RadioGroupContextType;
 }) {
-  const resolvedColor = color || groupContext?.color || "main";
-  const resolvedLabelColor = groupContext?.labelColor || labelColor || "main";
+  const resolvedColor = color || groupContext?.color || "primary";
   return {
     resolvedColor,
-    resolvedLabelColor,
     checkedClasses: twMerge(
       "radio opacity-0 peer-checked:opacity-100 disabled:opacity-50",
       !disabled && "radio-highlights",

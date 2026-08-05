@@ -22,7 +22,11 @@ export function NavbarMenu({
     <Composite
       orientation={isMobile ? "vertical" : "horizontal"}
       render={
-        <menu className={classes} {...rest}>
+        <menu
+          role={isMobile ? "menu" : "menubar"}
+          className={classes}
+          {...rest}
+        >
           {children}
         </menu>
       }

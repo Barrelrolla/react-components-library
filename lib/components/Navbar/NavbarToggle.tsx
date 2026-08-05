@@ -7,6 +7,7 @@ export type NavbarToggleProps = Omit<HamburgerButtonProps, "isOpen">;
 /** Hamburger toggle button for the Navbar. */
 export function NavbarToggle({
   size = "sm",
+  color = "main",
   wrapperClassName,
   ...rest
 }: NavbarToggleProps) {
@@ -22,7 +23,7 @@ export function NavbarToggle({
     setIsOpen(!isOpen);
   }
 
-  const { classes, resolvedColor } = getNavbarToggleClasses({
+  const { classes } = getNavbarToggleClasses({
     wrapperClassName,
     navbarContext,
   });
@@ -31,7 +32,7 @@ export function NavbarToggle({
     <HamburgerButton
       size={size}
       wrapperClassName={classes}
-      color={resolvedColor}
+      color={color}
       isOpen={isOpen}
       onClick={clickHandler}
       {...rest}

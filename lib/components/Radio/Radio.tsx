@@ -1,13 +1,12 @@
 import { ComponentProps, CSSProperties } from "react";
 import { ColorType } from "@/types";
-import { cssColorProps } from "@/util";
+import { cssColorPropsReversed } from "@/util";
 import { getRadioClasses } from "./getRadioClasses";
 import { EmptyCircleIcon, CircleCheckIcon } from "@/icons";
 import { useRadioGroupContext } from "./RadioGroupContext";
 
 export type RadioProps = {
   color?: ColorType;
-  labelColor?: ColorType;
   labelStyle?: CSSProperties;
   labelClassName?: string;
   defaultChecked?: boolean;
@@ -17,7 +16,6 @@ export type RadioProps = {
 
 export function Radio({
   color,
-  labelColor,
   size = 20,
   disabled,
   style,
@@ -32,14 +30,12 @@ export function Radio({
   const groupContext = useRadioGroupContext();
   const {
     resolvedColor,
-    resolvedLabelColor,
     checkedClasses,
     unCheckedClasses,
     labelClasses,
     wrapperClasses,
   } = getRadioClasses({
     color,
-    labelColor,
     className,
     labelClassName,
     wrapperClassName,
@@ -50,12 +46,11 @@ export function Radio({
   const groupSize = groupContext?.size ?? size;
   const styles = {
     "--size": `${groupSize}px`,
-    ...cssColorProps(resolvedColor),
+    ...cssColorPropsReversed(resolvedColor),
     ...style,
   };
   const labelStyles = {
     "--size": `${groupSize}px`,
-    ...cssColorProps(resolvedLabelColor),
     ...labelStyle,
   };
 

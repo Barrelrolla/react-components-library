@@ -3,9 +3,7 @@ import { useTooltipContext } from "./TooltipContext";
 import { getTooltipClasses } from "./getTooltipClasses";
 import { FloatingElementContent } from "../Floating";
 
-export function TooltipContent({
-  ...rest
-}: ComponentProps<"div">) {
+export function TooltipContent({ ...rest }: ComponentProps<"div">) {
   const context = useTooltipContext();
   if (!context) {
     throw new Error(
@@ -13,5 +11,11 @@ export function TooltipContent({
     );
   }
 
-  return <FloatingElementContent context={context} getClasses={getTooltipClasses} {...rest} />
+  return (
+    <FloatingElementContent
+      context={context}
+      getClasses={getTooltipClasses}
+      {...rest}
+    />
+  );
 }

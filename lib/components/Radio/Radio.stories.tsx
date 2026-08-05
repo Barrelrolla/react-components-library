@@ -18,10 +18,6 @@ const meta: Meta<typeof Radio> = {
       options: availableColors,
       control: { type: "select" },
     },
-    labelColor: {
-      options: availableColors,
-      control: { type: "select" },
-    },
     defaultChecked: { table: { disable: true } },
     labelStyle: { table: { disable: true } },
     labelClassName: { table: { disable: true } },

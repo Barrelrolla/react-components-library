@@ -51,13 +51,13 @@ describe("ButtonGroup", () => {
 
   it("passes group variant and ghostHover to child buttons", () => {
     const { container } = render(
-      <ButtonGroup variant="ghost" ghostHover="outline">
+      <ButtonGroup variant="ghost">
         <Button>one</Button>
       </ButtonGroup>,
     );
 
     const button = container.querySelector("button");
-    expect(button).toHaveClass("btn-ghost-outline");
+    expect(button).toHaveClass("btn-ghost");
   });
 
   it("applies the custom group className to the button group wrapper", () => {

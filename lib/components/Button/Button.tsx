@@ -1,8 +1,8 @@
 import { ElementType, ReactNode } from "react";
 import { Spinner } from "@/icons";
 import { ColorType, PolymorphicProps, SizeType } from "@/types";
-import { cssColorPropsReversed } from "@/util";
-import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
+import { cssColorProps } from "@/util";
+import { ButtonRadius, ButtonVariant } from "./buttonTypes";
 import { getButtonClasses } from "./getButtonClasses";
 import { useTheme } from "@/contexts";
 import { useButtonGroupContext } from "./ButtonGroupContext";
@@ -17,8 +17,6 @@ export type ButtonProps<E extends ElementType> = {
   size?: SizeType;
   /** Button radius. If none is set it will use the theme's default. */
   radius?: ButtonRadius;
-  /** If the button variant is `ghost` you can select the hover type. */
-  ghostHover?: GhostHover;
   /** By default, while the button is focused, it will retain it's hover state, meaning an outline or ghost button will remain solid for example. Set to `false` if you don't want that behaviour. */
   retainFocusState?: boolean;
   /** By default buttons scale on press. Set to `false` if you don't want that. */
@@ -44,7 +42,6 @@ export function Button<E extends ElementType = typeof defaultType>({
   color,
   variant,
   radius,
-  ghostHover,
   size,
   retainFocusState = true,
   disabled = false,
@@ -68,7 +65,6 @@ export function Button<E extends ElementType = typeof defaultType>({
   const { classes, resolvedColor, wrapperClasses } = getButtonClasses({
     retainFocusState,
     variant,
-    ghostHover,
     size,
     isIcon,
     scaling,
@@ -100,7 +96,7 @@ export function Button<E extends ElementType = typeof defaultType>({
       <Element
         aria-label={ariaLabel}
         data-selected={selected ? selected : undefined}
-        style={{ ...cssColorPropsReversed(resolvedColor), ...style }}
+        style={{ ...cssColorProps(resolvedColor), ...style }}
         className={classes}
         {...elementProps}
         {...rest}

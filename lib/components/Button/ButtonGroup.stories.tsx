@@ -6,6 +6,7 @@ import { Button } from "./Button";
 import { ButtonGroup } from "./ButtonGroup";
 import { availableColors, availableSizes } from "@/types";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip";
+import { availableButtonVariants } from "./buttonTypes";
 
 type Props = ComponentProps<typeof ButtonGroup> & {
   selection: boolean;
@@ -27,10 +28,6 @@ const meta: Meta<Props> = {
     variant: { control: { type: "inline-radio" } },
     size: { control: { type: "inline-radio" }, options: availableSizes },
     radius: { control: { type: "inline-radio" } },
-    ghostHover: {
-      control: { type: "inline-radio" },
-      if: { arg: "variant", eq: "ghost" },
-    },
     children: {
       table: { disable: true },
     },
@@ -73,6 +70,51 @@ export const Default: Story = {
           button
         </Button>
       </ButtonGroup>
+    );
+  },
+};
+
+export const Varinats: Story = {
+  render: ({ selection, ...rest }) => {
+    const [selected, setSelected] = useState<number | undefined>(undefined);
+    useEffect(() => {
+      if (!selection) {
+        setSelected(undefined);
+      }
+    }, [selection]);
+
+    const clickHandler = (index: number) => {
+      if (selection) {
+        setSelected(index);
+      }
+    };
+    return (
+      <>
+        {availableButtonVariants.map((variant, index) => {
+          return (
+            <ButtonGroup {...rest} key={variant} variant={variant}>
+              <Button
+                selected={selected === 0 + 3 * index}
+                onClick={() => clickHandler(0 + 3 * index)}
+              >
+                {variant}
+              </Button>
+              <Button
+                selected={selected === 1 + 3 * index}
+                onClick={() => clickHandler(1 + 3 * index)}
+              >
+                {variant}
+              </Button>
+              <Button
+                selected={selected === 2 + 3 * index}
+                onClick={() => clickHandler(2 + 3 * index)}
+              >
+                {variant}
+              </Button>
+            </ButtonGroup>
+          );
+        })}
+      </>
     );
   },
 };
@@ -124,7 +166,7 @@ export const Icon: Story = {
     await expect(buttons).toHaveLength(3);
     await expect(buttons[0]).toHaveClass("btn-icon-md");
   },
-  render: ({ radius = "pill", selection, ...rest }) => {
+  render: ({ variant = "solid", radius = "pill", selection, ...rest }) => {
     const [selected, setSelected] = useState<number | undefined>(undefined);
     useEffect(() => {
       if (!selection) {
@@ -138,7 +180,7 @@ export const Icon: Story = {
       }
     };
     return (
-      <ButtonGroup radius={radius} {...rest}>
+      <ButtonGroup variant={variant} radius={radius} {...rest}>
         <Tooltip isLabel>
           <TooltipTrigger>
             <Button
@@ -183,9 +225,9 @@ export const SplitButton: Story = {
     const buttons = canvas.getAllByRole("button");
     await expect(buttons).toHaveLength(2);
   },
-  render: ({ radius = "pill", ...rest }) => {
+  render: ({ variant = "solid", radius = "pill", ...rest }) => {
     return (
-      <ButtonGroup {...rest} radius={radius}>
+      <ButtonGroup {...rest} variant={variant} radius={radius}>
         <Button className="">Button</Button>
         <Tooltip isLabel>
           <TooltipContent>Like</TooltipContent>

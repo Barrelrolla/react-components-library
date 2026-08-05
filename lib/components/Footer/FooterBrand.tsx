@@ -7,7 +7,6 @@ import { useFooterContext } from "./FooterContext";
 const defaultType = "a";
 export function FooterBrand<E extends ElementType>({
   as,
-  underlined = false,
   hoverUnderline = false,
   className,
   children,
@@ -22,7 +21,6 @@ export function FooterBrand<E extends ElementType>({
     <Anchor
       as={as || defaultType}
       color={resolvedColor}
-      underlined={underlined}
       hoverUnderline={hoverUnderline}
       className={classes}
       {...rest}

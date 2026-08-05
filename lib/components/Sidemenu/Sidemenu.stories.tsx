@@ -65,13 +65,64 @@ export const Default: Story = {
   },
 };
 
+export const Fill: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const sidemenu = canvas.getByText("Sidemenu");
+    await expect(sidemenu, "renders").toBeTruthy();
+  },
+  render: () => {
+    const [activeIndex, setActiveIndex] = useState(5);
+    const items = Array.from(
+      { length: 12 },
+      (_item, index) => "Item" + ` ${index + 1}`,
+    );
+    return (
+      <div className="w-full sm:w-auto">
+        <Sidemenu
+          fillOnSelect
+          className="max-h-100"
+          initialActiveIndex={activeIndex}
+          onActiveIndexChange={setActiveIndex}
+        >
+          <SidemenuSection>
+            <SidemenuItem index={0}>Sidemenu</SidemenuItem>
+            {items.map((item, index) => {
+              return (
+                <SidemenuItem key={item} index={index + 1}>
+                  {item}
+                </SidemenuItem>
+              );
+            })}
+          </SidemenuSection>
+        </Sidemenu>
+      </div>
+    );
+  },
+  args: {
+    children: "sidemenu",
+  },
+};
+
 export const Colors: Story = {
   render: ({ ...rest }) => {
+    const items = Array.from(
+      { length: 3 },
+      (_item, index) => "Item" + ` ${index + 1}`,
+    );
     return (
       <>
         {availableColors.map((color) => (
-          <Sidemenu color={color} key={color} {...rest}>
-            {color}
+          <Sidemenu {...rest} key={color} color={color} className="max-h-100">
+            <SidemenuSection>
+              {items.map((item, index) => {
+                return (
+                  <SidemenuItem key={item} index={index}>
+                    {item}
+                  </SidemenuItem>
+                );
+              })}
+            </SidemenuSection>
           </Sidemenu>
         ))}
       </>

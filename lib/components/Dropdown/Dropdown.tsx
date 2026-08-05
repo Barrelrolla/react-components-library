@@ -47,12 +47,12 @@ export type DropdownProps = {
 } & PropsWithChildren;
 
 export function DropdownComponent({
-  color = "main",
+  color = "primary",
   isOpen,
   onOpenChange,
   strategy = "absolute",
   placement = "bottom",
-  hasArrow = true,
+  hasArrow = false,
   requireClick = true,
   mobileSheet = true,
   returnFocus = null,
@@ -94,7 +94,7 @@ export function DropdownComponent({
     onOpenChange: setOpen,
     placement: isNested ? "right-start" : placement,
     middleware: [
-      offset(isNested ? 4 : 10),
+      offset(isNested ? 0 : 4),
       flip(),
       shift({ padding: 8 }),
       arrow({ element: arrowRef }),
@@ -203,6 +203,7 @@ export function DropdownComponent({
 
 export function Dropdown(props: DropdownProps) {
   const parentId = useFloatingParentNodeId();
+  const context = useDropdownContext();
 
   if (parentId === null) {
     return (
@@ -212,5 +213,5 @@ export function Dropdown(props: DropdownProps) {
     );
   }
 
-  return <DropdownComponent {...props} />;
+  return <DropdownComponent {...props} color={context?.color} />;
 }

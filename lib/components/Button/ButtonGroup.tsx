@@ -1,7 +1,7 @@
 import { Children, ComponentProps, Fragment } from "react";
 import { ColorType, SizeType } from "@/types";
-import { cssColorPropsReversed } from "@/util";
-import { ButtonRadius, ButtonVariant, GhostHover } from "./buttonTypes";
+import { cssColorProps } from "@/util";
+import { ButtonRadius, ButtonVariant } from "./buttonTypes";
 import { ButtonGroupContextProvider } from "./ButtonGroupContext";
 import { getButtonGroupClasses } from "./getButtonGroupClasses";
 import { Divider } from "../Divider";
@@ -12,8 +12,6 @@ export type ButtonGroupProps = {
   color?: ColorType;
   /** Variant of the buttons. */
   variant?: ButtonVariant;
-  /** Hover variant of the ghost buttons. */
-  ghostHover?: GhostHover;
   /** If the buttons should retain focus state after being pressed. */
   retainFocusState?: boolean;
   /** Size of the buttons. */
@@ -34,10 +32,9 @@ export type ButtonGroupProps = {
 } & ComponentProps<"div">;
 
 export function ButtonGroup({
-  color = "main",
+  color = "primary",
   variant = "outline",
   radius,
-  ghostHover,
   retainFocusState = false,
   size,
   divider = true,
@@ -63,7 +60,6 @@ export function ButtonGroup({
       value={{
         color,
         variant,
-        ghostHover,
         retainFocusState,
         radius,
         size,
@@ -73,18 +69,14 @@ export function ButtonGroup({
     >
       <FloatingDelayGroup delay={{ open: tooltipDelay, close: 0 }}>
         <div className={wrapperClasses}>
-          <div
-            className={groupClasses}
-            style={cssColorPropsReversed(color)}
-            {...rest}
-          >
+          <div className={groupClasses} style={cssColorProps(color)} {...rest}>
             {Children.map(children, (child, index) => {
               return (
                 <Fragment key={index}>
                   {divider && index !== 0 && (
                     <Divider
                       color={color}
-                      useBgColor={variant === "solid"}
+                      useBgColor={variant !== "solid"}
                       vertical={!vertical}
                       className={dividerClassName}
                     />

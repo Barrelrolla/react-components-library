@@ -32,7 +32,6 @@ import {
   FooterLinksSection,
   FooterLinksTitle,
 } from "../Footer";
-import { cssColorProps } from "@/util";
 import { availableColors, availableResponsiveSizes } from "@/types";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
 import {
@@ -150,10 +149,7 @@ export const PageDemo: Story = {
     }, [storySelect]);
 
     return (
-      <div
-        style={color ? cssColorProps(color) : {}}
-        className="bg-(--bg-color) pt-14 md:pt-0"
-      >
+      <div className="bg-main pt-14 md:pt-0">
         <Navbar color={color} {...rest}>
           <NavbarToggle />
           <NavbarBrand href="#">
@@ -163,6 +159,7 @@ export const PageDemo: Story = {
           <NavbarCollapse>
             <NavbarMenu>
               <Dropdown
+                color={color}
                 returnFocus={false}
                 strategy="fixed"
                 mobileSheetPlacement="left"
@@ -193,7 +190,7 @@ export const PageDemo: Story = {
                 </NavbarLink>
               ))}
             </NavbarMenu>
-            <Tooltip strategy="fixed" placement="left">
+            <Tooltip color={color} strategy="fixed" placement="left">
               <TooltipTrigger>
                 <Button
                   color={color}
@@ -208,7 +205,7 @@ export const PageDemo: Story = {
             </Tooltip>
           </NavbarCollapse>
         </Navbar>
-        <Hero color={color}>
+        <Hero>
           <HeroSection className="max-md:h-1/2 md:w-1/2">
             <HeroTitle>Lorem ipsum dolor sit amet.</HeroTitle>
             <HeroText>
@@ -257,7 +254,7 @@ export const PageDemo: Story = {
           <FooterFullSection>
             <span>copyright stuff</span>
             <FooterIconsContainer>
-              <Tooltip isLabel>
+              <Tooltip isLabel color={color}>
                 <TooltipTrigger>
                   <FooterLink href="#">
                     <PiGithubLogo aria-label="github logo" />
@@ -265,7 +262,7 @@ export const PageDemo: Story = {
                 </TooltipTrigger>
                 <TooltipContent>Github</TooltipContent>
               </Tooltip>
-              <Tooltip isLabel>
+              <Tooltip isLabel color={color}>
                 <TooltipTrigger>
                   <FooterLink href="#">
                     <PiLinkedinLogo aria-label="linkedin logo" />

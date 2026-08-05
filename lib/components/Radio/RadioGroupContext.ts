@@ -4,7 +4,6 @@ import { ColorType } from "@/types";
 export type RadioGroupContextType = {
   name: string;
   color?: ColorType;
-  labelColor?: ColorType;
   size?: number;
 } | null;
 

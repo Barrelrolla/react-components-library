@@ -116,3 +116,40 @@ export const Nested: Story = {
     );
   },
 };
+
+export const Colors: Story = {
+  render: ({ ...rest }) => {
+    return (
+      <>
+        {availableColors.map((color) => {
+          return (
+            <Dropdown key={color} color={color} {...rest}>
+              <DropdownTrigger>
+                <Button color={color}>{color}</Button>
+              </DropdownTrigger>
+              <DropdownContent>
+                <DropdownTitle>menu</DropdownTitle>
+                <DropdownList>
+                  <DropdownListItem>item 1</DropdownListItem>
+                  <Dropdown>
+                    <DropdownTrigger>
+                      <DropdownListItem>item 2</DropdownListItem>
+                    </DropdownTrigger>
+                    <DropdownContent>
+                      <DropdownList>
+                        <DropdownListItem>nested</DropdownListItem>
+                      </DropdownList>
+                    </DropdownContent>
+                  </Dropdown>
+                </DropdownList>
+              </DropdownContent>
+            </Dropdown>
+          );
+        })}
+      </>
+    );
+  },
+  argTypes: {
+    color: { table: { disable: true } },
+  },
+};

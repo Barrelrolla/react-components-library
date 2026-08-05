@@ -4,7 +4,7 @@ import {
   FloatingFocusManager,
   FloatingPortal,
 } from "@floating-ui/react";
-import { cssColorProps } from "@/util";
+import { cssColorPropsReversed } from "@/util";
 import { useIsMobile } from "@/hooks";
 import { MobileSheetPlacementType } from "@/types";
 import { FloatingElementContextType } from "./FloatingElementContextType";
@@ -57,10 +57,10 @@ export function FloatingElementContent({
     return null;
   }
 
-  const colorProps = cssColorProps(context.color);
+  const colorProps = cssColorPropsReversed(context.color);
 
   const styles = {
-    ...cssColorProps(context.color),
+    ...colorProps,
     ...context.transitionStyles,
     ...style,
   };
@@ -87,12 +87,13 @@ export function FloatingElementContent({
               : context.data.floatingStyles
           }
         >
-          <div
-            style={styles}
-            className={twMerge("floating-container-inner", classes)}
-            ref={innerRef}
-            {...rest}
-          >
+          <div {...rest} style={styles}>
+            <div
+              className={twMerge("floating-container-inner", classes)}
+              ref={innerRef}
+            >
+              {children}
+            </div>
             {(!floatingContext || floatingContext.hasArrow) &&
               context.hasArrow &&
               (!isMobile || !context.mobileSheet) && (
@@ -109,7 +110,6 @@ export function FloatingElementContent({
                   width={floatingContext?.arrowSize ?? 14}
                 />
               )}
-            {children}
           </div>
         </div>
       </FloatingFocusManager>

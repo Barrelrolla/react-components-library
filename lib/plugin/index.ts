@@ -48,6 +48,8 @@ const plugin: TailwindPlugin = createPlugin(
     addUtilities(utilities);
     addVariant("selected", "&[data-selected='true']");
     addVariant("error", "&[data-error='true']");
+    addVariant("expanded", "&[aria-expanded='true']");
+    addVariant("can-expand", "&[aria-expanded]");
   },
   {
     theme: {
@@ -55,10 +57,8 @@ const plugin: TailwindPlugin = createPlugin(
         colors: {
           main: "var(--color-main)",
           "main-content": "var(--color-main-content)",
-          light: "var(--color-light)",
-          "light-content": "var(--color-light-content)",
-          dark: "var(--color-dark)",
-          "dark-content": "var(--color-dark-content)",
+          neutral: "var(--color-neutral)",
+          "neutral-content": "var(--color-neutral-content)",
           primary: "var(--color-primary)",
           "primary-content": "var(--color-primary-content)",
           secondary: "var(--color-secondary)",

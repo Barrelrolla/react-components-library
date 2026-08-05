@@ -106,17 +106,17 @@ export const WithLinkGroups: Story = {
         <FooterFullSection>
           <span>copyright stuff</span>
           <FooterIconsContainer>
-            <Tooltip isLabel color="dark">
+            <Tooltip isLabel color={color || "neutral"}>
               <TooltipTrigger>
-                <Anchor color={color || 'main'} href="#">
+                <Anchor color={color || "main"} href="#">
                   <PiGithubLogo aria-label="github logo" />
                 </Anchor>
               </TooltipTrigger>
               <TooltipContent>Github</TooltipContent>
             </Tooltip>
-            <Tooltip isLabel color="dark">
+            <Tooltip isLabel color={color || "neutral"}>
               <TooltipTrigger>
-                <Anchor color={color || 'main'} href="#">
+                <Anchor color={color || "main"} href="#">
                   <PiLinkedinLogo aria-label="linkedin logo" />
                 </Anchor>
               </TooltipTrigger>

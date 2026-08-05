@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".dropdown": {
-    "@apply text-(--fg-color) bg-(--bg-color) p-2 border-(--fg-color)/(--border-transparency) focus-visible:outline-none":
+    "@apply text-main-content bg-main p-2 border-main-content/(--border-transparency) focus-visible:outline-none":
       {},
   },
   ".dropdown-border": {
@@ -31,7 +31,7 @@ export default <Record<string, CssInJs>>{
     "@apply flex flex-col gap-1 sm:block": {},
   },
   ".dropdown-link": {
-    "@apply flex w-full items-center gap-2 not-disabled:hover:bg-(--fg-color)/5 not-disabled:focus-visible:bg-(--fg-color)/5 not-disabled:active:bg-(--fg-color)/10 selected:bg-(--fg-color) selected:text-(--bg-color) selected:hover:bg-(--fg-color)/40 selected:focus-visible:bg-(--fg-color)/90 selected:active:bg-(--fg-color)/80 p-3 sm:p-1 disabled:text-(--fg-color)/50 hover:disabled:text-(--fg-color)/50 disabled:cursor-not-allowed":
+    "@apply flex w-full items-center gap-2 bg-main text-main-content hover:bg-(--bg-color)/15 focus-visible:bg-(--bg-color)/15 active:bg-(--bg-color)/20 expanded:bg-(--bg-color)/15 expanded:hover:text-(--bg-color) expanded:text-(--bg-color) expanded:hover:bg-(--bg-color)/20 expanded:focus-visible:bg-(--bg-color)/20 p-3 sm:p-1 disabled:pointer-events-none disabled:text-main-content/50 rounded-inputs":
       {},
   },
 };

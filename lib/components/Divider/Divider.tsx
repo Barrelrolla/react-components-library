@@ -18,7 +18,7 @@ export type DividerProps = {
 
 export function Divider({
   color = "main",
-  useBgColor = false,
+  useBgColor = true,
   width = 1,
   responsiveAt,
   vertical = false,

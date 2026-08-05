@@ -32,3 +32,19 @@ export const Default: Story = {
     );
   },
 };
+
+export const Colors: Story = {
+  render: ({ ...rest }) => {
+    return (
+      <div className="flex w-full flex-col">
+        {availableColors.map((color) => {
+          return (
+            <div key={color} className="h-5 w-full">
+              <Divider color={color} {...rest} />
+            </div>
+          );
+        })}
+      </div>
+    );
+  },
+};

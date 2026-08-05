@@ -6,12 +6,12 @@ import {
   useId,
   useRef,
 } from "react";
-import { ColorType } from "@/types";
-import { cssColorProps } from "@/util";
 import { getInputClasses } from "./getInputClasses";
 import { Button } from "../Button";
 import { useRepeatAction } from "@/hooks/useRepeatAction";
 import { MinusIcon, PlusIcon } from "@/icons";
+import { ColorType } from "@/types";
+import { cssColorProps } from "@/util";
 
 type InputFieldType = "input" | "textarea";
 
@@ -19,10 +19,6 @@ export type InputProps<T extends InputFieldType = "input"> = {
   as?: T;
   /** Color of the texts and outlines. */
   color?: ColorType;
-  /** If `true` will apply a bg fill on the input in the same color */
-  bgFill?: boolean;
-  /** Will apply bg fill on error if it is validating. */
-  bgFillOnError?: boolean;
   /** Type of the input. Only text based types are accepted. */
   type?: "text" | "email" | "password" | "tel" | "url" | "number";
   /** Label of the input. */
@@ -35,8 +31,6 @@ export type InputProps<T extends InputFieldType = "input"> = {
   disabled?: boolean;
   /** Error message that will appear under the input. */
   error?: string;
-  /** If `true` will apply appropriate colors on error. */
-  validating?: boolean;
   /** Used to apply classes to the label. */
   labelClassName?: string;
   /** Used to apply classes to the error message. */
@@ -54,11 +48,8 @@ export type InputProps<T extends InputFieldType = "input"> = {
 /** The input has a wrapper, which holds the label and the error message. Also a container, which holds the input itself, and any icons that should appear inside the input field. */
 export function Input<T extends InputFieldType = "input">({
   as,
-  color = "main",
+  color = "primary",
   type,
-  validating = true,
-  bgFill = false,
-  bgFillOnError = false,
   disabled = false,
   label,
   startIcon,
@@ -75,8 +66,6 @@ export function Input<T extends InputFieldType = "input">({
 }: InputProps<T>) {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const resolvedColor: ColorType = validating && error ? "error" : color;
-  const resolvedFill = validating && error && bgFillOnError ? true : bgFill;
   const {
     classes,
     labelClasses,
@@ -84,10 +73,8 @@ export function Input<T extends InputFieldType = "input">({
     wrapperClasses,
     inputContainerClasses,
   } = getInputClasses({
-    bgFill: resolvedFill,
     startIcon: startIcon != undefined,
     endIcon: endIcon != undefined,
-    validating,
     className,
     wrapperClassName,
     labelClassName,
@@ -132,6 +119,7 @@ export function Input<T extends InputFieldType = "input">({
 
   const stepUpProps = useRepeatAction(stepUp);
   const stepDownProps = useRepeatAction(stepDown);
+  const resolvedColor = error ? "error" : color;
 
   return (
     <div
@@ -166,9 +154,9 @@ export function Input<T extends InputFieldType = "input">({
           {type === "number" && (
             <>
               <Button
+                className="text-inherit"
                 disabled={disabled}
                 tabIndex={-1}
-                color={color}
                 variant="ghost"
                 size="xs"
                 {...stepDownProps}
@@ -176,9 +164,9 @@ export function Input<T extends InputFieldType = "input">({
                 <MinusIcon strokeWidth={16} />
               </Button>
               <Button
+                className="text-inherit"
                 disabled={disabled}
                 tabIndex={-1}
-                color={color}
                 variant="ghost"
                 size="xs"
                 {...stepUpProps}

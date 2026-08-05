@@ -15,7 +15,6 @@ const meta: Meta<typeof Input> = {
   ),
   argTypes: {
     color: { control: { type: "select" }, options: availableColors },
-    bgFillOnError: { control: { type: "boolean" } },
     startIcon: { table: { disable: true } },
     endIcon: { table: { disable: true } },
     labelClassName: { table: { disable: true } },
@@ -113,87 +112,19 @@ export const Colors: Story = {
   render: (props) => {
     return (
       <>
-        <Input
-          validating={false}
-          label="main"
-          id="main"
-          color="main"
-          {...props}
-        />
-        <Input
-          validating={false}
-          label="light"
-          id="light"
-          color="light"
-          {...props}
-        />
-        <Input
-          validating={false}
-          label="dark"
-          id="dark"
-          color="dark"
-          {...props}
-        />
-        <Input
-          validating={false}
-          label="primary"
-          id="primary"
-          color="primary"
-          {...props}
-        />
-        <Input
-          validating={false}
-          label="secondary"
-          id="secondary"
-          color="secondary"
-          {...props}
-        />
-        <Input
-          validating={false}
-          label="accent"
-          id="accent"
-          color="accent"
-          {...props}
-        />
-        <Input
-          validating={false}
-          label="info"
-          id="info"
-          color="info"
-          {...props}
-        />
-        <Input
-          validating={false}
-          label="success"
-          id="success"
-          color="success"
-          {...props}
-        />
-        <Input
-          validating={false}
-          label="warning"
-          id="warning"
-          color="warning"
-          {...props}
-        />
-        <Input
-          validating={false}
-          label="error"
-          id="error"
-          color="error"
-          {...props}
-        />
+        {availableColors.map((color) => {
+          return <Input {...props} key={color} label={color} color={color} />;
+        })}
       </>
     );
   },
   args: {
     startIcon: <PiMagnifyingGlass />,
     placeholder: "Input",
-    error: "Error",
   },
   argTypes: {
-    color: { if: { arg: "false", eq: true } },
-    id: { if: { arg: "false", eq: true } },
-    label: { if: { arg: "false", eq: true } },
+    color: { table: { disable: true } },
+    id: { table: { disable: true } },
+    label: { table: { disable: true } },
   },
 };

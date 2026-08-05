@@ -1,51 +1,51 @@
 import { useFloatingTree, useListItem, useMergeRefs } from "@floating-ui/react";
-import { ElementType, MouseEvent, FocusEvent } from "react";
+import { ElementType, MouseEvent, FocusEvent, Ref } from "react";
 import { useDropdownContext } from "./DropdownContext";
-import { Anchor, AnchorProps } from "../Anchor";
 import { getDropdownLinkClasses } from "./getDropdownClasses";
 import { CaretDownIcon } from "@/icons";
 import { getTextFromChildren } from "@/util/helpers";
+import { PolymorphicProps } from "@/types";
+import { cssColorProps } from "@/util";
 
 const defaultType = "button";
 export function DropdownListItem<E extends ElementType = typeof defaultType>({
   as,
-  color,
   ref,
+  color,
   disabled,
-  showCaret,
+  style,
   children,
   className,
   ...rest
-}: { disabled?: boolean; showCaret?: boolean } & AnchorProps<E>) {
+}: { disabled?: boolean } & PolymorphicProps<E>) {
   const context = useDropdownContext();
   if (!context) {
     throw new Error("Please use the Dropdown List Item only inside a Dropdown");
   }
 
+  const resolvedColor = color || context.color || "primary";
   const label = getTextFromChildren(children);
   const item = useListItem({ label: disabled ? null : label });
   const tree = useFloatingTree();
   const isActive = item.index === context.activeIndex;
   const { classes } = getDropdownLinkClasses({ className });
+  const Element = as || defaultType;
 
   return (
-    <li>
-      <Anchor
-        as={as || defaultType}
-        color={color ?? "main"}
+    <li className="has-disabled:cursor-not-allowed">
+      <Element
+        style={{ ...cssColorProps(resolvedColor), ...style }}
+        ref={useMergeRefs([item.ref, ref as Ref<HTMLElement | null>])}
         role="menuitem"
-        ref={useMergeRefs([item.ref, ref])}
         disabled={disabled}
         tabIndex={isActive ? 0 : -1}
         className={classes}
-        underlined={false}
-        hoverUnderline={false}
         {...context?.interactions.getItemProps({
-          onClick(event: MouseEvent<HTMLButtonElement>) {
+          onClick(event: MouseEvent<HTMLElement>) {
             rest.onClick?.(event);
             tree?.events.emit("click");
           },
-          onFocus(event: FocusEvent<HTMLButtonElement>) {
+          onFocus(event: FocusEvent<HTMLElement>) {
             rest.onFocus?.(event);
             context.setHasFocusInside(true);
           },
@@ -53,8 +53,8 @@ export function DropdownListItem<E extends ElementType = typeof defaultType>({
         {...rest}
       >
         {children}
-        {showCaret && <CaretDownIcon className="inline -rotate-90" />}
-      </Anchor>
+        <CaretDownIcon className="group-can-expand:inline hidden -rotate-90" />
+      </Element>
     </li>
   );
 }

@@ -17,10 +17,6 @@ const meta: Meta<typeof DarkModeSelector> = {
     variant: { control: { type: "inline-radio" } },
     size: { control: { type: "inline-radio" }, options: availableSizes },
     radius: { control: { type: "inline-radio" } },
-    ghostHover: {
-      control: { type: "inline-radio" },
-      if: { arg: "variant", eq: "ghost" },
-    },
     dividerClassName: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
     className: { table: { disable: true } },

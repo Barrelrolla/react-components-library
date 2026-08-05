@@ -1,3 +1,12 @@
-export type ButtonVariant = "solid" | "outline" | "ghost";
-export type GhostHover = "none" | "fill" | "outline" | "contrasting" | "muted";
+export type ButtonVariant =
+  "solid" | "outline" | "ghost" | "solid-ghost" | "outline-ghost";
+
+export const availableButtonVariants: ButtonVariant[] = [
+  "solid",
+  "outline",
+  "ghost",
+  "solid-ghost",
+  "outline-ghost",
+];
+
 export type ButtonRadius = "default" | "none" | "pill";

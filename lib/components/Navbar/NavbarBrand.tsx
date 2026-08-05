@@ -9,7 +9,7 @@ export type NavbarBrandProps<E extends ElementType> = {} & AnchorProps<E>;
 /** Use inside a Navbar component to add a Brand name and logo. */
 export function NavbarBrand<E extends ElementType = typeof defaultType>({
   as,
-  underlined = false,
+  color = "main",
   hoverUnderline = false,
   children,
   className,
@@ -23,15 +23,14 @@ export function NavbarBrand<E extends ElementType = typeof defaultType>({
     onClick?.(event);
   }
 
-  const { classes, resolvedColor } = getNavbarBrandClasses({
+  const { classes } = getNavbarBrandClasses({
     className,
-    navbarContext,
   });
+
   return (
     <Anchor
       as={as || defaultType}
-      color={resolvedColor}
-      underlined={underlined}
+      color={color}
       hoverUnderline={hoverUnderline}
       className={classes}
       onClick={clickHandler}

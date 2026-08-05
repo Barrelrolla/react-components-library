@@ -17,7 +17,6 @@ const meta: Meta<typeof HamburgerButton> = {
     isOpen: { table: { disable: true } },
     color: { control: { type: "select" }, options: availableColors },
     variant: { table: { disable: true } },
-    ghostHover: { table: { disable: true } },
     size: { control: { type: "inline-radio" }, options: availableSizes },
     radius: { table: { disable: true } },
     selected: { table: { disable: true } },

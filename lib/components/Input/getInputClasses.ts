@@ -1,20 +1,16 @@
 import { twMerge } from "tailwind-merge";
 
 export function getInputClasses({
-  bgFill,
   startIcon,
   endIcon,
-  validating,
   className,
   wrapperClassName,
   labelClassName,
   errorClassName,
   inputContainerClassName,
 }: {
-  bgFill?: boolean;
   startIcon: boolean;
   endIcon: boolean;
-  validating: boolean;
   className?: string;
   wrapperClassName?: string;
   labelClassName?: string;
@@ -33,8 +29,6 @@ export function getInputClasses({
     errorClasses: twMerge("input-field-error", errorClassName),
     inputContainerClasses: twMerge(
       "input-field-container",
-      validating && "has-error:outline-1",
-      bgFill && "muted-bg",
       inputContainerClassName,
     ),
   };

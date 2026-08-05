@@ -15,14 +15,19 @@ export default <Record<string, CssInJs>>{
       "var(--dropdown-animation-duration, var(--default-transition-duration));",
   },
 
+  ".bg-main-hover": {
+    backgroundColor:
+      "oklch(from var(--color-main) calc(l - var(--mod-highlight)) c h);",
+  },
+
+  ".bg-main-active": {
+    backgroundColor:
+      "oklch(from var(--color-main) calc(l - var(--mod-highlight) * 1.5) c h);",
+  },
+
   ".bg-hover": {
     backgroundColor: "oklch(from var(--bg-color) calc(l + var(--h)) c h);",
     outlineColor: "oklch(from var(--bg-color) calc(l + var(--h)) c h);",
-  },
-
-  ".bg-hover-neg": {
-    backgroundColor: "oklch(from var(--bg-color) calc(l - var(--h)) c h);",
-    outlineColor: "oklch(from var(--bg-color) calc(l - var(--h)) c h);",
   },
 
   ".bg-hover-inverse": {
@@ -34,12 +39,6 @@ export default <Record<string, CssInJs>>{
     backgroundColor:
       "oklch(from var(--bg-color) calc(l + var(--h) * 1.5) c h);",
     outlineColor: "oklch(from var(--bg-color) calc(l + var(--h) * 1.5) c h);",
-  },
-
-  ".bg-active-neg": {
-    backgroundColor:
-      "oklch(from var(--bg-color) calc(l - var(--h) * 1.5) c h);",
-    outlineColor: "oklch(from var(--bg-color) calc(l - var(--h) * 1.5) c h);",
   },
 
   ".bg-active-inverse": {
@@ -70,7 +69,7 @@ export default <Record<string, CssInJs>>{
 
   ".muted-bg": {
     backgroundColor:
-      "color-mix(in oklab, var(--fg-color) 15%, var(--color-main))",
+      "color-mix(in oklab, var(--fg-color, var(--color-main-content)) 15%, var(--color-main))",
   },
 
   ".no-spinners": {
@@ -99,7 +98,7 @@ export default <Record<string, CssInJs>>{
   },
 
   ".glass": {
-    "@apply bg-(--bg-color)/40 backdrop-blur-xs": {},
+    "@apply bg-main/40 backdrop-blur-xs": {},
   },
 
   ".rounded-inputs": {
@@ -115,27 +114,27 @@ export default <Record<string, CssInJs>>{
   },
 
   ".border-inputs": {
-    "@apply border-(length:--border-inputs) border-(--fg-color)/(--border-transparency)":
+    "@apply border-(length:--border-inputs) border-main-content/(--border-transparency)":
       {},
   },
 
   ".border-containers": {
-    "@apply border-(length:--border-containers) border-(--fg-color)/(--border-transparency)":
+    "@apply border-(length:--border-containers) border-(--color-main-content)/(--border-transparency)":
       {},
   },
 
   ".border-navigation": {
-    "@apply border-(length:--border-navigation) border-(--fg-color)/(--border-transparency)":
+    "@apply border-(length:--border-navigation) border-main-content/(--border-transparency)":
       {},
   },
 
   ".navigation-decoration-top": {
-    "@apply rounded-t-(--radius-navigation) border-t-(length:--border-navigation) border-(--fg-color)/(--border-transparency)":
+    "@apply rounded-t-(--radius-navigation) border-t-(length:--border-navigation) border-main-content/(--border-transparency)":
       {},
   },
 
   ".navigation-decoration-bottom": {
-    "@apply rounded-b-(--radius-navigation) border-b-(length:--border-navigation) border-(--fg-color)/(--border-transparency)":
+    "@apply rounded-b-(--radius-navigation) border-b-(length:--border-navigation) border-main-content/(--border-transparency)":
       {},
   },
 

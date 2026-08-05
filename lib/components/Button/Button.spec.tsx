@@ -93,17 +93,8 @@ describe("Button", () => {
     const { container } = render(<Button color="secondary">test</Button>);
     const button = container.querySelector("button");
     expect(button).toHaveStyle({
-      "--bg-color": "var(--color-secondary-content)",
-      "--fg-color": "var(--color-secondary)",
+      "--bg-color": "var(--color-secondary)",
+      "--fg-color": "var(--color-secondary-content)",
     });
-  });
-
-  it("renders ghost variant with the selected ghost hover class", () => {
-    const { container } = render(
-      <Button variant="ghost" ghostHover="fill">
-        ghost
-      </Button>,
-    );
-    expect(container.querySelector("button")).toHaveClass("btn-ghost-fill");
   });
 });
