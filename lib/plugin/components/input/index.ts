@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".input-field-wrapper": {
-    "@apply relative cursor-text ": {},
+    "@apply relative cursor-text w-46": {},
   },
   ".input-field": {
     "@apply text-main-content focus:outline-none w-full py-1 px-2 disabled:cursor-not-allowed disabled:select-none rounded-inputs disabled:opacity-70 no-spinners resize-none":

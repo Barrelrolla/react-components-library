@@ -124,7 +124,11 @@ export const BigText: Story = {
               <Button onClick={() => setIsOpen(false)}>close</Button>
             </CardActions>
           </Card>
-          <Dialog isOpen={isOpenSecond} setIsOpen={setIsOpenSecond}>
+          <Dialog
+            hasInitialFocus={false}
+            isOpen={isOpenSecond}
+            setIsOpen={setIsOpenSecond}
+          >
             <Card
               className="max-h-[calc(100vh-2.2rem)] overflow-x-auto"
               size="xl"

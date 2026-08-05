@@ -2,6 +2,7 @@ import {
   ComponentPropsWithoutRef,
   CSSProperties,
   ReactNode,
+  Ref,
   useCallback,
   useId,
   useRef,
@@ -12,11 +13,13 @@ import { useRepeatAction } from "@/hooks/useRepeatAction";
 import { MinusIcon, PlusIcon } from "@/icons";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
+import { useMergeRefs } from "@floating-ui/react";
 
 type InputFieldType = "input" | "textarea";
 
 export type InputProps<T extends InputFieldType = "input"> = {
   as?: T;
+  ref?: Ref<HTMLInputElement | HTMLTextAreaElement>;
   /** Color of the texts and outlines. */
   color?: ColorType;
   /** Type of the input. Only text based types are accepted. */
@@ -48,6 +51,7 @@ export type InputProps<T extends InputFieldType = "input"> = {
 /** The input has a wrapper, which holds the label and the error message. Also a container, which holds the input itself, and any icons that should appear inside the input field. */
 export function Input<T extends InputFieldType = "input">({
   as,
+  ref,
   color = "primary",
   type,
   disabled = false,
@@ -65,6 +69,7 @@ export function Input<T extends InputFieldType = "input">({
   ...rest
 }: InputProps<T>) {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const mergedRefs = useMergeRefs([inputRef, ref]);
 
   const {
     classes,
@@ -85,6 +90,7 @@ export function Input<T extends InputFieldType = "input">({
   const id = useId();
 
   const elementProps = {
+    ref: mergedRefs,
     className: classes,
     disabled,
     id,
@@ -109,7 +115,14 @@ export function Input<T extends InputFieldType = "input">({
         direction === "up" ? currentValue + step : currentValue - step;
       newValue = Math.max(min, Math.min(max, newValue));
 
-      input.value = newValue.toString();
+      const nativeSetter = Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        "value",
+      )?.set;
+
+      nativeSetter?.call(input, newValue.toString());
+
+      input.dispatchEvent(new Event("input", { bubbles: true }));
     },
     [disabled],
   );
@@ -141,7 +154,6 @@ export function Input<T extends InputFieldType = "input">({
             />
           ) : (
             <input
-              ref={inputRef}
               {...(elementProps as ComponentPropsWithoutRef<"input">)}
               {...(rest as ComponentPropsWithoutRef<"input">)}
             />
@@ -154,6 +166,7 @@ export function Input<T extends InputFieldType = "input">({
           {type === "number" && (
             <>
               <Button
+                type="button"
                 className="text-inherit"
                 disabled={disabled}
                 tabIndex={-1}
@@ -164,6 +177,7 @@ export function Input<T extends InputFieldType = "input">({
                 <MinusIcon strokeWidth={16} />
               </Button>
               <Button
+                type="button"
                 className="text-inherit"
                 disabled={disabled}
                 tabIndex={-1}

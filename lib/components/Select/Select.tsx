@@ -2,6 +2,7 @@ import {
   ComponentProps,
   CSSProperties,
   ReactNode,
+  Ref,
   useCallback,
   useId,
   useRef,
@@ -29,12 +30,15 @@ import { cssColorPropsReversed } from "@/util";
 import { CaretDownIcon } from "@/icons";
 
 export type SelectProps = {
+  inputRef?: Ref<HTMLInputElement>;
   color?: ColorType;
   label?: string;
   name?: string;
   error?: string;
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
+  initialSelectedValue?: string;
+  onSelectedValueChange: (value: string | undefined) => void;
   placeholder?: string;
   strategy?: "absolute" | "fixed";
   placement?: Placement;
@@ -48,12 +52,15 @@ export type SelectProps = {
 } & ComponentProps<"button">;
 
 export function Select({
+  inputRef,
   color = "primary",
   label,
   name,
   error,
   isOpen,
   onOpenChange,
+  initialSelectedValue,
+  onSelectedValueChange,
   placeholder = "Select...",
   strategy = "absolute",
   placement = "bottom",
@@ -72,7 +79,7 @@ export function Select({
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedItem, setSelectedItem] = useState<ReactNode | null>(null);
   const [selectedValue, setSelectedValue] = useState<string | undefined>(
-    undefined,
+    initialSelectedValue,
   );
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
 
@@ -139,6 +146,11 @@ export function Select({
       wrapperClassName,
     });
 
+  function setSelected(value: string | undefined) {
+    setSelectedValue(value);
+    onSelectedValueChange(value);
+  }
+
   const id = useId();
   const resolvedColor = error ? "error" : color;
 
@@ -154,7 +166,7 @@ export function Select({
         selectedIndex,
         setSelectedIndex,
         selectedValue,
-        setSelectedValue,
+        setSelectedValue: setSelected,
         selectedItem,
         setSelectedItem,
         interactions,
@@ -194,7 +206,12 @@ export function Select({
           <CaretDownIcon className={caretClasses} />
         </button>
         {name && (
-          <input name={name} type="hidden" value={selectedValue ?? ""} />
+          <input
+            ref={inputRef}
+            name={name}
+            type="hidden"
+            value={selectedValue ?? ""}
+          />
         )}
         {children}
         {error && (

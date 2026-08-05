@@ -20,11 +20,13 @@ export type DialogProps = {
   setIsOpen: (open: boolean) => void;
   /** Classes for the backdrop. */
   backdropClassName?: string;
-  initialStyles?: CSSProperties
+  initialStyles?: CSSProperties;
+  hasInitialFocus?: boolean;
 } & ComponentProps<"dialog">;
 
 /** The dialog component has no visuals. You should add your own visual as children. You can use a card or a form or whatever you'd like */
 export function Dialog({
+  hasInitialFocus = true,
   isOpen,
   setIsOpen,
   backdropClassName,
@@ -40,8 +42,15 @@ export function Dialog({
     onOpenChange: setIsOpen,
   });
 
-  const resolvedInitialStyles = initialStyles || { opacity: 0, scale: 0.5, translate: '0 -100px' };
-  const { isMounted, styles } = useTransitionStyles(context, { initial: resolvedInitialStyles, duration: 150 });
+  const resolvedInitialStyles = initialStyles || {
+    opacity: 0,
+    scale: 0.5,
+    translate: "0 -100px",
+  };
+  const { isMounted, styles } = useTransitionStyles(context, {
+    initial: resolvedInitialStyles,
+    duration: 150,
+  });
   const click = useClick(context);
   const dismiss = useDismiss(context, { outsidePressEvent: "click" });
   const role = useRole(context);
@@ -64,7 +73,10 @@ export function Dialog({
 
   return createPortal(
     <FloatingOverlay lockScroll className={backdropClasses}>
-      <FloatingFocusManager context={context}>
+      <FloatingFocusManager
+        context={context}
+        initialFocus={hasInitialFocus ? 0 : -1}
+      >
         <dialog
           className={classes}
           ref={refs.setFloating}
