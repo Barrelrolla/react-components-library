@@ -1,0 +1,1 @@
+const t=["main","neutral","primary","secondary","accent","info","success","warning","error"],a=["xs","sm","md","lg","xl"],e=["sm","md","lg","xl"],s=["bottom","bottom-end","bottom-start","left","left-end","left-start","right","right-end","right-start","top","top-end","top-start"],o=["top","bottom","left","right"];export{t as a,a as b,e as c,s as d,o as e};
