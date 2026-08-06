@@ -1,11 +1,8 @@
 import { ComponentProps } from "react";
 import { useDropdownContext } from "./DropdownContext";
-import { getDropdownContentClasses } from "./getDropdownClasses";
 import { FloatingElementContent } from "../Floating";
 
-export function DropdownContent({
-  ...rest
-}: ComponentProps<"div">) {
+export function DropdownContent({ ...rest }: ComponentProps<"div">) {
   const context = useDropdownContext();
   if (!context) {
     throw new Error(
@@ -13,5 +10,5 @@ export function DropdownContent({
     );
   }
 
-  return <FloatingElementContent context={context} getClasses={getDropdownContentClasses} {...rest} />
+  return <FloatingElementContent context={context} {...rest} />;
 }

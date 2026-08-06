@@ -3,7 +3,6 @@ import { useSelectContext } from "./SelectContext";
 import { FloatingElementContent } from "../Floating";
 import { FloatingList } from "@floating-ui/react";
 import { useIsMobile } from "@/hooks";
-import { getDropdownContentClasses } from "../Dropdown/getDropdownClasses";
 
 export function SelectContent({
   style,
@@ -23,12 +22,7 @@ export function SelectContent({
   const styles = { ...style, ...{ width: isMobile ? undefined : width } };
 
   return (
-    <FloatingElementContent
-      context={context}
-      getClasses={getDropdownContentClasses}
-      style={styles}
-      {...rest}
-    >
+    <FloatingElementContent context={context} style={styles} {...rest}>
       <FloatingList elementsRef={context.listRef} labelsRef={context.labelsRef}>
         <ul>{children}</ul>
       </FloatingList>

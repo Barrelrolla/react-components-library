@@ -14,7 +14,7 @@ export type CardProps = {
   containerStyle?: CSSProperties;
   /** Classes for the card itself. */
   className?: string;
-};
+} & ComponentProps<"div">;
 
 export function Card({
   horizontal = false,
@@ -25,7 +25,7 @@ export function Card({
   className,
   children,
   ...rest
-}: CardProps & ComponentProps<"div">) {
+}: CardProps) {
   const { classes, containerClasses } = getCardClasses({
     horizontal,
     size,

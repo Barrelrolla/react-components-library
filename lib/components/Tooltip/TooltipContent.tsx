@@ -14,6 +14,7 @@ export function TooltipContent({ ...rest }: ComponentProps<"div">) {
   return (
     <FloatingElementContent
       context={context}
+      coloredArror
       getClasses={getTooltipClasses}
       {...rest}
     />

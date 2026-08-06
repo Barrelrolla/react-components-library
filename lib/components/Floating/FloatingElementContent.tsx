@@ -9,22 +9,27 @@ import { useIsMobile } from "@/hooks";
 import { MobileSheetPlacementType } from "@/types";
 import { FloatingElementContextType } from "./FloatingElementContextType";
 import { useFloatingContext } from "@/contexts/FloatingContext";
+import { getFloatingContentClasses } from "./getFloatinigClasses";
+import { CloseIcon } from "@/icons";
+import { Button } from "../Button";
 
 export type FloatingContentProps = {
   context: FloatingElementContextType;
-  getClasses: ({
+  coloredArror?: boolean;
+  getClasses?: ({
     mobileSheet,
     mobileSheetPlacement,
     className,
   }: {
     mobileSheet: boolean;
-    mobileSheetPlacement: MobileSheetPlacementType;
+    mobileSheetPlacement?: MobileSheetPlacementType;
     className?: string;
   }) => { classes: string };
 };
 
 export function FloatingElementContent({
   context,
+  coloredArror = false,
   getClasses,
   className,
   style,
@@ -33,11 +38,18 @@ export function FloatingElementContent({
 }: FloatingContentProps & ComponentProps<"div">) {
   const isMobile = useIsMobile();
   const floatingContext = useFloatingContext();
-  const { classes } = getClasses({
-    mobileSheet: context.mobileSheet,
-    mobileSheetPlacement: context.mobileSheetPlacement || "bottom",
-    className,
-  });
+  const { mobileSheet, mobileSheetPlacement } = context;
+  const { classes } = getClasses
+    ? getClasses({
+        mobileSheet,
+        mobileSheetPlacement,
+        className,
+      })
+    : getFloatingContentClasses({
+        mobileSheet,
+        mobileSheetPlacement,
+        className,
+      });
 
   const innerRef = useCallback((node: HTMLDivElement | null) => {
     if (!node) return;
@@ -57,6 +69,7 @@ export function FloatingElementContent({
   }
 
   const colorProps = cssColorPropsReversed(context.color);
+  const mainColorProps = cssColorPropsReversed("main");
 
   const styles = {
     ...colorProps,
@@ -87,15 +100,28 @@ export function FloatingElementContent({
           }
         >
           <div style={styles} className={classes} {...rest}>
+            {isMobile && mobileSheet && (
+              <Button
+                type="button"
+                onClick={() => {
+                  context.setIsOpen(false);
+                }}
+                color="main"
+                variant="ghost"
+                size="sm"
+                className="absolute top-1 right-1"
+                startIcon={<CloseIcon strokeWidth={2} className="size-6" />}
+              />
+            )}
             <div className="floating-container-inner" ref={innerRef}>
               {children}
             </div>
             {(!floatingContext || floatingContext.hasArrow) &&
               context.hasArrow &&
-              (!isMobile || !context.mobileSheet) && (
+              (!isMobile || !mobileSheet) && (
                 <FloatingArrow
                   className="arrow"
-                  style={colorProps}
+                  style={coloredArror ? colorProps : mainColorProps}
                   ref={context.arrowRef}
                   context={context.data.context}
                   height={

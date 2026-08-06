@@ -84,15 +84,6 @@ export default <Record<string, CssInJs>>{
     },
   },
 
-  ".floating-container": {
-    "@apply absolute z-(--z-floats) focus-visible:outline-none": {},
-  },
-
-  ".floating-container-inner": {
-    "@apply max-h-3/4 sm:max-h-80 overflow-auto scrollbar-thin scrollbar-thumb-(--color-main-content) scrollbar-track-main":
-      {},
-  },
-
   ".arrow": {
     "@apply fill-(--fg-color)": {},
   },

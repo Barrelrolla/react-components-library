@@ -18,6 +18,7 @@ import hero from "./components/hero";
 import navbar from "./components/navbar";
 import input from "./components/input";
 import dialog from "./components/dialog";
+import floating from "./components/floating";
 import utilities from "./utilities/utilities";
 
 type TailwindPlugin = ReturnType<typeof createPlugin>;
@@ -44,6 +45,7 @@ const plugin: TailwindPlugin = createPlugin(
       hero,
       input,
       navbar,
+      floating,
     ]);
     addUtilities(utilities);
     addVariant("selected", "&[data-selected='true']");

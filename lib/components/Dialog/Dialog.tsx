@@ -1,4 +1,4 @@
-import { ComponentProps, CSSProperties, useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   FloatingFocusManager,
@@ -12,28 +12,32 @@ import {
   useTransitionStyles,
 } from "@floating-ui/react";
 import { getDialogClasses } from "./getDialogClasses";
+import { Card, CardProps } from "../Card";
+import { Button } from "../Button";
+import { CloseIcon } from "@/icons";
 
 export type DialogProps = {
   /** You should keep track of the open state of the dialog, it doesn't do it by itself, save it in a state? */
   isOpen: boolean;
   /** This function will be called when the dialog wants to close.  */
   setIsOpen: (open: boolean) => void;
+  showClose?: boolean;
   /** Classes for the backdrop. */
   backdropClassName?: string;
   initialStyles?: CSSProperties;
   hasInitialFocus?: boolean;
-} & ComponentProps<"dialog">;
+} & CardProps;
 
 /** The dialog component has no visuals. You should add your own visual as children. You can use a card or a form or whatever you'd like */
 export function Dialog({
   hasInitialFocus = true,
   isOpen,
   setIsOpen,
+  showClose = true,
   backdropClassName,
   initialStyles,
   className,
   children,
-  style,
   ...props
 }: DialogProps) {
   const [container, setContainer] = useState<HTMLElement | null>(null);
@@ -58,8 +62,7 @@ export function Dialog({
   const labelId = useId();
   const descriptionId = useId();
 
-  const { classes, backdropClasses } = getDialogClasses({
-    className,
+  const { classes, scrollArea, backdropClasses } = getDialogClasses({
     backdropClassName,
   });
 
@@ -78,16 +81,32 @@ export function Dialog({
         initialFocus={hasInitialFocus ? 0 : -1}
       >
         <dialog
-          className={classes}
           ref={refs.setFloating}
           aria-labelledby={labelId}
           aria-describedby={descriptionId}
+          className={classes}
           open
-          style={{ ...style, ...styles }}
+          style={styles}
           {...getFloatingProps()}
-          {...props}
         >
-          {children}
+          <Card className={className} {...props}>
+            <div className={scrollArea}>
+              {showClose && (
+                <Button
+                  type="button"
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                  color="main"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute top-2 right-2"
+                  startIcon={<CloseIcon strokeWidth={2} className="size-6" />}
+                />
+              )}
+              {children}
+            </div>
+          </Card>
         </dialog>
       </FloatingFocusManager>
     </FloatingOverlay>,

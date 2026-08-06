@@ -1,14 +1,14 @@
 import { twMerge } from "tailwind-merge";
 
 export function getDialogClasses({
-  className,
   backdropClassName,
 }: {
   className?: string;
   backdropClassName?: string;
 }) {
   return {
-    classes: twMerge("dialog", className),
+    classes: "dialog",
+    scrollArea: "max-h-[calc(100vh-2.2rem)] overflow-x-auto scrollbar-thin",
     backdropClasses: twMerge("dialog-backdrop", backdropClassName),
   };
 }
