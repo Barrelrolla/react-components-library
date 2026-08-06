@@ -38,7 +38,7 @@ export type SelectProps = {
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
   initialSelectedValue?: string;
-  onSelectedValueChange: (value: string | undefined) => void;
+  onSelectedValueChange?: (value: string | undefined) => void;
   placeholder?: string;
   strategy?: "absolute" | "fixed";
   placement?: Placement;
