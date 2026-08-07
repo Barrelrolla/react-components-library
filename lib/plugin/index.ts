@@ -1,5 +1,6 @@
 import createPlugin from "tailwindcss/plugin";
 import base from "./base/base";
+import autocomplete from "./components/autocomplete";
 import skeleton from "./components/skeleton";
 import select from "./components/select";
 import sidemenu from "./components/sidemenu";
@@ -27,7 +28,8 @@ const plugin: TailwindPlugin = createPlugin(
   ({ addBase, addComponents, addUtilities, addVariant }) => {
     addBase(base);
     addComponents([
-      skeleton,
+      autocomplete,
+skeleton,
       select,
       sidemenu,
       dropdown,

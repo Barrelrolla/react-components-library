@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
 import { ColorType } from "@/types";
-import { cssColorPropsReversed } from "@/util";
+import { cssColorProps } from "@/util";
 import { getBadgeClasses } from "./getBadgeClasses";
 import { BadgeVariant } from "./badgeTypes";
 
@@ -21,7 +21,7 @@ export function Badge({
 
   return (
     <div
-      style={{ ...cssColorPropsReversed(color), ...style }}
+      style={{ ...cssColorProps(color), ...style }}
       className={classes}
       {...rest}
     />

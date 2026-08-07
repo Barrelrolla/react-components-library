@@ -26,7 +26,7 @@ import {
 } from "@floating-ui/react";
 import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles";
 import { getSelectClasses } from "./getSelectClasses";
-import { cssColorPropsReversed } from "@/util";
+import { cssColorProps } from "@/util";
 import { CaretDownIcon } from "@/icons";
 
 export type SelectProps = {
@@ -185,7 +185,7 @@ export function Select({
     >
       <div
         className={wrapperClasses}
-        style={{ ...cssColorPropsReversed(resolvedColor), ...wrapperStyle }}
+        style={{ ...cssColorProps(resolvedColor), ...wrapperStyle }}
       >
         {label && (
           <label htmlFor={id} className={labelClasses}>

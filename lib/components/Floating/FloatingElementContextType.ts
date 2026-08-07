@@ -3,6 +3,8 @@ import { UseFloatingReturn, UseInteractionsReturn } from "@floating-ui/react";
 import { CSSProperties, Ref } from "react";
 
 export interface FloatingElementContextType {
+  scrollContainerRef?: Ref<HTMLDivElement | null>;
+  scrollListStyle?: CSSProperties;
   color: ColorType;
   useFocus: boolean;
   returnFocus: boolean | null;

@@ -29,7 +29,7 @@ export function getSelectClasses({
     ),
     wrapperClasses: twMerge(
       "select-wrapper",
-      (isOpen || isMounted) && "text-(--fg-color)",
+      (isOpen || isMounted) && "text-(--bg-color)",
       wrapperClassName,
     ),
   };

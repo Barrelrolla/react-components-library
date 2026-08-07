@@ -3,6 +3,7 @@ import {
   FloatingArrow,
   FloatingFocusManager,
   FloatingPortal,
+  useMergeRefs,
 } from "@floating-ui/react";
 import { cssColorPropsReversed } from "@/util";
 import { useIsMobile } from "@/hooks";
@@ -64,6 +65,8 @@ export function FloatingElementContent({
     }, 60);
   }, []);
 
+  const mergedInnerRefs = useMergeRefs([innerRef, context.scrollContainerRef]);
+
   if (!context.isOpen) {
     return null;
   }
@@ -77,6 +80,7 @@ export function FloatingElementContent({
     ...style,
   };
 
+  const innerClasses = `floating-container-inner ${mobileSheet ? "max-h-3/4 sm:max-h-80" : "max-h-80"}`;
   return (
     <FloatingPortal>
       <FloatingFocusManager
@@ -113,8 +117,8 @@ export function FloatingElementContent({
                 startIcon={<CloseIcon strokeWidth={2} className="size-6" />}
               />
             )}
-            <div className="floating-container-inner" ref={innerRef}>
-              {children}
+            <div className={innerClasses} ref={mergedInnerRefs}>
+              <div style={context.scrollListStyle}>{children}</div>
             </div>
             {(!floatingContext || floatingContext.hasArrow) &&
               context.hasArrow &&

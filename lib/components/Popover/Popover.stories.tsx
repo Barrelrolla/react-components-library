@@ -114,36 +114,3 @@ export const Nested: Story = {
     placement: { table: { disable: true } },
   },
 };
-
-export const Colors: Story = {
-  render: ({ ...rest }) => {
-    return (
-      <>
-        {availableColors.map((color) => (
-          <Popover color={color} key={color} {...rest}>
-            <PopoverTrigger>
-              <Button color={color}>{color}</Button>
-            </PopoverTrigger>
-            <PopoverContent aria-label="test">
-              <Card color={color}>
-                <CardTitle>Lorem, ipsum dolor.</CardTitle>
-                <CardText>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-                  id!
-                </CardText>
-                <CardActions>
-                  <Button>Learn more</Button>
-                </CardActions>
-              </Card>
-            </PopoverContent>
-          </Popover>
-        ))}
-      </>
-    );
-  },
-  args: {},
-  argTypes: {
-    color: { table: { disable: true } },
-    children: { table: { disable: true } },
-  },
-};

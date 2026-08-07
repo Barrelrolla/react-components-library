@@ -69,7 +69,7 @@ export default <Record<string, CssInJs>>{
 
   ".muted-bg": {
     backgroundColor:
-      "color-mix(in oklab, var(--fg-color, var(--color-main-content)) 15%, var(--color-main))",
+      "color-mix(in oklab, var(--bg-color, var(--color-main-content)) 15%, var(--color-main))",
   },
 
   ".no-spinners": {

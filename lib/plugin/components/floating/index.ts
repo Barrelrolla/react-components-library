@@ -10,7 +10,7 @@ export default <Record<string, CssInJs>>{
   },
 
   ".floating-container-inner": {
-    "@apply max-h-3/4 sm:max-h-80 overflow-auto scrollbar-thin scrollbar-thumb-(--color-main-content) scrollbar-track-main relative":
+    "@apply overflow-auto scrollbar-thin scrollbar-thumb-(--color-main-content) scrollbar-track-main relative":
       {},
   },
   ".floating-border": {
