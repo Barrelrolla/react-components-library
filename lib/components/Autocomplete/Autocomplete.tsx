@@ -6,7 +6,8 @@ import {
   useRef,
   useState,
 } from "react";
-import { AutocompleteContextProvider } from "./AutocompleteContext";
+import Fuse from "fuse.js";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import {
   autoUpdate,
   flip,
@@ -20,8 +21,7 @@ import {
   useRole,
 } from "@floating-ui/react";
 import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles";
-import Fuse from "fuse.js";
-import { useVirtualizer } from "@tanstack/react-virtual";
+import { AutocompleteContextProvider } from "./AutocompleteContext";
 
 export type AutocompleteProps = {
   query: string;
@@ -30,11 +30,13 @@ export type AutocompleteProps = {
   strategy?: "absolute" | "fixed";
   placement?: Placement;
   disabled?: boolean;
+  onSelectItem?: (activeItem: string) => void;
 } & PropsWithChildren;
 
 export function Autocomplete({
   query,
   setQuery,
+  onSelectItem,
   items,
   strategy = "absolute",
   placement = "bottom",
@@ -46,46 +48,42 @@ export function Autocomplete({
   const lastEmptyQueryRef = useRef<string | null>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  // 1. Memoize Fuse instance (only when raw items change)
   const fuse = useMemo(() => {
-    lastEmptyQueryRef.current = null; // Reset cache if data changes
+    lastEmptyQueryRef.current = null;
     return new Fuse(items, {
       keys: ["label"],
       threshold: 0.3,
-      ignoreLocation: true, // Speeds up string matching matrix
+      ignoreLocation: true,
     });
   }, [items]);
 
-  // 2. Optimized Filter Logic
   const filteredItems = useMemo(() => {
     const q = deferredQuery.trim().toLowerCase();
 
-    // Reset empty cache if user backspaces/clears input
     if (lastEmptyQueryRef.current && !q.startsWith(lastEmptyQueryRef.current)) {
       lastEmptyQueryRef.current = null;
     }
 
-    // SHORT-CIRCUIT: If a shorter prefix already returned 0 results,
-    // stop immediately without running Fuse!
     if (lastEmptyQueryRef.current && q.startsWith(lastEmptyQueryRef.current)) {
-      return ["no results"];
+      return [];
     }
 
-    if (!q) return items;
+    if (!q) {
+      setIsOpen(false);
+      return items;
+    }
 
-    // Run search
     const results = fuse.search(q).map((res) => res.item);
 
-    // If search returns 0 results, mark this query prefix as empty
     if (results.length === 0) {
       lastEmptyQueryRef.current = q;
-      return ["no results"];
+      return [];
     }
 
+    setIsOpen(true);
     return results;
   }, [fuse, deferredQuery, items]);
 
-  // 3. Pass filtered array length to the virtualizer
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const rowVirtualizer = useVirtualizer({
@@ -130,16 +128,15 @@ export function Autocomplete({
       }
     },
     virtual: true,
-    loop: true,
+    loop: false,
   });
   const interactions = useInteractions([role, dismiss, listNav]);
   const { isMounted, transitionStyles } = useFloatingTransitionStyles(data);
 
-  console.log({
-    scrollElem: scrollContainerRef.current,
-    clientHeight: scrollContainerRef.current?.clientHeight,
-    count: filteredItems.length,
-  });
+  function defaultOnSelectItem(activeItem: string) {
+    setQuery(activeItem);
+    setIsOpen(false);
+  }
 
   return (
     <AutocompleteContextProvider
@@ -147,7 +144,7 @@ export function Autocomplete({
         rowVirtualizer,
         filteredItems,
         query,
-        setQuery,
+        onSelectItem: onSelectItem ?? defaultOnSelectItem,
         useFocus: false,
         color: "main",
         isOpen: disabled ? false : isMounted,

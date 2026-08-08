@@ -9,7 +9,7 @@ export interface AutocompleteContextType extends FloatingElementContextType {
   setActiveIndex: (index: number | null) => void;
   filteredItems: string[];
   query: string;
-  setQuery: (query: string) => void;
+  onSelectItem: (activeItem: string) => void;
 }
 
 const AutocompleteContext = createContext<AutocompleteContextType | null>(null);

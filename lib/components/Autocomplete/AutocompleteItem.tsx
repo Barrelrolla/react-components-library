@@ -31,8 +31,7 @@ export function AutocompleteItem({
       {...context.interactions.getItemProps({
         active: isSelected,
         onClick() {
-          context.setQuery(itemName);
-          context.setIsOpen(false);
+          context.onSelectItem(itemName);
         },
       })}
       {...rest}

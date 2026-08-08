@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, KeyboardEvent } from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import { Slot } from "../Slot/Slot";
 
@@ -10,27 +10,20 @@ export function AutocompleteTrigger({ ...rest }: { children: ReactElement }) {
     );
   }
 
-  const { setQuery, setIsOpen, activeIndex, filteredItems } = context;
+  const { activeIndex, filteredItems, onSelectItem } = context;
 
   return (
     <Slot
       {...context.interactions.getReferenceProps({
-        onChange(e: React.ChangeEvent<HTMLInputElement>) {
-          setQuery(e.target.value);
-          setIsOpen(true);
-        },
-        onFocus() {
-          setIsOpen(true);
-        },
-        onKeyDown(e: React.KeyboardEvent) {
+        onKeyDown(e: KeyboardEvent) {
           if (
             e.key === "Enter" &&
             activeIndex !== null &&
             filteredItems[activeIndex]
           ) {
             e.preventDefault();
-            setQuery(filteredItems[activeIndex]);
-            setIsOpen(false);
+            const selected = filteredItems[activeIndex];
+            onSelectItem(selected);
           }
         },
       })}

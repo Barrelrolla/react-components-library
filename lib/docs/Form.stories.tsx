@@ -159,7 +159,7 @@ export const Form: Story = {
           </form>
         </Card>
         <Card>
-          <CardTitle>enterred data</CardTitle>
+          <CardTitle>entered data</CardTitle>
           <CardText className="flex flex-col" data-testid="result">
             {Object.keys(data).map((entry) => {
               return <span key={entry}>{`${entry}: ${data[entry]}`}</span>;

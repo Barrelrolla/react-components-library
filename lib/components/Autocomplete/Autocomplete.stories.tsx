@@ -36,7 +36,10 @@ export const Default: Story = {
       <>
         <Autocomplete {...rest} query={query} setQuery={setQuery} items={it}>
           <AutocompleteTrigger>
-            <Input placeholder="search" />
+            <Input
+              placeholder="search"
+              onChange={(e) => setQuery(e.target.value)}
+            />
           </AutocompleteTrigger>
           <AutocompleteContent />
         </Autocomplete>
