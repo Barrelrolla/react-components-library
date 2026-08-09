@@ -8,7 +8,7 @@ import {
   useRef,
 } from "react";
 import { getInputClasses } from "./getInputClasses";
-import { Button } from "../Button";
+import { Button, useButtonGroupContext } from "../Button";
 import { useRepeatAction } from "@/hooks/useRepeatAction";
 import { MinusIcon, PlusIcon } from "@/icons";
 import { ColorType } from "@/types";
@@ -52,7 +52,8 @@ export type InputProps<T extends InputFieldType = "input"> = {
 export function Input<T extends InputFieldType = "input">({
   as,
   ref,
-  color = "primary",
+  id,
+  color,
   type,
   disabled = false,
   label,
@@ -70,6 +71,7 @@ export function Input<T extends InputFieldType = "input">({
 }: InputProps<T>) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const mergedRefs = useMergeRefs([inputRef, ref]);
+  const group = useButtonGroupContext();
 
   const {
     classes,
@@ -77,7 +79,9 @@ export function Input<T extends InputFieldType = "input">({
     errorClasses,
     wrapperClasses,
     inputContainerClasses,
+    resolvedColor,
   } = getInputClasses({
+    color: error ? "error" : color,
     startIcon: startIcon != undefined,
     endIcon: endIcon != undefined,
     className,
@@ -85,18 +89,20 @@ export function Input<T extends InputFieldType = "input">({
     labelClassName,
     errorClassName,
     inputContainerClassName,
+    group,
   });
 
-  const id = useId();
+  const generatedId = useId();
+  const resolvedId = id ?? generatedId;
 
   const elementProps = {
     ref: mergedRefs,
     className: classes,
     disabled,
-    id,
+    id: resolvedId,
     type,
     "data-error": error ? true : undefined,
-    "aria-describedby": id && error ? `${id}-error` : undefined,
+    "aria-describedby": error ? `${resolvedId}-error` : undefined,
   };
 
   const handleStep = useCallback(
@@ -132,14 +138,13 @@ export function Input<T extends InputFieldType = "input">({
 
   const stepUpProps = useRepeatAction(stepUp);
   const stepDownProps = useRepeatAction(stepDown);
-  const resolvedColor = error ? "error" : color;
 
   return (
     <div
       className={wrapperClasses}
       style={{ ...cssColorProps(resolvedColor), ...wrapperStyle }}
     >
-      <label className={labelClasses} htmlFor={id}>
+      <label className={labelClasses} htmlFor={resolvedId}>
         <span className="block">{label}</span>
         <div className={inputContainerClasses} style={inputContainerStyle}>
           {startIcon && (
@@ -192,7 +197,7 @@ export function Input<T extends InputFieldType = "input">({
         </div>
       </label>
       {error && (
-        <p id={`${id}-error`} className={errorClasses}>
+        <p id={`${resolvedId}-error`} className={errorClasses}>
           {error}
         </p>
       )}

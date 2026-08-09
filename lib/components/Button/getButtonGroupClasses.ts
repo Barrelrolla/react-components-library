@@ -28,3 +28,20 @@ export function getButtonGroupClasses({
     wrapperClasses: twMerge("flex", wrapperClassName),
   };
 }
+
+export function getGropuedItemClasses(vertical: boolean, radius: ButtonRadius) {
+  return twMerge(
+    !vertical &&
+      radius === "default" &&
+      "group-first:rounded-l-(--radius-inputs) group-last:rounded-r-(--radius-inputs)",
+    !vertical &&
+      radius === "pill" &&
+      "group-first:rounded-l-full group-last:rounded-r-full",
+    vertical &&
+      radius === "default" &&
+      "group-first:rounded-t-(--radius-inputs) group-last:rounded-b-(--radius-inputs)",
+    vertical &&
+      radius === "pill" &&
+      "group-first:rounded-t-full group-last:rounded-b-full",
+  );
+}

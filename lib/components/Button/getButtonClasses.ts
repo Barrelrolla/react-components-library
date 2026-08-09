@@ -3,6 +3,7 @@ import { ThemeContextType } from "@/contexts";
 import { ColorType, SizeType } from "@/types";
 import { ButtonGroupContextType } from "./ButtonGroupContext";
 import { ButtonRadius, ButtonVariant } from "./buttonTypes";
+import { getGropuedItemClasses } from "./getButtonGroupClasses";
 
 export function getButtonClasses({
   variant,
@@ -29,12 +30,11 @@ export function getButtonClasses({
   className?: string;
   wrapperClassName?: string;
   theme: ThemeContextType;
-  group: ButtonGroupContextType;
+  group?: ButtonGroupContextType;
 }) {
   const resolvedVariant = group?.variant || variant || "solid";
   const resolvedColor = color || group?.color || "primary";
-  const resolvedRadius = radius || "default";
-  const groupRadius = group?.radius || "default";
+  const resolvedRadius = group?.radius || radius || "default";
   const inGroup = group !== null;
   const shouldRetainFocus =
     (!theme || theme.buttonsRetainFocus) &&
@@ -59,26 +59,14 @@ export function getButtonClasses({
       inGroup && "btn-grouped",
       !inGroup && resolvedRadius === "default" && "rounded-inputs",
       !inGroup && resolvedRadius === "pill" && "rounded-full",
+      inGroup && group?.vertical && "w-full",
       inGroup &&
-        !group.vertical &&
-        groupRadius === "default" &&
-        "group-first:rounded-l-(--radius-inputs) group-last:rounded-r-(--radius-inputs)",
-      inGroup &&
-        !group.vertical &&
-        groupRadius === "pill" &&
-        "group-first:rounded-l-full group-last:rounded-r-full",
-      inGroup &&
-        group.vertical &&
-        groupRadius === "default" &&
-        "group-first:rounded-t-(--radius-inputs) group-last:rounded-b-(--radius-inputs)",
-      inGroup &&
-        group.vertical &&
-        groupRadius === "pill" &&
-        "group-first:rounded-t-full group-last:rounded-b-full",
+        getGropuedItemClasses(group?.vertical ?? false, resolvedRadius),
       className,
     ),
     wrapperClasses: twMerge(
       "group",
+      inGroup && group?.vertical && "w-full",
       disabled && "cursor-not-allowed",
       wrapperClassName,
     ),

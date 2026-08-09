@@ -1,12 +1,20 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
-import { PiBookmark, PiHeart, PiThumbsUp } from "react-icons/pi";
+import {
+  PiBookmark,
+  PiHeart,
+  PiMagnifyingGlass,
+  PiThumbsUp,
+} from "react-icons/pi";
 import { Button } from "./Button";
 import { ButtonGroup } from "./ButtonGroup";
 import { availableColors, availableSizes } from "@/types";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip";
 import { availableButtonVariants } from "./buttonTypes";
+import { Input } from "../Input";
+import { Select, SelectOption } from "../Select";
+import { SelectContent } from "../Select/SelectContent";
 
 type Props = ComponentProps<typeof ButtonGroup> & {
   selection: boolean;
@@ -235,6 +243,42 @@ export const SplitButton: Story = {
             <Button aria-label="like" startIcon={<PiHeart />} />
           </TooltipTrigger>
         </Tooltip>
+      </ButtonGroup>
+    );
+  },
+  args: { selection: undefined },
+  argTypes: { selection: { table: { disable: true } } },
+};
+
+export const WithInput: Story = {
+  render: ({ variant = "solid", ...rest }) => {
+    return (
+      <ButtonGroup {...rest} variant={variant}>
+        <Input placeholder="Type to search" />
+        <Tooltip>
+          <TooltipContent>Search</TooltipContent>
+          <TooltipTrigger>
+            <Button aria-label="search" startIcon={<PiMagnifyingGlass />} />
+          </TooltipTrigger>
+        </Tooltip>
+      </ButtonGroup>
+    );
+  },
+  args: { selection: undefined },
+  argTypes: { selection: { table: { disable: true } } },
+};
+
+export const WithSelect: Story = {
+  render: ({ variant = "solid", ...rest }) => {
+    return (
+      <ButtonGroup {...rest} variant={variant}>
+        <Input placeholder="Choose file name" />
+        <Select placeholder="Select file type">
+          <SelectContent>
+            <SelectOption value="dosuments">Documents</SelectOption>
+            <SelectOption value="images">Images</SelectOption>
+          </SelectContent>
+        </Select>
       </ButtonGroup>
     );
   },

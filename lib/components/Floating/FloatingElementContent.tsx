@@ -118,9 +118,7 @@ export function FloatingElementContent({
               />
             )}
             <div className={innerClasses} ref={mergedInnerRefs}>
-              <div style={{ ...context.scrollListStyle, minHeight: "24px" }}>
-                {children}
-              </div>
+              <div style={{ ...context.scrollListStyle }}>{children}</div>
             </div>
             {(!floatingContext || floatingContext.hasArrow) &&
               context.hasArrow &&

@@ -163,6 +163,7 @@ export function Autocomplete({
           height: `${rowVirtualizer.getTotalSize()}px`,
           width: "100%",
           position: "relative",
+          minHeight: "24px",
         },
       }}
     >

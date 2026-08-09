@@ -28,6 +28,7 @@ import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles
 import { getSelectClasses } from "./getSelectClasses";
 import { cssColorProps } from "@/util";
 import { CaretDownIcon } from "@/icons";
+import { useButtonGroupContext } from "../Button";
 
 export type SelectProps = {
   inputRef?: Ref<HTMLInputElement>;
@@ -53,7 +54,8 @@ export type SelectProps = {
 
 export function Select({
   inputRef,
-  color = "primary",
+  id,
+  color,
   label,
   name,
   error,
@@ -136,15 +138,25 @@ export function Select({
     mobileSheetPlacement,
   );
 
-  const { classes, labelClasses, errorClasses, caretClasses, wrapperClasses } =
-    getSelectClasses({
-      isOpen: open,
-      isMounted,
-      className,
-      labelClassName,
-      errorClassName,
-      wrapperClassName,
-    });
+  const group = useButtonGroupContext();
+
+  const {
+    classes,
+    labelClasses,
+    errorClasses,
+    caretClasses,
+    wrapperClasses,
+    resolvedColor,
+  } = getSelectClasses({
+    color: error ? "error" : color,
+    isOpen: open,
+    isMounted,
+    className,
+    labelClassName,
+    errorClassName,
+    wrapperClassName,
+    group,
+  });
 
   function setSelected(value: string | undefined) {
     setSelectedValue(value);
@@ -154,14 +166,14 @@ export function Select({
     }
   }
 
-  const id = useId();
-  const resolvedColor = error ? "error" : color;
+  const generatedId = useId();
+  const resolvedId = id ?? generatedId;
 
   return (
     <SelectContextProvider
       value={{
         useFocus: true,
-        color: color,
+        color: resolvedColor,
         isOpen: disabled ? false : isMounted,
         setIsOpen: disabled ? () => {} : setOpen,
         activeIndex,
@@ -188,19 +200,21 @@ export function Select({
         style={{ ...cssColorProps(resolvedColor), ...wrapperStyle }}
       >
         {label && (
-          <label htmlFor={id} className={labelClasses}>
+          <label htmlFor={resolvedId} className={labelClasses}>
             {label}
           </label>
         )}
         <button
-          id={id}
+          id={resolvedId}
           aria-label={!label ? "Select" : undefined}
           tabIndex={0}
           type="button"
           disabled={disabled}
           className={classes}
           data-error={error ? true : undefined}
-          aria-describedby={id && error ? `${id}-error` : undefined}
+          aria-describedby={
+            resolvedId && error ? `${resolvedId}-error` : undefined
+          }
           ref={context.refs.setReference}
           {...interactions.getReferenceProps()}
           {...rest}
@@ -218,7 +232,7 @@ export function Select({
         )}
         {children}
         {error && (
-          <p id={`${id}-error`} className={errorClasses}>
+          <p id={`${resolvedId}-error`} className={errorClasses}>
             {error}
           </p>
         )}

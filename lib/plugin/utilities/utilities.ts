@@ -72,6 +72,16 @@ export default <Record<string, CssInJs>>{
       "color-mix(in oklab, var(--bg-color, var(--color-main-content)) 15%, var(--color-main))",
   },
 
+  ".muted-main-bg": {
+    backgroundColor:
+      "color-mix(in oklab, var(--color-main-content) 15%, var(--color-main))",
+  },
+
+  ".highlighted-main-bg": {
+    backgroundColor:
+      "color-mix(in oklab, var(--color-main-content) 2.5%, var(--color-main))",
+  },
+
   ".no-spinners": {
     "-moz-appearance": "textfield",
     "&::-webkit-outer-spin-button": {
@@ -106,6 +116,11 @@ export default <Record<string, CssInJs>>{
 
   ".border-inputs": {
     "@apply border-(length:--border-inputs) border-main-content/(--border-transparency)":
+      {},
+  },
+
+  ".ring-inputs": {
+    "@apply ring-(length:--border-inputs) ring-main-content/(--border-transparency)":
       {},
   },
 

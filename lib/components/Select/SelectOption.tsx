@@ -27,7 +27,7 @@ export function SelectOption({
   const { classes } = getSelectOptionClasses({ className });
 
   return (
-    <li>
+    <li className="focus-visible:outline-none">
       <button
         role="menuitem"
         ref={useMergeRefs([item.ref, ref])}
