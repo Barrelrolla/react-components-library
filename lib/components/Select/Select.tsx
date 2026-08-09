@@ -88,6 +88,7 @@ export function Select({
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [selectedItems, setSelectedItems] = useState<ReactNode[]>([]);
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   const controlled = isOpen !== undefined;
   const open = controlled ? isOpen : uncontrolledOpen;
@@ -178,6 +179,7 @@ export function Select({
       setSelectedItems(newItems);
     } else {
       setSelectedValue(value);
+      setSelectedItem(item);
       setOpen(false);
     }
     if (onSelectedValueChange) {
@@ -223,6 +225,12 @@ export function Select({
       <div
         className={wrapperClasses}
         style={{ ...cssColorProps(resolvedColor), ...wrapperStyle }}
+        onFocus={() => {
+          setIsFocused(true);
+        }}
+        onBlur={() => {
+          setIsFocused(false);
+        }}
       >
         <label htmlFor={resolvedId} className={labelClasses}>
           {label}
@@ -266,6 +274,7 @@ export function Select({
             <button
               aria-hidden={true}
               disabled={disabled}
+              tabIndex={-1}
               className="flex h-max w-max flex-1 cursor-pointer disabled:pointer-events-none disabled:opacity-50"
             >
               {!multiple && (selectedItem ?? placeholder)}
@@ -273,15 +282,18 @@ export function Select({
             </button>
             <div className="flex items-center">
               {(selectedValue !== undefined || selectedValues.length > 0) && (
-                <button
-                  className="flex h-4 cursor-pointer items-center overflow-clip"
+                <Button
+                  size="xs"
+                  variant="ghost"
+                  color={isFocused || isMounted ? color : "main"}
+                  className="flex h-4 cursor-pointer items-center overflow-clip p-0"
                   onClick={(e) => {
                     e.stopPropagation();
                     clear();
                   }}
                 >
                   {<XIcon className={"mr-1 inline size-4"} />}
-                </button>
+                </Button>
               )}
               <CaretDownIcon className={caretClasses} />
             </div>
