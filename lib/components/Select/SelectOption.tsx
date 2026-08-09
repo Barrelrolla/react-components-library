@@ -23,11 +23,16 @@ export function SelectOption({
   const label = getTextFromChildren(children);
   const item = useListItem({ label: disabled ? null : label });
   const isActive = item.index === context.activeIndex;
-  const isSelected = item.index === context.selectedIndex;
+  let isSelected = false;
+  if (context.multiple && value) {
+    isSelected = context.selectedValues.includes(value);
+  } else {
+    isSelected = value === context.selectedValue;
+  }
   const { classes } = getSelectOptionClasses({ className });
 
   return (
-    <li className="focus-visible:outline-none">
+    <li className="focus-visible:outline-none has-disabled:cursor-not-allowed">
       <button
         role="menuitem"
         ref={useMergeRefs([item.ref, ref])}
@@ -38,9 +43,7 @@ export function SelectOption({
         {...context?.interactions.getItemProps()}
         {...rest}
         onClick={() => {
-          context.setSelectedIndex(item.index);
-          context.setSelectedValue(value);
-          context.setSelectedItem(children);
+          context.setSelected(value, children);
         }}
       >
         {children}

@@ -38,6 +38,7 @@ export function getSelectClasses({
     labelClasses: twMerge("select-label", labelClassName),
     errorClasses: twMerge("select-error", errorClassName),
     caretClasses: twMerge(
+      "inline",
       isOpen ? "rotate-180" : "rotate-0",
       "transition-transform",
     ),

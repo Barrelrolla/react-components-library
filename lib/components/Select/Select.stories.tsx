@@ -58,6 +58,46 @@ export const Default: Story = {
   args: {},
 };
 
+export const Multiple: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByText("Select...");
+    await expect(select, "renders").toBeTruthy();
+  },
+  render: ({ color, error, disabled, ...rest }) => {
+    return (
+      <Select
+        color={color}
+        error={error}
+        disabled={disabled}
+        name="select"
+        {...rest}
+        multiple
+      >
+        <SelectContent>
+          <SelectGroupTitle>options</SelectGroupTitle>
+          <SelectGroup>
+            <SelectOption value={"one"}>One</SelectOption>
+            <SelectOption disabled value={"two"}>
+              Two
+            </SelectOption>
+            <SelectOption value={"three"}>Three</SelectOption>
+            <SelectOption value={"four"}>Four</SelectOption>
+            <SelectOption value={"five"}>Five</SelectOption>
+            <SelectOption value={"six"}>Six</SelectOption>
+            <SelectOption value={"seven"}>Seven</SelectOption>
+            <SelectOption value={"eight"}>Eight</SelectOption>
+            <SelectOption value={"nine"}>Nine</SelectOption>
+            <SelectOption value={"ten"}>Ten</SelectOption>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    );
+  },
+  argTypes: { multiple: { table: { disable: true } } },
+  args: {},
+};
+
 export const WithLabel: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -86,6 +126,38 @@ export const WithLabel: Story = {
       </Select>
     );
   },
+  args: {},
+};
+
+export const Disabled: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByText("Select...");
+    await expect(select, "renders").toBeTruthy();
+  },
+  render: ({ color, error, ...rest }) => {
+    return (
+      <Select
+        color={color}
+        error={error}
+        disabled
+        label="Select"
+        name="select"
+        {...rest}
+      >
+        <SelectContent>
+          <SelectGroup>
+            <SelectOption value={"one"}>One</SelectOption>
+            <SelectOption disabled value={"two"}>
+              Two
+            </SelectOption>
+            <SelectOption value={"three"}>Three</SelectOption>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    );
+  },
+  argTypes: { disabled: { table: { disable: true } } },
   args: {},
 };
 
