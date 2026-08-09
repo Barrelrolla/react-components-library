@@ -80,7 +80,7 @@ export function FloatingElementContent({
     ...style,
   };
 
-  const innerClasses = `floating-container-inner ${mobileSheet ? "max-h-3/4 sm:max-h-80" : "max-h-80"}`;
+  const innerClasses = `floating-container-inner ${mobileSheet ? "max-h-[calc(3/4*100vh)] sm:max-h-80" : "max-h-80"}`;
   return (
     <FloatingPortal>
       <FloatingFocusManager
