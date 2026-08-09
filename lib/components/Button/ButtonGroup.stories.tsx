@@ -273,7 +273,7 @@ export const WithSelect: Story = {
     return (
       <ButtonGroup {...rest} variant={variant}>
         <Input placeholder="Choose file name" />
-        <Select placeholder="Select file type">
+        <Select placeholder="Select file type" wrapperClassName="w-40">
           <SelectContent>
             <SelectOption value="dosuments">Documents</SelectOption>
             <SelectOption value="images">Images</SelectOption>
