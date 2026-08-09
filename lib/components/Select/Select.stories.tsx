@@ -3,6 +3,8 @@ import { expect, within } from "storybook/test";
 import { Select, SelectOption } from "./index";
 import { availableColors } from "@/types";
 import { SelectContent } from "./SelectContent";
+import { SelectGroup } from "./SelectGroup";
+import { SelectGroupTitle } from "./SelectGroupTitle";
 
 const meta: Meta<typeof Select> = {
   title: "Components/Select",
@@ -41,11 +43,14 @@ export const Default: Story = {
         {...rest}
       >
         <SelectContent>
-          <SelectOption value={"one"}>One</SelectOption>
-          <SelectOption disabled value={"two"}>
-            Two
-          </SelectOption>
-          <SelectOption value={"three"}>Three</SelectOption>
+          <SelectGroupTitle>options</SelectGroupTitle>
+          <SelectGroup>
+            <SelectOption value={"one"}>One</SelectOption>
+            <SelectOption disabled value={"two"}>
+              Two
+            </SelectOption>
+            <SelectOption value={"three"}>Three</SelectOption>
+          </SelectGroup>
         </SelectContent>
       </Select>
     );
@@ -70,11 +75,13 @@ export const WithLabel: Story = {
         {...rest}
       >
         <SelectContent>
-          <SelectOption value={"one"}>One</SelectOption>
-          <SelectOption disabled value={"two"}>
-            Two
-          </SelectOption>
-          <SelectOption value={"three"}>Three</SelectOption>
+          <SelectGroup>
+            <SelectOption value={"one"}>One</SelectOption>
+            <SelectOption disabled value={"two"}>
+              Two
+            </SelectOption>
+            <SelectOption value={"three"}>Three</SelectOption>
+          </SelectGroup>
         </SelectContent>
       </Select>
     );
@@ -89,7 +96,9 @@ export const Colors: Story = {
         {availableColors.map((color) => (
           <Select label={color} color={color} key={color} {...rest}>
             <SelectContent>
-              <SelectOption value={"option"}>option</SelectOption>
+              <SelectGroup>
+                <SelectOption value={"option"}>option</SelectOption>
+              </SelectGroup>
             </SelectContent>
           </Select>
         ))}

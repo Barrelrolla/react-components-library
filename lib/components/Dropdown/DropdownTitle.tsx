@@ -5,11 +5,11 @@ export function DropdownTitle({
   className,
   children,
   ...rest
-}: ComponentProps<"h3">) {
+}: ComponentProps<"div">) {
   const { classes } = getDropdownTitleClasses({ className });
   return (
-    <h3 className={classes} {...rest}>
+    <div className={classes} {...rest}>
       {children}
-    </h3>
+    </div>
   );
 }

@@ -54,3 +54,11 @@ export function getSelectClasses({
 export function getSelectOptionClasses({ className }: { className?: string }) {
   return { classes: twMerge("select-option", className) };
 }
+
+export function getSelectGroupTitleClasses({
+  className,
+}: {
+  className?: string;
+}) {
+  return { classes: twMerge("select-group-title", className) };
+}

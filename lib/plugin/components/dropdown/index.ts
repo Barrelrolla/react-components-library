@@ -2,7 +2,7 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".dropdown-title": {
-    "@apply text-sm p-2 sm:p-1": {},
+    "@apply text-sm p-2 sm:p-0": {},
   },
   ".dropdown-list": {
     "@apply flex flex-col gap-1 sm:block": {},

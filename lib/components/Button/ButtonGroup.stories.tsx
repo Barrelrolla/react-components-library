@@ -15,6 +15,7 @@ import { availableButtonVariants } from "./buttonTypes";
 import { Input } from "../Input";
 import { Select, SelectOption } from "../Select";
 import { SelectContent } from "../Select/SelectContent";
+import { SelectGroup } from "../Select/SelectGroup";
 
 type Props = ComponentProps<typeof ButtonGroup> & {
   selection: boolean;
@@ -275,8 +276,10 @@ export const WithSelect: Story = {
         <Input placeholder="Choose file name" />
         <Select placeholder="Select file type" wrapperClassName="w-40">
           <SelectContent>
-            <SelectOption value="dosuments">Documents</SelectOption>
-            <SelectOption value="images">Images</SelectOption>
+            <SelectGroup>
+              <SelectOption value="dosuments">Documents</SelectOption>
+              <SelectOption value="images">Images</SelectOption>
+            </SelectGroup>
           </SelectContent>
         </Select>
       </ButtonGroup>

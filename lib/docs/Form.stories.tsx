@@ -8,6 +8,7 @@ import {
   SelectOption,
 } from "@/components";
 import { SelectContent } from "@/components/Select/SelectContent";
+import { SelectGroup } from "@/components/Select/SelectGroup";
 import { Meta, StoryObj } from "@storybook/react";
 import { useRef, useState } from "react";
 import { within, expect, userEvent } from "storybook/test";
@@ -141,7 +142,9 @@ export const Form: Story = {
               onSelectedValueChange={setOption}
             >
               <SelectContent>
-                <SelectOption value={"option"}>option</SelectOption>
+                <SelectGroup>
+                  <SelectOption value={"option"}>option</SelectOption>
+                </SelectGroup>
               </SelectContent>
             </Select>
             <Input
