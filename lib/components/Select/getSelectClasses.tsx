@@ -29,7 +29,7 @@ export function getSelectClasses({
   return {
     classes: twMerge(
       "select",
-      (isOpen || isMounted) && "border-(--bg-color) ring ring-(--bg-color)",
+      isMounted && "border-(--bg-color) ring ring-(--bg-color)",
       !inGroup && "rounded-inputs",
       inGroup &&
         getGropuedItemClasses(group?.vertical ?? false, resolvedRadius),
@@ -38,14 +38,14 @@ export function getSelectClasses({
     labelClasses: twMerge("select-label", labelClassName),
     errorClasses: twMerge("select-error", errorClassName),
     caretClasses: twMerge(
-      "inline",
+      "mr-3 inline",
       isOpen ? "rotate-180" : "rotate-0",
       "transition-transform",
     ),
     wrapperClasses: twMerge(
       "select-wrapper",
       inGroup && "group",
-      (isOpen || isMounted) && "text-(--bg-color)",
+      isMounted && "text-(--bg-color)",
       wrapperClassName,
     ),
     resolvedColor,

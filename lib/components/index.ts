@@ -19,3 +19,4 @@ export * from "./Sidemenu";
 export * from "./Select";
 export * from "./Skeleton";
 export * from "./Autocomplete";
+export * from "./Combobox";

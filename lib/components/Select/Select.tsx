@@ -167,8 +167,7 @@ export function Select({
   });
 
   function setSelected(index: number | undefined) {
-    console.log("gege");
-    if (multiple && index) {
+    if (multiple && index !== undefined) {
       const found = selectedIndices.indexOf(index);
       let newIndices = [];
       if (found >= 0) {
@@ -214,7 +213,6 @@ export function Select({
   if (!multiple && selectedIndex !== undefined) {
     buttonText = items[selectedIndex];
   }
-  console.log(inputValue);
 
   return (
     <SelectContextProvider
@@ -273,7 +271,7 @@ export function Select({
             {multiple &&
               selectedIndices.map((index) => (
                 <Badge
-                  className="flex cursor-auto items-center gap-0.5 py-0 pr-0 pl-2 text-xs"
+                  className="m-[3px] flex cursor-auto items-center gap-0.5 pr-0 pl-2 text-xs"
                   onClick={(e) => {
                     e.stopPropagation();
                   }}
@@ -284,8 +282,9 @@ export function Select({
                       <Button
                         useGropup={false}
                         variant="ghost"
+                        radius="pill"
                         size="xs"
-                        className="h-4 p-0"
+                        className="p-0"
                         startIcon={<XIcon className="size-3.5" />}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -296,31 +295,35 @@ export function Select({
                   }
                 </Badge>
               ))}
-            <button
-              aria-hidden={true}
-              disabled={disabled}
-              tabIndex={-1}
-              className="flex h-max w-max flex-1 cursor-pointer disabled:pointer-events-none disabled:opacity-50"
-            >
-              {buttonText}
-            </button>
-            <div className="flex items-center">
-              {(selectedIndex !== undefined || selectedIndices.length > 0) && (
-                <Button
-                  useGropup={false}
-                  size="xs"
-                  variant="ghost"
-                  color={isFocused || isMounted ? resolvedColor : "main"}
-                  className="flex h-4 cursor-pointer items-center overflow-clip p-0"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    clear();
-                  }}
-                >
-                  {<XIcon className={"mr-1 inline size-4"} />}
-                </Button>
-              )}
-              <CaretDownIcon className={caretClasses} />
+            <div className="flex w-max flex-1 items-center justify-between">
+              <button
+                aria-hidden={true}
+                disabled={disabled}
+                tabIndex={-1}
+                className="line-clamp-1 cursor-pointer px-3 py-1.5 text-left disabled:pointer-events-none disabled:opacity-50"
+              >
+                {buttonText}
+              </button>
+              <div className="flex items-center">
+                {(selectedIndex !== undefined ||
+                  selectedIndices.length > 0) && (
+                  <Button
+                    useGropup={false}
+                    radius="pill"
+                    size="sm"
+                    variant="ghost"
+                    color={isFocused || isMounted ? resolvedColor : "main"}
+                    className="flex cursor-pointer items-center overflow-clip p-1"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      clear();
+                    }}
+                  >
+                    {<XIcon className={"mr-1 inline size-4"} />}
+                  </Button>
+                )}
+                <CaretDownIcon className={caretClasses} />
+              </div>
             </div>
           </div>
           {name && (

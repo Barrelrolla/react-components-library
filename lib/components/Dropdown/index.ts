@@ -1,8 +1,8 @@
 export { Dropdown } from "./Dropdown";
 export type { DropdownProps } from "./Dropdown";
-export { DropdownTrigger } from "./DropdownTrigger";
 export { DropdownContent } from "./DropdownContent";
-export { DropdownTitle } from "./DropdownTitle";
+export { DropdownContextProvider, useDropdownContext } from "./DropdownContext";
 export { DropdownList } from "./DropdownList";
 export { DropdownListItem } from "./DropdownListItem";
-export { DropdownContextProvider, useDropdownContext } from "./DropdownContext";
+export { DropdownTitle } from "./DropdownTitle";
+export { DropdownTrigger } from "./DropdownTrigger";

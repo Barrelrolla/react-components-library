@@ -32,6 +32,7 @@ export type AutocompleteProps = {
   placement?: Placement;
   disabled?: boolean;
   onSelectItem: (activeItem: string) => void;
+  onMountedChange: (isMounted: boolean) => void;
 } & PropsWithChildren;
 
 export function Autocomplete({
@@ -39,6 +40,7 @@ export function Autocomplete({
   setIsOpen,
   query,
   onSelectItem,
+  onMountedChange,
   items,
   strategy = "absolute",
   placement = "bottom",
@@ -131,6 +133,7 @@ export function Autocomplete({
   });
   const interactions = useInteractions([role, dismiss, listNav]);
   const { isMounted, transitionStyles } = useFloatingTransitionStyles(data);
+  onMountedChange(isMounted);
 
   return (
     <AutocompleteContextProvider

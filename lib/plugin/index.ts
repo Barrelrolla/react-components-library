@@ -1,24 +1,24 @@
 import createPlugin from "tailwindcss/plugin";
 import base from "./base/base";
-import autocomplete from "./components/autocomplete";
-import skeleton from "./components/skeleton";
-import select from "./components/select";
-import sidemenu from "./components/sidemenu";
-import popover from "./components/popover";
-import tooltip from "./components/tooltip";
-import radio from "./components/radio";
-import checkbox from "./components/checkbox";
 import anchor from "./components/anchor";
+import autocomplete from "./components/autocomplete";
 import badge from "./components/badge";
 import button from "./components/button";
 import card from "./components/card";
+import checkbox from "./components/checkbox";
+import dialog from "./components/dialog";
+import floating from "./components/floating";
 import footer from "./components/footer";
 import hamburgerButton from "./components/hamburgerButton";
 import hero from "./components/hero";
-import navbar from "./components/navbar";
 import input from "./components/input";
-import dialog from "./components/dialog";
-import floating from "./components/floating";
+import navbar from "./components/navbar";
+import popover from "./components/popover";
+import radio from "./components/radio";
+import select from "./components/select";
+import sidemenu from "./components/sidemenu";
+import skeleton from "./components/skeleton";
+import tooltip from "./components/tooltip";
 import utilities from "./utilities/utilities";
 
 type TailwindPlugin = ReturnType<typeof createPlugin>;
@@ -28,24 +28,24 @@ const plugin: TailwindPlugin = createPlugin(
     addBase(base);
     addComponents([
       autocomplete,
-      skeleton,
-      select,
-      sidemenu,
-      popover,
-      tooltip,
-      radio,
-      checkbox,
       anchor,
       badge,
       button,
       card,
+      checkbox,
       dialog,
+      floating,
       footer,
       hamburgerButton,
       hero,
       input,
       navbar,
-      floating,
+      popover,
+      radio,
+      select,
+      sidemenu,
+      skeleton,
+      tooltip,
     ]);
     addUtilities(utilities);
     addVariant("selected", "&[data-selected='true']");
