@@ -1,19 +1,22 @@
 import { describe, it } from "vitest";
 import { render } from "@testing-library/react";
 import { Autocomplete } from "./Autocomplete";
+import { AutocompleteContent } from "./AutocompleteContent";
 
 describe("Autocomplete tests", () => {
   it("renders", () => {
-    const { container } = render(
+    const { getByTestId } = render(
       <Autocomplete
         items={[]}
         query=""
-        isOpen
+        isOpen={true}
         setIsOpen={() => {}}
         onSelectItem={() => {}}
-      />,
+      >
+        <AutocompleteContent data-testid="test" />
+      </Autocomplete>,
     );
-    const autocomplete = container.querySelector("div");
+    const autocomplete = getByTestId("test");
     expect(autocomplete).toBeTruthy();
   });
 });

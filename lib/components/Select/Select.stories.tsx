@@ -77,7 +77,7 @@ export const Default: Story = {
 export const Multiple: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const select = canvas.getByText("Select...");
+    const select = canvas.getByText("Select fruit");
     await expect(select, "renders").toBeTruthy();
   },
   render: ({ color, error, disabled, ...rest }) => {

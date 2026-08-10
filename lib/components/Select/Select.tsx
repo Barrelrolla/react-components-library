@@ -181,6 +181,7 @@ export function Select({
       setSelectedIndex(index);
       setOpen(false);
     }
+
     if (onSelectedIndexChange) {
       onSelectedIndexChange(index);
     }
@@ -190,10 +191,15 @@ export function Select({
     setSelectedIndex(undefined);
     setSelectedIndices([]);
     setOpen(false);
+
+    if (onSelectedIndexChange) {
+      onSelectedIndexChange(undefined);
+    }
   }
 
   const generatedId = useId();
   const resolvedId = id ?? generatedId;
+
   let inputValue: string | string[] = "";
   if (multiple) {
     inputValue = [];
@@ -208,6 +214,7 @@ export function Select({
   if (!multiple && selectedIndex !== undefined) {
     buttonText = items[selectedIndex];
   }
+  console.log(inputValue);
 
   return (
     <SelectContextProvider

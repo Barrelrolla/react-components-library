@@ -34,7 +34,7 @@ export const Form: Story = {
     await userEvent.type(number, "2");
     await userEvent.type(textarea, "testarea");
     await userEvent.click(select);
-    const option = screen.getByText("option");
+    const option = screen.getByText("option one");
     await userEvent.click(option);
 
     await userEvent.click(submit);
@@ -76,10 +76,13 @@ export const Form: Story = {
     );
   },
   render: () => {
+    const options = ["option one", "option two"];
     const [data, setData] = useState<Record<string, unknown>>({});
     const [text, setText] = useState<string>("");
     const [number, setNumber] = useState<string>("");
-    const [option, setOption] = useState<string | undefined>("");
+    const [optionIndex, setOptionIndex] = useState<number | undefined>(
+      undefined,
+    );
     const [textarea, setTextarea] = useState<string>("");
     const textRef = useRef<HTMLInputElement | null>(null);
     const numberRef = useRef<HTMLInputElement | null>(null);
@@ -99,7 +102,7 @@ export const Form: Story = {
         "number state": number,
         "entered number": enteredNumbr,
         "ref number": numberRef.current?.value.toString(),
-        "option state": option,
+        "option state": optionIndex !== undefined ? options[optionIndex] : "",
         "selected option": selectedOption,
         "ref option": selectRef.current?.value.toString(),
         "textarea state": textarea,
@@ -135,15 +138,18 @@ export const Form: Story = {
               }}
             />
             <Select
+              items={options}
               inputRef={selectRef}
               label="select"
               name="select"
-              initialSelectedValue={option}
-              onSelectedValueChange={setOption}
+              initialSelectedIndex={optionIndex}
+              onSelectedIndexChange={setOptionIndex}
             >
               <SelectContent>
                 <SelectGroup>
-                  <SelectOption value={"option"}>option</SelectOption>
+                  {options.map((option, index) => {
+                    return <SelectOption index={index}>{option}</SelectOption>;
+                  })}
                 </SelectGroup>
               </SelectContent>
             </Select>

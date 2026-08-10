@@ -23,7 +23,7 @@ describe("Badge tests", () => {
     const badge = getByText("Primary");
     expect(badge).toHaveClass("badge");
     expect(badge).toHaveClass("custom-badge");
-    expect(badge).toHaveStyle("--bg-color: var(--color-primary-content)");
-    expect(badge).toHaveStyle("--fg-color: var(--color-primary)");
+    expect(badge).toHaveStyle("--bg-color: var(--color-primary)");
+    expect(badge).toHaveStyle("--fg-color: var(--color-primary-content)");
   });
 });
