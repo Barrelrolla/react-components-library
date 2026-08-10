@@ -1,6 +1,8 @@
 import { ComponentProps, useId } from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import { getTextFromChildren } from "@/util/helpers";
+import { CheckMarkIcon } from "@/icons";
+import { getSelectOptionClasses } from "../Select/getSelectClasses";
 
 export function AutocompleteItem({
   active,
@@ -19,25 +21,37 @@ export function AutocompleteItem({
   }
 
   const itemName = getTextFromChildren(children);
+  const index = context.items.indexOf(itemName);
+  const selected =
+    index === context.selectedIndex || context.selectedIndices?.includes(index);
   const id = useId();
+  const { classes } = getSelectOptionClasses({
+    className: "",
+    isMobile: false,
+    mobileSheet: false,
+  });
 
   return (
-    <button
-      id={id}
-      className="floating-list-item"
-      role="menuitem"
-      disabled={disabled}
-      {...context.interactions.getItemProps({
-        active,
-        onClick() {
-          context.onSelectItem(itemName);
-        },
-      })}
-      {...rest}
-      tabIndex={-1}
-      data-active={active === true ? active : undefined}
-    >
-      {children}
-    </button>
+    <div className="flex">
+      <button
+        id={id}
+        className={classes}
+        role="menuitem"
+        disabled={disabled}
+        {...context.interactions.getItemProps({
+          active,
+          onClick() {
+            context.onSelectItem(itemName);
+          },
+        })}
+        data-selected={selected ?? undefined}
+        {...rest}
+        tabIndex={-1}
+        data-active={active === true ? active : undefined}
+      >
+        <span className="line-clamp-1">{children}</span>
+        {selected && <CheckMarkIcon />}
+      </button>
+    </div>
   );
 }

@@ -4,6 +4,7 @@ import { useSelectContext } from "./SelectContext";
 import { getSelectOptionClasses } from "./getSelectClasses";
 import { getTextFromChildren } from "@/util/helpers";
 import { CheckMarkIcon } from "@/icons";
+import { useIsMobile } from "@/hooks";
 
 export function SelectOption({
   index,
@@ -29,7 +30,12 @@ export function SelectOption({
   } else {
     isSelected = index === context.selectedIndex;
   }
-  const { classes } = getSelectOptionClasses({ className });
+  const isMobile = useIsMobile();
+  const { classes } = getSelectOptionClasses({
+    className,
+    isMobile,
+    mobileSheet: context.mobileSheet,
+  });
 
   return (
     <li className="focus-visible:outline-none has-disabled:cursor-not-allowed">
@@ -46,7 +52,7 @@ export function SelectOption({
           context.setSelected(index);
         }}
       >
-        {children}
+        <span className="line-clamp-1">{children}</span>
         {isSelected && <CheckMarkIcon />}
       </button>
     </li>

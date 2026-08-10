@@ -52,8 +52,23 @@ export function getSelectClasses({
   };
 }
 
-export function getSelectOptionClasses({ className }: { className?: string }) {
-  return { classes: twMerge("floating-list-item", className) };
+export function getSelectOptionClasses({
+  className,
+  isMobile,
+  mobileSheet,
+}: {
+  className?: string;
+  isMobile: boolean;
+  mobileSheet: boolean;
+}) {
+  return {
+    classes: twMerge(
+      "floating-list-item",
+      isMobile && mobileSheet && "p-3 sm:p-1",
+      (!isMobile || !mobileSheet) && "p-1",
+      className,
+    ),
+  };
 }
 
 export function getSelectGroupTitleClasses({

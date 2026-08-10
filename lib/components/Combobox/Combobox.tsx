@@ -1,4 +1,10 @@
-import { ComponentProps, CSSProperties, useId, useState } from "react";
+import {
+  ComponentProps,
+  CSSProperties,
+  KeyboardEvent,
+  useId,
+  useState,
+} from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
 import {
@@ -16,7 +22,9 @@ export type ComboboxProps = {
   items: string[];
   multiple: boolean;
   label: string;
+  placeholder: string;
   error: string;
+  allowFreeText: boolean;
   initialSelectedIndex?: number | undefined;
   initialSelectedIndices?: number[];
   onSelectedIndexChange?: (index: number | undefined) => void;
@@ -27,13 +35,15 @@ export type ComboboxProps = {
 } & Omit<ComponentProps<"input">, "children">;
 
 export function Combobox({
-  color = "main",
+  color = "primary",
   items,
   multiple = false,
   id,
   label,
+  placeholder = "Search",
   disabled,
   error,
+  allowFreeText = false,
   initialSelectedIndex,
   initialSelectedIndices,
   onSelectedIndexChange,
@@ -45,7 +55,6 @@ export function Combobox({
   ...rest
 }: ComboboxProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
     initialSelectedIndex,
@@ -66,7 +75,6 @@ export function Combobox({
   } = getSelectClasses({
     color: error ? "error" : color,
     isOpen,
-    isMounted,
     className,
     labelClassName,
     errorClassName,
@@ -77,8 +85,13 @@ export function Combobox({
   const generatedId = useId();
   const resolvedId = id ?? generatedId;
 
+  function setSelectedFromItem(item: string) {
+    const index = items.indexOf(item);
+    setSelected(index);
+  }
+
   function setSelected(index: number | undefined) {
-    if (multiple && index) {
+    if (multiple && index !== undefined) {
       const found = selectedIndices.indexOf(index);
       let newIndices = [];
       if (found >= 0) {
@@ -87,9 +100,15 @@ export function Combobox({
         newIndices = [...selectedIndices, index];
       }
       setSelectedIndices(newIndices);
+      setQuery("");
     } else {
       setSelectedIndex(index);
-      setIsOpen(false);
+      if (index !== undefined) {
+        setQuery(items[index]);
+        setIsOpen(false);
+      } else {
+        setQuery("");
+      }
     }
 
     if (onSelectedIndexChange) {
@@ -101,6 +120,7 @@ export function Combobox({
     setSelectedIndex(undefined);
     setSelectedIndices([]);
     setIsOpen(false);
+    setQuery("");
 
     if (onSelectedIndexChange) {
       onSelectedIndexChange(undefined);
@@ -114,11 +134,13 @@ export function Combobox({
       onSelectItem={(item) => {
         setQuery(item);
         setIsOpen(false);
+        setSelectedFromItem(item);
       }}
       items={items}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      onMountedChange={setIsMounted}
+      selectedIndex={selectedIndex}
+      selectedIndices={selectedIndices}
     >
       <AutocompleteTrigger>
         <div
@@ -129,31 +151,31 @@ export function Combobox({
           }}
           onBlur={() => {
             setIsFocused(false);
+            if (!allowFreeText) {
+              if (items.indexOf(query) < 0) {
+                setQuery("");
+              }
+            }
+          }}
+          onKeyDown={(e: KeyboardEvent) => {
+            if (!multiple && e.key !== "ArrowDown") {
+              setSelectedIndex(undefined);
+            } else if (e.key === "Backspace") {
+              if (query.length === 0 && selectedIndices.length > 0) {
+                setSelectedIndices(selectedIndices.slice(0, -1));
+              }
+            }
           }}
         >
           <label htmlFor={resolvedId} className={labelClasses}>
             {label}
           </label>
           <div className="has-disabled:cursor-not-allowed">
-            <div
-              id={resolvedId}
-              data-error={error ? true : undefined}
-              aria-describedby={
-                resolvedId && error ? `${resolvedId}-error` : undefined
-              }
-              aria-label={
-                rest["aria-label"]
-                  ? rest["aria-label"]
-                  : label
-                    ? label
-                    : "Select"
-              }
-              className={classes}
-              {...rest}
-            >
+            <div className={classes} {...rest}>
               {multiple &&
                 selectedIndices.map((index) => (
                   <Badge
+                    key={items[index]}
                     className="m-[3px] flex cursor-auto items-center gap-0.5 pr-0 pl-2 text-xs"
                     onClick={(e) => {
                       e.stopPropagation();
@@ -178,11 +200,23 @@ export function Combobox({
                     }
                   </Badge>
                 ))}
-              <div className="flex w-max flex-1 items-center justify-between">
+              <div className="flex flex-1 items-center justify-between">
                 <input
-                  aria-hidden={true}
+                  id={resolvedId}
+                  data-error={error ? true : undefined}
+                  aria-describedby={
+                    resolvedId && error ? `${resolvedId}-error` : undefined
+                  }
+                  aria-label={
+                    rest["aria-label"]
+                      ? rest["aria-label"]
+                      : label
+                        ? label
+                        : "Select"
+                  }
+                  placeholder={placeholder}
                   disabled={disabled}
-                  className="line-clamp-1 cursor-pointer px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  className="line-clamp-1 w-0 grow-1 cursor-text px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
                   value={query}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -202,17 +236,30 @@ export function Combobox({
                       radius="pill"
                       size="sm"
                       variant="ghost"
-                      color={isFocused || isMounted ? resolvedColor : "main"}
+                      color={isFocused ? resolvedColor : "main"}
                       className="flex cursor-pointer items-center overflow-clip p-1"
                       onClick={(e) => {
                         e.stopPropagation();
                         clear();
                       }}
                     >
-                      {<XIcon className={"mr-1 inline size-4"} />}
+                      <XIcon className={"mr-1 inline size-4"} />
                     </Button>
                   )}
-                  <CaretDownIcon className={caretClasses} />
+                  <Button
+                    useGropup={false}
+                    radius="pill"
+                    size="sm"
+                    variant="ghost"
+                    color={isFocused ? resolvedColor : "main"}
+                    className="flex cursor-pointer items-center justify-center overflow-clip p-0"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsOpen(!isOpen);
+                    }}
+                  >
+                    <CaretDownIcon className={caretClasses} />
+                  </Button>
                 </div>
               </div>
             </div>

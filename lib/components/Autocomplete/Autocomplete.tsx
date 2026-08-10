@@ -34,7 +34,8 @@ export type AutocompleteProps = {
   placement?: Placement;
   disabled?: boolean;
   onSelectItem: (activeItem: string) => void;
-  onMountedChange: (isMounted: boolean) => void;
+  selectedIndex?: number | null;
+  selectedIndices?: number[];
 } & PropsWithChildren;
 
 export function Autocomplete({
@@ -43,11 +44,12 @@ export function Autocomplete({
   setIsOpen,
   query,
   onSelectItem,
-  onMountedChange,
   items,
   strategy = "absolute",
   placement = "bottom",
   disabled,
+  selectedIndex,
+  selectedIndices,
   children,
 }: AutocompleteProps) {
   const deferredQuery = useDeferredValue(query);
@@ -93,7 +95,7 @@ export function Autocomplete({
   const rowVirtualizer = useVirtualizer({
     count: filteredItems.length,
     getScrollElement: () => scrollContainerRef.current,
-    estimateSize: () => 35,
+    estimateSize: () => 32,
     overscan: 5,
   });
 
@@ -136,11 +138,11 @@ export function Autocomplete({
   });
   const interactions = useInteractions([role, dismiss, listNav]);
   const { isMounted, transitionStyles } = useFloatingTransitionStyles(data);
-  onMountedChange(isMounted);
 
   return (
     <AutocompleteContextProvider
       value={{
+        items,
         rowVirtualizer,
         filteredItems,
         query,
@@ -165,6 +167,8 @@ export function Autocomplete({
           position: "relative",
           minHeight: "24px",
         },
+        selectedIndex,
+        selectedIndices,
       }}
     >
       <>{children}</>

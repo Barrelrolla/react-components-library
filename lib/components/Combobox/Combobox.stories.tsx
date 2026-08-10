@@ -278,11 +278,11 @@ const countries = [
 export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const combobox = canvas.getByText("Combobox");
+    const combobox = canvas.getByTestId("Combobox");
     await expect(combobox, "renders").toBeTruthy();
   },
   render: ({ ...rest }) => {
-    return <Combobox {...rest} items={countries} />;
+    return <Combobox data-testid="Combobox" {...rest} items={countries} />;
   },
 };
 
