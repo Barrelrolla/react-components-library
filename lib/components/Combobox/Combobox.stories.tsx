@@ -286,6 +286,33 @@ export const Default: Story = {
   },
 };
 
+export const WithLabel: Story = {
+  render: ({ ...rest }) => {
+    return (
+      <Combobox
+        {...rest}
+        label="Country"
+        data-testid="Combobox"
+        items={countries}
+      />
+    );
+  },
+};
+
+export const Disabled: Story = {
+  render: ({ ...rest }) => {
+    return (
+      <Combobox
+        {...rest}
+        disabled
+        label="Country"
+        data-testid="Combobox"
+        items={countries}
+      />
+    );
+  },
+};
+
 export const Colors: Story = {
   render: ({ ...rest }) => {
     return (
