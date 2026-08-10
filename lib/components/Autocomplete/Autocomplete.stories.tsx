@@ -25,25 +25,37 @@ type Story = StoryObj<typeof meta>;
 const it = Array.from({ length: 100000 }, (_, i) => `item ${i + 1}`);
 
 export const Default: Story = {
-  // play: async ({ canvasElement }) => {
-  //   const canvas = within(canvasElement);
-  //   const autocomplete = canvas.getByText("Autocomplete");
-  //   await expect(autocomplete, "renders").toBeTruthy();
-  // },
   render: ({ ...rest }) => {
+    const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] = useState("");
     return (
-      <>
-        <Autocomplete {...rest} query={query} setQuery={setQuery} items={it}>
-          <AutocompleteTrigger>
-            <Input
-              placeholder="search"
-              onChange={(e) => setQuery(e.target.value)}
-            />
-          </AutocompleteTrigger>
-          <AutocompleteContent />
-        </Autocomplete>
-      </>
+      <Autocomplete
+        {...rest}
+        query={query}
+        onSelectItem={(item) => {
+          setQuery(item);
+          setIsOpen(false);
+        }}
+        items={it}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      >
+        <AutocompleteTrigger>
+          <Input
+            placeholder="search"
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value && value.length > 0) {
+                setIsOpen(true);
+              } else {
+                setIsOpen(false);
+              }
+              setQuery(value);
+            }}
+          />
+        </AutocompleteTrigger>
+        <AutocompleteContent />
+      </Autocomplete>
     );
   },
 };

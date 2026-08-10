@@ -4,7 +4,11 @@ import { FloatingElementContent } from "../Floating";
 import { FloatingList } from "@floating-ui/react";
 import { AutocompleteItem } from "./AutocompleteItem";
 
-export function AutocompleteContent({ style, ...rest }: ComponentProps<"div">) {
+export function AutocompleteContent({
+  noResultsText = "No results found.",
+  style,
+  ...rest
+}: { noResultsText?: string } & ComponentProps<"div">) {
   const context = useAutocompleteContext();
   if (!context) {
     throw new Error(
@@ -49,7 +53,7 @@ export function AutocompleteContent({ style, ...rest }: ComponentProps<"div">) {
             })}
           </ul>
         )}
-        {context.filteredItems.length === 0 && <p>No results</p>}
+        {context.filteredItems.length === 0 && <p>{noResultsText}</p>}
       </FloatingList>
     </FloatingElementContent>
   );

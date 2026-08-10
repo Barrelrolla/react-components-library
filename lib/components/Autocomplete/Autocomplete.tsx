@@ -24,18 +24,20 @@ import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles
 import { AutocompleteContextProvider } from "./AutocompleteContext";
 
 export type AutocompleteProps = {
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
   query: string;
-  setQuery: (query: string) => void;
   items: string[];
   strategy?: "absolute" | "fixed";
   placement?: Placement;
   disabled?: boolean;
-  onSelectItem?: (activeItem: string) => void;
+  onSelectItem: (activeItem: string) => void;
 } & PropsWithChildren;
 
 export function Autocomplete({
+  isOpen,
+  setIsOpen,
   query,
-  setQuery,
   onSelectItem,
   items,
   strategy = "absolute",
@@ -43,7 +45,6 @@ export function Autocomplete({
   disabled,
   children,
 }: AutocompleteProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const deferredQuery = useDeferredValue(query);
   const lastEmptyQueryRef = useRef<string | null>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -69,7 +70,6 @@ export function Autocomplete({
     }
 
     if (!q) {
-      setIsOpen(false);
       return items;
     }
 
@@ -80,7 +80,6 @@ export function Autocomplete({
       return [];
     }
 
-    setIsOpen(true);
     return results;
   }, [fuse, deferredQuery, items]);
 
@@ -133,18 +132,13 @@ export function Autocomplete({
   const interactions = useInteractions([role, dismiss, listNav]);
   const { isMounted, transitionStyles } = useFloatingTransitionStyles(data);
 
-  function defaultOnSelectItem(activeItem: string) {
-    setQuery(activeItem);
-    setIsOpen(false);
-  }
-
   return (
     <AutocompleteContextProvider
       value={{
         rowVirtualizer,
         filteredItems,
         query,
-        onSelectItem: onSelectItem ?? defaultOnSelectItem,
+        onSelectItem,
         useFocus: false,
         color: "main",
         isOpen: disabled ? false : isMounted,
