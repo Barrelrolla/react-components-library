@@ -122,7 +122,10 @@ export function Select({
   const { context } = data;
   const click = useClick(context);
   const role = useRole(context, { role: "select" });
-  const dismiss = useDismiss(context, { bubbles: true });
+  const dismiss = useDismiss(context, {
+    bubbles: true,
+    outsidePressEvent: "click",
+  });
   const listNav = useListNavigation(context, {
     listRef,
     activeIndex,

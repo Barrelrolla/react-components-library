@@ -123,7 +123,10 @@ export function Autocomplete({
 
   const { context } = data;
   const role = useRole(context, { role: "combobox" });
-  const dismiss = useDismiss(context, { bubbles: true });
+  const dismiss = useDismiss(context, {
+    bubbles: true,
+    outsidePressEvent: "click",
+  });
   const listNav = useListNavigation(context, {
     listRef,
     activeIndex,
@@ -158,7 +161,7 @@ export function Autocomplete({
         transitionStyles,
         listRef,
         mobileSheet: false,
-        returnFocus: true,
+        returnFocus: false,
         isNested: false,
         scrollContainerRef,
         scrollListStyle: {

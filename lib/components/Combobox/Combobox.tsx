@@ -3,7 +3,9 @@ import {
   CSSProperties,
   KeyboardEvent,
   useId,
+  useRef,
   useState,
+  FocusEvent,
 } from "react";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
@@ -17,6 +19,7 @@ import { Button, useButtonGroupContext } from "../Button";
 import { Badge } from "../Badge";
 import { CaretDownIcon, XIcon } from "@/icons";
 import { useIsMobile } from "@/hooks";
+import { useMergeRefs } from "@floating-ui/react";
 
 export type ComboboxProps = {
   color?: ColorType;
@@ -33,9 +36,10 @@ export type ComboboxProps = {
   errorClassName?: string;
   wrapperClassName?: string;
   wrapperStyle?: CSSProperties;
-} & Omit<ComponentProps<"input">, "children">;
+} & ComponentProps<"input">;
 
 export function Combobox({
+  ref,
   color = "primary",
   items,
   multiple = false,
@@ -136,6 +140,22 @@ export function Combobox({
     }
   }
 
+  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRefs = useMergeRefs([ref, inputRef]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const floatingRef = useRef<HTMLDivElement>(null);
+
+  const handleBlur = (e: FocusEvent) => {
+    if (
+      containerRef.current?.contains(e.relatedTarget) ||
+      floatingRef.current?.contains(e.relatedTarget)
+    ) {
+      requestAnimationFrame(() => {
+        inputRef.current?.focus({ preventScroll: true });
+      });
+    }
+  };
+
   return (
     <Autocomplete
       color={color}
@@ -153,6 +173,7 @@ export function Combobox({
     >
       <AutocompleteTrigger>
         <div
+          ref={containerRef}
           className={wrapperClasses}
           style={{
             ...cssColorProps(resolvedColor),
@@ -183,7 +204,7 @@ export function Combobox({
             {label}
           </label>
           <div className="has-disabled:cursor-not-allowed">
-            <div className={classes} {...rest}>
+            <div className={classes}>
               {multiple &&
                 selectedIndices.map((index) => (
                   <Badge
@@ -217,10 +238,17 @@ export function Combobox({
                 <input
                   onFocus={(e) => {
                     if (isMobile) {
-                      e.target.scrollIntoView({ behavior: "smooth" });
+                      const target = e.target;
+                      setTimeout(() => {
+                        target.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        });
+                      }, 300);
                     }
                   }}
-                  style={{ scrollMarginTop: "16px" }}
+                  onBlur={handleBlur}
+                  style={{ scrollMarginTop: "24px" }}
                   id={resolvedId}
                   data-error={error ? true : undefined}
                   aria-describedby={
@@ -240,6 +268,8 @@ export function Combobox({
                     }
                     setQuery(value);
                   }}
+                  ref={inputRefs}
+                  {...rest}
                 />
                 <div className="flex items-center">
                   {(selectedIndex !== undefined ||
@@ -285,7 +315,7 @@ export function Combobox({
           </div>
         </div>
       </AutocompleteTrigger>
-      <AutocompleteContent />
+      <AutocompleteContent ref={floatingRef} />
     </Autocomplete>
   );
 }

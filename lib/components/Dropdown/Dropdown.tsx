@@ -115,7 +115,10 @@ export function DropdownComponent({
     ignoreMouse: isNested,
   });
   const role = useRole(context, { role: "menu" });
-  const dismiss = useDismiss(context, { bubbles: true });
+  const dismiss = useDismiss(context, {
+    bubbles: true,
+    outsidePressEvent: "click",
+  });
   const listNav = useListNavigation(context, {
     listRef,
     activeIndex,
