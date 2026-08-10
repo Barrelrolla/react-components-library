@@ -299,6 +299,20 @@ export const WithLabel: Story = {
   },
 };
 
+export const Multiple: Story = {
+  render: ({ ...rest }) => {
+    return (
+      <Combobox
+        {...rest}
+        multiple
+        label="Country"
+        data-testid="Combobox"
+        items={countries}
+      />
+    );
+  },
+};
+
 export const Disabled: Story = {
   render: ({ ...rest }) => {
     return (

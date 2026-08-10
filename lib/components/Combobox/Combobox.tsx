@@ -16,6 +16,7 @@ import { getSelectClasses } from "../Select/getSelectClasses";
 import { Button, useButtonGroupContext } from "../Button";
 import { Badge } from "../Badge";
 import { CaretDownIcon, XIcon } from "@/icons";
+import { useIsMobile } from "@/hooks";
 
 export type ComboboxProps = {
   color?: ColorType;
@@ -64,6 +65,7 @@ export function Combobox({
   );
   const [query, setQuery] = useState("");
   const group = useButtonGroupContext();
+  const isMobile = useIsMobile();
 
   const {
     classes,
@@ -145,7 +147,10 @@ export function Combobox({
       <AutocompleteTrigger>
         <div
           className={wrapperClasses}
-          style={{ ...cssColorProps(resolvedColor), ...wrapperStyle }}
+          style={{
+            ...cssColorProps(resolvedColor),
+            ...wrapperStyle,
+          }}
           onFocus={() => {
             setIsFocused(true);
           }}
@@ -203,6 +208,12 @@ export function Combobox({
                 ))}
               <div className="flex flex-1 items-center justify-between">
                 <input
+                  onFocus={(e) => {
+                    if (isMobile) {
+                      e.target.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  style={{ scrollMarginTop: "16px" }}
                   id={resolvedId}
                   data-error={error ? true : undefined}
                   aria-describedby={
@@ -238,7 +249,7 @@ export function Combobox({
                       size="sm"
                       variant="ghost"
                       color={isFocused ? resolvedColor : "main"}
-                      className="flex cursor-pointer items-center overflow-clip p-1"
+                      className="h-6 p-1"
                       onClick={(e) => {
                         e.stopPropagation();
                         setIsFocused(false);
@@ -254,7 +265,7 @@ export function Combobox({
                     size="sm"
                     variant="ghost"
                     color={isFocused ? resolvedColor : "main"}
-                    className="flex cursor-pointer items-center justify-center overflow-clip p-0"
+                    className="h-6 p-0"
                     onClick={(e) => {
                       e.stopPropagation();
                       setIsOpen(!isOpen);

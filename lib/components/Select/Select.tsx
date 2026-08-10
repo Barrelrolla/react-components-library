@@ -314,7 +314,7 @@ export function Select({
                     size="sm"
                     variant="ghost"
                     color={isFocused || isMounted ? resolvedColor : "main"}
-                    className="flex cursor-pointer items-center overflow-clip p-1"
+                    className="h-6 p-1"
                     onClick={(e) => {
                       e.stopPropagation();
                       clear();
