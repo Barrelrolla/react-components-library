@@ -20,11 +20,11 @@ import { CaretDownIcon, XIcon } from "@/icons";
 export type ComboboxProps = {
   color?: ColorType;
   items: string[];
-  multiple: boolean;
-  label: string;
-  placeholder: string;
-  error: string;
-  allowFreeText: boolean;
+  multiple?: boolean;
+  label?: string;
+  placeholder?: string;
+  error?: string;
+  allowFreeText?: boolean;
   initialSelectedIndex?: number | undefined;
   initialSelectedIndices?: number[];
   onSelectedIndexChange?: (index: number | undefined) => void;

@@ -16,6 +16,7 @@ import { Input } from "../Input";
 import { Select, SelectOption } from "../Select";
 import { SelectContent } from "../Select/SelectContent";
 import { SelectGroup } from "../Select/SelectGroup";
+import { Combobox } from "../Combobox";
 
 type Props = ComponentProps<typeof ButtonGroup> & {
   selection: boolean;
@@ -292,6 +293,24 @@ export const WithSelect: Story = {
             </SelectGroup>
           </SelectContent>
         </Select>
+      </ButtonGroup>
+    );
+  },
+  args: { selection: undefined },
+  argTypes: { selection: { table: { disable: true } } },
+};
+
+export const WithCombobox: Story = {
+  render: ({ variant = "solid", ...rest }) => {
+    return (
+      <ButtonGroup {...rest} variant={variant} divider={false}>
+        <Combobox items={[]} />
+        <Tooltip>
+          <TooltipContent>Search</TooltipContent>
+          <TooltipTrigger>
+            <Button aria-label="search" startIcon={<PiMagnifyingGlass />} />
+          </TooltipTrigger>
+        </Tooltip>
       </ButtonGroup>
     );
   },
