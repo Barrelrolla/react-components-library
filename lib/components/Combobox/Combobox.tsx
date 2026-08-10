@@ -193,6 +193,7 @@ export function Combobox({
                           startIcon={<XIcon className="size-3.5" />}
                           onClick={(e) => {
                             e.stopPropagation();
+                            setIsFocused(false);
                             setSelected(index);
                           }}
                         />
@@ -216,7 +217,7 @@ export function Combobox({
                   }
                   placeholder={placeholder}
                   disabled={disabled}
-                  className="line-clamp-1 w-0 grow-1 cursor-text px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  className="text-main-content line-clamp-1 w-0 grow-1 cursor-text px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
                   value={query}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -240,6 +241,7 @@ export function Combobox({
                       className="flex cursor-pointer items-center overflow-clip p-1"
                       onClick={(e) => {
                         e.stopPropagation();
+                        setIsFocused(false);
                         clear();
                       }}
                     >
