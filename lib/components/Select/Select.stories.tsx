@@ -27,6 +27,19 @@ const meta: Meta<typeof Select> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const fruits = [
+  "Apple",
+  "Banana",
+  "Cherry",
+  "Grape",
+  "Kiwi",
+  "Mango",
+  "Orange",
+  "Papaya",
+  "Pear",
+  "Strawberry",
+];
+
 export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -41,15 +54,18 @@ export const Default: Story = {
         disabled={disabled}
         name="select"
         {...rest}
+        items={fruits}
       >
         <SelectContent>
-          <SelectGroupTitle>options</SelectGroupTitle>
+          <SelectGroupTitle>Fruits</SelectGroupTitle>
           <SelectGroup>
-            <SelectOption value={"one"}>One</SelectOption>
-            <SelectOption disabled value={"two"}>
-              Two
-            </SelectOption>
-            <SelectOption value={"three"}>Three</SelectOption>
+            {fruits.map((fruit, index) => {
+              return (
+                <SelectOption key={fruit} index={index} disabled={index === 3}>
+                  {fruit}
+                </SelectOption>
+              );
+            })}
           </SelectGroup>
         </SelectContent>
       </Select>
@@ -72,23 +88,20 @@ export const Multiple: Story = {
         disabled={disabled}
         name="select"
         {...rest}
+        placeholder="Select fruit"
         multiple
+        items={fruits}
       >
         <SelectContent>
-          <SelectGroupTitle>options</SelectGroupTitle>
+          <SelectGroupTitle>Fruits</SelectGroupTitle>
           <SelectGroup>
-            <SelectOption value={"one"}>One</SelectOption>
-            <SelectOption disabled value={"two"}>
-              Two
-            </SelectOption>
-            <SelectOption value={"three"}>Three</SelectOption>
-            <SelectOption value={"four"}>Four</SelectOption>
-            <SelectOption value={"five"}>Five</SelectOption>
-            <SelectOption value={"six"}>Six</SelectOption>
-            <SelectOption value={"seven"}>Seven</SelectOption>
-            <SelectOption value={"eight"}>Eight</SelectOption>
-            <SelectOption value={"nine"}>Nine</SelectOption>
-            <SelectOption value={"ten"}>Ten</SelectOption>
+            {fruits.map((fruit, index) => {
+              return (
+                <SelectOption key={fruit} index={index}>
+                  {fruit}
+                </SelectOption>
+              );
+            })}
           </SelectGroup>
         </SelectContent>
       </Select>
@@ -113,14 +126,17 @@ export const WithLabel: Story = {
         label="Select"
         name="select"
         {...rest}
+        items={fruits}
       >
         <SelectContent>
           <SelectGroup>
-            <SelectOption value={"one"}>One</SelectOption>
-            <SelectOption disabled value={"two"}>
-              Two
-            </SelectOption>
-            <SelectOption value={"three"}>Three</SelectOption>
+            {fruits.map((fruit, index) => {
+              return (
+                <SelectOption key={fruit} index={index}>
+                  {fruit}
+                </SelectOption>
+              );
+            })}
           </SelectGroup>
         </SelectContent>
       </Select>
@@ -144,14 +160,17 @@ export const Disabled: Story = {
         label="Select"
         name="select"
         {...rest}
+        items={fruits}
       >
         <SelectContent>
           <SelectGroup>
-            <SelectOption value={"one"}>One</SelectOption>
-            <SelectOption disabled value={"two"}>
-              Two
-            </SelectOption>
-            <SelectOption value={"three"}>Three</SelectOption>
+            {fruits.map((fruit, index) => {
+              return (
+                <SelectOption key={fruit} index={index}>
+                  {fruit}
+                </SelectOption>
+              );
+            })}
           </SelectGroup>
         </SelectContent>
       </Select>
@@ -166,10 +185,18 @@ export const Colors: Story = {
     return (
       <>
         {availableColors.map((color) => (
-          <Select label={color} color={color} key={color} {...rest}>
+          <Select
+            label={color}
+            color={color}
+            key={color}
+            {...rest}
+            items={["option"]}
+          >
             <SelectContent>
               <SelectGroup>
-                <SelectOption value={"option"}>option</SelectOption>
+                <SelectOption index={0} value={"option"}>
+                  option
+                </SelectOption>
               </SelectGroup>
             </SelectContent>
           </Select>

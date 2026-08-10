@@ -6,14 +6,14 @@ import { getTextFromChildren } from "@/util/helpers";
 import { CheckMarkIcon } from "@/icons";
 
 export function SelectOption({
-  value,
+  index,
   ref,
   disabled,
   children,
   className,
   ...rest
 }: {
-  value: string | undefined;
+  index: number;
   disabled?: boolean;
 } & ComponentProps<"button">) {
   const context = useSelectContext();
@@ -24,10 +24,10 @@ export function SelectOption({
   const item = useListItem({ label: disabled ? null : label });
   const isActive = item.index === context.activeIndex;
   let isSelected = false;
-  if (context.multiple && value) {
-    isSelected = context.selectedValues.includes(value);
+  if (context.multiple) {
+    isSelected = context.selectedIndices.includes(index);
   } else {
-    isSelected = value === context.selectedValue;
+    isSelected = index === context.selectedIndex;
   }
   const { classes } = getSelectOptionClasses({ className });
 
@@ -43,7 +43,7 @@ export function SelectOption({
         {...context?.interactions.getItemProps()}
         {...rest}
         onClick={() => {
-          context.setSelected(value, children);
+          context.setSelected(index);
         }}
       >
         {children}

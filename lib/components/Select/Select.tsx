@@ -1,7 +1,6 @@
 import {
   ComponentProps,
   CSSProperties,
-  ReactNode,
   Ref,
   useCallback,
   useId,
@@ -35,13 +34,15 @@ export type SelectProps = {
   inputRef?: Ref<HTMLInputElement>;
   color?: ColorType;
   label?: string;
+  items: string[];
   multiple?: boolean;
   name?: string;
   error?: string;
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
-  initialSelectedValue?: string;
-  onSelectedValueChange?: (value: string | undefined) => void;
+  initialSelectedIndex?: number | undefined;
+  initialSelectedIndices?: number[];
+  onSelectedIndexChange?: (index: number | undefined) => void;
   placeholder?: string;
   strategy?: "absolute" | "fixed";
   placement?: Placement;
@@ -59,13 +60,15 @@ export function Select({
   id,
   color,
   label,
+  items,
   multiple = false,
   name,
   error,
   isOpen,
   onOpenChange,
-  initialSelectedValue,
-  onSelectedValueChange,
+  initialSelectedIndex,
+  initialSelectedIndices,
+  onSelectedIndexChange,
   placeholder = "Select...",
   strategy = "absolute",
   placement = "bottom",
@@ -81,12 +84,12 @@ export function Select({
   ...rest
 }: SelectProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [selectedItem, setSelectedItem] = useState<ReactNode | null>(null);
-  const [selectedValue, setSelectedValue] = useState<string | undefined>(
-    initialSelectedValue,
+  const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
+    initialSelectedIndex,
   );
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
-  const [selectedItems, setSelectedItems] = useState<ReactNode[]>([]);
+  const [selectedIndices, setSelectedIndices] = useState<number[]>(
+    initialSelectedIndices || [],
+  );
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -163,51 +166,62 @@ export function Select({
     group,
   });
 
-  function setSelected(value: string | undefined, item: ReactNode) {
-    if (multiple && value) {
-      const index = selectedValues.indexOf(value);
-      let newValues = selectedValues;
-      let newItems = selectedItems;
-      if (index >= 0) {
-        newValues = selectedValues.filter((_val, i) => i !== index);
-        newItems = selectedItems.filter((_it, i) => i !== index);
+  function setSelected(index: number | undefined) {
+    console.log("gege");
+    if (multiple && index) {
+      const found = selectedIndices.indexOf(index);
+      let newIndices = [];
+      if (found >= 0) {
+        newIndices = selectedIndices.filter((i) => i !== index);
       } else {
-        newValues = [...selectedValues, value];
-        newItems = [...selectedItems, item];
+        newIndices = [...selectedIndices, index];
       }
-      setSelectedValues(newValues);
-      setSelectedItems(newItems);
+      setSelectedIndices(newIndices);
     } else {
-      setSelectedValue(value);
-      setSelectedItem(item);
+      setSelectedIndex(index);
       setOpen(false);
     }
-    if (onSelectedValueChange) {
-      onSelectedValueChange(value);
+    if (onSelectedIndexChange) {
+      onSelectedIndexChange(index);
     }
   }
 
   function clear() {
-    setSelectedValue(undefined);
-    setSelectedItem(null);
-    setSelectedValues([]);
-    setSelectedItems([]);
+    setSelectedIndex(undefined);
+    setSelectedIndices([]);
     setOpen(false);
   }
 
   const generatedId = useId();
   const resolvedId = id ?? generatedId;
+  let inputValue: string | string[] = "";
+  if (multiple) {
+    inputValue = [];
+    for (let i = 0; i < selectedIndices.length; i++) {
+      inputValue.push(items[selectedIndices[i]]);
+    }
+  } else if (selectedIndex !== undefined) {
+    inputValue = items[selectedIndex];
+  }
+
+  let buttonText = placeholder;
+  if (!multiple && selectedIndex !== undefined) {
+    buttonText = items[selectedIndex];
+  }
 
   return (
     <SelectContextProvider
       value={{
+        items,
         useFocus: true,
         color: resolvedColor,
         isOpen: disabled ? false : isMounted,
         setIsOpen: disabled ? () => {} : setOpen,
+        multiple,
         activeIndex,
         setActiveIndex,
-        selectedValue,
+        selectedIndex,
+        selectedIndices,
         setSelected,
         interactions,
         data,
@@ -218,8 +232,6 @@ export function Select({
         mobileSheetPlacement,
         returnFocus: true,
         isNested: false,
-        selectedValues,
-        multiple,
       }}
     >
       <div
@@ -252,11 +264,16 @@ export function Select({
             {...rest}
           >
             {multiple &&
-              selectedItems.map((item, index) => (
-                <Badge className="flex items-center gap-0.5 py-0 pr-0 pl-2 text-xs">
+              selectedIndices.map((index) => (
+                <Badge
+                  className="flex cursor-auto items-center gap-0.5 py-0 pr-0 pl-2 text-xs"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
                   {
                     <>
-                      <span>{item}</span>
+                      <span>{items[index]}</span>
                       <Button
                         variant="ghost"
                         size="xs"
@@ -264,7 +281,7 @@ export function Select({
                         startIcon={<XIcon className="size-3.5" />}
                         onClick={(e) => {
                           e.stopPropagation();
-                          setSelected(selectedValues[index], item);
+                          setSelected(index);
                         }}
                       />
                     </>
@@ -277,11 +294,10 @@ export function Select({
               tabIndex={-1}
               className="flex h-max w-max flex-1 cursor-pointer disabled:pointer-events-none disabled:opacity-50"
             >
-              {!multiple && (selectedItem ?? placeholder)}
-              {multiple && placeholder}
+              {buttonText}
             </button>
             <div className="flex items-center">
-              {(selectedValue !== undefined || selectedValues.length > 0) && (
+              {(selectedIndex !== undefined || selectedIndices.length > 0) && (
                 <Button
                   size="xs"
                   variant="ghost"
@@ -303,7 +319,7 @@ export function Select({
               ref={inputRef}
               name={name}
               type="hidden"
-              value={multiple ? selectedValues : selectedValue}
+              value={inputValue}
             />
           )}
           {children}

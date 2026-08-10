@@ -1,15 +1,16 @@
-import { createContext, ReactNode, RefObject, useContext } from "react";
+import { createContext, RefObject, useContext } from "react";
 import { FloatingElementContextType } from "../Floating";
 
 interface SelectContextType extends FloatingElementContextType {
+  items: string[];
+  multiple: boolean;
   activeIndex: number | null;
   setActiveIndex: (index: number | null) => void;
-  selectedValue: string | undefined;
-  setSelected: (value: string | undefined, item: ReactNode) => void;
-  selectedValues: string[];
+  selectedIndex: number | undefined;
+  selectedIndices: number[];
+  setSelected: (index: number | undefined) => void;
   listRef: RefObject<(HTMLElement | null)[]>;
   labelsRef: RefObject<(string | null)[]>;
-  multiple: boolean;
 }
 const SelectContext = createContext<SelectContextType | null>(null);
 export const SelectContextProvider = SelectContext.Provider;
