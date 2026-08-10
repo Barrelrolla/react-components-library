@@ -1,0 +1,1 @@
+import{j as o}from"./iframe-seTiTV_v.js";import{t as n}from"./bundle-mjs-Ct12j0u0.js";function r({className:e}){return{classes:n("skeleton",e)}}function a({className:e,...s}){const{classes:t}=r({className:e});return o.jsx("div",{className:t,...s})}a.__docgenInfo={description:"",methods:[],displayName:"Skeleton"};export{a as S};
