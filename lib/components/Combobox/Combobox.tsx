@@ -109,6 +109,7 @@ export function Combobox({
 
   return (
     <Autocomplete
+      color={color}
       query={query}
       onSelectItem={(item) => {
         setQuery(item);

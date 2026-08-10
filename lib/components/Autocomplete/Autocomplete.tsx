@@ -22,8 +22,10 @@ import {
 } from "@floating-ui/react";
 import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles";
 import { AutocompleteContextProvider } from "./AutocompleteContext";
+import { ColorType } from "@/types";
 
 export type AutocompleteProps = {
+  color?: ColorType;
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
   query: string;
@@ -36,6 +38,7 @@ export type AutocompleteProps = {
 } & PropsWithChildren;
 
 export function Autocomplete({
+  color = "main",
   isOpen,
   setIsOpen,
   query,
@@ -143,7 +146,7 @@ export function Autocomplete({
         query,
         onSelectItem,
         useFocus: false,
-        color: "main",
+        color,
         isOpen: disabled ? false : isMounted,
         setIsOpen: disabled ? () => {} : setIsOpen,
         activeIndex,
