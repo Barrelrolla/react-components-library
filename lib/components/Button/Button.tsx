@@ -35,6 +35,7 @@ export type ButtonProps<E extends ElementType> = {
   endIcon?: ReactNode;
   /** The button is wrapped in a div to change the cursor when disabled. If you need to pass any classes to that div, you can do so with this prop. */
   wrapperClassName?: string;
+  useGropup?: boolean;
 } & PolymorphicProps<E>;
 
 export function Button<E extends ElementType = typeof defaultType>({
@@ -53,12 +54,14 @@ export function Button<E extends ElementType = typeof defaultType>({
   endIcon,
   className,
   wrapperClassName,
+  useGropup = true,
   style,
   children,
   ...rest
 }: ButtonProps<E>) {
   const theme = useTheme();
-  const group = useButtonGroupContext();
+  const foundGroup = useButtonGroupContext();
+  const group = useGropup ? foundGroup : null;
   const isIcon =
     (startIcon !== undefined || endIcon !== undefined) && !children;
   const isDisabled = disabled || loading;

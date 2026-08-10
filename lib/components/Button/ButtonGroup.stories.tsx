@@ -271,14 +271,24 @@ export const WithInput: Story = {
 
 export const WithSelect: Story = {
   render: ({ variant = "solid", ...rest }) => {
+    const items = ["Documents", "Images"];
     return (
       <ButtonGroup {...rest} variant={variant}>
         <Input placeholder="Choose file name" />
-        <Select placeholder="Select file type" wrapperClassName="w-40">
+        <Select
+          items={items}
+          placeholder="Select file type"
+          wrapperClassName="w-50"
+        >
           <SelectContent>
             <SelectGroup>
-              <SelectOption value="dosuments">Documents</SelectOption>
-              <SelectOption value="images">Images</SelectOption>
+              {items.map((item, index) => {
+                return (
+                  <SelectOption index={index} key={item}>
+                    {item}
+                  </SelectOption>
+                );
+              })}
             </SelectGroup>
           </SelectContent>
         </Select>

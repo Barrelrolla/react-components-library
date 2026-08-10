@@ -36,7 +36,7 @@ export default <Record<string, CssInJs>>{
     "@apply text-sm text-main-content": {},
   },
   ".floating-list-item": {
-    "@apply bg-main text-main-content selected:bg-(--fg-color)/15 selected:hover:text-(--fg-color) selected:text-(--fg-color) selected:hover:bg-(--fg-color)/20 selected:focus-visible:bg-(--fg-color)/20 disabled:text-main-content/50 rounded-inputs flex w-full cursor-pointer items-center justify-between gap-2 p-3 -outline-offset-1 outline-(--fg-color) hover:bg-(--fg-color)/15 focus-visible:bg-(--fg-color)/15 data-active:bg-(--fg-color)/15 focus-visible:outline-1 active:bg-(--fg-color)/20 disabled:pointer-events-none sm:p-1":
+    "@apply bg-main text-main-content selected:bg-(--fg-color)/15 selected:hover:text-(--fg-color) selected:text-(--fg-color) selected:hover:bg-(--fg-color)/20 selected:focus-visible:bg-(--fg-color)/20 disabled:text-main-content/50 rounded-inputs text-left w-full cursor-pointer items-center justify-between gap-2 p-3 -outline-offset-1 outline-(--fg-color) hover:bg-(--fg-color)/15 focus-visible:bg-(--fg-color)/15 data-active:bg-(--fg-color)/15 focus-visible:outline-1 active:bg-(--fg-color)/20 disabled:pointer-events-none sm:p-1 line-clamp-1":
       {},
   },
 };

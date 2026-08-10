@@ -275,6 +275,7 @@ export function Select({
                     <>
                       <span>{items[index]}</span>
                       <Button
+                        useGropup={false}
                         variant="ghost"
                         size="xs"
                         className="h-4 p-0"
@@ -299,9 +300,10 @@ export function Select({
             <div className="flex items-center">
               {(selectedIndex !== undefined || selectedIndices.length > 0) && (
                 <Button
+                  useGropup={false}
                   size="xs"
                   variant="ghost"
-                  color={isFocused || isMounted ? color : "main"}
+                  color={isFocused || isMounted ? resolvedColor : "main"}
                   className="flex h-4 cursor-pointer items-center overflow-clip p-0"
                   onClick={(e) => {
                     e.stopPropagation();
