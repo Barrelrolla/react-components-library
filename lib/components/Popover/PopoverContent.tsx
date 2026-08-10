@@ -3,10 +3,7 @@ import { usePopoverContext } from "./PopoverContext";
 import { getPopoverClasses } from "./getPopoverClasses";
 import { FloatingElementContent } from "../Floating";
 
-export function PopoverContent({
-  ...rest
-}: ComponentProps<"div">) {
-
+export function PopoverContent({ ...rest }: ComponentProps<"div">) {
   const context = usePopoverContext();
   if (!context) {
     throw new Error(
@@ -14,13 +11,19 @@ export function PopoverContent({
     );
   }
 
-  const ariaLabel = { ...rest }["aria-label"];
-  const ariaDescribed = { ...rest }["aria-describedby"];
+  const ariaLabel = rest["aria-label"];
+  const ariaDescribed = rest["aria-describedby"];
   if (!ariaLabel && !ariaDescribed) {
     console.warn(
       "Provide an aria-label describing the purpose of the popover.",
     );
   }
 
-  return <FloatingElementContent context={context} getClasses={getPopoverClasses} {...rest} />
+  return (
+    <FloatingElementContent
+      context={context}
+      getClasses={getPopoverClasses}
+      {...rest}
+    />
+  );
 }

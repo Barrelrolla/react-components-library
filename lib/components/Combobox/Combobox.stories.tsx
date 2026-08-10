@@ -282,7 +282,14 @@ export const Default: Story = {
     await expect(combobox, "renders").toBeTruthy();
   },
   render: ({ ...rest }) => {
-    return <Combobox data-testid="Combobox" {...rest} items={countries} />;
+    return (
+      <Combobox
+        data-testid="Combobox"
+        aria-label="select country"
+        {...rest}
+        items={countries}
+      />
+    );
   },
 };
 

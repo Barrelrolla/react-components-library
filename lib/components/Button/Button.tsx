@@ -88,8 +88,8 @@ export function Button<E extends ElementType = typeof defaultType>({
       : {}),
   };
 
-  const ariaLabel = { ...rest }["aria-label"] || "false";
-  const ariaDescribed = { ...rest }["aria-describedby"];
+  const ariaLabel = rest["aria-label"] || "false";
+  const ariaDescribed = rest["aria-describedby"];
   if (!ariaLabel && !ariaDescribed && !children) {
     console.warn("Provide an aria-label for buttons without text!");
   }

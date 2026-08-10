@@ -198,6 +198,13 @@ export function Select({
 
   const generatedId = useId();
   const resolvedId = id ?? generatedId;
+  const ariaLabel = rest["aria-label"] || label || undefined;
+  const ariaLabeledBy = rest["aria-labelledby"];
+  if (!ariaLabel && !ariaLabeledBy) {
+    console.warn(
+      "Please provide an aria label or labeledby for combobox without a label.",
+    );
+  }
 
   let inputValue: string | string[] = "";
   if (multiple) {
@@ -259,9 +266,7 @@ export function Select({
             aria-describedby={
               resolvedId && error ? `${resolvedId}-error` : undefined
             }
-            aria-label={
-              rest["aria-label"] ? rest["aria-label"] : label ? label : "Select"
-            }
+            aria-label={ariaLabel}
             className={classes}
             tabIndex={0}
             ref={context.refs.setReference}

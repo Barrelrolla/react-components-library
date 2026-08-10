@@ -15,11 +15,17 @@ export function DarkModeSelector({
   lightModeTooltip = "Light",
   darkModeTooltip = "Dark",
   systemModeTooltip = "System",
+  lightModeAriaLabel,
+  darkModeAriaLabel,
+  systemModeAriaLabel,
   ...rest
 }: ButtonGroupProps & {
   lightModeTooltip?: string;
   darkModeTooltip?: string;
   systemModeTooltip?: string;
+  lightModeAriaLabel?: string;
+  darkModeAriaLabel?: string;
+  systemModeAriaLabel?: string;
 }) {
   const theme = useTheme();
   if (!theme) {
@@ -32,7 +38,7 @@ export function DarkModeSelector({
       <Tooltip isLabel>
         <TooltipTrigger>
           <Button
-            aria-label="ligth theme mode"
+            aria-label={lightModeAriaLabel ?? "ligth theme mode"}
             selected={darkMode === lightModeName}
             onClick={() => setDarkMode(lightModeName)}
             startIcon={<SunIcon />}
@@ -43,7 +49,7 @@ export function DarkModeSelector({
       <Tooltip isLabel>
         <TooltipTrigger>
           <Button
-            aria-label="dark theme mode"
+            aria-label={darkModeAriaLabel ?? "dark theme mode"}
             selected={darkMode === darkModeName}
             onClick={() => setDarkMode(darkModeName)}
             startIcon={<MoonIcon />}
@@ -55,7 +61,7 @@ export function DarkModeSelector({
         <TooltipContent>{systemModeTooltip}</TooltipContent>
         <TooltipTrigger>
           <Button
-            aria-label="system theme mode"
+            aria-label={systemModeAriaLabel ?? "system theme mode"}
             selected={darkMode === systemModeName}
             onClick={() => setDarkMode(systemModeName)}
             startIcon={<ComputerIcon />}

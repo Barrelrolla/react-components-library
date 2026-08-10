@@ -86,6 +86,13 @@ export function Combobox({
 
   const generatedId = useId();
   const resolvedId = id ?? generatedId;
+  const ariaLabel = rest["aria-label"] || label || undefined;
+  const ariaLabeledBy = rest["aria-labelledby"];
+  if (!ariaLabel && !ariaLabeledBy) {
+    console.warn(
+      "Please provide an aria label or labeledby for combobox without a label.",
+    );
+  }
 
   function setSelectedFromItem(item: string) {
     const index = items.indexOf(item);
@@ -219,13 +226,7 @@ export function Combobox({
                   aria-describedby={
                     resolvedId && error ? `${resolvedId}-error` : undefined
                   }
-                  aria-label={
-                    rest["aria-label"]
-                      ? rest["aria-label"]
-                      : label
-                        ? label
-                        : "Select"
-                  }
+                  aria-label={ariaLabel}
                   placeholder={placeholder}
                   disabled={disabled}
                   className="text-main-content line-clamp-1 w-0 grow-1 cursor-text px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"

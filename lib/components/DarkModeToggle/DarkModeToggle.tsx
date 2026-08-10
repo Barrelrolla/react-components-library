@@ -24,7 +24,7 @@ export function DarkModeToggle({
       <TooltipTrigger>
         <Button
           variant={variant}
-          aria-label="dark mode toggle"
+          aria-label={rest["aria-label"] ?? "dark mode toggle"}
           onClick={() => setDarkMode(isDark ? lightModeName : darkModeName)}
           startIcon={isDark ? <SunIcon /> : <MoonIcon />}
           size={size}

@@ -49,6 +49,7 @@ export const Default: Story = {
   render: ({ color, error, disabled, ...rest }) => {
     return (
       <Select
+        aria-label="select"
         color={color}
         error={error}
         disabled={disabled}
@@ -83,6 +84,7 @@ export const Multiple: Story = {
   render: ({ color, error, disabled, ...rest }) => {
     return (
       <Select
+        aria-label="select-multiple"
         color={color}
         error={error}
         disabled={disabled}

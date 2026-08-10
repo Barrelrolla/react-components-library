@@ -20,7 +20,7 @@ export function HamburgerButton({
   });
   return (
     <Button
-      aria-label="navigation toggle"
+      aria-label={rest["aria-label"] ?? "navigation toggle"}
       variant="ghost"
       color={color}
       className={button}
