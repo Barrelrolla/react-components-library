@@ -4,7 +4,6 @@ import autocomplete from "./components/autocomplete";
 import skeleton from "./components/skeleton";
 import select from "./components/select";
 import sidemenu from "./components/sidemenu";
-import dropdown from "./components/dropdown";
 import popover from "./components/popover";
 import tooltip from "./components/tooltip";
 import radio from "./components/radio";
@@ -29,10 +28,9 @@ const plugin: TailwindPlugin = createPlugin(
     addBase(base);
     addComponents([
       autocomplete,
-skeleton,
+      skeleton,
       select,
       sidemenu,
-      dropdown,
       popover,
       tooltip,
       radio,

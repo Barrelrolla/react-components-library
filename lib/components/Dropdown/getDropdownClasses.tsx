@@ -1,15 +1,11 @@
 import { twMerge } from "tailwind-merge";
 
 export function getDropdownTitleClasses({ className }: { className?: string }) {
-  return { classes: twMerge("dropdown-title", className) };
-}
-
-export function getDropdownListClasses({ className }: { className?: string }) {
-  return { classes: twMerge("dropdown-list", className) };
+  return { classes: twMerge("floating-list-title", className) };
 }
 
 export function getDropdownLinkClasses({ className }: { className?: string }) {
   return {
-    classes: twMerge("dropdown-link group", className),
+    classes: twMerge("floating-list-item group", className),
   };
 }

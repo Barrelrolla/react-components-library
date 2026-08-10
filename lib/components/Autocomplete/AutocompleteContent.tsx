@@ -30,15 +30,17 @@ export function AutocompleteContent({ style, ...rest }: ComponentProps<"div">) {
                     context.listRef.current[virtualRow.index] = node;
                   }}
                   style={{
+                    width: "100%",
                     position: "absolute",
                     top: 0,
                     left: 0,
                     transform: `translateY(${virtualRow.start}px)`,
                     height: `${virtualRow.size}px`,
                   }}
+                  tabIndex={-1}
                 >
                   <AutocompleteItem
-                    isSelected={context.activeIndex === virtualRow.index}
+                    active={context.activeIndex === virtualRow.index}
                   >
                     {item}
                   </AutocompleteItem>

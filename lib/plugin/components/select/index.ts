@@ -14,14 +14,4 @@ export default <Record<string, CssInJs>>{
   ".select-error": {
     "@apply text-sm text-error": {},
   },
-  ".select-content": {
-    "@apply text-main-content bg-main border-inputs rounded-inputs text-sm": {},
-  },
-  ".select-group-title": {
-    "@apply text-sm text-main-content": {},
-  },
-  ".select-option": {
-    "@apply flex w-full items-center gap-2 bg-main text-main-content hover:bg-(--fg-color)/15 focus-visible:bg-(--fg-color)/15 active:bg-(--fg-color)/20 selected:bg-(--fg-color)/15 selected:hover:text-(--fg-color) selected:text-(--fg-color) selected:hover:bg-(--fg-color)/20 selected:focus-visible:bg-(--fg-color)/20 p-3 sm:p-1 disabled:pointer-events-none disabled:text-main-content/50 rounded-inputs outline-(--fg-color) -outline-offset-1 focus-visible:outline-1 justify-between cursor-pointer":
-      {},
-  },
 };

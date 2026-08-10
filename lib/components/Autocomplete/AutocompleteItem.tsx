@@ -1,15 +1,14 @@
 import { ComponentProps, useId } from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import { getTextFromChildren } from "@/util/helpers";
-import { CheckMarkIcon } from "@/icons";
 
 export function AutocompleteItem({
-  isSelected,
+  active,
   disabled,
   children,
   ...rest
 }: {
-  isSelected: boolean;
+  active: boolean;
   disabled?: boolean;
 } & ComponentProps<"button">) {
   const context = useAutocompleteContext();
@@ -25,19 +24,20 @@ export function AutocompleteItem({
   return (
     <button
       id={id}
-      className="select-option"
+      className="floating-list-item"
       role="menuitem"
       disabled={disabled}
       {...context.interactions.getItemProps({
-        active: isSelected,
+        active,
         onClick() {
           context.onSelectItem(itemName);
         },
       })}
       {...rest}
+      tabIndex={-1}
+      data-active={active === true ? active : undefined}
     >
       {children}
-      {isSelected && <CheckMarkIcon />}
     </button>
   );
 }

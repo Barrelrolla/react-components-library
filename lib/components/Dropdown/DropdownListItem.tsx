@@ -5,7 +5,7 @@ import { getDropdownLinkClasses } from "./getDropdownClasses";
 import { CaretDownIcon } from "@/icons";
 import { getTextFromChildren } from "@/util/helpers";
 import { PolymorphicProps } from "@/types";
-import { cssColorProps } from "@/util";
+import { cssColorPropsReversed } from "@/util";
 
 const defaultType = "button";
 export function DropdownListItem<E extends ElementType = typeof defaultType>({
@@ -34,7 +34,7 @@ export function DropdownListItem<E extends ElementType = typeof defaultType>({
   return (
     <li className="has-disabled:cursor-not-allowed">
       <Element
-        style={{ ...cssColorProps(resolvedColor), ...style }}
+        style={{ ...cssColorPropsReversed(resolvedColor), ...style }}
         ref={useMergeRefs([item.ref, ref as Ref<HTMLElement | null>])}
         role="menuitem"
         disabled={disabled}

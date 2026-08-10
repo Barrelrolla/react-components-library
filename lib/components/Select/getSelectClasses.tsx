@@ -53,7 +53,7 @@ export function getSelectClasses({
 }
 
 export function getSelectOptionClasses({ className }: { className?: string }) {
-  return { classes: twMerge("select-option", className) };
+  return { classes: twMerge("floating-list-item", className) };
 }
 
 export function getSelectGroupTitleClasses({
@@ -61,5 +61,5 @@ export function getSelectGroupTitleClasses({
 }: {
   className?: string;
 }) {
-  return { classes: twMerge("select-group-title", className) };
+  return { classes: twMerge("floating-list-title", className) };
 }
