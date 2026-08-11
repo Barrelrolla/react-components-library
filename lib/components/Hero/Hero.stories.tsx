@@ -1,13 +1,15 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { Hero } from "./Hero";
-import { HeroActions } from "./HeroActions";
-import { HeroImageSection } from "./HeroImageSection";
-import { HeroSection } from "./HeroSection";
-import { HeroTitle } from "./HeroTitle";
-import { HeroText } from "./HeroText";
-import { Button } from "../Button";
 import { ComponentType } from "react";
+import { Meta, StoryObj } from "@storybook/react";
 import { availableResponsiveSizes } from "@/types";
+import { Button } from "../index";
+import {
+  Hero,
+  HeroActions,
+  HeroImageSection,
+  HeroSection,
+  HeroTitle,
+  HeroText,
+} from "./index";
 
 const meta: Meta<typeof Hero> = {
   title: "Components/Hero",

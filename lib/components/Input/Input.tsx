@@ -18,37 +18,44 @@ import { useMergeRefs } from "@floating-ui/react";
 type InputFieldType = "input" | "textarea";
 
 export type InputProps<T extends InputFieldType = "input"> = {
+  /** Underlying form element tag to render, allowing toggle between standard single-line `input` and multi-line `textarea`. Defaults to `input`. */
   as?: T;
+  /** Ref attached to the rendered HTML input or textarea element. */
   ref?: Ref<HTMLInputElement | HTMLTextAreaElement>;
-  /** Color of the texts and outlines. */
+  /** Color variant applied to borders, text, and focus states. */
   color?: ColorType;
-  /** Type of the input. Only text based types are accepted. */
+  /** HTML input type attribute for supported text-based formats. */
   type?: "text" | "email" | "password" | "tel" | "url" | "number";
-  /** Label of the input. */
+  /** Descriptive label rendered above the input field. */
   label?: string;
-  /** Icon that will be placed inside the input field before the input text. */
+  /** Visual icon component placed inside the input field preceding the text value. */
   startIcon?: ReactNode;
-  /** Icon that will be placed inside the input field after the input text. */
+  /** Visual icon component placed inside the input field following the text value. */
   endIcon?: ReactNode;
-  /** Disabled the input field. */
+  /** Disables user interaction and applies disabled visual styling. */
   disabled?: boolean;
-  /** Error message that will appear under the input. */
+  /** Validation error text rendered beneath the input field. */
   error?: string;
-  /** Used to apply classes to the label. */
+  /** Additional CSS class names applied to the field label element. */
   labelClassName?: string;
-  /** Used to apply classes to the error message. */
+  /** Additional CSS class names applied to the error message text. */
   errorClassName?: string;
-  /** Used to apply classes to the whole wrapper. */
+  /** Additional CSS class names applied to the outermost container wrapper. */
   wrapperClassName?: string;
-  /** Style for the wrapper. */
+  /** Inline CSS properties applied to the outermost container wrapper. */
   wrapperStyle?: CSSProperties;
-  /** Used to apply classes to the input and icons container. */
+  /** Additional CSS class names applied to the internal container wrapping the input element and icons. */
   inputContainerClassName?: string;
-  /** Input conainer style. */
+  /** Inline CSS properties applied to the internal container wrapping the input element and icons. */
   inputContainerStyle?: CSSProperties;
 } & ComponentPropsWithoutRef<T>;
 
-/** The input has a wrapper, which holds the label and the error message. Also a container, which holds the input itself, and any icons that should appear inside the input field. */
+/**
+ * Form input component with built-in support for labels, validation errors, inline icons, and multi-line textareas.
+ *
+ * Includes an outer wrapper for external positioning and label/error alignment, and an inner container
+ * managing inline visual elements alongside the standard HTML input or textarea element.
+ */
 export function Input<T extends InputFieldType = "input">({
   as,
   ref,

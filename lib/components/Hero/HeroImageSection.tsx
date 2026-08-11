@@ -2,7 +2,11 @@ import { ComponentProps } from "react";
 import { getHeroImageSectionClasses } from "./getHeroClasses";
 import { useHeroContext } from "./HeroContext";
 
-/** Section for the Hero Component. Separate your hero in multiple sections using this component. */
+/**
+ * Image container section designed for structuring media layout within a `Hero` component.
+ *
+ * Used alongside other hero sections to split content between visual assets (such as illustrations or screenshots) and copy.
+ */
 export function HeroImageSection({
   className,
   children,

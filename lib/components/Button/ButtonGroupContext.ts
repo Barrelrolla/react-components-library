@@ -3,23 +3,27 @@ import { ColorType, SizeType } from "@/types";
 import { ButtonRadius, ButtonVariant } from "./buttonTypes";
 
 export type ButtonGroupContextType = {
-  /** Color of the buttons. */
+  /** Color variant applied across all child buttons in the group. */
   color?: ColorType;
-  /** Variant of the buttons. */
+  /** Visual variant style applied across all child buttons in the group. */
   variant?: ButtonVariant;
-  /** If the buttons should retains focus state. */
+  /** Indicates whether child buttons maintain their focus state following user interactions. */
   retainFocusState?: boolean;
-  /** Radius of the button group. */
+  /** Border radius styling applied to the outer edges of the button group. */
   radius?: ButtonRadius;
-  /** Size of the buttons. */
+  /** Sizing variant applied across all child buttons in the group. */
   size?: SizeType;
-  /** If the buttons should scale on press. */
+  /** Indicates whether child buttons trigger a press scaling animation on click or touch. */
   scaling?: boolean;
-  /** Set to `true` to make it a vertical aligned group. */
+  /** When `true`, arranges the child buttons vertically instead of horizontally. */
   vertical?: boolean;
 } | null;
 
 const ButtonGroupContext = createContext<ButtonGroupContextType>(null);
+/**
+ * Context provider that distributes shared layout, sizing, color, and behavior settings
+ * to all nested button components within a `ButtonGroup`.
+ */
 export const ButtonGroupContextProvider = ButtonGroupContext.Provider;
 
 export function useButtonGroupContext() {

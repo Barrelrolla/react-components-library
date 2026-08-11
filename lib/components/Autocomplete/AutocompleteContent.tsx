@@ -4,11 +4,22 @@ import { FloatingElementContent } from "../Floating";
 import { FloatingList } from "@floating-ui/react";
 import { AutocompleteItem } from "./AutocompleteItem";
 
+export type AutocompleteContentProps = {
+  /** Text message displayed inside the dropdown list when no matching suggestions are found. Defaults to `"No results found."`. */
+  noResultsText?: string;
+} & ComponentProps<"div">;
+
+/**
+ * Floating surface container for autocomplete search results and option items.
+ *
+ * Manages the floating positioning wrapper for autocomplete suggestions and automatically handles
+ * empty state rendering using `noResultsText` when filtering returns zero matching choices.
+ */
 export function AutocompleteContent({
   noResultsText = "No results found.",
   style,
   ...rest
-}: { noResultsText?: string } & ComponentProps<"div">) {
+}: AutocompleteContentProps) {
   const context = useAutocompleteContext();
   if (!context) {
     throw new Error(

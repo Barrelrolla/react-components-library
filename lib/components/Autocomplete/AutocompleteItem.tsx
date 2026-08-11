@@ -2,7 +2,7 @@ import { ComponentProps, useId } from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import { getTextFromChildren } from "@/util/helpers";
 import { CheckMarkIcon } from "@/icons";
-import { getSelectOptionClasses } from "../Select/getSelectClasses";
+import { getFloatingListItemClasses } from "../Floating/getFloatinigClasses";
 
 export function AutocompleteItem({
   active,
@@ -25,7 +25,7 @@ export function AutocompleteItem({
   const selected =
     index === context.selectedIndex || context.selectedIndices?.includes(index);
   const id = useId();
-  const { classes } = getSelectOptionClasses({
+  const { classes } = getFloatingListItemClasses({
     className: "",
     isMobile: false,
     mobileSheet: false,

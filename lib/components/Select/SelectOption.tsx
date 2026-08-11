@@ -1,10 +1,10 @@
 import { useListItem, useMergeRefs } from "@floating-ui/react";
 import { ComponentProps } from "react";
 import { useSelectContext } from "./SelectContext";
-import { getSelectOptionClasses } from "./getSelectClasses";
 import { getTextFromChildren } from "@/util/helpers";
 import { CheckMarkIcon } from "@/icons";
 import { useIsMobile } from "@/hooks";
+import { getFloatingListItemClasses } from "../Floating/getFloatinigClasses";
 
 export function SelectOption({
   index,
@@ -31,7 +31,7 @@ export function SelectOption({
     isSelected = index === context.selectedIndex;
   }
   const isMobile = useIsMobile();
-  const { classes } = getSelectOptionClasses({
+  const { classes } = getFloatingListItemClasses({
     className,
     isMobile,
     mobileSheet: context.mobileSheet,

@@ -2,7 +2,11 @@ import { ComponentProps } from "react";
 import { getHeroSectionClasses } from "./getHeroClasses";
 import { useHeroContext } from "./HeroContext";
 
-/** Section for the Hero Component. Separate your hero in multiple sections using this component. */
+/**
+ * Flexible content section designed to divide a `Hero` component into distinct layout blocks.
+ *
+ * Commonly used to separate headlines, body text, form elements, or key visuals within multi-column hero layouts.
+ */
 export function HeroSection({
   className,
   children,

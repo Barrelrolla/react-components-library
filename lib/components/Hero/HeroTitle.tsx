@@ -1,7 +1,12 @@
 import { ComponentProps } from "react";
 import { getHeroTitleClasses } from "./getHeroClasses";
 
-/** A title to be used inside a Hero component. */
+/**
+ * Primary headline component for displaying main titles within a `Hero`.
+ *
+ * Renders an `h1` element and automatically inherits layout alignment
+ * settings from the parent `Hero` section.
+ */
 export function HeroTitle({
   className,
   children,

@@ -4,6 +4,12 @@ import { Composite } from "@floating-ui/react";
 import { useIsMobile } from "@/hooks";
 import { useNavbarContext } from "./NavbarContext";
 
+/**
+ * Navigation list container that wraps individual `NavbarLink` or menu items within a `Navbar`.
+ *
+ * Manages semantic list structuring (`ul`) and coordinates layout spacing across both desktop horizontal
+ * navigation bars and mobile collapsible menus.
+ */
 export function NavbarMenu({
   className,
   children,

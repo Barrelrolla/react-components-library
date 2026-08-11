@@ -6,3 +6,4 @@ export { DropdownList } from "./DropdownList";
 export { DropdownListItem } from "./DropdownListItem";
 export { DropdownTitle } from "./DropdownTitle";
 export { DropdownTrigger } from "./DropdownTrigger";
+export type { DropdownTriggerProps } from "./DropdownTrigger";

@@ -22,9 +22,9 @@ const meta: Meta<typeof Anchor> = {
     underlined: { table: { category: "controls" } },
     hoverUnderline: { table: { category: "controls" } },
     hoverUnderlineOffset: { table: { category: "controls" } },
+    as: { table: { category: "docs" } },
+    ref: { table: { category: "docs" } },
     href: { table: { disable: true } },
-    ref: { table: { disable: true } },
-    as: { table: { disable: true } },
   },
 };
 
@@ -74,6 +74,8 @@ export const InText: Story = {
 
   argTypes: {
     children: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
   },
 };
 
@@ -92,5 +94,9 @@ export const Colors: Story = {
   args: {
     children: "Link",
   },
-  argTypes: { color: { table: { disable: true } } },
+  argTypes: {
+    color: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
+  },
 };

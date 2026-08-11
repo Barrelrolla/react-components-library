@@ -5,18 +5,23 @@ import { HeroAlign } from "./HeroTypes";
 import { getHeroClasses } from "./getHeroClasses";
 
 export type HeroProps = {
-  /** Aligns text to the left or to the center. By default it's `responsive` meaning it's left aligned on big screens and center on small ones. */
+  /** Text alignment strategy for headings and copy within the hero section. */
   textAlign?: HeroAlign;
-  /** Alignment of the actions. By default it's `center` */
+  /** Alignment strategy for action elements, such as call-to-action buttons. */
   actionsAlign?: HeroAlign;
-  /** If the alignment of other components is `responsive`, chooose at which size it changes. */
+  /** Breakpoint size at which responsive alignment shifts between mobile and desktop modes. */
   responsiveAt?: ResponsiveSizes;
-  /** The hero component has a wrapper that has the full page width, use this to apply classes to the wrapper. */
+  /** Additional CSS class names applied to the full-width outer wrapper element. */
   wrapperClassName?: string;
-  /** Stype for the wrapper. */
+  /** Inline CSS properties applied to the full-width outer wrapper element. */
   wrapperStyle?: CSSProperties;
 } & ComponentProps<"div">;
 
+/**
+ * Prominent landing section component for presenting primary headlines, body text, and call-to-action elements.
+ *
+ * Includes configurable text and action alignments with built-in responsive behavior, wrapped in a full-width container.
+ */
 export function Hero({
   textAlign = "responsive",
   actionsAlign = "center",

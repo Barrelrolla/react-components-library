@@ -5,8 +5,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { ColorType, MobileSheetPlacementType } from "@/types";
-import { DropdownContextProvider, useDropdownContext } from "./DropdownContext";
 import {
   arrow,
   autoUpdate,
@@ -29,20 +27,32 @@ import {
   useRole,
   useTypeahead,
 } from "@floating-ui/react";
-import { useIsMobile } from "@/hooks";
-import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles";
+import { useIsMobile, useFloatingTransitionStyles } from "@/hooks";
+import { ColorType, MobileSheetPlacementType } from "@/types";
+import { DropdownContextProvider, useDropdownContext } from "./index";
 
 export type DropdownProps = {
+  /** Color variant of the dropdown menu. */
   color?: ColorType;
+  /** Controls the open state when used as a controlled component. */
   isOpen?: boolean;
+  /** Callback fired when the open state changes. */
   onOpenChange?: (isOpen: boolean) => void;
+  /** Positioning strategy for floating layout. Use `"fixed"` when inside fixed containers like navbars. */
   strategy?: "absolute" | "fixed";
+  /** Alignment and positioning relative to the trigger element. */
   placement?: Placement;
+  /** Displays a small pointing arrow indicator directed toward the trigger element. */
   hasArrow?: boolean;
+  /** Restricts opening to click events only, disabling hover triggers. */
   requireClick?: boolean;
+  /** Automatically shifts focus back to the trigger element when the dropdown closes. */
   returnFocus?: boolean | null;
+  /** Prevents the dropdown from opening when set to `true`. */
   disabled?: boolean;
+  /** Renders a mobile sheet interface instead of a floating dropdown on mobile viewports. */
   mobileSheet?: boolean;
+  /** Positioning for the mobile sheet view. */
   mobileSheetPlacement?: MobileSheetPlacementType;
 } & PropsWithChildren;
 
@@ -204,6 +214,12 @@ export function DropdownComponent({
   );
 }
 
+/**
+ * Flexible dropdown menu component supporting both controlled and uncontrolled states.
+ *
+ * Features customizable positioning strategies, hover or click activation, focus management,
+ * and optional mobile sheet transformations for responsive layouts.
+ */
 export function Dropdown(props: DropdownProps) {
   const parentId = useFloatingParentNodeId();
   const context = useDropdownContext();

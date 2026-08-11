@@ -7,11 +7,14 @@ const config: StorybookConfig = {
     "@storybook/addon-themes",
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
-    "@vueless/storybook-dark-mode",
+    "storybook-dark-mode",
   ],
   framework: {
     name: "@storybook/react-vite",
     options: {},
+  },
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
   },
 };
 

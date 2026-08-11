@@ -3,6 +3,12 @@ import { usePopoverContext } from "./PopoverContext";
 import { getPopoverClasses } from "./getPopoverClasses";
 import { FloatingElementContent } from "../Floating";
 
+/**
+ * Surface container for popover body content.
+ *
+ * Delegates layout, elevation, and positioning styles to the underlying
+ * `FloatingElementContent` wrapper while accepting standard HTML `div` attributes.
+ */
 export function PopoverContent({ ...rest }: ComponentProps<"div">) {
   const context = usePopoverContext();
   if (!context) {

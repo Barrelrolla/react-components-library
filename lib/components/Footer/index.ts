@@ -8,5 +8,6 @@ export { FooterLink } from "./FooterLink";
 export { FooterLinkGroup } from "./FooterLinkGroup";
 export { FooterLinksSection } from "./FooterLinksSection";
 export { FooterLinksTitle } from "./FooterLinksTitle";
+export type { FooterLinksTitleProps } from "./FooterLinksTitle";
 export { FooterContextProvider, useFooterContext } from "./FooterContext";
 export type { FooterContextType } from "./FooterContext";

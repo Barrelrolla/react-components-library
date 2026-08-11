@@ -6,11 +6,16 @@ import { CompositeItem } from "@floating-ui/react";
 
 const defaultType = "a";
 export type NavbarLinkProps<E extends ElementType> = {
-  /** Is the current menu item selected. */
+  /** Indicates whether the link represents the currently active or selected route/page. */
   selected?: boolean;
 } & AnchorProps<E>;
 
-/** Link to be used in the Collapsable list of the Navbar. */
+/**
+ * Polymorphic navigation link component designed for use within `Navbar` menus and collapsible navigation lists.
+ *
+ * Renders semantically as an `a` tag by default, but supports custom element types (such as framework-specific
+ * router `Link` components) via the polymorphic `as` prop. Automatically applies active state styling when `selected` is `true`.
+ */
 export function NavbarLink<E extends ElementType = typeof defaultType>({
   as,
   selected = false,

@@ -16,14 +16,24 @@ const meta: Meta<typeof Popover> = {
     </div>
   ),
   argTypes: {
-    children: { table: { disable: true } },
     color: {
       options: availableColors,
       control: { type: "select" },
+      table: { category: "controls" },
     },
-    placement: { control: { type: "select" }, options: availablePlacements },
-    role: { table: { disable: true } },
-    onOpenChange: { table: { disable: true } },
+    placement: {
+      control: { type: "select" },
+      options: availablePlacements,
+      table: { category: "controls" },
+    },
+    isOpen: { table: { category: "controls" } },
+    strategy: { table: { category: "controls" } },
+    delay: { table: { category: "controls" } },
+    requireClick: { table: { category: "controls" } },
+    hasArrow: { table: { category: "controls" } },
+    disabled: { table: { category: "controls" } },
+    role: { control: false, table: { category: "docs" } },
+    onOpenChange: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -112,5 +122,7 @@ export const Nested: Story = {
   },
   argTypes: {
     placement: { table: { disable: true } },
+    role: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
   },
 };

@@ -15,12 +15,16 @@ const meta: Meta<typeof RadioGroup> = {
     color: {
       options: availableColors,
       control: { type: "select" },
+      table: { category: "controls" },
     },
-    labelStyle: { table: { disable: true } },
-    defaultChecked: { table: { disable: true } },
-    wrapperClassName: { table: { disable: true } },
-    labelClassName: { table: { disable: true } },
-    name: { table: { disable: true } },
+    name: { control: false, table: { category: "controls" } },
+    size: { table: { category: "controls" } },
+    title: { table: { category: "controls" } },
+    labelStyle: { control: false, table: { category: "docs" } },
+    defaultChecked: { control: false, table: { category: "docs" } },
+    wrapperClassName: { control: false, table: { category: "docs" } },
+    labelClassName: { control: false, table: { category: "docs" } },
+    legendClassName: { control: false, table: { category: "docs" } },
   },
 };
 

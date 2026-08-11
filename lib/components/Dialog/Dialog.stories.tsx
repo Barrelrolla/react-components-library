@@ -1,10 +1,16 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { useState } from "react";
-import { CardActions, CardText, CardTitle } from "../Card";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
-import { Button } from "../Button";
-import { Dialog } from "./Dialog";
+import {
+  Button,
+  CardActions,
+  CardText,
+  CardTitle,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "../index";
+import { Dialog } from "./index";
 
 const meta: Meta<typeof Dialog> = {
   title: "Components/Dialog",
@@ -15,7 +21,19 @@ const meta: Meta<typeof Dialog> = {
       <Story />
     </div>
   ),
-  argTypes: {},
+  argTypes: {
+    isOpen: { control: false, table: { category: "docs" } },
+    setIsOpen: { control: false, table: { category: "docs" } },
+    showClose: { control: false, table: { category: "docs" } },
+    backdropClassName: { control: false, table: { category: "docs" } },
+    initialStyles: { control: false, table: { category: "docs" } },
+    hasInitialFocus: { control: false, table: { category: "docs" } },
+    horizontal: { table: { disable: true } },
+    size: { table: { disable: true } },
+    containerClassName: { table: { disable: true } },
+    containerStyle: { table: { disable: true } },
+    className: { table: { disable: true } },
+  },
 };
 
 export default meta;
@@ -162,5 +180,13 @@ export const BigText: Story = {
         </Dialog>
       </>
     );
+  },
+  argTypes: {
+    isOpen: { table: { disable: true } },
+    setIsOpen: { table: { disable: true } },
+    showClose: { table: { disable: true } },
+    backdropClassName: { table: { disable: true } },
+    initialStyles: { table: { disable: true } },
+    hasInitialFocus: { table: { disable: true } },
   },
 };

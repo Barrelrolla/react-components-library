@@ -6,14 +6,26 @@ import { EmptyCircleIcon, CircleCheckIcon } from "@/icons";
 import { useRadioGroupContext } from "./RadioGroupContext";
 
 export type RadioProps = {
+  /** Color variant applied to the radio button when selected. */
   color?: ColorType;
+  /** Custom inline CSS properties applied directly to the radio label text element. */
   labelStyle?: CSSProperties;
+  /** Additional CSS class names applied to the radio label text element. */
   labelClassName?: string;
+  /** Initial selection state when operated in an uncontrolled mode. */
   defaultChecked?: boolean;
+  /** Additional CSS class names applied to the outer wrapper container element. */
   wrapperClassName?: string;
+  /** Custom size in pixels defining the width and height dimensions of the radio button. */
   size?: number;
 } & ComponentProps<"input">;
 
+/**
+ * Single radio button input component that allows users to select one option from a set.
+ *
+ * Renders an accessible form input wrapped with custom styling, supporting color variants,
+ * customizable sizing, label customization, and standard controlled or uncontrolled HTML input behavior.
+ */
 export function Radio({
   color,
   size = 20,

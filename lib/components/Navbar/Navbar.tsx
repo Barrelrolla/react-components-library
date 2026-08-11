@@ -5,22 +5,26 @@ import { NavbarContextProvider } from "./NavbarContext";
 import { getNavbarClasses } from "./getNavbarClasses";
 
 export type NavbarProps = {
-  /** Color of the Navbar and the elements iniside */
+  /** Color variant applied to the navbar background and nested navigational elements. */
   color?: ColorType;
-  /** Adds a small shadow underneath for a 3D effect. */
+  /** When `true`, displays a subtle drop shadow beneath the navbar for elevated depth. */
   hasShadow?: boolean;
-  /** The size at which the Navbar should switch from a dropdown to a full bar. */
+  /** Breakpoint size at which the mobile expandable menu transforms into a expanded desktop navigation layout. */
   collapseAt?: ResponsiveSizes;
-  /** Prevents the navbar from hiding when scrolling down. Uses `fixed` style, so you should add some margin on the page content. */
+  /** Pins the navbar to a fixed screen position during scrolling. Requires appropriate page spacing or padding. */
   fixed?: boolean;
-  /** If the navbar is fixed, you can choose the position to be at the top or bottom of the screen. */
+  /** Screen edge alignment when `fixed` positioning is enabled. Defaults to `"top"`. */
   position?: "top" | "bottom";
-  /** Adds a transparent background and a glass effect. */
+  /** Applies a semi-transparent background with a blurred glassmorphism backdrop filter. */
   glass?: boolean;
-  /** There is a backdrop when the dropdown menu is open. If you want to add some classes to it, you can do it here. */
+  /** Additional CSS class names applied to the backdrop overlay rendered when the mobile menu is open. */
   backdropClassName?: string;
 } & ComponentProps<"nav">;
 
+/**
+ * Top-level application navigation bar providing layout container support, responsive collapse behaviors,
+ * fixed positioning, and visual customization options like glassmorphism effects.
+ */
 export function Navbar({
   color = "primary",
   hasShadow = true,

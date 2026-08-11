@@ -4,7 +4,7 @@ import { useEffect, useState, ReactNode } from "react";
 import { DocsContainer, DocsContextProps } from "@storybook/addon-docs/blocks";
 import { addons } from "storybook/preview-api";
 import { themes } from "storybook/theming";
-import { DARK_MODE_EVENT_NAME } from "@vueless/storybook-dark-mode";
+import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode";
 import type { Preview } from "@storybook/react";
 import { Renderer } from "storybook/internal/csf";
 import "../lib/index.css";

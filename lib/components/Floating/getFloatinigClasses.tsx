@@ -31,3 +31,22 @@ export function getFloatingContentClasses({
     ),
   };
 }
+
+export function getFloatingListItemClasses({
+  className,
+  isMobile,
+  mobileSheet,
+}: {
+  className?: string;
+  isMobile: boolean;
+  mobileSheet: boolean;
+}) {
+  return {
+    classes: twMerge(
+      "floating-list-item",
+      isMobile && mobileSheet && "p-3 sm:p-1",
+      (!isMobile || !mobileSheet) && "p-1",
+      className,
+    ),
+  };
+}

@@ -4,7 +4,11 @@ import { getNavbarToggleClasses } from "./getNavbarClasses";
 
 export type NavbarToggleProps = Omit<HamburgerButtonProps, "isOpen">;
 
-/** Hamburger toggle button for the Navbar. */
+/**
+ * Hamburger toggle button for opening and closing the collapsible `Navbar` menu on smaller screens.
+ *
+ * Interacts directly with the `NavbarContext` to toggle the responsive menu state and handle accessible screen reader attributes.
+ */
 export function NavbarToggle({
   size = "sm",
   color = "main",

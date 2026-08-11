@@ -13,15 +13,18 @@ const meta: Meta<typeof Radio> = {
     </div>
   ),
   argTypes: {
-    children: { name: "text" },
+    children: { name: "text", table: { category: "storybook" } },
     color: {
       options: availableColors,
       control: { type: "select" },
+      table: { category: "controls" },
     },
-    defaultChecked: { table: { disable: true } },
-    labelStyle: { table: { disable: true } },
-    labelClassName: { table: { disable: true } },
-    wrapperClassName: { table: { disable: true } },
+    size: { table: { category: "controls" } },
+    disabled: { control: { type: "boolean" }, table: { category: "controls" } },
+    defaultChecked: { control: false, table: { category: "docs" } },
+    labelStyle: { control: false, table: { category: "docs" } },
+    labelClassName: { control: false, table: { category: "docs" } },
+    wrapperClassName: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -60,6 +63,13 @@ export const Disabled: Story = {
     children: "Radio",
     size: 20,
   },
+  argTypes: {
+    disabled: { table: { disable: true } },
+    defaultChecked: { table: { disable: true } },
+    labelStyle: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+  },
 };
 
 export const Colors: Story = {
@@ -75,7 +85,11 @@ export const Colors: Story = {
     );
   },
   argTypes: {
-    color: { table: { disable: true } },
     children: { table: { disable: true } },
+    color: { table: { disable: true } },
+    defaultChecked: { table: { disable: true } },
+    labelStyle: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
   },
 };

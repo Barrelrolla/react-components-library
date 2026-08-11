@@ -4,18 +4,23 @@ import { cssColorProps, cssColorPropsReversed } from "@/util";
 import { getDividerClasses } from "./getDividerClasses";
 
 export type DividerProps = {
-  /** Color of the divider. */
+  /** Color variant applied to the divider. */
   color?: ColorType;
-  /** If the divider should use the bg color instead of the fg color. Default is `false`. */
+  /** Uses the theme's background color variable instead of the default foreground/border color. */
   useBgColor?: boolean;
-  /** Width of the divider in pixels. */
+  /** Custom thickness/width of the divider line in pixels. */
   width?: number;
-  /** If you want the divider to change from vertical to horizontal at some display size. */
+  /** Breakpoint size at which the divider automatically switches orientation between horizontal and vertical. */
   responsiveAt?: ResponsiveSizes;
-  /** Set to `true` if you want it vertical. Default is `false`. */
+  /** Displays the divider vertically instead of horizontally. */
   vertical?: boolean;
 } & ComponentProps<"div">;
 
+/**
+ * A decorative separator line used to group or separate content horizontally or vertically.
+ *
+ * Supports theme color variants, custom thickness, and responsive orientation switching.
+ */
 export function Divider({
   color = "main",
   useBgColor = true,

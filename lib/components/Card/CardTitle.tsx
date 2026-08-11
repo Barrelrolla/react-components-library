@@ -6,6 +6,9 @@ const defaultType: Heading = "h2";
 type Heading = "h1" | "h2" | "h3" | "h3" | "h4" | "h5" | "h6";
 
 export type CardTitleProps<T extends Heading = typeof defaultType> = {
+  /**
+   * Heading element tag used to render the title for appropriate semantic structure.
+   */
   as?: T;
 } & ComponentPropsWithoutRef<T>;
 

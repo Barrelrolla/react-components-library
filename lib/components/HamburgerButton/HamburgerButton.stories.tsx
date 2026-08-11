@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { HamburgerButton } from "./HamburgerButton";
-import { availableColors, availableSizes } from "@/types";
 
 const meta: Meta<typeof HamburgerButton> = {
   title: "Components/HamburgerButton",
@@ -13,11 +12,14 @@ const meta: Meta<typeof HamburgerButton> = {
     </div>
   ),
   argTypes: {
+    color: { table: { category: "controls" } },
+    size: { table: { category: "controls" } },
+    disabled: { table: { category: "controls" } },
+    scaling: { table: { category: "controls" } },
+    retainFocusState: { table: { disable: true } },
     children: { table: { disable: true } },
     isOpen: { table: { disable: true } },
-    color: { control: { type: "select" }, options: availableColors },
     variant: { table: { disable: true } },
-    size: { control: { type: "inline-radio" }, options: availableSizes },
     radius: { table: { disable: true } },
     selected: { table: { disable: true } },
     loading: { table: { disable: true } },
@@ -27,6 +29,7 @@ const meta: Meta<typeof HamburgerButton> = {
     ref: { table: { disable: true } },
     as: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 

@@ -56,7 +56,7 @@ export type AutocompleteProps = {
 } & PropsWithChildren;
 
 /**
- * Uncontrolled autocomplete component.
+ * Controlled autocomplete component.
  *
  * Add an `AutocompleteTrigger` child and manage state independently. Designed to allow
  * any custom input to act as a trigger. For a controlled input solution, use `AutocompleteInput`.

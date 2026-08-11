@@ -1,27 +1,20 @@
-import { ComponentProps, ComponentType, useEffect, useState } from "react";
+import { ComponentProps, useEffect, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { within, expect } from "storybook/test";
-import { Navbar } from "./Navbar";
-import { NavbarBrand } from "./NavbarBrand";
-import { NavbarCollapse } from "./NavbarCollapse";
-import { NavbarLink } from "./NavbarLink";
-import { NavbarToggle } from "./NavbarToggle";
-import { Button } from "../Button";
 import {
   PiCaretDown,
   PiGithubLogo,
   PiLinkedinLogo,
   PiRocket,
 } from "react-icons/pi";
+import { availableColors, availableResponsiveSizes } from "@/types";
 import {
-  Hero,
-  HeroActions,
-  HeroImageSection,
-  HeroSection,
-  HeroText,
-  HeroTitle,
-} from "../Hero";
-import {
+  Button,
+  Dropdown,
+  DropdownContent,
+  DropdownList,
+  DropdownListItem,
+  DropdownTrigger,
   Footer,
   FooterBrand,
   FooterDivider,
@@ -31,17 +24,24 @@ import {
   FooterLinkGroup,
   FooterLinksSection,
   FooterLinksTitle,
-} from "../Footer";
-import { availableColors, availableResponsiveSizes } from "@/types";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
+  Hero,
+  HeroActions,
+  HeroImageSection,
+  HeroSection,
+  HeroText,
+  HeroTitle,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "../index";
 import {
-  Dropdown,
-  DropdownContent,
-  DropdownList,
-  DropdownListItem,
-  DropdownTrigger,
-} from "../Dropdown";
-import { NavbarMenu } from "./NavbarMenu";
+  Navbar,
+  NavbarBrand,
+  NavbarCollapse,
+  NavbarLink,
+  NavbarMenu,
+  NavbarToggle,
+} from "./index";
 
 type Props = ComponentProps<typeof Navbar> & {
   selected: number | undefined;
@@ -51,15 +51,14 @@ const meta: Meta<Props> = {
   title: "Components/Navbar",
   component: Navbar,
   subcomponents: {
-    NavbarBrand: NavbarBrand as ComponentType<unknown>,
-    NavbarToggle: NavbarToggle as ComponentType<unknown>,
-    NavbarCollapse: NavbarCollapse as ComponentType<unknown>,
-    NavbarLink: NavbarLink as ComponentType<unknown>,
+    NavbarBrand,
+    NavbarToggle,
+    NavbarCollapse,
+    NavbarLink,
   },
   tags: ["autodocs"],
   args: { selected: undefined },
   argTypes: {
-    color: { control: { type: "select" }, options: availableColors },
     selected: {
       control: {
         type: "inline-radio",
@@ -68,13 +67,26 @@ const meta: Meta<Props> = {
         labels: { 0: "1", 1: "2", 2: "3", 3: "4", 4: "5", 5: "6", 6: "none" },
       },
       options: [0, 1, 2, 3, 4, 5, 6],
+      table: { category: "storybook" },
+    },
+    color: {
+      control: { type: "select" },
+      options: availableColors,
+      table: { category: "controls" },
     },
     collapseAt: {
       control: { type: "inline-radio" },
       options: availableResponsiveSizes,
+      table: { category: "controls" },
     },
-    position: { control: { type: "inline-radio" } },
-    backdropClassName: { table: { disable: true } },
+    position: {
+      control: { type: "inline-radio" },
+      table: { category: "controls" },
+    },
+    hasShadow: { table: { category: "controls" } },
+    fixed: { table: { category: "controls" } },
+    glass: { table: { category: "controls" } },
+    backdropClassName: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -276,4 +288,5 @@ export const PageDemo: Story = {
       </div>
     );
   },
+  argTypes: { backdropClassName: { table: { disable: true } } },
 };

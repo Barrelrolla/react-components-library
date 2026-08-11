@@ -2,7 +2,12 @@ import { ComponentProps } from "react";
 import { getNavbarCollapseClasses } from "./getNavbarClasses";
 import { useNavbarContext } from "./NavbarContext";
 
-/** List that hides when the Navbar is small. */
+/**
+ * Main content container for `Navbar` elements, such as navigation link groups or actions.
+ *
+ * Automatically handles responsive visibility by hiding on smaller screens when the navbar
+ * collapses into a mobile menu format.
+ */
 export function NavbarCollapse({
   className,
   children,

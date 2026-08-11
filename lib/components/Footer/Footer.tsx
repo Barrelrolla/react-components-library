@@ -5,19 +5,23 @@ import { FooterContextProvider } from "./FooterContext";
 import { getFooterClasses } from "./getFooterClasses";
 
 export type FooterProps = {
-  /** Color of the footer. */
+  /** Color variant applied to the footer background and text styles. */
   color?: ColorType;
-  /** Adds a border and rounding. */
+  /** Applies decorative borders and outer corner rounding. */
   decorations?: boolean;
-  /** Size at which the ordering should switch from col to row. */
+  /** Breakpoint size at which the internal layout shifts from column to row orientation. */
   responsiveAt?: ResponsiveSizes;
-  /** The footer sits inside a continer. Add classes to it here. */
+  /** Additional CSS class names applied to the internal container element. */
   containerClassName?: string;
-  /**Any styles for the container. */
+  /** Inline CSS properties applied to the internal container element. */
   containerStyle?: CSSProperties;
+  /** Additional CSS class names applied directly to the footer wrapper. */
   className?: string;
 } & ComponentProps<"div">;
 
+/**
+ * Page footer layout component with customizable color variants, responsive column-to-row layout switching, and container styling.
+ */
 export function Footer({
   color = "neutral",
   decorations = false,

@@ -25,15 +25,25 @@ import {
 import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles";
 
 export type PopoverProps = {
+  /** Color variant applied to the popover card, arrow, and border elements. */
   color?: ColorType;
+  /** Explicitly controls the open state of the popover. When omitted, the component operates in an uncontrolled state. */
   isOpen?: boolean;
+  /** Callback fired when the popover open state changes. */
   onOpenChange?: (isOpen: boolean) => void;
+  /** Positioning strategy used to place the floating element relative to its trigger. Defaults to `"absolute"`. */
   strategy?: "absolute" | "fixed";
+  /** Placement direction of the popover relative to its anchor trigger. */
   placement?: Placement;
+  /** Delay in milliseconds before showing the popover on hover trigger interactions. */
   delay?: number;
+  /** When `true`, requires explicit click interactions to toggle the popover instead of hover. */
   requireClick?: boolean;
+  /** When `true`, renders a directional pointing arrow towards the reference anchor trigger. */
   hasArrow?: boolean;
+  /** ARIA role for accessibility semantics (e.g., `"popover"`, `"dialog"`, `"tooltip"`). */
   role?: floatingRoles;
+  /** Disables popover interactions and prevents it from opening. */
   disabled?: boolean;
 } & PropsWithChildren;
 
@@ -122,6 +132,14 @@ export function PopoverComponent({
   );
 }
 
+/**
+ * Floating popover component that presents contextual content or interactive controls
+ * positioned relative to a trigger element.
+ *
+ * Supports both controlled (via `isOpen` and `onOpenChange`) and uncontrolled
+ * state management modes. Includes support for hover and click triggers, custom positioning strategies,
+ * accessible ARIA roles, directional arrows, and color variants.
+ */
 export function Popover(props: PopoverProps) {
   const parentId = useFloatingParentNodeId();
   if (parentId === null) {

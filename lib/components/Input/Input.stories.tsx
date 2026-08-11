@@ -1,9 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { PiMagnifyingGlass } from "react-icons/pi";
-import { Input, InputProps } from "./Input";
 import { availableColors } from "@/types";
-import { AutocompleteInput } from "./AutocompleteInput";
+import { AutocompleteInput, Input, InputProps } from "./index";
 
 const meta: Meta<typeof Input> = {
   title: "Components/Input",
@@ -15,16 +14,26 @@ const meta: Meta<typeof Input> = {
     </div>
   ),
   argTypes: {
-    color: { control: { type: "select" }, options: availableColors },
-    startIcon: { table: { disable: true } },
-    endIcon: { table: { disable: true } },
-    labelClassName: { table: { disable: true } },
-    wrapperClassName: { table: { disable: true } },
-    errorClassName: { table: { disable: true } },
-    inputContainerClassName: { table: { disable: true } },
-    wrapperStyle: { table: { disable: true } },
-    as: { table: { disable: true } },
-    inputContainerStyle: { table: { disable: true } },
+    placeholder: { table: { category: "storybook" } },
+    color: {
+      control: { type: "select" },
+      options: availableColors,
+      table: { category: "controls" },
+    },
+    type: { table: { category: "controls" } },
+    label: { table: { category: "controls" } },
+    disabled: { table: { category: "controls" } },
+    error: { table: { category: "controls" } },
+    startIcon: { control: false, table: { category: "docs" } },
+    endIcon: { control: false, table: { category: "docs" } },
+    labelClassName: { control: false, table: { category: "docs" } },
+    wrapperClassName: { control: false, table: { category: "docs" } },
+    errorClassName: { control: false, table: { category: "docs" } },
+    inputContainerClassName: { control: false, table: { category: "docs" } },
+    wrapperStyle: { control: false, table: { category: "docs" } },
+    as: { control: false, table: { category: "docs" } },
+    ref: { control: false, table: { category: "docs" } },
+    inputContainerStyle: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -305,6 +314,18 @@ export const WithLabel: Story = {
     placeholder: "Input",
     label: "Label",
   },
+  argTypes: {
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    inputContainerClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    inputContainerStyle: { table: { disable: true } },
+  },
 };
 
 export const WithIcon: Story = {
@@ -315,6 +336,18 @@ export const WithIcon: Story = {
     startIcon: <PiMagnifyingGlass />,
     placeholder: "Input",
     label: "Label",
+  },
+  argTypes: {
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    inputContainerClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    inputContainerStyle: { table: { disable: true } },
   },
 };
 
@@ -328,6 +361,18 @@ export const WithError: Story = {
     label: "Label",
     error: "Error",
   },
+  argTypes: {
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    inputContainerClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    inputContainerStyle: { table: { disable: true } },
+  },
 };
 
 export const Textarea: Story = {
@@ -338,6 +383,18 @@ export const Textarea: Story = {
     placeholder: "Input",
     label: "Label",
   },
+  argTypes: {
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    inputContainerClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    inputContainerStyle: { table: { disable: true } },
+  },
 };
 
 export const Number: Story = {
@@ -347,6 +404,19 @@ export const Number: Story = {
   args: {
     placeholder: "Input",
     label: "Label",
+  },
+  argTypes: {
+    type: { table: { disable: true } },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    inputContainerClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    inputContainerStyle: { table: { disable: true } },
   },
 };
 
@@ -359,6 +429,19 @@ export const Disabled: Story = {
     placeholder: "Input",
     label: "Label",
   },
+  argTypes: {
+    disabled: { table: { disable: true } },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    inputContainerClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    inputContainerStyle: { table: { disable: true } },
+  },
 };
 
 export const WithAutocomplete: Story = {
@@ -369,6 +452,18 @@ export const WithAutocomplete: Story = {
     startIcon: <PiMagnifyingGlass />,
     placeholder: "Search countries",
     label: "Country",
+  },
+  argTypes: {
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    inputContainerClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    inputContainerStyle: { table: { disable: true } },
   },
 };
 
@@ -388,7 +483,17 @@ export const Colors: Story = {
   },
   argTypes: {
     color: { table: { disable: true } },
-    id: { table: { disable: true } },
     label: { table: { disable: true } },
+    disabled: { table: { disable: true } },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    inputContainerClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    inputContainerStyle: { table: { disable: true } },
   },
 };

@@ -1,43 +1,49 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { PiRocket, PiGithubLogo, PiLinkedinLogo } from "react-icons/pi";
-import { Footer } from "./Footer";
-import { FooterBrand } from "./FooterBrand";
-import { FooterDivider } from "./FooterDivider";
-import { FooterFullSection } from "./FooterFullSection";
-import { FooterIconsContainer } from "./FooterIconsContainer";
-import { FooterLink } from "./FooterLink";
-import { FooterLinkGroup } from "./FooterLinkGroup";
-import { FooterLinksSection } from "./FooterLinksSection";
-import { FooterLinksTitle } from "./FooterLinksTitle";
-import { ComponentType } from "react";
 import { availableColors, availableResponsiveSizes } from "@/types";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
-import { Anchor } from "../Anchor";
+import { Anchor, Tooltip, TooltipContent, TooltipTrigger } from "../index";
+import {
+  Footer,
+  FooterBrand,
+  FooterDivider,
+  FooterFullSection,
+  FooterIconsContainer,
+  FooterLink,
+  FooterLinkGroup,
+  FooterLinksSection,
+  FooterLinksTitle,
+} from "./index";
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Footer",
   tags: ["autodocs"],
   component: Footer,
   subcomponents: {
-    FooterBrand: FooterBrand as ComponentType<unknown>,
-    FooterDivider: FooterDivider as ComponentType<unknown>,
-    FooterFullSection: FooterFullSection as ComponentType<unknown>,
-    FooterIconsContainer: FooterIconsContainer as ComponentType<unknown>,
-    FooterLink: FooterLink as ComponentType<unknown>,
-    FooterLinkGroup: FooterLinkGroup as ComponentType<unknown>,
-    FooterLinksSection: FooterLinksSection as ComponentType<unknown>,
-    FooterLinksTitle: FooterLinksTitle as ComponentType<unknown>,
+    FooterBrand,
+    FooterDivider,
+    FooterFullSection,
+    FooterIconsContainer,
+    FooterLink,
+    FooterLinkGroup,
+    FooterLinksSection,
+    FooterLinksTitle,
   },
   argTypes: {
-    color: { control: { type: "select" }, options: availableColors },
+    color: {
+      control: { type: "select" },
+      options: availableColors,
+      table: { category: "controls" },
+    },
     responsiveAt: {
       control: { type: "inline-radio" },
       options: availableResponsiveSizes,
+      table: { category: "controls" },
     },
-    containerStyle: { table: { disable: true } },
-    containerClassName: { table: { disable: true } },
-    className: { table: { disable: true } },
+    decorations: { table: { category: "controls" } },
+    containerStyle: { control: false, table: { category: "docs" } },
+    containerClassName: { control: false, table: { category: "docs" } },
+    className: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -126,5 +132,10 @@ export const WithLinkGroups: Story = {
         </FooterFullSection>
       </Footer>
     );
+  },
+  argTypes: {
+    containerStyle: { table: { disable: true } },
+    containerClassName: { table: { disable: true } },
+    className: { table: { disable: true } },
   },
 };

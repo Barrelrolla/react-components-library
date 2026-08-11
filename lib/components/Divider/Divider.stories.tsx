@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Divider } from "./Divider";
 import { availableColors, availableResponsiveSizes } from "@/types";
+import { Divider } from "./index";
 
 const meta: Meta<typeof Divider> = {
   title: "Components/Divider",
@@ -12,10 +12,18 @@ const meta: Meta<typeof Divider> = {
     </div>
   ),
   argTypes: {
-    color: { control: { type: "select" }, options: availableColors },
+    color: {
+      control: { type: "select" },
+      options: availableColors,
+      table: { category: "controls" },
+    },
+    width: { table: { category: "controls" } },
+    vertical: { table: { category: "controls" } },
+    useBgColor: { table: { category: "controls" } },
     responsiveAt: {
       control: { type: "inline-radio" },
       options: availableResponsiveSizes,
+      table: { category: "controls" },
     },
   },
 };
@@ -46,5 +54,8 @@ export const Colors: Story = {
         })}
       </div>
     );
+  },
+  argTypes: {
+    color: { table: { disable: true } },
   },
 };

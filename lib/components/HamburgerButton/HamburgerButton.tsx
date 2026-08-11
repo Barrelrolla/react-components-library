@@ -3,11 +3,15 @@ import { Button, ButtonProps } from "../Button";
 import { getHamburgerClasses } from "./getHamburgerClasses";
 
 export type HamburgerButtonProps = {
-  /** The component that uses it, should provide its isOpen state here. */
+  /** Indicates whether the menu is open, triggering the icon transformation into an 'X'. */
   isOpen: boolean;
 } & ButtonProps<"button">;
 
-/** A hamburger button that becomes an X on open */
+/**
+ * Animated menu toggle button that transitions between a classic three-line hamburger icon and an 'X' close symbol.
+ *
+ * Built on top of `Button`, inheriting all visual variant, sizing, and interaction props.
+ */
 export function HamburgerButton({
   color = "main",
   isOpen = false,

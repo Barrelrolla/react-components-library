@@ -4,10 +4,17 @@ import { twMerge } from "tailwind-merge";
 
 const EVENT_REGEX = /^on[A-Z]/;
 
-type SlotProps = HTMLAttributes<HTMLElement> & {
+export type SlotProps = HTMLAttributes<HTMLElement> & {
+  /** React ref forwarded to and merged with the child element's ref. */
   ref?: React.Ref<HTMLElement>;
 } & Record<string, unknown>;
 
+/**
+ * Combines two event handler callbacks so both execute sequentially.
+ *
+ * Invokes the child handler first; if `event.preventDefault()` is not called,
+ * the slot handler is executed afterward.
+ */
 function composeEventHandlers<E extends React.SyntheticEvent>(
   childHandler?: (event: E) => void,
   slotHandler?: (event: E) => void,
@@ -21,6 +28,13 @@ function composeEventHandlers<E extends React.SyntheticEvent>(
   };
 }
 
+/**
+ * Utility component that merges floating interaction props, event handlers, styles,
+ * Tailwind class names, and refs directly onto a trigger child element.
+ *
+ * Clones the child React element to attach floating reference bindings without adding
+ * extra wrapper elements to the DOM.
+ */
 export function Slot({ children, ref, ...props }: SlotProps) {
   const child = Children.only(children);
   if (!isValidElement(child)) {

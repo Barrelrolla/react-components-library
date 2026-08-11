@@ -2,17 +2,20 @@ import { createContext, useContext } from "react";
 import { ResponsiveSizes } from "@/types";
 import { HeroAlign } from "./HeroTypes";
 
-/** Context holding data for components inside a Hero */
 export type HeroContextType = {
-  /** Select if text should be left or center aligned. By default it's left aligned on big screens and center on small ones. */
+  /** Text alignment strategy for headings and body copy within the hero. */
   textAlign: HeroAlign;
-  /** Same as `textAlign` but for actions. */
+  /** Alignment strategy for action elements, such as buttons or links. */
   actionsAlign: HeroAlign;
-  /** The size at which the component should change alignment. */
+  /** Breakpoint size at which responsive alignment shifts between mobile and desktop modes. */
   responsiveAt: ResponsiveSizes;
 } | null;
 
 const HeroContext = createContext<HeroContextType>(null);
+/**
+ * Context provider that distributes alignment rules and responsive breakpoint settings
+ * from a `Hero` container to nested subcomponents like `HeroTitle`, `HeroText`, and `HeroActions`.
+ */
 export const HeroContextProvider = HeroContext.Provider;
 
 export function useHeroContext() {

@@ -6,7 +6,13 @@ import { getNavbarBrandClasses } from "./getNavbarClasses";
 const defaultType = "a";
 export type NavbarBrandProps<E extends ElementType> = {} & AnchorProps<E>;
 
-/** Use inside a Navbar component to add a Brand name and logo. */
+/**
+ * Polymorphic brand logo or title container for a `Navbar`.
+ *
+ * Renders semantically as an `a` tag by default to act as an anchor back to
+ * the homepage, but supports custom element types (e.g., framework-specific router `Link` components)
+ * via the polymorphic `as` prop.
+ */
 export function NavbarBrand<E extends ElementType = typeof defaultType>({
   as,
   color = "main",

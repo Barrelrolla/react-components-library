@@ -2,6 +2,17 @@ import { ReactElement, KeyboardEvent } from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import { Slot } from "../Slot/Slot";
 
+export type AutocompleteTriggerProps = {
+  /** Single React element acting as the input trigger for the autocomplete dropdown. */
+  children: ReactElement;
+};
+
+/**
+ * Anchor trigger component that binds autocomplete interaction handlers, input bindings,
+ * and floating reference refs directly to its child element (typically an `<Input />`) without adding extra wrapper DOM nodes.
+ *
+ * Uses `Slot` under the hood to clone the child element and merge event handlers and references.
+ */
 export function AutocompleteTrigger({ ...rest }: { children: ReactElement }) {
   const context = useAutocompleteContext();
   if (!context) {

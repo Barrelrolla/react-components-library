@@ -1,5 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, screen, userEvent, within } from "storybook/test";
+import { PiGearThin } from "react-icons/pi";
+import {
+  availableColors,
+  availableMobileSheetPlacements,
+  availablePlacements,
+} from "@/types";
+import { Button } from "../index";
 import {
   Dropdown,
   DropdownList,
@@ -8,18 +15,18 @@ import {
   DropdownContent,
   DropdownTrigger,
 } from "./index";
-import {
-  availableColors,
-  availableMobileSheetPlacements,
-  availablePlacements,
-} from "@/types";
-import { Button } from "../Button";
-import { PiGearThin } from "react-icons/pi";
 
 const meta: Meta<typeof Dropdown> = {
   title: "Components/Dropdown",
   tags: ["autodocs"],
   component: Dropdown,
+  subcomponents: {
+    DropdownContent,
+    DropdownList,
+    DropdownListItem,
+    DropdownTitle,
+    DropdownTrigger,
+  },
   decorators: (Story) => (
     <div className="storybookContainer">
       <Story />
@@ -29,12 +36,29 @@ const meta: Meta<typeof Dropdown> = {
     color: {
       options: availableColors,
       control: { type: "select" },
+      table: { category: "controls" },
     },
     mobileSheetPlacement: {
       options: availableMobileSheetPlacements,
       control: { type: "select" },
+      table: { category: "controls" },
     },
-    placement: { options: availablePlacements, control: { type: "select" } },
+    placement: {
+      options: availablePlacements,
+      control: { type: "select" },
+      table: { category: "controls" },
+    },
+    returnFocus: {
+      control: { type: "boolean" },
+      table: { category: "controls" },
+    },
+    hasArrow: { table: { category: "controls" } },
+    strategy: { table: { category: "controls" } },
+    requireClick: { table: { category: "controls" } },
+    disabled: { table: { category: "controls" } },
+    mobileSheet: { table: { category: "controls" } },
+    isOpen: { control: false, table: { category: "docs" } },
+    onOpenChange: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -106,7 +130,7 @@ export const Nested: Story = {
                 </DropdownList>
               </DropdownContent>
             </Dropdown>
-            <DropdownListItem>
+            <DropdownListItem className="justify-start">
               <PiGearThin />
               item 4
             </DropdownListItem>
@@ -114,6 +138,10 @@ export const Nested: Story = {
         </DropdownContent>
       </Dropdown>
     );
+  },
+  argTypes: {
+    isOpen: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
   },
 };
 
@@ -151,5 +179,7 @@ export const Colors: Story = {
   },
   argTypes: {
     color: { table: { disable: true } },
+    isOpen: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
   },
 };

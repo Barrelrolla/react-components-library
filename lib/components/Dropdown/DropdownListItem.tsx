@@ -1,11 +1,12 @@
 import { useFloatingTree, useListItem, useMergeRefs } from "@floating-ui/react";
 import { ElementType, MouseEvent, FocusEvent, Ref } from "react";
 import { useDropdownContext } from "./DropdownContext";
-import { getDropdownLinkClasses } from "./getDropdownClasses";
 import { CaretDownIcon } from "@/icons";
 import { getTextFromChildren } from "@/util/helpers";
 import { PolymorphicProps } from "@/types";
 import { cssColorPropsReversed } from "@/util";
+import { getFloatingListItemClasses } from "../Floating/getFloatinigClasses";
+import { useIsMobile } from "@/hooks";
 
 const defaultType = "button";
 export function DropdownListItem<E extends ElementType = typeof defaultType>({
@@ -27,8 +28,13 @@ export function DropdownListItem<E extends ElementType = typeof defaultType>({
   const label = getTextFromChildren(children);
   const item = useListItem({ label: disabled ? null : label });
   const tree = useFloatingTree();
+  const isMobile = useIsMobile();
   const isActive = item.index === context.activeIndex;
-  const { classes } = getDropdownLinkClasses({ className });
+  const { classes } = getFloatingListItemClasses({
+    className: "group expanded:text-(--fg-color) " + className,
+    mobileSheet: context.mobileSheet,
+    isMobile,
+  });
   const Element = as || defaultType;
 
   return (

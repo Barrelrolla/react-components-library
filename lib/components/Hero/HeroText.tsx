@@ -1,7 +1,11 @@
 import { ComponentProps } from "react";
 import { getHeroTextClasses } from "./getHeroClasses";
 
-/** Body text for the Hero component. */
+/**
+ * Body copy paragraph designed for key messaging within a `Hero` component.
+ *
+ * Automatically inherits layout alignment settings from the parent `Hero` component.
+ */
 export function HeroText({
   className,
   children,

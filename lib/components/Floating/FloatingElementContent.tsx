@@ -15,8 +15,11 @@ import { CloseIcon } from "@/icons";
 import { Button } from "../Button";
 
 export type FloatingContentProps = {
+  /** Internal positioning context, state, and floating metadata shared across floating components. */
   context: FloatingElementContextType;
+  /** When `true`, matches the directional arrow color to the floating element's color variant background. */
   coloredArror?: boolean;
+  /** Custom class generator function for dynamic styling based on mobile sheet display settings and placement. */
   getClasses?: ({
     mobileSheet,
     mobileSheetPlacement,
@@ -28,6 +31,13 @@ export type FloatingContentProps = {
   }) => { classes: string };
 };
 
+/**
+ * Foundation floating content wrapper that serves as the base surface for all floating UI elements
+ * (such as popovers, tooltips, dropdowns, and select menus).
+ *
+ * Manages floating positioning context, optional directional arrow coloration, dynamic class composition,
+ * and mobile bottom-sheet adaptation.
+ */
 export function FloatingElementContent({
   context,
   coloredArror = false,

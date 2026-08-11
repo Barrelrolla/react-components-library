@@ -11,24 +11,38 @@ import {
   useRole,
   useTransitionStyles,
 } from "@floating-ui/react";
-import { getDialogClasses } from "./getDialogClasses";
-import { Card, CardProps } from "../Card";
-import { Button } from "../Button";
 import { CloseIcon } from "@/icons";
+import { getDialogClasses } from "./getDialogClasses";
+import { Button, Card, CardProps } from "../index";
 
 export type DialogProps = {
-  /** You should keep track of the open state of the dialog, it doesn't do it by itself, save it in a state? */
+  /**
+   * Controls the open/visible state of the dialog.
+   * As a controlled component, this state must be managed by the parent.
+   */
   isOpen: boolean;
-  /** This function will be called when the dialog wants to close.  */
+  /** Callback fired when the dialog requests to be closed (e.g., clicking the backdrop or pressing Escape). */
   setIsOpen: (open: boolean) => void;
+  /** Determines if a built-in close button should be rendered. */
   showClose?: boolean;
-  /** Classes for the backdrop. */
+  /** Additional CSS class names applied to the modal backdrop/overlay element. */
   backdropClassName?: string;
+  /**
+   * Initial inline CSS styles applied before the opening animation starts
+   * (e.g., `{ opacity: 0, transform: 'scale(0.95)' }`). Useful for custom mount animations.
+   */
   initialStyles?: CSSProperties;
+  /** Automatically shifts focus to the first focusable element inside the dialog when it opens. */
   hasInitialFocus?: boolean;
 } & CardProps;
 
-/** The dialog component has no visuals. You should add your own visual as children. You can use a card or a form or whatever you'd like */
+/**
+ * Controlled modal dialog component built on top of `Card`.
+ *
+ * Provides an empty `Card` surface out of the box alongside backdrop overlay management,
+ * focus trapping, entry/exit animations, and accessibility handling. Pass any content,
+ * form, or card sub-components as children.
+ */
 export function Dialog({
   hasInitialFocus = true,
   isOpen,

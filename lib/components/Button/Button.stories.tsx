@@ -49,8 +49,8 @@ const meta: Meta<typeof Button> = {
     selected: { control: false, table: { category: "docs" } },
     startIcon: { control: false, table: { category: "docs" } },
     endIcon: { control: false, table: { category: "docs" } },
-    as: { table: { disable: true } },
-    ref: { table: { disable: true } },
+    as: { table: { category: "docs" } },
+    ref: { table: { category: "docs" } },
   },
 };
 
@@ -91,6 +91,8 @@ export const Variants: Story = {
     endIcon: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
     useGroup: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
   },
 };
 
@@ -128,6 +130,8 @@ export const Disabled: Story = {
     endIcon: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
     useGroup: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
   },
 };
 
@@ -183,6 +187,8 @@ export const Icon: Story = {
     endIcon: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
     useGroup: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
   },
 };
 
@@ -237,6 +243,8 @@ export const Sizes: Story = {
     wrapperClassName: { table: { disable: true } },
     useGroup: { table: { disable: true } },
     children: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
   },
 };
 
@@ -274,5 +282,7 @@ export const Colors: Story = {
     endIcon: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
     useGroup: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
   },
 };
