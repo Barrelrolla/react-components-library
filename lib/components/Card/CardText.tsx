@@ -2,7 +2,9 @@ import { ComponentProps } from "react";
 import { getCardTextClasses } from "./getCardClasses";
 import { useCardContext } from "./CardContext";
 
-/** Body text inside a Card. */
+/**
+ * Text component for rendering body copy and descriptive content inside a `Card`.
+ */
 export function CardText({
   className,
   children,

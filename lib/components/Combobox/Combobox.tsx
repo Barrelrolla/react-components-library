@@ -7,37 +7,56 @@ import {
   useState,
   FocusEvent,
 } from "react";
+import { useMergeRefs } from "@floating-ui/react";
 import { ColorType } from "@/types";
+import { useIsMobile } from "@/hooks";
+import { CaretDownIcon, XIcon } from "@/icons";
 import { cssColorProps } from "@/util";
+import { getSelectClasses } from "../Select/getSelectClasses";
 import {
   Autocomplete,
   AutocompleteContent,
   AutocompleteTrigger,
-} from "../Autocomplete";
-import { getSelectClasses } from "../Select/getSelectClasses";
-import { Button, useButtonGroupContext } from "../Button";
-import { Badge } from "../Badge";
-import { CaretDownIcon, XIcon } from "@/icons";
-import { useIsMobile } from "@/hooks";
-import { useMergeRefs } from "@floating-ui/react";
+  Badge,
+  Button,
+  useButtonGroupContext,
+} from "../index";
 
 export type ComboboxProps = {
+  /** Color variant of the combobox. */
   color?: ColorType;
+  /** Array of selectable string items. */
   items: string[];
+  /** Enables multi-selection mode. */
   multiple?: boolean;
+  /** Label text displayed above the input. */
   label?: string;
-  placeholder?: string;
+  /** Error message text. When provided, applies `error` semantic styles to the input. */
   error?: string;
+  /** Allows arbitrary custom text input rather than strictly restricting values to the `items` list. */
   allowFreeText?: boolean;
+  /** Initial selected item index for single-selection mode. */
   initialSelectedIndex?: number | undefined;
+  /** Initial selected item indices for multi-selection mode. */
   initialSelectedIndices?: number[];
+  /** Callback fired when the selected item index changes. */
   onSelectedIndexChange?: (index: number | undefined) => void;
+  /** Additional CSS class names applied to the label element. */
   labelClassName?: string;
+  /** Additional CSS class names applied to the error message element. */
   errorClassName?: string;
+  /** Additional CSS class names applied to the outer wrapper element. */
   wrapperClassName?: string;
+  /** Inline CSS properties applied to the outer wrapper element. */
   wrapperStyle?: CSSProperties;
 } & ComponentProps<"input">;
 
+/**
+ * Advanced combobox input component supporting single or multi-item selection, custom free-text input,
+ * and built-in autocomplete powered by list virtualization and fuzzy search for high-performance matching.
+ *
+ * Automatically applies error styling when the `error` prop is present.
+ */
 export function Combobox({
   ref,
   color = "primary",
@@ -45,7 +64,6 @@ export function Combobox({
   multiple = false,
   id,
   label,
-  placeholder = "Search",
   disabled,
   error,
   allowFreeText = false,
@@ -81,10 +99,11 @@ export function Combobox({
   } = getSelectClasses({
     color: error ? "error" : color,
     isOpen,
-    className,
+    disabled,
+    className: "cursor-auto " + className,
     labelClassName,
     errorClassName,
-    wrapperClassName,
+    wrapperClassName: wrapperClassName,
     group,
   });
 
@@ -218,7 +237,7 @@ export function Combobox({
                       <>
                         <span>{items[index]}</span>
                         <Button
-                          useGropup={false}
+                          useGroup={false}
                           variant="ghost"
                           radius="pill"
                           size="xs"
@@ -255,7 +274,6 @@ export function Combobox({
                     resolvedId && error ? `${resolvedId}-error` : undefined
                   }
                   aria-label={ariaLabel}
-                  placeholder={placeholder}
                   disabled={disabled}
                   className="text-main-content line-clamp-1 w-0 grow-1 cursor-text px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
                   value={query}
@@ -275,7 +293,7 @@ export function Combobox({
                   {(selectedIndex !== undefined ||
                     selectedIndices.length > 0) && (
                     <Button
-                      useGropup={false}
+                      useGroup={false}
                       radius="pill"
                       size="sm"
                       variant="ghost"
@@ -291,7 +309,7 @@ export function Combobox({
                     </Button>
                   )}
                   <Button
-                    useGropup={false}
+                    useGroup={false}
                     radius="pill"
                     size="sm"
                     variant="ghost"

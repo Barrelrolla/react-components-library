@@ -13,18 +13,38 @@ const meta: Meta<typeof DarkModeToggle> = {
     </div>
   ),
   argTypes: {
-    children: { if: { arg: "false", eq: "true" } },
-    color: { control: { type: "select" }, options: availableColors },
-    variant: { control: { type: "inline-radio" } },
-    size: { control: { type: "inline-radio" }, options: availableSizes },
-    radius: { control: { type: "inline-radio" } },
+    color: {
+      control: { type: "select" },
+      options: availableColors,
+      table: { category: "controls" },
+    },
+    variant: {
+      control: { type: "inline-radio" },
+      table: { category: "controls" },
+    },
+    size: {
+      control: { type: "inline-radio" },
+      options: availableSizes,
+      table: { category: "controls" },
+    },
+    radius: {
+      control: { type: "inline-radio" },
+      table: { category: "controls" },
+    },
+    disabled: { table: { category: "controls" } },
+    scaling: { table: { category: "controls" } },
+    retainFocusState: { table: { category: "controls" } },
+    lightModeTooltip: { control: false, table: { category: "docs" } },
+    darkModeTooltip: { control: false, table: { category: "docs" } },
     loading: { table: { disable: true } },
     loadingPosition: { table: { disable: true } },
     startIcon: { table: { disable: true } },
     endIcon: { table: { disable: true } },
     ref: { table: { disable: true } },
-    as: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
+    selected: { table: { disable: true } },
+    as: { table: { disable: true } },
   },
 };
 

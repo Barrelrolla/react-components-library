@@ -2,7 +2,9 @@ import { ComponentProps } from "react";
 import { getCardSectionClasses } from "./getCardClasses";
 import { useCardContext } from "./CardContext";
 
-/** Use to divide a Card into multiple sections. */
+/**
+ * Structural divider component used to split a `Card` into distinct visual sections or columns.
+ */
 export function CardSection({
   className,
   children,

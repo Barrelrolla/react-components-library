@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
-import { Anchor } from "./Anchor";
 import { availableColors } from "@/types";
+import { Anchor } from "./index";
 
 const meta: Meta<typeof Anchor> = {
   title: "Components/Anchor",
@@ -13,12 +13,15 @@ const meta: Meta<typeof Anchor> = {
     </div>
   ),
   argTypes: {
-    children: { name: "text" },
+    children: { name: "text", table: { category: "storybook" } },
     color: {
       options: availableColors,
       control: { type: "select" },
-      table: { defaultValue: { summary: "main" } },
+      table: { defaultValue: { summary: "main" }, category: "controls" },
     },
+    underlined: { table: { category: "controls" } },
+    hoverUnderline: { table: { category: "controls" } },
+    hoverUnderlineOffset: { table: { category: "controls" } },
     href: { table: { disable: true } },
     ref: { table: { disable: true } },
     as: { table: { disable: true } },

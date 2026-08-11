@@ -4,18 +4,24 @@ import { CardSizes } from "./CardTypes";
 import { getCardClasses } from "./getCardClasses";
 
 export type CardProps = {
-  /** If the card sections should be horizontal or vertical Default is `false`. */
+  /** Lays out child card sections horizontally instead of vertically. */
   horizontal?: boolean;
-  /** Size of the card. */
+  /** Predefined padding and spacing size option for the card. */
   size?: CardSizes;
-  /** The card is inside a `@container`. Add any classes to it here. */
+  /** Additional CSS class names applied to the outer CSS container element (`@container`). */
   containerClassName?: string;
-  /** Add any styles for the container here. */
+  /** Inline CSS properties applied to the outer CSS container element. */
   containerStyle?: CSSProperties;
-  /** Classes for the card itself. */
+  /** Additional CSS class names applied directly to the card element. */
   className?: string;
 } & ComponentProps<"div">;
 
+/**
+ * Flexible container component for grouping related content and actions into a structured card.
+ *
+ * Acts as the primary wrapper for card sub-components (such as `CardTitle`, `CardSection`, and others).
+ * Built with CSS Container Queries support out of the box.
+ */
 export function Card({
   horizontal = false,
   size = "sm",

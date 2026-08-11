@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { PiHeart, PiBookmark, PiThumbsUp } from "react-icons/pi";
-import { Button } from "./Button";
-import { availableColors, availableSizes } from "@/types";
 import { FloatingDelayGroupContextProvider } from "@/contexts/FloatingDelayGroup";
-import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip";
+import { availableColors, availableSizes } from "@/types";
 import { availableButtonVariants } from "./buttonTypes";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../index";
+import { Button } from "./index";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -17,16 +17,40 @@ const meta: Meta<typeof Button> = {
     </div>
   ),
   argTypes: {
-    children: { name: "text" },
-    color: { control: { type: "select" }, options: availableColors },
-    variant: { control: { type: "inline-radio" } },
-    size: { control: { type: "inline-radio" }, options: availableSizes },
-    radius: { control: { type: "inline-radio" } },
-    loadingPosition: { control: { type: "inline-radio" } },
-    startIcon: { table: { disable: true } },
-    endIcon: { table: { disable: true } },
-    ref: { table: { disable: true } },
+    children: { name: "text", table: { category: "storybook" } },
+    color: {
+      control: { type: "select" },
+      options: availableColors,
+      table: { category: "controls" },
+    },
+    variant: {
+      control: { type: "inline-radio" },
+      table: { category: "controls" },
+    },
+    size: {
+      control: { type: "inline-radio" },
+      options: availableSizes,
+      table: { category: "controls" },
+    },
+    radius: {
+      control: { type: "inline-radio" },
+      table: { category: "controls" },
+    },
+    loadingPosition: {
+      control: { type: "inline-radio" },
+      table: { category: "controls" },
+    },
+    retainFocusState: { table: { category: "controls" } },
+    scaling: { table: { category: "controls" } },
+    disabled: { table: { category: "controls" } },
+    loading: { table: { category: "controls" } },
+    useGroup: { control: false, table: { category: "docs" } },
+    wrapperClassName: { control: false, table: { category: "docs" } },
+    selected: { control: false, table: { category: "docs" } },
+    startIcon: { control: false, table: { category: "docs" } },
+    endIcon: { control: false, table: { category: "docs" } },
     as: { table: { disable: true } },
+    ref: { table: { disable: true } },
   },
 };
 
@@ -62,6 +86,11 @@ export const Variants: Story = {
   argTypes: {
     children: { table: { disable: true } },
     variant: { table: { disable: true } },
+    selected: { table: { disable: true } },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -89,6 +118,16 @@ export const Disabled: Story = {
   },
   args: {
     children: "Button",
+  },
+  argTypes: {
+    disabled: { table: { disable: true } },
+    loading: { table: { disable: true } },
+    retainFocusState: { table: { disable: true } },
+    selected: { table: { disable: true } },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -134,6 +173,16 @@ export const Icon: Story = {
         </FloatingDelayGroupContextProvider>
       </>
     );
+  },
+  argTypes: {
+    loadingPosition: { table: { disable: true } },
+    radius: { table: { disable: true } },
+    children: { table: { disable: true } },
+    selected: { table: { disable: true } },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -182,6 +231,12 @@ export const Sizes: Story = {
   },
   argTypes: {
     size: { table: { disable: true } },
+    selected: { table: { disable: true } },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
+    children: { table: { disable: true } },
   },
 };
 
@@ -213,5 +268,11 @@ export const Colors: Story = {
   argTypes: {
     children: { table: { disable: true } },
     color: { table: { disable: true } },
+    variant: { table: { disable: true } },
+    selected: { table: { disable: true } },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };

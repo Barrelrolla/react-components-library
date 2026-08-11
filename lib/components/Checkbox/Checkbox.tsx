@@ -5,15 +5,21 @@ import { getCheckboxClasses } from "./getCheckboxClasses";
 import { EmtpySquareIcon, SquareCheckIcon } from "@/icons";
 
 export type CheckboxProps = {
+  /** Color variant of the checkbox. */
   color?: ColorType;
-  labelColor?: ColorType;
+  /** Inline CSS properties applied to the label element. */
   labelStyle?: CSSProperties;
+  /** Additional CSS class names applied to the label element. */
   labelClassName?: string;
+  /** Initial check state. */
   defaultChecked?: boolean;
+  /** Additional CSS class names applied to the outer input wrapper element. */
   wrapperClassName?: string;
+  /** Dimensions/size indicator of the checkbox element (in pixels). */
   size?: number;
 } & ComponentProps<"input">;
 
+/** Customizable checkbox component with support for theme color variants, custom sizes, and built-in label styling. */
 export function Checkbox({
   color = "primary",
   size = 24,

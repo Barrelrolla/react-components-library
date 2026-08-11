@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
-import { Badge } from "./Badge";
 import { availableColors } from "@/types";
 import { availableBadgeVariants } from "./badgeTypes";
+import { Badge } from "./index";
 
 const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
@@ -14,10 +14,14 @@ const meta: Meta<typeof Badge> = {
     </div>
   ),
   argTypes: {
-    children: { name: "text" },
+    children: { name: "text", table: { category: "storybook" } },
     color: {
       options: availableColors,
       control: { type: "select" },
+      table: { category: "controls" },
+    },
+    variant: {
+      table: { category: "controls" },
     },
   },
 };

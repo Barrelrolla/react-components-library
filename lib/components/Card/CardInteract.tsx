@@ -5,7 +5,11 @@ import { useCardContext } from "./CardContext";
 
 const defaultType = "a" as const;
 
-/** An anchor element to be used inside a card component. All children will be part of the interactable area. */
+/**
+ * Polymorphic wrapper that converts card contents into an interactable link or button area.
+ *
+ * Expands touch/click target bounds so all nested children are part of the interactive surface.
+ */
 export function CardInteract<E extends ElementType = typeof defaultType>({
   as,
   tabIndex = 0,

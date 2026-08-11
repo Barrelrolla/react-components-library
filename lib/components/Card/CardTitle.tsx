@@ -9,7 +9,12 @@ export type CardTitleProps<T extends Heading = typeof defaultType> = {
   as?: T;
 } & ComponentPropsWithoutRef<T>;
 
-/** Card title */
+/**
+ * Primary title component for a `Card`.
+ *
+ * Supports polymorphic rendering via the `as` prop (e.g., `h1`, `h2`, `h3`)
+ * to maintain correct semantic heading hierarchy. Defaults to `h2`.
+ */
 export function CardTitle({
   as,
   className,

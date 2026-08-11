@@ -5,11 +5,15 @@ import { getBadgeClasses } from "./getBadgeClasses";
 import { BadgeVariant } from "./badgeTypes";
 
 export type BadgeProps = {
-  /** Badge text color. */
+  /** Color variant of the badge. */
   color?: ColorType;
+  /** Visual style variant. */
   variant?: BadgeVariant;
 } & ComponentProps<"div">;
 
+/**
+ * Small status indicator used to highlight tags, counts, or metadata.
+ */
 export function Badge({
   color = "primary",
   variant = "soft",

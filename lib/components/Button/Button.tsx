@@ -9,35 +9,42 @@ import { useButtonGroupContext } from "./ButtonGroupContext";
 
 const defaultType = "button" as const;
 export type ButtonProps<E extends ElementType> = {
-  /** Color of the button. If none is chosen it will be `primary`. */
+  /** Color variant of the button. */
   color?: ColorType;
-  /** Button variant. If none is set it will be `solid`. */
+  /** Visual style variant. */
   variant?: ButtonVariant;
-  /** Button size. If none is set it will be `md`. */
+  /** Button size option. */
   size?: SizeType;
-  /** Button radius. If none is set it will use the theme's default. */
+  /** Border radius override. Uses the theme default `--radius-inputs` if unset. */
   radius?: ButtonRadius;
-  /** By default, while the button is focused, it will retain it's hover state, meaning an outline or ghost button will remain solid for example. Set to `false` if you don't want that behaviour. */
+  /** Retains the active hover visual state while focused (e.g., keeps outline or ghost buttons filled). */
   retainFocusState?: boolean;
-  /** By default buttons scale on press. Set to `false` if you don't want that. */
+  /** Enables press/active scaling effect on click. */
   scaling?: boolean;
-  /** Used to disable the button. */
+  /** Disables user interaction and applies disabled visual styles. */
   disabled?: boolean;
-  /** In a button group for example, you can set this property to the currently selected button. */
+  /** Highlights the button as active/selected, useful within button groups or toggle states. */
   selected?: boolean;
-  /** Set to `true` when submitting a form for example. The button will show a loading indicator. */
+  /** Displays an animated spinner and disables user interaction. */
   loading?: boolean;
-  /** If the loading indicator should be shown in the start or end of the button. */
+  /** Placement of the loading spinner relative to the button label. */
   loadingPosition?: "start" | "end";
-  /** Start icon. You can just pass an icon in the children, but using this prop will automatically replace that icon for a loading one if the `loading` prop is set to `true`. */
+  /** Icon element placed before the button label. Automatically replaced by the spinner when `loading` is true. */
   startIcon?: ReactNode;
-  /** Same as start icon, but at the end. */
+  /** Icon element placed after the button label. Automatically replaced by the spinner when `loading` is true and `loadingPosition` is "end" */
   endIcon?: ReactNode;
-  /** The button is wrapped in a div to change the cursor when disabled. If you need to pass any classes to that div, you can do so with this prop. */
+  /** Additional CSS class names for the outer wrapper `div` used for disabled cursor handling. */
   wrapperClassName?: string;
-  useGropup?: boolean;
+  /** When set to `false`, forces a child button within a `ButtonGroup` to ignore group border and border-radius joining rules. */
+  useGroup?: boolean;
 } & PolymorphicProps<E>;
 
+/**
+ * Highly customizable polymorphic button component.
+ *
+ * Supports visual variants, sizes, icon slots, interactive loading states,
+ * and polymorphic rendering via the `as` prop.
+ */
 export function Button<E extends ElementType = typeof defaultType>({
   as,
   color,
@@ -54,14 +61,14 @@ export function Button<E extends ElementType = typeof defaultType>({
   endIcon,
   className,
   wrapperClassName,
-  useGropup = true,
+  useGroup = true,
   style,
   children,
   ...rest
 }: ButtonProps<E>) {
   const theme = useTheme();
   const foundGroup = useButtonGroupContext();
-  const group = useGropup ? foundGroup : null;
+  const group = useGroup ? foundGroup : null;
   const isIcon =
     (startIcon !== undefined || endIcon !== undefined) && !children;
   const isDisabled = disabled || loading;

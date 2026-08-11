@@ -1,14 +1,15 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Button } from "../Button";
-import { Card } from "./Card";
-import { CardActions } from "./CardActions";
-import { CardInteract } from "./CardInteract";
-import { CardImageContainer } from "./CardImageContainer";
-import { CardTitle } from "./CardTitle";
-import { CardText } from "./CardText";
-import { CardSection } from "./CardSection";
 import { ComponentType } from "react";
-import { availableColors } from "@/types";
+import { Button } from "../index";
+import {
+  Card,
+  CardActions,
+  CardInteract,
+  CardImageContainer,
+  CardTitle,
+  CardText,
+  CardSection,
+} from "./index";
 
 const meta: Meta<typeof Card> = {
   title: "Components/Card",
@@ -28,11 +29,17 @@ const meta: Meta<typeof Card> = {
     </div>
   ),
   argTypes: {
-    size: { control: { type: "inline-radio" } },
-    color: { control: { type: "select" }, options: availableColors },
-    containerClassName: { table: { disable: true } },
-    containerStyle: { table: { disable: true } },
-    className: { table: { disable: true } },
+    size: {
+      control: { type: "inline-radio" },
+      table: { category: "controls" },
+    },
+    horizontal: { table: { category: "controls" } },
+    containerClassName: {
+      control: false,
+      table: { category: "docs" },
+    },
+    containerStyle: { control: false, table: { category: "docs" } },
+    className: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -68,6 +75,11 @@ export const Clickable: Story = {
       </Card>
     );
   },
+  argTypes: {
+    containerClassName: { table: { disable: true } },
+    containerStyle: { table: { disable: true } },
+    className: { table: { disable: true } },
+  },
 };
 
 export const WithImage: Story = {
@@ -94,6 +106,11 @@ export const WithImage: Story = {
         </CardSection>
       </Card>
     );
+  },
+  argTypes: {
+    containerClassName: { table: { disable: true } },
+    containerStyle: { table: { disable: true } },
+    className: { table: { disable: true } },
   },
 };
 
@@ -124,6 +141,11 @@ export const WithClickableImage: Story = {
       </Card>
     );
   },
+  argTypes: {
+    containerClassName: { table: { disable: true } },
+    containerStyle: { table: { disable: true } },
+    className: { table: { disable: true } },
+  },
 };
 
 export const WithClickableBody: Story = {
@@ -152,6 +174,11 @@ export const WithClickableBody: Story = {
         </CardActions>
       </Card>
     );
+  },
+  argTypes: {
+    containerClassName: { table: { disable: true } },
+    containerStyle: { table: { disable: true } },
+    className: { table: { disable: true } },
   },
 };
 
@@ -182,6 +209,11 @@ export const WithPaddedImage: Story = {
       </Card>
     );
   },
+  argTypes: {
+    containerClassName: { table: { disable: true } },
+    containerStyle: { table: { disable: true } },
+    className: { table: { disable: true } },
+  },
 };
 
 export const Horizontal: Story = {
@@ -210,8 +242,9 @@ export const Horizontal: Story = {
     );
   },
   argTypes: {
-    horizontal: {
-      if: { arg: "false", eq: "true" },
-    },
+    horizontal: { table: { disable: true } },
+    containerClassName: { table: { disable: true } },
+    containerStyle: { table: { disable: true } },
+    className: { table: { disable: true } },
   },
 };

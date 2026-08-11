@@ -7,16 +7,20 @@ import {
   PiMagnifyingGlass,
   PiThumbsUp,
 } from "react-icons/pi";
-import { Button } from "./Button";
-import { ButtonGroup } from "./ButtonGroup";
 import { availableColors, availableSizes } from "@/types";
-import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip";
 import { availableButtonVariants } from "./buttonTypes";
-import { Input } from "../Input";
-import { Select, SelectOption } from "../Select";
-import { SelectContent } from "../Select/SelectContent";
-import { SelectGroup } from "../Select/SelectGroup";
-import { Combobox } from "../Combobox";
+import {
+  Combobox,
+  Input,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectOption,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "../index";
+import { Button, ButtonGroup } from "./index";
 
 type Props = ComponentProps<typeof ButtonGroup> & {
   selection: boolean;
@@ -33,11 +37,35 @@ const meta: Meta<Props> = {
   ),
   args: { selection: true },
   argTypes: {
-    selection: { control: { type: "boolean" } },
-    color: { control: { type: "select" }, options: availableColors },
-    variant: { control: { type: "inline-radio" } },
-    size: { control: { type: "inline-radio" }, options: availableSizes },
-    radius: { control: { type: "inline-radio" } },
+    selection: {
+      control: { type: "boolean" },
+      table: { category: "storybook" },
+    },
+    color: {
+      control: { type: "select" },
+      options: availableColors,
+      table: { category: "controls" },
+    },
+    variant: {
+      control: { type: "inline-radio" },
+      table: { category: "controls" },
+    },
+    size: {
+      control: { type: "inline-radio" },
+      options: availableSizes,
+      table: { category: "controls" },
+    },
+    radius: {
+      control: { type: "inline-radio" },
+      table: { category: "controls" },
+    },
+    retainFocusState: { table: { category: "controls" } },
+    divider: { table: { category: "controls" } },
+    vertical: { table: { category: "controls" } },
+    scaling: { table: { category: "controls" } },
+    tooltipDelay: { table: { category: "controls" } },
+    dividerClassName: { control: false, table: { category: "docs" } },
+    wrapperClassName: { control: false, table: { category: "docs" } },
     children: {
       table: { disable: true },
     },
@@ -127,6 +155,12 @@ export const Varinats: Story = {
       </>
     );
   },
+  argTypes: {
+    variant: { table: { disable: true } },
+    tooltipDelay: { table: { disable: true } },
+    dividerClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+  },
 };
 
 export const Vertical: Story = {
@@ -166,6 +200,11 @@ export const Vertical: Story = {
         </Button>
       </ButtonGroup>
     );
+  },
+  argTypes: {
+    vertical: { table: { disable: true } },
+    dividerClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
   },
 };
 
@@ -227,6 +266,10 @@ export const Icon: Story = {
       </ButtonGroup>
     );
   },
+  argTypes: {
+    dividerClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+  },
 };
 
 export const SplitButton: Story = {
@@ -249,7 +292,11 @@ export const SplitButton: Story = {
     );
   },
   args: { selection: undefined },
-  argTypes: { selection: { table: { disable: true } } },
+  argTypes: {
+    selection: { table: { disable: true } },
+    dividerClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+  },
 };
 
 export const WithInput: Story = {
@@ -267,7 +314,11 @@ export const WithInput: Story = {
     );
   },
   args: { selection: undefined },
-  argTypes: { selection: { table: { disable: true } } },
+  argTypes: {
+    selection: { table: { disable: true } },
+    dividerClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+  },
 };
 
 export const WithSelect: Story = {
@@ -297,7 +348,11 @@ export const WithSelect: Story = {
     );
   },
   args: { selection: undefined },
-  argTypes: { selection: { table: { disable: true } } },
+  argTypes: {
+    selection: { table: { disable: true } },
+    dividerClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+  },
 };
 
 export const WithCombobox: Story = {
@@ -315,5 +370,9 @@ export const WithCombobox: Story = {
     );
   },
   args: { selection: undefined },
-  argTypes: { selection: { table: { disable: true } } },
+  argTypes: {
+    selection: { table: { disable: true } },
+    dividerClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+  },
 };

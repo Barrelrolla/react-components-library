@@ -13,10 +13,22 @@ tr {
   @apply flex flex-wrap overflow-hidden;
 }
 
-.docs-story {
-  @apply bg-main;
-}
-
 .storybookContainer {
   @apply bg-main flex flex-wrap justify-center gap-4 p-4;
+}
+
+.docs-story,
+.sb-preparing-story,
+.sb-preparing-docs,
+.sb-previewBlock,
+.sb-previewBlock_icon,
+.sb-argstableBlock-body td {
+  @apply bg-main;
+}
+.sb-argstableBlock-body tr:not(:first-child) {
+  border-top: 0px;
+}
+
+.sb-loader {
+  @apply border-main-content/20 border-t-main-content;
 }

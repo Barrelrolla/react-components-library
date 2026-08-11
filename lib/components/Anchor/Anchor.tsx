@@ -5,16 +5,21 @@ import { getAnchorClasses } from "./getAnchorClasses";
 
 const defaultType = "a";
 export type AnchorProps<E extends ElementType> = {
-  /** Color of the anchor element. */
+  /** Color variant of the anchor element. */
   color?: ColorType;
-  /** Adds underline. */
+  /** Applies a permanent underline to the text. */
   underlined?: boolean;
-  /** Adds underline on hover. */
+  /** Applies an underline on hover. */
   hoverUnderline?: boolean;
-  /** Adds an offset to the underline on hover. */
+  /** Adds vertical spacing/offset to the hover underline. */
   hoverUnderlineOffset?: boolean;
 } & PolymorphicProps<E>;
 
+/**
+ * Simple polymorphic anchor element.
+ *
+ * Uses the primary color variant by default and supports customizable underline states.
+ */
 export function Anchor<E extends ElementType = typeof defaultType>({
   as,
   color,

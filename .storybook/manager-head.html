@@ -1,0 +1,69 @@
+<style>
+  html,
+  body {
+    background: oklch(0.27 0.03 247) !important;
+    color: oklch(0.94 0 248);
+  }
+
+  #storybook-initial-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: grid;
+    place-items: center;
+    background: oklch(0.27 0.03 247);
+    color: oklch(0.94 0 248);
+    text-align: center;
+  }
+
+  #initial-loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  #initial-loader-spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid rgba(97, 97, 97, 0.29);
+    border-top-color: oklch(0.94 0 248);
+    border-radius: 50%;
+    animation: storybook-initial-spin 0.7s linear infinite;
+  }
+
+  @keyframes storybook-initial-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    html,
+    body {
+      background: oklch(0.94 0 248) !important;
+      color: oklch(0.27 0.03 247);
+    }
+
+    #storybook-initial-loader {
+      background: oklch(0.94 0 248);
+      color: oklch(0.27 0.03 247);
+    }
+
+    #initial-loader-spinner {
+      border-top-color: oklch(0.27 0.03 247);
+    }
+  }
+</style>
+
+<div id="storybook-initial-loader">
+  <div id="initial-loader-content">
+    <div>
+      Barrelrolla's<br />
+      React components library<br />
+      loading...
+    </div>
+
+    <div id="initial-loader-spinner"></div>
+  </div>
+</div>

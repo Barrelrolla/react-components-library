@@ -25,19 +25,47 @@ import { AutocompleteContextProvider } from "./AutocompleteContext";
 import { ColorType } from "@/types";
 
 export type AutocompleteProps = {
+  /** Color variant of the autocomplete component. */
   color?: ColorType;
+  /** Controls whether the autocomplete dropdown is open. */
   isOpen: boolean;
+  /** Callback fired when the open state of the dropdown changes. */
   setIsOpen: (open: boolean) => void;
-  query: string;
+  /** The list of selectable string items to search through. */
   items: string[];
+  /** The current search query used to filter the item list. */
+  query: string;
+  /**
+   * Positioning strategy for the dropdown menu.
+   * @default "absolute"
+   */
   strategy?: "absolute" | "fixed";
+  /** Placement of the dropdown relative to the input/trigger element. */
   placement?: Placement;
+  /** Disables the autocomplete component and its interactions. */
   disabled?: boolean;
+  /**
+   * Callback fired when an item is selected via mouse click or the Enter key.
+   * @param activeItem The selected string item from the dropdown list.
+   */
   onSelectItem: (activeItem: string) => void;
+  /** Index of the currently selected item, useful for combobox styling. Passed to list items. */
   selectedIndex?: number | null;
+  /** List of selected indices for supporting multi-selection modes. */
   selectedIndices?: number[];
 } & PropsWithChildren;
 
+/**
+ * Uncontrolled autocomplete component.
+ *
+ * Add an `AutocompleteTrigger` child and manage state independently. Designed to allow
+ * any custom input to act as a trigger. For a controlled input solution, use `AutocompleteInput`.
+ *
+ * Features virtualized list rendering for seamless performance with large datasets, as well as
+ * fuzzy search support for handling typos.
+ *
+ * Refer to the `Autocomplete` stories for detailed usage examples.
+ */
 export function Autocomplete({
   color = "main",
   isOpen,

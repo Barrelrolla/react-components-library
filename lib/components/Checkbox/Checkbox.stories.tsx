@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
-import { Checkbox } from "./Checkbox";
 import { availableColors } from "@/types";
+import { Checkbox } from "./index";
 
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Checkbox",
@@ -13,19 +13,17 @@ const meta: Meta<typeof Checkbox> = {
     </div>
   ),
   argTypes: {
-    children: { name: "text" },
+    children: { name: "text", table: { category: "storybook" } },
     color: {
       options: availableColors,
       control: { type: "select" },
+      table: { category: "controls" },
     },
-    labelColor: {
-      options: availableColors,
-      control: { type: "select" },
-    },
-    defaultChecked: { table: { disable: true } },
-    labelStyle: { table: { disable: true } },
-    labelClassName: { table: { disable: true } },
-    wrapperClassName: { table: { disable: true } },
+    size: { table: { category: "controls" } },
+    defaultChecked: { control: false, table: { category: "docs" } },
+    labelStyle: { control: false, table: { category: "docs" } },
+    labelClassName: { control: false, table: { category: "docs" } },
+    wrapperClassName: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -43,7 +41,6 @@ export const Default: Story = {
   },
   args: {
     children: "Checkbox",
-    size: 24,
   },
 };
 
@@ -62,7 +59,12 @@ export const Disabled: Story = {
   },
   args: {
     children: "Checkbox",
-    size: 24,
+  },
+  argTypes: {
+    defaultChecked: { table: { disable: true } },
+    labelStyle: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
   },
 };
 
@@ -82,5 +84,9 @@ export const Colors: Story = {
   argTypes: {
     color: { table: { disable: true } },
     children: { table: { disable: true } },
+    defaultChecked: { table: { disable: true } },
+    labelStyle: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
   },
 };

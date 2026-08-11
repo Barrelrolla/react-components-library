@@ -3,12 +3,15 @@ import { getCardImageContainerClasses } from "./getCardClasses";
 import { useCardContext } from "./CardContext";
 
 export type CardImageContainerProps = {
-  /** Adds padding and border to the image. */
+  /** * Applies internal padding and a border around the image inside the card. */
   padded?: boolean;
+  /** Additional CSS class names applied to the image container. */
   className?: string;
 };
 
-/** Container for an image inside a card component. */
+/**
+ * Image wrapper for `Card` components that manages aspect ratio, overflow, and rounded corners.
+ */
 export function CardImageContainer({
   padded = false,
   className,

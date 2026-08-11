@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
-import { Combobox } from "./Combobox";
 import { availableColors } from "@/types";
+import { Combobox } from "./Combobox";
 
 const meta: Meta<typeof Combobox> = {
   title: "Components/Combobox",
@@ -16,7 +16,20 @@ const meta: Meta<typeof Combobox> = {
     color: {
       options: availableColors,
       control: { type: "select" },
+      table: { category: "controls" },
     },
+    label: { table: { category: "controls" } },
+    multiple: { table: { category: "controls" } },
+    error: { table: { category: "controls" } },
+    allowFreeText: { table: { category: "controls" } },
+    items: { control: false, table: { category: "docs" } },
+    initialSelectedIndex: { control: false, table: { category: "docs" } },
+    initialSelectedIndices: { control: false, table: { category: "docs" } },
+    onSelectedIndexChange: { control: false, table: { category: "docs" } },
+    labelClassName: { control: false, table: { category: "docs" } },
+    errorClassName: { control: false, table: { category: "docs" } },
+    wrapperClassName: { control: false, table: { category: "docs" } },
+    wrapperStyle: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -291,46 +304,142 @@ export const Default: Story = {
       />
     );
   },
+  parameters: {
+    docs: {
+      source: {
+        type: "code",
+        code: `<Combobox items={countries} />`,
+      },
+    },
+  },
 };
 
 export const WithLabel: Story = {
   render: ({ ...rest }) => {
-    return (
-      <Combobox
-        {...rest}
-        label="Country"
-        data-testid="Combobox"
-        items={countries}
-      />
-    );
+    return <Combobox {...rest} data-testid="Combobox" items={countries} />;
+  },
+  args: {
+    label: "Countries",
+  },
+  argTypes: {
+    items: { table: { disable: true } },
+    initialSelectedIndex: { table: { disable: true } },
+    initialSelectedIndices: { table: { disable: true } },
+    onSelectedIndexChange: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+  },
+  parameters: {
+    docs: {
+      source: {
+        type: "code",
+        code: `
+        <Combobox items={countries} label="Country"/>`,
+      },
+    },
   },
 };
 
 export const Multiple: Story = {
   render: ({ ...rest }) => {
-    return (
-      <Combobox
-        {...rest}
-        multiple
-        label="Country"
-        data-testid="Combobox"
-        items={countries}
-      />
-    );
+    return <Combobox {...rest} data-testid="Combobox" items={countries} />;
+  },
+  args: {
+    label: "Country",
+    multiple: true,
+  },
+  argTypes: {
+    multiple: { table: { disable: true } },
+    items: { table: { disable: true } },
+    initialSelectedIndex: { table: { disable: true } },
+    initialSelectedIndices: { table: { disable: true } },
+    onSelectedIndexChange: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+  },
+  parameters: {
+    docs: {
+      source: {
+        type: "code",
+        code: `
+        <Combobox
+          items={countries}
+          label="Country"
+          multiple
+        />`,
+      },
+    },
+  },
+};
+
+export const WithError: Story = {
+  render: ({ ...rest }) => {
+    return <Combobox {...rest} data-testid="Combobox" items={countries} />;
+  },
+  args: {
+    label: "Country",
+    error: "Error",
+  },
+  argTypes: {
+    items: { table: { disable: true } },
+    initialSelectedIndex: { table: { disable: true } },
+    initialSelectedIndices: { table: { disable: true } },
+    onSelectedIndexChange: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+  },
+  parameters: {
+    docs: {
+      source: {
+        type: "code",
+        code: `
+        <Combobox
+          items={countries}
+          label="Country"
+          error="Error"
+        />`,
+      },
+    },
   },
 };
 
 export const Disabled: Story = {
   render: ({ ...rest }) => {
-    return (
-      <Combobox
-        {...rest}
-        disabled
-        label="Country"
-        data-testid="Combobox"
-        items={countries}
-      />
-    );
+    return <Combobox {...rest} data-testid="Combobox" items={countries} />;
+  },
+  args: {
+    label: "Country",
+    disabled: true,
+  },
+  argTypes: {
+    disabled: { table: { disable: true } },
+    items: { table: { disable: true } },
+    initialSelectedIndex: { table: { disable: true } },
+    initialSelectedIndices: { table: { disable: true } },
+    onSelectedIndexChange: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+  },
+  parameters: {
+    docs: {
+      source: {
+        type: "code",
+        code: `
+        <Combobox
+          items={countries}
+          label="Country"
+          disabled
+        />`,
+      },
+    },
   },
 };
 
@@ -352,6 +461,72 @@ export const Colors: Story = {
   },
   args: {},
   argTypes: {
+    label: { table: { disable: true } },
     color: { table: { disable: true } },
+    disabled: { table: { disable: true } },
+    items: { table: { disable: true } },
+    initialSelectedIndex: { table: { disable: true } },
+    initialSelectedIndices: { table: { disable: true } },
+    onSelectedIndexChange: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+  },
+  parameters: {
+    docs: {
+      source: {
+        type: "code",
+        code: `
+      <>
+        <Combobox
+          color="main"
+          items={countries}
+          label="Country"
+        />
+        <Combobox
+          color="neutral"
+          items={countries}
+          label="Country"
+        />
+        <Combobox
+          color="primary"
+          items={countries}
+          label="Country"
+        />
+        <Combobox
+          color="secondary"
+          items={countries}
+          label="Country"
+        />
+        <Combobox
+          color="accent"
+          items={countries}
+          label="Country"
+        />
+        <Combobox
+          color="info"
+          items={countries}
+          label="Country"
+        />
+        <Combobox
+          color="success"
+          items={countries}
+          label="Country"
+        />
+        <Combobox
+          color="warning"
+          items={countries}
+          label="Country"
+        />
+        <Combobox
+          color="error"
+          items={countries}
+          label="Country"
+        />
+      </>
+        `,
+      },
+    },
   },
 };

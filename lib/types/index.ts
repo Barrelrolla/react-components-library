@@ -7,9 +7,11 @@ type ElementTypeMap<T extends ElementType> =
     ? HTMLElementTagNameMap[T]
     : HTMLElement;
 
+/** Polymorphic props helper allowing components to be rendered as any HTML element or component. */
 export type PolymorphicProps<T extends ElementType> = {
-  /** The html element (or other component) the component should be rendered as */
+  /** The HTML element or React component the component should be rendered as. */
   as?: T;
+  /** Ref forwarded to the underlying element. */
   ref?: Ref<ElementTypeMap<T> | null>;
 } & ComponentPropsWithoutRef<T>;
 

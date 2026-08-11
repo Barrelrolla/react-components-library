@@ -2,7 +2,11 @@ import { ComponentProps } from "react";
 import { getCardActionsClasses } from "./getCardClasses";
 import { useCardContext } from "./CardContext";
 
-/** Section for actions inside a Card */
+/**
+ * Container component for action elements (such as buttons or links) inside a `Card`.
+ *
+ * Automatically handles spacing and alignment for action controls.
+ */
 export function CardActions({
   className,
   children,

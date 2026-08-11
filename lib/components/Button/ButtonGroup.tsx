@@ -8,29 +8,42 @@ import { Divider } from "../Divider";
 import { FloatingDelayGroup } from "@floating-ui/react";
 
 export type ButtonGroupProps = {
-  /** Color of the buttons in the group. */
+  /** Color variant applied to all child buttons in the group. */
   color?: ColorType;
-  /** Variant of the buttons. */
+  /** Visual style variant applied to all child buttons in the group. */
   variant?: ButtonVariant;
-  /** If the buttons should retain focus state after being pressed. */
+  /** If `true`, child buttons retain their active hover visual state while focused. */
   retainFocusState?: boolean;
-  /** Size of the buttons. */
+  /** Size option applied to all child buttons in the group. */
   size?: SizeType;
-  /** Radius of the buttons. */
+  /** Border radius option applied to the outer corners of the group. */
   radius?: ButtonRadius;
-  /** Adds a divider between the buttons. */
+  /** Displays a vertical or horizontal divider line between adjacent group items. */
   divider?: boolean;
-  /** Set to `true` for a vertical group. */
+  /** Stacks group items vertically instead of horizontally. */
   vertical?: boolean;
-  /** Disables scaling of the buttons on press. */
+  /** Controls click press-scaling effects on child buttons. Set to `false` to disable. */
   scaling?: boolean;
-  /** You can add any styles to the divider here. */
+  /** Additional CSS classes applied to the internal divider elements. */
   dividerClassName?: string;
-  /** The button group wraps all buttons in a wrapper. You can add css classes to it here. */
+  /** Additional CSS classes applied to the outer wrapper element. */
   wrapperClassName?: string;
+  /**
+   * Initial hover delay (in ms) before showing tooltips in the group.
+   * Once active, moving focus between buttons skips this delay for smooth navigation.
+   */
   tooltipDelay?: number;
 } & ComponentProps<"div">;
 
+/**
+ * Combines multiple buttons into a cohesive visual group.
+ *
+ * Automatically synchronizes color, variant, and size across child elements,
+ * seamlessly modifying border radii and borders to present them as a single UI element.
+ *
+ * In addition to `Button` components, this group wrapper also supports `Input`,
+ * `Select`, and `Combobox` controls.
+ */
 export function ButtonGroup({
   color = "primary",
   variant = "outline",

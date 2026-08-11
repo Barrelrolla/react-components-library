@@ -8,7 +8,26 @@ import {
 import { Button, ButtonGroup, ButtonGroupProps } from "../Button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
 
-/** Provides an option to choose between light, dark and system theme. */
+export type DarkModeSelectorProps = {
+  /** Tooltip text displayed for the light theme option. */
+  lightModeTooltip?: string;
+  /** Tooltip text displayed for the dark theme option. */
+  darkModeTooltip?: string;
+  /** Tooltip text displayed for the system theme option. */
+  systemModeTooltip?: string;
+  /** Accessible label for the light theme button. */
+  lightModeAriaLabel?: string;
+  /** Accessible label for the dark theme button. */
+  darkModeAriaLabel?: string;
+  /** Accessible label for the system theme button. */
+  systemModeAriaLabel?: string;
+} & ButtonGroupProps;
+
+/**
+ * Theme switcher control for toggling between Light, Dark, and System preference modes.
+ *
+ * Built on top of `ButtonGroup`, inheriting all styling, sizing, and variant props.
+ */
 export function DarkModeSelector({
   size = "sm",
   divider = false,
@@ -19,14 +38,7 @@ export function DarkModeSelector({
   darkModeAriaLabel,
   systemModeAriaLabel,
   ...rest
-}: ButtonGroupProps & {
-  lightModeTooltip?: string;
-  darkModeTooltip?: string;
-  systemModeTooltip?: string;
-  lightModeAriaLabel?: string;
-  darkModeAriaLabel?: string;
-  systemModeAriaLabel?: string;
-}) {
+}: DarkModeSelectorProps) {
   const theme = useTheme();
   if (!theme) {
     throw new Error("Dark Mode Selector requires a Theme Provider!");
@@ -38,7 +50,7 @@ export function DarkModeSelector({
       <Tooltip isLabel>
         <TooltipTrigger>
           <Button
-            aria-label={lightModeAriaLabel ?? "ligth theme mode"}
+            aria-label={lightModeAriaLabel ?? "light theme mode"}
             selected={darkMode === lightModeName}
             onClick={() => setDarkMode(lightModeName)}
             startIcon={<SunIcon />}

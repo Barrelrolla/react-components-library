@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState, ReactNode } from "react";
 import { DocsContainer, DocsContextProps } from "@storybook/addon-docs/blocks";

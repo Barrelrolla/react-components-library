@@ -162,6 +162,7 @@ export function Select({
     color: error ? "error" : color,
     isOpen: open,
     isMounted,
+    disabled,
     className,
     labelClassName,
     errorClassName,
@@ -289,7 +290,7 @@ export function Select({
                     <>
                       <span>{items[index]}</span>
                       <Button
-                        useGropup={false}
+                        useGroup={false}
                         variant="ghost"
                         radius="pill"
                         size="xs"
@@ -317,7 +318,7 @@ export function Select({
                 {(selectedIndex !== undefined ||
                   selectedIndices.length > 0) && (
                   <Button
-                    useGropup={false}
+                    useGroup={false}
                     radius="pill"
                     size="sm"
                     variant="ghost"

@@ -13,14 +13,37 @@ const meta: Meta<typeof DarkModeSelector> = {
     </div>
   ),
   argTypes: {
-    color: { control: { type: "select" }, options: availableColors },
-    variant: { control: { type: "inline-radio" } },
-    size: { control: { type: "inline-radio" }, options: availableSizes },
-    radius: { control: { type: "inline-radio" } },
-    dividerClassName: { table: { disable: true } },
-    wrapperClassName: { table: { disable: true } },
-    className: { table: { disable: true } },
-    children: { table: { disable: true } },
+    color: {
+      control: { type: "select" },
+      options: availableColors,
+      table: { category: "controls" },
+    },
+    variant: {
+      control: { type: "inline-radio" },
+      table: { category: "controls" },
+    },
+    size: {
+      control: { type: "inline-radio" },
+      options: availableSizes,
+      table: { category: "controls" },
+    },
+    radius: {
+      control: { type: "inline-radio" },
+      table: { category: "controls" },
+    },
+    retainFocusState: { table: { category: "controls" } },
+    divider: { table: { category: "controls" } },
+    vertical: { table: { category: "controls" } },
+    scaling: { table: { category: "controls" } },
+    tooltipDelay: { table: { category: "controls" } },
+    lightModeTooltip: { control: false, table: { category: "docs" } },
+    darkModeTooltip: { control: false, table: { category: "docs" } },
+    systemModeTooltip: { control: false, table: { category: "docs" } },
+    lightModeAriaLabel: { control: false, table: { category: "docs" } },
+    darkModeAriaLabel: { control: false, table: { category: "docs" } },
+    systemModeAriaLabel: { control: false, table: { category: "docs" } },
+    dividerClassName: { control: false, table: { category: "docs" } },
+    wrapperClassName: { control: false, table: { category: "docs" } },
   },
 };
 

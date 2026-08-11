@@ -1,16 +1,22 @@
-# A react components library
+# React Components Library
 
-A collection of react components built for personal use, but you can use it, or modify it freely. If you find, or especially fix, any issues, please let me know.
+A collection of React components built for personal projects, free to use, modify, or extend. If you run into issues or have fixes to contribute, feel free to open an issue or pull request!
 
-## How to use
+---
 
-Assuming you already have react and tailwind installed, install the package through npm:
+## Installation
 
-```
+Ensure you have **React** and **Tailwind CSS v4** installed, then install the package via npm:
+
+```bash
 npm install @barrelrolla/react-components-library
 ```
 
-In your `.css` file add
+---
+
+## Setup
+
+Add the following directives to your main `.css` file:
 
 ```css
 @import "tailwindcss";
@@ -18,11 +24,17 @@ In your `.css` file add
 @source "../node_modules/@barrelrolla/react-components-library/";
 ```
 
-This adds the tailwind plugin, so you can use the provided components and utilities and the `@source` directive is requred to use the pre-built components, otherwise tailwind won't recongnize the classes used in the library and won't build the styles for them.
+> **Note:** The `@source` directive ensures Tailwind scans the library's pre-built components so its classes are included in your CSS build.
+
+---
 
 ## Customization
 
-Everything is built with tailwind so you can just use tailwind classes and utilities to style everything to your liking. To adjust the colors, simply override them like this:
+Since components are built with Tailwind CSS, you can style them using standard Tailwind classes and utilities.
+
+### Theme Colors
+
+Override CSS custom properties to customize your color palette:
 
 ```css
 :root {
@@ -31,11 +43,8 @@ Everything is built with tailwind so you can just use tailwind classes and utili
   --color-primary: #yourColor;
   --color-primary-content: #yourColor;
 }
-```
 
-No need to use `dark:bg-dark` just override the colors for dark mode:
-
-```css
+/* Dark Mode Overrides */
 .dark {
   --color-main: #yourDarkColor;
   --color-main-content: #yourDarkColor;
@@ -44,14 +53,57 @@ No need to use `dark:bg-dark` just override the colors for dark mode:
 }
 ```
 
-The library is adjusting the `l` value of the `lch` colors to lighten or darken components on `hover:`. If you want to use a color that's not from the color list, you can assign it to the `--bg-color` or `--fg-color` variable and retain the hover effects. Or you can provide your own.
+### Layout & Utility Variables
 
-```ts
-<Button style={{ "--bg-color": "var(--color-red-500)" } as  CSSProperties}>
+You can also adjust border radii, borders, layout spacing, and animation defaults globally:
+
+```css
+:root {
+  /* Border Radii */
+  --radius-inputs: 0.25rem; /* Buttons and inputs */
+  --radius-containers: 0.5rem; /* Cards and container elements */
+  --radius-navigation: 0.5rem; /* Main navigation and footer */
+  --radius-infos: 1rem; /* Small elements like badges */
+
+  /* Borders */
+  --border-inputs: 1px; /* Border width for buttons and inputs */
+  --border-containers: 1px; /* Border width for containers */
+  --border-navigation: 1px; /* Border width for navbar and footer */
+  --border-transparency: 50%; /* Transparency for all borders */
+
+  /* Layout & Stacking */
+  --z-navbar: 100; /* Z-index of the main navbar */
+  --z-floats: 1000; /* Z-index of floating elements */
+  --max-width: 1440px; /* Content max-width (e.g., Hero component) */
+  --hero-height: 800px; /* Hero section height (use 100vh for full screen) */
+
+  /* Typography & Motion */
+  --default-font-weight: 300; /* Global font-weight baseline */
+  --dropdown-animation-duration: 300ms; /* Navbar dropdown animation speed */
+}
+```
+
+### Dynamic Hover States & Custom Colors
+
+The library adjusts the lightness (`l`) channel of `lch` colors to automatically generate hover states.
+
+To use an arbitrary color while maintaining dynamic hover effects, pass it via inline CSS variables:
+
+```tsx
+<Button style={{ "--bg-color": "var(--color-red-500)" } as CSSProperties}>
   button
 </Button>
 ```
 
-There is also a hover modifier variable `--mod-highlight` that's used to adjust the color's `l` value. You can modify that value to change the hover effect for all colors, or if a specific color needs adjustment, you can use `--mod-highlight-primary` or any other color name you want to override the value for that specific color.
+### Fine-Tuning Hover Intensity
 
-For the full documentation, check the storyboard on github pages: [Docs](https://barrelrolla.github.io/react-components-library/) section.
+Hover adjustments rely on modifier variables. You can adjust hover intensity globally or per color:
+
+- **Global adjustment:** Override `--mod-highlight`
+- **Per-color adjustment:** Override `--mod-highlight-{colorName}` (e.g., `--mod-highlight-primary`)
+
+---
+
+## Documentation
+
+For component previews and full API details, visit the [Storybook Documentation](https://barrelrolla.github.io/react-components-library/).

@@ -7,6 +7,7 @@ export function getSelectClasses({
   color,
   isOpen,
   isMounted,
+  disabled,
   className,
   labelClassName,
   errorClassName,
@@ -16,6 +17,7 @@ export function getSelectClasses({
   color?: ColorType;
   isOpen?: boolean;
   isMounted?: boolean;
+  disabled?: boolean;
   className?: string;
   labelClassName?: string;
   errorClassName?: string;
@@ -35,7 +37,11 @@ export function getSelectClasses({
         getGropuedItemClasses(group?.vertical ?? false, resolvedRadius),
       className,
     ),
-    labelClasses: twMerge("select-label", labelClassName),
+    labelClasses: twMerge(
+      "select-label",
+      disabled && "opacity-70",
+      labelClassName,
+    ),
     errorClasses: twMerge("select-error", errorClassName),
     caretClasses: twMerge(
       "mr-3 inline h-4",

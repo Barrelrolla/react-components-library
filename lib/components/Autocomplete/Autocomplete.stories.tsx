@@ -1,9 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Autocomplete } from "./Autocomplete";
-import { Input } from "../Input";
 import { useState } from "react";
-import { AutocompleteContent } from "./AutocompleteContent";
-import { AutocompleteTrigger } from "./AutocompleteTrigger";
+import { availableColors, availablePlacements } from "@/types";
+import { Input } from "../index";
+import {
+  Autocomplete,
+  AutocompleteContent,
+  AutocompleteTrigger,
+} from "./index";
 
 const meta: Meta<typeof Autocomplete> = {
   title: "Components/Autocomplete",
@@ -15,7 +18,31 @@ const meta: Meta<typeof Autocomplete> = {
     </div>
   ),
   argTypes: {
-    children: { name: "text" },
+    color: {
+      control: "select",
+      options: availableColors,
+      table: { category: "controls" },
+    },
+    placement: {
+      control: "select",
+      options: availablePlacements,
+      table: { category: "controls" },
+    },
+    strategy: {
+      control: "radio",
+      table: { category: "controls" },
+    },
+    disabled: {
+      control: "boolean",
+      table: { category: "controls" },
+    },
+    isOpen: { control: false, table: { category: "docs" } },
+    setIsOpen: { control: false, table: { category: "docs" } },
+    items: { control: false, table: { category: "docs" } },
+    query: { control: false, table: { category: "docs" } },
+    onSelectItem: { control: false, table: { category: "docs" } },
+    selectedIndex: { control: false, table: { category: "docs" } },
+    selectedIndices: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -28,6 +55,7 @@ export const Default: Story = {
   render: ({ ...rest }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] = useState("");
+
     return (
       <Autocomplete
         {...rest}
@@ -57,5 +85,47 @@ export const Default: Story = {
         <AutocompleteContent />
       </Autocomplete>
     );
+  },
+  parameters: {
+    docs: {
+      source: {
+        type: "code",
+        code: `
+const items = Array.from({ length: 100000 }, (_, i) => \`item \${i + 1}\`);
+
+function Example() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState("");
+
+  return (
+    <Autocomplete
+      query={query}
+      items={items}
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      onSelectItem={(item) => {
+        setQuery(item);
+        setIsOpen(false);
+      }}
+    >
+      <AutocompleteTrigger>
+        <Input
+          placeholder="Search"
+          value={query}
+          onChange={(e) => {
+            const value = e.target.value;
+            setQuery(value);
+            setIsOpen(!!value);
+          }}
+        />
+      </AutocompleteTrigger>
+
+      <AutocompleteContent />
+    </Autocomplete>
+  );
+}
+        `,
+      },
+    },
   },
 };

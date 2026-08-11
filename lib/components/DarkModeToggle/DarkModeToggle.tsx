@@ -3,17 +3,25 @@ import { MoonIcon, SunIcon } from "@/icons";
 import { Button, ButtonProps } from "../Button";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../Tooltip";
 
-/** Toggles between light and dark theme. */
+export type DarkModeToggleProps = {
+  /** Tooltip text displayed when switching to or hovering over the light theme option. */
+  lightModeTooltip?: string;
+  /** Tooltip text displayed when switching to or hovering over the dark theme option. */
+  darkModeTooltip?: string;
+} & ButtonProps<"button">;
+
+/**
+ * Compact theme toggle button for switching between Light and Dark modes.
+ *
+ * Built on top of `Button`, inheriting all visual variant, size, and styling props.
+ */
 export function DarkModeToggle({
   variant = "ghost",
   size = "sm",
   lightModeTooltip = "Light",
   darkModeTooltip = "Dark",
   ...rest
-}: {
-  lightModeTooltip?: string;
-  darkModeTooltip?: string;
-} & ButtonProps<"button">) {
+}: DarkModeToggleProps) {
   const theme = useTheme();
   if (!theme) {
     throw new Error("Dark mode toggle requires a ThemeContext.");
