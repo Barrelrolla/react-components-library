@@ -6,14 +6,16 @@ import {
   useCallback,
   useId,
   useRef,
+  useState,
 } from "react";
 import { getInputClasses } from "./getInputClasses";
 import { Button, useButtonGroupContext } from "../Button";
 import { useRepeatAction } from "@/hooks/useRepeatAction";
-import { MinusIcon, PlusIcon } from "@/icons";
+import { ClosedEyeIcon, MinusIcon, OpenEyeIcon, PlusIcon } from "@/icons";
 import { ColorType } from "@/types";
 import { cssColorProps } from "@/util";
 import { useMergeRefs } from "@floating-ui/react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
 
 type InputFieldType = "input" | "textarea";
 
@@ -44,6 +46,14 @@ export type InputProps<T extends InputFieldType = "input"> = {
   inputContainerClassName?: string;
   /** Inline CSS properties applied to the internal container wrapping the input element and icons. */
   inputContainerStyle?: CSSProperties;
+  /** Accessible label applied to the + button that increases the number input value by 1. */
+  stepUpAriaLabel?: string;
+  /** Accessible label applied to the - button that decreases the number input value by 1. */
+  stepDownAriaLabel?: string;
+  /** ARIA label applied to the password visibility toggle button for assistive technologies. */
+  revealPasswordToggleAriaLabel?: string;
+  /** When `true`, displays an interactive icon button inside the input field allowing users to toggle password visibility. */
+  showRevealPasswordButton?: boolean;
   /** Underlying form element tag to render, allowing toggle between standard single-line `input` and multi-line `textarea`. Defaults to `input`. */
   as?: T;
   /** Ref attached to the rendered HTML input or textarea element. */
@@ -74,8 +84,13 @@ export function Input<T extends InputFieldType = "input">({
   inputContainerClassName,
   inputContainerStyle,
   className,
+  stepUpAriaLabel,
+  stepDownAriaLabel,
+  revealPasswordToggleAriaLabel,
+  showRevealPasswordButton = true,
   ...rest
 }: InputProps<T>) {
+  const [isRevealing, setIsRevealing] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const mergedRefs = useMergeRefs([inputRef, ref]);
   const group = useButtonGroupContext();
@@ -102,13 +117,14 @@ export function Input<T extends InputFieldType = "input">({
 
   const generatedId = useId();
   const resolvedId = id ?? generatedId;
+  const resolvedType = isRevealing ? "text" : type;
 
   const elementProps = {
     ref: mergedRefs,
     className: classes,
     disabled,
     id: resolvedId,
-    type,
+    type: resolvedType,
     "data-error": error ? true : undefined,
     "aria-describedby": error ? `${resolvedId}-error` : undefined,
   };
@@ -176,26 +192,51 @@ export function Input<T extends InputFieldType = "input">({
               <>{endIcon}</>
             </div>
           )}
+          {type === "password" && showRevealPasswordButton && (
+            <Tooltip isLabel>
+              <TooltipTrigger>
+                <Button
+                  aria-label={revealPasswordToggleAriaLabel}
+                  type="button"
+                  className="text-inherit"
+                  wrapperClassName="mr-1"
+                  tabIndex={-1}
+                  size="xs"
+                  variant="ghost"
+                  disabled={disabled}
+                  startIcon={isRevealing ? <OpenEyeIcon /> : <ClosedEyeIcon />}
+                  useGroup={false}
+                  onClick={() => {
+                    setIsRevealing(!isRevealing);
+                  }}
+                />
+              </TooltipTrigger>
+              <TooltipContent>{revealPasswordToggleAriaLabel}</TooltipContent>
+            </Tooltip>
+          )}
           {type === "number" && (
             <>
               <Button
+                aria-label={stepDownAriaLabel}
                 type="button"
                 className="text-inherit"
                 disabled={disabled}
                 tabIndex={-1}
                 variant="ghost"
                 size="xs"
+                startIcon={<MinusIcon strokeWidth={16} />}
+                useGroup={false}
                 {...stepDownProps}
-              >
-                <MinusIcon strokeWidth={16} />
-              </Button>
+              />
               <Button
+                aria-label={stepUpAriaLabel}
                 type="button"
                 className="text-inherit"
                 disabled={disabled}
                 tabIndex={-1}
                 variant="ghost"
                 size="xs"
+                useGroup={false}
                 {...stepUpProps}
               >
                 <PlusIcon strokeWidth={16} />

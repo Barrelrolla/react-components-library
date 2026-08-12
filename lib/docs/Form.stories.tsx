@@ -115,15 +115,6 @@ export const Form: Story = {
     await expect(result, "doesn't get combo many from ref").toHaveTextContent(
       "-ref combo many: -",
     );
-
-    /*
-    -combo state: combo 1-
-    -selected combo: combo 1-
-    -ref combo: combo 1-
-    -combo many state: combo two,combo three-
-    -selected combo many: combo two,combo three-
-    -ref combo many: -
-    */
   },
   render: () => {
     const options = ["option 1", "option 2", "option 3"];

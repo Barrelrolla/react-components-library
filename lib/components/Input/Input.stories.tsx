@@ -24,6 +24,10 @@ const meta: Meta<typeof Input> = {
     label: { table: { category: "controls" } },
     disabled: { table: { category: "controls" } },
     error: { table: { category: "controls" } },
+    showRevealPasswordButton: {
+      if: { arg: "type", eq: "password" },
+      table: { category: "controls" },
+    },
     startIcon: { control: false, table: { category: "docs" } },
     endIcon: { control: false, table: { category: "docs" } },
     labelClassName: { control: false, table: { category: "docs" } },
@@ -34,6 +38,12 @@ const meta: Meta<typeof Input> = {
     as: { control: false, table: { category: "docs" } },
     ref: { control: false, table: { category: "docs" } },
     inputContainerStyle: { control: false, table: { category: "docs" } },
+    stepUpAriaLabel: { control: false, table: { category: "docs" } },
+    stepDownAriaLabel: { control: false, table: { category: "docs" } },
+    revealPasswordToggleAriaLabel: {
+      control: false,
+      table: { category: "docs" },
+    },
   },
 };
 
@@ -325,6 +335,9 @@ export const WithLabel: Story = {
     as: { table: { disable: true } },
     ref: { table: { disable: true } },
     inputContainerStyle: { table: { disable: true } },
+    stepUpAriaLabel: { table: { disable: true } },
+    stepDownAriaLabel: { table: { disable: true } },
+    revealPasswordToggleAriaLabel: { table: { disable: true } },
   },
 };
 
@@ -348,6 +361,9 @@ export const WithIcon: Story = {
     as: { table: { disable: true } },
     ref: { table: { disable: true } },
     inputContainerStyle: { table: { disable: true } },
+    stepUpAriaLabel: { table: { disable: true } },
+    stepDownAriaLabel: { table: { disable: true } },
+    revealPasswordToggleAriaLabel: { table: { disable: true } },
   },
 };
 
@@ -372,6 +388,9 @@ export const WithError: Story = {
     as: { table: { disable: true } },
     ref: { table: { disable: true } },
     inputContainerStyle: { table: { disable: true } },
+    stepUpAriaLabel: { table: { disable: true } },
+    stepDownAriaLabel: { table: { disable: true } },
+    revealPasswordToggleAriaLabel: { table: { disable: true } },
   },
 };
 
@@ -394,14 +413,18 @@ export const Textarea: Story = {
     as: { table: { disable: true } },
     ref: { table: { disable: true } },
     inputContainerStyle: { table: { disable: true } },
+    stepUpAriaLabel: { table: { disable: true } },
+    stepDownAriaLabel: { table: { disable: true } },
+    revealPasswordToggleAriaLabel: { table: { disable: true } },
   },
 };
 
 export const Number: Story = {
   render: (props) => {
-    return <Input type="number" {...props} />;
+    return <Input {...props} />;
   },
   args: {
+    type: "number",
     placeholder: "Input",
     label: "Label",
   },
@@ -417,6 +440,37 @@ export const Number: Story = {
     as: { table: { disable: true } },
     ref: { table: { disable: true } },
     inputContainerStyle: { table: { disable: true } },
+    stepUpAriaLabel: { table: { disable: true } },
+    stepDownAriaLabel: { table: { disable: true } },
+    revealPasswordToggleAriaLabel: { table: { disable: true } },
+  },
+};
+
+export const Password: Story = {
+  render: (props) => {
+    return <Input {...props} />;
+  },
+  args: {
+    type: "password",
+    placeholder: "Input",
+    label: "Label",
+    revealPasswordToggleAriaLabel: "Reveal",
+  },
+  argTypes: {
+    type: { table: { disable: true } },
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    inputContainerClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    inputContainerStyle: { table: { disable: true } },
+    stepUpAriaLabel: { table: { disable: true } },
+    stepDownAriaLabel: { table: { disable: true } },
+    revealPasswordToggleAriaLabel: { table: { disable: true } },
   },
 };
 
@@ -441,6 +495,9 @@ export const Disabled: Story = {
     as: { table: { disable: true } },
     ref: { table: { disable: true } },
     inputContainerStyle: { table: { disable: true } },
+    stepUpAriaLabel: { table: { disable: true } },
+    stepDownAriaLabel: { table: { disable: true } },
+    revealPasswordToggleAriaLabel: { table: { disable: true } },
   },
 };
 
@@ -464,6 +521,9 @@ export const WithAutocomplete: Story = {
     as: { table: { disable: true } },
     ref: { table: { disable: true } },
     inputContainerStyle: { table: { disable: true } },
+    stepUpAriaLabel: { table: { disable: true } },
+    stepDownAriaLabel: { table: { disable: true } },
+    revealPasswordToggleAriaLabel: { table: { disable: true } },
   },
 };
 
@@ -495,5 +555,8 @@ export const Colors: Story = {
     as: { table: { disable: true } },
     ref: { table: { disable: true } },
     inputContainerStyle: { table: { disable: true } },
+    stepUpAriaLabel: { table: { disable: true } },
+    stepDownAriaLabel: { table: { disable: true } },
+    revealPasswordToggleAriaLabel: { table: { disable: true } },
   },
 };
