@@ -84,6 +84,9 @@ export function Combobox({
   removeItemAriaLabel,
   removeAllItemsAriaLabel,
   toggleOpenAriaLabel,
+  name,
+  value,
+  onChange,
   ...rest
 }: ComboboxProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -94,7 +97,7 @@ export function Combobox({
   const [selectedIndices, setSelectedIndices] = useState<number[]>(
     initialSelectedIndices || [],
   );
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(value?.toString() || "");
   const group = useButtonGroupContext();
   const isMobile = useIsMobile();
 
@@ -141,14 +144,14 @@ export function Combobox({
         newIndices = [...selectedIndices, index];
       }
       setSelectedIndices(newIndices);
-      setQuery("");
+      setValue("");
     } else {
       setSelectedIndex(index);
       if (index !== undefined) {
-        setQuery(items[index]);
+        setValue(items[index]);
         setIsOpen(false);
       } else {
-        setQuery("");
+        setValue("");
       }
     }
 
@@ -161,11 +164,26 @@ export function Combobox({
     setSelectedIndex(undefined);
     setSelectedIndices([]);
     setIsOpen(false);
-    setQuery("");
+    setValue("");
 
     if (onSelectedIndexChange) {
       onSelectedIndexChange(undefined);
     }
+  }
+
+  function setValue(value: string) {
+    setQuery(value);
+    const input = inputRef.current;
+    if (!input) return;
+
+    const nativeSetter = Object.getOwnPropertyDescriptor(
+      window.HTMLInputElement.prototype,
+      "value",
+    )?.set;
+
+    nativeSetter?.call(input, value.toString());
+
+    input.dispatchEvent(new Event("input", { bubbles: true }));
   }
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -175,7 +193,7 @@ export function Combobox({
 
   const handleBlur = (e: FocusEvent) => {
     if (
-      containerRef.current?.contains(e.relatedTarget) ||
+      // containerRef.current?.contains(e.relatedTarget) ||
       floatingRef.current?.contains(e.relatedTarget)
     ) {
       requestAnimationFrame(() => {
@@ -189,7 +207,7 @@ export function Combobox({
       color={color}
       query={query}
       onSelectItem={(item) => {
-        setQuery(item);
+        setValue(item);
         setIsOpen(false);
         setSelectedFromItem(item);
       }}
@@ -214,7 +232,7 @@ export function Combobox({
             setIsFocused(false);
             if (!allowFreeText) {
               if (items.indexOf(query) < 0) {
-                setQuery("");
+                setValue("");
               }
             }
           }}
@@ -283,6 +301,7 @@ export function Combobox({
                   aria-describedby={
                     resolvedId && error ? `${resolvedId}-error` : undefined
                   }
+                  name={multiple ? undefined : name}
                   aria-label={ariaLabel}
                   disabled={disabled}
                   className="text-main-content line-clamp-1 w-0 grow-1 cursor-text px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
@@ -294,7 +313,10 @@ export function Combobox({
                     } else {
                       setIsOpen(false);
                     }
-                    setQuery(value);
+                    setValue(value);
+                    if (onChange) {
+                      onChange(e);
+                    }
                   }}
                   ref={inputRefs}
                   {...rest}
@@ -334,6 +356,19 @@ export function Combobox({
                   >
                     <CaretDownIcon className={caretClasses} />
                   </Button>
+                  {multiple &&
+                    name &&
+                    selectedIndices.map((index) => {
+                      const value = items[index];
+                      return (
+                        <input
+                          key={value}
+                          type="hidden"
+                          name={name}
+                          value={value}
+                        />
+                      );
+                    })}
                 </div>
               </div>
             </div>

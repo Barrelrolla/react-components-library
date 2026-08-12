@@ -244,16 +244,6 @@ export function Select({
     );
   }
 
-  let inputValue: string | string[] = "";
-  if (multiple) {
-    inputValue = [];
-    for (let i = 0; i < selectedIndices.length; i++) {
-      inputValue.push(items[selectedIndices[i]]);
-    }
-  } else if (selectedIndex !== undefined) {
-    inputValue = items[selectedIndex];
-  }
-
   let buttonText = placeholder;
   if (!multiple && selectedIndex !== undefined) {
     buttonText = items[selectedIndex];
@@ -372,14 +362,28 @@ export function Select({
               </div>
             </div>
           </div>
-          {name && (
+          {name && !multiple && selectedIndex !== undefined && (
             <input
               ref={inputRef}
               name={name}
               type="hidden"
-              value={inputValue}
+              value={items[selectedIndex]}
             />
           )}
+          {name &&
+            multiple &&
+            selectedIndices.map((i) => {
+              const value = items[i];
+              return (
+                <input
+                  key={value}
+                  ref={inputRef}
+                  name={name}
+                  type="hidden"
+                  value={value}
+                />
+              );
+            })}
           {children}
           {error && (
             <p id={`${resolvedId}-error`} className={errorClasses}>
