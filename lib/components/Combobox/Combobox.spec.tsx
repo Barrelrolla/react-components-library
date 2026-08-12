@@ -4,7 +4,7 @@ import { Combobox } from "./Combobox";
 
 describe("Combobox tests", () => {
   it("renders", () => {
-    const { container } = render(<Combobox />);
+    const { container } = render(<Combobox items={[]} />);
     const combobox = container.querySelector("div");
     expect(combobox).toBeTruthy();
   });

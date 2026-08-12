@@ -13,6 +13,7 @@ const meta: Meta<typeof Combobox> = {
     </div>
   ),
   args: {
+    placeholder: "Search countries",
     toggleOpenAriaLabel: "Toggle item list",
     removeAllItemsAriaLabel: "Clear selection",
     removeItemAriaLabel: "Remove item",
@@ -27,6 +28,7 @@ const meta: Meta<typeof Combobox> = {
     multiple: { table: { category: "controls" } },
     error: { table: { category: "controls" } },
     allowFreeText: { table: { category: "controls" } },
+    placeholder: { table: { category: "controls" } },
     items: { control: false, table: { category: "docs" } },
     initialSelectedIndex: { control: false, table: { category: "docs" } },
     initialSelectedIndices: { control: false, table: { category: "docs" } },
