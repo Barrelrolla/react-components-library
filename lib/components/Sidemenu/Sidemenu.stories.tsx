@@ -10,17 +10,26 @@ const meta: Meta<typeof Sidemenu> = {
   title: "Components/Sidemenu",
   tags: ["autodocs"],
   component: Sidemenu,
+  subcomponents: { SidemenuItem, SidemenuSection },
   decorators: (Story) => (
     <div className="storybookContainer">
       <Story />
     </div>
   ),
   argTypes: {
-    children: { name: "text" },
     color: {
       options: availableColors,
       control: { type: "select" },
+      table: { category: "controls" },
     },
+    fillOnSelect: {
+      control: { type: "boolean" },
+      table: { category: "controls" },
+    },
+    initialActiveIndex: { control: false, table: { category: "docs" } },
+    onActiveIndexChange: { control: false, table: { category: "docs" } },
+    wrapperClassName: { control: false, table: { category: "docs" } },
+    wrapperStyle: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -33,7 +42,7 @@ export const Default: Story = {
     const sidemenu = canvas.getByText("Sidemenu");
     await expect(sidemenu, "renders").toBeTruthy();
   },
-  render: () => {
+  render: ({ ...rest }) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const items = Array.from(
       { length: 12 },
@@ -45,6 +54,7 @@ export const Default: Story = {
           className="max-h-100"
           initialActiveIndex={activeIndex}
           onActiveIndexChange={setActiveIndex}
+          {...rest}
         >
           <SidemenuSection>
             <SidemenuItem index={0}>Sidemenu</SidemenuItem>
@@ -60,9 +70,6 @@ export const Default: Story = {
       </div>
     );
   },
-  args: {
-    children: "sidemenu",
-  },
 };
 
 export const Fill: Story = {
@@ -71,14 +78,14 @@ export const Fill: Story = {
     const sidemenu = canvas.getByText("Sidemenu");
     await expect(sidemenu, "renders").toBeTruthy();
   },
-  render: () => {
+  render: ({ ...rest }) => {
     const items = Array.from(
       { length: 12 },
       (_item, index) => "Item" + ` ${index + 1}`,
     );
     return (
       <div className="w-full sm:w-auto">
-        <Sidemenu fillOnSelect className="max-h-100">
+        <Sidemenu className="max-h-100" {...rest}>
           <SidemenuSection>
             <SidemenuItem index={0}>Sidemenu</SidemenuItem>
             {items.map((item, index) => {
@@ -92,6 +99,16 @@ export const Fill: Story = {
         </Sidemenu>
       </div>
     );
+  },
+  args: {
+    fillOnSelect: true,
+  },
+  argTypes: {
+    fillOnSelect: { table: { disable: true } },
+    initialActiveIndex: { table: { disable: true } },
+    onActiveIndexChange: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
   },
 };
 
@@ -119,9 +136,11 @@ export const Colors: Story = {
       </>
     );
   },
-  args: {},
   argTypes: {
     color: { table: { disable: true } },
-    children: { table: { disable: true } },
+    initialActiveIndex: { table: { disable: true } },
+    onActiveIndexChange: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
   },
 };

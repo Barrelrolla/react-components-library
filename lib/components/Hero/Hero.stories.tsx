@@ -1,4 +1,3 @@
-import { ComponentType } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { availableResponsiveSizes } from "@/types";
 import { Button } from "../index";
@@ -16,26 +15,29 @@ const meta: Meta<typeof Hero> = {
   tags: ["autodocs"],
   component: Hero,
   subcomponents: {
-    HeroActions: HeroActions as ComponentType<unknown>,
-    HeroImageSection: HeroImageSection as ComponentType<unknown>,
-    HeroSection: HeroSection as ComponentType<unknown>,
-    HeroTitle: HeroTitle as ComponentType<unknown>,
-    HeroText: HeroText as ComponentType<unknown>,
+    HeroActions,
+    HeroImageSection,
+    HeroSection,
+    HeroTitle,
+    HeroText,
   },
   argTypes: {
     children: { table: { disable: true } },
     textAlign: {
       control: { type: "inline-radio" },
+      table: { category: "controls" },
     },
     actionsAlign: {
       control: { type: "inline-radio" },
+      table: { category: "controls" },
     },
     responsiveAt: {
       control: { type: "inline-radio" },
       options: availableResponsiveSizes,
+      table: { category: "controls" },
     },
-    wrapperClassName: { table: { disable: true } },
-    wrapperStyle: { table: { disable: true } },
+    wrapperClassName: { control: false, table: { category: "docs" } },
+    wrapperStyle: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -92,5 +94,9 @@ export const WithImage: Story = {
         </Hero>
       </div>
     );
+  },
+  argTypes: {
+    wrapperClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
   },
 };

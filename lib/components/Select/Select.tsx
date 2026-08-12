@@ -31,30 +31,62 @@ import { Button, useButtonGroupContext } from "../Button";
 import { Badge } from "../Badge";
 
 export type SelectProps = {
-  inputRef?: Ref<HTMLInputElement>;
+  /** Color variant applied across the select trigger, dropdown surface, active items, and chips. */
   color?: ColorType;
+  /** Accessible label text displayed above the select field. */
   label?: string;
+  /** Array of selectable string option items rendered inside the dropdown overlay. */
   items: string[];
+  /** Enables multi-selection mode allowing users to select multiple options as tags/chips. */
   multiple?: boolean;
+  /** Form input name attribute submitted when wrapped within an HTML `<form>`. */
   name?: string;
+  /** Error message displayed below the input field, applying validation styling when present. */
   error?: string;
+  /** Controlled open state determining whether the option dropdown menu is visible. */
   isOpen?: boolean;
+  /** Callback fired when the open or closed state of the dropdown menu changes. */
   onOpenChange?: (isOpen: boolean) => void;
+  /** Zero-based index of the initially selected item in single-selection mode. */
   initialSelectedIndex?: number | undefined;
+  /** Array of zero-based indices for initially selected items in multi-selection mode. */
   initialSelectedIndices?: number[];
+  /** Callback fired when the active option index selection changes. */
   onSelectedIndexChange?: (index: number | undefined) => void;
+  /** Placeholder text displayed when no options are currently selected. */
   placeholder?: string;
+  /** CSS positioning strategy used to render the dropdown menu overlay. Defaults to `"absolute"`. */
   strategy?: "absolute" | "fixed";
+  /** Placement direction of the dropdown relative to the trigger input element. */
   placement?: Placement;
+  /** Disables user interaction, preventing the dropdown from opening or options from being selected. */
   disabled?: boolean;
+  /** When `true`, renders the options list inside a mobile sheet on smaller viewports. */
   mobileSheet?: boolean;
+  /** Alignment placement for the mobile sheet view on smaller viewports. */
   mobileSheetPlacement?: MobileSheetPlacementType;
+  /** Additional CSS class names applied directly to the field label element. */
   labelClassName?: string;
+  /** Additional CSS class names applied directly to the validation error message element. */
   errorClassName?: string;
+  /** Additional CSS class names applied to the outermost container wrapper element. */
   wrapperClassName?: string;
+  /** Custom inline CSS styles applied to the outermost container wrapper element. */
   wrapperStyle?: CSSProperties;
+  /** Accessible label applied to the button that removes all selected options at once. */
+  removeAllItemsAriaLabel?: string;
+  /** Accessible label applied to individual item remove buttons within multi-select chips. */
+  removeItemAriaLabel?: string;
+  /** React ref attached to the underlying hidden HTML `<input>` element for form integration. */
+  inputRef?: Ref<HTMLInputElement>;
 } & ComponentProps<"div">;
 
+/**
+ * Customizable form selection control supporting single and multi-selection modes, custom floating positioning, and mobile sheet overlays.
+ *
+ * Manages accessibility bindings, option traversal, tag removal, and validation styling while
+ * optionally syncing selected value states with a hidden HTML `<input>` for native form compatibility.
+ */
 export function Select({
   inputRef,
   id,
@@ -69,7 +101,7 @@ export function Select({
   initialSelectedIndex,
   initialSelectedIndices,
   onSelectedIndexChange,
-  placeholder = "Select...",
+  placeholder,
   strategy = "absolute",
   placement = "bottom",
   mobileSheet = true,
@@ -81,6 +113,8 @@ export function Select({
   errorClassName,
   wrapperClassName,
   wrapperStyle,
+  removeItemAriaLabel,
+  removeAllItemsAriaLabel,
   ...rest
 }: SelectProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -290,6 +324,7 @@ export function Select({
                     <>
                       <span>{items[index]}</span>
                       <Button
+                        aria-label={removeItemAriaLabel}
                         useGroup={false}
                         variant="ghost"
                         radius="pill"
@@ -318,6 +353,7 @@ export function Select({
                 {(selectedIndex !== undefined ||
                   selectedIndices.length > 0) && (
                   <Button
+                    aria-label={removeAllItemsAriaLabel}
                     useGroup={false}
                     radius="pill"
                     size="sm"

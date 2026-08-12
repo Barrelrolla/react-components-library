@@ -35,15 +35,15 @@ export const Default: Story = {
   render: ({ ...rest }) => {
     return (
       <RadioGroup className="flex gap-4" {...rest}>
-        <Radio>one</Radio>
-        <Radio>two</Radio>
-        <Radio>three</Radio>
+        <Radio>One</Radio>
+        <Radio>Two</Radio>
+        <Radio>Three</Radio>
       </RadioGroup>
     );
   },
   args: {
     size: 20,
     name: "radio",
-    title: "radio group",
+    title: "Radio group",
   },
 };

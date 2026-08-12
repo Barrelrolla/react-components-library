@@ -19,6 +19,8 @@ export type FloatingContentProps = {
   context: FloatingElementContextType;
   /** When `true`, matches the directional arrow color to the floating element's color variant background. */
   coloredArror?: boolean;
+  /** Accessible label applied to the button that collapses the floating element on mobile devices. */
+  closeButtonAriaLabel?: string;
   /** Custom class generator function for dynamic styling based on mobile sheet display settings and placement. */
   getClasses?: ({
     mobileSheet,
@@ -29,7 +31,7 @@ export type FloatingContentProps = {
     mobileSheetPlacement?: MobileSheetPlacementType;
     className?: string;
   }) => { classes: string };
-};
+} & ComponentProps<"div">;
 
 /**
  * Foundation floating content wrapper that serves as the base surface for all floating UI elements
@@ -41,12 +43,13 @@ export type FloatingContentProps = {
 export function FloatingElementContent({
   context,
   coloredArror = false,
+  closeButtonAriaLabel,
   getClasses,
   className,
   style,
   children,
   ...rest
-}: FloatingContentProps & ComponentProps<"div">) {
+}: FloatingContentProps) {
   const isMobile = useIsMobile();
   const floatingContext = useFloatingContext();
   const { mobileSheet, mobileSheetPlacement } = context;
@@ -116,6 +119,7 @@ export function FloatingElementContent({
           <div style={styles} className={classes} {...rest}>
             {isMobile && mobileSheet && (
               <Button
+                aria-label={closeButtonAriaLabel}
                 type="button"
                 onClick={() => {
                   context.setIsOpen(false);
@@ -125,6 +129,7 @@ export function FloatingElementContent({
                 size="sm"
                 className="absolute top-1 right-1"
                 startIcon={<CloseIcon strokeWidth={2} className="size-6" />}
+                useGroup={false}
               />
             )}
             <div className={innerClasses} ref={mergedInnerRefs}>

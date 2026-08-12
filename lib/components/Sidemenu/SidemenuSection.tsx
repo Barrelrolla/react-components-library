@@ -4,6 +4,11 @@ import { twMerge } from "tailwind-merge";
 import { Composite } from "@floating-ui/react";
 import { useSidemenuContext } from "./SidemenuContext";
 
+/**
+ * Visual and structural grouping wrapper for related items within a sidemenu.
+ *
+ * Groups subcomponents using `ButtonGroup` behaviors
+ */
 export function SidemenuSection({
   className,
   dividerClassName,

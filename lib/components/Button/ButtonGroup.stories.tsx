@@ -331,6 +331,7 @@ export const WithSelect: Story = {
           items={items}
           placeholder="Select file type"
           wrapperClassName="w-50"
+          aria-label="Select file type"
         >
           <SelectContent>
             <SelectGroup>
@@ -359,11 +360,15 @@ export const WithCombobox: Story = {
   render: ({ variant = "solid", ...rest }) => {
     return (
       <ButtonGroup {...rest} variant={variant} divider={false}>
-        <Combobox items={[]} />
+        <Combobox
+          items={[]}
+          toggleOpenAriaLabel="Toggle list"
+          aria-label="Search"
+        />
         <Tooltip>
           <TooltipContent>Search</TooltipContent>
           <TooltipTrigger>
-            <Button aria-label="search" startIcon={<PiMagnifyingGlass />} />
+            <Button aria-label="Search" startIcon={<PiMagnifyingGlass />} />
           </TooltipTrigger>
         </Tooltip>
       </ButtonGroup>

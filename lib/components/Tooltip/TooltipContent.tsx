@@ -3,6 +3,12 @@ import { useTooltipContext } from "./TooltipContext";
 import { getTooltipClasses } from "./getTooltipClasses";
 import { FloatingElementContent } from "../Floating";
 
+/**
+ * Floating container component that renders the contextual text or popover body of a tooltip.
+ *
+ * Anchors relative to the trigger element and applies tooltip surface styling, elevation,
+ * and directional positioning inherited from the parent `Tooltip` context.
+ */
 export function TooltipContent({ ...rest }: ComponentProps<"div">) {
   const context = useTooltipContext();
   if (!context) {

@@ -244,19 +244,19 @@ export const PageDemo: Story = {
           </FooterBrand>
           <FooterLinksSection>
             <FooterLinkGroup>
-              <FooterLinksTitle>long section name 1</FooterLinksTitle>
+              <FooterLinksTitle as="h2">long section name 1</FooterLinksTitle>
               <FooterLink href="#">long link text 1</FooterLink>
               <FooterLink href="#">long link text 2</FooterLink>
               <FooterLink href="#">long link text 3</FooterLink>
             </FooterLinkGroup>
             <FooterLinkGroup>
-              <FooterLinksTitle>long section name 2</FooterLinksTitle>
+              <FooterLinksTitle as="h2">long section name 2</FooterLinksTitle>
               <FooterLink href="#">long link text 1</FooterLink>
               <FooterLink href="#">long link text 2</FooterLink>
               <FooterLink href="#">long link text 3</FooterLink>
             </FooterLinkGroup>
             <FooterLinkGroup>
-              <FooterLinksTitle>long section name 3</FooterLinksTitle>
+              <FooterLinksTitle as="h2">long section name 3</FooterLinksTitle>
               <FooterLink href="#">long link text 1</FooterLink>
               <FooterLink href="#">long link text 2</FooterLink>
               <FooterLink href="#">long link text 3</FooterLink>

@@ -5,6 +5,7 @@ import { Input } from "../index";
 import {
   Autocomplete,
   AutocompleteContent,
+  AutocompleteItem,
   AutocompleteTrigger,
 } from "./index";
 
@@ -12,6 +13,7 @@ const meta: Meta<typeof Autocomplete> = {
   title: "Components/Autocomplete",
   tags: ["autodocs"],
   component: Autocomplete,
+  subcomponents: { AutocompleteContent, AutocompleteItem, AutocompleteTrigger },
   decorators: (Story) => (
     <div className="storybookContainer">
       <Story />
@@ -70,7 +72,7 @@ export const Default: Story = {
       >
         <AutocompleteTrigger>
           <Input
-            placeholder="search"
+            placeholder="Search 100 000 items"
             onChange={(e) => {
               const value = e.target.value;
               if (value && value.length > 0) {

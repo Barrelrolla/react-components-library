@@ -3,6 +3,19 @@ import { useSidemenuContext } from "./SidemenuContext";
 import { CompositeItem } from "@floating-ui/react";
 import { getSidemenuItemClasses } from "./getSidemenuClasses";
 
+export type SidemenuItemProps = {
+  /** Zero-based index position of this menu item within the sidemenu navigation list. */
+  index: number;
+  /** Additional CSS class names applied to the outer item wrapper element. */
+  wrapperClassName?: string;
+} & ButtonProps<"button">;
+
+/**
+ * Interactive navigation option rendered within a sidemenu.
+ *
+ * Functions as an accessible button that registers its index with the parent `SidemenuContext`,
+ * automatically reflecting active selection styles, focus states, and color variants.
+ */
 export function SidemenuItem({
   index,
   className,

@@ -5,6 +5,7 @@ import { getGropuedItemClasses } from "../Button/getButtonGroupClasses";
 
 export function getInputClasses({
   color,
+  disabled,
   startIcon,
   endIcon,
   className,
@@ -15,6 +16,7 @@ export function getInputClasses({
   group,
 }: {
   color: ColorType | undefined;
+  disabled?: boolean;
   startIcon: boolean;
   endIcon: boolean;
   className?: string;
@@ -40,7 +42,11 @@ export function getInputClasses({
       inGroup && "group",
       wrapperClassName,
     ),
-    labelClasses: twMerge("input-field-label", labelClassName),
+    labelClasses: twMerge(
+      "input-field-label",
+      disabled && "opacity-70",
+      labelClassName,
+    ),
     errorClasses: twMerge("input-field-error", errorClassName),
     inputContainerClasses: twMerge(
       "input-field-container",

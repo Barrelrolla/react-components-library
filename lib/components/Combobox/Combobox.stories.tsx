@@ -12,6 +12,11 @@ const meta: Meta<typeof Combobox> = {
       <Story />
     </div>
   ),
+  args: {
+    toggleOpenAriaLabel: "Toggle item list",
+    removeAllItemsAriaLabel: "Clear selection",
+    removeItemAriaLabel: "Remove item",
+  },
   argTypes: {
     color: {
       options: availableColors,
@@ -30,6 +35,9 @@ const meta: Meta<typeof Combobox> = {
     errorClassName: { control: false, table: { category: "docs" } },
     wrapperClassName: { control: false, table: { category: "docs" } },
     wrapperStyle: { control: false, table: { category: "docs" } },
+    toggleOpenAriaLabel: { control: false, table: { category: "docs" } },
+    removeAllItemsAriaLabel: { control: false, table: { category: "docs" } },
+    removeItemAriaLabel: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -330,6 +338,9 @@ export const WithLabel: Story = {
     errorClassName: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
     wrapperStyle: { table: { disable: true } },
+    toggleOpenAriaLabel: { table: { disable: true } },
+    removeAllItemsAriaLabel: { table: { disable: true } },
+    removeItemAriaLabel: { table: { disable: true } },
   },
   parameters: {
     docs: {

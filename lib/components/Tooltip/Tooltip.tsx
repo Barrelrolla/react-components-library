@@ -22,22 +22,37 @@ import {
 import { useFloatingTransitionStyles } from "@/hooks/useFloatingTransitionStyles";
 
 export type TooltipProps = {
+  /** Color variant applied across the tooltip surface and optional directional arrow. */
   color?: ColorType;
+  /** Controlled open state determining whether the tooltip overlay is visible. */
   isOpen?: boolean;
+  /** Callback fired when the visibility state of the tooltip changes. */
   onOpenChange?: (isOpen: boolean) => void;
-  strategy?: 'absolute' | 'fixed',
+  /** CSS positioning strategy used by Floating UI to render the tooltip overlay. Defaults to `"absolute"`. */
+  strategy?: "absolute" | "fixed";
+  /** Floating UI placement direction of the tooltip relative to its trigger element. */
   placement?: Placement;
+  /** Delay in milliseconds before showing or hiding the tooltip on hover or focus. */
   delay?: number;
+  /** When `true`, renders a directional pointing arrow anchoring the tooltip to its trigger element. */
   hasArrow?: boolean;
+  /** When `true`, marks the tooltip content as an accessible form field label rather than a plain description. */
   isLabel?: boolean;
+  /** Disables user interaction, preventing the tooltip from displaying on hover or focus. */
   disabled?: boolean;
 } & PropsWithChildren;
 
+/**
+ * Floating informational popup that provides contextual details when hovering over or focusing a trigger element.
+ *
+ * Configures hover/focus delays, positioning strategies, custom color variants, and optional directional
+ * arrows while managing accessible overlay behavior via Floating UI.
+ */
 export function Tooltip({
   color = "main",
   isOpen,
   onOpenChange,
-  strategy = 'absolute',
+  strategy = "absolute",
   placement = "top",
   delay = 300,
   hasArrow = true,
@@ -101,7 +116,7 @@ export function Tooltip({
           mobileSheet: false,
           color,
           isOpen: disabled ? false : isMounted,
-          setIsOpen: disabled ? () => { } : setOpen,
+          setIsOpen: disabled ? () => {} : setOpen,
           data,
           interactions,
           transitionStyles,

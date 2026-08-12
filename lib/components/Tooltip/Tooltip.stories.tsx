@@ -14,14 +14,24 @@ const meta: Meta<typeof Tooltip> = {
     </div>
   ),
   argTypes: {
-    children: { name: "text" },
+    children: { name: "text", table: { category: "storybook" } },
     color: {
       options: availableColors,
       control: { type: "select" },
+      table: { category: "controls" },
     },
-    placement: { control: { type: "select" }, options: availablePlacements },
-    isLabel: { table: { disable: true } },
-    onOpenChange: { table: { disable: true } },
+    placement: {
+      control: { type: "select" },
+      options: availablePlacements,
+      table: { category: "controls" },
+    },
+    isOpen: { table: { category: "controls" } },
+    strategy: { table: { category: "controls" } },
+    delay: { table: { category: "controls" } },
+    hasArrow: { table: { category: "controls" } },
+    disabled: { table: { category: "controls" } },
+    isLabel: { table: { category: "controls" } },
+    onOpenChange: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -32,27 +42,27 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const screen = within(document.body);
-    const trigger = canvas.getByText("hover me");
-    expect(screen.queryByText("tooltip")).toBeNull();
+    const trigger = canvas.getByText("Hover me");
+    expect(screen.queryByText("Tooltip")).toBeNull();
     await userEvent.hover(trigger);
-    expect(await screen.findByText("tooltip")).toBeInTheDocument();
+    expect(await screen.findByText("Tooltip")).toBeInTheDocument();
     await userEvent.unhover(trigger);
     await waitFor(() => {
-      expect(screen.queryByText("tooltip")).toBeNull();
+      expect(screen.queryByText("Tooltip")).toBeNull();
     });
   },
   render: ({ disabled, children, ...rest }) => {
     return (
       <Tooltip {...rest}>
         <TooltipTrigger>
-          <Button disabled={disabled}>hover me</Button>
+          <Button disabled={disabled}>Hover me</Button>
         </TooltipTrigger>
         <TooltipContent>{children}</TooltipContent>
       </Tooltip>
     );
   },
   args: {
-    children: "tooltip",
+    children: "Tooltip",
   },
 };
 
@@ -71,9 +81,9 @@ export const Colors: Story = {
       </>
     );
   },
-  args: {},
   argTypes: {
     color: { table: { disable: true } },
     children: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
   },
 };

@@ -49,6 +49,12 @@ export type ComboboxProps = {
   wrapperClassName?: string;
   /** Inline CSS properties applied to the outer wrapper element. */
   wrapperStyle?: CSSProperties;
+  /** Accessible label applied to the clear-all button that removes all selected items at once. */
+  removeAllItemsAriaLabel?: string;
+  /** Accessible label applied to individual item remove buttons within multi-select chips. */
+  removeItemAriaLabel?: string;
+  /** Accessible label applied to the toggle button that expands or collapses the combobox dropdown. */
+  toggleOpenAriaLabel?: string;
 } & ComponentProps<"input">;
 
 /**
@@ -75,6 +81,9 @@ export function Combobox({
   errorClassName,
   wrapperClassName,
   wrapperStyle,
+  removeItemAriaLabel,
+  removeAllItemsAriaLabel,
+  toggleOpenAriaLabel,
   ...rest
 }: ComboboxProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -237,6 +246,7 @@ export function Combobox({
                       <>
                         <span>{items[index]}</span>
                         <Button
+                          aria-label={removeItemAriaLabel}
                           useGroup={false}
                           variant="ghost"
                           radius="pill"
@@ -293,6 +303,7 @@ export function Combobox({
                   {(selectedIndex !== undefined ||
                     selectedIndices.length > 0) && (
                     <Button
+                      aria-label={removeAllItemsAriaLabel}
                       useGroup={false}
                       radius="pill"
                       size="sm"
@@ -309,6 +320,7 @@ export function Combobox({
                     </Button>
                   )}
                   <Button
+                    aria-label={toggleOpenAriaLabel}
                     useGroup={false}
                     radius="pill"
                     size="sm"

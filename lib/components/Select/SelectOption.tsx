@@ -6,6 +6,19 @@ import { CheckMarkIcon } from "@/icons";
 import { useIsMobile } from "@/hooks";
 import { getFloatingListItemClasses } from "../Floating/getFloatinigClasses";
 
+export type SelectOptionProps = {
+  /** Zero-based index position of this option item within the select options list. */
+  index: number;
+  /** Disables interaction and selection for this specific option item. */
+  disabled?: boolean;
+} & ComponentProps<"button">;
+
+/**
+ * Individual selectable option item rendered inside the select dropdown list.
+ *
+ * Functions as an accessible button choice that registers its index with the parent select context,
+ * supporting active highlight state, keyboard navigation, and click selections.
+ */
 export function SelectOption({
   index,
   ref,
@@ -13,10 +26,7 @@ export function SelectOption({
   children,
   className,
   ...rest
-}: {
-  index: number;
-  disabled?: boolean;
-} & ComponentProps<"button">) {
+}: SelectOptionProps) {
   const context = useSelectContext();
   if (!context) {
     throw new Error("Please use the Select List Item only inside a Select");

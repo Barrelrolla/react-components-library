@@ -68,26 +68,26 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const trigger = canvas.getByText("open menu");
-    expect(canvas.queryByText("menu")).toBeNull();
+    const trigger = canvas.getByText("Open menu");
+    expect(canvas.queryByText("Menu")).toBeNull();
     await userEvent.click(trigger);
-    const dropdown = screen.getByText("menu");
+    const dropdown = screen.getByText("Menu");
     expect(dropdown, "renders").toBeInTheDocument();
     await userEvent.click(document.body);
-    expect(canvas.queryByText("menu")).toBeNull();
+    expect(canvas.queryByText("Menu")).toBeNull();
   },
   render: ({ ...rest }) => {
     return (
       <Dropdown {...rest}>
         <DropdownTrigger>
-          <Button>open menu</Button>
+          <Button>Open menu</Button>
         </DropdownTrigger>
         <DropdownContent>
-          <DropdownTitle>menu</DropdownTitle>
+          <DropdownTitle>Menu</DropdownTitle>
           <DropdownList>
-            <DropdownListItem>item 1</DropdownListItem>
-            <DropdownListItem>item 2</DropdownListItem>
-            <DropdownListItem>item 3</DropdownListItem>
+            <DropdownListItem>Item 1</DropdownListItem>
+            <DropdownListItem>Item 2</DropdownListItem>
+            <DropdownListItem>Item 3</DropdownListItem>
           </DropdownList>
         </DropdownContent>
       </Dropdown>
@@ -98,41 +98,41 @@ export const Default: Story = {
 export const Nested: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const trigger = canvas.getByText("open menu");
-    expect(canvas.queryByText("menu")).toBeNull();
+    const trigger = canvas.getByText("Open menu");
+    expect(canvas.queryByText("Menu")).toBeNull();
     await userEvent.click(trigger);
-    const dropdown = screen.getByText("menu");
+    const dropdown = screen.getByText("Menu");
     expect(dropdown, "renders").toBeInTheDocument();
     await userEvent.click(document.body);
-    expect(canvas.queryByText("menu")).toBeNull();
+    expect(canvas.queryByText("Menu")).toBeNull();
   },
   render: ({ ...rest }) => {
     return (
       <Dropdown {...rest}>
         <DropdownTrigger>
-          <Button>open menu</Button>
+          <Button>Open menu</Button>
         </DropdownTrigger>
         <DropdownContent>
-          <DropdownTitle>menu</DropdownTitle>
+          <DropdownTitle>Menu</DropdownTitle>
           <DropdownList>
-            <DropdownListItem>item 1</DropdownListItem>
-            <DropdownListItem disabled>item 2</DropdownListItem>
+            <DropdownListItem>Item 1</DropdownListItem>
+            <DropdownListItem disabled>Item 2</DropdownListItem>
             <Dropdown placement="right">
               <DropdownTrigger>
-                <DropdownListItem>item 3</DropdownListItem>
+                <DropdownListItem>Item 3</DropdownListItem>
               </DropdownTrigger>
               <DropdownContent>
-                <DropdownTitle>sub menu</DropdownTitle>
+                <DropdownTitle>Sub menu</DropdownTitle>
                 <DropdownList>
-                  <DropdownListItem>nested 1</DropdownListItem>
-                  <DropdownListItem>nested 2</DropdownListItem>
-                  <DropdownListItem>nested 3</DropdownListItem>
+                  <DropdownListItem>Nested 1</DropdownListItem>
+                  <DropdownListItem>Nested 2</DropdownListItem>
+                  <DropdownListItem>Nested 3</DropdownListItem>
                 </DropdownList>
               </DropdownContent>
             </Dropdown>
             <DropdownListItem className="justify-start">
               <PiGearThin />
-              item 4
+              Item 4
             </DropdownListItem>
           </DropdownList>
         </DropdownContent>
@@ -156,16 +156,16 @@ export const Colors: Story = {
                 <Button color={color}>{color}</Button>
               </DropdownTrigger>
               <DropdownContent>
-                <DropdownTitle>menu</DropdownTitle>
+                <DropdownTitle>Menu</DropdownTitle>
                 <DropdownList>
-                  <DropdownListItem>item 1</DropdownListItem>
+                  <DropdownListItem>Item 1</DropdownListItem>
                   <Dropdown>
                     <DropdownTrigger>
-                      <DropdownListItem>item 2</DropdownListItem>
+                      <DropdownListItem>Item 2</DropdownListItem>
                     </DropdownTrigger>
                     <DropdownContent>
                       <DropdownList>
-                        <DropdownListItem>nested</DropdownListItem>
+                        <DropdownListItem>Nested</DropdownListItem>
                       </DropdownList>
                     </DropdownContent>
                   </Dropdown>

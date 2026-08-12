@@ -7,6 +7,8 @@ import { AutocompleteItem } from "./AutocompleteItem";
 export type AutocompleteContentProps = {
   /** Text message displayed inside the dropdown list when no matching suggestions are found. Defaults to `"No results found."`. */
   noResultsText?: string;
+  /** Accessible label applied to the button that collapses the floating element on mobile devices. */
+  closeButtonAriaLabel?: string;
 } & ComponentProps<"div">;
 
 /**

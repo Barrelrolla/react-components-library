@@ -10,6 +10,7 @@ const meta: Meta<typeof Popover> = {
   title: "Components/Popover",
   tags: ["autodocs"],
   component: Popover,
+  subcomponents: { PopoverContent, PopoverTrigger },
   decorators: (Story) => (
     <div className="storybookContainer">
       <Story />
@@ -44,7 +45,7 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const screen = within(document.body);
-    const trigger = canvas.getByText("hover me");
+    const trigger = canvas.getByText("Hover me");
     expect(screen.queryByText("Lorem, ipsum dolor.")).toBeNull();
     await userEvent.hover(trigger);
     expect(await screen.findByText("Lorem, ipsum dolor.")).toBeInTheDocument();
@@ -57,7 +58,7 @@ export const Default: Story = {
     return (
       <Popover disabled={disabled} {...rest}>
         <PopoverTrigger>
-          <Button disabled={disabled}>hover me</Button>
+          <Button disabled={disabled}>Hover me</Button>
         </PopoverTrigger>
         <PopoverContent aria-label="test">
           <Card>
@@ -81,7 +82,7 @@ export const Nested: Story = {
       <ThemeContextProvider>
         <Popover disabled={disabled} {...rest}>
           <PopoverTrigger>
-            <Button disabled={disabled}>hover me</Button>
+            <Button disabled={disabled}>Hover me</Button>
           </PopoverTrigger>
           <PopoverContent aria-label="test">
             <Card>

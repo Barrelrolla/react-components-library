@@ -4,15 +4,22 @@ import { getTextFromChildren } from "@/util/helpers";
 import { CheckMarkIcon } from "@/icons";
 import { getFloatingListItemClasses } from "../Floating/getFloatinigClasses";
 
+export type AutocompleteItemProps = {
+  /** Indicates whether the option is currently highlighted or active via keyboard navigation or pointer hover. */
+  active: boolean;
+} & ComponentProps<"button">;
+
+/**
+ * Interactive suggestion option item rendered within the autocomplete dropdown menu.
+ *
+ * Functions as an accessible button element that reflects its selection/highlight state via
+ * the `active` prop for visual focus and keyboard traversal feedback.
+ */
 export function AutocompleteItem({
   active,
-  disabled,
   children,
   ...rest
-}: {
-  active: boolean;
-  disabled?: boolean;
-} & ComponentProps<"button">) {
+}: AutocompleteItemProps) {
   const context = useAutocompleteContext();
   if (!context) {
     throw new Error(
@@ -37,7 +44,6 @@ export function AutocompleteItem({
         id={id}
         className={classes}
         role="menuitem"
-        disabled={disabled}
         {...context.interactions.getItemProps({
           active,
           onClick() {

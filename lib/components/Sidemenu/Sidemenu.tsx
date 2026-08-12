@@ -12,14 +12,25 @@ import { SidemenuContextProvider } from "./SidemenuContext";
 import { CaretDownIcon } from "@/icons";
 
 export type SidemenuProps = {
-  initialActiveIndex?: number;
-  onActiveIndexChange?: (index: number) => void;
+  /** Color variant applied across selected sidemenu items and indicators. */
   color?: ColorType;
-  fillOnSelect?: boolean;
+  /** When `true`, applies a solid color background to selected menu items instead of a subtle tint. */ fillOnSelect?: boolean;
+  /** Zero-based index of the initially selected navigation menu item. */
+  initialActiveIndex?: number;
+  /** Callback fired when the active navigation item selection index changes. */
+  onActiveIndexChange?: (index: number) => void;
+  /** Additional CSS class names applied to the outer wrapper element. */
   wrapperClassName?: string;
+  /** Custom inline CSS styles applied to the outer wrapper element. */
   wrapperStyle?: CSSProperties;
 } & ComponentProps<"div">;
 
+/**
+ * Vertical side navigation menu container that automatically adapts to horizontal tabs on mobile viewports.
+ *
+ * Manages active item selection state across navigation options, supporting custom color variants,
+ * solid or subtle background fill highlights, and responsive layout transitions.
+ */
 export function Sidemenu({
   initialActiveIndex = 0,
   onActiveIndexChange,
@@ -117,11 +128,20 @@ export function Sidemenu({
       "[data-selected='true']",
     );
 
-    selected?.scrollIntoView({
-      block: "center",
-      inline: "center",
-      behavior: "auto",
-    });
+    if (!selected) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const selectedRect = selected.getBoundingClientRect();
+
+    container.scrollTop +=
+      selectedRect.top -
+      containerRect.top -
+      (container.clientHeight - selected.offsetHeight) / 2;
+
+    container.scrollLeft +=
+      selectedRect.left -
+      containerRect.left -
+      (container.clientWidth - selected.offsetWidth) / 2;
   }, [isMobile]);
 
   const { classes, wrapperClasses } = getSidemenuClasses({

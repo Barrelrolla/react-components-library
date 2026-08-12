@@ -18,10 +18,6 @@ import { useMergeRefs } from "@floating-ui/react";
 type InputFieldType = "input" | "textarea";
 
 export type InputProps<T extends InputFieldType = "input"> = {
-  /** Underlying form element tag to render, allowing toggle between standard single-line `input` and multi-line `textarea`. Defaults to `input`. */
-  as?: T;
-  /** Ref attached to the rendered HTML input or textarea element. */
-  ref?: Ref<HTMLInputElement | HTMLTextAreaElement>;
   /** Color variant applied to borders, text, and focus states. */
   color?: ColorType;
   /** HTML input type attribute for supported text-based formats. */
@@ -48,6 +44,10 @@ export type InputProps<T extends InputFieldType = "input"> = {
   inputContainerClassName?: string;
   /** Inline CSS properties applied to the internal container wrapping the input element and icons. */
   inputContainerStyle?: CSSProperties;
+  /** Underlying form element tag to render, allowing toggle between standard single-line `input` and multi-line `textarea`. Defaults to `input`. */
+  as?: T;
+  /** Ref attached to the rendered HTML input or textarea element. */
+  ref?: Ref<HTMLInputElement | HTMLTextAreaElement>;
 } & ComponentPropsWithoutRef<T>;
 
 /**
@@ -89,6 +89,7 @@ export function Input<T extends InputFieldType = "input">({
     resolvedColor,
   } = getInputClasses({
     color: error ? "error" : color,
+    disabled,
     startIcon: startIcon != undefined,
     endIcon: endIcon != undefined,
     className,

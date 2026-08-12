@@ -1,6 +1,7 @@
 export { Dropdown } from "./Dropdown";
 export type { DropdownProps } from "./Dropdown";
 export { DropdownContent } from "./DropdownContent";
+export type { DropdownContentProps } from "./DropdownContent";
 export { DropdownContextProvider, useDropdownContext } from "./DropdownContext";
 export { DropdownList } from "./DropdownList";
 export { DropdownListItem } from "./DropdownListItem";

@@ -50,7 +50,7 @@ export const Default: Story = {
     return (
       <>
         <Button onClick={() => setIsOpen(true)} data-testid="default">
-          open dialog
+          Open dialog
         </Button>
         <Dialog isOpen={isOpen} setIsOpen={setIsOpen} size="md">
           <CardTitle>Lorem, ipsum dolor.</CardTitle>
@@ -60,7 +60,7 @@ export const Default: Story = {
           <CardActions className="flex w-full flex-row justify-end">
             <Tooltip>
               <TooltipTrigger>
-                <Button onClick={() => setIsOpen(false)}>close</Button>
+                <Button onClick={() => setIsOpen(false)}>Close</Button>
               </TooltipTrigger>
               <TooltipContent>Close</TooltipContent>
             </Tooltip>
@@ -83,7 +83,7 @@ export const BigText: Story = {
     return (
       <>
         <Button onClick={() => setIsOpen(true)} data-testid="default">
-          open dialog
+          Open dialog
         </Button>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem
         sint in illum consequatur reprehenderit reiciendis nostrum, fugiat ullam
@@ -135,8 +135,8 @@ export const BigText: Story = {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, id!
           </CardText>
           <CardActions className="flex w-full flex-row justify-between">
-            <Button onClick={() => setIsOpenSecond(true)}>open second</Button>
-            <Button onClick={() => setIsOpen(false)}>close</Button>
+            <Button onClick={() => setIsOpenSecond(true)}>Open second</Button>
+            <Button onClick={() => setIsOpen(false)}>Close</Button>
           </CardActions>
           <Dialog
             hasInitialFocus={false}

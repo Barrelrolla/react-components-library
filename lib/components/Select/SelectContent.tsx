@@ -4,11 +4,22 @@ import { FloatingElementContent } from "../Floating";
 import { FloatingList } from "@floating-ui/react";
 import { useIsMobile } from "@/hooks";
 
+export type SelectContentProps = {
+  /** Accessible label applied to the button that collapses the floating element on mobile devices. */
+  closeButtonAriaLabel?: string;
+} & ComponentProps<"div">;
+
+/**
+ * Floating surface container for option items within a select component.
+ *
+ * Manages the popover positioning wrapper for select choices by delegating layout,
+ * elevation, backdrop, and overlay positioning styles to `FloatingElementContent`.
+ */
 export function SelectContent({
   style,
   children,
   ...rest
-}: ComponentProps<"div">) {
+}: SelectContentProps) {
   const context = useSelectContext();
   const isMobile = useIsMobile();
   if (!context) {
