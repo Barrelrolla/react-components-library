@@ -309,7 +309,7 @@ export function Select({
               selectedIndices.map((index) => (
                 <Badge
                   key={items[index]}
-                  className="m-[3px] flex cursor-auto items-center gap-0.5 pr-0 pl-2 text-xs"
+                  className="m-[3px] flex cursor-auto items-center gap-0.5 p-0 pl-2 text-xs"
                   onClick={(e) => {
                     e.stopPropagation();
                   }}

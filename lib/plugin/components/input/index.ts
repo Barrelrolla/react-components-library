@@ -26,10 +26,10 @@ export default <Record<string, CssInJs>>{
     "@apply pointer-events-none absolute end-0 pe-2": {},
   },
   ".input-xs": {
-    "@apply min-h-[1.5rem] text-xs": {},
+    "@apply min-h-[1.88rem] text-xs": {},
   },
   ".input-sm": {
-    "@apply min-h-[2rem] text-sm": {},
+    "@apply min-h-[2.12rem] text-sm": {},
   },
   ".input-md": {
     "@apply min-h-[2.5rem] text-base": {},

@@ -1,3 +1,5 @@
+import LinkTo from "@storybook/addon-links/react";
+import { Meta, StoryObj } from "@storybook/react";
 import {
   Button,
   Hero,
@@ -5,7 +7,6 @@ import {
   HeroSection,
   HeroTitle,
 } from "@/components";
-import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta = {
   title: "Intro/Welcome",
@@ -22,10 +23,15 @@ export const Welcome: Story = {
           <HeroSection>
             <HeroTitle>Welcome to my react components library</HeroTitle>
             <HeroActions>
-              <Button as="a" href="./?path=/story/components" variant="outline">
+              <Button
+                variant="outline"
+                as={LinkTo}
+                kind="Components/Anchor"
+                story="docs"
+              >
                 Components
               </Button>
-              <Button as="a" href="./?path=/docs/intro-installation--docs">
+              <Button as={LinkTo} kind="Intro/Installation" story="docs">
                 Installation
               </Button>
             </HeroActions>

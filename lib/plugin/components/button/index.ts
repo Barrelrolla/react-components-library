@@ -56,10 +56,10 @@ export default <Record<string, CssInJs>>{
     "@apply px-9 h-[3.5rem] text-xl": {},
   },
   ".btn-icon-xs": {
-    "@apply size-[1.5rem] text-base": {},
+    "@apply size-[1.88rem] text-base": {},
   },
   ".btn-icon-sm": {
-    "@apply size-[2rem] text-lg": {},
+    "@apply size-[2.12rem] text-lg": {},
   },
   ".btn-icon-md": {
     "@apply size-[2.5rem] text-xl": {},
@@ -74,10 +74,10 @@ export default <Record<string, CssInJs>>{
     "@apply flex items-center justify-center": {},
   },
   ".btn-group-divider-xs": {
-    "@apply h-[1.5rem]": {},
+    "@apply h-[1.88rem]": {},
   },
   ".btn-group-divider-sm": {
-    "@apply h-[2rem]": {},
+    "@apply h-[2.12rem]": {},
   },
   ".btn-group-divider-md": {
     "@apply h-[2.5rem]": {},
