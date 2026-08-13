@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
-import { availableColors } from "@/types";
+import { availableColors, availableSizes } from "@/types";
 import { Combobox } from "./Combobox";
 
 const meta: Meta<typeof Combobox> = {
@@ -22,6 +22,10 @@ const meta: Meta<typeof Combobox> = {
     color: {
       options: availableColors,
       control: { type: "select" },
+      table: { category: "controls" },
+    },
+    size: {
+      control: { type: "inline-radio" },
       table: { category: "controls" },
     },
     label: { table: { category: "controls" } },
@@ -451,6 +455,74 @@ export const Disabled: Story = {
           label="Country"
           disabled
         />`,
+      },
+    },
+  },
+};
+
+export const Sizes: Story = {
+  render: ({ ...rest }) => {
+    return (
+      <div className="grid gap-4">
+        {availableSizes.map((size) => (
+          <Combobox
+            {...rest}
+            size={size}
+            key={size}
+            label={size}
+            items={countries}
+          />
+        ))}
+      </div>
+    );
+  },
+  args: {},
+  argTypes: {
+    label: { table: { disable: true } },
+    size: { table: { disable: true } },
+    disabled: { table: { disable: true } },
+    items: { table: { disable: true } },
+    initialSelectedIndex: { table: { disable: true } },
+    initialSelectedIndices: { table: { disable: true } },
+    onSelectedIndexChange: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+  },
+  parameters: {
+    docs: {
+      source: {
+        type: "code",
+        code: `
+      <>
+        <Combobox
+          size="xs"
+          items={countries}
+          label="Country"
+        />
+        <Combobox
+          size="sm"
+          items={countries}
+          label="Country"
+        />
+        <Combobox
+          size="md"
+          items={countries}
+          label="Country"
+        />
+        <Combobox
+          size="lg"
+          items={countries}
+          label="Country"
+        />
+        <Combobox
+          size="xl"
+          items={countries}
+          label="Country"
+        />
+      </>
+        `,
       },
     },
   },

@@ -49,7 +49,7 @@ export function ButtonGroup({
   variant = "outline",
   radius,
   retainFocusState = false,
-  size,
+  size = "md",
   divider = true,
   vertical = false,
   scaling = false,
@@ -60,13 +60,15 @@ export function ButtonGroup({
   children,
   ...rest
 }: ButtonGroupProps) {
-  const { groupClasses, wrapperClasses } = getButtonGroupClasses({
-    variant,
-    radius,
-    vertical,
-    className,
-    wrapperClassName,
-  });
+  const { groupClasses, dividerClasses, wrapperClasses } =
+    getButtonGroupClasses({
+      radius,
+      size,
+      vertical,
+      className,
+      dividerClassName,
+      wrapperClassName,
+    });
 
   return (
     <ButtonGroupContextProvider
@@ -91,7 +93,7 @@ export function ButtonGroup({
                       color={color}
                       useBgColor={variant !== "solid"}
                       vertical={!vertical}
-                      className={dividerClassName}
+                      className={dividerClasses}
                     />
                   )}
                   {child}

@@ -27,7 +27,7 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".btn-outline-ghost": {
-    "@apply text-(--bg-color) hover:inset-ring hover:ghost-hover focus-visible:ghost-hover active:inset-ring active:ghost-active selected:inset-ring":
+    "@apply text-(--bg-color) hover:inset-ring focus-visible:ghost-hover active:inset-ring active:ghost-hover selected:inset-ring":
       {},
   },
   ".btn-solid-ghost-focus": {
@@ -72,5 +72,20 @@ export default <Record<string, CssInJs>>{
   },
   ".btn-group": {
     "@apply flex items-center justify-center": {},
+  },
+  ".btn-group-divider-xs": {
+    "@apply h-[1.5rem]": {},
+  },
+  ".btn-group-divider-sm": {
+    "@apply h-[2rem]": {},
+  },
+  ".btn-group-divider-md": {
+    "@apply h-[2.5rem]": {},
+  },
+  ".btn-group-divider-lg": {
+    "@apply h-[3rem]": {},
+  },
+  ".btn-group-divider-xl": {
+    "@apply h-[3.5rem]": {},
   },
 };

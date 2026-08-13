@@ -1,10 +1,11 @@
 import { twMerge } from "tailwind-merge";
 import { ButtonGroupContextType } from "../Button";
-import { ColorType } from "@/types";
+import { ColorType, SizeType } from "@/types";
 import { getGropuedItemClasses } from "../Button/getButtonGroupClasses";
 
 export function getSelectClasses({
   color,
+  size,
   isOpen,
   isMounted,
   disabled,
@@ -15,6 +16,7 @@ export function getSelectClasses({
   group,
 }: {
   color?: ColorType;
+  size?: SizeType;
   isOpen?: boolean;
   isMounted?: boolean;
   disabled?: boolean;
@@ -30,11 +32,23 @@ export function getSelectClasses({
 
   return {
     classes: twMerge(
-      "select",
-      isMounted && "border-(--bg-color) ring ring-(--bg-color)",
-      !inGroup && "rounded-inputs",
+      "input-field-container flex-wrap",
+      !inGroup &&
+        !disabled &&
+        !isMounted &&
+        "border-inputs focus-within:border-(--bg-color)",
+      isMounted &&
+        "border border-(--bg-color) inset-ring-1 inset-ring-(--bg-color)",
+      !inGroup && "rounded-inputs focus-within:inset-ring-1",
+      !inGroup && `input-${size || "md"}`,
       inGroup &&
-        getGropuedItemClasses(group?.vertical ?? false, resolvedRadius),
+        getGropuedItemClasses({
+          vertical: group?.vertical ?? false,
+          radius: resolvedRadius,
+          variant: group?.variant,
+        }),
+      inGroup && `input-${group?.size || "md"}`,
+      inGroup && `input-${group?.variant || "solid"}`,
       className,
     ),
     labelClasses: twMerge(

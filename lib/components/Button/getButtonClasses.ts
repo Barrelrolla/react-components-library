@@ -61,7 +61,11 @@ export function getButtonClasses({
       !inGroup && resolvedRadius === "pill" && "rounded-full",
       inGroup && group?.vertical && "w-full",
       inGroup &&
-        getGropuedItemClasses(group?.vertical ?? false, resolvedRadius),
+        getGropuedItemClasses({
+          vertical: group?.vertical ?? false,
+          radius: resolvedRadius,
+          variant: group?.variant,
+        }),
       className,
     ),
     wrapperClasses: twMerge(

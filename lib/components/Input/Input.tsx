@@ -12,7 +12,7 @@ import { getInputClasses } from "./getInputClasses";
 import { Button, useButtonGroupContext } from "../Button";
 import { useRepeatAction } from "@/hooks/useRepeatAction";
 import { ClosedEyeIcon, MinusIcon, OpenEyeIcon, PlusIcon } from "@/icons";
-import { ColorType } from "@/types";
+import { ColorType, SizeType } from "@/types";
 import { cssColorProps } from "@/util";
 import { useMergeRefs } from "@floating-ui/react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../Tooltip";
@@ -22,6 +22,8 @@ type InputFieldType = "input" | "textarea";
 export type InputProps<T extends InputFieldType = "input"> = {
   /** Color variant applied to borders, text, and focus states. */
   color?: ColorType;
+  /** Input size option. */
+  size?: SizeType;
   /** HTML input type attribute for supported text-based formats. */
   type?: "text" | "email" | "password" | "tel" | "url" | "number";
   /** Descriptive label rendered above the input field. */
@@ -67,10 +69,8 @@ export type InputProps<T extends InputFieldType = "input"> = {
  * managing inline visual elements alongside the standard HTML input or textarea element.
  */
 export function Input<T extends InputFieldType = "input">({
-  as,
-  ref,
-  id,
   color,
+  size,
   type,
   disabled = false,
   label,
@@ -88,6 +88,9 @@ export function Input<T extends InputFieldType = "input">({
   stepDownAriaLabel,
   revealPasswordToggleAriaLabel,
   showRevealPasswordButton = true,
+  as,
+  ref,
+  id,
   ...rest
 }: InputProps<T>) {
   const [isRevealing, setIsRevealing] = useState(false);
@@ -104,6 +107,7 @@ export function Input<T extends InputFieldType = "input">({
     resolvedColor,
   } = getInputClasses({
     color: error ? "error" : color,
+    size,
     disabled,
     startIcon: startIcon != undefined,
     endIcon: endIcon != undefined,

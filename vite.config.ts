@@ -4,6 +4,7 @@ import dts from "vite-plugin-dts";
 import { defineConfig } from "vitest/config";
 import preserveDirectives from "rollup-preserve-directives";
 import react from "@vitejs/plugin-react";
+import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 
 export default defineConfig({
   build: {
@@ -29,7 +30,14 @@ export default defineConfig({
     sourcemap: true,
     emptyOutDir: true,
   },
-  plugins: [react(), dts({ rollupTypes: true }), preserveDirectives()],
+  plugins: [
+    react(),
+    dts({ rollupTypes: true }),
+    preserveDirectives(),
+    storybookTest({
+      configDir: path.join(__dirname, ".storybook"),
+    }),
+  ],
   test: {
     globals: true,
     environment: "jsdom",

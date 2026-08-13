@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { Select, SelectOption } from "./index";
-import { availableColors } from "@/types";
+import { availableColors, availableSizes } from "@/types";
 import { SelectContent } from "./SelectContent";
 import { SelectGroup } from "./SelectGroup";
 import { SelectGroupTitle } from "./SelectGroupTitle";
@@ -26,6 +26,10 @@ const meta: Meta<typeof Select> = {
     color: {
       options: availableColors,
       control: { type: "select" },
+      table: { category: "controls" },
+    },
+    size: {
+      control: { type: "inline-radio" },
       table: { category: "controls" },
     },
     label: { table: { category: "controls" } },
@@ -185,6 +189,50 @@ export const WithLabel: Story = {
   },
 };
 
+export const WithError: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByText("Select fruit");
+    await expect(select, "renders").toBeTruthy();
+  },
+  render: ({ ...rest }) => {
+    return (
+      <Select {...rest} items={fruits}>
+        <SelectContent>
+          <SelectGroup>
+            {fruits.map((fruit, index) => {
+              return (
+                <SelectOption key={fruit} index={index}>
+                  {fruit}
+                </SelectOption>
+              );
+            })}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    );
+  },
+  args: {
+    label: "Select",
+    error: "Error",
+  },
+  argTypes: {
+    items: { table: { disable: true } },
+    name: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
+    initialSelectedIndex: { table: { disable: true } },
+    initialSelectedIndices: { table: { disable: true } },
+    onSelectedIndexChange: { table: { disable: true } },
+    inputRef: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    removeAllItemsAriaLabel: { table: { disable: true } },
+    removeItemAriaLabel: { table: { disable: true } },
+  },
+};
+
 export const Disabled: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -214,6 +262,48 @@ export const Disabled: Story = {
   },
   argTypes: {
     items: { table: { disable: true } },
+    disabled: { table: { disable: true } },
+    name: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
+    initialSelectedIndex: { table: { disable: true } },
+    initialSelectedIndices: { table: { disable: true } },
+    onSelectedIndexChange: { table: { disable: true } },
+    inputRef: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    removeAllItemsAriaLabel: { table: { disable: true } },
+    removeItemAriaLabel: { table: { disable: true } },
+  },
+};
+
+export const Sizes: Story = {
+  render: ({ ...rest }) => {
+    return (
+      <div className="grid gap-4">
+        {availableSizes.map((size) => (
+          <Select label={size} size={size} key={size} {...rest} items={fruits}>
+            <SelectContent>
+              <SelectGroup>
+                {fruits.map((fruit, index) => {
+                  return (
+                    <SelectOption key={fruit} index={index}>
+                      {fruit}
+                    </SelectOption>
+                  );
+                })}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        ))}
+      </div>
+    );
+  },
+  argTypes: {
+    items: { table: { disable: true } },
+    size: { table: { disable: true } },
+    label: { table: { disable: true } },
     disabled: { table: { disable: true } },
     name: { table: { disable: true } },
     onOpenChange: { table: { disable: true } },

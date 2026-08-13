@@ -45,7 +45,8 @@ export const Form: Story = {
     await userEvent.click(optionTwo);
     const optionThree = screen.getByText("option three");
     await userEvent.click(optionThree);
-    await userEvent.type(comboOne, "combo 1");
+    await userEvent.type(comboOne, "comb");
+    await userEvent.keyboard("{Enter}");
     await userEvent.type(comboMany, "combo two");
     await userEvent.keyboard("{Enter}");
     await userEvent.type(comboMany, "three");

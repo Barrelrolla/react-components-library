@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { ColorType, MobileSheetPlacementType } from "@/types";
+import { ColorType, MobileSheetPlacementType, SizeType } from "@/types";
 import { SelectContextProvider } from "./SelectContext";
 import {
   autoUpdate,
@@ -33,6 +33,8 @@ import { Badge } from "../Badge";
 export type SelectProps = {
   /** Color variant applied across the select trigger, dropdown surface, active items, and chips. */
   color?: ColorType;
+  /** Select size option. */
+  size?: SizeType;
   /** Accessible label text displayed above the select field. */
   label?: string;
   /** Array of selectable string option items rendered inside the dropdown overlay. */
@@ -88,8 +90,7 @@ export type SelectProps = {
  * optionally syncing selected value states with a hidden HTML `<input>` for native form compatibility.
  */
 export function Select({
-  inputRef,
-  id,
+  size,
   color,
   label,
   items,
@@ -115,6 +116,8 @@ export function Select({
   wrapperStyle,
   removeItemAriaLabel,
   removeAllItemsAriaLabel,
+  inputRef,
+  id,
   ...rest
 }: SelectProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -194,6 +197,7 @@ export function Select({
     resolvedColor,
   } = getSelectClasses({
     color: error ? "error" : color,
+    size,
     isOpen: open,
     isMounted,
     disabled,
@@ -287,7 +291,7 @@ export function Select({
         <label htmlFor={resolvedId} className={labelClasses}>
           {label}
         </label>
-        <div className="has-disabled:cursor-not-allowed">
+        <div className="flex flex-col disabled:cursor-not-allowed">
           <div
             id={resolvedId}
             data-error={error ? true : undefined}
@@ -330,12 +334,12 @@ export function Select({
                   }
                 </Badge>
               ))}
-            <div className="flex w-max flex-1 items-center justify-between">
+            <div className="flex h-full w-max flex-1 items-center justify-between">
               <button
                 aria-hidden={true}
                 disabled={disabled}
                 tabIndex={-1}
-                className="line-clamp-1 cursor-pointer px-3 py-1.5 text-left disabled:pointer-events-none disabled:opacity-50"
+                className="line-clamp-1 h-full cursor-pointer px-3 py-1.5 text-left disabled:pointer-events-none disabled:opacity-50"
               >
                 {buttonText}
               </button>

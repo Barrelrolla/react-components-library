@@ -313,7 +313,7 @@ export const WithInput: Story = {
       </ButtonGroup>
     );
   },
-  args: { selection: undefined },
+  args: { selection: undefined, divider: false },
   argTypes: {
     selection: { table: { disable: true } },
     dividerClassName: { table: { disable: true } },
@@ -348,7 +348,7 @@ export const WithSelect: Story = {
       </ButtonGroup>
     );
   },
-  args: { selection: undefined },
+  args: { selection: undefined, variant: "outline" },
   argTypes: {
     selection: { table: { disable: true } },
     dividerClassName: { table: { disable: true } },
@@ -359,7 +359,7 @@ export const WithSelect: Story = {
 export const WithCombobox: Story = {
   render: ({ variant = "solid", ...rest }) => {
     return (
-      <ButtonGroup {...rest} variant={variant} divider={false}>
+      <ButtonGroup {...rest} variant={variant}>
         <Combobox
           items={[]}
           toggleOpenAriaLabel="Toggle list"
@@ -374,7 +374,7 @@ export const WithCombobox: Story = {
       </ButtonGroup>
     );
   },
-  args: { selection: undefined },
+  args: { selection: undefined, divider: false },
   argTypes: {
     selection: { table: { disable: true } },
     dividerClassName: { table: { disable: true } },

@@ -1,10 +1,11 @@
 import { twMerge } from "tailwind-merge";
 import { ButtonGroupContextType } from "../Button";
-import { ColorType } from "@/types";
+import { ColorType, SizeType } from "@/types";
 import { getGropuedItemClasses } from "../Button/getButtonGroupClasses";
 
 export function getInputClasses({
   color,
+  size,
   disabled,
   startIcon,
   endIcon,
@@ -16,6 +17,7 @@ export function getInputClasses({
   group,
 }: {
   color: ColorType | undefined;
+  size?: SizeType;
   disabled?: boolean;
   startIcon: boolean;
   endIcon: boolean;
@@ -50,9 +52,17 @@ export function getInputClasses({
     errorClasses: twMerge("input-field-error", errorClassName),
     inputContainerClasses: twMerge(
       "input-field-container",
-      !inGroup && "rounded-inputs",
+      !inGroup && "rounded-inputs focus-within:inset-ring-1",
+      !inGroup && !disabled && "border-inputs focus-within:border-(--bg-color)",
+      !inGroup && `input-${size || "md"}`,
       inGroup &&
-        getGropuedItemClasses(group?.vertical ?? false, resolvedRadius),
+        getGropuedItemClasses({
+          vertical: group?.vertical ?? false,
+          radius: resolvedRadius,
+          variant: group?.variant,
+        }),
+      inGroup && `input-${group?.size || "md"}`,
+      inGroup && `input-${group?.variant || "solid"}`,
       inputContainerClassName,
     ),
     resolvedColor,

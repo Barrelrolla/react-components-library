@@ -8,7 +8,7 @@ import {
   FocusEvent,
 } from "react";
 import { useMergeRefs } from "@floating-ui/react";
-import { ColorType } from "@/types";
+import { ColorType, SizeType } from "@/types";
 import { useIsMobile } from "@/hooks";
 import { CaretDownIcon, XIcon } from "@/icons";
 import { cssColorProps } from "@/util";
@@ -25,6 +25,8 @@ import {
 export type ComboboxProps = {
   /** Color variant of the combobox. */
   color?: ColorType;
+  /** Combobox size option. */
+  size?: SizeType;
   /** Array of selectable string items. */
   items: string[];
   /** Enables multi-selection mode. */
@@ -55,7 +57,7 @@ export type ComboboxProps = {
   removeItemAriaLabel?: string;
   /** Accessible label applied to the toggle button that expands or collapses the combobox dropdown. */
   toggleOpenAriaLabel?: string;
-} & ComponentProps<"input">;
+} & Omit<ComponentProps<"input">, "size">;
 
 /**
  * Advanced combobox input component supporting single or multi-item selection, custom free-text input,
@@ -64,9 +66,9 @@ export type ComboboxProps = {
  * Automatically applies error styling when the `error` prop is present.
  */
 export function Combobox({
-  ref,
-  color = "primary",
+  size,
   items,
+  color = "primary",
   multiple = false,
   id,
   label,
@@ -87,6 +89,7 @@ export function Combobox({
   name,
   value,
   onChange,
+  ref,
   ...rest
 }: ComboboxProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -110,6 +113,7 @@ export function Combobox({
     resolvedColor,
   } = getSelectClasses({
     color: error ? "error" : color,
+    size,
     isOpen,
     disabled,
     className: "cursor-auto " + className,

@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
 import { PiMagnifyingGlass } from "react-icons/pi";
-import { availableColors } from "@/types";
+import { availableColors, availableSizes } from "@/types";
 import { AutocompleteInput, Input, InputProps } from "./index";
 
 const meta: Meta<typeof Input> = {
@@ -18,6 +18,10 @@ const meta: Meta<typeof Input> = {
     color: {
       control: { type: "select" },
       options: availableColors,
+      table: { category: "controls" },
+    },
+    size: {
+      control: { type: "inline-radio" },
       table: { category: "controls" },
     },
     type: { table: { category: "controls" } },
@@ -511,6 +515,40 @@ export const WithAutocomplete: Story = {
     label: "Country",
   },
   argTypes: {
+    startIcon: { table: { disable: true } },
+    endIcon: { table: { disable: true } },
+    labelClassName: { table: { disable: true } },
+    wrapperClassName: { table: { disable: true } },
+    errorClassName: { table: { disable: true } },
+    inputContainerClassName: { table: { disable: true } },
+    wrapperStyle: { table: { disable: true } },
+    as: { table: { disable: true } },
+    ref: { table: { disable: true } },
+    inputContainerStyle: { table: { disable: true } },
+    stepUpAriaLabel: { table: { disable: true } },
+    stepDownAriaLabel: { table: { disable: true } },
+    revealPasswordToggleAriaLabel: { table: { disable: true } },
+  },
+};
+
+export const Sizes: Story = {
+  render: (props) => {
+    return (
+      <div className="grid gap-4">
+        {availableSizes.map((size) => {
+          return <Input {...props} key={size} label={size} size={size} />;
+        })}
+      </div>
+    );
+  },
+  args: {
+    startIcon: <PiMagnifyingGlass />,
+    placeholder: "Input",
+  },
+  argTypes: {
+    size: { table: { disable: true } },
+    label: { table: { disable: true } },
+    disabled: { table: { disable: true } },
     startIcon: { table: { disable: true } },
     endIcon: { table: { disable: true } },
     labelClassName: { table: { disable: true } },
