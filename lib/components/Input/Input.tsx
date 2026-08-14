@@ -198,11 +198,12 @@ export function Input<T extends InputFieldType = "input">({
             </div>
           )}
           {type === "password" && showRevealPasswordButton && (
-            <Tooltip isLabel>
+            <Tooltip isLabel disabled={!revealPasswordToggleAriaLabel}>
               <TooltipTrigger>
                 <Button
                   aria-label={revealPasswordToggleAriaLabel}
                   type="button"
+                  scaling={false}
                   className="input-end-button"
                   wrapperClassName="mr-1"
                   tabIndex={-1}
