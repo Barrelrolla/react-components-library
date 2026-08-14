@@ -1,9 +1,0 @@
-import{j as e}from"./iframe-k1U2xSHC.js";import{T as a}from"./ButtonGroup-CWAI0kFb.js";import{D as r}from"./DarkModeSelector-HNa7RKpK.js";import{c as l,a as s}from"./index-DttbUWqL.js";import"./preload-helper-PPVm8Dsz.js";import"./icons-B4UzUjUo.js";import"./bundle-mjs-Ct12j0u0.js";import"./cssColorProps-BldbZDxN.js";import"./Divider-CSei7Oeg.js";import"./TooltipContent-CbS6xGqU.js";import"./FloatingElementContent-CI_BPQ-0.js";import"./useIsMobile-5YnFfgaT.js";const v={title:"Components/DarkModeSelector",tags:["autodocs"],component:r,decorators:t=>e.jsx("div",{className:"storybookContainer",children:e.jsx(t,{})}),argTypes:{color:{control:{type:"select"},options:s,table:{category:"controls"}},variant:{control:{type:"inline-radio"},table:{category:"controls"}},size:{control:{type:"inline-radio"},options:l,table:{category:"controls"}},radius:{control:{type:"inline-radio"},table:{category:"controls"}},retainFocusState:{table:{category:"controls"}},divider:{table:{category:"controls"}},vertical:{table:{category:"controls"}},scaling:{table:{category:"controls"}},tooltipDelay:{table:{category:"controls"}},lightModeTooltip:{control:!1,table:{category:"docs"}},darkModeTooltip:{control:!1,table:{category:"docs"}},systemModeTooltip:{control:!1,table:{category:"docs"}},lightModeAriaLabel:{control:!1,table:{category:"docs"}},darkModeAriaLabel:{control:!1,table:{category:"docs"}},systemModeAriaLabel:{control:!1,table:{category:"docs"}},dividerClassName:{control:!1,table:{category:"docs"}},wrapperClassName:{control:!1,table:{category:"docs"}}}},o={render:({...t})=>e.jsx(a,{children:e.jsx(r,{...t})})};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  render: ({
-    ...props
-  }) => {
-    return <ThemeContextProvider>\r
-        <DarkModeSelector {...props} />\r
-      </ThemeContextProvider>;
-  }
-}`,...o.parameters?.docs?.source}}};const M=["Default"];export{o as Default,M as __namedExportsOrder,v as default};
