@@ -13,7 +13,8 @@ import {
 } from "@floating-ui/react";
 import { CloseIcon } from "@/icons";
 import { getDialogClasses } from "./getDialogClasses";
-import { Button, Card, CardProps } from "../index";
+import { Button } from "../Button/Button";
+import { Card, CardProps } from "../Card/Card";
 
 export type DialogProps = {
   /**

@@ -1,3 +1,6 @@
+import { useRef, useState } from "react";
+import { Meta, StoryObj } from "@storybook/react";
+import { within, expect, userEvent } from "storybook/test";
 import {
   Button,
   Card,
@@ -6,13 +9,10 @@ import {
   Combobox,
   Input,
   Select,
+  SelectContent,
+  SelectGroup,
   SelectOption,
 } from "@/components";
-import { SelectContent } from "@/components/Select/SelectContent";
-import { SelectGroup } from "@/components/Select/SelectGroup";
-import { Meta, StoryObj } from "@storybook/react";
-import { useRef, useState } from "react";
-import { within, expect, userEvent } from "storybook/test";
 
 const meta: Meta = {
   title: "Test/Form",

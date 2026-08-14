@@ -13,14 +13,12 @@ import { useIsMobile } from "@/hooks";
 import { CaretDownIcon, XIcon } from "@/icons";
 import { cssColorProps } from "@/util";
 import { getSelectClasses } from "../Select/getSelectClasses";
-import {
-  Autocomplete,
-  AutocompleteContent,
-  AutocompleteTrigger,
-  Badge,
-  Button,
-  useButtonGroupContext,
-} from "../index";
+import { Autocomplete } from "../Autocomplete/Autocomplete";
+import { AutocompleteContent } from "../Autocomplete/AutocompleteContent";
+import { AutocompleteTrigger } from "../Autocomplete/AutocompleteTrigger";
+import { Badge } from "../Badge/Badge";
+import { Button } from "../Button/Button";
+import { useButtonGroupContext } from "../Button/ButtonGroupContext";
 
 export type ComboboxProps = {
   /** Color variant of the combobox. */

@@ -29,7 +29,7 @@ import {
 } from "@floating-ui/react";
 import { useIsMobile, useFloatingTransitionStyles } from "@/hooks";
 import { ColorType, MobileSheetPlacementType } from "@/types";
-import { DropdownContextProvider, useDropdownContext } from "./index";
+import { DropdownContextProvider, useDropdownContext } from "./DropdownContext";
 
 export type DropdownProps = {
   /** Color variant of the dropdown menu. */

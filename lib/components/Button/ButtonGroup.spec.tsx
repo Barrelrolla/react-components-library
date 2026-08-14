@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
-import { Button, ButtonGroup } from "./index";
+import { Button } from "./Button";
+import { ButtonGroup } from "./ButtonGroup";
 
 describe("ButtonGroup", () => {
   it("renders child buttons inside a button group", () => {
