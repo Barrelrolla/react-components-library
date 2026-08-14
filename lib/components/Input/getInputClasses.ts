@@ -6,6 +6,7 @@ import { getGropuedItemClasses } from "../Button/getButtonGroupClasses";
 export function getInputClasses({
   color,
   size,
+  revealingButton,
   disabled,
   startIcon,
   endIcon,
@@ -18,6 +19,7 @@ export function getInputClasses({
 }: {
   color: ColorType | undefined;
   size?: SizeType;
+  revealingButton?: boolean;
   disabled?: boolean;
   startIcon: boolean;
   endIcon: boolean;
@@ -36,7 +38,7 @@ export function getInputClasses({
     classes: twMerge(
       "input-field",
       startIcon && "rounded-l-none ps-7",
-      endIcon && "rounded-r-none ps-2 pe-7",
+      (revealingButton || endIcon) && "rounded-r-none pe-7",
       className,
     ),
     wrapperClasses: twMerge(

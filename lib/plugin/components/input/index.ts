@@ -25,20 +25,23 @@ export default <Record<string, CssInJs>>{
   ".input-end-icon": {
     "@apply pointer-events-none absolute end-0 pe-2": {},
   },
+  ".input-end-button": {
+    "@apply self-center text-inherit absolute end-0 pe-2": {},
+  },
   ".input-xs": {
-    "@apply min-h-[1.88rem] text-xs": {},
+    "@apply min-h-7.5 text-xs": {},
   },
   ".input-sm": {
-    "@apply min-h-[2.12rem] text-sm": {},
+    "@apply min-h-8.5 text-sm": {},
   },
   ".input-md": {
-    "@apply min-h-[2.5rem] text-base": {},
+    "@apply min-h-10 text-base": {},
   },
   ".input-lg": {
-    "@apply min-h-[3rem] text-lg": {},
+    "@apply min-h-12 text-lg": {},
   },
   ".input-xl": {
-    "@apply min-h-[3.5rem] text-xl": {},
+    "@apply min-h-14.5 text-xl": {},
   },
   ".input-solid": {
     "@apply border-inputs border border-(--bg-color) focus-within:inset-ring-1":

@@ -41,51 +41,36 @@ export default <Record<string, CssInJs>>{
     "@apply inset-ring-0": {},
   },
   ".btn-xs": {
-    "@apply px-3 h-[1.5rem] text-xs": {},
+    "@apply px-3 h-7.5 text-xs": {},
   },
   ".btn-sm": {
-    "@apply px-4.5 h-[2rem] text-sm": {},
+    "@apply px-4.5 h-8.5 text-sm": {},
   },
   ".btn-md": {
-    "@apply px-6 h-[2.5rem] text-base": {},
+    "@apply px-6 h-10 text-base": {},
   },
   ".btn-lg": {
-    "@apply px-7.5 h-[3rem] text-lg": {},
+    "@apply px-7.5 h-12 text-lg": {},
   },
   ".btn-xl": {
-    "@apply px-9 h-[3.5rem] text-xl": {},
+    "@apply px-9 h-14.5 text-xl": {},
   },
   ".btn-icon-xs": {
-    "@apply size-[1.88rem] text-base": {},
+    "@apply size-7.5 text-base": {},
   },
   ".btn-icon-sm": {
-    "@apply size-[2.12rem] text-lg": {},
+    "@apply size-8.5 text-lg": {},
   },
   ".btn-icon-md": {
-    "@apply size-[2.5rem] text-xl": {},
+    "@apply size-10 text-xl": {},
   },
   ".btn-icon-lg": {
-    "@apply size-[3rem] text-2xl": {},
+    "@apply size-12 text-2xl": {},
   },
   ".btn-icon-xl": {
-    "@apply size-[3.5rem] text-3xl": {},
+    "@apply size-14.5 text-3xl": {},
   },
   ".btn-group": {
     "@apply flex items-center justify-center": {},
-  },
-  ".btn-group-divider-xs": {
-    "@apply h-[1.88rem]": {},
-  },
-  ".btn-group-divider-sm": {
-    "@apply h-[2.12rem]": {},
-  },
-  ".btn-group-divider-md": {
-    "@apply h-[2.5rem]": {},
-  },
-  ".btn-group-divider-lg": {
-    "@apply h-[3rem]": {},
-  },
-  ".btn-group-divider-xl": {
-    "@apply h-[3.5rem]": {},
   },
 };

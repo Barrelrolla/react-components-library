@@ -109,6 +109,7 @@ export function Input<T extends InputFieldType = "input">({
     color: error ? "error" : color,
     size,
     disabled,
+    revealingButton: type === "password" && showRevealPasswordButton,
     startIcon: startIcon != undefined,
     endIcon: endIcon != undefined,
     className,
@@ -202,7 +203,7 @@ export function Input<T extends InputFieldType = "input">({
                 <Button
                   aria-label={revealPasswordToggleAriaLabel}
                   type="button"
-                  className="text-inherit"
+                  className="input-end-button"
                   wrapperClassName="mr-1"
                   tabIndex={-1}
                   size="xs"

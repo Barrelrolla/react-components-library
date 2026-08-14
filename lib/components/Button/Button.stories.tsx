@@ -195,8 +195,8 @@ export const Icon: Story = {
 export const Sizes: Story = {
   render: ({ ...rest }) => {
     return (
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-wrap items-end justify-center gap-2">
+      <div className="flex flex-wrap gap-4">
+        <div className="flex flex-col items-end gap-2">
           {availableSizes.map((size) => {
             return (
               <Button {...rest} startIcon={<PiHeart />} key={size} size={size}>
@@ -205,7 +205,7 @@ export const Sizes: Story = {
             );
           })}
         </div>
-        <div className="flex flex-wrap items-start justify-center gap-2">
+        <div className="flex flex-col items-start gap-2">
           {availableSizes.map((size) => {
             return (
               <Button
@@ -218,7 +218,7 @@ export const Sizes: Story = {
             );
           })}
         </div>
-        <div className="flex w-full items-start justify-center gap-2">
+        <div className="flex flex-col items-center gap-2">
           <Button
             {...rest}
             className="btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl"

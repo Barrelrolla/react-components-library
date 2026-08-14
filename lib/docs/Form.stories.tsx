@@ -207,6 +207,7 @@ export const Form: Story = {
         <Card className="p-4">
           <form action={handleSubmit} className="flex flex-col gap-2">
             <Input
+              wrapperClassName="w-full"
               data-testid="text"
               ref={textRef}
               type="text"
@@ -218,6 +219,7 @@ export const Form: Story = {
               value={text}
             />
             <Input
+              wrapperClassName="w-full"
               data-testid="number"
               ref={numberRef}
               type="number"
@@ -229,6 +231,7 @@ export const Form: Story = {
               }}
             />
             <Input
+              wrapperClassName="w-full"
               ref={textareaRef}
               data-testid="textarea"
               as="textarea"
@@ -240,6 +243,7 @@ export const Form: Story = {
               }}
             />
             <Select
+              wrapperClassName="w-full"
               items={options}
               inputRef={selectRef}
               placeholder="select one"
@@ -261,6 +265,7 @@ export const Form: Story = {
               </SelectContent>
             </Select>
             <Select
+              wrapperClassName="w-full"
               items={optionsMany}
               inputRef={selectManyRef}
               multiple
@@ -294,6 +299,7 @@ export const Form: Story = {
               </SelectContent>
             </Select>
             <Combobox
+              wrapperClassName="w-full"
               ref={comboRef}
               items={combo}
               label="Combo"
@@ -304,6 +310,7 @@ export const Form: Story = {
               onChange={(e) => setComboValue(e.target.value)}
             />
             <Combobox
+              wrapperClassName="w-full"
               multiple
               ref={comboManyRef}
               items={comboMany}
