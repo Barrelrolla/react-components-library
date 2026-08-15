@@ -201,6 +201,7 @@ export function Input<T extends InputFieldType = "input">({
             <Tooltip isLabel disabled={!revealPasswordToggleAriaLabel}>
               <TooltipTrigger>
                 <Button
+                  style={{ color: "inherit" }}
                   aria-label={revealPasswordToggleAriaLabel}
                   type="button"
                   scaling={false}
