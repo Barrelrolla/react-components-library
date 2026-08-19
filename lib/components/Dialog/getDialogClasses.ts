@@ -8,7 +8,8 @@ export function getDialogClasses({
 }) {
   return {
     classes: "dialog",
-    scrollArea: "max-h-[calc(100vh-2.2rem)] overflow-x-auto scrollbar-thin",
+    scrollArea:
+      "relative max-h-[calc(100vh-2.2rem)] overflow-x-auto scrollbar-thin",
     backdropClasses: twMerge("dialog-backdrop", backdropClassName),
   };
 }
