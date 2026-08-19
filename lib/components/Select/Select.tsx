@@ -309,7 +309,7 @@ export function Select({
               selectedIndices.map((index) => (
                 <Badge
                   key={items[index]}
-                  className="m-[3px] flex cursor-auto items-center gap-0.5 p-0 pl-2 text-xs"
+                  className="m-1 flex cursor-auto items-center gap-0.5 p-0 pl-2 text-xs"
                   onClick={(e) => {
                     e.stopPropagation();
                   }}
@@ -323,7 +323,7 @@ export function Select({
                         variant="ghost"
                         radius="pill"
                         size="xs"
-                        className="p-0"
+                        className="size-5 p-0"
                         startIcon={<XIcon className="size-3.5" />}
                         onClick={(e) => {
                           e.stopPropagation();
