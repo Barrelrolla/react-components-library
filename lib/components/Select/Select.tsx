@@ -81,6 +81,8 @@ export type SelectProps = {
   removeItemAriaLabel?: string;
   /** React ref attached to the underlying hidden HTML `<input>` element for form integration. */
   inputRef?: Ref<HTMLInputElement>;
+  /** Indicates if a clear button should be show. If not value is provided it will be shown for multi select and not shown for single select */
+  showClearButton?: boolean;
 } & ComponentProps<"div">;
 
 /**
@@ -118,6 +120,7 @@ export function Select({
   removeAllItemsAriaLabel,
   inputRef,
   id,
+  showClearButton,
   ...rest
 }: SelectProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -158,7 +161,7 @@ export function Select({
 
   const { context } = data;
   const click = useClick(context);
-  const role = useRole(context, { role: "select" });
+  const role = useRole(context, { role: "combobox" });
   const dismiss = useDismiss(context, {
     bubbles: true,
     outsidePressEvent: "click",
@@ -253,6 +256,8 @@ export function Select({
     buttonText = items[selectedIndex];
   }
 
+  const showClear = showClearButton ?? multiple;
+
   return (
     <SelectContextProvider
       value={{
@@ -288,16 +293,16 @@ export function Select({
           setIsFocused(false);
         }}
       >
-        <label htmlFor={resolvedId} className={labelClasses}>
+        <label id={resolvedId} className={labelClasses}>
           {label}
         </label>
         <div className="flex flex-col disabled:cursor-not-allowed">
           <div
-            id={resolvedId}
             data-error={error ? true : undefined}
             aria-describedby={
               resolvedId && error ? `${resolvedId}-error` : undefined
             }
+            aria-labelledby={resolvedId}
             aria-label={ariaLabel}
             className={classes}
             tabIndex={0}
@@ -344,24 +349,24 @@ export function Select({
                 {buttonText}
               </button>
               <div className="flex items-center">
-                {(selectedIndex !== undefined ||
-                  selectedIndices.length > 0) && (
-                  <Button
-                    aria-label={removeAllItemsAriaLabel}
-                    useGroup={false}
-                    radius="pill"
-                    size="sm"
-                    variant="ghost"
-                    color={isFocused || isMounted ? resolvedColor : "main"}
-                    className="h-6 p-1"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      clear();
-                    }}
-                  >
-                    {<XIcon className={"mr-1 inline size-4"} />}
-                  </Button>
-                )}
+                {(selectedIndex !== undefined || selectedIndices.length > 0) &&
+                  showClear && (
+                    <Button
+                      aria-label={removeAllItemsAriaLabel}
+                      useGroup={false}
+                      radius="pill"
+                      size="sm"
+                      variant="ghost"
+                      color={isFocused || isMounted ? resolvedColor : "main"}
+                      className="h-6 p-1"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        clear();
+                      }}
+                    >
+                      {<XIcon className={"mr-1 inline size-4"} />}
+                    </Button>
+                  )}
                 <CaretDownIcon className={caretClasses} />
               </div>
             </div>

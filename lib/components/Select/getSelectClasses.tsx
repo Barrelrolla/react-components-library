@@ -37,7 +37,8 @@ export function getSelectClasses({
         !disabled &&
         !isMounted &&
         "border-inputs focus-within:border-(--bg-color)",
-      isMounted && "border-(--bg-color) inset-ring-1 inset-ring-(--bg-color)",
+      isMounted &&
+        "border border-(--bg-color) inset-ring-1 inset-ring-(--bg-color)",
       !inGroup && "rounded-inputs focus-within:inset-ring-1",
       !inGroup && `input-${size || "md"}`,
       inGroup &&

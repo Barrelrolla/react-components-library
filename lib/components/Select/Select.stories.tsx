@@ -42,6 +42,7 @@ const meta: Meta<typeof Select> = {
     disabled: { table: { category: "controls" } },
     mobileSheet: { table: { category: "controls" } },
     mobileSheetPlacement: { table: { category: "controls" } },
+    showClearButton: { table: { category: "controls" } },
     items: { control: false, table: { category: "docs" } },
     name: { control: false, table: { category: "docs" } },
     onOpenChange: { control: false, table: { category: "docs" } },

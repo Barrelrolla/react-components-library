@@ -55,6 +55,8 @@ export type ComboboxProps = {
   removeItemAriaLabel?: string;
   /** Accessible label applied to the toggle button that expands or collapses the combobox dropdown. */
   toggleOpenAriaLabel?: string;
+  /** Indicates if a clear button should be show. If not value is provided it will be shown for multi select and not shown for single select */
+  showClearButton?: boolean;
 } & Omit<ComponentProps<"input">, "size">;
 
 /**
@@ -87,6 +89,7 @@ export function Combobox({
   name,
   value,
   onChange,
+  showClearButton,
   ref,
   ...rest
 }: ComboboxProps) {
@@ -204,6 +207,8 @@ export function Combobox({
     }
   };
 
+  const showClear = showClearButton ?? multiple;
+
   return (
     <Autocomplete
       color={color}
@@ -285,6 +290,7 @@ export function Combobox({
                 ))}
               <div className="flex flex-1 items-center justify-between">
                 <input
+                  role="combobox"
                   onFocus={(e) => {
                     if (isMobile) {
                       const target = e.target;
@@ -325,24 +331,25 @@ export function Combobox({
                 />
                 <div className="flex items-center">
                   {(selectedIndex !== undefined ||
-                    selectedIndices.length > 0) && (
-                    <Button
-                      aria-label={removeAllItemsAriaLabel}
-                      useGroup={false}
-                      radius="pill"
-                      size="sm"
-                      variant="ghost"
-                      color={isFocused ? resolvedColor : "main"}
-                      className="h-6 p-1"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setIsFocused(false);
-                        clear();
-                      }}
-                    >
-                      <XIcon className={"mr-1 inline size-4"} />
-                    </Button>
-                  )}
+                    selectedIndices.length > 0) &&
+                    showClear && (
+                      <Button
+                        aria-label={removeAllItemsAriaLabel}
+                        useGroup={false}
+                        radius="pill"
+                        size="sm"
+                        variant="ghost"
+                        color={isFocused ? resolvedColor : "main"}
+                        className="h-6 p-1"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsFocused(false);
+                          clear();
+                        }}
+                      >
+                        <XIcon className={"mr-1 inline size-4"} />
+                      </Button>
+                    )}
                   <Button
                     aria-label={toggleOpenAriaLabel}
                     useGroup={false}
