@@ -9,7 +9,6 @@ import { cssColorPropsReversed } from "@/util";
 import { useIsMobile } from "@/hooks";
 import { MobileSheetPlacementType } from "@/types";
 import { FloatingElementContextType } from "./FloatingElementContextType";
-import { useFloatingContext } from "@/contexts/FloatingContext";
 import { getFloatingContentClasses } from "./getFloatinigClasses";
 import { CloseIcon } from "@/icons";
 import { Button } from "../Button";
@@ -51,7 +50,6 @@ export function FloatingElementContent({
   ...rest
 }: FloatingContentProps) {
   const isMobile = useIsMobile();
-  const floatingContext = useFloatingContext();
   const { mobileSheet, mobileSheetPlacement } = context;
   const { classes } = getClasses
     ? getClasses({
@@ -135,22 +133,16 @@ export function FloatingElementContent({
             <div className={innerClasses} ref={mergedInnerRefs}>
               <div style={{ ...context.scrollListStyle }}>{children}</div>
             </div>
-            {(!floatingContext || floatingContext.hasArrow) &&
-              context.hasArrow &&
-              (!isMobile || !mobileSheet) && (
-                <FloatingArrow
-                  className="arrow"
-                  style={coloredArror ? colorProps : mainColorProps}
-                  ref={context.arrowRef}
-                  context={context.data.context}
-                  height={
-                    floatingContext?.arrowSize
-                      ? floatingContext.arrowSize / 2
-                      : 7
-                  }
-                  width={floatingContext?.arrowSize ?? 14}
-                />
-              )}
+            {context.hasArrow && (!isMobile || !mobileSheet) && (
+              <FloatingArrow
+                className="arrow"
+                style={coloredArror ? colorProps : mainColorProps}
+                ref={context.arrowRef}
+                context={context.data.context}
+                height={7}
+                width={14}
+              />
+            )}
           </div>
         </div>
       </FloatingFocusManager>

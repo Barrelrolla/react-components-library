@@ -150,6 +150,7 @@ export function DropdownComponent({
   ]);
   const { isMounted, transitionStyles } = useFloatingTransitionStyles(
     data,
+    hasArrow,
     mobileSheet,
     mobileSheetPlacement,
   );

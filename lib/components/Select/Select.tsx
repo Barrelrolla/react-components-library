@@ -185,6 +185,7 @@ export function Select({
   ]);
   const { isMounted, transitionStyles } = useFloatingTransitionStyles(
     data,
+    false,
     mobileSheet,
     mobileSheetPlacement,
   );

@@ -168,7 +168,10 @@ export function Autocomplete({
     loop: false,
   });
   const interactions = useInteractions([role, dismiss, listNav]);
-  const { isMounted, transitionStyles } = useFloatingTransitionStyles(data);
+  const { isMounted, transitionStyles } = useFloatingTransitionStyles(
+    data,
+    false,
+  );
 
   return (
     <AutocompleteContextProvider

@@ -106,7 +106,10 @@ export function PopoverComponent({
   const dismiss = useDismiss(context, { outsidePressEvent: "click" });
   const r = useRole(context, { role: role });
   const interactions = useInteractions([hover, click, focus, dismiss, r]);
-  const { isMounted, transitionStyles } = useFloatingTransitionStyles(data);
+  const { isMounted, transitionStyles } = useFloatingTransitionStyles(
+    data,
+    hasArrow,
+  );
 
   return (
     <FloatingNode id={nodeId}>

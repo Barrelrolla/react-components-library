@@ -102,7 +102,10 @@ export function Tooltip({
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: isLabel ? "label" : "tooltip" });
   const interactions = useInteractions([hover, focus, dismiss, role]);
-  const { isMounted, transitionStyles } = useFloatingTransitionStyles(data);
+  const { isMounted, transitionStyles } = useFloatingTransitionStyles(
+    data,
+    hasArrow,
+  );
 
   const nodeId = useFloatingNodeId();
 
