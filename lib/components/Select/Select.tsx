@@ -324,6 +324,7 @@ export function Select({
                     <>
                       <span>{items[index]}</span>
                       <Button
+                        type="button"
                         aria-label={removeItemAriaLabel}
                         useGroup={false}
                         variant="ghost"
@@ -342,6 +343,7 @@ export function Select({
               ))}
             <div className="flex h-full w-max flex-1 items-center justify-between">
               <button
+                type="button"
                 aria-hidden={true}
                 disabled={disabled}
                 tabIndex={-1}
@@ -353,6 +355,7 @@ export function Select({
                 {(selectedIndex !== undefined || selectedIndices.length > 0) &&
                   showClear && (
                     <Button
+                      type="button"
                       aria-label={removeAllItemsAriaLabel}
                       useGroup={false}
                       radius="pill"
