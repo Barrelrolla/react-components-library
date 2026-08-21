@@ -70,10 +70,22 @@ export function FloatingElementContent({
       const selected = node.querySelector<HTMLElement>(
         '[data-selected="true"]',
       );
-      if (selected) {
-        selected.scrollIntoView({ block: "center" });
-      }
-    }, 60);
+      if (!selected) return;
+
+      const containerRect = node.getBoundingClientRect();
+      const selectedRect = selected.getBoundingClientRect();
+
+      const targetScrollTop =
+        node.scrollTop +
+        (selectedRect.top - containerRect.top) -
+        node.clientHeight / 2 +
+        selected.clientHeight / 2;
+
+      node.scrollTo({
+        top: targetScrollTop,
+        behavior: "auto",
+      });
+    }, 100);
   }, []);
 
   const mergedInnerRefs = useMergeRefs([innerRef, context.scrollContainerRef]);
