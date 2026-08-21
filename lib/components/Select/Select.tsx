@@ -294,9 +294,9 @@ export function Select({
           setIsFocused(false);
         }}
       >
-        <label id={resolvedId} className={labelClasses}>
+        <span id={resolvedId} className={labelClasses}>
           {label}
-        </label>
+        </span>
         <div className="flex flex-col disabled:cursor-not-allowed">
           <div
             data-error={error ? true : undefined}
