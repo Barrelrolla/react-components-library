@@ -27,7 +27,7 @@ export type InputProps<T extends InputFieldType = "input"> = {
   /** HTML input type attribute for supported text-based formats. */
   type?: "text" | "email" | "password" | "tel" | "url" | "number";
   /** Descriptive label rendered above the input field. */
-  label?: string;
+  label?: ReactNode;
   /** Visual icon component placed inside the input field preceding the text value. */
   startIcon?: ReactNode;
   /** Visual icon component placed inside the input field following the text value. */
@@ -174,84 +174,84 @@ export function Input<T extends InputFieldType = "input">({
       style={{ ...cssColorProps(resolvedColor), ...wrapperStyle }}
     >
       <label className={labelClasses} htmlFor={resolvedId}>
-        <span className="block">{label}</span>
-        <div className={inputContainerClasses} style={inputContainerStyle}>
-          {startIcon && (
-            <div className="input-start-icon">
-              <>{startIcon}</>
-            </div>
-          )}
-          {as === "textarea" ? (
-            <textarea
-              {...(elementProps as ComponentPropsWithoutRef<"textarea">)}
-              {...(rest as ComponentPropsWithoutRef<"textarea">)}
-            />
-          ) : (
-            <input
-              {...(elementProps as ComponentPropsWithoutRef<"input">)}
-              {...(rest as ComponentPropsWithoutRef<"input">)}
-            />
-          )}
-          {endIcon && (
-            <div className="input-end-icon">
-              <>{endIcon}</>
-            </div>
-          )}
-          {type === "password" && showRevealPasswordButton && (
-            <Tooltip isLabel disabled={!revealPasswordToggleAriaLabel}>
-              <TooltipTrigger>
-                <Button
-                  style={{ color: "inherit" }}
-                  aria-label={revealPasswordToggleAriaLabel}
-                  type="button"
-                  scaling={false}
-                  className="input-end-button"
-                  wrapperClassName="mr-1"
-                  tabIndex={-1}
-                  size="xs"
-                  variant="ghost"
-                  disabled={disabled}
-                  startIcon={isRevealing ? <OpenEyeIcon /> : <ClosedEyeIcon />}
-                  useGroup={false}
-                  onClick={() => {
-                    setIsRevealing(!isRevealing);
-                  }}
-                />
-              </TooltipTrigger>
-              <TooltipContent>{revealPasswordToggleAriaLabel}</TooltipContent>
-            </Tooltip>
-          )}
-          {type === "number" && (
-            <>
-              <Button
-                aria-label={stepDownAriaLabel}
-                type="button"
-                className="text-inherit"
-                disabled={disabled}
-                tabIndex={-1}
-                variant="ghost"
-                size="xs"
-                startIcon={<MinusIcon strokeWidth={16} />}
-                useGroup={false}
-                {...stepDownProps}
-              />
-              <Button
-                aria-label={stepUpAriaLabel}
-                type="button"
-                className="text-inherit"
-                disabled={disabled}
-                tabIndex={-1}
-                variant="ghost"
-                size="xs"
-                useGroup={false}
-                {...stepUpProps}
-              >
-                <PlusIcon strokeWidth={16} />
-              </Button>
-            </>
-          )}
-        </div>
+        {label}
       </label>
+      <div className={inputContainerClasses} style={inputContainerStyle}>
+        {startIcon && (
+          <div className="input-start-icon">
+            <>{startIcon}</>
+          </div>
+        )}
+        {as === "textarea" ? (
+          <textarea
+            {...(elementProps as ComponentPropsWithoutRef<"textarea">)}
+            {...(rest as ComponentPropsWithoutRef<"textarea">)}
+          />
+        ) : (
+          <input
+            {...(elementProps as ComponentPropsWithoutRef<"input">)}
+            {...(rest as ComponentPropsWithoutRef<"input">)}
+          />
+        )}
+        {endIcon && (
+          <div className="input-end-icon">
+            <>{endIcon}</>
+          </div>
+        )}
+        {type === "password" && showRevealPasswordButton && (
+          <Tooltip isLabel disabled={!revealPasswordToggleAriaLabel}>
+            <TooltipTrigger>
+              <Button
+                style={{ color: "inherit" }}
+                aria-label={revealPasswordToggleAriaLabel}
+                type="button"
+                scaling={false}
+                className="input-end-button"
+                wrapperClassName="mr-1"
+                tabIndex={-1}
+                size="xs"
+                variant="ghost"
+                disabled={disabled}
+                startIcon={isRevealing ? <OpenEyeIcon /> : <ClosedEyeIcon />}
+                useGroup={false}
+                onClick={() => {
+                  setIsRevealing(!isRevealing);
+                }}
+              />
+            </TooltipTrigger>
+            <TooltipContent>{revealPasswordToggleAriaLabel}</TooltipContent>
+          </Tooltip>
+        )}
+        {type === "number" && (
+          <>
+            <Button
+              aria-label={stepDownAriaLabel}
+              type="button"
+              className="text-inherit"
+              disabled={disabled}
+              tabIndex={-1}
+              variant="ghost"
+              size="xs"
+              startIcon={<MinusIcon strokeWidth={16} />}
+              useGroup={false}
+              {...stepDownProps}
+            />
+            <Button
+              aria-label={stepUpAriaLabel}
+              type="button"
+              className="text-inherit"
+              disabled={disabled}
+              tabIndex={-1}
+              variant="ghost"
+              size="xs"
+              useGroup={false}
+              {...stepUpProps}
+            >
+              <PlusIcon strokeWidth={16} />
+            </Button>
+          </>
+        )}
+      </div>
       {error && (
         <p id={`${resolvedId}-error`} className={errorClasses}>
           {error}

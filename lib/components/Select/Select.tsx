@@ -1,6 +1,7 @@
 import {
   ComponentProps,
   CSSProperties,
+  ReactNode,
   Ref,
   useCallback,
   useId,
@@ -29,6 +30,7 @@ import { cssColorProps } from "@/util";
 import { CaretDownIcon, XIcon } from "@/icons";
 import { Button, useButtonGroupContext } from "../Button";
 import { Badge } from "../Badge";
+import { SelectItem } from "./types";
 
 export type SelectProps = {
   /** Color variant applied across the select trigger, dropdown surface, active items, and chips. */
@@ -36,9 +38,9 @@ export type SelectProps = {
   /** Select size option. */
   size?: SizeType;
   /** Accessible label text displayed above the select field. */
-  label?: string;
-  /** Array of selectable string option items rendered inside the dropdown overlay. */
-  items: string[];
+  label?: ReactNode;
+  /** Array of select items rendered inside the dropdown overlay. */
+  items: SelectItem[];
   /** Enables multi-selection mode allowing users to select multiple options as tags/chips. */
   multiple?: boolean;
   /** Form input name attribute submitted when wrapped within an HTML `<form>`. */
@@ -244,9 +246,9 @@ export function Select({
 
   const generatedId = useId();
   const resolvedId = id ?? generatedId;
-  const ariaLabel = rest["aria-label"] || label || undefined;
+  const ariaLabel = rest["aria-label"];
   const ariaLabeledBy = rest["aria-labelledby"];
-  if (!ariaLabel && !ariaLabeledBy) {
+  if (!ariaLabel && !ariaLabeledBy && !label) {
     console.warn(
       "Please provide an aria label or labeledby for combobox without a label.",
     );
@@ -254,7 +256,7 @@ export function Select({
 
   let buttonText = placeholder;
   if (!multiple && selectedIndex !== undefined) {
-    buttonText = items[selectedIndex];
+    buttonText = items[selectedIndex].name;
   }
 
   const showClear = showClearButton ?? multiple;
@@ -314,7 +316,7 @@ export function Select({
             {multiple &&
               selectedIndices.map((index) => (
                 <Badge
-                  key={items[index]}
+                  key={items[index].value}
                   className="m-1 flex cursor-auto items-center gap-0.5 p-0 pl-2 text-xs"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -322,7 +324,7 @@ export function Select({
                 >
                   {
                     <>
-                      <span>{items[index]}</span>
+                      <span>{items[index].name}</span>
                       <Button
                         type="button"
                         aria-label={removeItemAriaLabel}
@@ -380,20 +382,19 @@ export function Select({
               ref={inputRef}
               name={name}
               type="hidden"
-              value={items[selectedIndex]}
+              value={items[selectedIndex].value}
             />
           )}
           {name &&
             multiple &&
             selectedIndices.map((i) => {
-              const value = items[i];
+              const item = items[i];
               return (
                 <input
-                  key={value}
-                  ref={inputRef}
+                  key={item.name}
                   name={name}
                   type="hidden"
-                  value={value}
+                  value={item.value}
                 />
               );
             })}

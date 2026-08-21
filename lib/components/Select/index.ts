@@ -7,3 +7,4 @@ export { SelectGroupTitle } from "./SelectGroupTitle";
 export { SelectOption } from "./SelectOption";
 export type { SelectOptionProps } from "./SelectOption";
 export { SelectContextProvider, useSelectContext } from "./SelectContext";
+export type { SelectItem } from "./types";

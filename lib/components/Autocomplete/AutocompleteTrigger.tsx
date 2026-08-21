@@ -13,7 +13,7 @@ export type AutocompleteTriggerProps = {
  *
  * Uses `Slot` under the hood to clone the child element and merge event handlers and references.
  */
-export function AutocompleteTrigger({ ...rest }: { children: ReactElement }) {
+export function AutocompleteTrigger({ ...rest }: AutocompleteTriggerProps) {
   const context = useAutocompleteContext();
   if (!context) {
     throw new Error(

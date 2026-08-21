@@ -2,15 +2,15 @@ import { CssInJs } from "@/types";
 
 export default <Record<string, CssInJs>>{
   ".input-field-wrapper": {
-    "@apply relative cursor-text w-60": {},
+    "@apply relative cursor-text w-60 focus-within:text-(--bg-color) has-error:text-error":
+      {},
   },
   ".input-field": {
     "@apply text-main-content focus:outline-none w-full py-1.5 px-3 disabled:cursor-not-allowed disabled:select-none rounded-inputs disabled:opacity-70 no-spinners resize-none":
       {},
   },
   ".input-field-label": {
-    "@apply flex flex-col text-sm focus-within:text-(--bg-color) has-error:text-error":
-      {},
+    "@apply flex flex-col text-sm": {},
   },
   ".input-field-error": {
     "@apply text-sm text-error": {},

@@ -81,47 +81,63 @@ export const Form: Story = {
       "-ref textarea: testarea-",
     );
     await expect(result, "sets select state").toHaveTextContent(
-      "-option state: option 1-",
+      "-option state: option value 1-",
     );
     await expect(result, "gets option from formData").toHaveTextContent(
-      "-selected option: option 1-",
+      "-selected option: option value 1-",
     );
     await expect(result, "gets option from ref").toHaveTextContent(
-      "-ref option: option 1-",
+      "-ref option: option value 1-",
     );
     await expect(result, "sets select many state").toHaveTextContent(
-      "-options state: option two,option three-",
+      "-options state: option value two,option value three-",
     );
     await expect(result, "gets options from formData").toHaveTextContent(
-      "-selected options: option two,option three-",
+      "-selected options: option value two,option value three-",
     );
     await expect(result, "doesn't get options from ref").toHaveTextContent(
-      "-ref options: option three-",
+      "-ref options: -",
     );
     await expect(result, "sets combo state").toHaveTextContent(
       "-combo state: combo 1-",
     );
     await expect(result, "gets combo from formData").toHaveTextContent(
-      "-selected combo: combo 1-",
+      "-selected combo: combo value 1-",
     );
     await expect(result, "gets combo from ref").toHaveTextContent(
       "-ref combo: combo 1-",
     );
     await expect(result, "sets combo many state").toHaveTextContent(
-      "-combo many state: combo two,combo three-",
+      "-combo many state: combo value two,combo value three-",
     );
     await expect(result, "gets combo many from formData").toHaveTextContent(
-      "-selected combo many: combo two,combo three-",
+      "-selected combo many: combo value two,combo value three-",
     );
     await expect(result, "doesn't get combo many from ref").toHaveTextContent(
       "-ref combo many: -",
     );
   },
   render: () => {
-    const options = ["option 1", "option 2", "option 3"];
-    const optionsMany = ["option one", "option two", "option three"];
-    const combo = ["combo 1", "combo 2", "combo 3"];
-    const comboMany = ["combo one", "combo two", "combo three"];
+    const options = [
+      { name: "option 1", value: "option value 1" },
+      { name: "option 2", value: "option value 2" },
+      { name: "option 3", value: "option value 3" },
+    ];
+    const optionsMany = [
+      { name: "option one", value: "option value one" },
+      { name: "option two", value: "option value two" },
+      { name: "option three", value: "option value three" },
+    ];
+    const combo = [
+      { name: "combo 1", value: "combo value 1" },
+      { name: "combo 2", value: "combo value 2" },
+      { name: "combo 3", value: "combo value 3" },
+    ];
+    const comboMany = [
+      { name: "combo one", value: "combo value one" },
+      { name: "combo two", value: "combo value two" },
+      { name: "combo three", value: "combo value three" },
+    ];
     const [data, setData] = useState<
       {
         key: string;
@@ -170,7 +186,7 @@ export const Form: Story = {
         },
         {
           key: "option state",
-          text: optionIndex !== undefined ? options[optionIndex] : "",
+          text: optionIndex !== undefined ? options[optionIndex].value : "",
         },
         { key: "selected option", text: selectedOption },
         { key: "ref option", text: selectRef.current?.value.toString() || "" },
@@ -178,6 +194,7 @@ export const Form: Story = {
           key: "options state",
           text: optionsMany
             .filter((_, i) => optionsIndices.includes(i))
+            .map((opt) => opt.value)
             .join(","),
         },
         { key: "selected options", text: selectedOptions },
@@ -187,11 +204,14 @@ export const Form: Story = {
           error: true,
         },
         { key: "combo state", text: comboValue },
-        { key: "selected combo", text: enteredCombo },
+        {
+          key: "selected combo",
+          text: combo.filter((val) => val.name === enteredCombo)[0].value,
+        },
         { key: "ref combo", text: comboRef.current?.value.toString() || "" },
         {
           key: "combo many state",
-          text: comboIndices.map((i) => comboMany[i]).join(","),
+          text: comboIndices.map((i) => comboMany[i].value).join(","),
         },
         { key: "selected combo many", text: enteredComboMany },
         {
@@ -221,6 +241,8 @@ export const Form: Story = {
             <Input
               wrapperClassName="w-full"
               data-testid="number"
+              stepUpAriaLabel="up"
+              stepDownAriaLabel="down"
               ref={numberRef}
               type="number"
               name="number"
@@ -256,8 +278,8 @@ export const Form: Story = {
                 <SelectGroup>
                   {options.map((option, index) => {
                     return (
-                      <SelectOption key={option} index={index}>
-                        {option}
+                      <SelectOption key={option.value} index={index}>
+                        {option.name}
                       </SelectOption>
                     );
                   })}
@@ -268,6 +290,8 @@ export const Form: Story = {
               wrapperClassName="w-full"
               items={optionsMany}
               inputRef={selectManyRef}
+              removeAllItemsAriaLabel="clear"
+              removeItemAriaLabel="remove"
               multiple
               placeholder="select many"
               label="Select many"
@@ -290,8 +314,8 @@ export const Form: Story = {
                 <SelectGroup>
                   {optionsMany.map((option, index) => {
                     return (
-                      <SelectOption key={option} index={index}>
-                        {option}
+                      <SelectOption key={option.value} index={index}>
+                        {option.name}
                       </SelectOption>
                     );
                   })}
@@ -300,6 +324,7 @@ export const Form: Story = {
             </Select>
             <Combobox
               wrapperClassName="w-full"
+              toggleOpenAriaLabel="toggle"
               ref={comboRef}
               items={combo}
               label="Combo"
@@ -311,6 +336,7 @@ export const Form: Story = {
             />
             <Combobox
               wrapperClassName="w-full"
+              toggleOpenAriaLabel="toggle"
               multiple
               ref={comboManyRef}
               items={comboMany}

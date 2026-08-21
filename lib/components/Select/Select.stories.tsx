@@ -63,16 +63,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const fruits = [
-  "Apple",
-  "Banana",
-  "Cherry",
-  "Grape",
-  "Kiwi",
-  "Mango",
-  "Orange",
-  "Papaya",
-  "Pear",
-  "Strawberry",
+  { name: "Apple", value: "Apple" },
+  { name: "Banana", value: "Banana" },
+  { name: "Cherry", value: "Cherry" },
+  { name: "Grape", value: "Grape" },
+  { name: "Kiwi", value: "Kiwi" },
+  { name: "Mango", value: "Mango" },
+  { name: "Orange", value: "Orange" },
+  { name: "Papaya", value: "Papaya" },
+  { name: "Pear", value: "Pear" },
+  { name: "Strawberry", value: "Strawberry" },
 ];
 
 export const Default: Story = {
@@ -89,8 +89,12 @@ export const Default: Story = {
           <SelectGroup>
             {fruits.map((fruit, index) => {
               return (
-                <SelectOption key={fruit} index={index} disabled={index === 3}>
-                  {fruit}
+                <SelectOption
+                  key={fruit.value}
+                  index={index}
+                  disabled={index === 3}
+                >
+                  {fruit.name}
                 </SelectOption>
               );
             })}
@@ -116,8 +120,8 @@ export const Multiple: Story = {
           <SelectGroup>
             {fruits.map((fruit, index) => {
               return (
-                <SelectOption key={fruit} index={index}>
-                  {fruit}
+                <SelectOption key={fruit.value} index={index}>
+                  {fruit.name}
                 </SelectOption>
               );
             })}
@@ -160,8 +164,8 @@ export const WithLabel: Story = {
           <SelectGroup>
             {fruits.map((fruit, index) => {
               return (
-                <SelectOption key={fruit} index={index}>
-                  {fruit}
+                <SelectOption key={fruit.value} index={index}>
+                  {fruit.name}
                 </SelectOption>
               );
             })}
@@ -203,8 +207,8 @@ export const WithError: Story = {
           <SelectGroup>
             {fruits.map((fruit, index) => {
               return (
-                <SelectOption key={fruit} index={index}>
-                  {fruit}
+                <SelectOption key={fruit.value} index={index}>
+                  {fruit.name}
                 </SelectOption>
               );
             })}
@@ -247,8 +251,8 @@ export const Disabled: Story = {
           <SelectGroup>
             {fruits.map((fruit, index) => {
               return (
-                <SelectOption key={fruit} index={index}>
-                  {fruit}
+                <SelectOption key={fruit.value} index={index}>
+                  {fruit.name}
                 </SelectOption>
               );
             })}
@@ -289,8 +293,8 @@ export const Sizes: Story = {
               <SelectGroup>
                 {fruits.map((fruit, index) => {
                   return (
-                    <SelectOption key={fruit} index={index}>
-                      {fruit}
+                    <SelectOption key={fruit.value} index={index}>
+                      {fruit.name}
                     </SelectOption>
                   );
                 })}
@@ -337,8 +341,8 @@ export const Colors: Story = {
               <SelectGroup>
                 {fruits.map((fruit, index) => {
                   return (
-                    <SelectOption key={fruit} index={index}>
-                      {fruit}
+                    <SelectOption key={fruit.value} index={index}>
+                      {fruit.name}
                     </SelectOption>
                   );
                 })}

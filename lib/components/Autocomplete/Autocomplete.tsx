@@ -74,7 +74,7 @@ export function Autocomplete({
   onSelectItem,
   items,
   strategy = "absolute",
-  placement = "bottom",
+  placement = "bottom-start",
   disabled,
   selectedIndex,
   selectedIndices,

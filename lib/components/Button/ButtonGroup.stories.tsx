@@ -323,7 +323,10 @@ export const WithInput: Story = {
 
 export const WithSelect: Story = {
   render: ({ variant = "solid", ...rest }) => {
-    const items = ["Documents", "Images"];
+    const items = [
+      { name: "Documents", value: "Documents" },
+      { name: "Images", value: "Images" },
+    ];
     return (
       <ButtonGroup {...rest} variant={variant}>
         <Input placeholder="Choose file name" />
@@ -337,8 +340,8 @@ export const WithSelect: Story = {
             <SelectGroup>
               {items.map((item, index) => {
                 return (
-                  <SelectOption index={index} key={item}>
-                    {item}
+                  <SelectOption index={index} key={item.value}>
+                    {item.name}
                   </SelectOption>
                 );
               })}

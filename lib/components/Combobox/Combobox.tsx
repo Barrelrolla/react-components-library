@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
   FocusEvent,
+  ReactNode,
 } from "react";
 import { useMergeRefs } from "@floating-ui/react";
 import { ColorType, SizeType } from "@/types";
@@ -19,18 +20,19 @@ import { AutocompleteTrigger } from "../Autocomplete/AutocompleteTrigger";
 import { Badge } from "../Badge/Badge";
 import { Button } from "../Button/Button";
 import { useButtonGroupContext } from "../Button/ButtonGroupContext";
+import { SelectItem } from "../Select";
 
 export type ComboboxProps = {
   /** Color variant of the combobox. */
   color?: ColorType;
   /** Combobox size option. */
   size?: SizeType;
-  /** Array of selectable string items. */
-  items: string[];
+  /** Array of selectable items. */
+  items: SelectItem[];
   /** Enables multi-selection mode. */
   multiple?: boolean;
   /** Label text displayed above the input. */
-  label?: string;
+  label?: ReactNode;
   /** Error message text. When provided, applies `error` semantic styles to the input. */
   error?: string;
   /** Allows arbitrary custom text input rather than strictly restricting values to the `items` list. */
@@ -126,16 +128,22 @@ export function Combobox({
 
   const generatedId = useId();
   const resolvedId = id ?? generatedId;
-  const ariaLabel = rest["aria-label"] || label || undefined;
+  const ariaLabel = rest["aria-label"];
   const ariaLabeledBy = rest["aria-labelledby"];
-  if (!ariaLabel && !ariaLabeledBy) {
+  if (!ariaLabel && !ariaLabeledBy && !label) {
     console.warn(
       "Please provide an aria label or labeledby for combobox without a label.",
     );
   }
 
   function setSelectedFromItem(item: string) {
-    const index = items.indexOf(item);
+    let index = -1;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].name === item) {
+        index = i;
+        break;
+      }
+    }
     setSelected(index);
   }
 
@@ -153,7 +161,7 @@ export function Combobox({
     } else {
       setSelectedIndex(index);
       if (index !== undefined) {
-        setValue(items[index]);
+        setValue(items[index].name);
         setIsOpen(false);
       } else {
         setValue("");
@@ -218,78 +226,78 @@ export function Combobox({
         setIsOpen(false);
         setSelectedFromItem(item);
       }}
-      items={items}
+      items={items.map((item) => item.name)}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       selectedIndex={selectedIndex}
       selectedIndices={selectedIndices}
     >
-      <AutocompleteTrigger>
-        <div
-          ref={containerRef}
-          className={wrapperClasses}
-          style={{
-            ...cssColorProps(resolvedColor),
-            ...wrapperStyle,
-          }}
-          onFocus={() => {
-            setIsFocused(true);
-          }}
-          onBlur={() => {
-            setIsFocused(false);
-            if (!allowFreeText) {
-              if (items.indexOf(query) < 0) {
-                setValue("");
-              }
+      <div
+        ref={containerRef}
+        className={wrapperClasses}
+        style={{
+          ...cssColorProps(resolvedColor),
+          ...wrapperStyle,
+        }}
+        onFocus={() => {
+          setIsFocused(true);
+        }}
+        onBlur={() => {
+          setIsFocused(false);
+          if (!allowFreeText) {
+            if (items.map((item) => item.name).indexOf(query) < 0) {
+              setValue("");
             }
-          }}
-          onKeyDown={(e: KeyboardEvent) => {
-            if (!multiple && e.key !== "ArrowDown") {
-              setSelectedIndex(undefined);
-            } else if (e.key === "Backspace") {
-              if (query.length === 0 && selectedIndices.length > 0) {
-                setSelectedIndices(selectedIndices.slice(0, -1));
-              }
+          }
+        }}
+        onKeyDown={(e: KeyboardEvent) => {
+          if (!multiple && e.key !== "ArrowDown") {
+            setSelectedIndex(undefined);
+          } else if (e.key === "Backspace") {
+            if (query.length === 0 && selectedIndices.length > 0) {
+              setSelectedIndices(selectedIndices.slice(0, -1));
             }
-          }}
-        >
-          <label htmlFor={resolvedId} className={labelClasses}>
-            {label}
-          </label>
-          <div className="has-disabled:cursor-not-allowed">
-            <div className={classes}>
-              {multiple &&
-                selectedIndices.map((index) => (
-                  <Badge
-                    key={items[index]}
-                    className="m-1 flex cursor-auto items-center gap-0.5 p-0 pl-2 text-xs"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                  >
-                    {
-                      <>
-                        <span>{items[index]}</span>
-                        <Button
-                          type="button"
-                          aria-label={removeItemAriaLabel}
-                          useGroup={false}
-                          variant="ghost"
-                          radius="pill"
-                          size="xs"
-                          className="size-5 p-0"
-                          startIcon={<XIcon className="size-3.5" />}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setIsFocused(false);
-                            setSelected(index);
-                          }}
-                        />
-                      </>
-                    }
-                  </Badge>
-                ))}
-              <div className="flex flex-1 items-center justify-between">
+          }
+        }}
+      >
+        <label htmlFor={resolvedId} className={labelClasses}>
+          {label}
+        </label>
+        <div className="has-disabled:cursor-not-allowed">
+          <div className={classes}>
+            {multiple &&
+              selectedIndices.map((index) => (
+                <Badge
+                  key={items[index].value}
+                  className="m-1 flex cursor-auto items-center gap-0.5 p-0 pl-2 text-xs"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  {
+                    <>
+                      <span>{items[index].name}</span>
+                      <Button
+                        type="button"
+                        aria-label={removeItemAriaLabel}
+                        useGroup={false}
+                        variant="ghost"
+                        radius="pill"
+                        size="xs"
+                        className="size-5 p-0"
+                        startIcon={<XIcon className="size-3.5" />}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsFocused(false);
+                          setSelected(index);
+                        }}
+                      />
+                    </>
+                  }
+                </Badge>
+              ))}
+            <div className="flex flex-1 items-center justify-between">
+              <AutocompleteTrigger>
                 <input
                   role="combobox"
                   onFocus={(e) => {
@@ -330,69 +338,68 @@ export function Combobox({
                   ref={inputRefs}
                   {...rest}
                 />
-                <div className="flex items-center">
-                  {(selectedIndex !== undefined ||
-                    selectedIndices.length > 0) &&
-                    showClear && (
-                      <Button
-                        type="button"
-                        aria-label={removeAllItemsAriaLabel}
-                        useGroup={false}
-                        radius="pill"
-                        size="sm"
-                        variant="ghost"
-                        color={isFocused ? resolvedColor : "main"}
-                        className="h-6 p-1"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setIsFocused(false);
-                          clear();
-                        }}
-                      >
-                        <XIcon className={"mr-1 inline size-4"} />
-                      </Button>
-                    )}
-                  <Button
-                    type="button"
-                    aria-label={toggleOpenAriaLabel}
-                    useGroup={false}
-                    radius="pill"
-                    size="sm"
-                    variant="ghost"
-                    color={isFocused ? resolvedColor : "main"}
-                    className="h-6 p-0"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setIsOpen(!isOpen);
-                    }}
-                  >
-                    <CaretDownIcon className={caretClasses} />
-                  </Button>
-                  {multiple &&
-                    name &&
-                    selectedIndices.map((index) => {
-                      const value = items[index];
-                      return (
-                        <input
-                          key={value}
-                          type="hidden"
-                          name={name}
-                          value={value}
-                        />
-                      );
-                    })}
-                </div>
+              </AutocompleteTrigger>
+              <div className="flex items-center">
+                {(selectedIndex !== undefined || selectedIndices.length > 0) &&
+                  showClear && (
+                    <Button
+                      type="button"
+                      aria-label={removeAllItemsAriaLabel}
+                      useGroup={false}
+                      radius="pill"
+                      size="sm"
+                      variant="ghost"
+                      color={isFocused ? resolvedColor : "main"}
+                      className="h-6 p-1"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsFocused(false);
+                        clear();
+                      }}
+                    >
+                      <XIcon className={"mr-1 inline size-4"} />
+                    </Button>
+                  )}
+                <Button
+                  type="button"
+                  aria-label={toggleOpenAriaLabel}
+                  useGroup={false}
+                  radius="pill"
+                  size="sm"
+                  variant="ghost"
+                  color={isFocused ? resolvedColor : "main"}
+                  className="h-6 p-0"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsOpen(!isOpen);
+                  }}
+                >
+                  <CaretDownIcon className={caretClasses} />
+                </Button>
+                {multiple &&
+                  name &&
+                  selectedIndices.map((index) => {
+                    const item = items[index];
+                    return (
+                      <input
+                        key={item.value}
+                        type="hidden"
+                        name={name}
+                        value={item.value}
+                      />
+                    );
+                  })}
               </div>
             </div>
-            {error && (
-              <p id={`${resolvedId}-error`} className={errorClasses}>
-                {error}
-              </p>
-            )}
           </div>
+          {error && (
+            <p id={`${resolvedId}-error`} className={errorClasses}>
+              {error}
+            </p>
+          )}
         </div>
-      </AutocompleteTrigger>
-      <AutocompleteContent ref={floatingRef} />
+      </div>
+      <AutocompleteContent ref={floatingRef} parentRef={containerRef} />
     </Autocomplete>
   );
 }

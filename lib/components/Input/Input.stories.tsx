@@ -431,6 +431,8 @@ export const Number: Story = {
     type: "number",
     placeholder: "Input",
     label: "Label",
+    stepUpAriaLabel: "Increase",
+    stepDownAriaLabel: "Decrease",
   },
   argTypes: {
     type: { table: { disable: true } },

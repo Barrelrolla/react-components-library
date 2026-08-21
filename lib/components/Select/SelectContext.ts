@@ -1,9 +1,10 @@
 import { createContext, RefObject, useContext } from "react";
 import { FloatingElementContextType } from "../Floating";
+import { SelectItem } from "./types";
 
 interface SelectContextType extends FloatingElementContextType {
   /** Array of string option items available for selection within the dropdown list. */
-  items: string[];
+  items: SelectItem[];
   /** Indicates whether the select component is operating in multi-selection mode. */
   multiple: boolean;
   /** Index of the option item currently highlighted or focused via keyboard navigation. */
