@@ -92,6 +92,7 @@ export function Combobox({
   value,
   onChange,
   showClearButton,
+  defaultValue,
   ref,
   ...rest
 }: ComboboxProps) {
@@ -103,7 +104,9 @@ export function Combobox({
   const [selectedIndices, setSelectedIndices] = useState<number[]>(
     initialSelectedIndices || [],
   );
-  const [query, setQuery] = useState(value?.toString() || "");
+  const [query, setQuery] = useState(
+    value?.toString() || defaultValue?.toString() || "",
+  );
   const group = useButtonGroupContext();
   const isMobile = useIsMobile();
 
