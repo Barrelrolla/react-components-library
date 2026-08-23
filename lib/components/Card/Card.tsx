@@ -40,7 +40,10 @@ export function Card({
   });
   return (
     <CardContextProvider value={{ hasContext: true }}>
-      <div style={containerStyle} className={containerClasses}>
+      <div
+        style={{ "--h": "-0.05", ...containerStyle } as CSSProperties}
+        className={containerClasses}
+      >
         <div className={classes} style={style} {...rest}>
           {children}
         </div>

@@ -15,56 +15,60 @@ export default <Record<string, CssInJs>>{
       "var(--dropdown-animation-duration, var(--default-transition-duration));",
   },
 
-  ".bg-main-hover": {
-    backgroundColor:
-      "oklch(from var(--color-main) calc(l - var(--mod-highlight)) c h);",
-  },
-
-  ".bg-main-active": {
-    backgroundColor:
-      "oklch(from var(--color-main) calc(l - var(--mod-highlight) * 1.5) c h);",
-  },
-
   ".bg-hover": {
-    backgroundColor: "oklch(from var(--bg-color) calc(l + var(--h)) c h);",
-    outlineColor: "oklch(from var(--bg-color) calc(l + var(--h)) c h);",
+    backgroundColor:
+      "oklch(from var(--bg-color, var(--color-main)) calc(l + var(--h, var(--mod-highlight))) c h);",
+    outlineColor:
+      "oklch(from var(--bg-color, var(--color-main)) calc(l + var(--h, var(--mod-highlight))) c h);",
   },
 
   ".bg-hover-inverse": {
-    backgroundColor: "oklch(from var(--fg-color) calc(l + var(--h) * -1) c h);",
-    outlineColor: "oklch(from var(--fg-color) calc(l + var(--h) * -1) c h);",
+    backgroundColor:
+      "oklch(from var(--fg-color, var(--color-main-content)) calc(l + var(--h, var(--mod-highlight)) * -1) c h);",
+    outlineColor:
+      "oklch(from var(--fg-color, var(--color-main-content)) calc(l + var(--h, var(--mod-highlight)) * -1) c h);",
   },
 
   ".bg-active": {
     backgroundColor:
-      "oklch(from var(--bg-color) calc(l + var(--h) * 1.5) c h);",
-    outlineColor: "oklch(from var(--bg-color) calc(l + var(--h) * 1.5) c h);",
+      "oklch(from var(--bg-color, var(--color-main)) calc(l + var(--h, var(--mod-highlight)) * 1.5) c h);",
+    outlineColor:
+      "oklch(from var(--bg-color, var(--color-main)) calc(l + var(--h, var(--mod-highlight)) * 1.5) c h);",
   },
 
   ".bg-active-inverse": {
     backgroundColor:
-      "oklch(from var(--fg-color) calc(l + var(--h) * 1.5) c h);",
-    outlineColor: "oklch(from var(--fg-color) calc(l + var(--h) * 1.5) c h);",
+      "oklch(from var(--fg-color, var(--color-main-content)) calc(l + var(--h, var(--mod-highlight)) * 1.5) c h);",
+    outlineColor:
+      "oklch(from var(--fg-color, var(--color-main-content)) calc(l + var(--h, var(--mod-highlight)) * 1.5) c h);",
   },
 
   ".fg-hover": {
-    color: "oklch(from var(--fg-color) calc(l + var(--h) * 2) c h);",
-    outlineColor: "oklch(from var(--fg-color) calc(l + var(--h) * 2) c h);",
+    color:
+      "oklch(from var(--fg-color, var(--color-main-content)) calc(l + var(--h, var(--mod-highlight)) * 2) c h);",
+    outlineColor:
+      "oklch(from var(--fg-color, var(--color-main-content)) calc(l + var(--h, var(--mod-highlight)) * 2) c h);",
   },
 
   ".fg-active": {
-    color: "oklch(from var(--fg-color) calc(l + var(--h) * 3) c h);",
-    outlineColor: "oklch(from var(--fg-color) calc(l + var(--h) * 3) c h);",
+    color:
+      "oklch(from var(--fg-color, var(--color-main-content)) calc(l + var(--h, var(--mod-highlight)) * 3) c h);",
+    outlineColor:
+      "oklch(from var(--fg-color, var(--color-main-content)) calc(l + var(--h, var(--mod-highlight)) * 3) c h);",
   },
 
   ".ghost-hover": {
-    color: "oklch(from var(--bg-color) calc(l + var(--h) * 2) c h);",
-    outlineColor: "oklch(from var(--bg-color) calc(l + var(--h) * 2) c h);",
+    color:
+      "oklch(from var(--fg-color, var(--color-main-content)) calc(l + var(--h, var(--mod-highlight)) * 2) c h);",
+    outlineColor:
+      "oklch(from var(--fg-color, var(--color-main-content)) calc(l + var(--h, var(--mod-highlight)) * 2) c h);",
   },
 
   ".ghost-active": {
-    color: "oklch(from var(--bg-color) calc(l + var(--h) * 3) c h);",
-    outlineColor: "oklch(from var(--bg-color) calc(l + var(--h) * 3) c h);",
+    color:
+      "oklch(from var(--fg-color, var(--color-main-content)) calc(l + var(--h, var(--mod-highlight)) * 3) c h);",
+    outlineColor:
+      "oklch(from var(--fg-color, var(--color-main-content)) calc(l + var(--h, var(--mod-highlight)) * 3) c h);",
   },
 
   ".muted-bg": {

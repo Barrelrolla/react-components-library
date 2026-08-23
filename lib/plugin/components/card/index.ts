@@ -12,7 +12,7 @@ export default <Record<string, CssInJs>>{
     "@apply resize min-w-60 max-w-120 min-h-40 max-h-120": {},
   },
   ".card-interact": {
-    "@apply relative w-full h-full inline-block hover:bg-main-hover focus-visible:bg-main-hover active:bg-main-active rounded-containers -outline-offset-4 focus-visible:outline-2 focus-visible:outline-main-content outline-main-content transition-colors z-10":
+    "@apply relative w-full h-full inline-block hover:bg-hover focus-visible:bg-hover active:bg-active rounded-containers -outline-offset-4 focus-visible:outline-2 focus-visible:outline-main-content outline-main-content transition-colors z-10":
       {},
   },
   ".card-image": {
