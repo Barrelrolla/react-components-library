@@ -6,6 +6,7 @@ import {
   CardActions,
   CardText,
   CardTitle,
+  Input,
   Tooltip,
   TooltipContent,
   TooltipTrigger,
@@ -27,12 +28,16 @@ const meta: Meta<typeof Dialog> = {
     showClose: { control: false, table: { category: "docs" } },
     backdropClassName: { control: false, table: { category: "docs" } },
     initialStyles: { control: false, table: { category: "docs" } },
-    hasInitialFocus: { control: false, table: { category: "docs" } },
+    closeButtonAriaLabel: { control: false, table: { category: "docs" } },
+    initialFocus: { control: false, table: { category: "docs" } },
     horizontal: { table: { disable: true } },
     size: { table: { disable: true } },
     containerClassName: { table: { disable: true } },
     containerStyle: { table: { disable: true } },
     className: { table: { disable: true } },
+  },
+  args: {
+    closeButtonAriaLabel: "close",
   },
 };
 
@@ -45,14 +50,14 @@ export const Default: Story = {
     const button = canvas.getByTestId("default");
     await expect(button, "renders").toBeTruthy();
   },
-  render: (props) => {
-    const [isOpen, setIsOpen] = useState(props.isOpen);
+  render: ({ isOpen, ...rest }) => {
+    const [open, setOpen] = useState(isOpen);
     return (
       <>
-        <Button onClick={() => setIsOpen(true)} data-testid="default">
+        <Button onClick={() => setOpen(true)} data-testid="default">
           Open dialog
         </Button>
-        <Dialog isOpen={isOpen} setIsOpen={setIsOpen} size="md">
+        <Dialog {...rest} isOpen={open} setIsOpen={setOpen} size="md">
           <CardTitle>Lorem, ipsum dolor.</CardTitle>
           <CardText>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, id!
@@ -60,7 +65,7 @@ export const Default: Story = {
           <CardActions className="flex w-full flex-row justify-end">
             <Tooltip>
               <TooltipTrigger>
-                <Button onClick={() => setIsOpen(false)}>Close</Button>
+                <Button onClick={() => setOpen(false)}>Close</Button>
               </TooltipTrigger>
               <TooltipContent>Close</TooltipContent>
             </Tooltip>
@@ -71,18 +76,50 @@ export const Default: Story = {
   },
 };
 
+export const Form: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByTestId("default");
+    await expect(button, "renders").toBeTruthy();
+  },
+  render: ({ isOpen, ...rest }) => {
+    const [open, setOpen] = useState(isOpen);
+    return (
+      <>
+        <Button onClick={() => setOpen(true)} data-testid="default">
+          Open dialog
+        </Button>
+        <Dialog {...rest} isOpen={open} setIsOpen={setOpen} size="md">
+          <CardTitle>Lorem, ipsum dolor.</CardTitle>
+          <form className="p-4">
+            <Input />
+          </form>
+        </Dialog>
+      </>
+    );
+  },
+  argTypes: {
+    isOpen: { table: { disable: true } },
+    setIsOpen: { table: { disable: true } },
+    showClose: { table: { disable: true } },
+    backdropClassName: { table: { disable: true } },
+    initialStyles: { table: { disable: true } },
+    initialFocus: { table: { disable: true } },
+  },
+};
+
 export const BigText: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByTestId("default");
     await expect(button, "renders").toBeTruthy();
   },
-  render: (props) => {
-    const [isOpen, setIsOpen] = useState(props.isOpen);
-    const [isOpenSecond, setIsOpenSecond] = useState(props.isOpen);
+  render: ({ isOpen, ...rest }) => {
+    const [open, setOpen] = useState(isOpen);
+    const [isOpenSecond, setIsOpenSecond] = useState(false);
     return (
       <>
-        <Button onClick={() => setIsOpen(true)} data-testid="default">
+        <Button onClick={() => setOpen(true)} data-testid="default">
           Open dialog
         </Button>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem
@@ -129,19 +166,20 @@ export const BigText: Story = {
         Vitae, pariatur temporibus delectus exercitationem nobis ratione minus
         repudiandae illum rerum? Commodi alias ratione velit veniam, magnam et
         esse sapiente officiis quidem? Ullam delectus beatae et.
-        <Dialog isOpen={isOpen} setIsOpen={setIsOpen} size="md">
+        <Dialog {...rest} isOpen={open} setIsOpen={setOpen} size="md">
           <CardTitle>Lorem, ipsum dolor.</CardTitle>
           <CardText>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, id!
           </CardText>
           <CardActions className="flex w-full flex-row justify-between">
             <Button onClick={() => setIsOpenSecond(true)}>Open second</Button>
-            <Button onClick={() => setIsOpen(false)}>Close</Button>
+            <Button onClick={() => setOpen(false)}>Close</Button>
           </CardActions>
           <Dialog
-            hasInitialFocus={false}
+            {...rest}
             isOpen={isOpenSecond}
             setIsOpen={setIsOpenSecond}
+            initialFocus={-1}
             size="xl"
           >
             <CardTitle>Lorem, ipsum dolor.</CardTitle>
@@ -187,6 +225,6 @@ export const BigText: Story = {
     showClose: { table: { disable: true } },
     backdropClassName: { table: { disable: true } },
     initialStyles: { table: { disable: true } },
-    hasInitialFocus: { table: { disable: true } },
+    initialFocus: { table: { disable: true } },
   },
 };

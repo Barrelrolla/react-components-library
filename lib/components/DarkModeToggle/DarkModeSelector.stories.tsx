@@ -45,6 +45,11 @@ const meta: Meta<typeof DarkModeSelector> = {
     dividerClassName: { control: false, table: { category: "docs" } },
     wrapperClassName: { control: false, table: { category: "docs" } },
   },
+  args: {
+    darkModeAriaLabel: "dark",
+    lightModeAriaLabel: "light",
+    systemModeAriaLabel: "system",
+  },
 };
 
 export default meta;

@@ -73,7 +73,7 @@ export default <Record<string, CssInJs>>{
 
   ".muted-bg": {
     backgroundColor:
-      "color-mix(in oklab, var(--bg-color, var(--color-main-content)) 10%, var(--color-main))",
+      "color-mix(in oklab, var(--bg-color, var(--color-main-content)) 8%, var(--color-main))",
   },
 
   ".muted-main-bg": {

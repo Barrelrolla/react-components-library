@@ -46,6 +46,11 @@ const meta: Meta<typeof DarkModeToggle> = {
     selected: { table: { disable: true } },
     as: { table: { disable: true } },
   },
+  args: {
+    lightModeTooltip: "light",
+    darkModeTooltip: "dark",
+    "aria-label": "toggle",
+  },
 };
 
 export default meta;

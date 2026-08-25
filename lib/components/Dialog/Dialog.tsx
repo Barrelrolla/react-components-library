@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useState } from "react";
+import { CSSProperties, RefObject, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   FloatingFocusManager,
@@ -6,7 +6,6 @@ import {
   useClick,
   useDismiss,
   useFloating,
-  useId,
   useInteractions,
   useRole,
   useTransitionStyles,
@@ -26,6 +25,8 @@ export type DialogProps = {
   setIsOpen: (open: boolean) => void;
   /** Determines if a built-in close button should be rendered. */
   showClose?: boolean;
+  /** Accessible label for the close button. */
+  closeButtonAriaLabel?: string;
   /** Additional CSS class names applied to the modal backdrop/overlay element. */
   backdropClassName?: string;
   /**
@@ -33,8 +34,8 @@ export type DialogProps = {
    * (e.g., `{ opacity: 0, transform: 'scale(0.95)' }`). Useful for custom mount animations.
    */
   initialStyles?: CSSProperties;
-  /** Automatically shifts focus to the first focusable element inside the dialog when it opens. */
-  hasInitialFocus?: boolean;
+  /** Index or ref to the element to be initially focused. */
+  initialFocus?: number | RefObject<HTMLElement | null> | undefined;
 } & CardProps;
 
 /**
@@ -45,10 +46,11 @@ export type DialogProps = {
  * form, or card sub-components as children.
  */
 export function Dialog({
-  hasInitialFocus = true,
+  initialFocus = 1,
   isOpen,
   setIsOpen,
   showClose = true,
+  closeButtonAriaLabel,
   backdropClassName,
   initialStyles,
   className,
@@ -74,8 +76,6 @@ export function Dialog({
   const dismiss = useDismiss(context, { outsidePressEvent: "click" });
   const role = useRole(context);
   const { getFloatingProps } = useInteractions([click, dismiss, role]);
-  const labelId = useId();
-  const descriptionId = useId();
 
   const { classes, scrollArea, backdropClasses } = getDialogClasses({
     backdropClassName,
@@ -89,17 +89,17 @@ export function Dialog({
     return;
   }
 
+  const ariaLabel = props["aria-label"];
+  const ariaLabelledBy = props["aria-labelledby"];
+
   return createPortal(
     <FloatingOverlay lockScroll className={backdropClasses}>
-      <FloatingFocusManager
-        context={context}
-        initialFocus={hasInitialFocus ? 0 : -1}
-      >
+      <FloatingFocusManager context={context} initialFocus={initialFocus}>
         <dialog
           ref={refs.setFloating}
-          aria-labelledby={labelId}
-          aria-describedby={descriptionId}
           className={classes}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
           open
           style={styles}
           {...getFloatingProps()}
@@ -112,6 +112,7 @@ export function Dialog({
                   onClick={() => {
                     setIsOpen(false);
                   }}
+                  aria-label={closeButtonAriaLabel}
                   color="main"
                   variant="ghost"
                   size="sm"
