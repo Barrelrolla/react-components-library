@@ -249,9 +249,7 @@ export function Select({
   const ariaLabel = rest["aria-label"];
   const ariaLabeledBy = rest["aria-labelledby"];
   if (!ariaLabel && !ariaLabeledBy && !label) {
-    console.warn(
-      "Please provide an aria label or labeledby for combobox without a label.",
-    );
+    console.warn("Please provide an aria label for combobox without a label.");
   }
 
   let buttonText = placeholder;
@@ -305,7 +303,7 @@ export function Select({
             aria-describedby={
               resolvedId && error ? `${resolvedId}-error` : undefined
             }
-            aria-labelledby={resolvedId}
+            aria-labelledby={ariaLabeledBy || resolvedId}
             aria-label={ariaLabel}
             className={classes}
             tabIndex={0}

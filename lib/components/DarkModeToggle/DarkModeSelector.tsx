@@ -47,10 +47,10 @@ export function DarkModeSelector({
 
   return (
     <ButtonGroup size={size} divider={divider} {...rest}>
-      <Tooltip isLabel>
+      <Tooltip isLabel disabled={lightModeAriaLabel === undefined}>
         <TooltipTrigger>
           <Button
-            aria-label={lightModeAriaLabel ?? "light theme mode"}
+            aria-label={lightModeAriaLabel}
             selected={darkMode === lightModeName}
             onClick={() => setDarkMode(lightModeName)}
             startIcon={<SunIcon />}
@@ -58,10 +58,10 @@ export function DarkModeSelector({
         </TooltipTrigger>
         <TooltipContent>{lightModeTooltip}</TooltipContent>
       </Tooltip>
-      <Tooltip isLabel>
+      <Tooltip isLabel disabled={darkModeAriaLabel === undefined}>
         <TooltipTrigger>
           <Button
-            aria-label={darkModeAriaLabel ?? "dark theme mode"}
+            aria-label={darkModeAriaLabel}
             selected={darkMode === darkModeName}
             onClick={() => setDarkMode(darkModeName)}
             startIcon={<MoonIcon />}
@@ -69,11 +69,11 @@ export function DarkModeSelector({
         </TooltipTrigger>
         <TooltipContent>{darkModeTooltip}</TooltipContent>
       </Tooltip>
-      <Tooltip isLabel>
+      <Tooltip isLabel disabled={systemModeAriaLabel === undefined}>
         <TooltipContent>{systemModeTooltip}</TooltipContent>
         <TooltipTrigger>
           <Button
-            aria-label={systemModeAriaLabel ?? "system theme mode"}
+            aria-label={systemModeAriaLabel}
             selected={darkMode === systemModeName}
             onClick={() => setDarkMode(systemModeName)}
             startIcon={<ComputerIcon />}

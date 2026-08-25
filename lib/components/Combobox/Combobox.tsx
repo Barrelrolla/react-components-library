@@ -320,6 +320,7 @@ export function Combobox({
                   }
                   name={multiple ? undefined : name}
                   aria-label={ariaLabel}
+                  aria-labelledby={ariaLabeledBy}
                   disabled={disabled}
                   className="text-main-content line-clamp-1 w-0 grow-1 cursor-text px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
                   value={query}

@@ -95,9 +95,9 @@ export function Button<E extends ElementType = typeof defaultType>({
       : {}),
   };
 
-  const ariaLabel = rest["aria-label"] || "false";
-  const ariaDescribed = rest["aria-describedby"];
-  if (!ariaLabel && !ariaDescribed && !children) {
+  const ariaLabel = rest["aria-label"];
+  const ariaLabeledBy = rest["aria-labelledby"];
+  if (!ariaLabel && !ariaLabeledBy && !children) {
     console.warn("Provide an aria-label for buttons without text!");
   }
 
@@ -105,6 +105,7 @@ export function Button<E extends ElementType = typeof defaultType>({
     <span className={wrapperClasses}>
       <Element
         aria-label={ariaLabel}
+        aria-labelledby={ariaLabeledBy}
         data-selected={selected ? selected : undefined}
         style={{ ...cssColorProps(resolvedColor), ...style }}
         className={classes}

@@ -18,8 +18,8 @@ export function PopoverContent({ ...rest }: ComponentProps<"div">) {
   }
 
   const ariaLabel = rest["aria-label"];
-  const ariaDescribed = rest["aria-describedby"];
-  if (!ariaLabel && !ariaDescribed) {
+  const ariaLabeledBy = rest["aria-labelledby"];
+  if (!ariaLabel && !ariaLabeledBy) {
     console.warn(
       "Provide an aria-label describing the purpose of the popover.",
     );
@@ -29,6 +29,8 @@ export function PopoverContent({ ...rest }: ComponentProps<"div">) {
     <FloatingElementContent
       context={context}
       getClasses={getPopoverClasses}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabeledBy}
       {...rest}
     />
   );

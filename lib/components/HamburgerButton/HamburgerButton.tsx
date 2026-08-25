@@ -23,13 +23,7 @@ export function HamburgerButton({
     className,
   });
   return (
-    <Button
-      aria-label={rest["aria-label"] ?? "navigation toggle"}
-      variant="ghost"
-      color={color}
-      className={button}
-      {...rest}
-    >
+    <Button variant="ghost" color={color} className={button} {...rest}>
       <div className={container}>
         <span style={{ ...cssColorProps(color) }} className={topLine}></span>
         <span style={{ ...cssColorProps(color) }} className={midLine}></span>

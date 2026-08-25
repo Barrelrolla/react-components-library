@@ -18,8 +18,8 @@ export type DarkModeToggleProps = {
 export function DarkModeToggle({
   variant = "ghost",
   size = "sm",
-  lightModeTooltip = "Light",
-  darkModeTooltip = "Dark",
+  lightModeTooltip,
+  darkModeTooltip,
   ...rest
 }: DarkModeToggleProps) {
   const theme = useTheme();
@@ -28,11 +28,13 @@ export function DarkModeToggle({
   }
   const { isDark, setDarkMode } = theme;
   return (
-    <Tooltip isLabel>
+    <Tooltip
+      isLabel
+      disabled={lightModeTooltip === undefined || darkModeTooltip === undefined}
+    >
       <TooltipTrigger>
         <Button
           variant={variant}
-          aria-label={rest["aria-label"] ?? "dark mode toggle"}
           onClick={() => setDarkMode(isDark ? lightModeName : darkModeName)}
           startIcon={isDark ? <SunIcon /> : <MoonIcon />}
           size={size}
