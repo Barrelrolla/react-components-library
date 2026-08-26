@@ -211,6 +211,7 @@ export function Select({
     labelClassName,
     errorClassName,
     wrapperClassName,
+    carretPadding: true,
     group,
   });
 
@@ -297,7 +298,7 @@ export function Select({
         <span id={resolvedId} className={labelClasses}>
           {label}
         </span>
-        <div className="flex flex-col disabled:cursor-not-allowed">
+        <div className="flex flex-col has-disabled:cursor-not-allowed">
           <div
             data-error={error ? true : undefined}
             aria-describedby={
@@ -341,17 +342,17 @@ export function Select({
                   }
                 </Badge>
               ))}
-            <div className="flex h-full w-max flex-1 items-center justify-between">
+            <div className="flex h-[stretch] w-max flex-1 items-center justify-between">
               <button
                 type="button"
                 aria-hidden={true}
                 disabled={disabled}
                 tabIndex={-1}
-                className="line-clamp-1 h-full cursor-pointer px-3 py-1.5 text-left disabled:pointer-events-none disabled:opacity-50"
+                className="line-clamp-1 h-full w-full cursor-pointer px-3 py-1.5 text-left disabled:pointer-events-none disabled:opacity-50"
               >
                 {buttonText}
               </button>
-              <div className="flex items-center">
+              <div className="flex items-center h-full cursor-pointer">
                 {(selectedIndex !== undefined || selectedIndices.length > 0) &&
                   showClear && (
                     <Button

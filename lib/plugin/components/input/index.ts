@@ -6,7 +6,7 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".input-field": {
-    "@apply text-main-content focus:outline-none w-full py-1.5 px-3 disabled:cursor-not-allowed disabled:select-none rounded-inputs disabled:opacity-70 no-spinners resize-none":
+    "@apply text-main-content focus:outline-none w-full h-[stretch] py-1.5 px-3 disabled:cursor-not-allowed disabled:select-none rounded-inputs disabled:opacity-70 no-spinners resize-none":
       {},
   },
   ".input-field-label": {

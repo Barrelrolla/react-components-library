@@ -13,6 +13,7 @@ export function getSelectClasses({
   labelClassName,
   errorClassName,
   wrapperClassName,
+  carretPadding,
   group,
 }: {
   color?: ColorType;
@@ -24,6 +25,7 @@ export function getSelectClasses({
   labelClassName?: string;
   errorClassName?: string;
   wrapperClassName?: string;
+  carretPadding?: boolean;
   group?: ButtonGroupContextType;
 }) {
   const inGroup = group !== null;
@@ -32,7 +34,7 @@ export function getSelectClasses({
 
   return {
     classes: twMerge(
-      "input-field-container flex-wrap",
+      "input-field-container flex-wrap has-disabled:pointer-events-none has-disabled:select-none",
       !inGroup &&
         !disabled &&
         !isMounted &&
@@ -58,7 +60,7 @@ export function getSelectClasses({
     ),
     errorClasses: twMerge("select-error", errorClassName),
     caretClasses: twMerge(
-      "mr-3 inline h-4",
+      carretPadding && "mr-3",
       isOpen ? "rotate-180" : "rotate-0",
       "transition-transform",
     ),

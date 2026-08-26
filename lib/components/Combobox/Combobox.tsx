@@ -97,6 +97,7 @@ export function Combobox({
   ...rest
 }: ComboboxProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
     initialSelectedIndex,
@@ -213,7 +214,7 @@ export function Combobox({
       floatingRef.current?.contains(e.relatedTarget)
     ) {
       requestAnimationFrame(() => {
-        inputRef.current?.focus({ preventScroll: true });
+        containerRef.current?.focus({ preventScroll: true });
       });
     }
   };
@@ -232,6 +233,7 @@ export function Combobox({
       items={items.map((item) => item.name)}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
+      setIsMounted={setIsMounted}
       selectedIndex={selectedIndex}
       selectedIndices={selectedIndices}
     >
@@ -299,7 +301,7 @@ export function Combobox({
                   }
                 </Badge>
               ))}
-            <div className="flex flex-1 items-center justify-between">
+            <div className="flex flex-1 h-[stretch] items-center justify-between">
               <AutocompleteTrigger>
                 <input
                   role="combobox"
@@ -325,7 +327,7 @@ export function Combobox({
                   aria-label={ariaLabel}
                   aria-labelledby={ariaLabeledBy}
                   disabled={disabled}
-                  className="text-main-content line-clamp-1 w-0 grow-1 cursor-text px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  className="text-main-content line-clamp-1 w-full h-full grow-1 cursor-text px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
                   value={query}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -343,7 +345,7 @@ export function Combobox({
                   {...rest}
                 />
               </AutocompleteTrigger>
-              <div className="flex items-center">
+              <div className="flex h-full items-center">
                 {(selectedIndex !== undefined || selectedIndices.length > 0) &&
                   showClear && (
                     <Button
@@ -354,14 +356,15 @@ export function Combobox({
                       size="sm"
                       variant="ghost"
                       color={isFocused ? resolvedColor : "main"}
-                      className="h-6 p-1"
+                      className="h-full p-1"
+                      wrapperClassName="h-full"
                       onClick={(e) => {
                         e.stopPropagation();
                         setIsFocused(false);
                         clear();
                       }}
                     >
-                      <XIcon className={"mr-1 inline size-4"} />
+                      <XIcon className={"inline size-4"} />
                     </Button>
                   )}
                 <Button
@@ -369,13 +372,16 @@ export function Combobox({
                   aria-label={toggleOpenAriaLabel}
                   useGroup={false}
                   radius="pill"
-                  size="sm"
+                  size="xs"
+                  wrapperClassName="h-full"
+                  className="px-2 py-0 h-full"
                   variant="ghost"
                   color={isFocused ? resolvedColor : "main"}
-                  className="h-6 p-0"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setIsOpen(!isOpen);
+                    if (!isMounted) {
+                      setIsOpen(true);
+                    }
                   }}
                 >
                   <CaretDownIcon className={caretClasses} />

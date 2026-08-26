@@ -31,6 +31,8 @@ export type AutocompleteProps = {
   isOpen: boolean;
   /** Callback fired when the open state of the dropdown changes. */
   setIsOpen: (open: boolean) => void;
+  /**Callback fired when the mounted state changes. */
+  setIsMounted?: (mounted: boolean) => void;
   /** The list of selectable string items to search through. */
   items: string[];
   /** The current search query used to filter the item list. */
@@ -70,6 +72,7 @@ export function Autocomplete({
   color = "main",
   isOpen,
   setIsOpen,
+  setIsMounted,
   query,
   onSelectItem,
   items,
@@ -133,12 +136,12 @@ export function Autocomplete({
   }, [filteredItems.length]);
 
   useEffect(() => {
-    if (filteredItems.length > 0) {
+    if (query && filteredItems.length > 0) {
       setActiveIndex(0);
     } else {
       setActiveIndex(null);
     }
-  }, [filteredItems]);
+  }, [filteredItems, query]);
 
   const data = useFloating({
     open: isOpen,
@@ -172,6 +175,9 @@ export function Autocomplete({
     data,
     false,
   );
+  if (setIsMounted) {
+    setIsMounted(isMounted);
+  }
 
   return (
     <AutocompleteContextProvider
