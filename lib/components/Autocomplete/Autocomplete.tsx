@@ -175,9 +175,10 @@ export function Autocomplete({
     data,
     false,
   );
-  if (setIsMounted) {
-    setIsMounted(isMounted);
-  }
+
+  useEffect(() => {
+    if (setIsMounted) setIsMounted(isMounted);
+  }, [isMounted, setIsMounted]);
 
   return (
     <AutocompleteContextProvider

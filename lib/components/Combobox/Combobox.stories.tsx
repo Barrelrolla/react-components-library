@@ -362,22 +362,12 @@ export const Default: Story = {
   },
   render: ({ ...rest }) => {
     return (
-      <form
-        action={(f) => {
-          const a = f.get("test")?.toString();
-          console.log(a);
-        }}
-      >
-        <Combobox
-          data-testid="Combobox"
-          aria-label="select country"
-          {...rest}
-          name="test"
-          items={countries}
-          initialSelectedIndex={5}
-        />
-        <button>gege</button>
-      </form>
+      <Combobox
+        data-testid="Combobox"
+        aria-label="select country"
+        {...rest}
+        items={countries}
+      />
     );
   },
   parameters: {

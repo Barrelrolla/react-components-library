@@ -14,6 +14,8 @@ import { CloseIcon } from "@/icons";
 import { Button } from "../Button";
 
 export type FloatingContentProps = {
+  /** Amount of pixels to offset the floating element on the X scale. */
+  offsetX?: number;
   /** Internal positioning context, state, and floating metadata shared across floating components. */
   context: FloatingElementContextType;
   /** When `true`, matches the directional arrow color to the floating element's color variant background. */
@@ -41,6 +43,7 @@ export type FloatingContentProps = {
  */
 export function FloatingElementContent({
   context,
+  offsetX,
   coloredArror = false,
   closeButtonAriaLabel,
   getClasses,
@@ -123,7 +126,7 @@ export function FloatingElementContent({
           style={
             isMobile && context.mobileSheet
               ? undefined
-              : context.data.floatingStyles
+              : { ...context.data.floatingStyles, translate: `${offsetX}px` }
           }
         >
           <div style={styles} className={classes} {...rest}>

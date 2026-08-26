@@ -39,8 +39,18 @@ export function AutocompleteContent({
 
   const styles = { width, ...style };
 
+  const wrapperWidh =
+    context.data.elements.domReference?.parentElement?.clientWidth;
+  const parentWidth = parentRef?.current?.clientWidth;
+  const offset = wrapperWidh && parentWidth ? wrapperWidh - parentWidth : 0;
+
   return (
-    <FloatingElementContent context={context} style={styles} {...rest}>
+    <FloatingElementContent
+      context={context}
+      style={styles}
+      {...rest}
+      offsetX={offset}
+    >
       <FloatingList elementsRef={context.listRef}>
         {context.filteredItems.length > 0 && (
           <ul>
