@@ -274,7 +274,7 @@ export const Form: Story = {
               initialSelectedIndex={optionIndex}
               onSelectedIndexChange={setOptionIndex}
             >
-              <SelectContent>
+              <SelectContent closeButtonAriaLabel="close">
                 <SelectGroup>
                   {options.map((option, index) => {
                     return (
@@ -310,7 +310,7 @@ export const Form: Story = {
                 }
               }}
             >
-              <SelectContent>
+              <SelectContent closeButtonAriaLabel="close">
                 <SelectGroup>
                   {optionsMany.map((option, index) => {
                     return (
@@ -337,6 +337,8 @@ export const Form: Story = {
             <Combobox
               wrapperClassName="w-full"
               toggleOpenAriaLabel="toggle"
+              removeAllItemsAriaLabel="remove all"
+              removeItemAriaLabel="remove"
               multiple
               ref={comboManyRef}
               items={comboMany}

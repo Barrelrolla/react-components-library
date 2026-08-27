@@ -32,7 +32,6 @@ export function DropdownTrigger({ children, ...rest }: DropdownTriggerProps) {
       tabIndex={
         !isNested ? undefined : parent?.activeIndex === item.index ? 0 : -1
       }
-      role={isNested ? "menuitem" : undefined}
       {...context.interactions.getReferenceProps(
         parent?.interactions.getItemProps({
           ...rest,

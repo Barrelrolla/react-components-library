@@ -82,7 +82,7 @@ export const Default: Story = {
         <DropdownTrigger>
           <Button>Open menu</Button>
         </DropdownTrigger>
-        <DropdownContent>
+        <DropdownContent closeButtonAriaLabel="close">
           <DropdownTitle>Menu</DropdownTitle>
           <DropdownList>
             <DropdownListItem>Item 1</DropdownListItem>
@@ -155,7 +155,7 @@ export const Colors: Story = {
               <DropdownTrigger>
                 <Button color={color}>{color}</Button>
               </DropdownTrigger>
-              <DropdownContent>
+              <DropdownContent closeButtonAriaLabel="close">
                 <DropdownTitle>Menu</DropdownTitle>
                 <DropdownList>
                   <DropdownListItem>Item 1</DropdownListItem>
@@ -163,7 +163,7 @@ export const Colors: Story = {
                     <DropdownTrigger>
                       <DropdownListItem>Item 2</DropdownListItem>
                     </DropdownTrigger>
-                    <DropdownContent>
+                    <DropdownContent closeButtonAriaLabel="close">
                       <DropdownList>
                         <DropdownListItem>Nested</DropdownListItem>
                       </DropdownList>

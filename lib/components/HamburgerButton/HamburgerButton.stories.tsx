@@ -31,6 +31,9 @@ const meta: Meta<typeof HamburgerButton> = {
     wrapperClassName: { table: { disable: true } },
     useGroup: { table: { disable: true } },
   },
+  args: {
+    "aria-label": "toggle",
+  },
 };
 
 export default meta;

@@ -112,6 +112,7 @@ export function FloatingElementContent({
       <FloatingFocusManager
         context={context.data.context}
         modal={false}
+        disabled={true}
         initialFocus={context.isNested || !context.useFocus ? -1 : 0}
         returnFocus={
           context && context.returnFocus !== null
@@ -122,14 +123,21 @@ export function FloatingElementContent({
         <div
           className="floating-container"
           ref={context.data.refs.setFloating}
+          aria-label={rest["aria-label"]}
           {...context.interactions.getFloatingProps()}
+          // { "aria-label": rest["aria-label"] }}
           style={
             isMobile && context.mobileSheet
               ? undefined
               : { ...context.data.floatingStyles, translate: `${offsetX}px` }
           }
         >
-          <div style={styles} className={classes} {...rest}>
+          <div
+            style={styles}
+            className={classes}
+            {...rest}
+            aria-label={undefined}
+          >
             {isMobile && mobileSheet && (
               <Button
                 aria-label={closeButtonAriaLabel}

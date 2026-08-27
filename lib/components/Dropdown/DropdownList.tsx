@@ -16,7 +16,9 @@ export function DropdownList({ children, ...rest }: ComponentProps<"menu">) {
 
   return (
     <FloatingList elementsRef={context.listRef} labelsRef={context.labelsRef}>
-      <menu {...rest}>{children}</menu>
+      <menu role="menu" {...rest}>
+        {children}
+      </menu>
     </FloatingList>
   );
 }

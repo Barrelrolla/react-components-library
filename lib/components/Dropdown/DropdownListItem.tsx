@@ -38,11 +38,11 @@ export function DropdownListItem<E extends ElementType = typeof defaultType>({
   const Element = as || defaultType;
 
   return (
-    <li className="has-disabled:cursor-not-allowed">
+    <li className="has-disabled:cursor-not-allowed" role="menuitem">
       <Element
+        data-test={children}
         style={{ ...cssColorPropsReversed(resolvedColor), ...style }}
         ref={useMergeRefs([item.ref, ref as Ref<HTMLElement | null>])}
-        role="menuitem"
         disabled={disabled}
         tabIndex={isActive ? 0 : -1}
         className={classes}
@@ -57,6 +57,7 @@ export function DropdownListItem<E extends ElementType = typeof defaultType>({
           },
         })}
         {...rest}
+        role={undefined}
       >
         {children}
         <CaretDownIcon className="group-can-expand:inline hidden -rotate-90" />

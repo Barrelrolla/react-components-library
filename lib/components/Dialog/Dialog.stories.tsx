@@ -38,6 +38,7 @@ const meta: Meta<typeof Dialog> = {
   },
   args: {
     closeButtonAriaLabel: "close",
+    "aria-label": "dialog",
   },
 };
 

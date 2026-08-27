@@ -20,3 +20,4 @@ export * from "./Select";
 export * from "./Skeleton";
 export * from "./Autocomplete";
 export * from "./Combobox";
+export * from "./Pagination";

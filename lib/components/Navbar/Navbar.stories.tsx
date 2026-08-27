@@ -110,7 +110,7 @@ export const Default: Story = {
     return (
       <div className="bg-main">
         <Navbar fixed={fixed} {...rest} className={fixed ? "" : "relative"}>
-          <NavbarToggle />
+          <NavbarToggle aria-label="toggle" />
           <NavbarBrand href="#">
             <PiRocket /> Test
           </NavbarBrand>
@@ -163,7 +163,7 @@ export const PageDemo: Story = {
     return (
       <div className="bg-main pt-14 md:pt-0">
         <Navbar color={color} {...rest}>
-          <NavbarToggle />
+          <NavbarToggle aria-label="toggle" />
           <NavbarBrand href="#">
             <PiRocket /> Test
           </NavbarBrand>
