@@ -121,6 +121,8 @@ export function FloatingElementContent({
     innerClassName,
   ]);
 
+  const backdropClasses = twMerge(["z-(--z-floats)", backdropClassName]);
+
   const Content = (
     <div
       className="floating-container"
@@ -171,7 +173,7 @@ export function FloatingElementContent({
 
   const Element =
     context.hasBackdrop || (mobileSheet && isMobile) ? (
-      <FloatingOverlay lockScroll className={backdropClassName}>
+      <FloatingOverlay lockScroll className={backdropClasses}>
         {Content}
       </FloatingOverlay>
     ) : (
