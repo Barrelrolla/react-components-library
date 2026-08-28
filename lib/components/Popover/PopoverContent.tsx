@@ -4,8 +4,8 @@ import { getPopoverClasses } from "./getPopoverClasses";
 import { FloatingElementContent } from "../Floating";
 
 type PopoverContentProps = {
-  /** CSS classnames that will be applied to the backdrop. */
-  backdropClasses?: string;
+  /** CSS class names that will be applied to the backdrop. */
+  backdropClassName?: string;
 } & ComponentProps<"div">;
 
 /**
@@ -15,7 +15,7 @@ type PopoverContentProps = {
  * `FloatingElementContent` wrapper while accepting standard HTML `div` attributes.
  */
 export function PopoverContent({
-  backdropClasses,
+  backdropClassName,
   ...rest
 }: PopoverContentProps) {
   const context = usePopoverContext();
@@ -36,7 +36,7 @@ export function PopoverContent({
   return (
     <FloatingElementContent
       context={context}
-      backdropClasses={backdropClasses}
+      backdropClassName={backdropClassName}
       getClasses={getPopoverClasses}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabeledBy}

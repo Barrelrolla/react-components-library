@@ -13,6 +13,7 @@ import { FloatingElementContextType } from "./FloatingElementContextType";
 import { getFloatingContentClasses } from "./getFloatinigClasses";
 import { CloseIcon } from "@/icons";
 import { Button } from "../Button";
+import { twMerge } from "tailwind-merge";
 
 export type FloatingContentProps = {
   /** Amount of pixels to offset the floating element on the X scale. */
@@ -33,8 +34,10 @@ export type FloatingContentProps = {
     mobileSheetPlacement?: MobileSheetPlacementType;
     className?: string;
   }) => { classes: string };
-  /** CSS classnames that will be applied to the backdrop. */
-  backdropClasses?: string;
+  /** CSS class names that will be applied to the backdrop. */
+  backdropClassName?: string;
+  /** CSS class names that will be applied to the inner container that is used as a scrollbox. */
+  innerClassName?: string;
 } & ComponentProps<"div">;
 
 /**
@@ -52,7 +55,8 @@ export function FloatingElementContent({
   getClasses,
   className,
   style,
-  backdropClasses,
+  backdropClassName,
+  innerClassName,
   children,
   ...rest
 }: FloatingContentProps) {
@@ -110,7 +114,12 @@ export function FloatingElementContent({
     ...style,
   };
 
-  const innerClasses = `floating-container-inner ${mobileSheet ? "max-h-[calc(3/4*100vh)] sm:max-h-80" : "max-h-80"}`;
+  const innerClasses = twMerge([
+    "floating-container-inner",
+    mobileSheet && "max-h-[calc(3/4*100vh)] sm:max-h-80",
+    !mobileSheet && "max-h-80",
+    innerClassName,
+  ]);
 
   const Content = (
     <div
@@ -160,7 +169,7 @@ export function FloatingElementContent({
 
   const Element =
     context.hasBackdrop || (mobileSheet && isMobile) ? (
-      <FloatingOverlay lockScroll className={backdropClasses}>
+      <FloatingOverlay lockScroll className={backdropClassName}>
         {Content}
       </FloatingOverlay>
     ) : (

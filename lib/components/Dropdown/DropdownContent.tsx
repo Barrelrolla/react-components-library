@@ -5,8 +5,10 @@ import { FloatingElementContent } from "../Floating";
 export type DropdownContentProps = {
   /** Accessible label applied to the button that collapses the floating element on mobile devices. */
   closeButtonAriaLabel?: string;
-  /** CSS classnames that will be applied to the backdrop. */
-  backdropClasses?: string;
+  /** CSS class names that will be applied to the backdrop. */
+  backdropClassName?: string;
+  /** CSS class names that will be applied to the inner container that is used as a scrollbox. */
+  innerClassName?: string;
 } & ComponentProps<"div">;
 
 /**
