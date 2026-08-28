@@ -35,6 +35,7 @@ const meta: Meta<typeof Popover> = {
     disabled: { table: { category: "controls" } },
     role: { control: false, table: { category: "docs" } },
     onOpenChange: { control: false, table: { category: "docs" } },
+    hasBackdrop: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -125,5 +126,6 @@ export const Nested: Story = {
     placement: { table: { disable: true } },
     role: { table: { disable: true } },
     onOpenChange: { table: { disable: true } },
+    hasBackdrop: { table: { disable: true } },
   },
 };

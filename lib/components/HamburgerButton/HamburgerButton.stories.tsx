@@ -30,6 +30,7 @@ const meta: Meta<typeof HamburgerButton> = {
     as: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
     useGroup: { table: { disable: true } },
+    "aria-label": { table: { disable: true } },
   },
   args: {
     "aria-label": "toggle",

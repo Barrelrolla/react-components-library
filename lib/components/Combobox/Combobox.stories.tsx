@@ -45,6 +45,7 @@ const meta: Meta<typeof Combobox> = {
     toggleOpenAriaLabel: { control: false, table: { category: "docs" } },
     removeAllItemsAriaLabel: { control: false, table: { category: "docs" } },
     removeItemAriaLabel: { control: false, table: { category: "docs" } },
+    useGroup: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -399,6 +400,7 @@ export const WithLabel: Story = {
     toggleOpenAriaLabel: { table: { disable: true } },
     removeAllItemsAriaLabel: { table: { disable: true } },
     removeItemAriaLabel: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
   parameters: {
     docs: {
@@ -429,6 +431,7 @@ export const Multiple: Story = {
     errorClassName: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
     wrapperStyle: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
   parameters: {
     docs: {
@@ -462,6 +465,7 @@ export const WithError: Story = {
     errorClassName: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
     wrapperStyle: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
   parameters: {
     docs: {
@@ -496,6 +500,7 @@ export const Disabled: Story = {
     errorClassName: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
     wrapperStyle: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
   parameters: {
     docs: {
@@ -541,6 +546,7 @@ export const Sizes: Story = {
     errorClassName: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
     wrapperStyle: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
   parameters: {
     docs: {
@@ -609,6 +615,7 @@ export const Colors: Story = {
     errorClassName: { table: { disable: true } },
     wrapperClassName: { table: { disable: true } },
     wrapperStyle: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
   parameters: {
     docs: {

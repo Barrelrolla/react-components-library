@@ -35,6 +35,7 @@ const meta: Meta<typeof Dialog> = {
     containerClassName: { table: { disable: true } },
     containerStyle: { table: { disable: true } },
     className: { table: { disable: true } },
+    "aria-label": { table: { disable: true } },
   },
   args: {
     closeButtonAriaLabel: "close",

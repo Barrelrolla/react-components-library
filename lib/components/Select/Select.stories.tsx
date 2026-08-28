@@ -58,6 +58,8 @@ const meta: Meta<typeof Select> = {
     wrapperStyle: { control: false, table: { category: "docs" } },
     removeAllItemsAriaLabel: { control: false, table: { category: "docs" } },
     removeItemAriaLabel: { control: false, table: { category: "docs" } },
+    hasBackdrop: { control: false, table: { category: "docs" } },
+    useGroup: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -150,6 +152,8 @@ export const Multiple: Story = {
     wrapperStyle: { table: { disable: true } },
     removeAllItemsAriaLabel: { table: { disable: true } },
     removeItemAriaLabel: { table: { disable: true } },
+    hasBackdrop: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -193,6 +197,8 @@ export const WithLabel: Story = {
     wrapperStyle: { table: { disable: true } },
     removeAllItemsAriaLabel: { table: { disable: true } },
     removeItemAriaLabel: { table: { disable: true } },
+    hasBackdrop: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -237,6 +243,8 @@ export const WithError: Story = {
     wrapperStyle: { table: { disable: true } },
     removeAllItemsAriaLabel: { table: { disable: true } },
     removeItemAriaLabel: { table: { disable: true } },
+    hasBackdrop: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -282,6 +290,8 @@ export const Disabled: Story = {
     wrapperStyle: { table: { disable: true } },
     removeAllItemsAriaLabel: { table: { disable: true } },
     removeItemAriaLabel: { table: { disable: true } },
+    hasBackdrop: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -324,6 +334,8 @@ export const Sizes: Story = {
     wrapperStyle: { table: { disable: true } },
     removeAllItemsAriaLabel: { table: { disable: true } },
     removeItemAriaLabel: { table: { disable: true } },
+    hasBackdrop: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -371,5 +383,7 @@ export const Colors: Story = {
     wrapperStyle: { table: { disable: true } },
     removeAllItemsAriaLabel: { table: { disable: true } },
     removeItemAriaLabel: { table: { disable: true } },
+    hasBackdrop: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };

@@ -59,6 +59,7 @@ const meta: Meta<typeof Dropdown> = {
     mobileSheet: { table: { category: "controls" } },
     isOpen: { control: false, table: { category: "docs" } },
     onOpenChange: { control: false, table: { category: "docs" } },
+    hasBackdrop: { table: { category: "docs" } },
   },
 };
 
@@ -181,5 +182,6 @@ export const Colors: Story = {
     color: { table: { disable: true } },
     isOpen: { table: { disable: true } },
     onOpenChange: { table: { disable: true } },
+    hasBackdrop: { table: { disable: true } },
   },
 };

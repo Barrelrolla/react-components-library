@@ -45,6 +45,7 @@ const meta: Meta<typeof Autocomplete> = {
     onSelectItem: { control: false, table: { category: "docs" } },
     selectedIndex: { control: false, table: { category: "docs" } },
     selectedIndices: { control: false, table: { category: "docs" } },
+    triggerRef: { control: false, table: { category: "docs" } },
   },
 };
 

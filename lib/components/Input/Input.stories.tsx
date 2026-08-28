@@ -48,6 +48,7 @@ const meta: Meta<typeof Input> = {
       control: false,
       table: { category: "docs" },
     },
+    useGroup: { control: false, table: { category: "docs" } },
   },
 };
 
@@ -342,6 +343,7 @@ export const WithLabel: Story = {
     stepUpAriaLabel: { table: { disable: true } },
     stepDownAriaLabel: { table: { disable: true } },
     revealPasswordToggleAriaLabel: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -368,6 +370,7 @@ export const WithIcon: Story = {
     stepUpAriaLabel: { table: { disable: true } },
     stepDownAriaLabel: { table: { disable: true } },
     revealPasswordToggleAriaLabel: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -395,6 +398,7 @@ export const WithError: Story = {
     stepUpAriaLabel: { table: { disable: true } },
     stepDownAriaLabel: { table: { disable: true } },
     revealPasswordToggleAriaLabel: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -420,6 +424,7 @@ export const Textarea: Story = {
     stepUpAriaLabel: { table: { disable: true } },
     stepDownAriaLabel: { table: { disable: true } },
     revealPasswordToggleAriaLabel: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -449,6 +454,7 @@ export const Number: Story = {
     stepUpAriaLabel: { table: { disable: true } },
     stepDownAriaLabel: { table: { disable: true } },
     revealPasswordToggleAriaLabel: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -477,6 +483,7 @@ export const Password: Story = {
     stepUpAriaLabel: { table: { disable: true } },
     stepDownAriaLabel: { table: { disable: true } },
     revealPasswordToggleAriaLabel: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -504,6 +511,7 @@ export const Disabled: Story = {
     stepUpAriaLabel: { table: { disable: true } },
     stepDownAriaLabel: { table: { disable: true } },
     revealPasswordToggleAriaLabel: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -530,6 +538,7 @@ export const WithAutocomplete: Story = {
     stepUpAriaLabel: { table: { disable: true } },
     stepDownAriaLabel: { table: { disable: true } },
     revealPasswordToggleAriaLabel: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -564,6 +573,7 @@ export const Sizes: Story = {
     stepUpAriaLabel: { table: { disable: true } },
     stepDownAriaLabel: { table: { disable: true } },
     revealPasswordToggleAriaLabel: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
 
@@ -598,5 +608,6 @@ export const Colors: Story = {
     stepUpAriaLabel: { table: { disable: true } },
     stepDownAriaLabel: { table: { disable: true } },
     revealPasswordToggleAriaLabel: { table: { disable: true } },
+    useGroup: { table: { disable: true } },
   },
 };
