@@ -118,7 +118,7 @@ export function PopoverComponent({
     <FloatingNode id={nodeId}>
       <PopoverContextProvider
         value={{
-          useFocus: false,
+          useFocus: !requireClick,
           returnFocus: false,
           isNested: false,
           mobileSheet: false,
