@@ -112,7 +112,7 @@ export const Nested: Story = {
         <DropdownTrigger>
           <Button>Open menu</Button>
         </DropdownTrigger>
-        <DropdownContent>
+        <DropdownContent closeButtonAriaLabel="close">
           <DropdownTitle>Menu</DropdownTitle>
           <DropdownList>
             <DropdownListItem>Item 1</DropdownListItem>
@@ -121,7 +121,7 @@ export const Nested: Story = {
               <DropdownTrigger>
                 <DropdownListItem>Item 3</DropdownListItem>
               </DropdownTrigger>
-              <DropdownContent>
+              <DropdownContent closeButtonAriaLabel="close">
                 <DropdownTitle>Sub menu</DropdownTitle>
                 <DropdownList>
                   <DropdownListItem>Nested 1</DropdownListItem>

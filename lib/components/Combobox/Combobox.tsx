@@ -59,6 +59,8 @@ export type ComboboxProps = {
   toggleOpenAriaLabel?: string;
   /** Indicates if a clear button should be show. If not value is provided it will be shown for multi select and not shown for single select */
   showClearButton?: boolean;
+  /** When set to `false`, forces a child button within a `ButtonGroup` to ignore group border and border-radius joining rules. */
+  useGroup?: boolean;
 } & Omit<ComponentProps<"input">, "size">;
 
 /**
@@ -93,6 +95,7 @@ export function Combobox({
   onChange,
   showClearButton,
   defaultValue,
+  useGroup = true,
   ref,
   ...rest
 }: ComboboxProps) {
@@ -108,7 +111,8 @@ export function Combobox({
   const [query, setQuery] = useState(
     value?.toString() || defaultValue?.toString() || "",
   );
-  const group = useButtonGroupContext();
+  const foundGroup = useButtonGroupContext();
+  const group = useGroup ? foundGroup : null;
   const isMobile = useIsMobile();
 
   const {
@@ -220,7 +224,6 @@ export function Combobox({
   };
 
   const showClear = showClearButton ?? multiple;
-
   return (
     <Autocomplete
       color={color}
@@ -250,13 +253,15 @@ export function Combobox({
         onBlur={() => {
           setIsFocused(false);
           if (!allowFreeText) {
-            if (items.map((item) => item.name).indexOf(query) < 0) {
+            if (selectedIndex) {
+              setValue(items[selectedIndex].value);
+            } else if (items.map((item) => item.name).indexOf(query) < 0) {
               setValue("");
             }
           }
         }}
         onKeyDown={(e: KeyboardEvent) => {
-          if (!multiple && e.key !== "ArrowDown") {
+          if (!multiple && e.key === "Backspace") {
             setSelectedIndex(undefined);
           } else if (e.key === "Backspace") {
             if (query.length === 0 && selectedIndices.length > 0) {
@@ -289,7 +294,7 @@ export function Combobox({
                         variant="ghost"
                         radius="pill"
                         size="xs"
-                        className="size-5 p-0"
+                        className="size-5 shrink-0 p-0"
                         startIcon={<XIcon className="size-3.5" />}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -301,7 +306,7 @@ export function Combobox({
                   }
                 </Badge>
               ))}
-            <div className="flex flex-1 h-[stretch] items-center justify-between">
+            <div className="flex h-[stretch] flex-1 items-center justify-between">
               <AutocompleteTrigger>
                 <input
                   role="combobox"
@@ -327,7 +332,7 @@ export function Combobox({
                   aria-label={ariaLabel}
                   aria-labelledby={ariaLabeledBy}
                   disabled={disabled}
-                  className="text-main-content line-clamp-1 w-full h-full grow-1 cursor-text px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  className="text-main-content line-clamp-1 h-full w-full grow-1 cursor-text px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
                   value={query}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -356,7 +361,7 @@ export function Combobox({
                       size="sm"
                       variant="ghost"
                       color={isFocused ? resolvedColor : "main"}
-                      className="h-full p-1"
+                      className="h-full shrink-0 p-1"
                       wrapperClassName="h-full"
                       onClick={(e) => {
                         e.stopPropagation();
@@ -374,7 +379,7 @@ export function Combobox({
                   radius="pill"
                   size="xs"
                   wrapperClassName="h-full"
-                  className="px-2 py-0 h-full"
+                  className="h-full px-2 py-0"
                   variant="ghost"
                   color={isFocused ? resolvedColor : "main"}
                   onClick={(e) => {

@@ -49,23 +49,24 @@ export function getGropuedItemClasses({
   variant?: ButtonVariant;
 }) {
   return twMerge(
+    "group-btn:bg-red-500",
     !vertical &&
       radius === "default" &&
-      "group-first:rounded-l-(--radius-inputs) group-last:rounded-r-(--radius-inputs)",
+      "group-first/btn:rounded-l-(--radius-inputs) group-last/btn:rounded-r-(--radius-inputs)",
     !vertical &&
       radius === "pill" &&
-      "group-first:rounded-l-full group-last:rounded-r-full",
+      "group-first/btn:rounded-l-full group-last/btn:rounded-r-full",
     !vertical &&
       variant === "outline" &&
-      "border-y border-(--bg-color) group-first:border-l group-last:border-r",
+      "border-y border-(--bg-color) group-first/btn:border-l group-last/btn:border-r",
     vertical &&
       radius === "default" &&
-      "group-first:rounded-t-(--radius-inputs) group-last:rounded-b-(--radius-inputs)",
+      "group-first/btn:rounded-t-(--radius-inputs) group-last/btn:rounded-b-(--radius-inputs)",
     vertical &&
       radius === "pill" &&
-      "group-first:rounded-t-full group-last:rounded-b-full",
+      "group-first/btn:rounded-t-full group-last/btn:rounded-b-full",
     vertical &&
       variant === "outline" &&
-      "border-x border-(--bg-color) group-first:border-t group-last:border-b",
+      "border-x border-(--bg-color) group-first/btn:border-t group-last/btn:border-b",
   );
 }

@@ -85,6 +85,8 @@ export type SelectProps = {
   inputRef?: Ref<HTMLInputElement>;
   /** Indicates if a clear button should be show. If not value is provided it will be shown for multi select and not shown for single select */
   showClearButton?: boolean;
+  /** When set to `false`, forces a child button within a `ButtonGroup` to ignore group border and border-radius joining rules. */
+  useGroup?: boolean;
 } & ComponentProps<"div">;
 
 /**
@@ -123,6 +125,7 @@ export function Select({
   inputRef,
   id,
   showClearButton,
+  useGroup = true,
   ...rest
 }: SelectProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -192,7 +195,8 @@ export function Select({
     mobileSheetPlacement,
   );
 
-  const group = useButtonGroupContext();
+  const foundGroup = useButtonGroupContext();
+  const group = useGroup ? foundGroup : null;
 
   const {
     classes,
@@ -331,7 +335,7 @@ export function Select({
                         variant="ghost"
                         radius="pill"
                         size="xs"
-                        className="size-5 p-0"
+                        className="size-5 shrink-0 p-0"
                         startIcon={<XIcon className="size-3.5" />}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -352,7 +356,7 @@ export function Select({
               >
                 {buttonText}
               </button>
-              <div className="flex items-center h-full cursor-pointer">
+              <div className="flex h-full cursor-pointer items-center">
                 {(selectedIndex !== undefined || selectedIndices.length > 0) &&
                   showClear && (
                     <Button
@@ -363,7 +367,7 @@ export function Select({
                       size="sm"
                       variant="ghost"
                       color={isFocused || isMounted ? resolvedColor : "main"}
-                      className="h-6 p-1"
+                      className="h-6 shrink-0 p-1"
                       onClick={(e) => {
                         e.stopPropagation();
                         clear();

@@ -49,6 +49,9 @@ export function AutocompleteItem({
           onClick() {
             context.onSelectItem(itemName);
           },
+          onMouseDown(e) {
+            e.preventDefault();
+          },
         })}
         data-selected={selected ?? undefined}
         {...rest}

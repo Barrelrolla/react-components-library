@@ -15,7 +15,7 @@ export function getHamburgerClasses({
   isOpen: boolean;
   className?: string;
 }): HamburgerStyles {
-  const button = twMerge("group px-1 py-0", className);
+  const button = twMerge("group/hamburger px-1 py-0", className);
   const container = "hamburger";
   const lineClasses = "hamburger-line";
   const topLine = twMerge(

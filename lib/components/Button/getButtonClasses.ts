@@ -69,7 +69,7 @@ export function getButtonClasses({
       className,
     ),
     wrapperClasses: twMerge(
-      "group",
+      "group/btn",
       inGroup && group?.vertical && "w-full",
       disabled && "cursor-not-allowed",
       wrapperClassName,

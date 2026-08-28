@@ -53,7 +53,7 @@ export function getCardInteractClasses({
   }
 
   return {
-    classes: twMerge("card-interact group", className),
+    classes: twMerge("card-interact group/card", className),
   };
 }
 

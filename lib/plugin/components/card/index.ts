@@ -16,7 +16,7 @@ export default <Record<string, CssInJs>>{
       {},
   },
   ".card-image": {
-    "@apply relative group-hover:scale-110 transition-transform group-focus-visible:scale-110 w-full h-full object-cover focus-visible:scale-110 group-focus-visible:-z-10":
+    "@apply relative group-hover/card:scale-110 transition-transform group-focus-visible/card:scale-110 w-full h-full object-cover focus-visible:scale-110 group-focus-visible/card:-z-10":
       {},
   },
   ".card-section": {

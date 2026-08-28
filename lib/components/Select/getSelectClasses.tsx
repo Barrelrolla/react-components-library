@@ -66,7 +66,7 @@ export function getSelectClasses({
     ),
     wrapperClasses: twMerge(
       "select-wrapper",
-      inGroup && "group",
+      inGroup && "group/btn",
       isMounted && "text-(--bg-color)",
       wrapperClassName,
     ),

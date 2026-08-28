@@ -31,7 +31,7 @@ export function DropdownListItem<E extends ElementType = typeof defaultType>({
   const isMobile = useIsMobile();
   const isActive = item.index === context.activeIndex;
   const { classes } = getFloatingListItemClasses({
-    className: "group expanded:text-(--fg-color) " + className,
+    className: "group/dropdown expanded:text-(--fg-color) " + className,
     mobileSheet: context.mobileSheet,
     isMobile,
   });
@@ -60,7 +60,7 @@ export function DropdownListItem<E extends ElementType = typeof defaultType>({
         role={undefined}
       >
         {children}
-        <CaretDownIcon className="group-can-expand:inline hidden -rotate-90" />
+        <CaretDownIcon className="group-can-expand/dropdown:inline hidden -rotate-90" />
       </Element>
     </li>
   );

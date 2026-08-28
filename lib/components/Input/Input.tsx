@@ -56,6 +56,8 @@ export type InputProps<T extends InputFieldType = "input"> = {
   revealPasswordToggleAriaLabel?: string;
   /** When `true`, displays an interactive icon button inside the input field allowing users to toggle password visibility. */
   showRevealPasswordButton?: boolean;
+  /** When set to `false`, forces a child button within a `ButtonGroup` to ignore group border and border-radius joining rules. */
+  useGroup?: boolean;
   /** Underlying form element tag to render, allowing toggle between standard single-line `input` and multi-line `textarea`. Defaults to `input`. */
   as?: T;
   /** Ref attached to the rendered HTML input or textarea element. */
@@ -88,6 +90,7 @@ export function Input<T extends InputFieldType = "input">({
   stepDownAriaLabel,
   revealPasswordToggleAriaLabel,
   showRevealPasswordButton = true,
+  useGroup = true,
   as,
   ref,
   id,
@@ -96,7 +99,8 @@ export function Input<T extends InputFieldType = "input">({
   const [isRevealing, setIsRevealing] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const mergedRefs = useMergeRefs([inputRef, ref]);
-  const group = useButtonGroupContext();
+  const foundGroup = useButtonGroupContext();
+  const group = useGroup ? foundGroup : null;
 
   const {
     classes,
@@ -206,7 +210,7 @@ export function Input<T extends InputFieldType = "input">({
                 aria-label={revealPasswordToggleAriaLabel}
                 type="button"
                 scaling={false}
-                className="input-end-button"
+                className="input-end-button shrink-0"
                 wrapperClassName="mr-1"
                 tabIndex={-1}
                 size="xs"
@@ -227,7 +231,7 @@ export function Input<T extends InputFieldType = "input">({
             <Button
               aria-label={stepDownAriaLabel}
               type="button"
-              className="text-inherit"
+              className="shrink-0 text-inherit"
               disabled={disabled}
               tabIndex={-1}
               variant="ghost"
@@ -239,7 +243,7 @@ export function Input<T extends InputFieldType = "input">({
             <Button
               aria-label={stepUpAriaLabel}
               type="button"
-              className="text-inherit"
+              className="shrink-0 text-inherit"
               disabled={disabled}
               tabIndex={-1}
               variant="ghost"

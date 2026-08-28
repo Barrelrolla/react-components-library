@@ -43,7 +43,7 @@ export function getInputClasses({
     ),
     wrapperClasses: twMerge(
       "input-field-wrapper",
-      inGroup && "group",
+      inGroup && "group/btn",
       wrapperClassName,
     ),
     labelClasses: twMerge(
