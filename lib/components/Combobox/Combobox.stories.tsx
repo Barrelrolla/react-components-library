@@ -34,6 +34,7 @@ const meta: Meta<typeof Combobox> = {
     allowFreeText: { table: { category: "controls" } },
     placeholder: { table: { category: "controls" } },
     showClearButton: { table: { category: "controls" } },
+    shouldScrollOnFocus: { table: { category: "controls" } },
     items: { control: false, table: { category: "docs" } },
     initialSelectedIndex: { control: false, table: { category: "docs" } },
     initialSelectedIndices: { control: false, table: { category: "docs" } },

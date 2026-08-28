@@ -61,6 +61,8 @@ export type ComboboxProps = {
   showClearButton?: boolean;
   /** When set to `false`, forces a child button within a `ButtonGroup` to ignore group border and border-radius joining rules. */
   useGroup?: boolean;
+  /** When set to `true` and using a mobile device will scroll the page so that the input is at the top */
+  shouldScrollOnFocus: boolean;
 } & Omit<ComponentProps<"input">, "size">;
 
 /**
@@ -96,6 +98,7 @@ export function Combobox({
   showClearButton,
   defaultValue,
   useGroup = true,
+  shouldScrollOnFocus = true,
   ref,
   ...rest
 }: ComboboxProps) {
@@ -324,7 +327,7 @@ export function Combobox({
                 <input
                   role="combobox"
                   onFocus={(e) => {
-                    if (isMobile) {
+                    if (isMobile && shouldScrollOnFocus) {
                       const target = e.target;
                       setTimeout(() => {
                         target.scrollIntoView({
