@@ -311,7 +311,7 @@ export function Select({
             aria-labelledby={ariaLabeledBy || resolvedId}
             aria-label={ariaLabel}
             className={classes}
-            tabIndex={0}
+            tabIndex={disabled ? -1 : 0}
             ref={context.refs.setReference}
             {...interactions.getReferenceProps()}
             {...rest}
@@ -329,6 +329,7 @@ export function Select({
                     <>
                       <span>{items[index].name}</span>
                       <Button
+                        disabled={disabled}
                         type="button"
                         aria-label={removeItemAriaLabel}
                         useGroup={false}
@@ -360,6 +361,7 @@ export function Select({
                 {(selectedIndex !== undefined || selectedIndices.length > 0) &&
                   showClear && (
                     <Button
+                      disabled={disabled}
                       type="button"
                       aria-label={removeAllItemsAriaLabel}
                       useGroup={false}

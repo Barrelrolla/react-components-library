@@ -16,7 +16,7 @@ export default <Record<string, CssInJs>>{
     "@apply text-sm text-error": {},
   },
   ".input-field-container": {
-    "@apply hover:highlighted-main-bg inline-flex items-center outline-offset-1 has-disabled:muted-main-bg outline-error has-disabled:opacity-50 error:outline-1 has-error:outline-1 w-full inset-ring-transparent focus-within:inset-ring-(--bg-color) error:border-error has-error:border-error focus-visible:outline-none":
+    "@apply hover:highlighted-main-bg inline-flex items-center outline-offset-1 has-disabled:muted-main-bg outline-error has-disabled:opacity-50 error:outline-1 has-error:outline-1 w-full inset-ring-transparent focus-within:inset-ring-(--bg-color) error:border-error has-error:border-error not-error:focus-visible:outline-none":
       {},
   },
   ".input-start-icon": {

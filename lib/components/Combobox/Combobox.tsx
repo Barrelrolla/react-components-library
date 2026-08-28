@@ -288,6 +288,7 @@ export function Combobox({
                     <>
                       <span>{items[index].name}</span>
                       <Button
+                        disabled={disabled}
                         type="button"
                         aria-label={removeItemAriaLabel}
                         useGroup={false}
@@ -354,6 +355,7 @@ export function Combobox({
                 {(selectedIndex !== undefined || selectedIndices.length > 0) &&
                   showClear && (
                     <Button
+                      disabled={disabled}
                       type="button"
                       aria-label={removeAllItemsAriaLabel}
                       useGroup={false}
@@ -373,6 +375,7 @@ export function Combobox({
                     </Button>
                   )}
                 <Button
+                  disabled={disabled}
                   type="button"
                   aria-label={toggleOpenAriaLabel}
                   useGroup={false}
