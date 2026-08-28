@@ -1,5 +1,6 @@
 import {
   PropsWithChildren,
+  RefObject,
   useDeferredValue,
   useEffect,
   useMemo,
@@ -31,8 +32,6 @@ export type AutocompleteProps = {
   isOpen: boolean;
   /** Callback fired when the open state of the dropdown changes. */
   setIsOpen: (open: boolean) => void;
-  /**Callback fired when the mounted state changes. */
-  setIsMounted?: (mounted: boolean) => void;
   /** The list of selectable string items to search through. */
   items: string[];
   /** The current search query used to filter the item list. */
@@ -55,6 +54,8 @@ export type AutocompleteProps = {
   selectedIndex?: number | null;
   /** List of selected indices for supporting multi-selection modes. */
   selectedIndices?: number[];
+  /** Ref to the trigger div, used to calculate the width and return focus. */
+  triggerRef?: RefObject<HTMLDivElement | null>;
 } & PropsWithChildren;
 
 /**
@@ -72,7 +73,6 @@ export function Autocomplete({
   color = "main",
   isOpen,
   setIsOpen,
-  setIsMounted,
   query,
   onSelectItem,
   items,
@@ -82,6 +82,7 @@ export function Autocomplete({
   selectedIndex,
   selectedIndices,
   children,
+  triggerRef,
 }: AutocompleteProps) {
   const deferredQuery = useDeferredValue(query);
   const lastEmptyQueryRef = useRef<string | null>(null);
@@ -176,10 +177,6 @@ export function Autocomplete({
     false,
   );
 
-  useEffect(() => {
-    if (setIsMounted) setIsMounted(isMounted);
-  }, [isMounted, setIsMounted]);
-
   return (
     <AutocompleteContextProvider
       value={{
@@ -199,7 +196,7 @@ export function Autocomplete({
         transitionStyles,
         listRef,
         mobileSheet: false,
-        returnFocus: false,
+        returnFocus: true,
         isNested: false,
         scrollContainerRef,
         scrollListStyle: {
@@ -210,6 +207,7 @@ export function Autocomplete({
         },
         selectedIndex,
         selectedIndices,
+        triggerRef,
       }}
     >
       <>{children}</>

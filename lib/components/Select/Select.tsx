@@ -21,6 +21,7 @@ import {
   useFloating,
   useInteractions,
   useListNavigation,
+  useMergeRefs,
   useRole,
   useTypeahead,
 } from "@floating-ui/react";
@@ -136,7 +137,6 @@ export function Select({
     initialSelectedIndices || [],
   );
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
 
   const controlled = isOpen !== undefined;
   const open = controlled ? isOpen : uncontrolledOpen;
@@ -243,6 +243,9 @@ export function Select({
     setSelectedIndex(undefined);
     setSelectedIndices([]);
     setOpen(false);
+    requestAnimationFrame(() => {
+      triggerRef.current?.focus();
+    });
 
     if (onSelectedIndexChange) {
       onSelectedIndexChange(undefined);
@@ -263,7 +266,9 @@ export function Select({
   }
 
   const showClear = showClearButton ?? multiple;
+  const triggerRef = useRef<HTMLElement | null>(null);
 
+  const mergedRefs = useMergeRefs([context.refs.setReference, triggerRef]);
   return (
     <SelectContextProvider
       value={{
@@ -287,17 +292,12 @@ export function Select({
         mobileSheetPlacement,
         returnFocus: true,
         isNested: false,
+        triggerRef,
       }}
     >
       <div
         className={wrapperClasses}
         style={{ ...cssColorProps(resolvedColor), ...wrapperStyle }}
-        onFocus={() => {
-          setIsFocused(true);
-        }}
-        onBlur={() => {
-          setIsFocused(false);
-        }}
       >
         <span id={resolvedId} className={labelClasses}>
           {label}
@@ -312,7 +312,7 @@ export function Select({
             aria-label={ariaLabel}
             className={classes}
             tabIndex={disabled ? -1 : 0}
-            ref={context.refs.setReference}
+            ref={mergedRefs}
             {...interactions.getReferenceProps()}
             {...rest}
           >
@@ -353,7 +353,7 @@ export function Select({
                 aria-hidden={true}
                 disabled={disabled}
                 tabIndex={-1}
-                className="line-clamp-1 h-full w-full cursor-pointer px-3 py-1.5 text-left disabled:pointer-events-none disabled:opacity-50"
+                className="line-clamp-1 h-full w-full cursor-pointer px-3 py-1.5 text-left focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
               >
                 {buttonText}
               </button>
@@ -368,8 +368,7 @@ export function Select({
                       radius="pill"
                       size="sm"
                       variant="ghost"
-                      color={isFocused || isMounted ? resolvedColor : "main"}
-                      className="h-6 shrink-0 p-1"
+                      className="h-6 shrink-0 p-1 text-inherit"
                       onClick={(e) => {
                         e.stopPropagation();
                         clear();

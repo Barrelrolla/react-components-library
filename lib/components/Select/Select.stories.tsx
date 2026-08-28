@@ -20,6 +20,8 @@ const meta: Meta<typeof Select> = {
     name: "select",
     "aria-label": "Select fruit",
     placeholder: "Select fruit",
+    removeAllItemsAriaLabel: "remove all",
+    removeItemAriaLabel: "remove",
   },
   argTypes: {
     "aria-label": { table: { disable: true } },
@@ -84,7 +86,7 @@ export const Default: Story = {
   render: ({ ...rest }) => {
     return (
       <Select {...rest} items={fruits}>
-        <SelectContent>
+        <SelectContent closeButtonAriaLabel="close">
           <SelectGroupTitle>Fruits</SelectGroupTitle>
           <SelectGroup>
             {fruits.map((fruit, index) => {
@@ -115,7 +117,7 @@ export const Multiple: Story = {
   render: ({ ...rest }) => {
     return (
       <Select {...rest} items={fruits}>
-        <SelectContent>
+        <SelectContent closeButtonAriaLabel="close">
           <SelectGroupTitle>Fruits</SelectGroupTitle>
           <SelectGroup>
             {fruits.map((fruit, index) => {
@@ -160,7 +162,7 @@ export const WithLabel: Story = {
   render: ({ ...rest }) => {
     return (
       <Select {...rest} items={fruits}>
-        <SelectContent>
+        <SelectContent closeButtonAriaLabel="close">
           <SelectGroup>
             {fruits.map((fruit, index) => {
               return (
@@ -203,7 +205,7 @@ export const WithError: Story = {
   render: ({ ...rest }) => {
     return (
       <Select {...rest} items={fruits}>
-        <SelectContent>
+        <SelectContent closeButtonAriaLabel="close">
           <SelectGroup>
             {fruits.map((fruit, index) => {
               return (
@@ -247,7 +249,7 @@ export const Disabled: Story = {
   render: ({ ...rest }) => {
     return (
       <Select {...rest} items={fruits}>
-        <SelectContent>
+        <SelectContent closeButtonAriaLabel="close">
           <SelectGroup>
             {fruits.map((fruit, index) => {
               return (
@@ -289,7 +291,7 @@ export const Sizes: Story = {
       <div className="grid gap-4">
         {availableSizes.map((size) => (
           <Select label={size} size={size} key={size} {...rest} items={fruits}>
-            <SelectContent>
+            <SelectContent closeButtonAriaLabel="close">
               <SelectGroup>
                 {fruits.map((fruit, index) => {
                   return (
@@ -337,7 +339,7 @@ export const Colors: Story = {
             {...rest}
             items={fruits}
           >
-            <SelectContent>
+            <SelectContent closeButtonAriaLabel="close">
               <SelectGroup>
                 {fruits.map((fruit, index) => {
                   return (

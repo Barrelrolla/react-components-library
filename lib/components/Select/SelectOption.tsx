@@ -60,6 +60,7 @@ export function SelectOption({
         {...rest}
         onClick={() => {
           context.setSelected(index);
+          context.triggerRef.current?.focus();
         }}
       >
         <span className="line-clamp-1">{children}</span>

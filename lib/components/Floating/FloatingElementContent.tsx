@@ -111,7 +111,7 @@ export function FloatingElementContent({
     <FloatingPortal>
       <FloatingFocusManager
         context={context.data.context}
-        modal={false}
+        modal={mobileSheet && isMobile}
         disabled={true}
         initialFocus={context.isNested || !context.useFocus ? -1 : 0}
         returnFocus={

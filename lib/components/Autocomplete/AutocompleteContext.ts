@@ -23,6 +23,8 @@ export interface AutocompleteContextType extends FloatingElementContextType {
   query: string;
   /** Callback triggered when an item option is selected. */
   onSelectItem: (activeItem: string) => void;
+  /** Ref to the trigger div, used to calculate the width and return focus. */
+  triggerRef?: RefObject<HTMLDivElement | null>;
 }
 
 const AutocompleteContext = createContext<AutocompleteContextType | null>(null);

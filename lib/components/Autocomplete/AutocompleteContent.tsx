@@ -1,12 +1,10 @@
-import { ComponentProps, RefObject } from "react";
+import { ComponentProps } from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import { FloatingElementContent } from "../Floating";
 import { FloatingList } from "@floating-ui/react";
 import { AutocompleteItem } from "./AutocompleteItem";
 
 export type AutocompleteContentProps = {
-  /** Ref to the parent div, used to calculate the width. If no ref is provided, the width will be calculated based on the Trigger. */
-  parentRef?: RefObject<HTMLDivElement | null>;
   /** Text message displayed inside the dropdown list when no matching suggestions are found. Defaults to `"No results found."`. */
   noResultsText?: string;
   /** Accessible label applied to the button that collapses the floating element on mobile devices. */
@@ -20,7 +18,6 @@ export type AutocompleteContentProps = {
  * empty state rendering using `noResultsText` when filtering returns zero matching choices.
  */
 export function AutocompleteContent({
-  parentRef,
   noResultsText = "No results found.",
   style,
   ...rest
@@ -33,7 +30,7 @@ export function AutocompleteContent({
   }
 
   const width =
-    parentRef?.current?.clientWidth ||
+    context.triggerRef?.current?.clientWidth ||
     context.data.elements.domReference?.clientWidth ||
     0;
 
@@ -41,7 +38,7 @@ export function AutocompleteContent({
 
   const wrapperWidh =
     context.data.elements.domReference?.parentElement?.clientWidth;
-  const parentWidth = parentRef?.current?.clientWidth;
+  const parentWidth = context.triggerRef?.current?.clientWidth;
   const offset = wrapperWidh && parentWidth ? wrapperWidh - parentWidth : 0;
 
   return (

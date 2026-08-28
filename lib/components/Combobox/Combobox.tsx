@@ -5,8 +5,8 @@ import {
   useId,
   useRef,
   useState,
-  FocusEvent,
   ReactNode,
+  FocusEvent,
 } from "react";
 import { useMergeRefs } from "@floating-ui/react";
 import { ColorType, SizeType } from "@/types";
@@ -100,8 +100,6 @@ export function Combobox({
   ...rest
 }: ComboboxProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
     initialSelectedIndex,
   );
@@ -186,6 +184,9 @@ export function Combobox({
     setSelectedIndices([]);
     setIsOpen(false);
     setValue("");
+    requestAnimationFrame(() => {
+      inputRef.current?.focus();
+    });
 
     if (onSelectedIndexChange) {
       onSelectedIndexChange(undefined);
@@ -212,18 +213,32 @@ export function Combobox({
   const containerRef = useRef<HTMLDivElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
 
+  const showClear = showClearButton ?? multiple;
+
   const handleBlur = (e: FocusEvent) => {
+    if (!allowFreeText) {
+      if (selectedIndex) {
+        setValue(items[selectedIndex].value);
+      } else if (items.map((item) => item.name).indexOf(query) < 0) {
+        setValue("");
+      }
+    }
     if (
       // containerRef.current?.contains(e.relatedTarget) ||
       floatingRef.current?.contains(e.relatedTarget)
     ) {
       requestAnimationFrame(() => {
-        containerRef.current?.focus({ preventScroll: true });
+        const input = inputRef.current;
+        if (input) {
+          input.focus({ preventScroll: true });
+          const val = input.value;
+          input.value = "";
+          input.value = val;
+        }
       });
     }
   };
 
-  const showClear = showClearButton ?? multiple;
   return (
     <Autocomplete
       color={color}
@@ -236,9 +251,9 @@ export function Combobox({
       items={items.map((item) => item.name)}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      setIsMounted={setIsMounted}
       selectedIndex={selectedIndex}
       selectedIndices={selectedIndices}
+      triggerRef={containerRef}
     >
       <div
         ref={containerRef}
@@ -247,19 +262,7 @@ export function Combobox({
           ...cssColorProps(resolvedColor),
           ...wrapperStyle,
         }}
-        onFocus={() => {
-          setIsFocused(true);
-        }}
-        onBlur={() => {
-          setIsFocused(false);
-          if (!allowFreeText) {
-            if (selectedIndex) {
-              setValue(items[selectedIndex].value);
-            } else if (items.map((item) => item.name).indexOf(query) < 0) {
-              setValue("");
-            }
-          }
-        }}
+        onBlur={handleBlur}
         onKeyDown={(e: KeyboardEvent) => {
           if (!multiple && e.key === "Backspace") {
             setSelectedIndex(undefined);
@@ -299,7 +302,6 @@ export function Combobox({
                         startIcon={<XIcon className="size-3.5" />}
                         onClick={(e) => {
                           e.stopPropagation();
-                          setIsFocused(false);
                           setSelected(index);
                         }}
                       />
@@ -322,7 +324,6 @@ export function Combobox({
                       }, 300);
                     }
                   }}
-                  onBlur={handleBlur}
                   style={{ scrollMarginTop: "24px" }}
                   id={resolvedId}
                   data-error={error ? true : undefined}
@@ -362,12 +363,10 @@ export function Combobox({
                       radius="pill"
                       size="sm"
                       variant="ghost"
-                      color={isFocused ? resolvedColor : "main"}
-                      className="h-full shrink-0 p-1"
+                      className="h-full shrink-0 p-1 text-inherit"
                       wrapperClassName="h-full"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setIsFocused(false);
                         clear();
                       }}
                     >
@@ -382,12 +381,11 @@ export function Combobox({
                   radius="pill"
                   size="xs"
                   wrapperClassName="h-full"
-                  className="h-full px-2 py-0"
+                  className="h-full px-2 py-0 text-inherit"
                   variant="ghost"
-                  color={isFocused ? resolvedColor : "main"}
                   onClick={(e) => {
                     e.stopPropagation();
-                    if (!isMounted) {
+                    if (!floatingRef.current) {
                       setIsOpen(true);
                     }
                   }}
@@ -417,7 +415,7 @@ export function Combobox({
           )}
         </div>
       </div>
-      <AutocompleteContent ref={floatingRef} parentRef={containerRef} />
+      <AutocompleteContent ref={floatingRef} />
     </Autocomplete>
   );
 }

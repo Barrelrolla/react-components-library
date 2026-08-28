@@ -21,6 +21,8 @@ interface SelectContextType extends FloatingElementContextType {
   listRef: RefObject<(HTMLElement | null)[]>;
   /** React ref storing textual labels for options to support typeahead and keyboard search. */
   labelsRef: RefObject<(string | null)[]>;
+  /** React ref storing the trigger element, so focus can returned. */
+  triggerRef: RefObject<HTMLElement | null>;
 }
 const SelectContext = createContext<SelectContextType | null>(null);
 /**
