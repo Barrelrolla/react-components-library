@@ -48,9 +48,12 @@ export function SelectOption({
   });
 
   return (
-    <li className="focus-visible:outline-none has-disabled:cursor-not-allowed">
+    <li
+      role="presentation"
+      className="focus-visible:outline-none has-disabled:cursor-not-allowed"
+    >
       <button
-        role="menuitem"
+        role="option"
         ref={useMergeRefs([item.ref, ref])}
         disabled={disabled}
         data-selected={isSelected}

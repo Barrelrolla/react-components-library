@@ -43,7 +43,7 @@ export function SelectContent({
       {...rest}
     >
       <FloatingList elementsRef={context.listRef} labelsRef={context.labelsRef}>
-        <ul>{children}</ul>
+        {children}
       </FloatingList>
     </FloatingElementContent>
   );

@@ -7,5 +7,9 @@ import { ComponentProps } from "react";
  * assistive technologies and keyboard navigation.
  */
 export function SelectGroup({ children, ...rest }: ComponentProps<"ul">) {
-  return <ul {...rest}>{children}</ul>;
+  return (
+    <ul role="presentation" {...rest}>
+      {children}
+    </ul>
+  );
 }

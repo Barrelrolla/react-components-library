@@ -50,11 +50,12 @@ export function AutocompleteContent({
     >
       <FloatingList elementsRef={context.listRef}>
         {context.filteredItems.length > 0 && (
-          <ul>
+          <ul role="presentation">
             {context.rowVirtualizer.getVirtualItems().map((virtualRow) => {
               const item = context.filteredItems[virtualRow.index];
               return (
                 <li
+                  role="presentation"
                   key={virtualRow.key}
                   ref={(node) => {
                     context.listRef.current[virtualRow.index] = node;
@@ -67,7 +68,6 @@ export function AutocompleteContent({
                     transform: `translateY(${virtualRow.start}px)`,
                     height: `${virtualRow.size}px`,
                   }}
-                  tabIndex={-1}
                 >
                   <AutocompleteItem
                     active={context.activeIndex === virtualRow.index}

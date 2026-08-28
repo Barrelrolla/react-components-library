@@ -151,7 +151,9 @@ export function FloatingElementContent({
           />
         )}
         <div className={innerClasses} ref={mergedInnerRefs}>
-          <div style={{ ...context.scrollListStyle }}>{children}</div>
+          <div role="presentation" style={{ ...context.scrollListStyle }}>
+            {children}
+          </div>
         </div>
         {context.hasArrow && (!isMobile || !mobileSheet) && (
           <FloatingArrow
