@@ -1,9 +1,0 @@
-import{j as o}from"./iframe-Bbxhc0td.js";import{T as a}from"./Button-BO93cLlU.js";import{D as r}from"./DarkModeToggle-DjbJfyJ8.js";import{c as l,a as s}from"./index-DttbUWqL.js";import"./preload-helper-PPVm8Dsz.js";import"./icons-DfMaXq6z.js";import"./bundle-mjs-Ct12j0u0.js";import"./cssColorProps-D-Xi89r8.js";import"./ButtonGroup-DwYiJzMz.js";import"./Divider-DSU9h1GZ.js";import"./TooltipContent-CoHp1mC_.js";import"./FloatingElementContent-CyNdRXM9.js";import"./useIsMobile-DyAixpuM.js";import"./Slot-D0LNAv-l.js";const k={title:"Components/DarkModeToggle",tags:["autodocs"],component:r,decorators:t=>o.jsx("div",{className:"storybookContainer",children:o.jsx(t,{})}),argTypes:{color:{control:{type:"select"},options:s,table:{category:"controls"}},variant:{control:{type:"inline-radio"},table:{category:"controls"}},size:{control:{type:"inline-radio"},options:l,table:{category:"controls"}},radius:{control:{type:"inline-radio"},table:{category:"controls"}},disabled:{table:{category:"controls"}},scaling:{table:{category:"controls"}},retainFocusState:{table:{category:"controls"}},lightModeTooltip:{control:!1,table:{category:"docs"}},darkModeTooltip:{control:!1,table:{category:"docs"}},loading:{table:{disable:!0}},loadingPosition:{table:{disable:!0}},startIcon:{table:{disable:!0}},endIcon:{table:{disable:!0}},ref:{table:{disable:!0}},wrapperClassName:{table:{disable:!0}},useGroup:{table:{disable:!0}},selected:{table:{disable:!0}},as:{table:{disable:!0}}},args:{lightModeTooltip:"light",darkModeTooltip:"dark","aria-label":"toggle"}},e={render:({...t})=>o.jsx(a,{children:o.jsx(r,{...t})})};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
-  render: ({
-    ...props
-  }) => {
-    return <ThemeContextProvider>\r
-        <DarkModeToggle {...props} />\r
-      </ThemeContextProvider>;
-  }
-}`,...e.parameters?.docs?.source}}};const v=["Default"];export{e as Default,v as __namedExportsOrder,k as default};
