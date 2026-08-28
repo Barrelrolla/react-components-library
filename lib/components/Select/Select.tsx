@@ -368,13 +368,14 @@ export function Select({
                       radius="pill"
                       size="sm"
                       variant="ghost"
-                      className="h-6 shrink-0 p-1 text-inherit"
+                      className="h-[stretch] px-1.5 text-inherit"
+                      wrapperClassName="h-[stretch]"
                       onClick={(e) => {
                         e.stopPropagation();
                         clear();
                       }}
                     >
-                      {<XIcon className={"mr-1 inline size-4"} />}
+                      {<XIcon className={"inline size-4 shrink-0"} />}
                     </Button>
                   )}
                 <CaretDownIcon className={caretClasses} />

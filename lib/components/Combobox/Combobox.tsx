@@ -266,9 +266,19 @@ export function Combobox({
         onKeyDown={(e: KeyboardEvent) => {
           if (!multiple && e.key === "Backspace") {
             setSelectedIndex(undefined);
+            if (selectedIndex && onSelectedIndexChange) {
+              onSelectedIndexChange(undefined);
+            }
           } else if (e.key === "Backspace") {
             if (query.length === 0 && selectedIndices.length > 0) {
               setSelectedIndices(selectedIndices.slice(0, -1));
+              if (onSelectedIndexChange) {
+                const index =
+                  selectedIndices.length > 0
+                    ? selectedIndices.length - 1
+                    : undefined;
+                onSelectedIndexChange(index);
+              }
             }
           }
         }}
