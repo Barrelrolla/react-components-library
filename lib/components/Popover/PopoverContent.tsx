@@ -6,6 +6,8 @@ import { FloatingElementContent } from "../Floating";
 type PopoverContentProps = {
   /** CSS class names that will be applied to the backdrop. */
   backdropClassName?: string;
+  /** CSS class names that will be applied to the inner container that is used as a scrollbox. */
+  innerClassName?: string;
 } & ComponentProps<"div">;
 
 /**

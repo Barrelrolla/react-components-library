@@ -62,7 +62,7 @@ export function getSelectClasses({
     caretClasses: twMerge(
       carretPadding && "mr-3",
       isOpen ? "rotate-180" : "rotate-0",
-      "transition-transform",
+      "size-4 shrink-0 transition-transform",
     ),
     wrapperClasses: twMerge(
       "select-wrapper",

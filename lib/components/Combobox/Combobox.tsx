@@ -383,7 +383,7 @@ export function Combobox({
                         clear();
                       }}
                     >
-                      <XIcon className={"inline size-4"} />
+                      <XIcon className={"inline size-4 shrink-0"} />
                     </Button>
                   )}
                 <Button
