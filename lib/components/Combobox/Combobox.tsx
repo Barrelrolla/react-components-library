@@ -62,7 +62,7 @@ export type ComboboxProps = {
   /** When set to `false`, forces a child button within a `ButtonGroup` to ignore group border and border-radius joining rules. */
   useGroup?: boolean;
   /** When set to `true` and using a mobile device will scroll the page so that the input is at the top */
-  shouldScrollOnFocus: boolean;
+  shouldScrollOnFocus?: boolean;
 } & Omit<ComponentProps<"input">, "size">;
 
 /**
