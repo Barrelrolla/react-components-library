@@ -45,6 +45,8 @@ export type PopoverProps = {
   role?: floatingRoles;
   /** Disables popover interactions and prevents it from opening. */
   disabled?: boolean;
+  /** Will add a backdrop and lock scroll. Do not use with elements on hover, becuase they will be hidden under the backdrop and trigger close. */
+  hasBackdrop?: boolean;
 } & PropsWithChildren;
 
 export function PopoverComponent({
@@ -58,6 +60,7 @@ export function PopoverComponent({
   requireClick = false,
   role,
   disabled,
+  hasBackdrop,
   children,
 }: PopoverProps) {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
@@ -127,6 +130,7 @@ export function PopoverComponent({
           transitionStyles,
           hasArrow,
           arrowRef,
+          hasBackdrop,
         }}
       >
         {children}

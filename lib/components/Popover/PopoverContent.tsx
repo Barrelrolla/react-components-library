@@ -3,13 +3,21 @@ import { usePopoverContext } from "./PopoverContext";
 import { getPopoverClasses } from "./getPopoverClasses";
 import { FloatingElementContent } from "../Floating";
 
+type PopoverContentProps = {
+  /** CSS classnames that will be applied to the backdrop. */
+  backdropClasses?: string;
+} & ComponentProps<"div">;
+
 /**
  * Surface container for popover body content.
  *
  * Delegates layout, elevation, and positioning styles to the underlying
  * `FloatingElementContent` wrapper while accepting standard HTML `div` attributes.
  */
-export function PopoverContent({ ...rest }: ComponentProps<"div">) {
+export function PopoverContent({
+  backdropClasses,
+  ...rest
+}: PopoverContentProps) {
   const context = usePopoverContext();
   if (!context) {
     throw new Error(
@@ -28,6 +36,7 @@ export function PopoverContent({ ...rest }: ComponentProps<"div">) {
   return (
     <FloatingElementContent
       context={context}
+      backdropClasses={backdropClasses}
       getClasses={getPopoverClasses}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabeledBy}

@@ -54,6 +54,8 @@ export type DropdownProps = {
   mobileSheet?: boolean;
   /** Positioning for the mobile sheet view. */
   mobileSheetPlacement?: MobileSheetPlacementType;
+  /** Will add a backdrop and lock scroll. Do not use with elements on hover, becuase they will be hidden under the backdrop and trigger close. */
+  hasBackdrop?: boolean;
 } & PropsWithChildren;
 
 export function DropdownComponent({
@@ -68,6 +70,7 @@ export function DropdownComponent({
   returnFocus = null,
   mobileSheetPlacement = "bottom",
   disabled,
+  hasBackdrop,
   children,
 }: DropdownProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -207,6 +210,7 @@ export function DropdownComponent({
           mobileSheet,
           mobileSheetPlacement,
           returnFocus,
+          hasBackdrop,
         }}
       >
         {children}

@@ -88,6 +88,8 @@ export type SelectProps = {
   showClearButton?: boolean;
   /** When set to `false`, forces a child button within a `ButtonGroup` to ignore group border and border-radius joining rules. */
   useGroup?: boolean;
+  /** Will add a backdrop and lock scroll. Do not use with elements on hover, becuase they will be hidden under the backdrop and trigger close. */
+  hasBackdrop?: boolean;
 } & ComponentProps<"div">;
 
 /**
@@ -127,6 +129,7 @@ export function Select({
   id,
   showClearButton,
   useGroup = true,
+  hasBackdrop,
   ...rest
 }: SelectProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -293,6 +296,7 @@ export function Select({
         returnFocus: true,
         isNested: false,
         triggerRef,
+        hasBackdrop,
       }}
     >
       <div

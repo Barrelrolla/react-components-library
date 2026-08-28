@@ -7,6 +7,8 @@ import { useIsMobile } from "@/hooks";
 export type SelectContentProps = {
   /** Accessible label applied to the button that collapses the floating element on mobile devices. */
   closeButtonAriaLabel?: string;
+  /** CSS classnames that will be applied to the backdrop. */
+  backdropClasses?: string;
 } & ComponentProps<"div">;
 
 /**
@@ -17,6 +19,7 @@ export type SelectContentProps = {
  */
 export function SelectContent({
   style,
+  backdropClasses,
   children,
   ...rest
 }: SelectContentProps) {
@@ -33,7 +36,12 @@ export function SelectContent({
   const styles = { ...style, ...{ width: isMobile ? undefined : width } };
 
   return (
-    <FloatingElementContent context={context} style={styles} {...rest}>
+    <FloatingElementContent
+      context={context}
+      style={styles}
+      backdropClasses={backdropClasses}
+      {...rest}
+    >
       <FloatingList elementsRef={context.listRef} labelsRef={context.labelsRef}>
         <ul>{children}</ul>
       </FloatingList>

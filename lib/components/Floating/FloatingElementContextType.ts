@@ -35,4 +35,6 @@ export interface FloatingElementContextType {
   mobileSheet: boolean;
   /** Alignment and positioning placement used when `mobileSheet` mode is active. */
   mobileSheetPlacement?: MobileSheetPlacementType;
+  /** Will add a backdrop and lock scroll. Do not use with elements on hover, becuase they will be hidden under the backdrop and trigger close. */
+  hasBackdrop?: boolean;
 }

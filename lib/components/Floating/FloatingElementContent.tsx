@@ -2,6 +2,7 @@ import { ComponentProps, useCallback } from "react";
 import {
   FloatingArrow,
   FloatingFocusManager,
+  FloatingOverlay,
   FloatingPortal,
   useMergeRefs,
 } from "@floating-ui/react";
@@ -32,6 +33,8 @@ export type FloatingContentProps = {
     mobileSheetPlacement?: MobileSheetPlacementType;
     className?: string;
   }) => { classes: string };
+  /** CSS classnames that will be applied to the backdrop. */
+  backdropClasses?: string;
 } & ComponentProps<"div">;
 
 /**
@@ -49,6 +52,7 @@ export function FloatingElementContent({
   getClasses,
   className,
   style,
+  backdropClasses,
   children,
   ...rest
 }: FloatingContentProps) {
@@ -107,6 +111,62 @@ export function FloatingElementContent({
   };
 
   const innerClasses = `floating-container-inner ${mobileSheet ? "max-h-[calc(3/4*100vh)] sm:max-h-80" : "max-h-80"}`;
+
+  const Content = (
+    <div
+      className="floating-container"
+      ref={context.data.refs.setFloating}
+      aria-label={rest["aria-label"]}
+      {...context.interactions.getFloatingProps()}
+      // { "aria-label": rest["aria-label"] }}
+      style={
+        isMobile && context.mobileSheet
+          ? undefined
+          : { ...context.data.floatingStyles, translate: `${offsetX}px` }
+      }
+    >
+      <div style={styles} className={classes} {...rest} aria-label={undefined}>
+        {isMobile && mobileSheet && (
+          <Button
+            aria-label={closeButtonAriaLabel}
+            type="button"
+            onClick={() => {
+              context.setIsOpen(false);
+            }}
+            color="main"
+            variant="ghost"
+            size="sm"
+            className="absolute top-1 right-1"
+            startIcon={<CloseIcon strokeWidth={2} className="size-6" />}
+            useGroup={false}
+          />
+        )}
+        <div className={innerClasses} ref={mergedInnerRefs}>
+          <div style={{ ...context.scrollListStyle }}>{children}</div>
+        </div>
+        {context.hasArrow && (!isMobile || !mobileSheet) && (
+          <FloatingArrow
+            className="arrow"
+            style={coloredArror ? colorProps : mainColorProps}
+            ref={context.arrowRef}
+            context={context.data.context}
+            height={7}
+            width={14}
+          />
+        )}
+      </div>
+    </div>
+  );
+
+  const Element =
+    context.hasBackdrop || (mobileSheet && isMobile) ? (
+      <FloatingOverlay lockScroll className={backdropClasses}>
+        {Content}
+      </FloatingOverlay>
+    ) : (
+      Content
+    );
+
   return (
     <FloatingPortal>
       <FloatingFocusManager
@@ -120,54 +180,7 @@ export function FloatingElementContent({
             : !context.isNested
         }
       >
-        <div
-          className="floating-container"
-          ref={context.data.refs.setFloating}
-          aria-label={rest["aria-label"]}
-          {...context.interactions.getFloatingProps()}
-          // { "aria-label": rest["aria-label"] }}
-          style={
-            isMobile && context.mobileSheet
-              ? undefined
-              : { ...context.data.floatingStyles, translate: `${offsetX}px` }
-          }
-        >
-          <div
-            style={styles}
-            className={classes}
-            {...rest}
-            aria-label={undefined}
-          >
-            {isMobile && mobileSheet && (
-              <Button
-                aria-label={closeButtonAriaLabel}
-                type="button"
-                onClick={() => {
-                  context.setIsOpen(false);
-                }}
-                color="main"
-                variant="ghost"
-                size="sm"
-                className="absolute top-1 right-1"
-                startIcon={<CloseIcon strokeWidth={2} className="size-6" />}
-                useGroup={false}
-              />
-            )}
-            <div className={innerClasses} ref={mergedInnerRefs}>
-              <div style={{ ...context.scrollListStyle }}>{children}</div>
-            </div>
-            {context.hasArrow && (!isMobile || !mobileSheet) && (
-              <FloatingArrow
-                className="arrow"
-                style={coloredArror ? colorProps : mainColorProps}
-                ref={context.arrowRef}
-                context={context.data.context}
-                height={7}
-                width={14}
-              />
-            )}
-          </div>
-        </div>
+        {Element}
       </FloatingFocusManager>
     </FloatingPortal>
   );
