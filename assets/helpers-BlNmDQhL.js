@@ -1,0 +1,1 @@
+import{r as o}from"./iframe-IjIofJAl.js";function t(r){return typeof r=="string"||typeof r=="number"?String(r):Array.isArray(r)?r.map(t).join(""):o.isValidElement(r)&&r.props.children?t(r.props.children):""}export{t as g};
