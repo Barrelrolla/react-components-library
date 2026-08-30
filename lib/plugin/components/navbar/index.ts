@@ -32,7 +32,7 @@ export default <Record<string, CssInJs>>{
     "@apply mt-0 mb-0 flex-row items-center gap-4 p-0": {},
   },
   ".navbar-link": {
-    "@apply flex bg-main text-main-content hover:bg-(--fg-color)/10 focus-visible:bg-(--fg-color)/10 active:bg-(--fg-color)/30 selected:bg-(--fg-color) selected:text-(--bg-color) selected:hover:bg-(--fg-color)/90 selected:focus-visible:bg-(--fg-color)/90 selected:active:bg-(--fg-color)/80 outline-offset-1 p-3":
+    "@apply flex text-main-content hover:bg-(--fg-color)/10 focus-visible:bg-(--fg-color)/10 active:bg-(--fg-color)/30 selected:bg-(--fg-color) selected:text-(--bg-color) selected:hover:bg-(--fg-color)/90 selected:focus-visible:bg-(--fg-color)/90 selected:active:bg-(--fg-color)/80 outline-offset-1 p-3":
       {},
   },
   ".navbar-link-extended": {
