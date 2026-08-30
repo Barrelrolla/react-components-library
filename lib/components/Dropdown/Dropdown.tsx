@@ -130,7 +130,7 @@ export function DropdownComponent({
   const role = useRole(context, { role: "menu" });
   const dismiss = useDismiss(context, {
     bubbles: true,
-    outsidePressEvent: "click",
+    outsidePressEvent: "pointerdown",
   });
   const listNav = useListNavigation(context, {
     listRef,

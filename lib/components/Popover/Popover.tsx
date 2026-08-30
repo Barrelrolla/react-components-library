@@ -106,7 +106,7 @@ export function PopoverComponent({
   });
   const click = useClick(context, { enabled: requireClick });
   const focus = useFocus(context, { enabled: !requireClick });
-  const dismiss = useDismiss(context, { outsidePressEvent: "click" });
+  const dismiss = useDismiss(context, { outsidePressEvent: "pointerdown" });
   const r = useRole(context, { role: role });
   const interactions = useInteractions([hover, click, focus, dismiss, r]);
   const { isMounted, transitionStyles } = useFloatingTransitionStyles(

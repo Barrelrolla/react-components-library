@@ -172,7 +172,7 @@ export function Select({
   const role = useRole(context, { role: "combobox" });
   const dismiss = useDismiss(context, {
     bubbles: true,
-    outsidePressEvent: "click",
+    outsidePressEvent: "pointerdown",
   });
   const listNav = useListNavigation(context, {
     listRef,
