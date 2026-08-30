@@ -9,7 +9,7 @@ A collection of React components built for personal projects, free to use, modif
 Ensure you have **React** and **Tailwind CSS v4** installed, then install the package via npm:
 
 ```bash
-npm install @barrelrolla/react-components-library
+npm install barrelrolla-ui
 ```
 
 ---
@@ -20,8 +20,8 @@ Add the following directives to your main `.css` file:
 
 ```css
 @import "tailwindcss";
-@plugin "@barrelrolla/react-components-library/plugin";
-@source "../node_modules/@barrelrolla/react-components-library/";
+@plugin "barrelrolla-ui/plugin";
+@source "../node_modules/barrelrolla-ui/";
 ```
 
 > **Note:** The `@source` directive ensures Tailwind scans the library's pre-built components so its classes are included in your CSS build.

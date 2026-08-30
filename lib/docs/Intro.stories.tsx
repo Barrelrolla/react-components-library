@@ -21,7 +21,7 @@ export const Welcome: Story = {
       <div className="bg-main">
         <Hero textAlign="center" className="h-screen min-h-0">
           <HeroSection>
-            <HeroTitle>Welcome to my react components library</HeroTitle>
+            <HeroTitle>Welcome to Barrelrolla UI</HeroTitle>
             <HeroActions>
               <Button
                 variant="outline"
