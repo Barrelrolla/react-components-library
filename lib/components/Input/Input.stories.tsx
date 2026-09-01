@@ -355,6 +355,7 @@ export const WithIcon: Story = {
     startIcon: <PiMagnifyingGlass />,
     placeholder: "Input",
     label: "Label",
+    type: "search",
   },
   argTypes: {
     startIcon: { table: { disable: true } },

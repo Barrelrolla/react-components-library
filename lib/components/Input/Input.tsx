@@ -25,7 +25,7 @@ export type InputProps<T extends InputFieldType = "input"> = {
   /** Input size option. */
   size?: SizeType;
   /** HTML input type attribute for supported text-based formats. */
-  type?: "text" | "email" | "password" | "tel" | "url" | "number";
+  type?: "text" | "search" | "email" | "password" | "tel" | "url" | "number";
   /** Descriptive label rendered above the input field. */
   label?: ReactNode;
   /** Visual icon component placed inside the input field preceding the text value. */
@@ -195,6 +195,7 @@ export function Input<T extends InputFieldType = "input">({
           <input
             {...(elementProps as ComponentPropsWithoutRef<"input">)}
             {...(rest as ComponentPropsWithoutRef<"input">)}
+            enterKeyHint={type === "search" ? "search" : undefined}
           />
         )}
         {endIcon && (
